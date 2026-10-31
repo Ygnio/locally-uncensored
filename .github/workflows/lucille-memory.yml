@@ -1,0 +1,55 @@
+name: Lucille memory phase 1
+
+on:
+  push:
+    branches: [feature/lucille-memory-hybrid-phase1]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-integration:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-22.04]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    env:
+      CARGO_TARGET_DIR: ${{ github.workspace }}/.lucille-build
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install dependencies without launching applications
+        run: npm ci --ignore-scripts
+      - name: Real Rust SQLite and FTS5 tests
+        run: cargo test --locked --manifest-path crates/lucille-memory/Cargo.toml
+      - name: Build real synthetic integration bridge
+        run: cargo build --locked --manifest-path crates/lucille-memory/Cargo.toml --example synthetic_bridge
+      - name: Shared adapter, real SQLite and native memory regression tests
+        shell: bash
+        run: |
+          suffix=""
+          if [ "$RUNNER_OS" = "Windows" ]; then suffix=".exe"; fi
+          export LUCILLE_QA_BRIDGE="$CARGO_TARGET_DIR/debug/examples/synthetic_bridge$suffix"
+          npx vitest run --maxWorkers=1 \
+            src/lib/__tests__/lucille-context.test.ts \
+            src/lib/__tests__/lucille-real-sqlite.test.ts \
+            src/hooks/__tests__/memory-silent-call-gate.test.ts \
+            src/hooks/__tests__/memory-extraktion-bucht-lokale-spur.test.ts \
+            src/hooks/__tests__/memory-deleted-stays-deleted.test.ts \
+            src/hooks/__tests__/memory-learns-about-the-user-on-a-phone.test.ts \
+            src/stores/__tests__/lucille-binding-persistence.test.ts \
+            src/stores/__tests__/memory-scope.test.ts \
+            src/stores/__tests__/memory-collections.test.ts \
+            src/lib/__tests__/memory-extraction.test.ts \
+            src/lib/__tests__/memory-retrieval.test.ts
+      - name: Type check
+        run: npm run typecheck
+      - name: Build frontend without opening GUI
+        run: npm run build
