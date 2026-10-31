@@ -32,6 +32,12 @@ pnpm-lock.yaml
 
 # Rust build artifacts
 src-tauri/target/
+crates/**/target/
+.lucille-build/
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.db
 
 # The Linux build writes its own permission schema here, next to the macOS and
 # Windows ones that are checked in. It can only be produced by a build on Linux,
