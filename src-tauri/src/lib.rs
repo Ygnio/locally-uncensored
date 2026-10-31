@@ -18,6 +18,7 @@ mod android_entry;
 #[cfg(target_os = "linux")]
 mod linux_media;
 mod app_identity;
+mod lucille;
 mod cancel_registry;
 mod commands;
 mod crash_report;
@@ -646,6 +647,7 @@ pub fn run() {
     use commands::mobile_guard::GuardExt as _;
     builder
         .manage(app_state)
+        .manage(lucille::LucilleState::default())
         .manage(commands::oauth::OauthPending::default())
         // Entries marked `#[cfg(desktop)]` are not registered on a phone:
         // ComfyUI's websocket, every installer, the character trainer, the
@@ -658,6 +660,8 @@ pub fn run() {
         // commands/mobile_guard.rs), on the desktop it does nothing.
         .mobile_guard()
         .invoke_handler(tauri::generate_handler![
+            lucille::lucille_context,
+            lucille::lucille_manage,
             // LU Cloud OAuth loopback (Google/GitHub via system browser)
             commands::oauth::oauth_start,
             commands::oauth::oauth_wait,

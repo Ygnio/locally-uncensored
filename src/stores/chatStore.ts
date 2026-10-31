@@ -1,3 +1,4 @@
+import { syncLucilleBindings } from "../lib/lucille-bindings"
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { v4 as uuid } from 'uuid'
@@ -231,6 +232,7 @@ interface ChatState {
   /** Mark a message as written on the phone. */
   markFromPhone: (conversationId: string, messageId: string) => void
   setActiveConversation: (id: string | null) => void
+  setConversationLucille: (id: string, binding?: import("../lib/lucille-context").LucilleBinding) => void
   setConversationMemoryScope: (id: string, scope?: string) => void
   /** Toggle the active persona on/off for a specific chat — mirrors the
    *  mobile chat's `personaEnabled` flag so the user can suppress the
@@ -616,6 +618,13 @@ export const useChatStore = create<ChatState>()(
         })),
 
       setActiveConversation: (id) => set({ activeConversationId: id }),
+      setConversationLucille: (id, binding) => {
+        if (useGenerationStore.getState().aborters[id]) return
+        const conversation = get().conversations.find(c => c.id === id)
+        if (!conversation || (binding && (conversation.groupModels?.length || (conversation.mode && conversation.mode !== "lu")))) return
+        if (binding && (binding.profile !== "lucille" || !/^[a-zA-Z0-9_.:-]{1,128}$/.test(binding.scope) || !/^[a-zA-Z0-9_.:-]{1,128}$/.test(binding.project) || !Number.isInteger(binding.tokenBudget) || binding.tokenBudget < 512 || binding.tokenBudget > 16384)) return
+        set(state => ({ conversations: state.conversations.map(c => c.id === id ? { ...c, lucille: binding, updatedAt: Date.now() } : c) }))
+      },
       setConversationMemoryScope: (id, scope) => {
         const value = scope?.trim()
         if (value && value.length > 128) return
@@ -1138,3 +1147,7 @@ function afterHydration(): void {
 }
 if (useChatStore.persist.hasHydrated()) afterHydration()
 else useChatStore.persist.onFinishHydration(afterHydration)
+
+// Keep the native extraction fence current through binding changes, deletion and rehydration.
+useChatStore.subscribe(state => syncLucilleBindings(state.conversations))
+syncLucilleBindings(useChatStore.getState().conversations)

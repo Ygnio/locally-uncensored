@@ -1,3 +1,4 @@
+import { isLucille, withLucilleContext, lucilleToolAllowed } from "../lib/lucille-context"
 import { useRef, useState, useCallback, useEffect } from 'react'
 import { frameFlush } from '../lib/frame-flush'
 import { useRunActivityStore, toolProgressActivity, waitBeforeRetry, readingActivity, endFirstWait, hiddenThoughtArrived, waitForChatCard } from '../stores/runActivityStore'
@@ -447,6 +448,7 @@ export function useAgentChat() {
     const runWorkflowMatch = userContent.match(/^run\s+workflow\s+([\s\S]+)$/i)
     let workflowName = ''
     let workflowInput: string | undefined
+    if (runWorkflowMatch && isLucille(store.conversations.find(c => c.id === store.activeConversationId))) throw new Error("Lucille phase 1 supports Chat and Agent turns; workflow integration is pending")
     if (runWorkflowMatch) {
       const rest = runWorkflowMatch[1].trim()
       const wfStore = { workflows: workflowsForThisDevice(useAgentWorkflowStore.getState().workflows) }
@@ -1064,7 +1066,7 @@ export function useAgentChat() {
     // full rationale (Devil's Advocate hijack bug).
     // GH #170: the persona of THIS chat, the one its Plugins menu names.
     const { personas, activePersonaId } = useSettingsStore.getState()
-    const systemPrompt = buildChatSystemPrompt(withChatPersona(conv, personas, activePersonaId), settings.personasEnabled !== false)
+    const systemPrompt = buildChatSystemPrompt(withChatPersona(conv, personas, activePersonaId), !isLucille(conv) && settings.personasEnabled !== false)
     // Phone only (the rest of N2): the question is on the disk before a
     // model is asked. Same short cap as in useChat (questionOnDisk). No
     // await at all on a desktop.
@@ -1148,7 +1150,7 @@ export function useAgentChat() {
       // small-model tool-calling (LongFuncEval, arXiv 2505.10570).
       const memTier = settings.smallModelMode ? Math.min(memContextTokens, 4096) : memContextTokens
       // Embedding-first retrieval; falls back to keyword scoring offline.
-      const selectedMemory = await useMemoryStore.getState().getMemoryContextAsync(userContent, memTier, { scope: memoryScope })
+      const selectedMemory = isLucille(conv) ? { text: "" } : await useMemoryStore.getState().getMemoryContextAsync(userContent, memTier, { scope: memoryScope })
       // Behind the newest message, not in the system prompt: the pick
       // changes with every message (lib/turn-context.ts, A7).
       memoryContext = selectedMemory.text
@@ -1176,6 +1178,7 @@ export function useAgentChat() {
     const localMediaOff = useSettingsStore.getState().settings.appMode === 'cloud'
     // The settings pair rides only on a turn about settings (A11).
     const toolMatchesCurated = (name: string) =>
+      lucilleToolAllowed(name, isLucille(conv)) &&
       (!curated || curated.includes(name)) && !(opts?.readOnly && !allowedInReadOnlyTurn(name)) && !(screenByTaskOnly && name === COMPUTER_USE_TOOL_NAME)
       && !(localMediaOff && isMediaTool(name))
       && (opts?.settingsTools === true || !isSettingsToolName(name))
@@ -1827,10 +1830,10 @@ export function useAgentChat() {
         // persona is on for the chat, near the end of what this step sends.
         // Its cost comes off the history's budget like the catalogue's, and
         // it goes on the send copy only, never into agentMessages.
-        const personaNote = samplingConv
+        const personaNote = samplingConv && !isLucille(samplingConv)
           ? personaNoteOf(speakerPersonaFor(samplingConv, activeModel, allPersonas, pickedPersonaId, settings.personasEnabled !== false))
           : null
-        const besideCatalog = budgetBesideTheCatalog(sendWindow, catalogTokens)
+        const besideCatalog = Math.max(1, budgetBesideTheCatalog(sendWindow, catalogTokens) - (conv.lucille?.tokenBudget ?? 0))
         const sendBudget = personaNote ? Math.max(1, besideCatalog - noteTokens(personaNote)) : besideCatalog
         let sendMessages: ChatMessage[] = agentMessages.slice()
         let trimmedReadKeys: ReadonlySet<string> = NO_TRIMMED_KEYS
@@ -1911,6 +1914,7 @@ export function useAgentChat() {
         // phone is 4096 tokens at most, smaller than the floors the builder
         // above keeps. Returns the same array on a desktop and for a cloud model.
         sendMessages = fitRequestForPhone(sendMessages, agentCtx, 0, runQuestion, phoneMeasured)
+        const prepareMessages = () => withLucilleContext(conv, assistantMessage.id, userContent, "agent", sendMessages, abort.signal)
         // Phone only: the engine's own count of the first request of the run.
         const notePhoneCount = (promptTokens: number | undefined) => {
           if (phoneMeasureTaken || !promptTokens || !phoneFitApplies(agentCtx)) return
@@ -2046,7 +2050,7 @@ export function useAgentChat() {
               try {
                 ollamaTurn = await streamOllamaChatWithTools(
                   modelToUse,
-                  sendMessages,
+                  await prepareMessages(),
                   tools,
                   {
                     temperature: chatOptions.temperature,
@@ -2103,7 +2107,7 @@ export function useAgentChat() {
                   if (engineDeniedThinking(thinkErr)) markCannotThink(modelToUse)
                   ollamaTurn = await streamOllamaChatWithTools(
                     modelToUse,
-                    sendMessages,
+                    await prepareMessages(),
                     tools,
                     {
                       temperature: chatOptions.temperature,
@@ -2184,7 +2188,7 @@ export function useAgentChat() {
             let connRetries = 0
             for (;;) {
               try {
-                providerTurn = await streamProviderTurn(provider, modelToUse, sendMessages, streamOpts, onLiveContent, onLiveThinking, onToolProgress)
+                providerTurn = await streamProviderTurn(provider, modelToUse, await prepareMessages(), streamOpts, onLiveContent, onLiveThinking, onToolProgress)
                 break
               } catch (thinkErr) {
                 // G22 parity with the Ollama branch: heal a wrong vision
@@ -2203,7 +2207,7 @@ export function useAgentChat() {
                 // number used to be in useChat.ts only, so this branch ended
                 // the whole run where plain chat just retried.
                 if (shouldDowngradeThinking(streamOpts.thinking, thinkErr)) {
-                  providerTurn = await streamProviderTurn(provider, modelToUse, sendMessages, { ...streamOpts, thinking: undefined as unknown as boolean }, onLiveContent, () => {}, onToolProgress)
+                  providerTurn = await streamProviderTurn(provider, modelToUse, await prepareMessages(), { ...streamOpts, thinking: undefined as unknown as boolean }, onLiveContent, () => {}, onToolProgress)
                   break
                 }
                 const transient = asString(prop(thinkErr, 'name')) !== 'AbortError' && !isTerminalModelError(thinkErr) && !cutByModelSwitch(convId)
@@ -2296,7 +2300,7 @@ export function useAgentChat() {
           // thinking flag cannot disturb it.
           const hermesOpts = { ...chatOptions }
           let hermesTurn: StreamedProviderTurn
-          const runHermes = (opts: typeof hermesOpts) => streamProviderTurn(
+          const runHermes = async (opts: typeof hermesOpts) => streamProviderTurn(
             provider,
             modelToUse,
             // Bug B3 round 2: this used to rebuild every message as bare
@@ -2304,7 +2308,7 @@ export function useAgentChat() {
             // attachments on the prompt-transport path only. The provider
             // contract decides what a template can render; it must be given
             // the whole message to decide on.
-            sendMessages,
+            await prepareMessages(),
             opts,
             (_full, delta) => feedUI(splitter.feed(display.feed(delta))),
             // A prompt-transport backend can still answer on the NATIVE
@@ -3721,7 +3725,7 @@ export function useAgentChat() {
       // agent loop never had.
       // Not for the hidden report after a Create run: that "question" is the
       // app talking, not the customer, and nothing in it is worth remembering.
-      if (runState.content.trim() && convId && !(opts?.hiddenUser && opts.createTools)) {
+      if (!isLucille(conv) && runState.content.trim() && convId && !(opts?.hiddenUser && opts.createTools)) {
         // A run that looked at the screen is remembered by the user's own
         // words only (lib/computer/memory-policy.ts).
         const pair = memoryPairForRun({

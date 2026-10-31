@@ -1,3 +1,4 @@
+import { hasLucilleBinding } from "../lib/lucille-bindings"
 /**
  * useMemory — Hook for memory operations including LLM-based auto-extraction.
  *
@@ -161,6 +162,8 @@ export async function extractMemoriesFromPair(
     digest?: boolean
   },
 ): Promise<void> {
+  const lucilleBound = () => hasLucilleBinding(conversationId)
+  if (lucilleBound()) return
   const scope = options.scope
   const sourceKind = options.sourceKind ?? 'chat'
   const turnWindow = options.window
@@ -226,7 +229,7 @@ export async function extractMemoriesFromPair(
         const current = useMemoryStore.getState()
         // A call that was cut short (a model control, the time limit, sign-out)
         // writes nothing after the cut, whatever is still in flight.
-        if (extractionAbort.signal.aborted) revoked = true
+        if (extractionAbort.signal.aborted || lucilleBound()) revoked = true
         if (current.entries !== expectedEntries || current.memoryCollectionRevision !== collectionRevision || !current.settings.autoExtractEnabled) revoked = true
         return !revoked
       },
@@ -349,7 +352,7 @@ export async function extractMemoriesFromPair(
   } finally {
     clearTimeout(limit)
     unsubscribe?.()
-    if (plainStatement) keepPlainSelfStatement(plainStatement, conversationId, scope, sourceKind)
+    if (plainStatement && !lucilleBound()) keepPlainSelfStatement(plainStatement, conversationId, scope, sourceKind)
   }
 }
 
