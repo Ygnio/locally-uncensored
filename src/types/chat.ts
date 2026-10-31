@@ -256,7 +256,16 @@ export interface ChatFork {
   versions: (Message[] | null)[]
 }
 
+export interface LucilleBinding {
+  profile: "lucille"
+  scope: string
+  project: string
+  tokenBudget: number
+}
+
 export interface Conversation {
+  /** Explicit phase 1 binding, never inferred from model names or persona text. */
+  lucille?: LucilleBinding
   id: string
   /** Stable user-assigned project ID for memory retrieval and extraction. */
   memoryScope?: string

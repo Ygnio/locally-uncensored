@@ -54,6 +54,7 @@ abnahme = ["tauri/devtools", "tauri-plugin-lu-native/abnahme"]
 tauri-build = { version = "2", features = [] }
 
 [dependencies]
+lucille-memory = { path = "../crates/lucille-memory" }
 # `devtools` and `tray-icon` are NOT here on purpose, they sit in the
 # desktop-only block below. `tray-icon` does not compile for a phone
 # (`tauri::tray` does not exist there). `devtools` compiles, and that is the

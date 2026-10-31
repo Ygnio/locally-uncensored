@@ -1,3 +1,4 @@
+import { LucilleSettings } from "./LucilleSettings"
 import { useState, useRef, useEffect } from 'react'
 import { Brain, Download, Upload, Trash2, Search, Plus, X, Check, Pencil, Zap, FileJson, Archive, Sparkles } from 'lucide-react'
 import { useMemoryStore, effectiveMemoryBudget, describeMemoryImport } from '../../stores/memoryStore'
@@ -493,6 +494,8 @@ function MemorySettingsPanel() {
           </div>
         </>)}
       </div>
+
+      {import.meta.env.DEV && import.meta.env.VITE_LUCILLE_PHASE1 === "1" && conversation && <LucilleSettings conversation={conversation} />}
 
       {/* Search */}
       {conversation && (

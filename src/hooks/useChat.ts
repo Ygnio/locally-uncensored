@@ -1,3 +1,4 @@
+import { isLucille, withLucilleContext } from "../lib/lucille-context"
 import { useState, useCallback, useEffect } from "react"
 import { create } from "zustand"
 import { frameFlush } from '../lib/frame-flush'
@@ -133,6 +134,7 @@ async function runGroupTurn(convId: string, model: string, allModels: string[], 
   const { settings } = useSettingsStore.getState()
   const conv = useChatStore.getState().conversations.find((c) => c.id === convId)
   if (!conv) return
+  if (isLucille(conv)) throw new Error("Lucille phase 1 does not support group conversations")
   const { personas, activePersonaId } = useSettingsStore.getState()
   // `allModels` is who takes a turn this round: a member whose model left the
   // list sits out (GH #165) and is neither asked nor named to the others.
@@ -1142,7 +1144,7 @@ export function useChat() {
     // persona never silently hijacks a new chat.
     // GH #170: the persona of THIS chat, the one its Plugins menu names.
     const { personas, activePersonaId } = useSettingsStore.getState()
-    let systemPrompt = buildChatSystemPrompt(withChatPersona(conv, personas, activePersonaId), settings.personasEnabled !== false)
+    let systemPrompt = buildChatSystemPrompt(withChatPersona(conv, personas, activePersonaId), !isLucille(conv) && settings.personasEnabled !== false)
     // Create: this plain path only runs with Create off (or with a model it
     // does not work with). The system prompt then stays character for
     // character what it was; only when this message plainly asks for a medium
@@ -1254,7 +1256,7 @@ export function useChat() {
       // and prime the model to attempt tools it doesn't have here (live find
       // 2026-06-11: gemma4 answered web-search questions with a silent empty
       // bubble because it spent the whole turn "deciding to call web_search").
-      const selectedMemory = await useMemoryStore.getState().getMemoryContextAsync(content, contextTokens, { excludeToolResults: true, scope: memoryScope })
+      const selectedMemory = isLucille(conv) ? { text: "" } : await useMemoryStore.getState().getMemoryContextAsync(content, contextTokens, { excludeToolResults: true, scope: memoryScope })
       // Behind the newest message, not in the system prompt: the pick
       // changes with every message (lib/turn-context.ts, A7).
       memoryContext = selectedMemory.text
@@ -1407,7 +1409,7 @@ export function useChat() {
     // GH #181: the chat persona's reminder, near the end of the payload and
     // inside its budget, while the persona is on for the chat as its prompt
     // is. On the wire only; the store keeps the transcript as written.
-    const personaNote = personaNoteOf(speakerPersonaFor(convNow, activeModel, personas, activePersonaId, settings.personasEnabled !== false))
+    const personaNote = isLucille(convNow) ? null : personaNoteOf(speakerPersonaFor(convNow, activeModel, personas, activePersonaId, settings.personasEnabled !== false))
     // A13 box run: a picture attached earlier (an edit through image_generate)
     // stayed in the history, and every later plain message to a model without
     // eyes was refused with "This model can't read images", although the user
@@ -1473,9 +1475,9 @@ export function useChat() {
       {
         note: personaNote,
         providerId,
-        modelWindow: modelWindowTokens,
-        sendWindowTokens: sendWindowFor(settings, activeModel),
-        contextDecay: settings.contextDecay,
+        modelWindow: isLucille(conv) && modelWindowTokens > 0 ? Math.max(1, modelWindowTokens - conv.lucille!.tokenBudget) : modelWindowTokens,
+        sendWindowTokens: isLucille(conv) ? Math.max(1, (sendWindowFor(settings, activeModel) ?? modelWindowTokens) - conv.lucille!.tokenBudget) : sendWindowFor(settings, activeModel),
+        contextDecay: isLucille(conv) ? true : settings.contextDecay,
         // R2-3: der Hauptpfad des einfachen Chats liess dieses Feld weg, also
         // galt hier die Deckelung fuer bezahlte Anbieter und der eigene
         // LAN-Server wurde bei 64000 gekappt statt bei 209715. Ein Server im
@@ -1622,15 +1624,16 @@ export function useChat() {
         // One card and a render from the chat holds it (3.0.8, A2): wait
         // visibly here instead of inside the provider without a word.
         await waitForChatCard(convId, !!activeModel && isLocalModelByName(activeModel), abort.signal)
+        const prepareMessages = (payload: typeof messages) => withLucilleContext(conv, assistantMessage.id, content, "chat", payload, abort.signal)
         try {
-          yield* provider.chatStream(modelId, messages, chatOpts)
+          yield* provider.chatStream(modelId, await prepareMessages(messages), chatOpts)
         } catch (err) {
           if (isTooManyMessagesError(err)) {
             let trimmed = halveHistory(messages)
             for (let attempt = 0; trimmed; attempt++) {
               try {
                 log.info('chat.too_many_messages_retry', { sent: trimmed.length, attempt })
-                yield* provider.chatStream(modelId, trimmed, chatOpts)
+                yield* provider.chatStream(modelId, await prepareMessages(trimmed), chatOpts)
                 return
               } catch (retryErr) {
                 if (!isTooManyMessagesError(retryErr) || attempt >= TOO_MANY_MESSAGES_MAX_HALVINGS) throw retryErr
@@ -1656,7 +1659,7 @@ export function useChat() {
               : messages
             if (cut === messages || cut.length >= messages.length) throw err
             log.info('chat.context_overflow_retry', { sent, next, window: overflow.window, promptTokens: overflow.promptTokens, kept: cut.length })
-            yield* provider.chatStream(modelId, cut, chatOpts)
+            yield* provider.chatStream(modelId, await prepareMessages(cut), chatOpts)
             return
           }
           // The ONE place that answers "must thinking be downgraded?" —
@@ -1676,7 +1679,7 @@ export function useChat() {
             // JEDER weiteren Nachricht wieder eine verlorene Anfrage
             // (Testlauf 03.09.2026).
             if (engineDeniedThinking(err)) markCannotThink(modelId)
-            yield* provider.chatStream(modelId, messages, { ...chatOpts, thinking: undefined })
+            yield* provider.chatStream(modelId, await prepareMessages(messages), { ...chatOpts, thinking: undefined })
           } else {
             throw err
           }
@@ -2069,7 +2072,7 @@ export function useChat() {
 
       // Auto-extract memories (fire-and-forget)
       const memSettings = useMemoryStore.getState().settings
-      if (memSettings.autoExtractEnabled && memSettings.autoExtractInAllModes && run.content.trim() && run.convId) {
+      if (!isLucille(conv) && memSettings.autoExtractEnabled && memSettings.autoExtractInAllModes && run.content.trim() && run.convId) {
         extractAndSave(content, run.content, run.convId, { scope: memoryScope }).catch(() => {})
       }
     }

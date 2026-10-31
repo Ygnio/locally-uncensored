@@ -1,3 +1,4 @@
+import { syncLucilleBindings } from "../../lib/lucille-bindings"
 /**
  * A7: the auto-memory extraction is a PAID call on lu-cloud, so it only fires
  * with the explicit opt-in, and then on the cheapest catalogue model instead of
@@ -110,6 +111,7 @@ function emptyStream() {
 }
 
 beforeEach(() => {
+  syncLucilleBindings([])
   chatStream.mockReset()
   chatStream.mockImplementation(() => emptyStream())
   addMemory.mockClear()
@@ -322,6 +324,7 @@ describe('the budget the extraction asks for', () => {
       yield { content: '<think>Maybe {"shouldSave": true, "memories": [{"type": "user", "title": "Guess", "content": "A stray thought", "tags": []}]} would do.</think>{"shouldSave": false, "memories": []}', done: true }
     })())
     await threeTurns()
+    expect(chatStream).toHaveBeenCalled()
     expect(addMemory).not.toHaveBeenCalled()
   })
 })
@@ -372,5 +375,27 @@ describe('a session digest', () => {
     })())
     await extractMemoriesFromPair('my name is David', LONG_REPLY, 'voice-1', { ...digest, scope: 'A' })
     expect(addMemory).toHaveBeenCalledWith(expect.objectContaining({ source: 'voice-1', sourceKind: 'voice', scope: 'A' }), { auto: true })
+  })
+})
+
+
+describe('Lucille canonical writer fence', () => {
+  it('does not call the native extractor or writer for a Lucille-bound conversation', async () => {
+    activeModel = 'qwen3:8b'
+    vi.mocked(generateEmbeddings).mockClear()
+    syncLucilleBindings([{ id: 'conv-1', lucille: { profile: 'lucille', scope: 'lucille', project: 'synthetic', tokenBudget: 4096 } }])
+    await threeTurns()
+    expect(chatStream).not.toHaveBeenCalled()
+    expect(addMemory).not.toHaveBeenCalled()
+    expect(generateEmbeddings).not.toHaveBeenCalled()
+  })
+  it('revokes an in-flight native extraction when its conversation is bound to Lucille', async () => {
+    activeModel = 'qwen3:8b'
+    chatStream.mockImplementation(() => (async function* () {
+      syncLucilleBindings([{ id: 'conv-1', lucille: { profile: 'lucille', scope: 'lucille', project: 'synthetic', tokenBudget: 4096 } }])
+      yield { content: '{"shouldSave":true,"memories":[{"type":"user","title":"Fixture","content":"Synthetic only"}]}', done: true }
+    })())
+    await threeTurns()
+    expect(addMemory).not.toHaveBeenCalled()
   })
 })
