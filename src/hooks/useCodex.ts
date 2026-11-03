@@ -2398,7 +2398,7 @@ export function useCodex() {
           abortSignal: abort.signal,
         })
 
-        toolEvidence.push(...results.map(executorEvidence))
+        toolEvidence.push(...results.map(result => executorEvidence(result, knobs.stageWrites && stagedWriter.pendingResult(result.toolName, result.dispatchedArgs ?? {}))))
         diagLog('executeParallel-done', {
           iter: i,
           results: results.map(r => ({ tool: r.toolName, status: r.status, error: r.error?.slice(0,200), hint: r.errorHint?.slice(0,200), resultHead: r.result?.slice(0,200) })),

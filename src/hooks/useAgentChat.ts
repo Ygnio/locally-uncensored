@@ -3131,7 +3131,7 @@ export function useAgentChat() {
           abortSignal: abort.signal,
         })
 
-        toolEvidence.push(...results.map(executorEvidence))
+        toolEvidence.push(...results.map(result => executorEvidence(result)))
         // Apply results back onto blocks + memory + LLM history.
         for (const entry of batch) {
           const result = results.find((r) => r.id === entry.ac.id)

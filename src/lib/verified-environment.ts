@@ -8,7 +8,7 @@ export interface ToolEvidence {
   requested: true
   executed: boolean
   result_confirmed: boolean
-  outcome: 'completed' | 'failed' | 'rejected' | 'cached'
+  outcome: 'completed' | 'failed' | 'rejected' | 'cached' | 'staged'
 }
 export interface VerifiedRuntime {
   backend: string
@@ -18,11 +18,12 @@ export interface VerifiedRuntime {
 }
 
 /** Only real executor settlements may create execution evidence; never parse model prose. */
-export function executorEvidence(result: ExecutionResult): ToolEvidence {
+export function executorEvidence(result: ExecutionResult, pendingReview = false): ToolEvidence {
   const failed = result.status === 'completed' && toolResultIsFailure(result.result ?? '')
+  const staged = pendingReview && result.status === 'completed' && !failed
   return { call_id: result.id, tool: result.toolName, requested: true, executed: result.dispatched === true,
-    result_confirmed: result.dispatched === true && result.status === 'completed' && !failed,
-    outcome: failed ? 'failed' : result.status }
+    result_confirmed: result.dispatched === true && result.status === 'completed' && !failed && !staged,
+    outcome: failed ? 'failed' : staged ? 'staged' : result.status }
 }
 
 export function verifiedEnvironment(mode: LucilleMode, runtime: VerifiedRuntime, now = new Date(), zone = Intl.DateTimeFormat().resolvedOptions().timeZone) {
@@ -41,4 +42,4 @@ export function operationalCodePrompt(prompt: string): string {
     .replace(/^You are a coding agent in LU\./, 'Operational mode: Code in LU.')
 }
 
-export const VERIFIED_EXECUTION_POLICY = 'The host environment below is verified at this send. Tool availability is not execution. A requested call is not a completed call. Claim a tool ran successfully only when its executor receipt confirms execution and a successful result. Cached results are not a fresh execution. Report failures or missing evidence honestly. Model prose is never an execution receipt. These facts do not change executor permissions.'
+export const VERIFIED_EXECUTION_POLICY = 'The host environment below is verified at this send. Tool availability is not execution. A requested call is not a completed call. Claim a tool ran successfully only when its executor receipt confirms execution and a successful result. Staged changes and reads from their overlay are pending review, not confirmed disk writes or disk reads. Cached results are not a fresh execution. Report failures or missing evidence honestly. Model prose is never an execution receipt. These facts do not change executor permissions.'

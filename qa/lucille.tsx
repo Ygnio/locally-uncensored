@@ -46,7 +46,7 @@ function App() {
     const evidence:ToolEvidence[]=[]
     for(const [toolName,path,content] of [['file_write','fixture.txt','blue telescope'],['file_read','fixture.txt',undefined],['file_edit','fixture.txt',undefined],['file_read','fixture.txt',undefined],['file_read','../outside.txt',undefined]]){
       const results=await executeParallel([{id:crypto.randomUUID(),toolName:toolName!,args:{path,content}}],runtime)
-      evidence.push(...results.map(executorEvidence))
+      evidence.push(...results.map(result => executorEvidence(result)))
     }
     setReceipts(evidence);setResult('Real synthetic filesystem calls completed. Escape request failed. See executor receipts; model prose is not evidence.')
   }
