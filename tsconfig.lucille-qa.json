@@ -1,5 +1,14 @@
 {
   "extends": "./tsconfig.app.json",
-  "compilerOptions": { "tsBuildInfoFile": "./node_modules/.tmp/lucille-qa.tsbuildinfo" },
-  "include": ["qa"]
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/lucille-qa.tsbuildinfo",
+    "types": [
+      "vite/client",
+      "vitest/globals",
+      "node"
+    ]
+  },
+  "include": [
+    "qa"
+  ]
 }

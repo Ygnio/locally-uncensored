@@ -1,3 +1,4 @@
+import { ATOMIC_EXTRACTION_PROMPT } from './lucille-atomic'
 import { lucilleManage } from './lucille-context'
 import { getProviderForModel, openaiEntryOfModel } from '../api/providers/registry'
 import { useProviderStore } from '../stores/providerStore'
@@ -59,7 +60,7 @@ export async function tickLucilleLlm() {
     const scope = (lease as { scope: string }).scope, project = (lease as { project: string }).project
     extractionStatus.state = 'processing'; extractionStatus.model = route.modelId; extractionStatus.simulation = route.simulation
     if (abort.signal.aborted) throw new Error('Primary generation takes priority')
-    const answer = await route.provider.chatWithTools(route.modelId, [{ role: 'system', content: EXTRACTION_PROMPT }, { role: 'user', content: JSON.stringify({ scope, project, user_text: job.input[0] }) }], [], { temperature: 0, maxTokens: 768, signal: abort.signal })
+    const answer = await route.provider.chatWithTools(route.modelId, [{ role: 'system', content: realValidationPin ? ATOMIC_EXTRACTION_PROMPT : EXTRACTION_PROMPT }, { role: 'user', content: JSON.stringify({ scope, project, user_text: job.input[0] }) }], [], { temperature: 0, maxTokens: 768, signal: abort.signal })
     if (abort.signal.aborted || answer.content.length > 12000 || answer.toolCalls.length) throw new Error('Cancelled or invalid extraction response')
     const committed = await lucilleManage<{ completed: boolean }>({ operation: 'complete_llm', lease, output: answer.content }, true)
     if (!committed.completed) throw new Error('Lease revoked or expired before commit')

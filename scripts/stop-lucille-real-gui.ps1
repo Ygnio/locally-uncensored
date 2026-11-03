@@ -1,6 +1,7 @@
+param([ValidateSet('21c','21d')][string]$Phase='21c')
 $ErrorActionPreference='Stop'
 $repo=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
-$real=(Resolve-Path (Join-Path $repo '.lucille-qa-runtime\lucille-synthetic-real21c')).Path
+$real=(Resolve-Path (Join-Path $repo (".lucille-qa-runtime\lucille-synthetic-real$Phase"))).Path
 if([IO.File]::ReadAllText((Join-Path $real '.lucille-isolated')) -ne "synthetic-data-only`n"){throw 'Synthetic marker required'}
 $session=Get-Content -LiteralPath (Join-Path $real 'gui-processes.json') -Raw | ConvertFrom-Json
 if($session.real_root -ne $real){throw 'Wrong manifest root'}

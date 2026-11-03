@@ -1,8 +1,8 @@
-param([Parameter(Mandatory=$true)][string]$QaExe)
+param([Parameter(Mandatory=$true)][string]$QaExe,[ValidateSet('21c','21d')][string]$Phase='21c')
 $ErrorActionPreference='Stop'
 $repo=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $root=(Resolve-Path (Join-Path $repo '.lucille-qa-runtime\lucille-synthetic-full')).Path
-$real=(Resolve-Path (Join-Path $repo '.lucille-qa-runtime\lucille-synthetic-real21c')).Path
+$real=(Resolve-Path (Join-Path $repo (".lucille-qa-runtime\lucille-synthetic-real$Phase"))).Path
 foreach($path in @($root,$real)){if([IO.File]::ReadAllText((Join-Path $path '.lucille-isolated')) -ne "synthetic-data-only`n"){throw 'Synthetic marker required'}}
 $exe=(Resolve-Path -LiteralPath $QaExe).Path
 if(-not $exe.StartsWith((Resolve-Path (Join-Path $repo '..\build\tauri')).Path+[IO.Path]::DirectorySeparatorChar) -or [IO.Path]::GetFileName($exe) -ne 'lucille-full-validation.exe'){throw 'Dedicated local host required'}

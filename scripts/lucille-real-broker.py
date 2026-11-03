@@ -11,6 +11,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 import math
 import os
+import re
 from pathlib import Path
 import sys
 import time
@@ -26,6 +27,17 @@ spec.loader.exec_module(owned)
 def sha(path):
     with Path(path).open('rb') as stream:
         return hashlib.file_digest(stream, 'sha256').hexdigest()
+
+
+def atomic_schema_for(source, scope, project):
+    spans = list(dict.fromkeys(v.strip() for v in re.split(r'[.!;\n]', source) if v.strip()))
+    if not 0 < len(spans) <= 64 or len(source.encode()) > 12000:
+        raise ValueError('Atomic source ceiling')
+    schema = json.loads((Path(__file__).resolve().parents[1] / 'src/lib/lucille-atomic-schema.json').read_text(encoding='utf-8'))
+    schema['properties']['scope'] = {'const': scope}
+    schema['properties']['project'] = {'const': project}
+    schema['properties']['claims']['items']['properties']['evidence'] = {'type': 'string', 'enum': spans}
+    return schema
 
 
 def main(args):
@@ -139,6 +151,14 @@ def main(args):
                     data['stream'] = False
                     data['model'] = 'lucille-real-gemma'
                     data['max_tokens'] = min(768, int(data.get('max_tokens', 512)))
+                    messages = data.get('messages', [])
+                    if any(m.get('role') == 'system' and 'LUCILLE_ATOMIC_EXTRACTION_V2' in m.get('content', '') for m in messages):
+                        if data.get('tools') or data.get('tool_choice'):
+                            raise ValueError('Extraction forbids tools')
+                        source = json.loads(messages[-1]['content'])
+                        schema = atomic_schema_for(source['user_text'], source['scope'], source['project'])
+                        data['temperature'] = 0
+                        data['response_format'] = {'type': 'json_object', 'schema': schema}
                     result = upstream('gemma', self.path, data)
                     kind = 'gemma'
                 elif self.path == '/v1/embeddings':
