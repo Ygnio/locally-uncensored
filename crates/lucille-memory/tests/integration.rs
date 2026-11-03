@@ -483,7 +483,7 @@ fn sqlite_wal_migration_versions_and_future_schema_guard_are_real() {
         db.query_row("SELECT count(*) FROM schema_migrations", [], |r| r
             .get::<_, i64>(0))
             .unwrap(),
-        4
+        5
     );
     drop(s);
     db.pragma_update(None, "user_version", 99).unwrap();
@@ -509,7 +509,7 @@ fn phase1_schema_upgrade_preserves_existing_retrieval_audit() {
     store.check_integrity().unwrap();
     let backup: serde_json::Value =
         serde_json::from_str(&store.export_backup(&permit()).unwrap()).unwrap();
-    assert_eq!(backup["schema"], 4);
+    assert_eq!(backup["schema"], 5);
     assert_eq!(backup["audits"].as_array().unwrap().len(), 2);
     assert_eq!(backup["audits"][0]["mode"], "chat");
     assert_eq!(backup["audits"][1]["mode"], "code");

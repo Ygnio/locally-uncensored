@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [master, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory]
+    branches: [master, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning]
   pull_request:
-    branches: [master, feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation]
+    branches: [master, feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory]
   workflow_dispatch:
   # release.yml calls this same workflow as its gate, so the release is held to
   # exactly the checks master is held to — one definition, no drift between

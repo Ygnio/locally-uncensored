@@ -13,6 +13,7 @@ use sha2::Digest;
 #[serde(default, deny_unknown_fields)]
 pub struct LearningPolicy {
     pub enabled: bool,
+    pub extraction_mode: crate::llm::ExtractionMode,
     pub auto_kinds: Vec<Kind>,
     pub minimum_confidence: f64,
     pub minimum_relevance: f64,
@@ -25,6 +26,7 @@ impl Default for LearningPolicy {
     fn default() -> Self {
         Self {
             enabled: false,
+            extraction_mode: Default::default(),
             auto_kinds: vec![Kind::Preference],
             minimum_confidence: 0.96,
             minimum_relevance: 0.8,
@@ -86,7 +88,7 @@ pub struct Job {
     pub updated_at: i64,
     pub error_code: Option<String>,
 }
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Lease {
     pub id: String,
     pub token: String,
@@ -281,12 +283,23 @@ impl Store {
             .db
             .transaction_with_behavior(TransactionBehavior::Immediate)
             .map_err(db_error)?;
+        let old: Option<String> = tx
+            .query_row("SELECT json FROM learning_policy WHERE id=1", [], |r| {
+                r.get(0)
+            })
+            .optional()
+            .map_err(db_error)?;
+        let old: LearningPolicy = old
+            .map(|s| serde_json::from_str(&s).map_err(|_| "Invalid stored policy"))
+            .transpose()?
+            .unwrap_or_default();
+        let changed_mode = old.extraction_mode != policy.extraction_mode;
         tx.execute(
             "INSERT OR REPLACE INTO learning_policy VALUES(1,?1)",
             [serde_json::to_string(&policy).map_err(|_| "Invalid policy")?],
         )
         .map_err(db_error)?;
-        if !policy.enabled {
+        if !policy.enabled || changed_mode {
             tx.execute("UPDATE extraction_jobs SET state='cancelled',evidence_json='[]',lease_token=NULL,lease_until=NULL,updated_at=?1 WHERE state IN ('queued','retry','running')",[now()]).map_err(db_error)?;
         }
         tx.commit().map_err(db_error)
@@ -315,7 +328,11 @@ impl Store {
         });
         let mut seen = std::collections::HashSet::new();
         claims.retain(|c| seen.insert(c.fingerprint()));
-        if claims.is_empty() {
+        let use_llm = policy.extraction_mode != crate::llm::ExtractionMode::Rules
+            && crate::llm::eligible_source(&input.user_text);
+        if (claims.is_empty() && !use_llm)
+            || (policy.extraction_mode == crate::llm::ExtractionMode::Llm && !use_llm)
+        {
             return Ok(serde_json::json!({"state":"ignored","reason":"not_eligible"}));
         }
         let id = digest(
@@ -346,6 +363,21 @@ impl Store {
             return Err("Learning queue is full".into());
         }
         tx.execute("INSERT OR IGNORE INTO extraction_jobs(id,conversation_id,message_id,scope,project,mode,state,evidence_json,created_at,updated_at,next_at) VALUES(?1,?2,?3,?4,?5,?6,'queued',?7,?8,?8,?8)",params![id,input.conversation_id,input.message_id,input.scope,input.project,types::label(&input.mode),serde_json::to_string(&claims).map_err(|_|"Invalid evidence")?,now()]).map_err(db_error)?;
+        if use_llm {
+            tx.execute(
+                "INSERT INTO learning_inputs VALUES(?1,?2,?3)",
+                params![
+                    id,
+                    input.user_text,
+                    if policy.extraction_mode == crate::llm::ExtractionMode::Llm {
+                        "llm"
+                    } else {
+                        "hybrid"
+                    }
+                ],
+            )
+            .map_err(db_error)?;
+        }
         tx.commit().map_err(db_error)?;
         Ok(serde_json::json!(self.learning_job(&id)?.unwrap()))
     }
@@ -364,6 +396,12 @@ impl Store {
         rows
     }
     pub fn claim_learning(&mut self, at: i64) -> Result<Option<Lease>> {
+        self.claim_learning_kind(at, false)
+    }
+    pub fn claim_llm_learning(&mut self, at: i64) -> Result<Option<Lease>> {
+        self.claim_learning_kind(at, true)
+    }
+    fn claim_learning_kind(&mut self, at: i64, llm: bool) -> Result<Option<Lease>> {
         if !self.learning_policy()?.enabled {
             return Ok(None);
         }
@@ -372,7 +410,7 @@ impl Store {
             .transaction_with_behavior(TransactionBehavior::Immediate)
             .map_err(db_error)?;
         tx.execute("UPDATE extraction_jobs SET state='failed',evidence_json='[]',error_code='attempt_limit',lease_token=NULL WHERE state='running' AND lease_until<=?1 AND attempts>=3",[at]).map_err(db_error)?;
-        let data:Option<(String,String,String,String,i64)>=tx.query_row("SELECT id,scope,project,evidence_json,attempts FROM extraction_jobs WHERE attempts<3 AND ((state IN ('queued','retry') AND next_at<=?1) OR (state='running' AND lease_until<=?1)) ORDER BY next_at,id LIMIT 1",[at],|r|Ok((r.get(0)?,r.get(1)?,r.get(2)?,r.get(3)?,r.get(4)?))).optional().map_err(db_error)?;
+        let data:Option<(String,String,String,String,i64)>=tx.query_row("SELECT id,scope,project,evidence_json,attempts FROM extraction_jobs WHERE attempts<3 AND (EXISTS(SELECT 1 FROM learning_inputs i WHERE i.job_id=extraction_jobs.id))=?2 AND ((state IN ('queued','retry') AND next_at<=?1) OR (state='running' AND lease_until<=?1)) ORDER BY next_at,id LIMIT 1",params![at,llm],|r|Ok((r.get(0)?,r.get(1)?,r.get(2)?,r.get(3)?,r.get(4)?))).optional().map_err(db_error)?;
         let Some((id, scope, project, raw, attempts)) = data else {
             tx.commit().map_err(db_error)?;
             return Ok(None);
@@ -390,24 +428,50 @@ impl Store {
             attempts: attempts + 1,
         }))
     }
+    pub fn learning_input(&self, lease: &Lease) -> Result<Option<(String, String)>> {
+        self.db.query_row("SELECT i.user_text,i.extraction_mode FROM learning_inputs i JOIN extraction_jobs j ON j.id=i.job_id WHERE j.id=?1 AND j.lease_token=?2 AND j.state='running'",params![lease.id,lease.token],|r|Ok((r.get(0)?,r.get(1)?))).optional().map_err(db_error)
+    }
+    pub fn complete_llm_learning(&mut self, lease: &Lease, json: &str, at: i64) -> Result<bool> {
+        self.complete_learning_output(lease, &[], at, Some(json))
+    }
     pub fn complete_learning(
         &mut self,
         lease: &Lease,
         proposals: &[Claim],
         at: i64,
     ) -> Result<bool> {
-        if proposals.len() > 4
-            || proposals
-                .iter()
-                .any(|c| !lease.claims.contains(c) || !extract(&c.evidence).contains(c))
+        self.complete_learning_output(lease, proposals, at, None)
+    }
+    fn complete_learning_output(
+        &mut self,
+        lease: &Lease,
+        proposals: &[Claim],
+        at: i64,
+        llm: Option<&str>,
+    ) -> Result<bool> {
+        if llm.is_none()
+            && (proposals.len() > 4
+                || proposals
+                    .iter()
+                    .any(|c| !lease.claims.contains(c) || !extract(&c.evidence).contains(c)))
         {
             return Err("Unverified extraction proposal".into());
         }
-        let policy = self.learning_policy()?;
         let tx = self
             .db
             .transaction_with_behavior(TransactionBehavior::Immediate)
             .map_err(db_error)?;
+        let raw: Option<String> = tx
+            .query_row("SELECT json FROM learning_policy WHERE id=1", [], |r| {
+                r.get(0)
+            })
+            .optional()
+            .map_err(db_error)?;
+        let policy: LearningPolicy = raw
+            .map(|v| serde_json::from_str(&v).map_err(|_| "Invalid policy"))
+            .transpose()?
+            .unwrap_or_default();
+        policy.validate()?;
         let stored:Option<(String,String,String)>=tx.query_row("SELECT scope,project,evidence_json FROM extraction_jobs WHERE id=?1 AND state='running' AND lease_token=?2 AND lease_until>?3",params![lease.id,lease.token,at],|r|Ok((r.get(0)?,r.get(1)?,r.get(2)?))).optional().map_err(db_error)?;
         let Some((scope, project, evidence)) = stored else {
             return Ok(false);
@@ -423,6 +487,36 @@ impl Store {
         {
             return Err("Queue evidence or scope mismatch".into());
         }
+        let input: Option<(String, String)> = tx
+            .query_row(
+                "SELECT user_text,extraction_mode FROM learning_inputs WHERE job_id=?1",
+                [&lease.id],
+                |r| Ok((r.get(0)?, r.get(1)?)),
+            )
+            .optional()
+            .map_err(db_error)?;
+        let mut grounded = vec![];
+        if let Some(json) = llm {
+            let (text, mode) = input.ok_or("Missing LLM source")?;
+            grounded = crate::llm::validate(&text, &scope, &project, json)?;
+            if mode == "hybrid" {
+                for c in verified {
+                    if !grounded.iter().any(|v| v.fingerprint() == c.fingerprint()) {
+                        grounded.push(c)
+                    }
+                }
+            }
+            if grounded.len() > 4 {
+                return Err("Hybrid proposal ceiling exceeded".into());
+            }
+        } else if input.is_some() {
+            return Err("LLM jobs require structured validation".into());
+        }
+        let proposals = if llm.is_some() {
+            &grounded[..]
+        } else {
+            proposals
+        };
         for claim in proposals {
             ingest(&tx, lease, claim, &policy, at)?
         }
@@ -431,8 +525,12 @@ impl Store {
         Ok(true)
     }
     pub fn fail_learning(&mut self, lease: &Lease, at: i64) -> Result<()> {
-        let terminal = lease.attempts >= 3;
-        self.db.execute("UPDATE extraction_jobs SET state=?3,error_code='extractor_failed',next_at=?4,updated_at=?5,lease_token=NULL,lease_until=NULL,evidence_json=CASE WHEN ?6 THEN '[]' ELSE evidence_json END WHERE id=?1 AND state='running' AND lease_token=?2",params![lease.id,lease.token,if terminal{"failed"}else{"retry"},at+(1<<lease.attempts),at,terminal]).map_err(db_error)?;
+        let attempts:Option<i64>=self.db.query_row("SELECT attempts FROM extraction_jobs WHERE id=?1 AND state='running' AND lease_token=?2 AND lease_until>?3",params![lease.id,lease.token,at],|r|r.get(0)).optional().map_err(db_error)?;
+        let Some(attempts) = attempts else {
+            return Ok(());
+        };
+        let terminal = attempts >= 3;
+        self.db.execute("UPDATE extraction_jobs SET state=?3,error_code='extractor_failed',next_at=?4,updated_at=?5,lease_token=NULL,lease_until=NULL,evidence_json=CASE WHEN ?6 THEN '[]' ELSE evidence_json END WHERE id=?1 AND state='running' AND lease_token=?2",params![lease.id,lease.token,if terminal{"failed"}else{"retry"},at+(1<<attempts),at,terminal]).map_err(db_error)?;
         Ok(())
     }
     pub fn cancel_learning(&mut self, id: &str, _permit: &ConfigurationPermit) -> Result<bool> {

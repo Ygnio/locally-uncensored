@@ -379,7 +379,7 @@ fn phase4_backup_retains_pending_jobs_and_metadata_atomically() {
     s.enqueue_learning(interaction("Meu PC tem 16 GB de RAM."))
         .unwrap();
     let backup = s.export_backup(&permit()).unwrap();
-    assert!(backup.contains("\"schema\":4"));
+    assert!(backup.contains("\"schema\":5"));
     let (_target, mut restored) = setup();
     restored.restore_isolated(&backup, &permit()).unwrap();
     assert_eq!(
