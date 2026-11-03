@@ -1,0 +1,170 @@
+//! Synthetic data with real model outputs; canonical Store is the only writer.
+use lucille_memory::{intelligent::*, llm, semantic::*, *};
+use serde_json::{json, Value};
+use std::{io::Read, path::PathBuf};
+fn run() -> Result<Value> {
+    let supplied = PathBuf::from(std::env::var_os("LUCILLE_QA_ROOT").ok_or("QA root required")?);
+    if !supplied.is_absolute() {
+        return Err("Absolute QA root required".into());
+    }
+    let root = supplied
+        .canonicalize()
+        .map_err(|_| "Existing QA root required")?;
+    let checkout = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .unwrap()
+        .parent()
+        .unwrap()
+        .join(".lucille-qa-runtime")
+        .canonicalize()
+        .map_err(|_| "Checkout QA root required")?;
+    if !root.starts_with(&checkout) {
+        return Err("Bridge may only write checkout-owned QA data".into());
+    }
+    if !root.is_absolute()
+        || !root
+            .file_name()
+            .unwrap_or_default()
+            .to_string_lossy()
+            .starts_with("lucille-synthetic-")
+        || std::fs::read(root.join(".lucille-isolated")).map_err(|_| "Missing marker")?
+            != b"synthetic-data-only\n"
+    {
+        return Err("Marked synthetic root required".into());
+    }
+    let mut input = String::new();
+    std::io::stdin()
+        .take(1024 * 1024)
+        .read_to_string(&mut input)
+        .map_err(|_| "Input failed")?;
+    let v: Value = serde_json::from_str(&input).map_err(|_| "Invalid command")?;
+    for name in [
+        "synthetic.sqlite3",
+        "synthetic.sqlite3-wal",
+        "synthetic.sqlite3-shm",
+    ] {
+        let path = root.join(name);
+        if let Ok(meta) = path.symlink_metadata() {
+            if meta.file_type().is_symlink()
+                || path.canonicalize().map_err(|_| "Invalid DB path")?.parent()
+                    != Some(root.as_path())
+            {
+                return Err("Linked database path forbidden".into());
+            }
+        }
+    }
+    let mut s = Store::open(&root.join("synthetic.sqlite3"))?;
+    let permit = ConfigurationPermit::explicit_settings_action(true)?;
+    let scope = v["scope"].as_str().unwrap_or("lucille");
+    let project = v["project"].as_str().unwrap_or("atlas");
+    let at = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map_err(|_| "Clock failed")?
+        .as_secs() as i64;
+    match v["operation"].as_str().ok_or("Missing operation")? {
+        "learn" => {
+            if s.identity().is_err() {
+                s.configure_identity(Profile::fixture(), 0, &permit)?;
+            }
+            let mode: llm::ExtractionMode =
+                serde_json::from_value(v["mode"].clone()).map_err(|_| "Invalid extraction mode")?;
+            s.set_learning_policy(
+                LearningPolicy {
+                    enabled: true,
+                    extraction_mode: mode.clone(),
+                    ..Default::default()
+                },
+                &permit,
+            )?;
+            let text = v["text"].as_str().ok_or("Missing text")?;
+            let enqueue = s.enqueue_learning(Interaction {
+                conversation_id: "real-model-synthetic".into(),
+                message_id: v["message_id"].as_str().unwrap_or("case").into(),
+                scope: scope.into(),
+                project: project.into(),
+                mode: Mode::Chat,
+                role: "user".into(),
+                user_text: text.into(),
+            })?;
+            let mut rejected = None;
+            let output = v["output"].as_str().unwrap_or("{\"proposals\":[]}");
+            let validation = llm::validate(text, scope, project, output);
+            if let Some(lease) = s.claim_learning(at + 1)? {
+                s.complete_learning(&lease, &lease.claims, at + 2)?;
+            } else if let Some(lease) = s.claim_llm_learning(at + 1)? {
+                if let Err(error) = s.complete_llm_learning(&lease, output, at + 2) {
+                    rejected = Some(error);
+                    if mode == llm::ExtractionMode::Hybrid {
+                        s.complete_llm_learning(&lease, "{\"proposals\":[]}", at + 2)?;
+                    } else {
+                        s.cancel_learning(&lease.id, &permit)?;
+                    }
+                }
+            }
+            Ok(
+                json!({"enqueue":enqueue,"validation": match validation {Ok(c)=>json!({"accepted":c}),Err(e)=>json!({"error":e})},"rejected":rejected,"details":s.memory_details(scope,project)?,"jobs":s.learning_jobs(scope,project)?,"identity":s.identity()?}),
+            )
+        }
+        "details" => Ok(json!(s.memory_details(scope, project)?)),
+        "create" => {
+            let candidate: Candidate =
+                serde_json::from_value(v["candidate"].clone()).map_err(|_| "Invalid candidate")?;
+            Ok(json!(s.create_candidate(candidate)?))
+        }
+        "change" => {
+            let action: Action =
+                serde_json::from_value(v["action"].clone()).map_err(|_| "Invalid action")?;
+            Ok(json!(s.change(
+                v["id"].as_str().ok_or("Missing id")?,
+                scope,
+                project,
+                v["version"].as_i64().ok_or("Missing version")?,
+                action
+            )?))
+        }
+        "policy" => {
+            let mut policy = s.learning_policy()?;
+            policy.lexical_weight = v["lexical_weight"].as_f64().ok_or("Missing weight")?;
+            policy.semantic_weight = 1. - policy.lexical_weight;
+            s.set_learning_policy(policy.clone(), &permit)?;
+            Ok(json!(policy))
+        }
+        "configure_embedding" => {
+            let space: EmbeddingSpace =
+                serde_json::from_value(v["space"].clone()).map_err(|_| "Invalid space")?;
+            s.configure_embedding_space(&space, &permit)?;
+            Ok(s.embedding_status()?)
+        }
+        "put_vector" => {
+            let space: EmbeddingSpace =
+                serde_json::from_value(v["space"].clone()).map_err(|_| "Invalid space")?;
+            let vector: Vec<f32> =
+                serde_json::from_value(v["vector"].clone()).map_err(|_| "Invalid vector")?;
+            Ok(json!(s.put_memory_vector(
+                v["id"].as_str().ok_or("Missing id")?,
+                v["version"].as_i64().ok_or("Missing version")?,
+                &space,
+                &vector,
+                &permit
+            )?))
+        }
+        "context" => {
+            let req: TurnRequest =
+                serde_json::from_value(v["request"].clone()).map_err(|_| "Invalid request")?;
+            let vector: Option<QueryVector> =
+                serde_json::from_value(v.get("query_vector").cloned().unwrap_or(Value::Null))
+                    .map_err(|_| "Invalid vector")?;
+            Ok(json!(s.context_hybrid(req, vector.as_ref())?))
+        }
+        _ => Err("Unsupported synthetic operation".into()),
+    }
+}
+fn main() {
+    match run() {
+        Ok(v) => println!("{v}"),
+        Err(e) => {
+            eprintln!("{e}");
+            std::process::exit(1)
+        }
+    }
+}

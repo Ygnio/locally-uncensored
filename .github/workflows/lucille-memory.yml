@@ -2,9 +2,9 @@ name: Lucille identity and memory
 
 on:
   push:
-    branches: [feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality]
+    branches: [feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality, feature/lucille-phase21c-real-inference]
   pull_request:
-    branches: [master, feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning]
+    branches: [master, feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality]
   workflow_dispatch:
 
 permissions:
@@ -39,6 +39,9 @@ jobs:
           if [ "$RUNNER_OS" = "Windows" ]; then suffix=".exe"; fi
           export LUCILLE_QA_BRIDGE="$CARGO_TARGET_DIR/debug/examples/synthetic_bridge$suffix"
           npx vitest run --maxWorkers=1 \
+            src/lib/__tests__/lucille-real-validation.test.ts \
+            src/lib/__tests__/lucille-llm.test.ts \
+            src/lib/__tests__/lucille-full-bootstrap.test.ts \
             src/lib/__tests__/lucille-semantic.test.ts \
             src/lib/__tests__/lucille-learning.test.ts \
             src/lib/__tests__/lucille-unified.test.ts \

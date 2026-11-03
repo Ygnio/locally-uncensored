@@ -51,6 +51,9 @@ pub fn eligible_source(text: &str) -> bool {
             "curto ",
             "estou ",
             "preciso ",
+            "resolvi ",
+            "i solved ",
+            "atualizei ",
             "nao ",
             "i ",
             "my ",
@@ -128,7 +131,7 @@ pub fn validate(text: &str, scope: &str, project: &str, json: &str) -> Result<Ve
         let mut known = extract(&p.evidence).into_iter().find(|c| {
             c.kind == p.kind
                 && c.subject == p.entity
-                && c.property == p.property
+                && (c.property == p.property || hashed_property_alias(&p, c))
                 && c.value == p.value
         });
         if known.is_none() {
@@ -165,6 +168,19 @@ pub fn validate(text: &str, scope: &str, project: &str, json: &str) -> Result<Ve
         }
     }
     Ok(accepted)
+}
+// These IDs are storage keys, not facts a language model can compute reliably.
+// The alias only selects a key from independently interpreted complete evidence;
+// entity, value, temporal state, correction and content still match below/above.
+fn hashed_property_alias(p: &Proposal, c: &Claim) -> bool {
+    let prefix = match p.kind {
+        Kind::Goal => "goal",
+        Kind::Task => "task",
+        Kind::Solution => "solution",
+        Kind::Constraint => "constraint",
+        _ => return false,
+    };
+    p.property == prefix && c.property.starts_with(&format!("{prefix}."))
 }
 fn novel_preference(p: &Proposal) -> Option<Claim> {
     let s = fold(&p.evidence);
