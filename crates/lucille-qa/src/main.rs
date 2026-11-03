@@ -89,6 +89,8 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             lucille::lucille_context,
             lucille::lucille_manage,
+            lucille::lucille_learn,
+            lucille::lucille_learning_wake,
             qa_file
         ])
         .setup(move |app| {

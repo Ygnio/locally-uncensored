@@ -95,7 +95,9 @@ fn chat_and_agent_retrieve_fact_and_durable_preference() {
     c.kind = Kind::Preference;
     let p = active(&mut s, c);
     for mode in [Mode::Chat, Mode::Agent, Mode::Code] {
-        let ctx = s.context(request(mode)).unwrap();
+        let mut req = request(mode);
+        req.query = "telescope prefer concise synthetic examples".into();
+        let ctx = s.context(req).unwrap();
         assert_eq!(ctx.references.len(), 2);
         assert!(ctx.references.iter().any(|r| r.id == m.input.id));
         assert!(ctx.references.iter().any(|r| r.id == p.input.id));
@@ -481,7 +483,7 @@ fn sqlite_wal_migration_versions_and_future_schema_guard_are_real() {
         db.query_row("SELECT count(*) FROM schema_migrations", [], |r| r
             .get::<_, i64>(0))
             .unwrap(),
-        3
+        4
     );
     drop(s);
     db.pragma_update(None, "user_version", 99).unwrap();
@@ -507,7 +509,7 @@ fn phase1_schema_upgrade_preserves_existing_retrieval_audit() {
     store.check_integrity().unwrap();
     let backup: serde_json::Value =
         serde_json::from_str(&store.export_backup(&permit()).unwrap()).unwrap();
-    assert_eq!(backup["schema"], 3);
+    assert_eq!(backup["schema"], 4);
     assert_eq!(backup["audits"].as_array().unwrap().len(), 2);
     assert_eq!(backup["audits"][0]["mode"], "chat");
     assert_eq!(backup["audits"][1]["mode"], "code");

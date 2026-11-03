@@ -1,4 +1,5 @@
 import { isLucille, withLucilleContext } from "../lib/lucille-context"
+import { queueLucilleLearning } from '../lib/lucille-learning'
 import { useState, useCallback, useEffect } from "react"
 import { create } from "zustand"
 import { frameFlush } from '../lib/frame-flush'
@@ -704,7 +705,7 @@ export function useChat() {
 
   // The fifth argument is the phone's (round 10): the fourth stays the
   // pending media of Create in the chat, as on the desktop.
-  const sendMessage = useCallback(async (content: string, images?: ImageAttachment[], files?: ChatFileInput[], media?: PendingMedia[], opts?: { continueFrom?: string }) => {
+  const sendMessage = useCallback(async (content: string, images?: ImageAttachment[], files?: ChatFileInput[], media?: PendingMedia[], opts?: { continueFrom?: string; learningSourceId?: string }) => {
     // A new question comes before learning from the last answer (phone only, see yieldMemoryLearning).
     yieldMemoryLearning()
     const { activeModel } = useModelStore.getState()
@@ -924,7 +925,7 @@ export function useChat() {
             })()
           : undefined
         return sendAgentMessage(slash.expanded, images, {
-          displayContent: content,
+          displayContent: content, learningSourceId: opts?.learningSourceId,
           readOnly: slash.command.readOnly === true,
           ...(loop ? { loop } : {}),
           files,
@@ -934,9 +935,9 @@ export function useChat() {
       }
       // Agent mode: an attached file is also copied into this chat's working
       // folder, where the file tools can open it (useAgentChat).
-      if (createOn) return sendAgentMessage(content, images, { files, createTools: true, media, settingsTools: settingsOn })
-      if (settingsOn) return sendAgentMessage(content, images, { files, settingsTools: true })
-      return sendAgentMessage(content, images, { files })
+      if (createOn) return sendAgentMessage(content, images, { learningSourceId: opts?.learningSourceId, files, createTools: true, media, settingsTools: settingsOn })
+      if (settingsOn) return sendAgentMessage(content, images, { learningSourceId: opts?.learningSourceId, files, settingsTools: true })
+      return sendAgentMessage(content, images, { learningSourceId: opts?.learningSourceId, files })
     }
 
     // Discord 28.09.2026: im normalen Chat liest kein Werkzeug die
@@ -1008,7 +1009,7 @@ export function useChat() {
           curatedTools: cloudMode
             ? [...CHAT_TOOLS.filter((t) => t !== 'image_generate' && t !== 'video_generate'), ...(createOn ? CREATE_TOOL_NAMES : []), ...(settingsOn ? SETTINGS_TOOL_NAMES : [])]
             : [...CHAT_TOOLS, ...(settingsOn ? SETTINGS_TOOL_NAMES : [])],
-          chatToolsMode: true,
+          chatToolsMode: true, learningSourceId: opts?.learningSourceId,
           mediaHint: route?.mediaHint,
           files,
           createTools: createOn,
@@ -1021,7 +1022,7 @@ export function useChat() {
       if (settingsOn) {
         return sendAgentMessage(content, images, {
           curatedTools: [...SETTINGS_TOOL_NAMES, ...(createOn ? CREATE_TOOL_NAMES : [])],
-          chatToolsMode: true,
+          chatToolsMode: true, learningSourceId: opts?.learningSourceId,
           settingsTools: true,
           createTools: createOn,
           files,
@@ -1037,7 +1038,7 @@ export function useChat() {
     if (activeModel && createOn) {
       return sendAgentMessage(content, images, {
         curatedTools: CREATE_TOOL_NAMES,
-        chatToolsMode: true,
+        chatToolsMode: true, learningSourceId: opts?.learningSourceId,
         createTools: true,
         files,
         media,
@@ -1092,6 +1093,7 @@ export function useChat() {
     })
     const userMessage = {
       id: uuid(),
+      ...(opts?.learningSourceId ? { lucilleInteractionId: opts.learningSourceId } : {}),
       role: "user" as const,
       // Plain chat has no file tools, so an attached file is its summary and
       // nothing else: name, type, hash, a hex dump of the start and the
@@ -2072,6 +2074,9 @@ export function useChat() {
 
       // Auto-extract memories (fire-and-forget)
       const memSettings = useMemoryStore.getState().settings
+      if (isLucille(conv) && run.content.trim() && run.convId) {
+        void queueLucilleLearning(run.convId, assistantMessage.id, content, 'chat', abort.signal).catch(() => {})
+      }
       if (!isLucille(conv) && memSettings.autoExtractEnabled && memSettings.autoExtractInAllModes && run.content.trim() && run.convId) {
         extractAndSave(content, run.content, run.convId, { scope: memoryScope }).catch(() => {})
       }
@@ -2200,7 +2205,8 @@ export function useChat() {
     // sendMessage has refusals of its own past the checks above. When one of
     // them wrote nothing, the version that was shown comes back instead of a
     // chat that ends where the question was.
-    void sendMessage(plan.content, plan.images, plan.files?.map((attachment) => ({ attachment })), media.length ? media : undefined)
+    void sendMessage(plan.content, plan.images, plan.files?.map((attachment) => ({ attachment })), media.length ? media : undefined,
+      { learningSourceId: isLucille(conv) && anchor?.role === 'user' ? anchor.lucilleInteractionId ?? anchor.id : undefined })
       .finally(() => { if (key) useChatStore.getState().restoreEmptyFork(conversationId, key) })
     return true
   }, [sendMessage, sendCreateReport])

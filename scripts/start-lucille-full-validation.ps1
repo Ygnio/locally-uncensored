@@ -29,4 +29,11 @@ try{
   $gui=Start-Process -FilePath $exe -WorkingDirectory $root -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $root 'gui.stdout.log') -RedirectStandardError (Join-Path $root 'gui.stderr.log')
   @{root=$root;gui_pid=$gui.Id;executable=$exe;vite_pid=$vite.Id;mock_pid=$mock.Id} | ConvertTo-Json | Set-Content (Join-Path $root 'session.json')
 }finally{foreach($name in $names){[Environment]::SetEnvironmentVariable($name,$saved[$name],'Process')}}
+$inspectionDeadline=[DateTime]::UtcNow.AddSeconds(25)
+do {
+  $inspectionReady=Get-NetTCPConnection -LocalPort 15287 -State Listen -ErrorAction SilentlyContinue
+  if($inspectionReady){break}
+  if($gui.HasExited -or [DateTime]::UtcNow -gt $inspectionDeadline){throw 'Dedicated WebView inspection failed to start; manifest retained for scoped shutdown'}
+  Start-Sleep -Milliseconds 200
+}while($true)
 Write-Output "Dedicated full application started: $($gui.Id); data root: $root"

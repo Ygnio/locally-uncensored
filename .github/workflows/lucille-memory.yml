@@ -2,9 +2,9 @@ name: Lucille identity and memory
 
 on:
   push:
-    branches: [feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation]
+    branches: [feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory]
   pull_request:
-    branches: [master, feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code]
+    branches: [master, feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation]
   workflow_dispatch:
 
 permissions:
@@ -39,6 +39,7 @@ jobs:
           if [ "$RUNNER_OS" = "Windows" ]; then suffix=".exe"; fi
           export LUCILLE_QA_BRIDGE="$CARGO_TARGET_DIR/debug/examples/synthetic_bridge$suffix"
           npx vitest run --maxWorkers=1 \
+            src/lib/__tests__/lucille-learning.test.ts \
             src/lib/__tests__/lucille-unified.test.ts \
             src/lib/__tests__/lucille-context.test.ts \
             src/lib/__tests__/lucille-real-sqlite.test.ts \

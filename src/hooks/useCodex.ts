@@ -1,5 +1,6 @@
 import { CODEX_REVIEW_SYSTEM_PROMPT, CODEX_SYSTEM_PROMPT, CODEX_SYSTEM_PROMPT_LEAN, CODEX_ASSET_HINT, CODEX_ASSET_LINE } from '../lib/codex-prompts'
 import { isLucille, withLucilleContext, lucilleToolAllowed } from '../lib/lucille-context'
+import { queueLucilleLearning } from '../lib/lucille-learning'
 import { operationalCodePrompt, executorEvidence, type ToolEvidence } from '../lib/verified-environment'
 import { useRef, useState, useCallback } from 'react'
 import { markCannotThink } from '../lib/model-compatibility'
@@ -2790,6 +2791,7 @@ export function useCodex() {
       // extractor's synchronous prologue ran before this turn's write had
       // started. Fire-and-forget or not, nothing gets to go first.
       if (convId && fullContent) {
+        if (isLucille(lucilleConversation)) void queueLucilleLearning(convId, assistantMsg.id, rawInstruction, 'code', abort.signal).catch(() => {})
         void (!isLucille(lucilleConversation) ? extractMemoriesFromPair(instruction, fullContent, convId, { scope: memoryScope }) : Promise.resolve()).catch(() => {})
       }
 

@@ -29,6 +29,8 @@ pub const BLOCKED: &[&str] = &[
     // Lucille SQLite is confined to an explicitly isolated desktop debug host.
     "lucille_context",
     "lucille_manage",
+    "lucille_learn",
+    "lucille_learning_wake",
     // Desktop commands of 3.0.8, sorted when the phone line joined the
     // 3.0.8 candidate: the host side of Remote, storage and the runtime
     // folder, Abliteration, the model check, GPU roles, the REA plugin. A

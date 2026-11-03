@@ -1,0 +1,13 @@
+# Phase 2 acceptance contract — fixed before implementation/tuning
+
+Scope: a conservative, auditable Portuguese/English rule extractor for explicit supported statements; unsupported language/ambiguous statements must abstain. No assistant/tool text may become a personal fact. General-purpose LLM extraction and real-generation naturalness are separate, unmeasured claims until a safe model is available.
+
+Frozen synthetic quality gates: extraction precision >= 0.95, recall >= 0.80 on the declared supported benchmark, unsafe/sensitive/third-party/assistant/tool automatic writes = 0; scope errors = 0; retrieval precision >= 0.90 and relevant recall >= 0.80; obsolete/expired/pending-conflict results = 0; duplicate current records after replay = 0. Explicit corrections must suspend old claims pending review and only one current value may remain after approval. Durable facts must survive time passage. Benchmarks must include negative/held-out wording and publish failures, not silently remove cases.
+
+Resource gates on this machine: one worker, <=4 proposals/interaction, <=64 pending jobs, <=3 attempts, <=16 KiB incoming user text and <=1.2 KiB retained eligible evidence/job; completed/cancelled/terminal-failed job payloads erased. Queue leases are fenced and resumable; completion is atomic with memory updates. Local synthetic p95 enqueue <=50 ms and processing <=100 ms (excluding model inference, which is not run). Context ceiling remains bounded by the existing per-profile allocation; no change to Gemma's context configuration.
+
+Automatic learning is profile-configurable and disabled by default. Its conservative preset can promote only explicit non-sensitive preferences with verified user provenance, supported deterministic evidence, clear scope, adequate clarity/relevance, and no unresolved conflict. Numeric model confidence alone is insufficient. Other categories remain reviewable candidates. Keep learning disabled if quality gates fail.
+
+Naturalness metric: frequency of unnecessary memory references in REAL generated answers is **not measurable with payload inspection or a deterministic server**. Report null/not evaluated rather than zero. Verify retrieval restraint on irrelevant topics and the instruction to use relevant memory quietly; do not implement a blanket phrase ban.
+
+Semantic gate: exact model/revision/fingerprint/pooling/normalization/prefix/dimension/version must identify one vector space. Never mix vectors across spaces or memory versions. FTS5 must work without an embedding server. Synthetic-vector tests validate index mechanics/ranking, not Nomic inference quality. No second model or operational embedding server change is authorized.

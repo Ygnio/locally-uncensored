@@ -19,6 +19,8 @@ fn allowed(command: &str, body: &serde_json::Value) -> bool {
     match command {
         "lucille_context"
         | "lucille_manage"
+        | "lucille_learn"
+        | "lucille_learning_wake"
         | "fs_read"
         | "fs_write"
         | "fs_list"
@@ -72,6 +74,8 @@ pub fn run() {
         Box::new(tauri::generate_handler![
             lucille::lucille_context,
             lucille::lucille_manage,
+            lucille::lucille_learn,
+            lucille::lucille_learning_wake,
             filesystem::fs_read,
             filesystem::fs_write,
             filesystem::fs_list,

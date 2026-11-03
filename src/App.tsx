@@ -6,6 +6,7 @@ import { pushPersistedChoicesToRust } from './lib/rust-boot-sync'
 
 function App() {
   useEffect(() => {
+    void import('./lib/lucille-learning').then(({ resumeLucilleLearning }) => resumeLucilleLearning()).catch(() => {})
     // In Tauri: show the window once React has rendered (window starts hidden).
     // Rust decides whether it may — while the onboarding runs in its own
     // window, the main window stays hidden (onboarding_window.rs).

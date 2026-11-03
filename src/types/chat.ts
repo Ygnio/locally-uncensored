@@ -95,6 +95,8 @@ export interface MessageError {
 }
 
 export interface Message {
+  /** Original user interaction across regenerate/retry, never assistant content. */
+  lucilleInteractionId?: string
   id: string
   role: Role
   content: string
