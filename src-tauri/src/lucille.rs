@@ -137,6 +137,7 @@ pub fn lucille_context(
     window: tauri::WebviewWindow,
     state: tauri::State<'_, LucilleState>,
     request: TurnRequest,
+    vector: Option<lucille_memory::semantic::QueryVector>,
 ) -> Result<Value, String> {
     let path = isolated_root(&window)?;
     let mut guard = state
@@ -147,13 +148,36 @@ pub fn lucille_context(
     if guard.is_none() {
         *guard = Some(Store::open(&path)?);
     }
-    serde_json::to_value(guard.as_mut().unwrap().context(request)?)
-        .map_err(|_| "Context serialization failed".into())
+    serde_json::to_value(
+        guard
+            .as_mut()
+            .unwrap()
+            .context_hybrid(request, vector.as_ref())?,
+    )
+    .map_err(|_| "Context serialization failed".into())
 }
 
 #[derive(Deserialize)]
 #[serde(tag = "operation", rename_all = "snake_case", deny_unknown_fields)]
 pub enum Request {
+    ClaimLlm,
+    CompleteLlm {
+        lease: lucille_memory::intelligent::Lease,
+        output: String,
+    },
+    FailLlm {
+        lease: lucille_memory::intelligent::Lease,
+    },
+    ConfigureEmbedding {
+        space: lucille_memory::semantic::EmbeddingSpace,
+    },
+    PutVector {
+        id: String,
+        version: i64,
+        space: lucille_memory::semantic::EmbeddingSpace,
+        vector: Vec<f32>,
+    },
+    IndexStatus,
     LearningPolicy,
     SaveLearningPolicy {
         policy: lucille_memory::intelligent::LearningPolicy,
@@ -236,6 +260,7 @@ pub fn lucille_manage(
             | Request::LearningJobs { .. }
             | Request::Details { .. }
             | Request::Deleted { .. }
+            | Request::IndexStatus
     );
     let permit = ConfigurationPermit::explicit_settings_action(
         readonly || confirmation.as_deref() == Some("CONFIRM LUCILLE CONFIGURATION"),
@@ -251,6 +276,33 @@ pub fn lucille_manage(
     }
     let store = guard.as_mut().unwrap();
     let value = match request {
+        Request::ClaimLlm => {
+            if let Some(lease) = store.claim_llm_learning(epoch())? {
+                json!({"input":store.learning_input(&lease)?,"lease":lease})
+            } else {
+                Value::Null
+            }
+        }
+        Request::CompleteLlm { lease, output } => {
+            json!({"completed":store.complete_llm_learning(&lease,&output,epoch())?})
+        }
+        Request::FailLlm { lease } => {
+            store.fail_learning(&lease, epoch())?;
+            json!({"failed":true})
+        }
+        Request::ConfigureEmbedding { space } => {
+            json!({"space_id":store.configure_embedding_space(&space,&permit)?})
+        }
+        Request::PutVector {
+            id,
+            version,
+            space,
+            vector,
+        } => {
+            store.put_memory_vector(&id, version, &space, &vector, &permit)?;
+            json!({"indexed":true})
+        }
+        Request::IndexStatus => store.embedding_status()?,
         Request::LearningPolicy => json!(store.learning_policy()?),
         Request::SaveLearningPolicy { policy } => {
             store.set_learning_policy(policy, &permit)?;

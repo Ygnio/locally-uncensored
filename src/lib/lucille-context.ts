@@ -28,8 +28,8 @@ export interface LucilleTurnContext {
 
 export const isLucille = (conversation?: Pick<Conversation, 'lucille'>): boolean => conversation?.lucille?.profile === 'lucille'
 const injected = new WeakSet<ChatMessage>()
-type ContextLoader = (request: Record<string, unknown>) => Promise<LucilleTurnContext>
-const loadContext: ContextLoader = request => invoke('lucille_context', { request })
+type ContextLoader = (request: Record<string, unknown>, signal?: AbortSignal) => Promise<LucilleTurnContext>
+const loadContext: ContextLoader = async (request, signal) => { const { queryVector } = await import('./lucille-semantic'); const vector = await queryVector(String(request.query), signal); return invoke('lucille_context', { request, vector }) }
 const assertNotCancelled = (signal?: AbortSignal) => {
   if (signal?.aborted) throw new DOMException('Turn cancelled', 'AbortError')
 }
@@ -58,7 +58,7 @@ export async function withLucilleContext(
   const context = await loader({
     conversation_id: conversation!.id, message_id: messageId, scope: binding.scope,
     project: binding.project, mode, query, token_budget: retrievalBudget,
-  })
+  }, signal)
   assertNotCancelled(signal)
   if (context.conversation_id !== conversation!.id || context.message_id !== messageId || context.mode !== mode ||
     context.scope !== binding.scope || context.project !== binding.project || context.token_budget !== retrievalBudget ||
