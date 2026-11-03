@@ -1,0 +1,934 @@
+{
+  "id": "phase22-independent-retrieval-v1",
+  "events": [
+    {
+      "action": "learn",
+      "label": "coffee-old",
+      "text": "Ao tomar café em casa, eu prefiro café sem açúcar.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "coffee-current",
+      "text": "Na verdade, agora prefiro café com açúcar.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "theme-old",
+      "text": "Nas interfaces do meu dia a dia eu prefiro o tema escuro.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "theme-current",
+      "text": "Na verdade, agora prefiro modo claro.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "concise",
+      "text": "Ao conversar comigo eu prefiro respostas breves e diretas.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "tactics",
+      "text": "Para jogar no fim de semana eu gosto de RPG tático com classes.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "turn-strategy",
+      "text": "Jogos de estratégia por turnos são meus favoritos no lazer.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "desktop-old",
+      "text": "Meu computador principal tem 24 GB de RAM.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "desktop-current",
+      "text": "Atualizei o computador principal para 48 GB.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "work",
+      "text": "Meu notebook de trabalho tem 16 GB de RAM.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "other",
+      "text": "Meu outro computador tem 32 GB de RAM.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "language-old",
+      "text": "Para começar, quero usar Python.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "language-current",
+      "text": "Decidi trocar Python por Rust.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "database",
+      "text": "Quero usar SQLite.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "description",
+      "text": "Estou começando um projeto de irrigação de estufa.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "goal-old",
+      "text": "Meu objetivo é aprender geometria espacial.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "goal-completed",
+      "text": "Concluí meu objetivo de aprender geometria espacial.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "free-ram",
+      "text": "Meu computador principal tem 8 GB de RAM livres agora.",
+      "scope": "ret22",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "other-database",
+      "text": "Quero usar MySQL.",
+      "scope": "ret22",
+      "project": "cedro2",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "other-language",
+      "text": "Quero usar TypeScript.",
+      "scope": "ret22",
+      "project": "cedro2",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "deleted-coffee",
+      "text": "Eu prefiro café sem açúcar na minha rotina.",
+      "scope": "ret22-deleted",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "delete",
+      "target": "deleted-coffee"
+    },
+    {
+      "action": "learn",
+      "label": "unclear-desktop",
+      "text": "Meu computador principal tem 20 GB de RAM.",
+      "scope": "ret22-unclear",
+      "project": "cedro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "unclear-new-device",
+      "text": "Troquei de computador depois de mudar de escritório.",
+      "scope": "ret22-unclear",
+      "project": "cedro",
+      "approve": false
+    }
+  ],
+  "queries": [
+    {
+      "id": "q22-001",
+      "category": "coffee",
+      "query": "Devo colocar açúcar no meu café da manhã?",
+      "expected": [
+        "coffee-current"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "coffee-old"
+      ]
+    },
+    {
+      "id": "q22-002",
+      "category": "coffee",
+      "query": "Should I sweeten my espresso?",
+      "expected": [
+        "coffee-current"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "coffee-old"
+      ]
+    },
+    {
+      "id": "q22-003",
+      "category": "coffee",
+      "query": "Como eu prefiro meu café em casa?",
+      "expected": [
+        "coffee-current"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "coffee-old"
+      ]
+    },
+    {
+      "id": "q22-004",
+      "category": "coffee",
+      "query": "Would sugar match my usual coffee choice?",
+      "expected": [
+        "coffee-current"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "coffee-old"
+      ]
+    },
+    {
+      "id": "q22-005",
+      "category": "coffee",
+      "query": "Qual é minha preferência atual de açúcar no café?",
+      "expected": [
+        "coffee-current"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "coffee-old"
+      ]
+    },
+    {
+      "id": "q22-006",
+      "category": "interface",
+      "query": "Qual tema eu prefiro para a interface?",
+      "expected": [
+        "theme-current"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "theme-old"
+      ]
+    },
+    {
+      "id": "q22-007",
+      "category": "interface",
+      "query": "Which display theme matches my preference?",
+      "expected": [
+        "theme-current"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "theme-old"
+      ]
+    },
+    {
+      "id": "q22-008",
+      "category": "interface",
+      "query": "Devo escolher modo claro ou escuro para minha interface?",
+      "expected": [
+        "theme-current"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "theme-old"
+      ]
+    },
+    {
+      "id": "q22-009",
+      "category": "interface",
+      "query": "What is my current interface theme choice?",
+      "expected": [
+        "theme-current"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "theme-old"
+      ]
+    },
+    {
+      "id": "q22-010",
+      "category": "interface",
+      "query": "Qual é minha preferência de tema visual?",
+      "expected": [
+        "theme-current"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "theme-old"
+      ]
+    },
+    {
+      "id": "q22-011",
+      "category": "communication",
+      "query": "Como você deve explicar um conceito para mim?",
+      "expected": [
+        "concise"
+      ],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-012",
+      "category": "communication",
+      "query": "How should you explain an algorithm to me?",
+      "expected": [
+        "concise"
+      ],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-013",
+      "category": "communication",
+      "query": "Qual estilo de resposta eu prefiro?",
+      "expected": [
+        "concise"
+      ],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-014",
+      "category": "communication",
+      "query": "Which communication style suits my preference?",
+      "expected": [
+        "concise"
+      ],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-015",
+      "category": "communication",
+      "query": "Como explicar instruções para mim?",
+      "expected": [
+        "concise"
+      ],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-016",
+      "category": "games",
+      "query": "Recomende um RPG adequado ao meu gosto.",
+      "expected": [
+        "tactics"
+      ],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-017",
+      "category": "games",
+      "query": "Which tactical RPG fits my tastes?",
+      "expected": [
+        "tactics"
+      ],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-018",
+      "category": "games",
+      "query": "Me sugira um RPG com classes.",
+      "expected": [
+        "tactics"
+      ],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-019",
+      "category": "games",
+      "query": "What role-playing game should you recommend for me?",
+      "expected": [
+        "tactics"
+      ],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-020",
+      "category": "games",
+      "query": "Quais RPGs táticos combinam com minhas preferências?",
+      "expected": [
+        "tactics"
+      ],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-021",
+      "category": "hardware",
+      "query": "Qual é a RAM instalada no meu computador principal?",
+      "expected": [
+        "desktop-current"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "desktop-old",
+        "free-ram"
+      ]
+    },
+    {
+      "id": "q22-022",
+      "category": "hardware",
+      "query": "How much RAM is in my main desktop?",
+      "expected": [
+        "desktop-current"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "desktop-old",
+        "free-ram"
+      ]
+    },
+    {
+      "id": "q22-023",
+      "category": "hardware",
+      "query": "What is my work laptop RAM capacity?",
+      "expected": [
+        "work"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "desktop-old",
+        "free-ram"
+      ]
+    },
+    {
+      "id": "q22-024",
+      "category": "hardware",
+      "query": "Quanto de RAM tem meu outro computador?",
+      "expected": [
+        "other"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "desktop-old",
+        "free-ram"
+      ]
+    },
+    {
+      "id": "q22-025",
+      "category": "hardware",
+      "query": "Compare a RAM de todos os meus computadores.",
+      "expected": [
+        "desktop-current",
+        "work",
+        "other"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "desktop-old",
+        "free-ram"
+      ]
+    },
+    {
+      "id": "q22-026",
+      "category": "project",
+      "query": "Como está ficando aquele projeto?",
+      "expected": [
+        "language-current",
+        "database",
+        "description"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "language-old",
+        "other-database",
+        "other-language"
+      ]
+    },
+    {
+      "id": "q22-027",
+      "category": "project",
+      "query": "Qual linguagem eu decidi usar no projeto cedro?",
+      "expected": [
+        "language-current"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "language-old",
+        "other-database",
+        "other-language"
+      ]
+    },
+    {
+      "id": "q22-028",
+      "category": "project",
+      "query": "What database did we choose for project cedro?",
+      "expected": [
+        "database"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "language-old",
+        "other-database",
+        "other-language"
+      ]
+    },
+    {
+      "id": "q22-029",
+      "category": "project",
+      "query": "Which programming language is current in my project?",
+      "expected": [
+        "language-current"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "language-old",
+        "other-database",
+        "other-language"
+      ]
+    },
+    {
+      "id": "q22-030",
+      "category": "project",
+      "query": "Qual banco de dados estou planejando para meu projeto?",
+      "expected": [
+        "database"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "language-old",
+        "other-database",
+        "other-language"
+      ]
+    },
+    {
+      "id": "q22-031",
+      "category": "completed_goals",
+      "query": "Qual objetivo eu concluí sobre geometria espacial?",
+      "expected": [
+        "goal-completed"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "goal-old"
+      ]
+    },
+    {
+      "id": "q22-032",
+      "category": "completed_goals",
+      "query": "What goal have I completed?",
+      "expected": [
+        "goal-completed"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "goal-old"
+      ]
+    },
+    {
+      "id": "q22-033",
+      "category": "completed_goals",
+      "query": "Qual o status do meu objetivo de aprender geometria espacial?",
+      "expected": [
+        "goal-completed"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "goal-old"
+      ]
+    },
+    {
+      "id": "q22-034",
+      "category": "completed_goals",
+      "query": "Tell me the completed goal from my history.",
+      "expected": [
+        "goal-completed"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "goal-old"
+      ]
+    },
+    {
+      "id": "q22-035",
+      "category": "completed_goals",
+      "query": "Qual meta concluída consta no meu histórico?",
+      "expected": [
+        "goal-completed"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "forbidden": [
+        "goal-old"
+      ]
+    },
+    {
+      "id": "q22-036",
+      "category": "deleted",
+      "query": "Devo colocar açúcar no meu café?",
+      "expected": [],
+      "scope": "ret22-deleted",
+      "project": "cedro",
+      "forbidden": [
+        "deleted-coffee"
+      ]
+    },
+    {
+      "id": "q22-037",
+      "category": "deleted",
+      "query": "How do I take my espresso?",
+      "expected": [],
+      "scope": "ret22-deleted",
+      "project": "cedro",
+      "forbidden": [
+        "deleted-coffee"
+      ]
+    },
+    {
+      "id": "q22-038",
+      "category": "deleted",
+      "query": "Qual é minha preferência por café?",
+      "expected": [],
+      "scope": "ret22-deleted",
+      "project": "cedro",
+      "forbidden": [
+        "deleted-coffee"
+      ]
+    },
+    {
+      "id": "q22-039",
+      "category": "deleted",
+      "query": "Would I sweeten my coffee?",
+      "expected": [],
+      "scope": "ret22-deleted",
+      "project": "cedro",
+      "forbidden": [
+        "deleted-coffee"
+      ]
+    },
+    {
+      "id": "q22-040",
+      "category": "deleted",
+      "query": "Como prefiro o café?",
+      "expected": [],
+      "scope": "ret22-deleted",
+      "project": "cedro",
+      "forbidden": [
+        "deleted-coffee"
+      ]
+    },
+    {
+      "id": "q22-041",
+      "category": "ambiguous_device",
+      "query": "Qual é a RAM do meu computador principal?",
+      "expected": [],
+      "scope": "ret22-unclear",
+      "project": "cedro",
+      "forbidden": [
+        "unclear-desktop",
+        "unclear-new-device"
+      ]
+    },
+    {
+      "id": "q22-042",
+      "category": "ambiguous_device",
+      "query": "How much RAM is installed in my desktop?",
+      "expected": [],
+      "scope": "ret22-unclear",
+      "project": "cedro",
+      "forbidden": [
+        "unclear-desktop",
+        "unclear-new-device"
+      ]
+    },
+    {
+      "id": "q22-043",
+      "category": "ambiguous_device",
+      "query": "Qual é a capacidade de memória do meu PC?",
+      "expected": [],
+      "scope": "ret22-unclear",
+      "project": "cedro",
+      "forbidden": [
+        "unclear-desktop",
+        "unclear-new-device"
+      ]
+    },
+    {
+      "id": "q22-044",
+      "category": "ambiguous_device",
+      "query": "What is my primary computer RAM capacity?",
+      "expected": [],
+      "scope": "ret22-unclear",
+      "project": "cedro",
+      "forbidden": [
+        "unclear-desktop",
+        "unclear-new-device"
+      ]
+    },
+    {
+      "id": "q22-045",
+      "category": "ambiguous_device",
+      "query": "Meu computador principal tem quantos GB de RAM?",
+      "expected": [],
+      "scope": "ret22-unclear",
+      "project": "cedro",
+      "forbidden": [
+        "unclear-desktop",
+        "unclear-new-device"
+      ]
+    },
+    {
+      "id": "q22-046",
+      "category": "scope_fences",
+      "query": "Qual é a RAM do meu computador principal?",
+      "expected": [],
+      "scope": "ret22-near",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-047",
+      "category": "scope_fences",
+      "query": "Which database is planned for project cedro2?",
+      "expected": [],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-048",
+      "category": "scope_fences",
+      "query": "Qual linguagem está no projeto cedros?",
+      "expected": [],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-049",
+      "category": "scope_fences",
+      "query": "Como eu tomo meu café?",
+      "expected": [],
+      "scope": "ret22",
+      "project": "cedro3"
+    },
+    {
+      "id": "q22-050",
+      "category": "scope_fences",
+      "query": "What is my work laptop RAM?",
+      "expected": [],
+      "scope": "ret22-other",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-051",
+      "category": "irrelevant",
+      "query": "What is a relational database?",
+      "expected": [],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-052",
+      "category": "irrelevant",
+      "query": "Qual é a capital da Finlândia?",
+      "expected": [],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-053",
+      "category": "irrelevant",
+      "query": "Explique o que é memória RAM.",
+      "expected": [],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-054",
+      "category": "irrelevant",
+      "query": "Como funciona a fotossíntese?",
+      "expected": [],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-055",
+      "category": "irrelevant",
+      "query": "Qual é o significado de um algoritmo?",
+      "expected": [],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-056",
+      "category": "irrelevant",
+      "query": "Quanto é 13 mais 15?",
+      "expected": [],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-057",
+      "category": "irrelevant",
+      "query": "What does unsweetened mean?",
+      "expected": [],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-058",
+      "category": "irrelevant",
+      "query": "O que é uma interface gráfica?",
+      "expected": [],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-059",
+      "category": "irrelevant",
+      "query": "What is the difference between a game and a simulation?",
+      "expected": [],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-060",
+      "category": "irrelevant",
+      "query": "Qual é a capital da Colômbia?",
+      "expected": [],
+      "scope": "ret22",
+      "project": "cedro"
+    },
+    {
+      "id": "q22-061",
+      "category": "expiry",
+      "query": "How much free RAM is available now in my primary computer?",
+      "expected": [
+        "free-ram"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "logical_offset_seconds": 0,
+      "forbidden": []
+    },
+    {
+      "id": "q22-062",
+      "category": "expiry",
+      "query": "Quanto de RAM está livre agora no meu computador principal?",
+      "expected": [
+        "free-ram"
+      ],
+      "scope": "ret22",
+      "project": "cedro",
+      "logical_offset_seconds": 0,
+      "forbidden": []
+    },
+    {
+      "id": "q22-063",
+      "category": "expiry",
+      "query": "Qual é a RAM disponível agora no meu PC?",
+      "expected": [],
+      "scope": "ret22",
+      "project": "cedro",
+      "logical_offset_seconds": 7200,
+      "forbidden": [
+        "free-ram"
+      ]
+    },
+    {
+      "id": "q22-064",
+      "category": "expiry",
+      "query": "How much free RAM is available now in my primary computer?",
+      "expected": [],
+      "scope": "ret22",
+      "project": "cedro",
+      "logical_offset_seconds": 7200,
+      "forbidden": [
+        "free-ram"
+      ]
+    },
+    {
+      "id": "q22-065",
+      "category": "expiry",
+      "query": "Quanto de RAM está livre agora no meu computador principal?",
+      "expected": [],
+      "scope": "ret22",
+      "project": "cedro",
+      "logical_offset_seconds": 7200,
+      "forbidden": [
+        "free-ram"
+      ]
+    }
+  ]
+}

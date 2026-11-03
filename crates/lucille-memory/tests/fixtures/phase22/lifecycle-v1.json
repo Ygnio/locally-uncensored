@@ -1,0 +1,86 @@
+{
+  "id": "phase22-lifecycle-v1",
+  "scope": "phase22-long-heldout-v1",
+  "project": "cedro",
+  "host_restart": {
+    "turns": [],
+    "probes": [
+      {
+        "text": "Qual linguagem está vigente no meu projeto?",
+        "expected": [
+          {
+            "property": "language",
+            "value": "rust"
+          }
+        ],
+        "answer_pattern": "Rust",
+        "answer_none": [
+          "Python"
+        ]
+      },
+      {
+        "text": "Quanto de RAM tem meu computador principal?",
+        "expected": [
+          {
+            "property": "ram_capacity",
+            "value": "46_gb",
+            "subject": "device.primary_computer"
+          }
+        ],
+        "answer_pattern": "46\\s*GB",
+        "answer_none": [
+          "22\\s*GB",
+          "34\\s*GB"
+        ]
+      }
+    ]
+  },
+  "nomic_down": {
+    "turns": [
+      {
+        "text": "Na verdade, agora prefiro tema claro na interface."
+      }
+    ],
+    "probes": [
+      {
+        "text": "Qual é minha preferência atual de tema na interface?",
+        "expected": [
+          {
+            "property": "interface_theme",
+            "value": "light"
+          }
+        ],
+        "answer_pattern": "clar|light",
+        "answer_none": [
+          "escur|dark"
+        ]
+      }
+    ]
+  },
+  "nomic_recovery": {
+    "turns": [],
+    "probes": [
+      {
+        "text": "Which interface theme fits my preference now?",
+        "expected": [
+          {
+            "property": "interface_theme",
+            "value": "light"
+          }
+        ],
+        "answer_pattern": "clar|light",
+        "answer_none": [
+          "escur|dark"
+        ]
+      }
+    ]
+  },
+  "cancel": {
+    "source": "Ao conversar normalmente eu prefiro respostas detalhadas.",
+    "scope": "phase22-cancel-heldout"
+  },
+  "restart_during_extraction": {
+    "source": "Quando converso normalmente, meu idioma preferido é português.",
+    "scope": "phase22-restart-heldout"
+  }
+}

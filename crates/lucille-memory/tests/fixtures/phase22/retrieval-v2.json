@@ -1,0 +1,959 @@
+{
+  "id": "phase22-independent-retrieval-v2",
+  "events": [
+    {
+      "action": "learn",
+      "label": "coffee-old",
+      "text": "Nas pausas do trabalho eu prefiro café com açúcar.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "coffee-current",
+      "text": "Na verdade, agora prefiro café sem açúcar na minha rotina.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "theme-old",
+      "text": "Na minha interface de todo dia, eu prefiro modo claro.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "theme-current",
+      "text": "Mudei de ideia, agora prefiro tema escuro na interface.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "detailed",
+      "text": "Ao aprender algo novo eu gosto de explicações detalhadas.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "tactics",
+      "text": "Quando escolho um jogo, eu gosto de RPG tático com progressão de personagem.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "turn-strategy",
+      "text": "Entre os jogos, os de estratégia por turnos são os meus favoritos.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "desktop-old",
+      "text": "Meu computador principal possui 20 GB de RAM.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "desktop-current",
+      "text": "Na verdade, meu computador principal agora possui 44 GB de RAM.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "work",
+      "text": "Meu notebook de trabalho possui 18 GB de RAM.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "other",
+      "text": "Meu outro computador possui 28 GB de RAM.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "language-old",
+      "text": "Para iniciar o módulo, vou usar JavaScript.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "language-current",
+      "text": "Decidi trocar JavaScript por Rust.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "database",
+      "text": "Na etapa inicial, quero usar PostgreSQL.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "description",
+      "text": "Estou começando um projeto de controle de luminosidade da estufa.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "goal-old",
+      "text": "Meu objetivo é aprender encadernação artesanal.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "goal-completed",
+      "text": "Concluí meu objetivo de aprender encadernação artesanal.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "free-ram",
+      "text": "Meu computador principal possui 6 GB de RAM livres agora.",
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "other-database",
+      "text": "Na etapa inicial, vou usar SQLite.",
+      "scope": "ret22-v2",
+      "project": "candeia2",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "other-language",
+      "text": "No começo do protótipo, vou usar Python.",
+      "scope": "ret22-v2",
+      "project": "candeia2",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "deleted-coffee",
+      "text": "Durante o lanche eu prefiro café com açúcar.",
+      "scope": "ret22-v2-deleted",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "delete",
+      "target": "deleted-coffee"
+    },
+    {
+      "action": "learn",
+      "label": "unclear-desktop",
+      "text": "Meu computador principal possui 26 GB de RAM.",
+      "scope": "ret22-v2-unclear",
+      "project": "candeia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "unclear-new-device",
+      "text": "Troquei de computador para preparar o novo escritório.",
+      "scope": "ret22-v2-unclear",
+      "project": "candeia",
+      "approve": false
+    }
+  ],
+  "queries": [
+    {
+      "id": "v2-q22-001",
+      "category": "coffee",
+      "query": "Qual tipo de café combina com minha escolha atual de açúcar?",
+      "expected": [
+        "coffee-current"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "coffee-old"
+      ]
+    },
+    {
+      "id": "v2-q22-002",
+      "category": "coffee",
+      "query": "Would an unsweetened espresso match my taste?",
+      "expected": [
+        "coffee-current"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "coffee-old"
+      ]
+    },
+    {
+      "id": "v2-q22-003",
+      "category": "coffee",
+      "query": "Como eu gosto de tomar café no intervalo?",
+      "expected": [
+        "coffee-current"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "coffee-old"
+      ]
+    },
+    {
+      "id": "v2-q22-004",
+      "category": "coffee",
+      "query": "Should my usual coffee have added sugar?",
+      "expected": [
+        "coffee-current"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "coffee-old"
+      ]
+    },
+    {
+      "id": "v2-q22-005",
+      "category": "coffee",
+      "query": "Que preferência de açúcar eu mantenho para o café?",
+      "expected": [
+        "coffee-current"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "coffee-old"
+      ]
+    },
+    {
+      "id": "v2-q22-006",
+      "category": "interface",
+      "query": "Que aparência eu prefiro na minha interface?",
+      "expected": [
+        "theme-current"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "theme-old"
+      ]
+    },
+    {
+      "id": "v2-q22-007",
+      "category": "interface",
+      "query": "Which interface theme is my current favorite?",
+      "expected": [
+        "theme-current"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "theme-old"
+      ]
+    },
+    {
+      "id": "v2-q22-008",
+      "category": "interface",
+      "query": "Na minha tela, devo escolher tema claro ou escuro?",
+      "expected": [
+        "theme-current"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "theme-old"
+      ]
+    },
+    {
+      "id": "v2-q22-009",
+      "category": "interface",
+      "query": "What visual theme matches my current preference?",
+      "expected": [
+        "theme-current"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "theme-old"
+      ]
+    },
+    {
+      "id": "v2-q22-010",
+      "category": "interface",
+      "query": "Minha preferência atual de interface é qual tema?",
+      "expected": [
+        "theme-current"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "theme-old"
+      ]
+    },
+    {
+      "id": "v2-q22-011",
+      "category": "communication",
+      "query": "Que estilo de explicação funciona para mim?",
+      "expected": [
+        "detailed"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-012",
+      "category": "communication",
+      "query": "How should you explain a new concept to me?",
+      "expected": [
+        "detailed"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-013",
+      "category": "communication",
+      "query": "Qual formato das respostas eu prefiro receber?",
+      "expected": [
+        "detailed"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-014",
+      "category": "communication",
+      "query": "Which communication style matches my preference now?",
+      "expected": [
+        "detailed"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-015",
+      "category": "communication",
+      "query": "Como eu prefiro que você explique uma tarefa para mim?",
+      "expected": [
+        "detailed"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-016",
+      "category": "games",
+      "query": "Qual tipo de RPG você recomenda para o meu lazer?",
+      "expected": [
+        "tactics"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-017",
+      "category": "games",
+      "query": "Which tactical role-playing game suits my tastes?",
+      "expected": [
+        "tactics"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-018",
+      "category": "games",
+      "query": "Me sugira um RPG com evolução de personagem.",
+      "expected": [
+        "tactics"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-019",
+      "category": "games",
+      "query": "What RPG genre should you recommend for me?",
+      "expected": [
+        "tactics"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-020",
+      "category": "games",
+      "query": "Que RPGs de combate tático combinam com o que eu gosto?",
+      "expected": [
+        "tactics"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-021",
+      "category": "hardware",
+      "query": "Quantos GB de RAM estão instalados no meu computador principal?",
+      "expected": [
+        "desktop-current"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "desktop-old",
+        "free-ram"
+      ]
+    },
+    {
+      "id": "v2-q22-022",
+      "category": "hardware",
+      "query": "What is my main desktop installed RAM capacity?",
+      "expected": [
+        "desktop-current"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "desktop-old",
+        "free-ram"
+      ]
+    },
+    {
+      "id": "v2-q22-023",
+      "category": "hardware",
+      "query": "How much RAM is installed in my work laptop?",
+      "expected": [
+        "work"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "desktop-old",
+        "free-ram"
+      ]
+    },
+    {
+      "id": "v2-q22-024",
+      "category": "hardware",
+      "query": "Qual é a capacidade de RAM do meu outro computador?",
+      "expected": [
+        "other"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "desktop-old",
+        "free-ram"
+      ]
+    },
+    {
+      "id": "v2-q22-025",
+      "category": "hardware",
+      "query": "Compare a memória RAM de todos os meus computadores.",
+      "expected": [
+        "desktop-current",
+        "work",
+        "other"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "desktop-old",
+        "free-ram"
+      ]
+    },
+    {
+      "id": "v2-q22-026",
+      "category": "project",
+      "query": "Como anda o meu projeto?",
+      "expected": [
+        "language-current",
+        "database",
+        "description"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "language-old",
+        "other-database",
+        "other-language"
+      ]
+    },
+    {
+      "id": "v2-q22-027",
+      "category": "project",
+      "query": "Que linguagem está vigente naquele projeto?",
+      "expected": [
+        "language-current"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "language-old",
+        "other-database",
+        "other-language"
+      ]
+    },
+    {
+      "id": "v2-q22-028",
+      "category": "project",
+      "query": "What database is planned for project candeia?",
+      "expected": [
+        "database"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "language-old",
+        "other-database",
+        "other-language"
+      ]
+    },
+    {
+      "id": "v2-q22-029",
+      "category": "project",
+      "query": "Which programming language did I choose for my project?",
+      "expected": [
+        "language-current"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "language-old",
+        "other-database",
+        "other-language"
+      ]
+    },
+    {
+      "id": "v2-q22-030",
+      "category": "project",
+      "query": "Qual banco de dados foi escolhido para aquele projeto?",
+      "expected": [
+        "database"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "language-old",
+        "other-database",
+        "other-language"
+      ]
+    },
+    {
+      "id": "v2-q22-031",
+      "category": "completed_goals",
+      "query": "Qual foi a minha meta concluída de encadernação artesanal?",
+      "expected": [
+        "goal-completed"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "goal-old"
+      ]
+    },
+    {
+      "id": "v2-q22-032",
+      "category": "completed_goals",
+      "query": "Which goal did I finish?",
+      "expected": [
+        "goal-completed"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "goal-old"
+      ]
+    },
+    {
+      "id": "v2-q22-033",
+      "category": "completed_goals",
+      "query": "Qual é o status do meu objetivo de aprender encadernação artesanal?",
+      "expected": [
+        "goal-completed"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "goal-old"
+      ]
+    },
+    {
+      "id": "v2-q22-034",
+      "category": "completed_goals",
+      "query": "What completed goal is in my history?",
+      "expected": [
+        "goal-completed"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "goal-old"
+      ]
+    },
+    {
+      "id": "v2-q22-035",
+      "category": "completed_goals",
+      "query": "Que meta concluída consta no meu histórico?",
+      "expected": [
+        "goal-completed"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": [
+        "goal-old"
+      ]
+    },
+    {
+      "id": "v2-q22-036",
+      "category": "deleted",
+      "query": "Devo adoçar o meu café?",
+      "expected": [],
+      "scope": "ret22-v2-deleted",
+      "project": "candeia",
+      "forbidden": [
+        "deleted-coffee"
+      ]
+    },
+    {
+      "id": "v2-q22-037",
+      "category": "deleted",
+      "query": "How should my espresso be sweetened?",
+      "expected": [],
+      "scope": "ret22-v2-deleted",
+      "project": "candeia",
+      "forbidden": [
+        "deleted-coffee"
+      ]
+    },
+    {
+      "id": "v2-q22-038",
+      "category": "deleted",
+      "query": "Que escolha de café é a minha preferida?",
+      "expected": [],
+      "scope": "ret22-v2-deleted",
+      "project": "candeia",
+      "forbidden": [
+        "deleted-coffee"
+      ]
+    },
+    {
+      "id": "v2-q22-039",
+      "category": "deleted",
+      "query": "Should sugar go into my usual coffee?",
+      "expected": [],
+      "scope": "ret22-v2-deleted",
+      "project": "candeia",
+      "forbidden": [
+        "deleted-coffee"
+      ]
+    },
+    {
+      "id": "v2-q22-040",
+      "category": "deleted",
+      "query": "Como é a minha escolha de açúcar no café?",
+      "expected": [],
+      "scope": "ret22-v2-deleted",
+      "project": "candeia",
+      "forbidden": [
+        "deleted-coffee"
+      ]
+    },
+    {
+      "id": "v2-q22-041",
+      "category": "ambiguous_device",
+      "query": "Quanta RAM há atualmente no meu computador principal?",
+      "expected": [],
+      "scope": "ret22-v2-unclear",
+      "project": "candeia",
+      "forbidden": [
+        "unclear-desktop",
+        "unclear-new-device"
+      ]
+    },
+    {
+      "id": "v2-q22-042",
+      "category": "ambiguous_device",
+      "query": "What is my desktop installed memory capacity now?",
+      "expected": [],
+      "scope": "ret22-v2-unclear",
+      "project": "candeia",
+      "forbidden": [
+        "unclear-desktop",
+        "unclear-new-device"
+      ]
+    },
+    {
+      "id": "v2-q22-043",
+      "category": "ambiguous_device",
+      "query": "Meu PC está com quantos GB de RAM instalados?",
+      "expected": [],
+      "scope": "ret22-v2-unclear",
+      "project": "candeia",
+      "forbidden": [
+        "unclear-desktop",
+        "unclear-new-device"
+      ]
+    },
+    {
+      "id": "v2-q22-044",
+      "category": "ambiguous_device",
+      "query": "What RAM capacity is current for my primary computer?",
+      "expected": [],
+      "scope": "ret22-v2-unclear",
+      "project": "candeia",
+      "forbidden": [
+        "unclear-desktop",
+        "unclear-new-device"
+      ]
+    },
+    {
+      "id": "v2-q22-045",
+      "category": "ambiguous_device",
+      "query": "Qual capacidade de RAM está instalada no meu computador principal?",
+      "expected": [],
+      "scope": "ret22-v2-unclear",
+      "project": "candeia",
+      "forbidden": [
+        "unclear-desktop",
+        "unclear-new-device"
+      ]
+    },
+    {
+      "id": "v2-q22-046",
+      "category": "scope_fences",
+      "query": "Qual capacidade de RAM tem meu computador principal?",
+      "expected": [],
+      "scope": "ret22-v2-near",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-047",
+      "category": "scope_fences",
+      "query": "What database did I choose for project candeia2?",
+      "expected": [],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-048",
+      "category": "scope_fences",
+      "query": "Qual linguagem está no projeto candeias?",
+      "expected": [],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-049",
+      "category": "scope_fences",
+      "query": "Que preferência de café é minha?",
+      "expected": [],
+      "scope": "ret22-v2",
+      "project": "candeia3",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-050",
+      "category": "scope_fences",
+      "query": "What RAM capacity does my work laptop have?",
+      "expected": [],
+      "scope": "ret22-v2-other",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-051",
+      "category": "irrelevant",
+      "query": "What is a primary key in a database?",
+      "expected": [],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-052",
+      "category": "irrelevant",
+      "query": "Qual é a capital do Paraguai?",
+      "expected": [],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-053",
+      "category": "irrelevant",
+      "query": "O que significa memória de acesso aleatório?",
+      "expected": [],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-054",
+      "category": "irrelevant",
+      "query": "Como funciona a evaporação da água?",
+      "expected": [],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-055",
+      "category": "irrelevant",
+      "query": "O que significa uma variável booleana?",
+      "expected": [],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-056",
+      "category": "irrelevant",
+      "query": "Quanto é 16 somado a 27?",
+      "expected": [],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-057",
+      "category": "irrelevant",
+      "query": "What does the word sugar mean?",
+      "expected": [],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-058",
+      "category": "irrelevant",
+      "query": "O que é um menu de uma interface gráfica?",
+      "expected": [],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-059",
+      "category": "irrelevant",
+      "query": "What is a turn-based game?",
+      "expected": [],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-060",
+      "category": "irrelevant",
+      "query": "Qual é a capital da Costa Rica?",
+      "expected": [],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-061",
+      "category": "expiry",
+      "query": "What RAM is free now in my primary computer?",
+      "expected": [
+        "free-ram"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "logical_offset_seconds": 0,
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-062",
+      "category": "expiry",
+      "query": "Quanta RAM está disponível agora no meu computador principal?",
+      "expected": [
+        "free-ram"
+      ],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "logical_offset_seconds": 0,
+      "forbidden": []
+    },
+    {
+      "id": "v2-q22-063",
+      "category": "expiry",
+      "query": "Meu PC tem quanta memória livre agora?",
+      "expected": [],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "logical_offset_seconds": 7200,
+      "forbidden": [
+        "free-ram"
+      ]
+    },
+    {
+      "id": "v2-q22-064",
+      "category": "expiry",
+      "query": "What RAM is free now in my primary computer?",
+      "expected": [],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "logical_offset_seconds": 7200,
+      "forbidden": [
+        "free-ram"
+      ]
+    },
+    {
+      "id": "v2-q22-065",
+      "category": "expiry",
+      "query": "Quanta RAM está disponível agora no meu computador principal?",
+      "expected": [],
+      "scope": "ret22-v2",
+      "project": "candeia",
+      "logical_offset_seconds": 7200,
+      "forbidden": [
+        "free-ram"
+      ]
+    }
+  ]
+}

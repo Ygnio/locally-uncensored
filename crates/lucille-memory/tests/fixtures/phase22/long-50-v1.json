@@ -1,0 +1,273 @@
+{
+  "id": "phase22-long-50-v1",
+  "project": "cedro2",
+  "turns": [
+    {
+      "text": "Estou começando um projeto de painel de consumo elétrico. Quero usar TypeScript e MySQL.",
+      "review": true
+    },
+    {
+      "text": "Na minha rotina de tarde, eu prefiro café com açúcar.",
+      "review": false
+    },
+    {
+      "text": "Na minha interface habitual eu prefiro tema claro.",
+      "review": false
+    },
+    {
+      "text": "Meu computador principal tem 40 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Meu notebook de trabalho tem 12 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Meu objetivo é terminar o painel de consumo.",
+      "review": true
+    },
+    {
+      "text": "Qual é a unidade básica de comprimento no SI?"
+    },
+    {
+      "text": "O que é um sensor de temperatura?"
+    },
+    {
+      "text": "Quantos lados tem um pentágono?"
+    },
+    {
+      "text": "O que é um eclipse lunar?"
+    },
+    {
+      "text": "Qual é a capital do Peru?"
+    },
+    {
+      "text": "O que diferencia um círculo de uma esfera?"
+    },
+    {
+      "text": "Qual é a diferença entre vento e chuva?"
+    },
+    {
+      "text": "Quanto é 14 mais 6?"
+    },
+    {
+      "text": "Para que serve uma variável em programação?"
+    },
+    {
+      "text": "Quantos minutos há em duas horas?"
+    },
+    {
+      "text": "O que é uma lista encadeada?"
+    },
+    {
+      "text": "Como uma semente começa a germinar?"
+    },
+    {
+      "text": "O que é uma fila de atendimento?"
+    },
+    {
+      "text": "Qual é o símbolo químico do oxigênio?"
+    },
+    {
+      "text": "Quanto é 81 dividido por 9?"
+    },
+    {
+      "text": "Qual é a capital do Uruguai?"
+    },
+    {
+      "text": "Como funciona uma ampulheta?"
+    },
+    {
+      "text": "O que significa ordenar em ordem crescente?"
+    },
+    {
+      "text": "Quanto é 19 menos 7?"
+    },
+    {
+      "text": "Quanto é 8 vezes 7?"
+    },
+    {
+      "text": "Qual é a unidade básica de comprimento no SI?"
+    },
+    {
+      "text": "O que é um sensor de temperatura?"
+    },
+    {
+      "text": "Quantos lados tem um pentágono?"
+    },
+    {
+      "text": "O que é um eclipse lunar?"
+    },
+    {
+      "text": "Qual é a capital do Peru?"
+    },
+    {
+      "text": "O que diferencia um círculo de uma esfera?"
+    },
+    {
+      "text": "Qual é a diferença entre vento e chuva?"
+    },
+    {
+      "text": "Quanto é 14 mais 6?"
+    },
+    {
+      "text": "Para que serve uma variável em programação?"
+    },
+    {
+      "text": "Quantos minutos há em duas horas?"
+    },
+    {
+      "text": "O que é uma lista encadeada?"
+    },
+    {
+      "text": "Como uma semente começa a germinar?"
+    },
+    {
+      "text": "O que é uma fila de atendimento?"
+    },
+    {
+      "text": "Qual é o símbolo químico do oxigênio?"
+    },
+    {
+      "text": "Quanto é 81 dividido por 9?"
+    },
+    {
+      "text": "Qual é a capital do Uruguai?"
+    },
+    {
+      "text": "Como funciona uma ampulheta?"
+    },
+    {
+      "text": "O que significa ordenar em ordem crescente?"
+    },
+    {
+      "text": "Quanto é 19 menos 7?"
+    },
+    {
+      "text": "Quanto é 8 vezes 7?"
+    },
+    {
+      "text": "Qual é a unidade básica de comprimento no SI?"
+    },
+    {
+      "text": "O que é um sensor de temperatura?"
+    },
+    {
+      "text": "Quantos lados tem um pentágono?"
+    },
+    {
+      "text": "O que é um eclipse lunar?"
+    }
+  ],
+  "probes": [
+    {
+      "text": "Como está ficando aquele projeto?",
+      "expected": [
+        {
+          "property": "language",
+          "value": "typescript"
+        },
+        {
+          "property": "database",
+          "value": "mysql"
+        },
+        {
+          "property": "description"
+        }
+      ],
+      "answer_pattern": "TypeScript",
+      "mode": "chat",
+      "answer_none": [
+        "Python",
+        "SQLite"
+      ],
+      "category": "language"
+    },
+    {
+      "text": "Qual banco de dados eu planejo usar no meu projeto?",
+      "expected": [
+        {
+          "property": "database",
+          "value": "mysql"
+        }
+      ],
+      "answer_pattern": "MySQL",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "database"
+    },
+    {
+      "text": "Should I put sugar in my coffee?",
+      "expected": [
+        {
+          "property": "coffee_sugar",
+          "value": "with_sugar"
+        }
+      ],
+      "answer_pattern": "sugar|açúcar",
+      "mode": "agent",
+      "answer_none": [],
+      "category": "coffee_sugar"
+    },
+    {
+      "text": "Qual é minha preferência de tema visual?",
+      "expected": [
+        {
+          "property": "interface_theme",
+          "value": "light"
+        }
+      ],
+      "answer_pattern": "clar|light",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "interface_theme"
+    },
+    {
+      "text": "How much RAM is installed in my main desktop?",
+      "expected": [
+        {
+          "property": "ram_capacity",
+          "value": "40_gb",
+          "subject": "device.primary_computer"
+        }
+      ],
+      "answer_pattern": "40\\s*GB",
+      "mode": "code",
+      "answer_none": [],
+      "category": "ram_capacity"
+    },
+    {
+      "text": "Qual é a RAM do meu notebook de trabalho?",
+      "expected": [
+        {
+          "property": "ram_capacity",
+          "value": "12_gb",
+          "subject": "device.work_laptop"
+        }
+      ],
+      "answer_pattern": "12\\s*GB",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "ram_capacity"
+    },
+    {
+      "text": "What database is planned for project cedro?",
+      "expected": [],
+      "answer_pattern": "not|não|informa|context|know|sei|defin",
+      "mode": "chat",
+      "answer_none": [
+        "SQLite",
+        "MySQL"
+      ],
+      "category": "scope_fence"
+    },
+    {
+      "text": "Quanto é 17 mais 18?",
+      "expected": [],
+      "answer_pattern": "35",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "irrelevant"
+    }
+  ]
+}

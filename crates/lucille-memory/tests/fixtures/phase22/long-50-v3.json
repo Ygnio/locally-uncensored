@@ -1,0 +1,279 @@
+{
+  "id": "phase22-long-50-v3",
+  "project": "candeia2",
+  "turns": [
+    {
+      "text": "Estou começando um projeto de painel de iluminação residencial. Quero usar JavaScript e SQLite.",
+      "review": true
+    },
+    {
+      "text": "No lanche da minha tarde, eu prefiro café sem açúcar.",
+      "review": false
+    },
+    {
+      "text": "Na interface que uso diariamente, eu prefiro modo escuro.",
+      "review": false
+    },
+    {
+      "text": "Meu computador principal tem 36 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Meu notebook de trabalho tem 10 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Meu objetivo é terminar o painel de iluminação.",
+      "review": true
+    },
+    {
+      "text": "Quanto é 11 somado a 17?"
+    },
+    {
+      "text": "Como funciona a força de atrito?"
+    },
+    {
+      "text": "Como eu represento o número 11 em uma variável?"
+    },
+    {
+      "text": "Quanto é 14 somado a 20?"
+    },
+    {
+      "text": "Como funciona a rotação da Terra?"
+    },
+    {
+      "text": "Como eu represento o número 14 em uma variável?"
+    },
+    {
+      "text": "Quanto é 17 somado a 23?"
+    },
+    {
+      "text": "Como funciona a condução de calor?"
+    },
+    {
+      "text": "Como eu represento o número 17 em uma variável?"
+    },
+    {
+      "text": "Quanto é 20 somado a 26?"
+    },
+    {
+      "text": "Como funciona um ímã?"
+    },
+    {
+      "text": "Como eu represento o número 20 em uma variável?"
+    },
+    {
+      "text": "Quanto é 23 somado a 29?"
+    },
+    {
+      "text": "Como funciona a difusão de um cheiro?"
+    },
+    {
+      "text": "Como eu represento o número 23 em uma variável?"
+    },
+    {
+      "text": "Quanto é 26 somado a 32?"
+    },
+    {
+      "text": "Como funciona uma bússola?"
+    },
+    {
+      "text": "Como eu represento o número 26 em uma variável?"
+    },
+    {
+      "text": "Quanto é 29 somado a 35?"
+    },
+    {
+      "text": "Como funciona uma lente convexa?"
+    },
+    {
+      "text": "Como eu represento o número 29 em uma variável?"
+    },
+    {
+      "text": "Quanto é 32 somado a 38?"
+    },
+    {
+      "text": "Como funciona o crescimento de raízes?"
+    },
+    {
+      "text": "Como eu represento o número 32 em uma variável?"
+    },
+    {
+      "text": "Quanto é 35 somado a 41?"
+    },
+    {
+      "text": "Como funciona a sombra de um objeto?"
+    },
+    {
+      "text": "Como eu represento o número 35 em uma variável?"
+    },
+    {
+      "text": "Quanto é 38 somado a 44?"
+    },
+    {
+      "text": "Como funciona uma engrenagem?"
+    },
+    {
+      "text": "Como eu represento o número 38 em uma variável?"
+    },
+    {
+      "text": "Quanto é 41 somado a 47?"
+    },
+    {
+      "text": "Como funciona o brilho de uma estrela?"
+    },
+    {
+      "text": "Como eu represento o número 41 em uma variável?"
+    },
+    {
+      "text": "Quanto é 44 somado a 50?"
+    },
+    {
+      "text": "Como funciona refração da luz?"
+    },
+    {
+      "text": "Como eu represento o número 44 em uma variável?"
+    },
+    {
+      "text": "Quanto é 47 somado a 53?"
+    },
+    {
+      "text": "Como funciona um termômetro?"
+    },
+    {
+      "text": "Como eu represento o número 47 em uma variável?"
+    },
+    {
+      "text": "Quanto é 50 somado a 56?"
+    },
+    {
+      "text": "Como funciona o som no ar?"
+    },
+    {
+      "text": "Como eu represento o número 50 em uma variável?"
+    },
+    {
+      "text": "Quanto é 53 somado a 59?"
+    },
+    {
+      "text": "Como funciona a mudança de estado da água?"
+    }
+  ],
+  "probes": [
+    {
+      "text": "Como está ficando aquele projeto?",
+      "expected": [
+        {
+          "property": "language",
+          "value": "javascript",
+          "temporal": "planned"
+        },
+        {
+          "property": "database",
+          "value": "sqlite",
+          "temporal": "planned"
+        },
+        {
+          "property": "description"
+        }
+      ],
+      "answer_pattern": "JavaScript",
+      "mode": "chat",
+      "answer_none": [
+        "Python",
+        "PostgreSQL"
+      ],
+      "category": "language"
+    },
+    {
+      "text": "Qual banco de dados eu planejo usar no meu projeto?",
+      "expected": [
+        {
+          "property": "database",
+          "value": "sqlite",
+          "temporal": "planned"
+        }
+      ],
+      "answer_pattern": "SQLite",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "database"
+    },
+    {
+      "text": "Should I put sugar in my coffee?",
+      "expected": [
+        {
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        }
+      ],
+      "answer_pattern": "without sugar|unsweetened|no sugar|sem açúcar|não.*açúcar|no.*sugar",
+      "mode": "agent",
+      "answer_none": [
+        "\\bwith sugar\\b|com açúcar"
+      ],
+      "category": "coffee_sugar"
+    },
+    {
+      "text": "Qual é minha preferência de tema visual?",
+      "expected": [
+        {
+          "property": "interface_theme",
+          "value": "dark"
+        }
+      ],
+      "answer_pattern": "escur|dark",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "interface_theme"
+    },
+    {
+      "text": "How much RAM is installed in my main desktop?",
+      "expected": [
+        {
+          "property": "ram_capacity",
+          "value": "36_gb",
+          "subject": "device.primary_computer"
+        }
+      ],
+      "answer_pattern": "36\\s*GB",
+      "mode": "code",
+      "answer_none": [],
+      "category": "ram_capacity"
+    },
+    {
+      "text": "Qual é a RAM do meu notebook de trabalho?",
+      "expected": [
+        {
+          "property": "ram_capacity",
+          "value": "10_gb",
+          "subject": "device.work_laptop"
+        }
+      ],
+      "answer_pattern": "10\\s*GB",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "ram_capacity"
+    },
+    {
+      "text": "What database is planned for project candeia?",
+      "expected": [],
+      "answer_pattern": "not|não|informa|context|know|sei|defin",
+      "mode": "chat",
+      "answer_none": [
+        "PostgreSQL",
+        "SQLite"
+      ],
+      "category": "scope_fence"
+    },
+    {
+      "text": "Quanto é 17 mais 18?",
+      "expected": [],
+      "answer_pattern": "35",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "irrelevant"
+    }
+  ],
+  "design": "Prescribed longitudinal protocol with fresh V2-authored facts; no earlier execution or responses for this plan. First executed under frozen V3. Not a claim of unrestricted language generalization."
+}

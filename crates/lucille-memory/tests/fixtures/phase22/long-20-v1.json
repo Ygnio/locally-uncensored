@@ -1,0 +1,209 @@
+{
+  "id": "phase22-long-20-v1",
+  "project": "cedro",
+  "turns": [
+    {
+      "text": "Na minha rotina de manhã, eu prefiro café sem açúcar.",
+      "review": false
+    },
+    {
+      "text": "Na interface que uso diariamente, eu prefiro modo escuro.",
+      "review": false
+    },
+    {
+      "text": "Quando conversamos, eu prefiro respostas curtas e diretas.",
+      "review": false
+    },
+    {
+      "text": "Para meu lazer, eu gosto de RPG tático com classes.",
+      "review": false
+    },
+    {
+      "text": "Jogos de estratégia por turnos são meus favoritos no tempo livre.",
+      "review": false
+    },
+    {
+      "text": "Estou começando um projeto de controle de irrigação. Quero usar Python e SQLite.",
+      "review": true
+    },
+    {
+      "text": "Meu computador principal tem 22 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Meu notebook de trabalho tem 14 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Quero aprender modelagem geométrica.",
+      "review": true
+    },
+    {
+      "text": "Para me divertir, prefiro RPGs com combate tático.",
+      "review": false
+    },
+    {
+      "text": "Quanto é 81 dividido por 9?"
+    },
+    {
+      "text": "Qual é a capital do Uruguai?"
+    },
+    {
+      "text": "Como funciona uma ampulheta?"
+    },
+    {
+      "text": "O que significa ordenar em ordem crescente?"
+    },
+    {
+      "text": "Quanto é 19 menos 7?"
+    },
+    {
+      "text": "Quanto é 8 vezes 7?"
+    },
+    {
+      "text": "Qual é a unidade básica de comprimento no SI?"
+    },
+    {
+      "text": "O que é um sensor de temperatura?"
+    },
+    {
+      "text": "Quantos lados tem um pentágono?"
+    },
+    {
+      "text": "O que é um eclipse lunar?"
+    }
+  ],
+  "probes": [
+    {
+      "text": "Como está ficando aquele projeto?",
+      "expected": [
+        {
+          "property": "language",
+          "value": "python"
+        },
+        {
+          "property": "database",
+          "value": "sqlite"
+        },
+        {
+          "property": "description"
+        }
+      ],
+      "answer_pattern": "Python",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "language"
+    },
+    {
+      "text": "Should I sweeten my morning coffee?",
+      "expected": [
+        {
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        }
+      ],
+      "answer_pattern": "without sugar|unsweetened|no sugar|sem açúcar",
+      "mode": "agent",
+      "answer_none": [],
+      "category": "coffee_sugar"
+    },
+    {
+      "text": "Que tipo de RPG combina com o meu gosto?",
+      "expected": [
+        {
+          "property": "games_tactics",
+          "value": "positive"
+        }
+      ],
+      "answer_pattern": "táti|tacti",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "games_tactics"
+    },
+    {
+      "text": "Como você deve explicar um conceito para mim?",
+      "expected": [
+        {
+          "property": "communication_style",
+          "value": "concise"
+        }
+      ],
+      "answer_pattern": "curt|concis|breve|short|concise",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "communication_style"
+    },
+    {
+      "text": "Qual é minha preferência de tema de interface?",
+      "expected": [
+        {
+          "property": "interface_theme",
+          "value": "dark"
+        }
+      ],
+      "answer_pattern": "escur|dark",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "interface_theme"
+    },
+    {
+      "text": "How much RAM does my work laptop have?",
+      "expected": [
+        {
+          "property": "ram_capacity",
+          "value": "14_gb",
+          "subject": "device.work_laptop"
+        }
+      ],
+      "answer_pattern": "14\\s*GB",
+      "mode": "code",
+      "answer_none": [],
+      "category": "ram_capacity"
+    },
+    {
+      "text": "Qual é a RAM do meu computador principal?",
+      "expected": [
+        {
+          "property": "ram_capacity",
+          "value": "22_gb",
+          "subject": "device.primary_computer"
+        }
+      ],
+      "answer_pattern": "22\\s*GB",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "ram_capacity"
+    },
+    {
+      "text": "Qual é meu objetivo atual sobre modelagem geométrica?",
+      "expected": [
+        {
+          "property": "goal.",
+          "subject": "user"
+        }
+      ],
+      "answer_pattern": "modelagem|geométr|geometr",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "goal"
+    },
+    {
+      "text": "Qual é a capital da Argentina?",
+      "expected": [],
+      "answer_pattern": "Buenos Aires",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "irrelevant"
+    },
+    {
+      "text": "Qual banco está planejado no projeto cedro2?",
+      "expected": [],
+      "answer_pattern": "não|not|informa|context|defin|sei|know",
+      "mode": "chat",
+      "answer_none": [
+        "SQLite"
+      ],
+      "category": "scope_fence"
+    }
+  ]
+}

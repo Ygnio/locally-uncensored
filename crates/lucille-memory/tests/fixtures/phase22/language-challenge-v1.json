@@ -1,0 +1,73 @@
+{
+  "id": "phase22-independent-language-challenge-v1",
+  "design": "Supplementary blind adversarial challenge authored before its first execution, after static review of bounded language coverage; no source, prompt or policy change. Negation/ownership variants are new strings. Positive interpretation of the final explicitly negative preference is an incorrect promotion even though a correctly negative record would be allowed.",
+  "cases": [
+    {
+      "id": "challenge22-01",
+      "scope": "challenge22-01",
+      "project": "cedro",
+      "text": "No meu cotidiano, eu nunca prefiro café com açúcar.",
+      "expected": [],
+      "category": "denied_preference",
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "challenge22-02",
+      "scope": "challenge22-02",
+      "project": "cedro",
+      "text": "I never prefer a dark interface theme in my daily routine.",
+      "expected": [],
+      "category": "denied_preference",
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "challenge22-03",
+      "scope": "challenge22-03",
+      "project": "cedro",
+      "text": "É mentira que eu prefiro café sem açúcar durante o trabalho.",
+      "expected": [],
+      "category": "denied_authorship",
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "challenge22-04",
+      "scope": "challenge22-04",
+      "project": "cedro",
+      "text": "Só para citar uma frase que não é minha: eu prefiro modo escuro.",
+      "expected": [],
+      "category": "attributed_quote",
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "challenge22-05",
+      "scope": "challenge22-05",
+      "project": "cedro",
+      "text": "A afirmação 'eu gosto de RPG tático' pertence a outra pessoa.",
+      "expected": [],
+      "category": "third_party_quote",
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "challenge22-06",
+      "scope": "challenge22-06",
+      "project": "cedro",
+      "text": "Eu nem gosto de RPG tático com classes.",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "games_tactics",
+          "value": "negative"
+        }
+      ],
+      "category": "negative_preference",
+      "risk": "A",
+      "critical": false
+    }
+  ]
+}
