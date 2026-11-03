@@ -86,6 +86,13 @@ fn communication_intent(query: &str) -> bool {
         .iter()
         .any(|w| q.contains(w))
 }
+fn completed_goal_intent(query: &str) -> bool {
+    let q = fold(query);
+    any_completed_intent(&q)
+        && ["goal", "objetiv", "meta", "milestone"]
+            .iter()
+            .any(|w| q.contains(w))
+}
 fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> {
     let blocked:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_quality q JOIN memories n ON n.id=q.memory_id WHERE q.replaces_id=?1 AND n.state IN ('candidate','conflict') AND (q.expires_at IS NULL OR q.expires_at>?2))",params![m.input.id,at],|r|r.get(0)).map_err(db_error)?;
     if blocked {
@@ -174,11 +181,47 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
     }
     let q = fold(query);
     let summary = crate::dialogue::project_summary(query);
+    if let Some(meta) = &meta {
+        if meta.property == "communication_style" && !communication_intent(query) {
+            return Ok(false);
+        }
+        if meta.property == "interface_theme"
+            && ![
+                "interface",
+                "tema",
+                "theme",
+                "display",
+                "visual",
+                "appearance",
+                "aparencia",
+                "modo",
+                "mode",
+            ]
+            .iter()
+            .any(|w| q.contains(w))
+        {
+            return Ok(false);
+        }
+        if m.input.kind == Kind::Goal
+            && completed_goal_intent(query)
+            && meta.temporal != "completed"
+        {
+            return Ok(false);
+        }
+    }
+
     if meta
         .as_ref()
         .is_some_and(|m| m.property == "description" && m.subject.starts_with("project."))
         && !summary
-        && !["projet", "project"].iter().any(|w| q.contains(w))
+        && ![
+            "description",
+            "descricao",
+            "sobre o projeto",
+            "about the project",
+        ]
+        .iter()
+        .any(|w| q.contains(w))
     {
         return Ok(false);
     }
@@ -482,7 +525,8 @@ pub(crate) fn select(
 ) -> Result<(Vec<Memory>, usize)> {
     let summary = crate::dialogue::project_summary(&req.query);
     let communication = communication_intent(&req.query);
-    if recall(&req.query) || summary || communication {
+    let completed_goal = completed_goal_intent(&req.query);
+    if recall(&req.query) || summary || communication || completed_goal {
         let mut q=tx.prepare(&format!("SELECT {COLS} FROM memories WHERE scope=?1 AND project=?2 AND state='active' ORDER BY updated_at DESC,id LIMIT 100")).map_err(db_error)?;
         lexical = q
             .query_map(params![req.scope, req.project], row)
@@ -500,9 +544,13 @@ pub(crate) fn select(
         let coverage = crate::relevance::lexical_coverage(&req.query, &m.input.content);
         let style_match = communication
             && quality(tx, &m.input.id)?.is_some_and(|q| q.property == "communication_style");
+        let goal_match = completed_goal
+            && m.input.kind == Kind::Goal
+            && quality(tx, &m.input.id)?.is_some_and(|q| q.temporal == "completed");
         if !recall(&req.query)
             && !summary
             && !style_match
+            && !goal_match
             && coverage < crate::relevance::LEXICAL_COVERAGE
         {
             continue;
@@ -511,7 +559,7 @@ pub(crate) fn select(
             m.input.id.clone(),
             (
                 m,
-                if recall(&req.query) || summary || style_match {
+                if recall(&req.query) || summary || style_match || goal_match {
                     1.0
                 } else {
                     policy.lexical_weight * coverage

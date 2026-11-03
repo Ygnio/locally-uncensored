@@ -10,7 +10,44 @@ fn any(s: &str, p: &[&str]) -> bool {
     p.iter().any(|v| s.contains(v))
 }
 pub fn eligible_source(text: &str) -> bool {
+    if !(12..=1600).contains(&text.len()) {
+        return false;
+    }
     let folded = fold(text);
+    if any(&folded, &["nao ", "not ", "never ", "nunca "])
+        && any(
+            &folded,
+            &[
+                "afirm", "declar", "confirm", "claim", "saying", "said", "disse", "digo",
+            ],
+        )
+    {
+        return false;
+    }
+
+    let chars = text.chars().collect::<Vec<_>>();
+    let quoted = text.contains(['“', '‘', '«', '「'])
+        || chars.windows(2).enumerate().any(|(i, pair)| {
+            pair[0] == '\''
+                && pair[1].is_alphabetic()
+                && (i == 0 || !chars[i - 1].is_alphanumeric())
+        });
+    if quoted
+        || any(
+            &folded,
+            &[
+                "outra pessoa",
+                "another person",
+                "someone else",
+                "not mine",
+                "nao e minha",
+                "nao e meu",
+            ],
+        )
+    {
+        return false;
+    }
+
     // Source framing and denial of authorship dominate any embedded first-person
     // preference. A proposal cannot strip these qualifiers to gain authority.
     let tokens = folded
@@ -34,6 +71,16 @@ pub fn eligible_source(text: &str) -> bool {
                 "segredo",
                 "secret",
                 "jamais",
+                "nunca",
+                "never",
+                "nem",
+                "mentira",
+                "falso",
+                "falsehood",
+                "false",
+                "falsa",
+                "falsidade",
+                "untrue",
             ]
             .contains(w)
     }) || any(
@@ -225,6 +272,13 @@ fn transient(s: &str) -> bool {
             "so hoje",
             "apenas hoje",
             "today only",
+            "only today",
+            "just today",
+            "somente hoje",
+            "for now",
+            "for this exercise",
+            "nesta resposta",
+            "this time",
             "nesta mensagem",
             "neste exercicio",
             "for this answer",
@@ -234,6 +288,42 @@ fn transient(s: &str) -> bool {
 }
 pub fn preference(span: &str) -> Option<Claim> {
     let s = fold(span);
+    if eligible_source(span)
+        && !span.contains('?')
+        && !ambiguous_preference(&s)
+        && !any(&s, &[" but ", " mas ", "maybe", "talvez"])
+        && any(
+            &s,
+            &[
+                "i don't like tactical rpg",
+                "i do not like tactical rpg",
+                "i dislike tactical rpg",
+            ],
+        )
+    {
+        let mut c = base(
+            span,
+            Kind::Preference,
+            "user",
+            "games_tactics",
+            "negative",
+            "preference",
+        );
+        c.facets.push("rpg".into());
+        if s.contains("classes") {
+            c.facets.push("classes".into());
+        }
+        if s.contains("progression") {
+            c.facets.push("progression".into());
+        }
+        c.content = crate::extraction::preference_content("negative", &c.facets);
+        if transient(&s) {
+            c.temporal = "temporary".into();
+            c.ttl_seconds = Some(3600);
+        }
+        return Some(c);
+    }
+
     if !eligible_source(span)
         || span.contains('?')
         || any(
@@ -293,6 +383,8 @@ pub fn preference(span: &str) -> Option<Claim> {
             "replies",
             "comunicacao",
             "communication",
+            "explicac",
+            "explanation",
         ],
     ) && any(
         &s,
@@ -310,6 +402,8 @@ pub fn preference(span: &str) -> Option<Claim> {
             "replies",
             "comunicacao",
             "communication",
+            "explicac",
+            "explanation",
         ],
     ) && any(&s, &["detalhad", "detailed"])
     {
@@ -665,6 +759,18 @@ pub fn safe_preference(c: &Claim) -> bool {
 pub fn project_summary(query: &str) -> bool {
     let q = fold(query);
     any(&q, &["projeto", "project"])
+        && !any(
+            &q,
+            &[
+                "banco",
+                "database",
+                "linguagem",
+                "language",
+                "goal",
+                "objetivo",
+                "meta conclu",
+            ],
+        )
         && any(
             &q,
             &[

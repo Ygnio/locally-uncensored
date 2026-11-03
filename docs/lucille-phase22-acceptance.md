@@ -21,3 +21,7 @@ Ensaios crescentes 20/50/100 turnos e 200 se houver margem; novas sessões sem h
 Instrumentar RAM/commit/pagefile/VRAM, latências, tamanhos SQLite/índice/fila, recuperação e crescimento. Evitar builds pesados com inferência. A é medição; B soma apenas a estimativa de +2GiB de RAM, sem alegar latência/commit/VRAM medidos. Guardas existentes continuam. Manter datasets/código/prompt/schema/política congelados antes da primeira avaliação inédita e conservar todo resultado negativo. Mudanças após falha exigem conjuntos novos, ou resultado parcial.
 
 CI: uma tentativa no HEAD final, depois auditoria somente leitura. HTTP422 e API enabled:true anteriores não autorizam mudanças administrativas nem CI verde. Publicar commits e PR draft empilhado em D, sem merge/release/instalação. Todos os critérios de missão precisam de evidência; caso falhe um, declarar parcial.
+
+## V2 — esclarecimento prévio ao novo ensaio
+
+As falhas independentes de negação/atribuição da V1 permanecem reprovadas. A V2 terá código e textos novos congelados separadamente, sem recalcular a V1 como avaliação independente do código corrigido. No critério (1), uma resposta truncada ou que declara desconhecer um fato recuperado não conta como uso correto. No critério (2), preservar também a distinção entre escolha planejada e implementação já feita; metas concluídas exigem proveniência com temporalidade `completed`. Menções possivelmente históricas/negadas e possíveis extrapolações de plano ficam sinalizadas para inspeção literal, sem descarte automático do resultado negativo.

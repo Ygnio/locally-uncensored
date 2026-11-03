@@ -453,3 +453,204 @@ fn source_framing_and_denied_authorship_cannot_authorize_embedded_preferences() 
         assert!(s.list("lucille", "demo").unwrap().is_empty());
     }
 }
+
+#[test]
+fn failed_independent_negation_and_ownership_challenge_becomes_regression() {
+    let (_d, mut s) = setup(true);
+    for text in [
+        "No meu cotidiano, eu nunca prefiro café com açúcar.",
+        "I never prefer a dark interface theme in my daily routine.",
+        "É mentira que eu prefiro café sem açúcar durante o trabalho.",
+        "A afirmação 'eu gosto de RPG tático' pertence a outra pessoa.",
+        "Eu nem gosto de RPG tático com classes.",
+    ] {
+        s.enqueue_learning(input(text, &uuid::Uuid::new_v4().to_string()))
+            .unwrap();
+        assert!(s.claim_llm_learning(now() + 1).unwrap().is_none(), "{text}");
+        assert!(s.list("lucille", "demo").unwrap().is_empty());
+    }
+    learn(&mut s, "I don't like tactical RPG games.", "preference");
+    let rows = s.memory_details("lucille", "demo").unwrap();
+    assert_eq!(rows.len(), 1);
+    assert_eq!(rows[0].quality.as_ref().unwrap().value, "negative");
+}
+
+#[test]
+fn explanation_paraphrases_are_still_grounded_preferences() {
+    let (_d, mut s) = setup(true);
+    learn(
+        &mut s,
+        "No dia a dia, eu gosto de explicações detalhadas.",
+        "preference",
+    );
+    let rows = s.memory_details("lucille", "demo").unwrap();
+    assert_eq!(rows.len(), 1);
+    assert_eq!(rows[0].memory.state, Status::Active);
+    assert_eq!(
+        rows[0].quality.as_ref().unwrap().property,
+        "communication_style"
+    );
+    assert_eq!(rows[0].quality.as_ref().unwrap().value, "detailed");
+}
+#[test]
+fn comparing_hardware_never_nominates_interface_or_communication_preferences() {
+    let (_d, mut s) = setup(true);
+    learn(&mut s, "Eu prefiro tema claro.", "preference");
+    learn(&mut s, "Eu prefiro respostas curtas.", "preference");
+    learn(
+        &mut s,
+        "Meu computador principal tem 24 GB de RAM.",
+        "hardware",
+    );
+    let row = s
+        .list("lucille", "demo")
+        .unwrap()
+        .into_iter()
+        .find(|m| m.input.kind == Kind::Hardware)
+        .unwrap();
+    s.change(
+        &row.input.id,
+        "lucille",
+        "demo",
+        row.version,
+        Action::Approve,
+    )
+    .unwrap();
+    // Adversarial unit vectors nominate every record with maximal similarity.
+    // Topic eligibility must still exclude preferences; actual Nomic is evaluated separately.
+    let space = lucille_memory::semantic::EmbeddingSpace {
+        model: "synthetic-topic-fence".into(),
+        revision: "1".into(),
+        fingerprint: "a".repeat(64),
+        dimension: 2,
+        normalization: "l2".into(),
+        pooling: "mean".into(),
+        document_prefix: "doc: ".into(),
+        query_prefix: "query: ".into(),
+        context_tokens: 2048,
+        index_version: 4,
+    };
+    s.configure_embedding_space(&space, &permit()).unwrap();
+    for row in s.list("lucille", "demo").unwrap() {
+        if row.state == Status::Active {
+            s.put_memory_vector(&row.input.id, row.version, &space, &[1., 0.], &permit())
+                .unwrap();
+        }
+    }
+    let context = s
+        .context_hybrid(
+            request("Compare a RAM de todos os meus computadores."),
+            Some(&lucille_memory::semantic::QueryVector {
+                space,
+                vector: vec![1., 0.],
+            }),
+        )
+        .unwrap();
+    assert_eq!(context.memories.len(), 1);
+    assert_eq!(context.memories[0].input.kind, Kind::Hardware);
+}
+#[test]
+fn project_field_question_does_not_expand_into_full_project_summary() {
+    let (_d, mut s) = setup(true);
+    learn(
+        &mut s,
+        "Estou começando um projeto de controle térmico.",
+        "project",
+    );
+    learn(&mut s, "Quero usar SQLite.", "decision");
+    learn(&mut s, "Quero usar Rust.", "decision");
+    for row in s.list("lucille", "demo").unwrap() {
+        s.change(
+            &row.input.id,
+            "lucille",
+            "demo",
+            row.version,
+            Action::Approve,
+        )
+        .unwrap();
+    }
+    let context = s
+        .context(request(
+            "Qual banco de dados foi escolhido para aquele projeto?",
+        ))
+        .unwrap();
+    assert_eq!(context.memories.len(), 1);
+    assert!(context.memories[0].input.content.contains("sqlite"));
+}
+#[test]
+fn generic_completed_goal_query_is_bound_to_current_completed_records() {
+    let (_d, mut s) = setup(true);
+    learn(
+        &mut s,
+        "Meu objetivo é aprender desenho geométrico.",
+        "goal",
+    );
+    let row = s.list("lucille", "demo").unwrap()[0].clone();
+    s.change(
+        &row.input.id,
+        "lucille",
+        "demo",
+        row.version,
+        Action::Approve,
+    )
+    .unwrap();
+    learn(
+        &mut s,
+        "Concluí meu objetivo de aprender desenho geométrico.",
+        "goal",
+    );
+    let row = s
+        .list("lucille", "demo")
+        .unwrap()
+        .into_iter()
+        .find(|m| m.state == Status::Conflict)
+        .unwrap();
+    s.change(
+        &row.input.id,
+        "lucille",
+        "demo",
+        row.version,
+        Action::Approve,
+    )
+    .unwrap();
+    let context = s
+        .context(request("Qual meta concluída consta no meu histórico?"))
+        .unwrap();
+    assert_eq!(context.memories.len(), 1);
+    let id = &context.memories[0].input.id;
+    let rows = s.memory_details("lucille", "demo").unwrap();
+    assert_eq!(
+        rows.iter()
+            .find(|d| &d.memory.input.id == id)
+            .unwrap()
+            .quality
+            .as_ref()
+            .unwrap()
+            .temporal,
+        "completed"
+    );
+}
+
+#[test]
+fn temporary_english_preferences_and_denied_claims_never_auto_activate() {
+    let (_d, mut s) = setup(true);
+    learn(
+        &mut s,
+        "Only today I prefer a dark interface theme.",
+        "preference",
+    );
+    let rows = s.memory_details("lucille", "demo").unwrap();
+    assert_eq!(rows.len(), 1);
+    assert_eq!(rows[0].memory.state, Status::Candidate);
+    assert_eq!(rows[0].quality.as_ref().unwrap().temporal, "temporary");
+    for text in [
+        "Não afirmo que eu gosto de RPG tático.",
+        "I am not saying I prefer coffee with sugar.",
+        "It is false that I prefer a dark interface theme.",
+    ] {
+        s.enqueue_learning(input(text, &uuid::Uuid::new_v4().to_string()))
+            .unwrap();
+        assert!(s.claim_llm_learning(now() + 1).unwrap().is_none());
+    }
+    assert_eq!(s.list("lucille", "demo").unwrap().len(), 1);
+}
