@@ -30,7 +30,7 @@ describe.skipIf(!process.env.LUCILLE_QA_BRIDGE)('Chat/Agent -> shared adapter ->
       const first = await withLucilleContext(conversation, 'synthetic-message', 'telescope', mode, initial, undefined, loader)
       expect(first[0].content).toContain('Lucille Test Fixture')
       expect(JSON.stringify(first)).toContain('telescope is blue')
-      expect(JSON.stringify(first)).toContain('Prefer concise answers')
+      expect(JSON.stringify(first)).not.toContain('Prefer concise answers')
       expect(JSON.stringify(first)).not.toContain('telescope-private-fixture')
       call({ operation: 'delete', id })
       const next = await withLucilleContext(conversation, 'synthetic-message', 'telescope', mode, first, undefined, loader)

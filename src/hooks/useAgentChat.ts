@@ -1,4 +1,5 @@
 import { executorEvidence, type ToolEvidence } from '../lib/verified-environment'
+import { queueLucilleLearning } from '../lib/lucille-learning'
 import { isLucille, withLucilleContext, lucilleToolAllowed } from "../lib/lucille-context"
 import { useRef, useState, useCallback, useEffect } from 'react'
 import { frameFlush } from '../lib/frame-flush'
@@ -412,6 +413,7 @@ export function useAgentChat() {
        * einem Lauf zurueckschreibt.
        */
       hiddenUser?: boolean
+      learningSourceId?: string
       /**
        * Files attached to this message (3.0.5). In Agent mode they are copied
        * into the chat's working folder before the turn starts, so the file
@@ -1028,6 +1030,7 @@ export function useAgentChat() {
       // Slash command: show "/commit" to the user, keep the expansion in content.
       ...(opts?.displayContent ? { displayContent: opts.displayContent } : {}),
       ...(opts?.hiddenUser ? { hidden: true } : {}),
+      ...(opts?.learningSourceId ? { lucilleInteractionId: opts.learningSourceId } : {}),
       ...(media.length ? { media: media.map(({ kind, mimeType, name, size }) => ({ kind, mimeType, name, size })) } : {}),
       images: userImages,
       timestamp: Date.now(),
@@ -3728,6 +3731,9 @@ export function useAgentChat() {
       // agent loop never had.
       // Not for the hidden report after a Create run: that "question" is the
       // app talking, not the customer, and nothing in it is worth remembering.
+      if (isLucille(conv) && runState.content.trim() && convId && !opts?.hiddenUser && !opts?.displayContent) {
+        void queueLucilleLearning(convId, assistantMessage.id, userContent, 'agent', abort.signal).catch(() => {})
+      }
       if (!isLucille(conv) && runState.content.trim() && convId && !(opts?.hiddenUser && opts.createTools)) {
         // A run that looked at the screen is remembered by the user's own
         // words only (lib/computer/memory-policy.ts).
