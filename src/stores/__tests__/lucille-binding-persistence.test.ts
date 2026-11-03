@@ -38,7 +38,7 @@ it('persists only the routing binding and restores the native writer fence after
   expect(hasLucilleBinding(id)).toBe(false)
 })
 
-it('rejects invalid scopes, unsupported modes/groups and binding changes during a generation', () => {
+it('allows Code and rejects invalid scopes, remote/groups and binding changes during a generation', () => {
   const id = useChatStore.getState().createConversation('synthetic-model', '', 'lu')
   useChatStore.getState().setConversationLucille(id, { ...binding, scope: '../operational' })
   expect(hasLucilleBinding(id)).toBe(false)
@@ -48,7 +48,10 @@ it('rejects invalid scopes, unsupported modes/groups and binding changes during 
   useGenerationStore.setState({ aborters: {} })
   const code = useChatStore.getState().createConversation('synthetic-model', '', 'codex')
   useChatStore.getState().setConversationLucille(code, binding)
-  expect(hasLucilleBinding(code)).toBe(false)
+  expect(hasLucilleBinding(code)).toBe(true)
+  const remote = useChatStore.getState().createConversation("synthetic-model", "", "remote")
+  useChatStore.getState().setConversationLucille(remote, binding)
+  expect(hasLucilleBinding(remote)).toBe(false)
   useChatStore.getState().setGroupModels(id, ['synthetic-a', 'synthetic-b'])
   useChatStore.getState().setConversationLucille(id, binding)
   expect(hasLucilleBinding(id)).toBe(false)

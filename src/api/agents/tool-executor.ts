@@ -51,6 +51,8 @@ export interface ExecutionRequest {
 }
 
 export interface ExecutionResult {
+  /** Set only by the executor immediately before calling runtime.execute. */
+  dispatched?: boolean
   id: string
   toolName: string
   status: 'completed' | 'failed' | 'rejected' | 'cached'
@@ -240,6 +242,7 @@ async function runSingle(
   // What the duration counts from. Moves to the end of the approval wait: the
   // time a call sat on the user's card is not the tool's time, and a 20 ms
   // file_write read "21.6s" next to its tick (Gegenprobe 01.10.2026).
+  let dispatched = false
   let clockFrom = startedAt
   const argsHash = stableArgsHash(req.args ?? {})
 
@@ -257,7 +260,7 @@ async function runSingle(
   const finalize = (partial: Omit<ExecutionResult, 'completedAt' | 'durationMs'>): ExecutionResult => {
     const completedAt = Date.now()
     const durationMs = completedAt - clockFrom
-    const result: ExecutionResult = { ...partial, completedAt, durationMs }
+    const result: ExecutionResult = { ...partial, dispatched, completedAt, durationMs }
     runtime.recordAudit?.({
       kind: 'complete',
       id: req.id,
@@ -398,6 +401,7 @@ async function runSingle(
 
   // Dispatch.
   try {
+    dispatched = true
     const result = await raceAbort(
       runtime.execute(req.toolName, dispatchedArgs, req.run && runForCall(req.run, req.id), signal),
       signal,

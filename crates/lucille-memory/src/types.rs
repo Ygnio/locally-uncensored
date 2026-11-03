@@ -124,6 +124,7 @@ pub struct TurnRequest {
 pub enum Mode {
     Chat,
     Agent,
+    Code,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Reference {

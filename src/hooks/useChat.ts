@@ -1624,7 +1624,7 @@ export function useChat() {
         // One card and a render from the chat holds it (3.0.8, A2): wait
         // visibly here instead of inside the provider without a word.
         await waitForChatCard(convId, !!activeModel && isLocalModelByName(activeModel), abort.signal)
-        const prepareMessages = (payload: typeof messages) => withLucilleContext(conv, assistantMessage.id, content, "chat", payload, abort.signal)
+        const prepareMessages = (payload: typeof messages) => withLucilleContext(conv, assistantMessage.id, content, "chat", payload, abort.signal, undefined, { backend: providerId, model: modelId, availableTools: [] })
         try {
           yield* provider.chatStream(modelId, await prepareMessages(messages), chatOpts)
         } catch (err) {

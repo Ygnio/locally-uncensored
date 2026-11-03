@@ -84,7 +84,8 @@ describe.each([
   })
 
   it('sends the built copy, not the working history', () => {
-    expect(source).toMatch(new RegExp(`streamProviderTurn\\(provider, modelToUse, ${send}`))
+    expect(source).toMatch(/streamProviderTurn\(provider, modelToUse, await prepareMessages\(/)
+    expect(source).toMatch(new RegExp(`withLucilleContext\\([^\\n]+${send}`))
   })
 })
 

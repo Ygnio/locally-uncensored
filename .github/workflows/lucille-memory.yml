@@ -1,10 +1,10 @@
-name: Lucille memory phase 1
+name: Lucille identity and memory
 
 on:
   push:
-    branches: [feature/lucille-memory-hybrid-phase1]
+    branches: [feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code]
   pull_request:
-    branches: [master]
+    branches: [master, feature/lucille-memory-hybrid-phase1]
 
 permissions:
   contents: read
@@ -38,6 +38,7 @@ jobs:
           if [ "$RUNNER_OS" = "Windows" ]; then suffix=".exe"; fi
           export LUCILLE_QA_BRIDGE="$CARGO_TARGET_DIR/debug/examples/synthetic_bridge$suffix"
           npx vitest run --maxWorkers=1 \
+            src/lib/__tests__/lucille-unified.test.ts \
             src/lib/__tests__/lucille-context.test.ts \
             src/lib/__tests__/lucille-real-sqlite.test.ts \
             src/hooks/__tests__/memory-silent-call-gate.test.ts \
@@ -53,3 +54,10 @@ jobs:
         run: npm run typecheck
       - name: Build frontend without opening GUI
         run: npm run build
+      - name: Type check dedicated QA frontend
+        run: npx tsc -p tsconfig.lucille-qa.json --noEmit
+      - name: Build dedicated QA frontend
+        run: npx vite build --config vite.lucille-qa.config.ts
+      - name: Compile real isolated QA host (Windows)
+        if: runner.os == 'Windows'
+        run: cargo build --locked --manifest-path crates/lucille-qa/Cargo.toml

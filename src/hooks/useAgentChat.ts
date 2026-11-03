@@ -1,3 +1,4 @@
+import { executorEvidence, type ToolEvidence } from '../lib/verified-environment'
 import { isLucille, withLucilleContext, lucilleToolAllowed } from "../lib/lucille-context"
 import { useRef, useState, useCallback, useEffect } from 'react'
 import { frameFlush } from '../lib/frame-flush'
@@ -898,6 +899,7 @@ export function useAgentChat() {
       await ensureBuiltinAgentCtx(modelToUse)
     } catch { /* run with whatever the engine has */ }
 
+    const toolEvidence: ToolEvidence[] = []
     const memoryScope = store.conversations.find(c => c.id === convId)?.memoryScope
 
     // Publish a HUMAN-READABLE slug ("create-an-index-7f2c3d") so
@@ -1914,7 +1916,7 @@ export function useAgentChat() {
         // phone is 4096 tokens at most, smaller than the floors the builder
         // above keeps. Returns the same array on a desktop and for a cloud model.
         sendMessages = fitRequestForPhone(sendMessages, agentCtx, 0, runQuestion, phoneMeasured)
-        const prepareMessages = () => withLucilleContext(conv, assistantMessage.id, userContent, "agent", sendMessages, abort.signal)
+        const prepareMessages = (availableTools: string[]) => withLucilleContext(conv, assistantMessage.id, userContent, "agent", sendMessages, abort.signal, undefined, { backend: providerId, model: modelToUse, availableTools, receipts: toolEvidence.slice(-8) })
         // Phone only: the engine's own count of the first request of the run.
         const notePhoneCount = (promptTokens: number | undefined) => {
           if (phoneMeasureTaken || !promptTokens || !phoneFitApplies(agentCtx)) return
@@ -2050,7 +2052,7 @@ export function useAgentChat() {
               try {
                 ollamaTurn = await streamOllamaChatWithTools(
                   modelToUse,
-                  await prepareMessages(),
+                  await prepareMessages(tools.map(t => t.function.name)),
                   tools,
                   {
                     temperature: chatOptions.temperature,
@@ -2107,7 +2109,7 @@ export function useAgentChat() {
                   if (engineDeniedThinking(thinkErr)) markCannotThink(modelToUse)
                   ollamaTurn = await streamOllamaChatWithTools(
                     modelToUse,
-                    await prepareMessages(),
+                    await prepareMessages(tools.map(t => t.function.name)),
                     tools,
                     {
                       temperature: chatOptions.temperature,
@@ -2188,7 +2190,7 @@ export function useAgentChat() {
             let connRetries = 0
             for (;;) {
               try {
-                providerTurn = await streamProviderTurn(provider, modelToUse, await prepareMessages(), streamOpts, onLiveContent, onLiveThinking, onToolProgress)
+                providerTurn = await streamProviderTurn(provider, modelToUse, await prepareMessages(tools.map(t => t.function.name)), streamOpts, onLiveContent, onLiveThinking, onToolProgress)
                 break
               } catch (thinkErr) {
                 // G22 parity with the Ollama branch: heal a wrong vision
@@ -2207,7 +2209,7 @@ export function useAgentChat() {
                 // number used to be in useChat.ts only, so this branch ended
                 // the whole run where plain chat just retried.
                 if (shouldDowngradeThinking(streamOpts.thinking, thinkErr)) {
-                  providerTurn = await streamProviderTurn(provider, modelToUse, await prepareMessages(), { ...streamOpts, thinking: undefined as unknown as boolean }, onLiveContent, () => {}, onToolProgress)
+                  providerTurn = await streamProviderTurn(provider, modelToUse, await prepareMessages(tools.map(t => t.function.name)), { ...streamOpts, thinking: undefined as unknown as boolean }, onLiveContent, () => {}, onToolProgress)
                   break
                 }
                 const transient = asString(prop(thinkErr, 'name')) !== 'AbortError' && !isTerminalModelError(thinkErr) && !cutByModelSwitch(convId)
@@ -2308,7 +2310,7 @@ export function useAgentChat() {
             // attachments on the prompt-transport path only. The provider
             // contract decides what a template can render; it must be given
             // the whole message to decide on.
-            await prepareMessages(),
+            await prepareMessages(hermesToolDefs.map(t => t.name)),
             opts,
             (_full, delta) => feedUI(splitter.feed(display.feed(delta))),
             // A prompt-transport backend can still answer on the NATIVE
@@ -3129,6 +3131,7 @@ export function useAgentChat() {
           abortSignal: abort.signal,
         })
 
+        toolEvidence.push(...results.map(executorEvidence))
         // Apply results back onto blocks + memory + LLM history.
         for (const entry of batch) {
           const result = results.find((r) => r.id === entry.ac.id)

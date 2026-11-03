@@ -33,10 +33,11 @@ import { dirname, resolve } from 'node:path'
 import { gateCreateTools, wantsMediaTools, CREATE_TOOLS, GATE_OPENING_TOOLS, isGatedTool } from '../../lib/tool-selection'
 import { toolRegistry, DEFAULT_PERMISSIONS } from '../../api/mcp'
 
-const src = readFileSync(
+const hookSource = readFileSync(
   resolve(dirname(fileURLToPath(import.meta.url)), '../useCodex.ts'),
   'utf8',
 )
+const src = hookSource + '\n' + readFileSync(resolve(dirname(fileURLToPath(import.meta.url)), '../../lib/codex-prompts.ts'), 'utf8')
 
 // Mirrors CODEX_CATEGORIES in useCodex.ts, same reason as the sibling test:
 // the point is to notice the constant moving without this file moving with it.

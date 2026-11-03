@@ -33,7 +33,7 @@ globalThis.localStorage = {
   get length() { return backing.size },
 } as Storage
 
-const read = (file: string) => readFileSync(resolve(__dirname, '..', file), 'utf8')
+const read = (file: string) => readFileSync(resolve(__dirname, '..', file), 'utf8').replace(/\r\n/g, '\n')
 const codex = read('useCodex.ts')
 const agent = read('useAgentChat.ts')
 
