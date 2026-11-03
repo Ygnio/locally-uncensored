@@ -547,6 +547,8 @@ mod tests {
                 continue;
             }
             let conf: serde_json::Value = serde_json::from_str(&std::fs::read_to_string(entry.path()).unwrap()).unwrap();
+            // Non-bundling QA overlays deliberately carry no executable sidecars.
+            if conf.pointer("/bundle/active").and_then(|v| v.as_bool()) == Some(false) { continue; }
             let rules: Rules = match conf.pointer("/bundle/resources") {
                 Some(serde_json::Value::Array(list)) => {
                     list.iter().map(|v| (v.as_str().unwrap().to_string(), None)).collect()

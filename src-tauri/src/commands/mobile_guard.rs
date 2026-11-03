@@ -26,6 +26,9 @@ pub const REFUSAL: &str = "This function is not available in the phone app.";
 /// Never reachable on a phone: starts a process, runs code, opens a port,
 /// hands out a token for one, reads the screen or the process table.
 pub const BLOCKED: &[&str] = &[
+    // Lucille SQLite is confined to an explicitly isolated desktop debug host.
+    "lucille_context",
+    "lucille_manage",
     // Desktop commands of 3.0.8, sorted when the phone line joined the
     // 3.0.8 candidate: the host side of Remote, storage and the runtime
     // folder, Abliteration, the model check, GPU roles, the REA plugin. A

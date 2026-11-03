@@ -4,7 +4,7 @@ on:
   push:
     branches: [master]
   pull_request:
-    branches: [master]
+    branches: [master, feature/lucille-memory-hybrid-phase1]
   # release.yml calls this same workflow as its gate, so the release is held to
   # exactly the checks master is held to — one definition, no drift between
   # "what CI runs" and "what a release had to pass".
