@@ -74,6 +74,18 @@ pub(crate) fn unsafe_text(text: &str) -> bool {
         text,
         &[
             "minha mae",
+            "he said",
+            "she said",
+            "they said",
+            "he wrote",
+            "she wrote",
+            "segundo",
+            "ele contou",
+            "ela contou",
+            "meu colega",
+            "minha colega",
+            "my friend",
+            "estou escrevendo uma historia",
             "meu pai",
             "ele disse",
             "ela disse",
@@ -178,6 +190,21 @@ fn classify(sentence: &str) -> Option<Claim> {
         return None;
     }
     let s = fold(evidence);
+    if contains_any(&s, &[" mas ", " but ", " porem "]) {
+        return None;
+    }
+    if unsafe_text(&s) {
+        return None;
+    }
+    if !crate::coverage::amounts(&s).is_empty() && crate::coverage::mixed_devices(&s) {
+        return None;
+    }
+    if let Some(c) = crate::coverage::supplement(evidence) {
+        return Some(c);
+    }
+    if crate::coverage::amounts(&s).len() > 1 {
+        return None;
+    }
     // Negated coffee/language statements need an explicit interpretation that
     // this bounded extractor does not provide. Abstain instead of reversing it.
     if contains_any(&s, &["cafe", "coffee", "portugues", "portuguese"])

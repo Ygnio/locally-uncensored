@@ -68,9 +68,16 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
     // before the asynchronous extractor has persisted its replacement.
     if let Some(current) = &meta {
         if extract(query).iter().any(|claim| {
-            claim.subject == current.subject
+            (claim.subject == current.subject
                 && claim.property == current.property
-                && claim.value != current.value
+                && claim.value != current.value)
+                || (current.property == "ram_capacity"
+                    && claim.subject == "device.unspecified"
+                    && crate::coverage::old_capacity(&claim.evidence).as_ref()
+                        == Some(&current.value))
+                || (current.property == "ram_capacity"
+                    && claim.subject == current.subject
+                    && claim.property == "capacity_update")
         }) {
             return Ok(false);
         }
@@ -79,6 +86,30 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
         let pending:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_quality q JOIN memories n ON n.id=q.memory_id WHERE n.scope=?1 AND n.project=?2 AND n.state IN ('active','candidate','conflict') AND q.subject=?3 AND q.property=?4 AND q.value!=?5 AND (q.expires_at IS NULL OR q.expires_at>?6))",params![m.input.scope,m.input.project,current.subject,current.property,current.value,at],|r|r.get(0)).map_err(db_error)?;
         if pending {
             return Ok(false);
+        }
+        if current.property == "ram_capacity" {
+            let mut q=tx.prepare("SELECT p.evidence,q.subject,q.property FROM memory_provenance p JOIN memory_quality q ON q.memory_id=p.memory_id JOIN memories n ON n.id=q.memory_id WHERE n.scope=?1 AND n.project=?2 AND n.state IN ('candidate','conflict') AND (q.subject='device.unspecified' OR q.property='capacity_update') LIMIT 501").map_err(db_error)?;
+            let records = q
+                .query_map(params![m.input.scope, m.input.project], |r| {
+                    Ok((
+                        r.get::<_, String>(0)?,
+                        r.get::<_, String>(1)?,
+                        r.get::<_, String>(2)?,
+                    ))
+                })
+                .map_err(db_error)?;
+            for (index, record) in records.enumerate() {
+                if index >= 500 {
+                    return Ok(false);
+                }
+                let (evidence, subject, property) = record.map_err(db_error)?;
+                if (subject == "device.unspecified"
+                    && crate::coverage::old_capacity(&evidence).as_ref() == Some(&current.value))
+                    || (subject == current.subject && property == "capacity_update")
+                {
+                    return Ok(false);
+                }
+            }
         }
     }
     if meta
@@ -143,7 +174,15 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
     {
         return Ok(false);
     }
+    if meta.as_ref().is_some_and(|q| q.temporal == "completed") && !any_completed_intent(&q) {
+        return Ok(false);
+    }
     Ok(true)
+}
+fn any_completed_intent(q: &str) -> bool {
+    ["conclu", "complet", "histor", "status"]
+        .iter()
+        .any(|v| q.contains(v))
 }
 pub(crate) fn select(
     tx: &Transaction,
