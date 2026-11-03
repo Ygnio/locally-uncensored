@@ -1,5 +1,10 @@
 //! Canonical, opt-in SQLite memory. No inference, networking, process control or personal-data discovery.
+mod aux_backup;
+mod extraction;
+pub mod intelligent;
 pub mod isolation;
+mod retrieval;
+pub mod semantic;
 mod types;
 use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use std::{
@@ -96,6 +101,7 @@ impl Store {
             include_str!("001_memory.sql"),
             include_str!("002_fts.sql"),
             include_str!("003_code.sql"),
+            include_str!("004_intelligent.sql"),
         ];
         if version < 0 || version > migrations.len() as i64 {
             return Err("Unsupported newer database schema".into());
@@ -255,6 +261,7 @@ impl Store {
             return Err("Memory version changed".into());
         }
         let mut state = old.state.clone();
+        intelligent::before_change(&tx, &old, &action)?;
         let mut content = old.input.content.clone();
         let mut key = old.input.fact_key.clone();
         let op = match &action {
@@ -285,6 +292,7 @@ impl Store {
                 content: c,
                 fact_key: k,
             } => {
+                intelligent::after_update(&tx, &old, c)?;
                 content = c.clone();
                 key = k.clone();
                 state = Status::Candidate;
@@ -339,6 +347,22 @@ impl Store {
     }
     /// A fresh read transaction on EVERY send, including agent steps and retries.
     pub fn context(&mut self, req: TurnRequest) -> Result<TurnContext> {
+        self.context_hybrid(req, None)
+    }
+    pub fn context_hybrid(
+        &mut self,
+        req: TurnRequest,
+        semantic: Option<&semantic::QueryVector>,
+    ) -> Result<TurnContext> {
+        self.context_at(req, semantic, now())
+    }
+    /// Explicit logical clock for isolated temporal tests; never changes the OS clock.
+    pub fn context_at(
+        &mut self,
+        req: TurnRequest,
+        semantic: Option<&semantic::QueryVector>,
+        at: i64,
+    ) -> Result<TurnContext> {
         identifier(&req.conversation_id)?;
         identifier(&req.message_id)?;
         identifier(&req.scope)?;
@@ -346,28 +370,21 @@ impl Store {
         if req.token_budget < 512 || req.token_budget > 16384 || req.query.len() > 32000 {
             return Err("Invalid context budget or query".into());
         }
+        let policy = self.learning_policy()?;
         let tx = self
             .db
             .transaction_with_behavior(TransactionBehavior::Immediate)
             .map_err(db_error)?;
         let identity=tx.query_row("SELECT name,description,personality,instructions,version,created_at,updated_at FROM identity_profile WHERE id=1",[],|r|Ok(Identity{profile:Profile{name:r.get(0)?,description:r.get(1)?,personality:r.get(2)?,instructions:r.get(3)?},version:r.get(4)?,created_at:r.get(5)?,updated_at:r.get(6)?})).optional().map_err(db_error)?.ok_or("Lucille identity is not configured")?;
         // JSON bytes are a deliberately conservative token ceiling, including framing allowance.
-        let mut used = serde_json::to_vec(&identity.profile)
+        let used = serde_json::to_vec(&identity.profile)
             .map_err(|_| "Invalid profile")?
             .len()
             + 384;
         if used > req.token_budget {
             return Err("Identity exceeds context budget".into());
         }
-        let available = req.token_budget - used;
-        let query = req
-            .query
-            .split(|c: char| !c.is_alphanumeric())
-            .filter(|s| !s.is_empty())
-            .take(24)
-            .map(|s| format!("\"{s}\""))
-            .collect::<Vec<_>>()
-            .join(" OR ");
+        let query = retrieval::fts_query(&req.query);
         let mut picks = Vec::new();
         if !query.is_empty() {
             let mut q=tx.prepare("SELECT m.id,m.scope,m.project,m.kind,m.state,m.content,m.fact_key,m.source,m.source_id,m.version,m.created_at,m.updated_at FROM memories_fts JOIN memories m ON m.rowid=memories_fts.rowid WHERE memories_fts MATCH ?1 AND m.scope=?2 AND m.project=?3 AND m.state='active' ORDER BY bm25(memories_fts),m.id LIMIT 100").map_err(db_error)?;
@@ -377,36 +394,9 @@ impl Store {
                 .collect::<rusqlite::Result<Vec<_>>>()
                 .map_err(db_error)?;
         }
-        // Durable preferences have a reserved share, capped so they cannot crowd out relevant facts.
-        let mut prefs=tx.prepare(&format!("SELECT {COLS} FROM memories WHERE scope=?1 AND project=?2 AND state='active' AND kind='preference' ORDER BY updated_at DESC,id LIMIT 100")).map_err(db_error)?;
-        let preferences = prefs
-            .query_map(params![req.scope, req.project], row)
-            .map_err(db_error)?
-            .collect::<rusqlite::Result<Vec<_>>>()
-            .map_err(db_error)?;
-        drop(prefs);
-        let mut memories = Vec::new();
-        let mut pref_used = 0;
-        for m in preferences.into_iter().chain(
-            picks
-                .into_iter()
-                .filter(|m| m.input.kind != Kind::Preference),
-        ) {
-            let cost = serde_json::to_vec(&m).map_err(|_| "Invalid memory")?.len() + 32;
-            if m.input.kind == Kind::Preference && pref_used + cost > available / 4 {
-                continue;
-            }
-            if used + cost > req.token_budget
-                || memories.iter().any(|x: &Memory| x.input.id == m.input.id)
-            {
-                continue;
-            }
-            if m.input.kind == Kind::Preference {
-                pref_used += cost;
-            }
-            used += cost;
-            memories.push(m);
-        }
+        // No unconditional preference injection: relevance, expiry, pending
+        // contradictions, diversity and the budget share one selection boundary.
+        let (memories, used) = retrieval::select(&tx, &req, picks, used, semantic, &policy, at)?;
         let references: Vec<_> = memories
             .iter()
             .map(|m| Reference {
@@ -515,7 +505,8 @@ impl Store {
             .map_err(db_error)?;
         drop(q);
         let result = serde_json::to_string(&Backup {
-            schema: 3,
+            schema: 4,
+            intelligent: Some(aux_backup::export(&tx)?),
             identity: self.identity()?,
             memories,
             history,
@@ -531,8 +522,11 @@ impl Store {
             return Err("Backup too large".into());
         }
         let backup: Backup = serde_json::from_str(json).map_err(|_| "Invalid backup")?;
-        if ![2, 3].contains(&backup.schema) {
+        if ![2, 3, 4].contains(&backup.schema) {
             return Err("Unsupported backup schema".into());
+        }
+        if backup.schema == 4 && backup.intelligent.is_none() {
+            return Err("Missing learning backup state".into());
         }
         backup.identity.profile.validate()?;
         if backup.identity.version < 1 || backup.memories.len() > 10000 {
@@ -585,6 +579,7 @@ impl Store {
             .db
             .transaction_with_behavior(TransactionBehavior::Immediate)
             .map_err(db_error)?;
+        aux_backup::clear(&tx)?;
         tx.execute_batch("DELETE FROM retrieval_audit;DELETE FROM history;DELETE FROM memories;DELETE FROM scopes;DELETE FROM identity_profile;").map_err(db_error)?;
         let i = backup.identity;
         tx.execute(
@@ -631,6 +626,9 @@ impl Store {
                 .map_err(db_error)?;
             tx.execute("INSERT INTO retrieval_audit(conversation_id,message_id,mode,scope,project,identity_version,references_json,budget,used,at) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10)",params![audit.conversation_id,audit.message_id,types::label(&audit.mode),audit.scope,audit.project,audit.identity_version,serde_json::to_string(&audit.references).map_err(|_|"Invalid references")?,audit.budget,audit.used,audit.at]).map_err(db_error)?;
         }
+        if let Some(aux) = backup.intelligent {
+            aux_backup::restore(&tx, &aux)?;
+        }
         tx.execute(
             "INSERT INTO memories_fts(memories_fts,rank) VALUES('integrity-check',1)",
             [],
@@ -654,6 +652,8 @@ pub enum Action {
 #[serde(deny_unknown_fields)]
 struct Backup {
     schema: u32,
+    #[serde(default)]
+    intelligent: Option<aux_backup::AuxBackup>,
     identity: Identity,
     memories: Vec<Memory>,
     history: Vec<Change>,
