@@ -1,0 +1,827 @@
+{
+  "version": "phase21d-unseen-retrieval-v1",
+  "status": "frozen before first model execution",
+  "events": [
+    {
+      "action": "learn",
+      "label": "old_primary",
+      "text": "Meu computador principal tem 18 GB de RAM.",
+      "project": "aurora",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "work",
+      "text": "Meu notebook do trabalho possui 14 GB de RAM.",
+      "project": "aurora",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "other",
+      "text": "Meu outro computador tem 72 GB de RAM.",
+      "project": "aurora",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "old_coffee",
+      "text": "Eu prefiro café sem açúcar antes de pintar.",
+      "project": "aurora",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "coffee",
+      "text": "Na verdade, agora prefiro café com açúcar ao desenhar.",
+      "project": "aurora",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "primary",
+      "text": "Corrigindo, meu computador principal tem 36 GB de RAM.",
+      "project": "aurora",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "story",
+      "text": "Eu prefiro campanhas em que decisões alteram a história durante a aventura.",
+      "project": "aurora",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "goal",
+      "text": "Meu objetivo é estudar cartografia para produzir mapas.",
+      "project": "aurora",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "solution",
+      "text": "Resolvi o problema de acesso trocando o certificado digital.",
+      "project": "aurora",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "task",
+      "text": "Preciso revisar o orçamento municipal amanhã.",
+      "project": "aurora",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "aurora_db",
+      "text": "O projeto aurora usa PostgreSQL para armazenar peças.",
+      "project": "aurora",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "lyra_db",
+      "text": "O projeto lyra usa SQLite para armazenar desenhos.",
+      "project": "lyra",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "free",
+      "text": "Meu PC possui 7 GB de RAM livre agora.",
+      "project": "aurora",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "unfinished",
+      "text": "Meu objetivo é aprender tricô.",
+      "project": "aurora",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "completed",
+      "text": "Concluí meu objetivo de aprender tricô.",
+      "project": "aurora",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "deleted_language",
+      "text": "Eu prefiro respostas em português para orientações de artesanato.",
+      "project": "aurora",
+      "scope": "lucille"
+    },
+    {
+      "action": "delete",
+      "target": "deleted_language"
+    }
+  ],
+  "queries": [
+    {
+      "id": "retrieval-unseen-01",
+      "query": "RAM computador principal atual",
+      "expected": [
+        "primary"
+      ],
+      "category": "lexical",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-02",
+      "query": "How much memory is installed in my primary computer?",
+      "expected": [
+        "primary"
+      ],
+      "category": "paraphrase_en",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-03",
+      "query": "RAM computdor principal",
+      "expected": [
+        "primary"
+      ],
+      "category": "typo",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-04",
+      "query": "memória notebook do trabalho",
+      "expected": [
+        "work"
+      ],
+      "category": "lexical",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-05",
+      "query": "What capacity does my office notebook have?",
+      "expected": [
+        "work"
+      ],
+      "category": "paraphrase_en",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-06",
+      "query": "RAM do outro computador",
+      "expected": [
+        "other"
+      ],
+      "category": "lexical",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-07",
+      "query": "How large is the memory in my secondary computer?",
+      "expected": [
+        "other"
+      ],
+      "category": "paraphrase_en",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-08",
+      "query": "Qual café eu prefiro agora?",
+      "expected": [
+        "coffee"
+      ],
+      "category": "lexical",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-09",
+      "query": "Do I take sugar in my coffee these days?",
+      "expected": [
+        "coffee"
+      ],
+      "category": "paraphrase_en",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-10",
+      "query": "Meu gosto sobre campanhas e decisões na história",
+      "expected": [
+        "story"
+      ],
+      "category": "lexical",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-11",
+      "query": "Which campaigns should I pick for meaningful narrative choices?",
+      "expected": [
+        "story"
+      ],
+      "category": "paraphrase_en",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-12",
+      "query": "Meu objetivo de estudar cartografia",
+      "expected": [
+        "goal"
+      ],
+      "category": "lexical",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-13",
+      "query": "Which map-making subject am I studying?",
+      "expected": [
+        "goal"
+      ],
+      "category": "indirect_en",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-14",
+      "query": "Como resolvi o problema de acesso com o certificado?",
+      "expected": [
+        "solution"
+      ],
+      "category": "lexical",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-15",
+      "query": "What certificate change fixed my access issue?",
+      "expected": [
+        "solution"
+      ],
+      "category": "paraphrase_en",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-16",
+      "query": "revisar orçamento municipal amanhã",
+      "expected": [
+        "task"
+      ],
+      "category": "lexical",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-17",
+      "query": "Which budget review do I have to do tomorrow?",
+      "expected": [
+        "task"
+      ],
+      "category": "paraphrase_en",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-18",
+      "query": "banco de dados projeto aurora",
+      "expected": [
+        "aurora_db"
+      ],
+      "category": "lexical",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-19",
+      "query": "Which database engine holds the aurora parts?",
+      "expected": [
+        "aurora_db"
+      ],
+      "category": "paraphrase_en",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-20",
+      "query": "banco de dados projeto lyra",
+      "expected": [
+        "lyra_db"
+      ],
+      "category": "lexical",
+      "project": "lyra",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-21",
+      "query": "What relational engine keeps my lyra drawings?",
+      "expected": [
+        "lyra_db"
+      ],
+      "category": "project_en",
+      "project": "lyra",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-22",
+      "query": "RAM livre no meu PC agora",
+      "expected": [
+        "free"
+      ],
+      "category": "lexical",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-23",
+      "query": "How much memory is available right now in my PC?",
+      "expected": [
+        "free"
+      ],
+      "category": "paraphrase_en",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-24",
+      "query": "objetivo concluído tricô",
+      "expected": [
+        "completed"
+      ],
+      "category": "completed",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-25",
+      "query": "What have I finished learning?",
+      "expected": [
+        "completed"
+      ],
+      "category": "completed_en",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-26",
+      "query": "RAM do work notebook",
+      "expected": [
+        "work"
+      ],
+      "category": "mixed_pt_en",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-27",
+      "query": "Qual memória RAM do principal e do notebook do trabalho?",
+      "expected": [
+        "primary",
+        "work"
+      ],
+      "category": "multi_device",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-28",
+      "query": "Quais são meus objetivos atuais de estudo?",
+      "expected": [
+        "goal"
+      ],
+      "category": "current_goal",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-29",
+      "query": "What is the capital of Norway?",
+      "expected": [],
+      "category": "irrelevant",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-30",
+      "query": "Explique a diferença entre chá verde e chá preto.",
+      "expected": [],
+      "category": "irrelevant",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-31",
+      "query": "Como funciona a alocação de memória RAM?",
+      "expected": [],
+      "category": "irrelevant_near",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-32",
+      "query": "What is the history of coffee cultivation?",
+      "expected": [],
+      "category": "irrelevant_near",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-33",
+      "query": "What SSD capacity does my work notebook have?",
+      "expected": [],
+      "category": "wrong_property",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-34",
+      "query": "Qual GPU tem meu computador principal?",
+      "expected": [],
+      "category": "wrong_property",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-35",
+      "query": "Qual RAM tem esse computador?",
+      "expected": [],
+      "category": "ambiguous_device",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-36",
+      "query": "Which language should my replies use?",
+      "expected": [],
+      "category": "deleted",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-37",
+      "query": "Quanto de RAM está livre no PC agora?",
+      "expected": [],
+      "category": "expired",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 7200,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-38",
+      "query": "Qual orçamento devo revisar amanhã?",
+      "expected": [],
+      "category": "expired_task",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 259200,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-39",
+      "query": "Que café meu colega prefere?",
+      "expected": [],
+      "category": "third_party",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-40",
+      "query": "Qual banco de dados o projeto vega usa?",
+      "expected": [],
+      "category": "unknown_project",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-41",
+      "query": "Qual porta HTTP usa o projeto aurora?",
+      "expected": [],
+      "category": "wrong_property",
+      "project": "aurora",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-42",
+      "query": "Qual banco de dados tem o projeto aurora?",
+      "expected": [],
+      "category": "scope",
+      "project": "aurora",
+      "scope": "different_scope",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-unseen-43",
+      "query": "Qual banco de dados tem o projeto aurora?",
+      "expected": [],
+      "category": "project_mismatch",
+      "project": "lyra",
+      "scope": "lucille",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "unfinished",
+        "deleted_language"
+      ]
+    }
+  ],
+  "note": "Gold fixed before evaluation. Rules seed approved typed facts independently of Gemma. No final query was used for calibration. Logical offsets test expiry without altering the OS clock."
+}

@@ -1,0 +1,896 @@
+{
+  "version": "phase21d-unseen-retrieval-v2",
+  "status": "new independent evaluation after v1 seed abort; v1 retained unchanged",
+  "events": [
+    {
+      "action": "learn",
+      "label": "previous_primary",
+      "text": "Meu computador principal possui 24 GB de RAM.",
+      "project": "nebula",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "studio",
+      "text": "Meu notebook de trabalho possui 22 GB de RAM.",
+      "project": "nebula",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "spare",
+      "text": "Meu outro computador possui 96 GB de RAM.",
+      "project": "nebula",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "previous_coffee",
+      "text": "Eu prefiro café com açúcar durante a leitura.",
+      "project": "nebula",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "coffee",
+      "text": "Na verdade, prefiro café sem açúcar na oficina.",
+      "project": "nebula",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "primary",
+      "text": "Atualizei o computador principal para 48 GB de RAM.",
+      "project": "nebula",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "campaigns",
+      "text": "I prefer campaigns where choices affect the story of the expedition.",
+      "project": "nebula",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "painting",
+      "text": "Meu objetivo é terminar uma pintura de um farol.",
+      "project": "nebula",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "english",
+      "text": "Meu objetivo é aprender inglês para viajar.",
+      "project": "nebula",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "solution",
+      "text": "Resolvi o problema de impressão trocando o cabo USB.",
+      "project": "nebula",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "task",
+      "text": "Preciso entregar o relatório de receitas hoje.",
+      "project": "nebula",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "nebula_db",
+      "text": "O projeto nebula utiliza MySQL no controle de materiais.",
+      "project": "nebula",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "orion_db",
+      "text": "O projeto orion utiliza PostgreSQL no controle de encomendas.",
+      "project": "orion",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "free",
+      "text": "Meu PC tem 9 GB de RAM livre agora.",
+      "project": "nebula",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "former_goal",
+      "text": "Meu objetivo é aprender encadernação.",
+      "project": "nebula",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "finished_goal",
+      "text": "Concluí meu objetivo de aprender encadernação.",
+      "project": "nebula",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "deleted_pref",
+      "text": "Eu prefiro respostas em português ao estudar marcenaria.",
+      "project": "nebula",
+      "scope": "lucille"
+    },
+    {
+      "action": "delete",
+      "target": "deleted_pref"
+    }
+  ],
+  "queries": [
+    {
+      "id": "retrieval-v2-01",
+      "query": "capacidade RAM computador principal",
+      "expected": [
+        "primary"
+      ],
+      "category": "lexical",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-02",
+      "query": "How many gigabytes are fitted to my main desktop?",
+      "expected": [
+        "primary"
+      ],
+      "category": "indirect_en",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-03",
+      "query": "RAM pc princiapl",
+      "expected": [
+        "primary"
+      ],
+      "category": "typo",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-04",
+      "query": "RAM notebook de trabalho instalada",
+      "expected": [
+        "studio"
+      ],
+      "category": "lexical",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-05",
+      "query": "What memory size is in my office laptop?",
+      "expected": [
+        "studio"
+      ],
+      "category": "paraphrase_en",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "agent",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-06",
+      "query": "capacidade RAM outro computador",
+      "expected": [
+        "spare"
+      ],
+      "category": "lexical",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-07",
+      "query": "How much RAM belongs to my other computer?",
+      "expected": [
+        "spare"
+      ],
+      "category": "paraphrase_en",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "code",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-08",
+      "query": "Minha preferência de café e açúcar",
+      "expected": [
+        "coffee"
+      ],
+      "category": "lexical",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-09",
+      "query": "Would an unsweetened coffee suit me?",
+      "expected": [
+        "coffee"
+      ],
+      "category": "paraphrase_en",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-10",
+      "query": "Recomende campanhas que mudem a história conforme minhas decisões",
+      "expected": [
+        "campaigns"
+      ],
+      "category": "informal_pt",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-11",
+      "query": "Should I choose an adventure with branching narrative consequences?",
+      "expected": [
+        "campaigns"
+      ],
+      "category": "indirect_en",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-12",
+      "query": "Meu objetivo da pintura do farol",
+      "expected": [
+        "painting"
+      ],
+      "category": "lexical",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-13",
+      "query": "What painting am I aiming to finish?",
+      "expected": [
+        "painting"
+      ],
+      "category": "paraphrase_en",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-14",
+      "query": "objetivo aprender inglês para viajar",
+      "expected": [
+        "english"
+      ],
+      "category": "lexical",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-15",
+      "query": "What language do I intend to study for travel?",
+      "expected": [
+        "english"
+      ],
+      "category": "paraphrase_en",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-16",
+      "query": "problema impressão cabo USB",
+      "expected": [
+        "solution"
+      ],
+      "category": "lexical",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-17",
+      "query": "What cable replacement resolved my printing issue?",
+      "expected": [
+        "solution"
+      ],
+      "category": "paraphrase_en",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-18",
+      "query": "relatório receitas hoje",
+      "expected": [
+        "task"
+      ],
+      "category": "lexical",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-19",
+      "query": "Which report must I hand in today?",
+      "expected": [
+        "task"
+      ],
+      "category": "paraphrase_en",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-20",
+      "query": "banco projeto nebula materiais",
+      "expected": [
+        "nebula_db"
+      ],
+      "category": "lexical",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-21",
+      "query": "What database is behind the nebula inventory?",
+      "expected": [
+        "nebula_db"
+      ],
+      "category": "paraphrase_en",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-22",
+      "query": "banco de dados projeto orion encomendas",
+      "expected": [
+        "orion_db"
+      ],
+      "category": "lexical",
+      "project": "orion",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-23",
+      "query": "Which engine stores the orion orders?",
+      "expected": [
+        "orion_db"
+      ],
+      "category": "paraphrase_en",
+      "project": "orion",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-24",
+      "query": "quanto de RAM livre meu PC tem nesta observação?",
+      "expected": [
+        "free"
+      ],
+      "category": "lexical",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-25",
+      "query": "What memory is still available now in my computer?",
+      "expected": [
+        "free"
+      ],
+      "category": "paraphrase_en",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-26",
+      "query": "Qual objetivo de encadernação já concluí?",
+      "expected": [
+        "finished_goal"
+      ],
+      "category": "completed",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-27",
+      "query": "Qual é o status do objetivo concluído de encadernação?",
+      "expected": [
+        "finished_goal"
+      ],
+      "category": "completed",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-28",
+      "query": "Qual memória RAM possui meu computador principal e o meu notebook de trabalho?",
+      "expected": [
+        "primary",
+        "studio"
+      ],
+      "category": "multi_device",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-29",
+      "query": "Liste todos os meus objetivos atuais de estudo e pintura",
+      "expected": [
+        "painting",
+        "english"
+      ],
+      "category": "multi_goal",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-30",
+      "query": "What is the capital of Iceland?",
+      "expected": [],
+      "category": "irrelevant",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-31",
+      "query": "Quanto é quinze multiplicado por quatro?",
+      "expected": [],
+      "category": "irrelevant",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-32",
+      "query": "Explique o processo de torrefação do café.",
+      "expected": [],
+      "category": "irrelevant_near",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-33",
+      "query": "What is random access memory?",
+      "expected": [],
+      "category": "irrelevant_near",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-34",
+      "query": "Qual CPU tem meu notebook de trabalho?",
+      "expected": [],
+      "category": "wrong_property",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-35",
+      "query": "How much SSD storage is installed in my main desktop?",
+      "expected": [],
+      "category": "wrong_property",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-36",
+      "query": "Quantos GB de RAM tem aquele equipamento?",
+      "expected": [],
+      "category": "ambiguous_device",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-37",
+      "query": "Em qual idioma eu prefiro que você responda?",
+      "expected": [],
+      "category": "deleted",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-38",
+      "query": "Meu PC está com quanta RAM livre agora?",
+      "expected": [],
+      "category": "expired",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 8000,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-39",
+      "query": "Qual relatório tenho que entregar hoje?",
+      "expected": [],
+      "category": "expired_task",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 270000,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-40",
+      "query": "Meu amigo prefere qual café?",
+      "expected": [],
+      "category": "third_party",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-41",
+      "query": "Qual database usa o projeto miragem?",
+      "expected": [],
+      "category": "unknown_project",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-42",
+      "query": "Qual porta de rede utiliza o projeto nebula?",
+      "expected": [],
+      "category": "wrong_property",
+      "project": "nebula",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-43",
+      "query": "Qual é o banco do projeto nebula?",
+      "expected": [],
+      "category": "scope",
+      "project": "nebula",
+      "scope": "another_profile_scope",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    },
+    {
+      "id": "retrieval-v2-44",
+      "query": "Qual é o banco do projeto nebula?",
+      "expected": [],
+      "category": "project_mismatch",
+      "project": "orion",
+      "scope": "lucille",
+      "mode": "chat",
+      "logical_offset_seconds": 0,
+      "forbidden": [
+        "previous_primary",
+        "previous_coffee",
+        "former_goal",
+        "deleted_pref"
+      ]
+    }
+  ],
+  "note": "Fixed before first execution of these events/queries. V1 is now development only. Same .6/.04/.4/.5 weighted policy; only sensitive-word false-positive fixed. No gold edited after results. Logical expiry is not an OS clock change."
+}

@@ -1,0 +1,896 @@
+{
+  "version": "phase21d-unseen-retrieval-v3",
+  "status": "independent evaluation after retained v2 extraction critical failure; retrieval parameters unchanged",
+  "events": [
+    {
+      "action": "learn",
+      "label": "old_primary",
+      "text": "Meu computador principal tem 30 GB de RAM.",
+      "project": "cais",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "work",
+      "text": "Meu notebook do trabalho tem 16 GB de RAM para o ateliê.",
+      "project": "cais",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "other",
+      "text": "Meu outro computador tem 104 GB de RAM no estúdio.",
+      "project": "cais",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "old_coffee",
+      "text": "Eu prefiro café sem açúcar durante a leitura de mapas.",
+      "project": "cais",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "coffee",
+      "text": "Na verdade, prefiro café com açúcar nas pausas do estúdio.",
+      "project": "cais",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "primary",
+      "text": "Atualizei o computador principal para 64 GB de RAM.",
+      "project": "cais",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "games",
+      "text": "Eu gosto de RPGs táticos com classes e evolução de personagem em campanhas curtas.",
+      "project": "cais",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "maps",
+      "text": "Meu objetivo é estudar mapas náuticos da região.",
+      "project": "cais",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "watercolor",
+      "text": "Meu objetivo é terminar uma aquarela de um castelo.",
+      "project": "cais",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "solution",
+      "text": "Resolvi o problema de conexão trocando o certificado do roteador.",
+      "project": "cais",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "task",
+      "text": "Preciso revisar o relatório de despesas amanhã.",
+      "project": "cais",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "cais_db",
+      "text": "O projeto cais usa SQLite para registrar equipamentos.",
+      "project": "cais",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "trilho_db",
+      "text": "O projeto trilho usa MySQL para registrar viagens.",
+      "project": "trilho",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "free",
+      "text": "Meu PC tem 11 GB de RAM livre agora.",
+      "project": "cais",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "past_goal",
+      "text": "Meu objetivo é aprender gravura.",
+      "project": "cais",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "completed",
+      "text": "Concluí meu objetivo de aprender gravura.",
+      "project": "cais",
+      "scope": "lucille"
+    },
+    {
+      "action": "learn",
+      "label": "deleted_language",
+      "text": "Eu prefiro respostas em português nas explicações sobre tintas.",
+      "project": "cais",
+      "scope": "lucille"
+    },
+    {
+      "action": "delete",
+      "target": "deleted_language"
+    }
+  ],
+  "queries": [
+    {
+      "id": "retrieval-v3-01",
+      "query": "Memória RAM do computador principal",
+      "expected": [
+        "primary"
+      ],
+      "category": "lexical",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-02",
+      "query": "What is the installed memory capacity of my main desktop?",
+      "expected": [
+        "primary"
+      ],
+      "category": "paraphrase_en",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-03",
+      "query": "RAM meu note do trablaho",
+      "expected": [
+        "work"
+      ],
+      "category": "typo",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-04",
+      "query": "RAM do notebook de trabalho no ateliê",
+      "expected": [
+        "work"
+      ],
+      "category": "lexical",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-05",
+      "query": "How much memory does my office laptop contain?",
+      "expected": [
+        "work"
+      ],
+      "category": "paraphrase_en",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "agent",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-06",
+      "query": "RAM instalada no meu outro computador",
+      "expected": [
+        "other"
+      ],
+      "category": "lexical",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-07",
+      "query": "What is the capacity of my secondary computer memory?",
+      "expected": [
+        "other"
+      ],
+      "category": "paraphrase_en",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "code",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-08",
+      "query": "Café com açúcar é minha preferência?",
+      "expected": [
+        "coffee"
+      ],
+      "category": "lexical",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-09",
+      "query": "Would sweetened espresso fit my current taste?",
+      "expected": [
+        "coffee"
+      ],
+      "category": "indirect_en",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-10",
+      "query": "Eu gosto de RPGs com classes e evolução?",
+      "expected": [
+        "games"
+      ],
+      "category": "lexical",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-11",
+      "query": "Which RPGs should I choose for character classes and progression?",
+      "expected": [
+        "games"
+      ],
+      "category": "paraphrase_en",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-12",
+      "query": "Meu objetivo de estudar mapas náuticos",
+      "expected": [
+        "maps"
+      ],
+      "category": "lexical",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-13",
+      "query": "What nautical material am I trying to study?",
+      "expected": [
+        "maps"
+      ],
+      "category": "paraphrase_en",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-14",
+      "query": "objetivo terminar aquarela castelo",
+      "expected": [
+        "watercolor"
+      ],
+      "category": "lexical",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-15",
+      "query": "Which watercolor artwork am I planning to finish?",
+      "expected": [
+        "watercolor"
+      ],
+      "category": "paraphrase_en",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-16",
+      "query": "problema de conexão certificado roteador",
+      "expected": [
+        "solution"
+      ],
+      "category": "lexical",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-17",
+      "query": "What certificate replacement fixed my connection problem?",
+      "expected": [
+        "solution"
+      ],
+      "category": "paraphrase_en",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-18",
+      "query": "revisar relatório de despesas amanhã",
+      "expected": [
+        "task"
+      ],
+      "category": "lexical",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-19",
+      "query": "Which expenses report do I need to review tomorrow?",
+      "expected": [
+        "task"
+      ],
+      "category": "paraphrase_en",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-20",
+      "query": "banco projeto cais equipamentos",
+      "expected": [
+        "cais_db"
+      ],
+      "category": "lexical",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-21",
+      "query": "What relational engine stores the cais equipment list?",
+      "expected": [
+        "cais_db"
+      ],
+      "category": "paraphrase_en",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-22",
+      "query": "banco projeto trilho viagens",
+      "expected": [
+        "trilho_db"
+      ],
+      "category": "lexical",
+      "scope": "lucille",
+      "project": "trilho",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-23",
+      "query": "Which database manages the trilho journeys?",
+      "expected": [
+        "trilho_db"
+      ],
+      "category": "paraphrase_en",
+      "scope": "lucille",
+      "project": "trilho",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-24",
+      "query": "RAM disponível no meu PC agora",
+      "expected": [
+        "free"
+      ],
+      "category": "lexical",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-25",
+      "query": "How many gigabytes of memory are free now on my computer?",
+      "expected": [
+        "free"
+      ],
+      "category": "paraphrase_en",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-26",
+      "query": "Qual objetivo de gravura está concluído?",
+      "expected": [
+        "completed"
+      ],
+      "category": "completed",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-27",
+      "query": "O que já concluí sobre aprender gravura?",
+      "expected": [
+        "completed"
+      ],
+      "category": "completed",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-28",
+      "query": "Qual a RAM do meu computador principal e do meu notebook do trabalho?",
+      "expected": [
+        "primary",
+        "work"
+      ],
+      "category": "multi_device",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-29",
+      "query": "Quais são meus objetivos correntes de mapas e aquarela?",
+      "expected": [
+        "maps",
+        "watercolor"
+      ],
+      "category": "multi_goal",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-30",
+      "query": "What is the capital of Finland?",
+      "expected": [],
+      "category": "irrelevant",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-31",
+      "query": "Quanto é doze somado a trinta?",
+      "expected": [],
+      "category": "irrelevant",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-32",
+      "query": "What does coffee roasting involve?",
+      "expected": [],
+      "category": "irrelevant_near",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-33",
+      "query": "Explique como a memória RAM funciona.",
+      "expected": [],
+      "category": "irrelevant_near",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-34",
+      "query": "Qual processador tem meu notebook do trabalho?",
+      "expected": [],
+      "category": "wrong_property",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-35",
+      "query": "How large is the SSD in my primary computer?",
+      "expected": [],
+      "category": "wrong_property",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-36",
+      "query": "Que quantidade de RAM tem aquele aparelho lá?",
+      "expected": [],
+      "category": "ambiguous_device",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-37",
+      "query": "In which language should I receive answers?",
+      "expected": [],
+      "category": "deleted",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-38",
+      "query": "Quantos GB de RAM estão livres no meu PC agora?",
+      "expected": [],
+      "category": "expired",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 9000,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-39",
+      "query": "Qual relatório devo revisar amanhã?",
+      "expected": [],
+      "category": "expired_task",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 280000,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-40",
+      "query": "What coffee does my colleague choose?",
+      "expected": [],
+      "category": "third_party",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-41",
+      "query": "Qual banco tem o projeto jangada?",
+      "expected": [],
+      "category": "unknown_project",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-42",
+      "query": "Qual protocolo de rede usa o projeto cais?",
+      "expected": [],
+      "category": "wrong_property",
+      "scope": "lucille",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-43",
+      "query": "Qual banco de dados usa o projeto cais?",
+      "expected": [],
+      "category": "scope",
+      "scope": "unbound_lucille_scope",
+      "project": "cais",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    },
+    {
+      "id": "retrieval-v3-44",
+      "query": "Qual banco de dados usa o projeto cais?",
+      "expected": [],
+      "category": "project_mismatch",
+      "scope": "lucille",
+      "project": "trilho",
+      "logical_offset_seconds": 0,
+      "mode": "chat",
+      "forbidden": [
+        "old_primary",
+        "old_coffee",
+        "past_goal",
+        "deleted_language"
+      ]
+    }
+  ],
+  "note": "No v3 query execution/scoring before freeze. Same category matrix includes typo, indirect English, mixed intent, correction/deletion/expiry, scope and nearby wrong facts. No labels revised after outcomes."
+}

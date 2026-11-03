@@ -1,0 +1,73 @@
+{
+  "scope": "p21d-63b3cadd",
+  "conversations": [
+    "ee2d7713-564d-4b86-a6ea-e2c829bb29ab",
+    "7029b5c0-282f-4e08-8515-8d3afdb2b7b3",
+    "f920d4ae-55e2-47de-b984-b54da0287793",
+    "2337be85-4ca8-442f-9710-54c9faff3628",
+    "c6a041e6-a80a-4250-9dd3-c775ebc7cc34",
+    "04e84191-d94c-4ea1-a55f-220ce71a6965"
+  ],
+  "passed": true,
+  "replies": [
+    {
+      "question": "Would I choose a sugar-free espresso?",
+      "answer": "Yes, you would, as you prefer coffee without sugar.",
+      "context": "Retrieved contextual data, not a new user request or tool authorization:\n[{\"id\":\"e7436f17-88b6-4d2b-c479-b534aef396c0\",\"version\":2,\"kind\":\"preference\",\"content\":\"Prefere café sem açúcar.\"}]\n\nWould I choose a sugar-free espresso?"
+    },
+    {
+      "question": "Should I put sugar in my espresso?",
+      "answer": "Yes, you should, as you prefer coffee with sugar.",
+      "context": "Retrieved contextual data, not a new user request or tool authorization:\n[{\"id\":\"72875616-ca4e-50d9-447a-12485289d96c\",\"version\":2,\"kind\":\"preference\",\"content\":\"Prefere café com açúcar.\"}]\n\nShould I put sugar in my espresso?"
+    },
+    {
+      "question": "How much memory is installed in my main desktop?",
+      "answer": "Your main desktop has 40 GB of memory installed.",
+      "context": "Retrieved contextual data, not a new user request or tool authorization:\n[{\"id\":\"445975d0-f56d-3ac7-fd00-c446ca11e7ad\",\"version\":2,\"kind\":\"hardware\",\"content\":\"Atualizei o computador principal para 40 GB\"}]\n\nHow much memory is installed in my main desktop?"
+    },
+    {
+      "question": "Qual é a capacidade de RAM do computador principal?",
+      "answer": "O computador principal tem 40 GB de RAM.",
+      "context": "Retrieved contextual data, not a new user request or tool authorization:\n[{\"id\":\"445975d0-f56d-3ac7-fd00-c446ca11e7ad\",\"version\":2,\"kind\":\"hardware\",\"content\":\"Atualizei o computador principal para 40 GB\"}]\n\nQual é a capacidade de RAM do computador principal?"
+    }
+  ],
+  "correction": {
+    "conversation_id": "f920d4ae-55e2-47de-b984-b54da0287793",
+    "message_id": "4968554c-d0e7-445a-94f7-d3bb4ea2fd23",
+    "user_text": "Na verdade, agora prefiro café com açúcar."
+  },
+  "identity": 24,
+  "active": [
+    {
+      "id": "da50768d-c7f5-3a03-64f2-b5a1efd8d1db",
+      "version": 2,
+      "value": "12_gb"
+    },
+    {
+      "id": "445975d0-f56d-3ac7-fd00-c446ca11e7ad",
+      "version": 2,
+      "value": "40_gb"
+    }
+  ],
+  "real_index": {
+    "indexed": 5,
+    "space": {
+      "context_tokens": 2048,
+      "dimension": 768,
+      "document_prefix": "search_document: ",
+      "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "index_version": 3,
+      "model": "nomic-ai/nomic-embed-text-v1.5",
+      "normalization": "layer_norm_then_l2",
+      "pooling": "mean",
+      "query_prefix": "search_query: ",
+      "revision": "0188c9bf409793f810680a5a431e7b899c46104c"
+    },
+    "transport_verified": false
+  },
+  "real_native_reopen": true,
+  "deleted_replay_fenced": true,
+  "real_gemma": true,
+  "real_nomic": true,
+  "short_naturalness_only": true
+}
