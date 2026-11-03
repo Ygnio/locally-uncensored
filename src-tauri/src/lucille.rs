@@ -178,6 +178,11 @@ pub enum Request {
         vector: Vec<f32>,
     },
     IndexStatus,
+    EmbeddingText {
+        id: String,
+        scope: String,
+        project: String,
+    },
     LearningPolicy,
     SaveLearningPolicy {
         policy: lucille_memory::intelligent::LearningPolicy,
@@ -261,6 +266,7 @@ pub fn lucille_manage(
             | Request::Details { .. }
             | Request::Deleted { .. }
             | Request::IndexStatus
+            | Request::EmbeddingText { .. }
     );
     let permit = ConfigurationPermit::explicit_settings_action(
         readonly || confirmation.as_deref() == Some("CONFIRM LUCILLE CONFIGURATION"),
@@ -303,6 +309,9 @@ pub fn lucille_manage(
             json!({"indexed":true})
         }
         Request::IndexStatus => store.embedding_status()?,
+        Request::EmbeddingText { id, scope, project } => {
+            store.memory_embedding_text(&id, &scope, &project, "gloss")?
+        }
         Request::LearningPolicy => json!(store.learning_policy()?),
         Request::SaveLearningPolicy { policy } => {
             store.set_learning_policy(policy, &permit)?;

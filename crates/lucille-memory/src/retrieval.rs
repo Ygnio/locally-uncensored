@@ -24,6 +24,12 @@ pub(crate) fn terms(query: &str) -> Vec<String> {
         ("computer", "computador"),
         ("computador", "ram"),
         ("notebook", "ram"),
+        ("rpgs", "rpg"),
+        ("professions", "classes"),
+        ("profissoes", "classes"),
+        ("laptop", "notebook"),
+        ("memory", "ram"),
+        ("office", "trabalho"),
     ] {
         if result.iter().any(|v| v == term) {
             result.push(alias.into())
@@ -38,7 +44,8 @@ const STOP: &[&str] = &[
     "uma", "um", "de", "da", "do", "das", "dos", "em", "no", "na", "nos", "nas", "se", "com",
     "sem", "the", "what", "which", "how", "is", "are", "do", "does", "my", "your", "and", "of",
     "to", "for", "about", "tell", "recall", "remember", "lembra", "lembre", "sobre", "memoria",
-    "memorias", "please", "favor", "obrigado", "thanks",
+    "memorias", "please", "favor", "obrigado", "thanks", "in", "on", "at", "our", "has", "have",
+    "am", "an", "it", "its", "would", "should", "much", "many",
 ];
 pub(crate) fn recall(query: &str) -> bool {
     let q = fold(query);
@@ -121,23 +128,159 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
     if recall(query) {
         return Ok(true);
     }
+    if crate::relevance::knowledge_only(query) {
+        return Ok(false);
+    }
+    if [
+        "meu amigo",
+        "meu colega",
+        "minha colega",
+        "my friend",
+        "my colleague",
+        "outra pessoa",
+    ]
+    .iter()
+    .any(|w| fold(query).contains(w))
+    {
+        return Ok(false);
+    }
     let q = fold(query);
+    let words = q
+        .split_whitespace()
+        .map(|s| s.trim_matches(|c: char| !c.is_alphanumeric()))
+        .collect::<Vec<_>>();
+    if words.windows(2).any(|p| {
+        ["projeto", "project"].contains(&p[0])
+            && !p[1].is_empty()
+            && ![
+                "uses",
+                "usa",
+                "database",
+                "banco",
+                "dados",
+                "stores",
+                "should",
+                "has",
+                "tem",
+                "requer",
+                "requires",
+                "ficticio",
+                "configuration",
+            ]
+            .contains(&p[1])
+            && p[1] != fold(&m.input.project)
+    }) {
+        return Ok(false);
+    }
     if let Some(meta) = &meta {
-        let free = ["livre", "free", "disponivel"]
+        if ["ram_capacity", "free_ram"].contains(&meta.property.as_str())
+            && [
+                "ssd",
+                "storage",
+                "disco",
+                "armazenamento",
+                "disk",
+                "gpu",
+                "vram",
+                "cpu",
+                "processor",
+                "processador",
+                "graphics",
+                "placa de video",
+            ]
+            .iter()
+            .any(|w| q.contains(w))
+            && !words.contains(&"ram")
+        {
+            return Ok(false);
+        }
+        if meta.property == "database"
+            && ![
+                "database",
+                "banco",
+                "dados",
+                "data",
+                "sqlite",
+                "postgres",
+                "mysql",
+                "engine",
+                "relational",
+                "relacional",
+                "armaz",
+                "persist",
+                "store",
+            ]
+            .iter()
+            .any(|w| q.contains(w))
+        {
+            return Ok(false);
+        }
+        if matches!(m.input.kind, Kind::Goal | Kind::Task)
+            && !crate::relevance::personal(&q)
+            && ![
+                "goal",
+                "objetiv",
+                "meta",
+                "milestone",
+                "pending",
+                "due",
+                "amanha",
+                "tomorrow",
+                "hoje",
+                "today",
+                "conclu",
+                "complet",
+                "finish",
+                "status",
+                "histor",
+            ]
+            .iter()
+            .any(|w| q.contains(w))
+        {
+            return Ok(false);
+        }
+        let free = ["livre", "free", "disponivel", "available"]
             .iter()
             .any(|word| q.contains(word));
-        if meta.temporal == "temporary" && !free && !q.contains("agora") {
+        if meta.temporal == "temporary" && !free && !q.contains("agora") && !q.contains("now") {
             return Ok(false);
         }
         if meta.property == "ram_capacity" && free {
+            return Ok(false);
+        }
+        if meta.property == "response_language"
+            && ["learn", "aprend", "estud"].iter().any(|w| q.contains(w))
+        {
             return Ok(false);
         }
         let compare = ["compare", "todos", "all ", "dois computadores"]
             .iter()
             .any(|word| q.contains(word));
         if !compare && meta.subject.starts_with("device.") {
-            let other = q.contains("outro") || q.contains("other");
-            let work = q.contains("trabalho") || q.contains("work laptop");
+            let other = q.contains("outro")
+                || q.contains("other")
+                || q.contains("secondary")
+                || q.contains("secundario");
+            let work = [
+                "trabalho",
+                "work laptop",
+                "office notebook",
+                "office laptop",
+                "empresa",
+                "corporativo",
+            ]
+            .iter()
+            .any(|w| q.contains(w));
+            let primary = crate::coverage::device(&q) == Some("device.primary_computer")
+                || ["main desktop", "primary", "principal"]
+                    .iter()
+                    .any(|w| q.contains(w));
+            if meta.property == "ram_capacity" && !work && !other && !primary {
+                let count:i64=tx.query_row("SELECT count(DISTINCT q.subject) FROM memory_quality q JOIN memories m ON m.id=q.memory_id WHERE m.scope=?1 AND m.project=?2 AND m.state='active' AND q.property='ram_capacity' AND (q.expires_at IS NULL OR q.expires_at>?3)",params![m.input.scope,m.input.project,at],|r|r.get(0)).map_err(db_error)?;
+                if count > 1 {
+                    return Ok(false);
+                }
+            }
             if (meta.subject == "device.other_computer") != other
                 || (meta.subject == "device.work_laptop") != work
             {
@@ -146,28 +289,15 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
         }
     }
     if m.input.kind == Kind::Preference {
-        let personal = [
-            "recom",
-            "sugir",
-            "suggest",
-            "prefer",
-            "gosto",
-            "like",
-            "cafe",
-            "coffee",
-            "acucar",
-            "que eu",
-            "meus gostos",
-        ]
-        .iter()
-        .any(|w| q.contains(w));
+        let personal = crate::relevance::preference_intent(query);
         if !personal {
             return Ok(false);
         }
     }
     if m.input.kind == Kind::Hypothesis
         && ![
-            "hipot", "talvez", "plano", "comprar", "purchase", "might", "intenc",
+            "hipot", "talvez", "plano", "comprar", "purchase", "might", "intenc", "buy", "plan",
+            "consider",
         ]
         .iter()
         .any(|w| q.contains(w))
@@ -180,9 +310,94 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
     Ok(true)
 }
 fn any_completed_intent(q: &str) -> bool {
-    ["conclu", "complet", "histor", "status"]
+    ["conclu", "complet", "histor", "status", "finish"]
         .iter()
         .any(|v| q.contains(v))
+}
+
+impl crate::Store {
+    /// QA diagnostics reuse the actual selector and gates. No cross-scope content
+    /// is returned. Raw rank, nomination and injected context remain distinct.
+    pub fn explain_context(
+        &mut self,
+        req: TurnRequest,
+        vector: Option<&QueryVector>,
+    ) -> Result<serde_json::Value> {
+        self.explain_context_at(req, vector, crate::now())
+    }
+    /// Uses the selector's explicit logical clock for isolated expiry evaluation.
+    pub fn explain_context_at(
+        &mut self,
+        req: TurnRequest,
+        vector: Option<&QueryVector>,
+        at: i64,
+    ) -> Result<serde_json::Value> {
+        let context = self.context_at(req.clone(), vector, at)?;
+        let policy = self.learning_policy()?;
+        let tx = self.db.transaction().map_err(db_error)?;
+        let mut lexical = HashMap::new();
+        let fts = fts_query(&req.query);
+        if !fts.is_empty() {
+            let mut q=tx.prepare("SELECT m.id,bm25(memories_fts) FROM memories_fts JOIN memories m ON m.rowid=memories_fts.rowid WHERE memories_fts MATCH ?1 AND m.scope=?2 AND m.project=?3 AND m.state='active' ORDER BY bm25(memories_fts),m.id LIMIT 100").map_err(db_error)?;
+            for (rank, r) in q
+                .query_map(params![fts, req.scope, req.project], |r| {
+                    Ok((r.get::<_, String>(0)?, r.get::<_, f64>(1)?))
+                })
+                .map_err(db_error)?
+                .enumerate()
+            {
+                let (id, score) = r.map_err(db_error)?;
+                lexical.insert(id, (rank + 1, score));
+            }
+        }
+        let mut q = tx
+            .prepare(&format!(
+                "SELECT {COLS} FROM memories WHERE scope=?1 AND project=?2 ORDER BY id LIMIT 1024"
+            ))
+            .map_err(db_error)?;
+        let memories = q
+            .query_map(params![req.scope, req.project], row)
+            .map_err(db_error)?
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .map_err(db_error)?;
+        let space = vector.map(|v| v.space.id()).transpose()?;
+        let mut trace = vec![];
+        for m in memories {
+            let meta = quality(&tx, &m.input.id)?;
+            let stored:Option<(i64,String,String)>=tx.query_row("SELECT memory_version,space_id,vector_json FROM memory_vectors WHERE memory_id=?1",[&m.input.id],|r|Ok((r.get(0)?,r.get(1)?,r.get(2)?))).optional().map_err(db_error)?;
+            let mut similarity = None;
+            if let (Some(v), Some((version, id, encoded))) = (vector, stored.as_ref()) {
+                if *version == m.version && Some(id) == space.as_ref() {
+                    let dv: Vec<f32> =
+                        serde_json::from_str(encoded).map_err(|_| "Invalid vector")?;
+                    v.space.check_vector(&dv)?;
+                    similarity = Some(
+                        dv.iter()
+                            .zip(&v.vector)
+                            .map(|(a, b)| *a as f64 * *b as f64)
+                            .sum::<f64>(),
+                    );
+                }
+            }
+            let active = m.state == crate::Status::Active;
+            let gate = active && eligible(&tx, &m, &req.query, at)?;
+            let coverage = crate::relevance::lexical_coverage(&req.query, &m.input.content);
+            let selected = context
+                .references
+                .iter()
+                .any(|r| r.id == m.input.id && r.version == m.version);
+            trace.push(serde_json::json!({"id":m.input.id,"content":m.input.content,"version":m.version,"state":m.state,"quality":meta,"scope_project_pass":true,"state_temporal_entity_intent_pass":gate,"lexical_rank_bm25":lexical.get(&m.input.id),"lexical_coverage":coverage,"lexical_gate":coverage>=crate::relevance::LEXICAL_COVERAGE,"cosine":similarity,"semantic_threshold_pass":similarity.is_some_and(|s|s>=policy.minimum_similarity),"selected":selected,"reason":if selected{"selected_after_all_filters"}else if !active{"not_current"}else if !gate{"temporal_entity_intent_or_conflict_filter"}else{"threshold_margin_rank_diversity_or_budget"}}));
+        }
+        let mut raw = trace
+            .iter()
+            .filter(|v| v["state_temporal_entity_intent_pass"] == true && v["cosine"].is_number())
+            .map(|v| (v["id"].clone(), v["cosine"].as_f64().unwrap()))
+            .collect::<Vec<_>>();
+        raw.sort_by(|a, b| b.1.total_cmp(&a.1));
+        Ok(
+            serde_json::json!({"context":context,"trace":trace,"semantic_rank_before_threshold":raw,"semantic_margin":raw.first().map(|x|x.1-raw.get(1).map_or(0.,|x|x.1)),"policy":policy,"scope_filter":{"scope":req.scope,"project":req.project},"limits":{"lexical_candidates":100,"vectors":1024,"context_records_single_intent":3,"context_records_explicit_multi":12},"used_upper_bound":context.used_upper_bound}),
+        )
+    }
 }
 pub(crate) fn select(
     tx: &Transaction,
@@ -207,10 +422,21 @@ pub(crate) fn select(
     if policy.lexical_weight == 0.0 && semantic.is_some() {
         lexical.clear()
     }
-    for (rank, m) in lexical.into_iter().enumerate() {
+    for (_rank, m) in lexical.into_iter().enumerate() {
+        let coverage = crate::relevance::lexical_coverage(&req.query, &m.input.content);
+        if !recall(&req.query) && coverage < crate::relevance::LEXICAL_COVERAGE {
+            continue;
+        }
         candidates.insert(
             m.input.id.clone(),
-            (m, policy.lexical_weight / (1.0 + rank as f64)),
+            (
+                m,
+                if recall(&req.query) {
+                    1.0
+                } else {
+                    policy.lexical_weight * coverage
+                },
+            ),
         );
     }
     if let Some(query) = semantic.filter(|_| policy.semantic_weight > 0.0) {
@@ -229,6 +455,7 @@ pub(crate) fn select(
                     Ok((row(r)?, r.get::<_, String>(12)?))
                 })
                 .map_err(db_error)?;
+            let mut semantic_ranked = Vec::new();
             for value in rows {
                 let (m, encoded) = value.map_err(db_error)?;
                 let vector: Vec<f32> =
@@ -239,8 +466,27 @@ pub(crate) fn select(
                     .zip(&query.vector)
                     .map(|(a, b)| (*a as f64) * (*b as f64))
                     .sum::<f64>();
-                if similarity >= policy.minimum_similarity {
-                    let entry = candidates.entry(m.input.id.clone()).or_insert((m, 0.0));
+                if eligible(tx, &m, &req.query, at)? {
+                    semantic_ranked.push((m, similarity));
+                }
+            }
+            semantic_ranked
+                .sort_by(|a, b| b.1.total_cmp(&a.1).then(a.0.input.id.cmp(&b.0.input.id)));
+            let multiple = recall(&req.query)
+                || ["compare", "todos", "all ", "dois computadores"]
+                    .iter()
+                    .any(|w| fold(&req.query).contains(w));
+            let margin = semantic_ranked
+                .first()
+                .map_or(0., |x| x.1 - semantic_ranked.get(1).map_or(0., |s| s.1));
+            for (m, similarity) in semantic_ranked
+                .into_iter()
+                .take(if multiple { 12 } else { 1 })
+            {
+                if similarity >= policy.minimum_similarity
+                    && (multiple || margin >= crate::relevance::SEMANTIC_MARGIN)
+                {
+                    let entry = candidates.entry(m.input.id.clone()).or_insert((m, 0.));
                     entry.1 += policy.semantic_weight * similarity;
                 }
             }
@@ -278,6 +524,8 @@ pub(crate) fn select(
     let mut pref_cost = 0;
     let mut seen_content = HashSet::new();
     let mut seen_property = HashSet::new();
+    let mut covered_terms = HashSet::new();
+    let mut seen_kinds = HashSet::new();
     let mut out = Vec::new();
     for (m, _) in ranked {
         if !eligible(tx, &m, &req.query, at)? {
@@ -296,6 +544,23 @@ pub(crate) fn select(
         if seen_content.contains(&fold(&m.input.content)) {
             continue;
         }
+        let multiple = recall(&req.query)
+            || ["compare", "todos", "all ", "dois computadores"]
+                .iter()
+                .any(|w| fold(&req.query).contains(w));
+        let doc = crate::relevance::tokens(&m.input.content);
+        let matched = crate::relevance::tokens(&req.query)
+            .into_iter()
+            .filter(|v| doc.contains(v))
+            .collect::<Vec<_>>();
+        let kind = format!("{:?}", m.input.kind);
+        if !multiple
+            && !out.is_empty()
+            && seen_kinds.contains(&kind)
+            && matched.iter().all(|v| covered_terms.contains(v))
+        {
+            continue;
+        }
         let cost = serde_json::to_vec(&m).map_err(|_| "Invalid memory")?.len() + 32;
         if used + cost > req.token_budget
             || (m.input.kind == Kind::Preference && pref_cost + cost > available / 4)
@@ -306,12 +571,14 @@ pub(crate) fn select(
             pref_cost += cost
         }
         used += cost;
+        covered_terms.extend(matched);
+        seen_kinds.insert(kind);
         seen_content.insert(fold(&m.input.content));
         if let Some(key) = key {
             seen_property.insert(key);
         }
         out.push(m);
-        if out.len() >= 12 {
+        if out.len() >= if multiple { 12 } else { 3 } {
             break;
         }
     }

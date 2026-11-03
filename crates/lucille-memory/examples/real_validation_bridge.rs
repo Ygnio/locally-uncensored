@@ -106,6 +106,30 @@ fn run() -> Result<Value> {
             )
         }
         "details" => Ok(json!(s.memory_details(scope, project)?)),
+        "representation" => s.memory_embedding_text(
+            v["id"].as_str().ok_or("Missing id")?,
+            scope,
+            project,
+            v["style"].as_str().unwrap_or("natural"),
+        ),
+        "normalize" => Ok(json!(lucille_memory::normalization::normalize(
+            v["text"].as_str().ok_or("Missing text")?,
+            scope,
+            project,
+            v["output"].as_str().ok_or("Missing output")?
+        )?)),
+        "explain" => {
+            let request: TurnRequest =
+                serde_json::from_value(v["request"].clone()).map_err(|_| "Invalid request")?;
+            let vector: Option<QueryVector> =
+                serde_json::from_value(v.get("query_vector").cloned().unwrap_or(Value::Null))
+                    .map_err(|_| "Invalid vector")?;
+            let offset = v["logical_offset_seconds"].as_i64().unwrap_or(0);
+            if !(0..=604800).contains(&offset) {
+                return Err("QA logical offset ceiling".into());
+            }
+            s.explain_context_at(request, vector.as_ref(), at + offset)
+        }
         "create" => {
             let candidate: Candidate =
                 serde_json::from_value(v["candidate"].clone()).map_err(|_| "Invalid candidate")?;
@@ -126,6 +150,9 @@ fn run() -> Result<Value> {
             let mut policy = s.learning_policy()?;
             policy.lexical_weight = v["lexical_weight"].as_f64().ok_or("Missing weight")?;
             policy.semantic_weight = 1. - policy.lexical_weight;
+            if let Some(minimum) = v["minimum_similarity"].as_f64() {
+                policy.minimum_similarity = minimum;
+            }
             s.set_learning_policy(policy.clone(), &permit)?;
             Ok(json!(policy))
         }

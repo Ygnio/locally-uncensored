@@ -194,7 +194,20 @@ impl Store {
             return Err("Effective embedding model mismatch".into());
         }
         let memory = self.get(id, scope, project)?;
-        let input = format!("{}{}", spec.document_prefix, memory.input.content);
+        let text = if spec.index_version >= 2 {
+            crate::semantic_text::render(
+                &memory,
+                crate::intelligent::quality(&self.db, id)?.as_ref(),
+                if spec.index_version >= 3 {
+                    "gloss"
+                } else {
+                    "natural"
+                },
+            )?
+        } else {
+            memory.input.content.clone()
+        };
+        let input = format!("{}{}", spec.document_prefix, text);
         if input.len() > spec.context_tokens {
             return Err("Embedding document exceeds context ceiling".into());
         }

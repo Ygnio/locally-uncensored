@@ -1,0 +1,163 @@
+{
+  "scenario_A_initial_actual": {
+    "observed_at": "2026-11-03T18:27:53.4034090Z",
+    "ports": [],
+    "gpu": [
+      "NVIDIA GeForce RTX 3060, 12288, 814, 11302, 24"
+    ],
+    "memory": {
+      "AvailableMBytes": 10205,
+      "CommittedBytes": 11452243968,
+      "CommitLimit": 34312937472,
+      "PercentCommittedBytesInUse": 33,
+      "PagesPersec": 0
+    },
+    "pagefile": [
+      {
+        "AllocatedBaseSize": 16384,
+        "CurrentUsage": 831,
+        "PeakUsage": 8007
+      }
+    ],
+    "inference": []
+  },
+  "run_summaries_actual": {
+    "batch64-nomic-resources.ndjson": {
+      "samples": 431,
+      "elapsed_max_s": 904.3012530000415,
+      "physical_available_min_bytes": 9974931456,
+      "commit_total_max_bytes": 13566021632,
+      "commit_limit_bytes": 34312937472,
+      "process_private_max_bytes": 825987072,
+      "process_working_set_max_bytes": 791982080,
+      "gpu_used_max_mib": 1020.0,
+      "gpu_free_min_mib": 11096.0
+    },
+    "cache0-development-gemma-resources.ndjson": {
+      "samples": 250,
+      "elapsed_max_s": 523.221630199987,
+      "physical_available_min_bytes": 3242758144,
+      "commit_total_max_bytes": 21345685504,
+      "commit_limit_bytes": 34312937472,
+      "process_private_max_bytes": 9810419712,
+      "process_working_set_max_bytes": 7917547520,
+      "gpu_used_max_mib": 9424.0,
+      "gpu_free_min_mib": 2692.0
+    },
+    "default-cache-gemma-resources.ndjson": {
+      "samples": 111,
+      "elapsed_max_s": 232.6853549000225,
+      "physical_available_min_bytes": 599257088,
+      "commit_total_max_bytes": 25204719616,
+      "commit_limit_bytes": 34312937472,
+      "process_private_max_bytes": 13679824896,
+      "process_working_set_max_bytes": 10692481024,
+      "gpu_used_max_mib": 9400.0,
+      "gpu_free_min_mib": 2716.0
+    },
+    "extraction-v2-gemma-resources.ndjson": {
+      "samples": 107,
+      "elapsed_max_s": 224.10383069998352,
+      "physical_available_min_bytes": 3337080832,
+      "commit_total_max_bytes": 21682802688,
+      "commit_limit_bytes": 34312937472,
+      "process_private_max_bytes": 9812881408,
+      "process_working_set_max_bytes": 7923150848,
+      "gpu_used_max_mib": 9489.0,
+      "gpu_free_min_mib": 2627.0
+    },
+    "gemma-resources.ndjson": {
+      "samples": 417,
+      "elapsed_max_s": 876.8732093999861,
+      "physical_available_min_bytes": 1468239872,
+      "commit_total_max_bytes": 23604281344,
+      "commit_limit_bytes": 34312937472,
+      "process_private_max_bytes": 9821794304,
+      "process_working_set_max_bytes": 7909548032,
+      "gpu_used_max_mib": 9749.0,
+      "gpu_free_min_mib": 2367.0
+    },
+    "gui-development-gemma-resources.ndjson": {
+      "samples": 253,
+      "elapsed_max_s": 530.7053693999769,
+      "physical_available_min_bytes": 1898086400,
+      "commit_total_max_bytes": 23837708288,
+      "commit_limit_bytes": 34312937472,
+      "process_private_max_bytes": 9795022848,
+      "process_working_set_max_bytes": 7909150720,
+      "gpu_used_max_mib": 9818.0,
+      "gpu_free_min_mib": 2298.0
+    },
+    "nomic-resources.ndjson": {
+      "samples": 220,
+      "elapsed_max_s": 462.0464434000314,
+      "physical_available_min_bytes": 1506283520,
+      "commit_total_max_bytes": 23574306816,
+      "commit_limit_bytes": 34312937472,
+      "process_private_max_bytes": 977248256,
+      "process_working_set_max_bytes": 809508864,
+      "gpu_used_max_mib": 9749.0,
+      "gpu_free_min_mib": 2367.0
+    },
+    "retrieval-v2-nomic-resources.ndjson": {
+      "samples": 1054,
+      "elapsed_max_s": 2228.7588508999906,
+      "physical_available_min_bytes": 415719424,
+      "commit_total_max_bytes": 23963394048,
+      "commit_limit_bytes": 34312937472,
+      "process_private_max_bytes": 949583872,
+      "process_working_set_max_bytes": 829718528,
+      "gpu_used_max_mib": 9818.0,
+      "gpu_free_min_mib": 2298.0
+    },
+    "retrieval-v3-nomic-resources.ndjson": {
+      "samples": 106,
+      "elapsed_max_s": 222.67421590001322,
+      "physical_available_min_bytes": 5253726208,
+      "commit_total_max_bytes": 16280723456,
+      "commit_limit_bytes": 34312937472,
+      "process_private_max_bytes": 989261824,
+      "process_working_set_max_bytes": 827187200,
+      "gpu_used_max_mib": 1151.0,
+      "gpu_free_min_mib": 10965.0
+    }
+  },
+  "scenario_A_full_gui_coexistence": {
+    "samples": 213,
+    "duration_sampled_s": 447.216894400015,
+    "physical_available_min_bytes": 1468239872,
+    "commit_total_max_bytes": 23604281344,
+    "gemma_private_max_bytes": 9813286912,
+    "gemma_working_set_max_bytes": 7891341312,
+    "pagefile_snapshot": {
+      "AllocatedBaseSize": 16384,
+      "CurrentUsage": 997,
+      "PeakUsage": 8007
+    }
+  },
+  "scenario_B_projection_only": {
+    "additional_available_bytes_assumed": 2147483648,
+    "projected_physical_available_at_A_min_bytes": 3615723520,
+    "measured": false,
+    "apps_closed_to_simulate": false,
+    "latency_prediction": null,
+    "note": "Only arithmetic physical-headroom projection from user estimate. Commit/VRAM/latency improvement and continuous paging behavior were not measured for B."
+  },
+  "final_owned_shutdown": {
+    "gemma": {
+      "pid": 31992,
+      "creation_filetime": 134382090086664645,
+      "stop_reason": "requested test shutdown",
+      "stop_identity_verified": true,
+      "exit_code": 1
+    },
+    "nomic": {
+      "pid": 21292,
+      "creation_filetime": 134382092185462898,
+      "stop_reason": "requested test shutdown",
+      "stop_identity_verified": true,
+      "exit_code": 1
+    }
+  },
+  "limits": "Short synthetic requests and resident coexistence only; not long-running 65536-token conversations. Pagefile peak already present at initial inventory. No drivers/pagefile/global environment changed."
+}

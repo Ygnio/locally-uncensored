@@ -2,9 +2,9 @@ name: Lucille identity and memory
 
 on:
   push:
-    branches: [feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality, feature/lucille-phase21c-real-inference]
+    branches: [feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality, feature/lucille-phase21c-real-inference, feature/lucille-phase21d-real-quality]
   pull_request:
-    branches: [master, feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality]
+    branches: [master, feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality, feature/lucille-phase21c-real-inference]
   workflow_dispatch:
 
 permissions:
@@ -39,6 +39,7 @@ jobs:
           if [ "$RUNNER_OS" = "Windows" ]; then suffix=".exe"; fi
           export LUCILLE_QA_BRIDGE="$CARGO_TARGET_DIR/debug/examples/synthetic_bridge$suffix"
           npx vitest run --maxWorkers=1 \
+            src/lib/__tests__/lucille-atomic.test.ts \
             src/lib/__tests__/lucille-real-validation.test.ts \
             src/lib/__tests__/lucille-llm.test.ts \
             src/lib/__tests__/lucille-full-bootstrap.test.ts \
@@ -56,6 +57,8 @@ jobs:
             src/stores/__tests__/memory-collections.test.ts \
             src/lib/__tests__/memory-extraction.test.ts \
             src/lib/__tests__/memory-retrieval.test.ts
+      - name: Atomic source grammar parity (no model or Windows API call)
+        run: python scripts/test-lucille-atomic-schema.py
       - name: Type check
         run: npm run typecheck
       - name: Build frontend without opening GUI

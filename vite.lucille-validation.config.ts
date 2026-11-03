@@ -7,8 +7,9 @@ import { resolve, sep } from 'node:path'
 const contract = process.env.LUCILLE_REAL_VALIDATION_CONTRACT
 let publicPin = ''
 if (contract) {
-  const path = resolve(contract), root = resolve('.lucille-qa-runtime/lucille-synthetic-real21c')
-  if (!path.startsWith(root + sep) || readFileSync(resolve(root, '.lucille-isolated'), 'utf8') !== 'synthetic-data-only\n') throw new Error('Real pin must come from the dedicated marked QA root')
+  const path = resolve(contract)
+  const root = ['21c', '21d'].map(phase => resolve(`.lucille-qa-runtime/lucille-synthetic-real${phase}`)).find(candidate => path.startsWith(candidate + sep))
+  if (!root || readFileSync(resolve(root, '.lucille-isolated'), 'utf8') !== 'synthetic-data-only\n') throw new Error('Real pin must come from the dedicated marked QA root')
   const data = JSON.parse(readFileSync(path, 'utf8'))
   publicPin = JSON.stringify({ simulation: false, models: data.models, runtime_sha256: data.runtime_sha256 })
 }

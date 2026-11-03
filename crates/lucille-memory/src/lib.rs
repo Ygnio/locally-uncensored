@@ -5,8 +5,11 @@ mod extraction;
 pub mod intelligent;
 pub mod isolation;
 pub mod llm;
+pub mod normalization;
+pub mod relevance;
 mod retrieval;
 pub mod semantic;
+pub mod semantic_text;
 mod types;
 use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use std::{

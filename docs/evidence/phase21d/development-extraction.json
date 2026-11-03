@@ -1,0 +1,4269 @@
+[
+  {
+    "variant": "canonical_current",
+    "tp": 0,
+    "fp": 0,
+    "missed": 8,
+    "critical_writes": 0,
+    "calls": [
+      {
+        "id": "real-final-01",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\"proposals\":[{\"kind\":\"preference\",\"content\":\"Eu prefiro café sem açúcar\",\"entity\":\"user\",\"property\":\"coffee_sugar\",\"value\":\"without_sugar\",\"scope\":\"lucille\",\"project\":\"atlas\",\"temporal\":\"preference\",\"evidence\":\"Eu prefiro café sem açúcar\",\"correction\":false,\"hypothesis\":false,\"confidence\":1.0,\"relevance\":1.0}]}"
+              }
+            }
+          ],
+          "created": 1793731094,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 77,
+            "prompt_tokens": 745,
+            "total_tokens": 822,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-4JuM5oLx6ojPCYqI0E7hnvYGg9y5Rdga",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 745,
+            "prompt_ms": 1153.847,
+            "prompt_per_token_ms": 1.5487879194630871,
+            "prompt_per_second": 645.666193178125,
+            "predicted_n": 77,
+            "predicted_ms": 2347.415,
+            "predicted_per_token_ms": 30.88703947368421,
+            "predicted_per_second": 32.376039175007406
+          }
+        },
+        "latency_s": 3.588035899971146,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731094,
+            "error_code": null,
+            "id": "5b79e9b7e35d7b1d66480b07400ac470a231863d62689ef5c8fcb7a6f3833a12",
+            "state": "queued",
+            "updated_at": 1793731094
+          },
+          "identity": {
+            "created_at": 1793731094,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731094,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731094,
+              "error_code": null,
+              "id": "5b79e9b7e35d7b1d66480b07400ac470a231863d62689ef5c8fcb7a6f3833a12",
+              "state": "cancelled",
+              "updated_at": 1793731094
+            }
+          ],
+          "rejected": "Ungrounded proposal or scope",
+          "validation": {
+            "error": "Ungrounded proposal or scope"
+          }
+        }
+      },
+      {
+        "id": "real-final-04",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\"proposals\":[{\"kind\":\"preference\",\"content\":\"Eu gosto de RPGs táticos com classes\",\"entity\":\"user\",\"property\":\"games_classes\",\"value\":\"com classes\",\"scope\":\"lucille\",\"project\":\"atlas\",\"temporal\":\"preference\",\"evidence\":\"Eu gosto de RPGs táticos com classes\",\"correction\":false,\"hypothesis\":false,\"confidence\":1.0,\"relevance\":1.0}]}"
+              }
+            }
+          ],
+          "created": 1793731098,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 82,
+            "prompt_tokens": 745,
+            "total_tokens": 827,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-lsaq5LVhXRVIutp7EYpHEf7kQ97YeqqI",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 745,
+            "prompt_ms": 883.267,
+            "prompt_per_token_ms": 1.1855932885906042,
+            "prompt_per_second": 843.4595654541605,
+            "predicted_n": 82,
+            "predicted_ms": 2493.189,
+            "predicted_per_token_ms": 30.780111111111108,
+            "predicted_per_second": 32.488511701278966
+          }
+        },
+        "latency_s": 3.3851596000022255,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731098,
+            "error_code": null,
+            "id": "fb8b503c66320e09e7f383dfe4c94371a4d9b8d959619b57b5462b4dfdeb08e8",
+            "state": "queued",
+            "updated_at": 1793731098
+          },
+          "identity": {
+            "created_at": 1793731098,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731098,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731098,
+              "error_code": null,
+              "id": "fb8b503c66320e09e7f383dfe4c94371a4d9b8d959619b57b5462b4dfdeb08e8",
+              "state": "cancelled",
+              "updated_at": 1793731098
+            }
+          ],
+          "rejected": "Unsupported semantic claim; review evidence outside automatic learning",
+          "validation": {
+            "error": "Unsupported semantic claim; review evidence outside automatic learning"
+          }
+        }
+      },
+      {
+        "id": "real-final-09",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\"proposals\":[{\"kind\":\"fact\",\"content\":\"Meu computador principal possui 40 GB de RAM\",\"entity\":\"device.primary_computer\",\"property\":\"ram_capacity\",\"value\":\"40_gb\",\"scope\":\"lucille\",\"project\":\"atlas\",\"temporal\":\"durable\",\"evidence\":\"Meu computador principal possui 40 GB de RAM\",\"correction\":false,\"hypothesis\":false,\"confidence\":1.0,\"relevance\":1.0}]}"
+              }
+            }
+          ],
+          "created": 1793731102,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 91,
+            "prompt_tokens": 746,
+            "total_tokens": 837,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-2515VzgxflSUGV61ZgmzvOi1UAhEXGLi",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 746,
+            "prompt_ms": 896.495,
+            "prompt_per_token_ms": 1.201735924932976,
+            "prompt_per_second": 832.1295712747981,
+            "predicted_n": 91,
+            "predicted_ms": 2753.015,
+            "predicted_per_token_ms": 30.589055555555554,
+            "predicted_per_second": 32.69143103106957
+          }
+        },
+        "latency_s": 3.6684879999957047,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731102,
+            "error_code": null,
+            "id": "24f4db133d0628e5b161bec586ad5b73d0eeb50e3b734a08715280969e3916a9",
+            "state": "queued",
+            "updated_at": 1793731102
+          },
+          "identity": {
+            "created_at": 1793731102,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731102,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731102,
+              "error_code": null,
+              "id": "24f4db133d0628e5b161bec586ad5b73d0eeb50e3b734a08715280969e3916a9",
+              "state": "cancelled",
+              "updated_at": 1793731102
+            }
+          ],
+          "rejected": "Unsupported semantic claim; review evidence outside automatic learning",
+          "validation": {
+            "error": "Unsupported semantic claim; review evidence outside automatic learning"
+          }
+        }
+      },
+      {
+        "id": "real-final-10",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\"proposals\": [{\"kind\": \"fact\", \"content\": \"Meu notebook do trabalho tem 12GB de RAM\", \"entity\": \"device.work_laptop\", \"property\": \"ram_capacity\", \"value\": \"12gb\", \"scope\": \"lucille\", \"project\": \"atlas\", \"temporal\": \"durable\", \"evidence\": \"Meu notebook do trabalho tem 12GB de RAM\", \"correction\": false, \"hypothesis\": false, \"confidence\": 1.0, \"relevance\": 1.0}]}"
+              }
+            }
+          ],
+          "created": 1793731106,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 116,
+            "prompt_tokens": 747,
+            "total_tokens": 863,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-pH15FpEQJxxYXD8tDm7aKaAPdHGeQK8y",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 747,
+            "prompt_ms": 911.227,
+            "prompt_per_token_ms": 1.2198487282463186,
+            "prompt_per_second": 819.7737775548793,
+            "predicted_n": 116,
+            "predicted_ms": 3534.741,
+            "predicted_per_token_ms": 30.736878260869567,
+            "predicted_per_second": 32.53420830550244
+          }
+        },
+        "latency_s": 4.45474259997718,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731106,
+            "error_code": null,
+            "id": "7a5886b0176adb4181a19be937ec476feffa09abe9cd6d7c53dd6d602531a9f7",
+            "state": "queued",
+            "updated_at": 1793731106
+          },
+          "identity": {
+            "created_at": 1793731106,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731106,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731106,
+              "error_code": null,
+              "id": "7a5886b0176adb4181a19be937ec476feffa09abe9cd6d7c53dd6d602531a9f7",
+              "state": "cancelled",
+              "updated_at": 1793731106
+            }
+          ],
+          "rejected": "Unsupported semantic claim; review evidence outside automatic learning",
+          "validation": {
+            "error": "Unsupported semantic claim; review evidence outside automatic learning"
+          }
+        }
+      },
+      {
+        "id": "real-final-13",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\"proposals\":[{\"kind\":\"goal\",\"content\":\"Meu objetivo é terminar a maquete do laboratório\",\"entity\":\"user\",\"property\":\"goal\",\"value\":\"meu objetivo é terminar a maquete do laboratório\",\"scope\":\"lucille\",\"project\":\"atlas\",\"temporal\":\"durable\",\"evidence\":\"Meu objetivo é terminar a maquete do laboratório\",\"correction\":false,\"hypothesis\":false,\"confidence\":1.0,\"relevance\":1.0}]}"
+              }
+            }
+          ],
+          "created": 1793731110,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 92,
+            "prompt_tokens": 746,
+            "total_tokens": 838,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-d9OLR9TJ5U56o1SEpnEj0XkS2LLdtXJS",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 746,
+            "prompt_ms": 889.916,
+            "prompt_per_token_ms": 1.192916890080429,
+            "prompt_per_second": 838.2813658817237,
+            "predicted_n": 92,
+            "predicted_ms": 2811.906,
+            "predicted_per_token_ms": 30.900065934065932,
+            "predicted_per_second": 32.36239049242756
+          }
+        },
+        "latency_s": 3.709079699998256,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731110,
+            "error_code": null,
+            "id": "b23741f09ce686460a02f79d07d66855386dacf65ccd263f33f9b45681347521",
+            "state": "queued",
+            "updated_at": 1793731110
+          },
+          "identity": {
+            "created_at": 1793731110,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731110,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731110,
+              "error_code": null,
+              "id": "b23741f09ce686460a02f79d07d66855386dacf65ccd263f33f9b45681347521",
+              "state": "cancelled",
+              "updated_at": 1793731110
+            }
+          ],
+          "rejected": "Unsupported semantic claim; review evidence outside automatic learning",
+          "validation": {
+            "error": "Unsupported semantic claim; review evidence outside automatic learning"
+          }
+        }
+      },
+      {
+        "id": "real-final-16",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\"proposals\":[{\"kind\":\"project\",\"content\":\"decidimos usar PostgreSQL para o catálogo fictício\",\"entity\":\"atlas\",\"property\":\"database\",\"value\":\"postgresql\",\"scope\":\"lucille\",\"project\":\"atlas\",\"temporal\":\"durable\",\"evidence\":\"No projeto atlas, decidimos usar PostgreSQL para o catálogo fictício\",\"correction\":false,\"hypothesis\":false,\"confidence\":1.0,\"relevance\":1.0}]}"
+              }
+            }
+          ],
+          "created": 1793731114,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 85,
+            "prompt_tokens": 749,
+            "total_tokens": 834,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-XjNRrMTEGcs5jW78fo8PHvSZb8YbS5rw",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 749,
+            "prompt_ms": 894.784,
+            "prompt_per_token_ms": 1.1946381842456608,
+            "prompt_per_second": 837.0735283599171,
+            "predicted_n": 85,
+            "predicted_ms": 2577.593,
+            "predicted_per_token_ms": 30.68563095238095,
+            "predicted_per_second": 32.58854287701744
+          }
+        },
+        "latency_s": 3.4796186999883503,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731114,
+            "error_code": null,
+            "id": "7aae5af74b149011de062e9b77daf4937f68cd40db81676623668933e82022b2",
+            "state": "queued",
+            "updated_at": 1793731114
+          },
+          "identity": {
+            "created_at": 1793731114,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731114,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731114,
+              "error_code": null,
+              "id": "7aae5af74b149011de062e9b77daf4937f68cd40db81676623668933e82022b2",
+              "state": "cancelled",
+              "updated_at": 1793731114
+            }
+          ],
+          "rejected": "Unsupported semantic claim; review evidence outside automatic learning",
+          "validation": {
+            "error": "Unsupported semantic claim; review evidence outside automatic learning"
+          }
+        }
+      },
+      {
+        "id": "real-final-18",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\"proposals\":[{\"kind\":\"hypothesis\",\"content\":\"Eu talvez compre uma placa de vídeo no próximo semestre\",\"entity\":\"user\",\"property\":\"hardware_intention\",\"value\":\"eu talvez compre uma placa de vídeo no próximo semestre\",\"scope\":\"lucille\",\"project\":\"atlas\",\"temporal\":\"hypothesis\",\"evidence\":\"Eu talvez compre uma placa de vídeo no próximo semestre\",\"correction\":false,\"hypothesis\":true,\"confidence\":0.95,\"relevance\":1.0}]}"
+              }
+            }
+          ],
+          "created": 1793731117,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 93,
+            "prompt_tokens": 746,
+            "total_tokens": 839,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-mwSAYp2EMkEFwBh9TSZPSDvCq7H43qUR",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 746,
+            "prompt_ms": 908.78,
+            "prompt_per_token_ms": 1.2182037533512065,
+            "prompt_per_second": 820.8807412134951,
+            "predicted_n": 93,
+            "predicted_ms": 2825.502,
+            "predicted_per_token_ms": 30.711978260869564,
+            "predicted_per_second": 32.560585694152756
+          }
+        },
+        "latency_s": 3.7470186999998987,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731117,
+            "error_code": null,
+            "id": "ca5e9ed56c6e735a87564ae0072f36f207f9ed931d6109ea924714911048f347",
+            "state": "queued",
+            "updated_at": 1793731117
+          },
+          "identity": {
+            "created_at": 1793731117,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731117,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731117,
+              "error_code": null,
+              "id": "ca5e9ed56c6e735a87564ae0072f36f207f9ed931d6109ea924714911048f347",
+              "state": "cancelled",
+              "updated_at": 1793731117
+            }
+          ],
+          "rejected": "Unsupported semantic claim; review evidence outside automatic learning",
+          "validation": {
+            "error": "Unsupported semantic claim; review evidence outside automatic learning"
+          }
+        }
+      },
+      {
+        "id": "real-final-20",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\"proposals\":[]}"
+              }
+            }
+          ],
+          "created": 1793731119,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 6,
+            "prompt_tokens": 749,
+            "total_tokens": 755,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-8xmXRW6nTqU7iDd0mVaAD5IDlbEYWMH9",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 749,
+            "prompt_ms": 907.44,
+            "prompt_per_token_ms": 1.2115353805073432,
+            "prompt_per_second": 825.3989244467954,
+            "predicted_n": 6,
+            "predicted_ms": 159.393,
+            "predicted_per_token_ms": 31.8786,
+            "predicted_per_second": 31.369006167146615
+          }
+        },
+        "latency_s": 1.0737545999581926,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731119,
+            "error_code": null,
+            "id": "143b0ece034c88f936533761db6447849873d261d50c95cf95247ae0ebfaf403",
+            "state": "queued",
+            "updated_at": 1793731119
+          },
+          "identity": {
+            "created_at": 1793731119,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731119,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731119,
+              "error_code": null,
+              "id": "143b0ece034c88f936533761db6447849873d261d50c95cf95247ae0ebfaf403",
+              "state": "done",
+              "updated_at": 1793731121
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": []
+          }
+        }
+      },
+      {
+        "id": "real-final-27",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\"proposals\":[{\"kind\":\"preference\",\"content\":\"Eu não prefiro café com açúcar para mim\",\"entity\":\"user\",\"property\":\"coffee_sugar\",\"value\":\"without_sugar\",\"scope\":\"lucille\",\"project\":\"atlas\",\"temporal\":\"preference\",\"evidence\":\"Eu não prefiro café com açúcar para mim\",\"correction\":false,\"hypothesis\":false,\"confidence\":0.98,\"relevance\":0.9}]}"
+              }
+            }
+          ],
+          "created": 1793731122,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 84,
+            "prompt_tokens": 745,
+            "total_tokens": 829,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-O870urDYZs4SPNJsg1QA5SmCxBI8UTtA",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 745,
+            "prompt_ms": 890.749,
+            "prompt_per_token_ms": 1.1956362416107382,
+            "prompt_per_second": 836.3747812234423,
+            "predicted_n": 84,
+            "predicted_ms": 2575.852,
+            "predicted_per_token_ms": 31.03436144578313,
+            "predicted_per_second": 32.22234817838913
+          }
+        },
+        "latency_s": 3.4747679000138305,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731122,
+            "error_code": null,
+            "id": "a8dfdfa2dbdd5d84a1d21059f61e592a21befc1b4970d3054ddaea5a368c6b15",
+            "state": "queued",
+            "updated_at": 1793731122
+          },
+          "identity": {
+            "created_at": 1793731122,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731122,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731122,
+              "error_code": null,
+              "id": "a8dfdfa2dbdd5d84a1d21059f61e592a21befc1b4970d3054ddaea5a368c6b15",
+              "state": "cancelled",
+              "updated_at": 1793731122
+            }
+          ],
+          "rejected": "Unsupported semantic claim; review evidence outside automatic learning",
+          "validation": {
+            "error": "Unsupported semantic claim; review evidence outside automatic learning"
+          }
+        }
+      },
+      {
+        "id": "real-final-29",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\"proposals\":[{\"kind\":\"durable\",\"content\":\"Meu PC e meu notebook do trabalho têm 24 GB de RAM\",\"entity\":\"device.primary_computer\",\"property\":\"ram_capacity\",\"value\":\"24_gb\",\"scope\":\"lucille\",\"project\":\"atlas\",\"temporal\":\"durable\",\"evidence\":\"Meu PC e meu notebook do trabalho têm 24 GB de RAM\",\"correction\":false,\"hypothesis\":false,\"confidence\":1.0,\"relevance\":1.0},{\"kind\":\"durable\",\"content\":\"Meu PC e meu notebook do trabalho têm 24 GB de RAM\",\"entity\":\"device.work_laptop\",\"property\":\"ram_capacity\",\"value\":\"24_gb\",\"scope\":\"lucille\",\"project\":\"atlas\",\"temporal\":\"durable\",\"evidence\":\"Meu PC e meu notebook do trabalho têm 24 GB de RAM\",\"correction\":false,\"hypothesis\":false,\"confidence\":1.0,\"relevance\":1.0}]}"
+              }
+            }
+          ],
+          "created": 1793731129,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 195,
+            "prompt_tokens": 750,
+            "total_tokens": 945,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-yjJuusuhwseRXuWdqa8f8aBfAFOqlKbb",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 750,
+            "prompt_ms": 904.256,
+            "prompt_per_token_ms": 1.2056746666666667,
+            "prompt_per_second": 829.4111402080828,
+            "predicted_n": 195,
+            "predicted_ms": 5986.375,
+            "predicted_per_token_ms": 30.857603092783506,
+            "predicted_per_second": 32.406924056712114
+          }
+        },
+        "latency_s": 6.9014517000177875,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731129,
+            "error_code": null,
+            "id": "09f4955ba1bdc019403b40a34777dfbadc87072b5f989ced1603e7c273b52e23",
+            "state": "queued",
+            "updated_at": 1793731129
+          },
+          "identity": {
+            "created_at": 1793731129,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731129,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731129,
+              "error_code": null,
+              "id": "09f4955ba1bdc019403b40a34777dfbadc87072b5f989ced1603e7c273b52e23",
+              "state": "cancelled",
+              "updated_at": 1793731129
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      }
+    ],
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  {
+    "variant": "canonical_short",
+    "tp": 0,
+    "fp": 0,
+    "missed": 8,
+    "critical_writes": 0,
+    "calls": [
+      {
+        "id": "real-final-01",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"proposals\": [\n    {\n      \"kind\": \"preference\",\n      \"content\": \"Eu prefiro café sem açúcar todos os dias\",\n      \"entity\": \"café\",\n      \"property\": \"sugar_type\",\n      \"value\": \"coffee_sugar\",\n      \"scope\": \"lucille\",\n      \"project\": \"atlas\",\n      \"temporal\": \"daily\",\n      \"evidence\": \"Eu prefiro café sem açúcar todos os dias\",\n      \"correction\": null,\n      \"hypothesis\": null,\n      \"confidence\": 1.0,\n      \"relevance\": 1.0\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731134,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 153,
+            "prompt_tokens": 173,
+            "total_tokens": 326,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-qiOKC332FRL6JRXegSBoXTaDYDLtSpEP",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 173,
+            "prompt_ms": 222.635,
+            "prompt_per_token_ms": 1.286907514450867,
+            "prompt_per_second": 777.0566173333035,
+            "predicted_n": 153,
+            "predicted_ms": 4589.764,
+            "predicted_per_token_ms": 30.195815789473684,
+            "predicted_per_second": 33.11717116609917
+          }
+        },
+        "latency_s": 4.817813899950124,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731134,
+            "error_code": null,
+            "id": "5b79e9b7e35d7b1d66480b07400ac470a231863d62689ef5c8fcb7a6f3833a12",
+            "state": "queued",
+            "updated_at": 1793731134
+          },
+          "identity": {
+            "created_at": 1793731134,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731134,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731134,
+              "error_code": null,
+              "id": "5b79e9b7e35d7b1d66480b07400ac470a231863d62689ef5c8fcb7a6f3833a12",
+              "state": "cancelled",
+              "updated_at": 1793731134
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-04",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"proposals\": [\n    {\n      \"kind\": \"goal\",\n      \"content\": \"Jogar RPGs táticos com classes\",\n      \"entity\": \"lucille\",\n      \"property\": \"goal\",\n      \"value\": \"táticos com classes\",\n      \"scope\": \"lucille\",\n      \"project\": \"atlas\",\n      \"temporal\": \"present\",\n      \"evidence\": \"Eu gosto de RPGs táticos com classes\",\n      \"correction\": null,\n      \"hypothesis\": null,\n      \"confidence\": 1.0,\n      \"relevance\": 1.0\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731139,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 151,
+            "prompt_tokens": 173,
+            "total_tokens": 324,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-mKvjWbOE5IZXb9M3unneRVpApW5H1iQP",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 173,
+            "prompt_ms": 215.512,
+            "prompt_per_token_ms": 1.2457341040462429,
+            "prompt_per_second": 802.7395226251903,
+            "predicted_n": 151,
+            "predicted_ms": 4510.182,
+            "predicted_per_token_ms": 30.06788,
+            "predicted_per_second": 33.25808138119481
+          }
+        },
+        "latency_s": 4.742909000022337,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731139,
+            "error_code": null,
+            "id": "fb8b503c66320e09e7f383dfe4c94371a4d9b8d959619b57b5462b4dfdeb08e8",
+            "state": "queued",
+            "updated_at": 1793731139
+          },
+          "identity": {
+            "created_at": 1793731139,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731139,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731139,
+              "error_code": null,
+              "id": "fb8b503c66320e09e7f383dfe4c94371a4d9b8d959619b57b5462b4dfdeb08e8",
+              "state": "cancelled",
+              "updated_at": 1793731139
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-09",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"proposals\": [\n    {\n      \"kind\": \"hardware\",\n      \"content\": \"Meu computador principal possui 40 GB de RAM\",\n      \"entity\": \"computador principal\",\n      \"property\": \"ram_capacity\",\n      \"value\": \"40_gb\",\n      \"scope\": \"lucille\",\n      \"project\": \"atlas\",\n      \"temporal\": \"present\",\n      \"evidence\": \"Meu computador principal possui 40 GB de RAM\",\n      \"correction\": null,\n      \"hypothesis\": null,\n      \"confidence\": 1.0,\n      \"relevance\": 1.0\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731144,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 157,
+            "prompt_tokens": 174,
+            "total_tokens": 331,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-StfRJW4L8LTDjCmTqUMPbbPGkgdKz3w9",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 174,
+            "prompt_ms": 207.948,
+            "prompt_per_token_ms": 1.195103448275862,
+            "prompt_per_second": 836.7476484505742,
+            "predicted_n": 157,
+            "predicted_ms": 4702.809,
+            "predicted_per_token_ms": 30.14621153846154,
+            "predicted_per_second": 33.17166399911202
+          }
+        },
+        "latency_s": 4.91841199999908,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731144,
+            "error_code": null,
+            "id": "24f4db133d0628e5b161bec586ad5b73d0eeb50e3b734a08715280969e3916a9",
+            "state": "queued",
+            "updated_at": 1793731144
+          },
+          "identity": {
+            "created_at": 1793731144,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731144,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731144,
+              "error_code": null,
+              "id": "24f4db133d0628e5b161bec586ad5b73d0eeb50e3b734a08715280969e3916a9",
+              "state": "cancelled",
+              "updated_at": 1793731144
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-10",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"proposals\": [\n    {\n      \"kind\": \"hardware\",\n      \"content\": \"Meu notebook do trabalho tem 12GB de RAM\",\n      \"entity\": \"notebook\",\n      \"property\": \"ram_capacity\",\n      \"value\": \"12_gb\",\n      \"scope\": \"lucille\",\n      \"project\": \"atlas\",\n      \"temporal\": \"present\",\n      \"evidence\": \"Meu notebook do trabalho tem 12GB de RAM\",\n      \"correction\": null,\n      \"hypothesis\": null,\n      \"confidence\": 1.0,\n      \"relevance\": 1.0\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731149,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 157,
+            "prompt_tokens": 175,
+            "total_tokens": 332,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-F4zPMi5o0EPvEEVDFrZep9G4GxEvC7dE",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 175,
+            "prompt_ms": 210.182,
+            "prompt_per_token_ms": 1.2010399999999999,
+            "prompt_per_second": 832.6117364950377,
+            "predicted_n": 157,
+            "predicted_ms": 4702.054,
+            "predicted_per_token_ms": 30.141371794871795,
+            "predicted_per_second": 33.17699031104279
+          }
+        },
+        "latency_s": 4.920217700011563,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731149,
+            "error_code": null,
+            "id": "7a5886b0176adb4181a19be937ec476feffa09abe9cd6d7c53dd6d602531a9f7",
+            "state": "queued",
+            "updated_at": 1793731149
+          },
+          "identity": {
+            "created_at": 1793731149,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731149,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731149,
+              "error_code": null,
+              "id": "7a5886b0176adb4181a19be937ec476feffa09abe9cd6d7c53dd6d602531a9f7",
+              "state": "cancelled",
+              "updated_at": 1793731149
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-13",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"proposals\": [\n    {\n      \"kind\": \"goal\",\n      \"content\": \"terminar a maquete do laboratório\",\n      \"entity\": \"maquete do laboratório\",\n      \"property\": \"goal\",\n      \"value\": \"terminar\",\n      \"scope\": \"lucille\",\n      \"project\": \"atlas\",\n      \"temporal\": null,\n      \"evidence\": \"Meu objetivo é terminar a maquete do laboratório\",\n      \"correction\": null,\n      \"hypothesis\": null,\n      \"confidence\": 1.0,\n      \"relevance\": 1.0\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731154,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 152,
+            "prompt_tokens": 174,
+            "total_tokens": 326,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-G14tZGz7e5akXnWrPyDnKBOEOTlWVhk8",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 174,
+            "prompt_ms": 211.946,
+            "prompt_per_token_ms": 1.218080459770115,
+            "prompt_per_second": 820.9638304096326,
+            "predicted_n": 152,
+            "predicted_ms": 4558.84,
+            "predicted_per_token_ms": 30.190993377483444,
+            "predicted_per_second": 33.12246097691518
+          }
+        },
+        "latency_s": 4.776219099992886,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731154,
+            "error_code": null,
+            "id": "b23741f09ce686460a02f79d07d66855386dacf65ccd263f33f9b45681347521",
+            "state": "queued",
+            "updated_at": 1793731154
+          },
+          "identity": {
+            "created_at": 1793731154,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731154,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731154,
+              "error_code": null,
+              "id": "b23741f09ce686460a02f79d07d66855386dacf65ccd263f33f9b45681347521",
+              "state": "cancelled",
+              "updated_at": 1793731154
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-16",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"proposals\": [\n    {\n      \"kind\": \"solution\",\n      \"content\": \"PostgreSQL\",\n      \"entity\": \"catálogo fictício\",\n      \"property\": \"solution\",\n      \"value\": \"PostgreSQL\",\n      \"scope\": \"lucille\",\n      \"project\": \"atlas\",\n      \"temporal\": \"past\",\n      \"evidence\": \"decidimos usar PostgreSQL para o catálogo fictício\",\n      \"correction\": null,\n      \"hypothesis\": null,\n      \"confidence\": 1.0,\n      \"relevance\": 1.0\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731159,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 146,
+            "prompt_tokens": 177,
+            "total_tokens": 323,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-abKp9EmPrk8bH9X04DKe8ApTBJrsNupx",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 177,
+            "prompt_ms": 224.019,
+            "prompt_per_token_ms": 1.26564406779661,
+            "prompt_per_second": 790.111553037912,
+            "predicted_n": 146,
+            "predicted_ms": 4384.469,
+            "predicted_per_token_ms": 30.23771724137931,
+            "predicted_per_second": 33.07127955517532
+          }
+        },
+        "latency_s": 4.6140105000231415,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731159,
+            "error_code": null,
+            "id": "7aae5af74b149011de062e9b77daf4937f68cd40db81676623668933e82022b2",
+            "state": "queued",
+            "updated_at": 1793731159
+          },
+          "identity": {
+            "created_at": 1793731159,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731159,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731159,
+              "error_code": null,
+              "id": "7aae5af74b149011de062e9b77daf4937f68cd40db81676623668933e82022b2",
+              "state": "cancelled",
+              "updated_at": 1793731159
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-18",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"proposals\": [\n    {\n      \"kind\": \"hypothesis\",\n      \"content\": \"The user might buy a graphics card next semester\",\n      \"entity\": \"graphics card\",\n      \"property\": \"goal\",\n      \"value\": \"buy a graphics card\",\n      \"scope\": \"lucille\",\n      \"project\": \"atlas\",\n      \"temporal\": \"next semester\",\n      \"evidence\": \"Eu talvez compre uma placa de vídeo no próximo semestre\",\n      \"correction\": null,\n      \"hypothesis\": null,\n      \"confidence\": 0.8,\n      \"relevance\": 1.0\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731163,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 154,
+            "prompt_tokens": 174,
+            "total_tokens": 328,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-omLbf1kvXUZSomdJHi3UTssvduEoZ4iH",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 174,
+            "prompt_ms": 213.08,
+            "prompt_per_token_ms": 1.2245977011494253,
+            "prompt_per_second": 816.5947062136287,
+            "predicted_n": 154,
+            "predicted_ms": 4609.305,
+            "predicted_per_token_ms": 30.126176470588238,
+            "predicted_per_second": 33.193724433510035
+          }
+        },
+        "latency_s": 4.82816959999036,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731164,
+            "error_code": null,
+            "id": "ca5e9ed56c6e735a87564ae0072f36f207f9ed931d6109ea924714911048f347",
+            "state": "queued",
+            "updated_at": 1793731164
+          },
+          "identity": {
+            "created_at": 1793731164,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731164,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731164,
+              "error_code": null,
+              "id": "ca5e9ed56c6e735a87564ae0072f36f207f9ed931d6109ea924714911048f347",
+              "state": "cancelled",
+              "updated_at": 1793731164
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-20",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"proposals\": [\n    {\n      \"kind\": \"goal\",\n      \"content\": \"terminar a maquete do laboratório\",\n      \"entity\": \"maquete do laboratório\",\n      \"property\": \"goal\",\n      \"value\": \"terminar\",\n      \"scope\": \"lucille\",\n      \"project\": \"atlas\",\n      \"temporal\": \"past\",\n      \"evidence\": \"Concluí meu objetivo de terminar a maquete do laboratório\",\n      \"correction\": null,\n      \"hypothesis\": null,\n      \"confidence\": 1.0,\n      \"relevance\": 1.0\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731168,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 156,
+            "prompt_tokens": 177,
+            "total_tokens": 333,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-kgSQMdp9HLXnn87S8JHf9wDD1vy7sqFL",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 177,
+            "prompt_ms": 220.796,
+            "prompt_per_token_ms": 1.2474350282485875,
+            "prompt_per_second": 801.6449573361837,
+            "predicted_n": 156,
+            "predicted_ms": 4664.786,
+            "predicted_per_token_ms": 30.095393548387097,
+            "predicted_per_second": 33.22767646790228
+          }
+        },
+        "latency_s": 4.8906441000290215,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731169,
+            "error_code": null,
+            "id": "143b0ece034c88f936533761db6447849873d261d50c95cf95247ae0ebfaf403",
+            "state": "queued",
+            "updated_at": 1793731169
+          },
+          "identity": {
+            "created_at": 1793731169,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731169,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731169,
+              "error_code": null,
+              "id": "143b0ece034c88f936533761db6447849873d261d50c95cf95247ae0ebfaf403",
+              "state": "cancelled",
+              "updated_at": 1793731169
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-27",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"proposals\": [\n    {\n      \"kind\": \"preference\",\n      \"content\": \"Eu não prefiro café com açúcar para mim\",\n      \"entity\": \"lucille\",\n      \"property\": \"coffee_sugar\",\n      \"value\": \"without_sugar\",\n      \"scope\": \"lucille\",\n      \"project\": \"atlas\",\n      \"temporal\": \"present\",\n      \"evidence\": \"Eu não prefiro café com açúcar para mim\",\n      \"correction\": null,\n      \"hypothesis\": null,\n      \"confidence\": 1.0,\n      \"relevance\": 1.0\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731173,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 153,
+            "prompt_tokens": 173,
+            "total_tokens": 326,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-DTZl8led7I8bf5vWkd60gi7BxUxm20uS",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 173,
+            "prompt_ms": 208.748,
+            "prompt_per_token_ms": 1.2066358381502889,
+            "prompt_per_second": 828.7504550941806,
+            "predicted_n": 153,
+            "predicted_ms": 4570.288,
+            "predicted_per_token_ms": 30.067684210526313,
+            "predicted_per_second": 33.25829794533737
+          }
+        },
+        "latency_s": 4.786192899977323,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731173,
+            "error_code": null,
+            "id": "a8dfdfa2dbdd5d84a1d21059f61e592a21befc1b4970d3054ddaea5a368c6b15",
+            "state": "queued",
+            "updated_at": 1793731173
+          },
+          "identity": {
+            "created_at": 1793731173,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731173,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731173,
+              "error_code": null,
+              "id": "a8dfdfa2dbdd5d84a1d21059f61e592a21befc1b4970d3054ddaea5a368c6b15",
+              "state": "cancelled",
+              "updated_at": 1793731173
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-29",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"proposals\": [\n    {\n      \"kind\": \"hardware\",\n      \"content\": \"Meu PC\",\n      \"entity\": \"PC\",\n      \"property\": \"ram_capacity\",\n      \"value\": \"24 GB\",\n      \"scope\": \"lucille\",\n      \"project\": \"atlas\",\n      \"temporal\": \"present\",\n      \"evidence\": \"Meu PC e meu notebook do trabalho têm 24 GB de RAM\",\n      \"correction\": null,\n      \"hypothesis\": null,\n      \"confidence\": 1.0,\n      \"relevance\": 1.0\n    },\n    {\n      \"kind\": \"hardware\",\n      \"content\": \"meu notebook do trabalho\",\n      \"entity\": \"notebook\",\n      \"property\": \"ram_capacity\",\n      \"value\": \"24 GB\",\n      \"scope\": \"lucille\",\n      \"project\": \"atlas\",\n      \"temporal\": \"present\",\n      \"evidence\": \"Meu PC e meu notebook do trabalho têm 24 GB de RAM\",\n      \"correction\": null,\n      \"hypothesis\": null,\n      \"confidence\": 1.0,\n      \"relevance\": 1.0\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731182,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 284,
+            "prompt_tokens": 178,
+            "total_tokens": 462,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-zUXqzgCJpE1P0MGsNSyoxNYpjz0rkCco",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 178,
+            "prompt_ms": 224.515,
+            "prompt_per_token_ms": 1.261320224719101,
+            "prompt_per_second": 792.8200788366034,
+            "predicted_n": 284,
+            "predicted_ms": 8542.854,
+            "predicted_per_token_ms": 30.18676325088339,
+            "predicted_per_second": 33.127102488231685
+          }
+        },
+        "latency_s": 8.77324020001106,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731182,
+            "error_code": null,
+            "id": "09f4955ba1bdc019403b40a34777dfbadc87072b5f989ced1603e7c273b52e23",
+            "state": "queued",
+            "updated_at": 1793731182
+          },
+          "identity": {
+            "created_at": 1793731182,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731182,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731182,
+              "error_code": null,
+              "id": "09f4955ba1bdc019403b40a34777dfbadc87072b5f989ced1603e7c273b52e23",
+              "state": "cancelled",
+              "updated_at": 1793731182
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      }
+    ],
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  {
+    "variant": "atomic_minimal",
+    "tp": 0,
+    "fp": 0,
+    "missed": 8,
+    "critical_writes": 0,
+    "calls": [
+      {
+        "id": "real-final-01",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Eu prefiro café sem açúcar todos os dias\",\n      \"category\": \"preference\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731185,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 73,
+            "prompt_tokens": 356,
+            "total_tokens": 429,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-TCPvP4pSuIAyDfb7abMZS43327IIVSr1",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 356,
+            "prompt_ms": 432.884,
+            "prompt_per_token_ms": 1.2159662921348315,
+            "prompt_per_second": 822.3912179706342,
+            "predicted_n": 73,
+            "predicted_ms": 2179.149,
+            "predicted_per_token_ms": 30.26595833333333,
+            "predicted_per_second": 33.040420824826576
+          }
+        },
+        "latency_s": 2.6365580999990925,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731185,
+            "error_code": null,
+            "id": "5b79e9b7e35d7b1d66480b07400ac470a231863d62689ef5c8fcb7a6f3833a12",
+            "state": "queued",
+            "updated_at": 1793731185
+          },
+          "identity": {
+            "created_at": 1793731185,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731185,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731185,
+              "error_code": null,
+              "id": "5b79e9b7e35d7b1d66480b07400ac470a231863d62689ef5c8fcb7a6f3833a12",
+              "state": "cancelled",
+              "updated_at": 1793731185
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-04",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Eu gosto de RPGs táticos com classes\",\n      \"category\": \"preference\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731188,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 73,
+            "prompt_tokens": 356,
+            "total_tokens": 429,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-dca7dPaI4JNW3b4kL3lK9sBeYaLhwPDU",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 356,
+            "prompt_ms": 446.26,
+            "prompt_per_token_ms": 1.2535393258426966,
+            "prompt_per_second": 797.7412270873482,
+            "predicted_n": 73,
+            "predicted_ms": 2199.183,
+            "predicted_per_token_ms": 30.544208333333334,
+            "predicted_per_second": 32.73943096140703
+          }
+        },
+        "latency_s": 2.6520666999858804,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731188,
+            "error_code": null,
+            "id": "fb8b503c66320e09e7f383dfe4c94371a4d9b8d959619b57b5462b4dfdeb08e8",
+            "state": "queued",
+            "updated_at": 1793731188
+          },
+          "identity": {
+            "created_at": 1793731188,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731188,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731188,
+              "error_code": null,
+              "id": "fb8b503c66320e09e7f383dfe4c94371a4d9b8d959619b57b5462b4dfdeb08e8",
+              "state": "cancelled",
+              "updated_at": 1793731188
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-09",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Meu computador principal possui 40 GB de RAM\",\n      \"category\": \"hardware\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731190,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 74,
+            "prompt_tokens": 357,
+            "total_tokens": 431,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-mivfXTzgnV0p7BtGfUYmZjsji4Gr6DT0",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 357,
+            "prompt_ms": 454.297,
+            "prompt_per_token_ms": 1.2725406162464987,
+            "prompt_per_second": 785.8295344235158,
+            "predicted_n": 74,
+            "predicted_ms": 2225.163,
+            "predicted_per_token_ms": 30.481684931506848,
+            "predicted_per_second": 32.806585405204025
+          }
+        },
+        "latency_s": 2.6902954999823123,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731191,
+            "error_code": null,
+            "id": "24f4db133d0628e5b161bec586ad5b73d0eeb50e3b734a08715280969e3916a9",
+            "state": "queued",
+            "updated_at": 1793731191
+          },
+          "identity": {
+            "created_at": 1793731191,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731191,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731191,
+              "error_code": null,
+              "id": "24f4db133d0628e5b161bec586ad5b73d0eeb50e3b734a08715280969e3916a9",
+              "state": "cancelled",
+              "updated_at": 1793731191
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-10",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Meu notebook do trabalho tem 12GB de RAM\",\n      \"category\": \"hardware\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731193,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 75,
+            "prompt_tokens": 358,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-Wehp4SqHLmMOdqSLFcX6oNn6eVdy85i0",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 358,
+            "prompt_ms": 438.753,
+            "prompt_per_token_ms": 1.2255670391061453,
+            "prompt_per_second": 815.9488368170702,
+            "predicted_n": 75,
+            "predicted_ms": 2238.806,
+            "predicted_per_token_ms": 30.254135135135137,
+            "predicted_per_second": 33.05333289262222
+          }
+        },
+        "latency_s": 2.7023097000201233,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731193,
+            "error_code": null,
+            "id": "7a5886b0176adb4181a19be937ec476feffa09abe9cd6d7c53dd6d602531a9f7",
+            "state": "queued",
+            "updated_at": 1793731193
+          },
+          "identity": {
+            "created_at": 1793731193,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731193,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731193,
+              "error_code": null,
+              "id": "7a5886b0176adb4181a19be937ec476feffa09abe9cd6d7c53dd6d602531a9f7",
+              "state": "cancelled",
+              "updated_at": 1793731193
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-13",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Meu objetivo é terminar a maquete do laboratório\",\n      \"category\": \"goal\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731196,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 74,
+            "prompt_tokens": 357,
+            "total_tokens": 431,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-tuWOZBaCENllUXrIbNl3vUt2LktzQYlN",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 357,
+            "prompt_ms": 442.923,
+            "prompt_per_token_ms": 1.2406806722689077,
+            "prompt_per_second": 806.0091708942638,
+            "predicted_n": 74,
+            "predicted_ms": 2218.744,
+            "predicted_per_token_ms": 30.393753424657536,
+            "predicted_per_second": 32.90149742376768
+          }
+        },
+        "latency_s": 2.670824500033632,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731196,
+            "error_code": null,
+            "id": "b23741f09ce686460a02f79d07d66855386dacf65ccd263f33f9b45681347521",
+            "state": "queued",
+            "updated_at": 1793731196
+          },
+          "identity": {
+            "created_at": 1793731196,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731196,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731196,
+              "error_code": null,
+              "id": "b23741f09ce686460a02f79d07d66855386dacf65ccd263f33f9b45681347521",
+              "state": "cancelled",
+              "updated_at": 1793731196
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-16",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"decidimos usar PostgreSQL para o catálogo fictício\",\n      \"category\": \"decision\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731199,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 74,
+            "prompt_tokens": 360,
+            "total_tokens": 434,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-uYfKlkCGIMsTbXL9bI92kaHv15xKm5cp",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 360,
+            "prompt_ms": 437.832,
+            "prompt_per_token_ms": 1.2162,
+            "prompt_per_second": 822.23318533136,
+            "predicted_n": 74,
+            "predicted_ms": 2227.198,
+            "predicted_per_token_ms": 30.509561643835614,
+            "predicted_per_second": 32.776609892789054
+          }
+        },
+        "latency_s": 2.671634799975436,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731199,
+            "error_code": null,
+            "id": "7aae5af74b149011de062e9b77daf4937f68cd40db81676623668933e82022b2",
+            "state": "queued",
+            "updated_at": 1793731199
+          },
+          "identity": {
+            "created_at": 1793731199,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731199,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731199,
+              "error_code": null,
+              "id": "7aae5af74b149011de062e9b77daf4937f68cd40db81676623668933e82022b2",
+              "state": "cancelled",
+              "updated_at": 1793731199
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-18",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Eu talvez compre uma placa de vídeo no próximo semestre\",\n      \"category\": \"hypothesis\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731202,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 74,
+            "prompt_tokens": 357,
+            "total_tokens": 431,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-qGPKXHpzorLZXx2wEs0nTnKdjJlmeJsx",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 357,
+            "prompt_ms": 440.259,
+            "prompt_per_token_ms": 1.233218487394958,
+            "prompt_per_second": 810.8863191893863,
+            "predicted_n": 74,
+            "predicted_ms": 2205.254,
+            "predicted_per_token_ms": 30.208958904109586,
+            "predicted_per_second": 33.10276276564967
+          }
+        },
+        "latency_s": 2.651395599998068,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731202,
+            "error_code": null,
+            "id": "ca5e9ed56c6e735a87564ae0072f36f207f9ed931d6109ea924714911048f347",
+            "state": "queued",
+            "updated_at": 1793731202
+          },
+          "identity": {
+            "created_at": 1793731202,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731202,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731202,
+              "error_code": null,
+              "id": "ca5e9ed56c6e735a87564ae0072f36f207f9ed931d6109ea924714911048f347",
+              "state": "cancelled",
+              "updated_at": 1793731202
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-20",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Concluí meu objetivo de terminar a maquete do laboratório\",\n      \"category\": \"goal\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731204,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 77,
+            "prompt_tokens": 360,
+            "total_tokens": 437,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-dhxCCbIj33H2YMCcKTUQmYQ9xQHZi3pp",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 360,
+            "prompt_ms": 439.074,
+            "prompt_per_token_ms": 1.2196500000000001,
+            "prompt_per_second": 819.907350469397,
+            "predicted_n": 77,
+            "predicted_ms": 2279.835,
+            "predicted_per_token_ms": 29.997828947368422,
+            "predicted_per_second": 33.33574578862067
+          }
+        },
+        "latency_s": 2.725779800035525,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731204,
+            "error_code": null,
+            "id": "143b0ece034c88f936533761db6447849873d261d50c95cf95247ae0ebfaf403",
+            "state": "queued",
+            "updated_at": 1793731204
+          },
+          "identity": {
+            "created_at": 1793731204,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731204,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731204,
+              "error_code": null,
+              "id": "143b0ece034c88f936533761db6447849873d261d50c95cf95247ae0ebfaf403",
+              "state": "cancelled",
+              "updated_at": 1793731204
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-27",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Eu não prefiro café com açúcar para mim\",\n      \"category\": \"preference\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731207,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 73,
+            "prompt_tokens": 356,
+            "total_tokens": 429,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-kqTmtDGlLFu630OSg97QNvYnBcDy9431",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 356,
+            "prompt_ms": 419.942,
+            "prompt_per_token_ms": 1.1796123595505619,
+            "prompt_per_second": 847.7361159398203,
+            "predicted_n": 73,
+            "predicted_ms": 2114.96,
+            "predicted_per_token_ms": 29.374444444444446,
+            "predicted_per_second": 34.04319703445928
+          }
+        },
+        "latency_s": 2.5564103000215255,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731207,
+            "error_code": null,
+            "id": "a8dfdfa2dbdd5d84a1d21059f61e592a21befc1b4970d3054ddaea5a368c6b15",
+            "state": "queued",
+            "updated_at": 1793731207
+          },
+          "identity": {
+            "created_at": 1793731207,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731207,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731207,
+              "error_code": null,
+              "id": "a8dfdfa2dbdd5d84a1d21059f61e592a21befc1b4970d3054ddaea5a368c6b15",
+              "state": "cancelled",
+              "updated_at": 1793731207
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-29",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Meu PC e meu notebook do trabalho têm 24 GB de RAM\",\n      \"category\": \"hardware\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731210,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 78,
+            "prompt_tokens": 361,
+            "total_tokens": 439,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-YNYFNnNX40fL9TdqxwjzNPSpKJXL2HGa",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 361,
+            "prompt_ms": 426.184,
+            "prompt_per_token_ms": 1.1805650969529087,
+            "prompt_per_second": 847.0519775496031,
+            "predicted_n": 78,
+            "predicted_ms": 2303.444,
+            "predicted_per_token_ms": 29.91485714285714,
+            "predicted_per_second": 33.42820576493286
+          }
+        },
+        "latency_s": 2.7359995000297204,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731210,
+            "error_code": null,
+            "id": "09f4955ba1bdc019403b40a34777dfbadc87072b5f989ced1603e7c273b52e23",
+            "state": "queued",
+            "updated_at": 1793731210
+          },
+          "identity": {
+            "created_at": 1793731210,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731210,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731210,
+              "error_code": null,
+              "id": "09f4955ba1bdc019403b40a34777dfbadc87072b5f989ced1603e7c273b52e23",
+              "state": "cancelled",
+              "updated_at": 1793731210
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      }
+    ],
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  {
+    "variant": "atomic_examples",
+    "tp": 0,
+    "fp": 0,
+    "missed": 8,
+    "critical_writes": 0,
+    "calls": [
+      {
+        "id": "real-final-01",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Eu prefiro café sem açúcar todos os dias\",\n      \"category\": \"preference\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731213,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 73,
+            "prompt_tokens": 449,
+            "total_tokens": 522,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-bZH9cM3kdTYbxDbsvucbN8AWRnC25o5p",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 449,
+            "prompt_ms": 565.059,
+            "prompt_per_token_ms": 1.2584832962138084,
+            "prompt_per_second": 794.6072887963912,
+            "predicted_n": 73,
+            "predicted_ms": 2187.91,
+            "predicted_per_token_ms": 30.387638888888887,
+            "predicted_per_second": 32.908117792779414
+          }
+        },
+        "latency_s": 2.7594283999642357,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731213,
+            "error_code": null,
+            "id": "5b79e9b7e35d7b1d66480b07400ac470a231863d62689ef5c8fcb7a6f3833a12",
+            "state": "queued",
+            "updated_at": 1793731213
+          },
+          "identity": {
+            "created_at": 1793731213,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731213,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731213,
+              "error_code": null,
+              "id": "5b79e9b7e35d7b1d66480b07400ac470a231863d62689ef5c8fcb7a6f3833a12",
+              "state": "cancelled",
+              "updated_at": 1793731213
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-04",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Eu gosto de RPGs táticos com classes\",\n      \"category\": \"preference\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731216,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 73,
+            "prompt_tokens": 449,
+            "total_tokens": 522,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-B64WdqzH5NRfIpT6MVShqPtXN2HL1cNX",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 449,
+            "prompt_ms": 571.157,
+            "prompt_per_token_ms": 1.272064587973274,
+            "prompt_per_second": 786.1236052433919,
+            "predicted_n": 73,
+            "predicted_ms": 2203.809,
+            "predicted_per_token_ms": 30.608458333333335,
+            "predicted_per_second": 32.67070785172399
+          }
+        },
+        "latency_s": 2.7836869999882765,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731216,
+            "error_code": null,
+            "id": "fb8b503c66320e09e7f383dfe4c94371a4d9b8d959619b57b5462b4dfdeb08e8",
+            "state": "queued",
+            "updated_at": 1793731216
+          },
+          "identity": {
+            "created_at": 1793731216,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731216,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731216,
+              "error_code": null,
+              "id": "fb8b503c66320e09e7f383dfe4c94371a4d9b8d959619b57b5462b4dfdeb08e8",
+              "state": "cancelled",
+              "updated_at": 1793731216
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-09",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Meu computador principal possui 40 GB de RAM\",\n      \"category\": \"hardware\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731219,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 74,
+            "prompt_tokens": 450,
+            "total_tokens": 524,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-NC8YVaFqE0IvC3gm7yukGonvyhLoJc7Z",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 450,
+            "prompt_ms": 561.79,
+            "prompt_per_token_ms": 1.248422222222222,
+            "prompt_per_second": 801.0110539525447,
+            "predicted_n": 74,
+            "predicted_ms": 2243.053,
+            "predicted_per_token_ms": 30.72675342465753,
+            "predicted_per_second": 32.54492871991879
+          }
+        },
+        "latency_s": 2.8107403999892995,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731219,
+            "error_code": null,
+            "id": "24f4db133d0628e5b161bec586ad5b73d0eeb50e3b734a08715280969e3916a9",
+            "state": "queued",
+            "updated_at": 1793731219
+          },
+          "identity": {
+            "created_at": 1793731219,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731219,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731219,
+              "error_code": null,
+              "id": "24f4db133d0628e5b161bec586ad5b73d0eeb50e3b734a08715280969e3916a9",
+              "state": "cancelled",
+              "updated_at": 1793731219
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-10",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Meu notebook do trabalho tem 12GB de RAM\",\n      \"category\": \"hardware\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731221,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 75,
+            "prompt_tokens": 451,
+            "total_tokens": 526,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-Obz8NYc2OlmQfG6nk6zZkVrrnUYi87Oe",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 451,
+            "prompt_ms": 566.849,
+            "prompt_per_token_ms": 1.2568713968957872,
+            "prompt_per_second": 795.626348463171,
+            "predicted_n": 75,
+            "predicted_ms": 2257.95,
+            "predicted_per_token_ms": 30.512837837837836,
+            "predicted_per_second": 32.773090635310794
+          }
+        },
+        "latency_s": 2.831058700045105,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731222,
+            "error_code": null,
+            "id": "7a5886b0176adb4181a19be937ec476feffa09abe9cd6d7c53dd6d602531a9f7",
+            "state": "queued",
+            "updated_at": 1793731222
+          },
+          "identity": {
+            "created_at": 1793731222,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731222,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731222,
+              "error_code": null,
+              "id": "7a5886b0176adb4181a19be937ec476feffa09abe9cd6d7c53dd6d602531a9f7",
+              "state": "cancelled",
+              "updated_at": 1793731222
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-13",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Meu objetivo é terminar a maquete do laboratório\",\n      \"category\": \"goal\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731224,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 74,
+            "prompt_tokens": 450,
+            "total_tokens": 524,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-XinqBeTUSIyzsxXJfSZQ2EpTeHtu63Fy",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 450,
+            "prompt_ms": 571.952,
+            "prompt_per_token_ms": 1.2710044444444444,
+            "prompt_per_second": 786.7793101519009,
+            "predicted_n": 74,
+            "predicted_ms": 2235.38,
+            "predicted_per_token_ms": 30.62164383561644,
+            "predicted_per_second": 32.65664003435658
+          }
+        },
+        "latency_s": 2.8138046000385657,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731224,
+            "error_code": null,
+            "id": "b23741f09ce686460a02f79d07d66855386dacf65ccd263f33f9b45681347521",
+            "state": "queued",
+            "updated_at": 1793731224
+          },
+          "identity": {
+            "created_at": 1793731224,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731224,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731224,
+              "error_code": null,
+              "id": "b23741f09ce686460a02f79d07d66855386dacf65ccd263f33f9b45681347521",
+              "state": "cancelled",
+              "updated_at": 1793731224
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-16",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"No projeto atlas, decidimos usar PostgreSQL para o catálogo fictício\",\n      \"category\": \"decision\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731227,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 77,
+            "prompt_tokens": 453,
+            "total_tokens": 530,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-99uxmVYseeOsCJDzUFXKL2EcxIMfBRFF",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 453,
+            "prompt_ms": 586.475,
+            "prompt_per_token_ms": 1.2946467991169979,
+            "prompt_per_second": 772.4114412379043,
+            "predicted_n": 77,
+            "predicted_ms": 2341.177,
+            "predicted_per_token_ms": 30.804960526315792,
+            "predicted_per_second": 32.46230421706689
+          }
+        },
+        "latency_s": 2.933835399977397,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731227,
+            "error_code": null,
+            "id": "7aae5af74b149011de062e9b77daf4937f68cd40db81676623668933e82022b2",
+            "state": "queued",
+            "updated_at": 1793731227
+          },
+          "identity": {
+            "created_at": 1793731227,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731227,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731227,
+              "error_code": null,
+              "id": "7aae5af74b149011de062e9b77daf4937f68cd40db81676623668933e82022b2",
+              "state": "cancelled",
+              "updated_at": 1793731227
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-18",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\"version\":2,\"scope\":\"lucille\",\"project\":\"atlas\",\"claims\":[{\"evidence\":\"Eu talvez compre uma placa de vídeo no próximo semestre\",\"category\":\"hypothesis\"}]}\n```"
+              }
+            }
+          ],
+          "created": 1793731229,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 40,
+            "prompt_tokens": 450,
+            "total_tokens": 490,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-IyEpcj1GndluXfypiYtBtjof5AYAZ8S0",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 450,
+            "prompt_ms": 567.565,
+            "prompt_per_token_ms": 1.2612555555555556,
+            "prompt_per_second": 792.8607296080625,
+            "predicted_n": 40,
+            "predicted_ms": 1192.076,
+            "predicted_per_token_ms": 30.566051282051284,
+            "predicted_per_second": 32.716034883681914
+          }
+        },
+        "latency_s": 1.7659938000142574,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731229,
+            "error_code": null,
+            "id": "ca5e9ed56c6e735a87564ae0072f36f207f9ed931d6109ea924714911048f347",
+            "state": "queued",
+            "updated_at": 1793731229
+          },
+          "identity": {
+            "created_at": 1793731229,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731229,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731229,
+              "error_code": null,
+              "id": "ca5e9ed56c6e735a87564ae0072f36f207f9ed931d6109ea924714911048f347",
+              "state": "cancelled",
+              "updated_at": 1793731229
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-20",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Concluí meu objetivo de terminar a maquete do laboratório\",\n      \"category\": \"goal\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731232,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 77,
+            "prompt_tokens": 453,
+            "total_tokens": 530,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-jDSemGwcE9bsCy30YiyA8E01OEmWWL8B",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 453,
+            "prompt_ms": 589.981,
+            "prompt_per_token_ms": 1.3023863134657836,
+            "prompt_per_second": 767.8213366193149,
+            "predicted_n": 77,
+            "predicted_ms": 2324.941,
+            "predicted_per_token_ms": 30.591328947368417,
+            "predicted_per_second": 32.689001570362436
+          }
+        },
+        "latency_s": 2.921167299966328,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731232,
+            "error_code": null,
+            "id": "143b0ece034c88f936533761db6447849873d261d50c95cf95247ae0ebfaf403",
+            "state": "queued",
+            "updated_at": 1793731232
+          },
+          "identity": {
+            "created_at": 1793731232,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731232,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731232,
+              "error_code": null,
+              "id": "143b0ece034c88f936533761db6447849873d261d50c95cf95247ae0ebfaf403",
+              "state": "cancelled",
+              "updated_at": 1793731232
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-27",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\"version\":2,\"scope\":\"lucille\",\"project\":\"atlas\",\"claims\":[]}\n```"
+              }
+            }
+          ],
+          "created": 1793731234,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 23,
+            "prompt_tokens": 449,
+            "total_tokens": 472,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-Y438l5rB4slui6TkfMSCJYXEprZ6oWIz",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 449,
+            "prompt_ms": 559.595,
+            "prompt_per_token_ms": 1.2463140311804008,
+            "prompt_per_second": 802.3659968369982,
+            "predicted_n": 23,
+            "predicted_ms": 672.7,
+            "predicted_per_token_ms": 30.577272727272728,
+            "predicted_per_second": 32.70402854169763
+          }
+        },
+        "latency_s": 1.239754099980928,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731234,
+            "error_code": null,
+            "id": "a8dfdfa2dbdd5d84a1d21059f61e592a21befc1b4970d3054ddaea5a368c6b15",
+            "state": "queued",
+            "updated_at": 1793731234
+          },
+          "identity": {
+            "created_at": 1793731234,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731234,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731234,
+              "error_code": null,
+              "id": "a8dfdfa2dbdd5d84a1d21059f61e592a21befc1b4970d3054ddaea5a368c6b15",
+              "state": "cancelled",
+              "updated_at": 1793731234
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      },
+      {
+        "id": "real-final-29",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "```json\n{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Meu PC e meu notebook do trabalho têm 24 GB de RAM\",\n      \"category\": \"hardware\"\n    }\n  ]\n}\n```"
+              }
+            }
+          ],
+          "created": 1793731237,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 78,
+            "prompt_tokens": 454,
+            "total_tokens": 532,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-zsm63IbyRw0J6ZDNRsNqYi1yh51UQAeb",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 454,
+            "prompt_ms": 597.014,
+            "prompt_per_token_ms": 1.3150088105726871,
+            "prompt_per_second": 760.451178699327,
+            "predicted_n": 78,
+            "predicted_ms": 2348.278,
+            "predicted_per_token_ms": 30.49711688311688,
+            "predicted_per_second": 32.78998483143819
+          }
+        },
+        "latency_s": 2.9768659999826923,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731237,
+            "error_code": null,
+            "id": "09f4955ba1bdc019403b40a34777dfbadc87072b5f989ced1603e7c273b52e23",
+            "state": "queued",
+            "updated_at": 1793731237
+          },
+          "identity": {
+            "created_at": 1793731237,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731237,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731237,
+              "error_code": null,
+              "id": "09f4955ba1bdc019403b40a34777dfbadc87072b5f989ced1603e7c273b52e23",
+              "state": "cancelled",
+              "updated_at": 1793731237
+            }
+          ],
+          "rejected": "Invalid structured extraction schema",
+          "validation": {
+            "error": "Invalid structured extraction schema"
+          }
+        }
+      }
+    ],
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  {
+    "variant": "atomic_constrained",
+    "tp": 7,
+    "fp": 0,
+    "missed": 1,
+    "critical_writes": 0,
+    "calls": [
+      {
+        "id": "real-final-01",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Eu prefiro café sem açúcar todos os dias\",\n      \"category\": \"preference\"\n    }\n  ]\n}"
+              }
+            }
+          ],
+          "created": 1793731239,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 73,
+            "prompt_tokens": 356,
+            "total_tokens": 429,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-Q4IESdff1XcxqHIctVV1mJxAiMs4bnka",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 356,
+            "prompt_ms": 439.954,
+            "prompt_per_token_ms": 1.2358258426966293,
+            "prompt_per_second": 809.1755047118562,
+            "predicted_n": 73,
+            "predicted_ms": 2201.147,
+            "predicted_per_token_ms": 30.57148611111111,
+            "predicted_per_second": 32.7102188086484
+          }
+        },
+        "latency_s": 2.67765689996304,
+        "native": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793731242,
+                "input": {
+                  "content": "Prefere café sem açúcar.",
+                  "fact_key": "user.coffee_sugar",
+                  "id": "0d549290-794e-faa5-9f61-68d822ce0494",
+                  "kind": "preference",
+                  "project": "atlas",
+                  "scope": "lucille",
+                  "source": "user",
+                  "source_id": "5b79e9b7e35d7b1d66480b07400ac470a231863d62689ef5c8fcb7a6f3833a12"
+                },
+                "state": "candidate",
+                "updated_at": 1793731242,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793731242,
+                  "evidence": "Eu prefiro café sem açúcar todos os dias",
+                  "interaction_id": "5b79e9b7e35d7b1d66480b07400ac470a231863d62689ef5c8fcb7a6f3833a12"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v2_grounded:explicit_coffee_preference",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "coffee_sugar",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "without_sugar"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731240,
+            "error_code": null,
+            "id": "5b79e9b7e35d7b1d66480b07400ac470a231863d62689ef5c8fcb7a6f3833a12",
+            "state": "queued",
+            "updated_at": 1793731240
+          },
+          "identity": {
+            "created_at": 1793731240,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731240,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731240,
+              "error_code": null,
+              "id": "5b79e9b7e35d7b1d66480b07400ac470a231863d62689ef5c8fcb7a6f3833a12",
+              "state": "done",
+              "updated_at": 1793731242
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": [
+              {
+                "confidence": 0.9,
+                "content": "Prefere café sem açúcar.",
+                "correction": false,
+                "evidence": "Eu prefiro café sem açúcar todos os dias",
+                "facets": [],
+                "kind": "preference",
+                "project_hint": null,
+                "property": "coffee_sugar",
+                "relevance": 0.8,
+                "rule": "llm_v2_grounded:explicit_coffee_preference",
+                "subject": "user",
+                "temporal": "preference",
+                "ttl_seconds": null,
+                "value": "without_sugar"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "real-final-04",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Eu gosto de RPGs táticos com classes\",\n      \"category\": \"preference\"\n    }\n  ]\n}"
+              }
+            }
+          ],
+          "created": 1793731242,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 73,
+            "prompt_tokens": 356,
+            "total_tokens": 429,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-Aw6TwCeYE4KzY0P8IsDSsQLQhmZFwCTS",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 356,
+            "prompt_ms": 438.755,
+            "prompt_per_token_ms": 1.2324578651685394,
+            "prompt_per_second": 811.3867648231928,
+            "predicted_n": 73,
+            "predicted_ms": 2192.462,
+            "predicted_per_token_ms": 30.45086111111111,
+            "predicted_per_second": 32.83979380258358
+          }
+        },
+        "latency_s": 2.6576624999870546,
+        "native": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793731244,
+                "input": {
+                  "content": "Gosta de jogos táticos por turnos (RPG, classes).",
+                  "fact_key": "user.games_tactics",
+                  "id": "3ae577e4-ce5c-cac5-28c4-d64e32232776",
+                  "kind": "preference",
+                  "project": "atlas",
+                  "scope": "lucille",
+                  "source": "user",
+                  "source_id": "fb8b503c66320e09e7f383dfe4c94371a4d9b8d959619b57b5462b4dfdeb08e8"
+                },
+                "state": "candidate",
+                "updated_at": 1793731244,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793731244,
+                  "evidence": "Eu gosto de RPGs táticos com classes",
+                  "interaction_id": "fb8b503c66320e09e7f383dfe4c94371a4d9b8d959619b57b5462b4dfdeb08e8"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v2_grounded:explicit_tactical_preference",
+                "expires_at": null,
+                "facets": [
+                  "rpg",
+                  "classes"
+                ],
+                "priority": 1,
+                "property": "games_tactics",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "positive"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731242,
+            "error_code": null,
+            "id": "fb8b503c66320e09e7f383dfe4c94371a4d9b8d959619b57b5462b4dfdeb08e8",
+            "state": "queued",
+            "updated_at": 1793731242
+          },
+          "identity": {
+            "created_at": 1793731242,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731242,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731242,
+              "error_code": null,
+              "id": "fb8b503c66320e09e7f383dfe4c94371a4d9b8d959619b57b5462b4dfdeb08e8",
+              "state": "done",
+              "updated_at": 1793731244
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": [
+              {
+                "confidence": 0.9,
+                "content": "Gosta de jogos táticos por turnos (RPG, classes).",
+                "correction": false,
+                "evidence": "Eu gosto de RPGs táticos com classes",
+                "facets": [
+                  "rpg",
+                  "classes"
+                ],
+                "kind": "preference",
+                "project_hint": null,
+                "property": "games_tactics",
+                "relevance": 0.8,
+                "rule": "llm_v2_grounded:explicit_tactical_preference",
+                "subject": "user",
+                "temporal": "preference",
+                "ttl_seconds": null,
+                "value": "positive"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "real-final-09",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Meu computador principal possui 40 GB de RAM\",\n      \"category\": \"hardware\"\n    }\n  ]\n}"
+              }
+            }
+          ],
+          "created": 1793731245,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 74,
+            "prompt_tokens": 357,
+            "total_tokens": 431,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-dqNqN8v0xAL8qVaaNa95i5cM029K0Zk1",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 357,
+            "prompt_ms": 438.228,
+            "prompt_per_token_ms": 1.227529411764706,
+            "prompt_per_second": 814.6444316657083,
+            "predicted_n": 74,
+            "predicted_ms": 2205.462,
+            "predicted_per_token_ms": 30.21180821917808,
+            "predicted_per_second": 33.09964080088435
+          }
+        },
+        "latency_s": 2.6546285999938846,
+        "native": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793731247,
+                "input": {
+                  "content": "Meu computador principal possui 40 GB de RAM",
+                  "fact_key": "device.primary_computer.ram_capacity",
+                  "id": "a3ca7e07-9334-a472-bcbc-006b74e8c6d3",
+                  "kind": "hardware",
+                  "project": "atlas",
+                  "scope": "lucille",
+                  "source": "user",
+                  "source_id": "24f4db133d0628e5b161bec586ad5b73d0eeb50e3b734a08715280969e3916a9"
+                },
+                "state": "candidate",
+                "updated_at": 1793731247,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793731247,
+                  "evidence": "Meu computador principal possui 40 GB de RAM",
+                  "interaction_id": "24f4db133d0628e5b161bec586ad5b73d0eeb50e3b734a08715280969e3916a9"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v2_grounded:explicit_named_device_capacity",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "ram_capacity",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "device.primary_computer",
+                "temporal": "durable",
+                "value": "40_gb"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731245,
+            "error_code": null,
+            "id": "24f4db133d0628e5b161bec586ad5b73d0eeb50e3b734a08715280969e3916a9",
+            "state": "queued",
+            "updated_at": 1793731245
+          },
+          "identity": {
+            "created_at": 1793731245,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731245,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731245,
+              "error_code": null,
+              "id": "24f4db133d0628e5b161bec586ad5b73d0eeb50e3b734a08715280969e3916a9",
+              "state": "done",
+              "updated_at": 1793731247
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": [
+              {
+                "confidence": 0.9,
+                "content": "Meu computador principal possui 40 GB de RAM",
+                "correction": false,
+                "evidence": "Meu computador principal possui 40 GB de RAM",
+                "facets": [],
+                "kind": "hardware",
+                "project_hint": null,
+                "property": "ram_capacity",
+                "relevance": 0.8,
+                "rule": "llm_v2_grounded:explicit_named_device_capacity",
+                "subject": "device.primary_computer",
+                "temporal": "durable",
+                "ttl_seconds": null,
+                "value": "40_gb"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "real-final-10",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Meu notebook do trabalho tem 12GB de RAM\",\n      \"category\": \"hardware\"\n    }\n  ]\n}"
+              }
+            }
+          ],
+          "created": 1793731248,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 75,
+            "prompt_tokens": 358,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-oCVAsw25jcvExViIlG2QNcRlgPYTUqQh",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 358,
+            "prompt_ms": 443.29,
+            "prompt_per_token_ms": 1.2382402234636871,
+            "prompt_per_second": 807.5977351169663,
+            "predicted_n": 75,
+            "predicted_ms": 2257.71,
+            "predicted_per_token_ms": 30.509594594594596,
+            "predicted_per_second": 32.77657449362407
+          }
+        },
+        "latency_s": 2.7330880999797955,
+        "native": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793731250,
+                "input": {
+                  "content": "Meu notebook do trabalho tem 12GB de RAM",
+                  "fact_key": "device.work_laptop.ram_capacity",
+                  "id": "c57ca2f0-4a85-f55a-d1dd-eb1d89eaed9b",
+                  "kind": "hardware",
+                  "project": "atlas",
+                  "scope": "lucille",
+                  "source": "user",
+                  "source_id": "7a5886b0176adb4181a19be937ec476feffa09abe9cd6d7c53dd6d602531a9f7"
+                },
+                "state": "candidate",
+                "updated_at": 1793731250,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793731250,
+                  "evidence": "Meu notebook do trabalho tem 12GB de RAM",
+                  "interaction_id": "7a5886b0176adb4181a19be937ec476feffa09abe9cd6d7c53dd6d602531a9f7"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v2_grounded:explicit_named_device_capacity",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "ram_capacity",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "device.work_laptop",
+                "temporal": "durable",
+                "value": "12_gb"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731248,
+            "error_code": null,
+            "id": "7a5886b0176adb4181a19be937ec476feffa09abe9cd6d7c53dd6d602531a9f7",
+            "state": "queued",
+            "updated_at": 1793731248
+          },
+          "identity": {
+            "created_at": 1793731248,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731248,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731248,
+              "error_code": null,
+              "id": "7a5886b0176adb4181a19be937ec476feffa09abe9cd6d7c53dd6d602531a9f7",
+              "state": "done",
+              "updated_at": 1793731250
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": [
+              {
+                "confidence": 0.9,
+                "content": "Meu notebook do trabalho tem 12GB de RAM",
+                "correction": false,
+                "evidence": "Meu notebook do trabalho tem 12GB de RAM",
+                "facets": [],
+                "kind": "hardware",
+                "project_hint": null,
+                "property": "ram_capacity",
+                "relevance": 0.8,
+                "rule": "llm_v2_grounded:explicit_named_device_capacity",
+                "subject": "device.work_laptop",
+                "temporal": "durable",
+                "ttl_seconds": null,
+                "value": "12_gb"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "real-final-13",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Meu objetivo é terminar a maquete do laboratório\",\n      \"category\": \"goal\"\n    }\n  ]\n}"
+              }
+            }
+          ],
+          "created": 1793731251,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 74,
+            "prompt_tokens": 357,
+            "total_tokens": 431,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-efECDH1i5lFiAh0mCmwLeebrnCQg4W3k",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 357,
+            "prompt_ms": 432.234,
+            "prompt_per_token_ms": 1.2107394957983193,
+            "prompt_per_second": 825.9415039076056,
+            "predicted_n": 74,
+            "predicted_ms": 2236.446,
+            "predicted_per_token_ms": 30.636246575342465,
+            "predicted_per_second": 32.64107427588236
+          }
+        },
+        "latency_s": 2.67657120001968,
+        "native": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793731253,
+                "input": {
+                  "content": "Meu objetivo é terminar a maquete do laboratório",
+                  "fact_key": "user.goal.e01937d7fd1c",
+                  "id": "beae60d9-75e1-12a7-95ec-c2234a63c49f",
+                  "kind": "goal",
+                  "project": "atlas",
+                  "scope": "lucille",
+                  "source": "user",
+                  "source_id": "b23741f09ce686460a02f79d07d66855386dacf65ccd263f33f9b45681347521"
+                },
+                "state": "candidate",
+                "updated_at": 1793731253,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793731253,
+                  "evidence": "Meu objetivo é terminar a maquete do laboratório",
+                  "interaction_id": "b23741f09ce686460a02f79d07d66855386dacf65ccd263f33f9b45681347521"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v2_grounded:explicit_goal",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "goal.e01937d7fd1c",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "durable",
+                "value": "meu objetivo e terminar a maquete do laboratorio"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731251,
+            "error_code": null,
+            "id": "b23741f09ce686460a02f79d07d66855386dacf65ccd263f33f9b45681347521",
+            "state": "queued",
+            "updated_at": 1793731251
+          },
+          "identity": {
+            "created_at": 1793731251,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731251,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731251,
+              "error_code": null,
+              "id": "b23741f09ce686460a02f79d07d66855386dacf65ccd263f33f9b45681347521",
+              "state": "done",
+              "updated_at": 1793731253
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": [
+              {
+                "confidence": 0.9,
+                "content": "Meu objetivo é terminar a maquete do laboratório",
+                "correction": false,
+                "evidence": "Meu objetivo é terminar a maquete do laboratório",
+                "facets": [],
+                "kind": "goal",
+                "project_hint": null,
+                "property": "goal.e01937d7fd1c",
+                "relevance": 0.8,
+                "rule": "llm_v2_grounded:explicit_goal",
+                "subject": "user",
+                "temporal": "durable",
+                "ttl_seconds": null,
+                "value": "meu objetivo e terminar a maquete do laboratorio"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "real-final-16",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"decidimos usar PostgreSQL para o catálogo fictício\",\n      \"category\": \"decision\"\n    }\n  ]\n}"
+              }
+            }
+          ],
+          "created": 1793731253,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 74,
+            "prompt_tokens": 360,
+            "total_tokens": 434,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-4edEIPcC1b6MCkafBHy7sit5cUnH2THp",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 360,
+            "prompt_ms": 437.361,
+            "prompt_per_token_ms": 1.2148916666666667,
+            "prompt_per_second": 823.1186594140767,
+            "predicted_n": 74,
+            "predicted_ms": 2207.926,
+            "predicted_per_token_ms": 30.245561643835615,
+            "predicted_per_second": 33.062702282594614
+          }
+        },
+        "latency_s": 2.6681146000046283,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731253,
+            "error_code": null,
+            "id": "7aae5af74b149011de062e9b77daf4937f68cd40db81676623668933e82022b2",
+            "state": "queued",
+            "updated_at": 1793731253
+          },
+          "identity": {
+            "created_at": 1793731253,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731253,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731253,
+              "error_code": null,
+              "id": "7aae5af74b149011de062e9b77daf4937f68cd40db81676623668933e82022b2",
+              "state": "done",
+              "updated_at": 1793731255
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": []
+          }
+        }
+      },
+      {
+        "id": "real-final-18",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Eu talvez compre uma placa de vídeo no próximo semestre\",\n      \"category\": \"hypothesis\"\n    }\n  ]\n}"
+              }
+            }
+          ],
+          "created": 1793731256,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 74,
+            "prompt_tokens": 357,
+            "total_tokens": 431,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-WLw5wKBT3AvMUBwhWxf6lgvFcuz2EVBO",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 357,
+            "prompt_ms": 445.427,
+            "prompt_per_token_ms": 1.2476946778711486,
+            "prompt_per_second": 801.4781322191964,
+            "predicted_n": 74,
+            "predicted_ms": 2216.777,
+            "predicted_per_token_ms": 30.366808219178083,
+            "predicted_per_second": 32.930691720457226
+          }
+        },
+        "latency_s": 2.6868409999879077,
+        "native": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793731258,
+                "input": {
+                  "content": "Eu talvez compre uma placa de vídeo no próximo semestre",
+                  "fact_key": "user.hardware_intention",
+                  "id": "75d9eb20-bc91-710f-79c9-9bdecca94d03",
+                  "kind": "hypothesis",
+                  "project": "atlas",
+                  "scope": "lucille",
+                  "source": "user",
+                  "source_id": "ca5e9ed56c6e735a87564ae0072f36f207f9ed931d6109ea924714911048f347"
+                },
+                "state": "candidate",
+                "updated_at": 1793731258,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793731258,
+                  "evidence": "Eu talvez compre uma placa de vídeo no próximo semestre",
+                  "interaction_id": "ca5e9ed56c6e735a87564ae0072f36f207f9ed931d6109ea924714911048f347"
+                }
+              ],
+              "quality": {
+                "confidence": 0.8,
+                "evidence_rule": "llm_v2_grounded:explicit_hypothesis",
+                "expires_at": 1794336058,
+                "facets": [],
+                "priority": 1,
+                "property": "hardware_intention",
+                "relevance": 0.65,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "hypothesis",
+                "value": "eu talvez compre uma placa de video no proximo semestre"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731256,
+            "error_code": null,
+            "id": "ca5e9ed56c6e735a87564ae0072f36f207f9ed931d6109ea924714911048f347",
+            "state": "queued",
+            "updated_at": 1793731256
+          },
+          "identity": {
+            "created_at": 1793731256,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731256,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731256,
+              "error_code": null,
+              "id": "ca5e9ed56c6e735a87564ae0072f36f207f9ed931d6109ea924714911048f347",
+              "state": "done",
+              "updated_at": 1793731258
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": [
+              {
+                "confidence": 0.8,
+                "content": "Eu talvez compre uma placa de vídeo no próximo semestre",
+                "correction": false,
+                "evidence": "Eu talvez compre uma placa de vídeo no próximo semestre",
+                "facets": [],
+                "kind": "hypothesis",
+                "project_hint": null,
+                "property": "hardware_intention",
+                "relevance": 0.65,
+                "rule": "llm_v2_grounded:explicit_hypothesis",
+                "subject": "user",
+                "temporal": "hypothesis",
+                "ttl_seconds": 604800,
+                "value": "eu talvez compre uma placa de video no proximo semestre"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "real-final-20",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Concluí meu objetivo de terminar a maquete do laboratório\",\n      \"category\": \"goal\"\n    }\n  ]\n}"
+              }
+            }
+          ],
+          "created": 1793731259,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 77,
+            "prompt_tokens": 360,
+            "total_tokens": 437,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-gRr52ZkkyOo9IX622GonBmFUZod4fO9O",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 360,
+            "prompt_ms": 437.917,
+            "prompt_per_token_ms": 1.216436111111111,
+            "prompt_per_second": 822.0735892874678,
+            "predicted_n": 77,
+            "predicted_ms": 2324.059,
+            "predicted_per_token_ms": 30.579723684210528,
+            "predicted_per_second": 32.70140732227538
+          }
+        },
+        "latency_s": 2.77294830000028,
+        "native": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793731261,
+                "input": {
+                  "content": "Objetivo concluído: terminar a maquete do laboratorio.",
+                  "fact_key": "user.goal.e01937d7fd1c",
+                  "id": "1eabb8c2-04a3-2437-d80d-9be3c4a76c5a",
+                  "kind": "goal",
+                  "project": "atlas",
+                  "scope": "lucille",
+                  "source": "user",
+                  "source_id": "143b0ece034c88f936533761db6447849873d261d50c95cf95247ae0ebfaf403"
+                },
+                "state": "candidate",
+                "updated_at": 1793731261,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793731261,
+                  "evidence": "Concluí meu objetivo de terminar a maquete do laboratório",
+                  "interaction_id": "143b0ece034c88f936533761db6447849873d261d50c95cf95247ae0ebfaf403"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v2_grounded:explicit_completed_goal",
+                "expires_at": null,
+                "facets": [],
+                "priority": 2,
+                "property": "goal.e01937d7fd1c",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "completed",
+                "value": "completed:terminar a maquete do laboratorio"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731259,
+            "error_code": null,
+            "id": "143b0ece034c88f936533761db6447849873d261d50c95cf95247ae0ebfaf403",
+            "state": "queued",
+            "updated_at": 1793731259
+          },
+          "identity": {
+            "created_at": 1793731259,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731259,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731259,
+              "error_code": null,
+              "id": "143b0ece034c88f936533761db6447849873d261d50c95cf95247ae0ebfaf403",
+              "state": "done",
+              "updated_at": 1793731261
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": [
+              {
+                "confidence": 0.9,
+                "content": "Objetivo concluído: terminar a maquete do laboratorio.",
+                "correction": true,
+                "evidence": "Concluí meu objetivo de terminar a maquete do laboratório",
+                "facets": [],
+                "kind": "goal",
+                "project_hint": null,
+                "property": "goal.e01937d7fd1c",
+                "relevance": 0.8,
+                "rule": "llm_v2_grounded:explicit_completed_goal",
+                "subject": "user",
+                "temporal": "completed",
+                "ttl_seconds": null,
+                "value": "completed:terminar a maquete do laboratorio"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "real-final-27",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Eu não prefiro café com açúcar para mim\",\n      \"category\": \"preference\"\n    }\n  ]\n}"
+              }
+            }
+          ],
+          "created": 1793731262,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 73,
+            "prompt_tokens": 356,
+            "total_tokens": 429,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-IOuf6vsr0DlcXvJAlrcKl0VsFF7HJ72n",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 356,
+            "prompt_ms": 438.457,
+            "prompt_per_token_ms": 1.2316207865168538,
+            "prompt_per_second": 811.9382288342985,
+            "predicted_n": 73,
+            "predicted_ms": 2186.318,
+            "predicted_per_token_ms": 30.365527777777782,
+            "predicted_per_second": 32.93208032866216
+          }
+        },
+        "latency_s": 2.633208699990064,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731262,
+            "error_code": null,
+            "id": "a8dfdfa2dbdd5d84a1d21059f61e592a21befc1b4970d3054ddaea5a368c6b15",
+            "state": "queued",
+            "updated_at": 1793731262
+          },
+          "identity": {
+            "created_at": 1793731262,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731262,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731262,
+              "error_code": null,
+              "id": "a8dfdfa2dbdd5d84a1d21059f61e592a21befc1b4970d3054ddaea5a368c6b15",
+              "state": "done",
+              "updated_at": 1793731264
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": []
+          }
+        }
+      },
+      {
+        "id": "real-final-29",
+        "reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"version\": 2,\n  \"scope\": \"lucille\",\n  \"project\": \"atlas\",\n  \"claims\": [\n    {\n      \"evidence\": \"Meu PC e meu notebook do trabalho têm 24 GB de RAM\",\n      \"category\": \"hardware\"\n    }\n  ]\n}"
+              }
+            }
+          ],
+          "created": 1793731265,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 78,
+            "prompt_tokens": 361,
+            "total_tokens": 439,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-m6XOuEGjqwwFRcSMXuepA0ET2cM7K57b",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 361,
+            "prompt_ms": 458.324,
+            "prompt_per_token_ms": 1.269595567867036,
+            "prompt_per_second": 787.6524031034813,
+            "predicted_n": 78,
+            "predicted_ms": 2326.688,
+            "predicted_per_token_ms": 30.216727272727272,
+            "predicted_per_second": 33.09425243092327
+          }
+        },
+        "latency_s": 2.792709000001196,
+        "native": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793731265,
+            "error_code": null,
+            "id": "09f4955ba1bdc019403b40a34777dfbadc87072b5f989ced1603e7c273b52e23",
+            "state": "queued",
+            "updated_at": 1793731265
+          },
+          "identity": {
+            "created_at": 1793731265,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793731265,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793731265,
+              "error_code": null,
+              "id": "09f4955ba1bdc019403b40a34777dfbadc87072b5f989ced1603e7c273b52e23",
+              "state": "done",
+              "updated_at": 1793731267
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": []
+          }
+        }
+      }
+    ],
+    "precision": 1.0,
+    "recall": 0.875
+  }
+]

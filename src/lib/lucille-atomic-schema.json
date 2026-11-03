@@ -1,0 +1,53 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "scope",
+    "project",
+    "claims"
+  ],
+  "properties": {
+    "version": {
+      "const": 2
+    },
+    "scope": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    },
+    "claims": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "evidence",
+          "category"
+        ],
+        "properties": {
+          "evidence": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "category": {
+            "enum": [
+              "preference",
+              "hardware",
+              "goal",
+              "task",
+              "solution",
+              "project",
+              "decision",
+              "constraint",
+              "fact",
+              "hypothesis"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

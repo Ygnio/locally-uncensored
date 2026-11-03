@@ -45,10 +45,17 @@ export async function encodeIsolated(space: EmbeddingSpace, text: string, docume
 export async function initializeSimulatedIndex(scope: string, project: string) {
   const space = await manifest()
   await manage({ operation: 'configure_embedding', space }, true)
+  if (realValidationPin && space.index_version >= 3) {
+    const policy = await manage<Record<string, unknown>>({ operation: 'learning_policy' })
+    await manage({ operation: 'save_learning_policy', policy: { ...policy, minimum_similarity: 0.6, lexical_weight: 0.5, semantic_weight: 0.5 } }, true)
+  }
   const records = await manage<{ memory: { input: { id: string; content: string }; state: string; version: number } }[]>({ operation: 'details', scope, project })
   for (const { memory } of records.filter(d => d.memory.state === 'active').slice(0, 64)) {
-    const vector = await encodeIsolated(space, memory.input.content, true)
-    await manage({ operation: 'put_vector', id: memory.input.id, version: memory.version, space, vector }, true)
+    const representation = realValidationPin && space.index_version >= 3
+      ? await manage<{ id: string; version: number; text: string }>({ operation: 'embedding_text', id: memory.input.id, scope, project })
+      : { id: memory.input.id, version: memory.version, text: memory.input.content }
+    const vector = await encodeIsolated(space, representation.text, true)
+    await manage({ operation: 'put_vector', id: representation.id, version: representation.version, space, vector }, true)
   }
   semanticStatus.state = realValidationPin ? 'REAL Nomic test index ready; pinned weights and owned endpoint verified' : 'SIMULATED index ready; real Nomic unverified'; semanticStatus.model = space.model; semanticStatus.simulation = !realValidationPin
   return manage<IndexStatus>({ operation: 'index_status' })
