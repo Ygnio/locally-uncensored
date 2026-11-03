@@ -3,7 +3,10 @@ use crate::Result;
 use std::path::{Path, PathBuf};
 
 pub fn validate_host(debug: bool, identifier: &str, window: &str) -> Result<()> {
-    if debug && identifier == "dev.ygnio.lucille.phase1" && window == "main" {
+    if debug
+        && ["dev.ygnio.lucille.phase1", "dev.ygnio.lucille.phase15"].contains(&identifier)
+        && window == "main"
+    {
         Ok(())
     } else {
         Err("Lucille phase 1 requires an isolated debug application".into())

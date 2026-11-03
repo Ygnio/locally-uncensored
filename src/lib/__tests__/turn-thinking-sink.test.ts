@@ -138,7 +138,7 @@ describe('both agent loops are wired to it, on the prompt transport too', () => 
   // local model takes, the built-in engine included.
   it('the prompt transport carries the tri-state instead of discarding it', () => {
     for (const src of [agent, codex]) {
-      expect(src).toContain('const runHermes = (opts: typeof hermesOpts)')
+      expect(src).toContain('const runHermes = async (opts: typeof hermesOpts)')
       expect(src).toContain('hermesTurn = await runHermes(hermesOpts)')
     }
   })

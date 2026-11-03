@@ -92,7 +92,11 @@ impl Store {
         let version: i64 = db
             .pragma_query_value(None, "user_version", |r| r.get(0))
             .map_err(db_error)?;
-        let migrations = [include_str!("001_memory.sql"), include_str!("002_fts.sql")];
+        let migrations = [
+            include_str!("001_memory.sql"),
+            include_str!("002_fts.sql"),
+            include_str!("003_code.sql"),
+        ];
         if version < 0 || version > migrations.len() as i64 {
             return Err("Unsupported newer database schema".into());
         }
@@ -511,7 +515,7 @@ impl Store {
             .map_err(db_error)?;
         drop(q);
         let result = serde_json::to_string(&Backup {
-            schema: 2,
+            schema: 3,
             identity: self.identity()?,
             memories,
             history,
@@ -527,7 +531,7 @@ impl Store {
             return Err("Backup too large".into());
         }
         let backup: Backup = serde_json::from_str(json).map_err(|_| "Invalid backup")?;
-        if backup.schema != 2 {
+        if ![2, 3].contains(&backup.schema) {
             return Err("Unsupported backup schema".into());
         }
         backup.identity.profile.validate()?;

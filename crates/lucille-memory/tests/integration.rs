@@ -94,7 +94,7 @@ fn chat_and_agent_retrieve_fact_and_durable_preference() {
     let mut c = candidate("Prefer concise synthetic examples", "response.style");
     c.kind = Kind::Preference;
     let p = active(&mut s, c);
-    for mode in [Mode::Chat, Mode::Agent] {
+    for mode in [Mode::Chat, Mode::Agent, Mode::Code] {
         let ctx = s.context(request(mode)).unwrap();
         assert_eq!(ctx.references.len(), 2);
         assert!(ctx.references.iter().any(|r| r.id == m.input.id));
@@ -481,11 +481,36 @@ fn sqlite_wal_migration_versions_and_future_schema_guard_are_real() {
         db.query_row("SELECT count(*) FROM schema_migrations", [], |r| r
             .get::<_, i64>(0))
             .unwrap(),
-        2
+        3
     );
     drop(s);
     db.pragma_update(None, "user_version", 99).unwrap();
     assert!(Store::open(&dir.path().join("synthetic.sqlite3")).is_err());
+}
+
+#[test]
+fn phase1_schema_upgrade_preserves_existing_retrieval_audit() {
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("synthetic.sqlite3");
+    let db = rusqlite::Connection::open(&path).unwrap();
+    db.execute_batch(include_str!("../src/001_memory.sql"))
+        .unwrap();
+    db.execute_batch(include_str!("../src/002_fts.sql"))
+        .unwrap();
+    db.execute_batch("INSERT INTO schema_migrations VALUES(1,1),(2,1); INSERT INTO scopes VALUES('lucille'); INSERT INTO retrieval_audit VALUES(1,'synthetic-conversation','synthetic-message','chat','lucille','synthetic-a',1,'[]',4096,1000,1); PRAGMA user_version=2;").unwrap();
+    drop(db);
+    let mut store = Store::open(&path).unwrap();
+    store
+        .configure_identity(Profile::fixture(), 0, &permit())
+        .unwrap();
+    store.context(request(Mode::Code)).unwrap();
+    store.check_integrity().unwrap();
+    let backup: serde_json::Value =
+        serde_json::from_str(&store.export_backup(&permit()).unwrap()).unwrap();
+    assert_eq!(backup["schema"], 3);
+    assert_eq!(backup["audits"].as_array().unwrap().len(), 2);
+    assert_eq!(backup["audits"][0]["mode"], "chat");
+    assert_eq!(backup["audits"][1]["mode"], "code");
 }
 
 #[test]

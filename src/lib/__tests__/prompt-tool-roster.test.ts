@@ -68,7 +68,7 @@ function sliceFunction(src: string, header: string): string {
 }
 
 const agentChat = read('hooks', 'useAgentChat.ts')
-const codex = read('hooks', 'useCodex.ts')
+const codex = read('lib', 'codex-prompts.ts')
 const hermes = read('api', 'hermes-tool-calling.ts')
 // The mobile relay ships its own copy of the coding prompt. It drifted the
 // same way and is the surface where a visible plan counts for most, so it is

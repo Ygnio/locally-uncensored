@@ -39,7 +39,7 @@ export function LucilleSettings({ conversation }: { conversation: Conversation }
     await load()
   }
   return <fieldset disabled={busy || generating} className="space-y-2 rounded border border-purple-500 p-3 text-xs">
-    <legend>Lucille — isolated phase 1 QA</legend>
+    <legend>Lucille — isolated QA</legend>
     <p>Use fictional data only. This profile requires the isolated debug application. Automatic extraction is disabled for bound conversations.</p>
     <label className="block">Scope <input aria-label="Lucille scope" value={scope} disabled={enabled} onChange={event => setScope(event.target.value)} className="rounded border bg-transparent p-1" /></label>
     <label className="block">Project <input aria-label="Lucille project" value={project} disabled={enabled} onChange={event => setProject(event.target.value)} className="rounded border bg-transparent p-1" /></label>
@@ -58,7 +58,7 @@ export function LucilleSettings({ conversation }: { conversation: Conversation }
         await load()
       })}>Explicitly save identity configuration</button>
     </>}
-    <button type="button" disabled={!enabled && (!identity || !!conversation.groupModels?.length || !!conversation.mode && conversation.mode !== 'lu')}
+    <button type="button" disabled={!enabled && (!identity || !!conversation.groupModels?.length || !!conversation.mode && conversation.mode !== 'lu' && conversation.mode !== 'codex')}
       className="block rounded border p-1" onClick={() => void run(async () => {
         if (!enabled) await load()
         useChatStore.getState().setConversationLucille(conversation.id, enabled ? undefined : { profile: 'lucille', scope, project, tokenBudget: budget })

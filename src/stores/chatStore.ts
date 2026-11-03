@@ -621,7 +621,7 @@ export const useChatStore = create<ChatState>()(
       setConversationLucille: (id, binding) => {
         if (useGenerationStore.getState().aborters[id]) return
         const conversation = get().conversations.find(c => c.id === id)
-        if (!conversation || (binding && (conversation.groupModels?.length || (conversation.mode && conversation.mode !== "lu")))) return
+        if (!conversation || (binding && (conversation.groupModels?.length || (conversation.mode && conversation.mode !== "lu" && conversation.mode !== "codex")))) return
         if (binding && (binding.profile !== "lucille" || !/^[a-zA-Z0-9_.:-]{1,128}$/.test(binding.scope) || !/^[a-zA-Z0-9_.:-]{1,128}$/.test(binding.project) || !Number.isInteger(binding.tokenBudget) || binding.tokenBudget < 512 || binding.tokenBudget > 16384)) return
         set(state => ({ conversations: state.conversations.map(c => c.id === id ? { ...c, lucille: binding, updatedAt: Date.now() } : c) }))
       },

@@ -86,7 +86,7 @@ describe('wiring (source guards)', () => {
   it('the plain-chat stream fallback halves and retries on the count refusal', () => {
     expect(chatSrc).toContain('if (isTooManyMessagesError(err))')
     expect(chatSrc).toContain('halveHistory(messages)')
-    expect(chatSrc).toContain('provider.chatStream(modelId, trimmed, chatOpts)')
+    expect(chatSrc).toContain('provider.chatStream(modelId, await prepareMessages(trimmed), chatOpts)')
   })
 
   it('the retry is bounded and re-throws anything that is not the count refusal', () => {

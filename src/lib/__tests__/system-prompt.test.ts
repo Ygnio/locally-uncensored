@@ -90,7 +90,7 @@ describe('system prompt', () => {
       // Argument, wie im Web.
       // GH #170: the chat's persona comes through withChatPersona, the same
       // resolution the Plugins menu shows.
-      expect(read(file)).toContain('buildChatSystemPrompt(withChatPersona(conv, personas, activePersonaId), settings.personasEnabled !== false)')
+      expect(read(file)).toMatch(/buildChatSystemPrompt\(withChatPersona\(conv, personas, activePersonaId\), (?:!isLucille\(conv\) && )?settings.personasEnabled !== false\)/)
     }
   })
 

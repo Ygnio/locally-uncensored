@@ -32,7 +32,7 @@ function readSource(relativePath: string): string {
 }
 
 describe('Desktop CODEX_SYSTEM_PROMPT (useCodex.ts)', () => {
-  const src = readSource('../useCodex.ts')
+  const src = readSource('../../lib/codex-prompts.ts')
 
   it('contains AUTONOMY CONTRACT header', () => {
     expect(src).toContain('AUTONOMY CONTRACT')
@@ -100,7 +100,7 @@ describe('Mobile CODEX_PROMPT (mobile-client/personas.js) parity', () => {
 })
 
 describe('Desktop ↔ Mobile prompt parity check', () => {
-  const desktop = readSource('../useCodex.ts')
+  const desktop = readSource('../../lib/codex-prompts.ts')
   const mobile = CODEX_PROMPT
 
   it('both open with a named block of hard rules', () => {

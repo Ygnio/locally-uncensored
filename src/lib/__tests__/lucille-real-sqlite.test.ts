@@ -13,7 +13,7 @@ function cleanSyntheticRoot(root: string): void {
 
 // CI and isolated QA build the real Rust bridge first. Ordinary unit-only runs report a skip.
 describe.skipIf(!process.env.LUCILLE_QA_BRIDGE)('Chat/Agent -> shared adapter -> real Rust SQLite/FTS5', () => {
-  it.each(['chat', 'agent'] as const)('%s uses persisted identity, scoped facts/preferences and fresh deletion state', async mode => {
+  it.each(['chat', 'agent', 'code'] as const)('%s uses persisted identity, scoped facts/preferences and fresh deletion state', async mode => {
     const root = mkdtempSync(join(tmpdir(), 'lucille-synthetic-'))
     const call = (command: unknown) => JSON.parse(execFileSync(process.env.LUCILLE_QA_BRIDGE!, [], { input: JSON.stringify(command), env: { ...process.env, LUCILLE_QA_ROOT: root }, encoding: 'utf8', windowsHide: true }))
     const id = randomUUID()
