@@ -4,7 +4,7 @@ use std::path::{Path, PathBuf};
 
 pub fn validate_host(debug: bool, identifier: &str, window: &str) -> Result<()> {
     if debug
-        && ["dev.ygnio.lucille.phase1", "dev.ygnio.lucille.phase15"].contains(&identifier)
+        && ["dev.ygnio.lucille.phase1", "dev.ygnio.lucille.phase15", "dev.ygnio.lucille.phase16"].contains(&identifier)
         && window == "main"
     {
         Ok(())

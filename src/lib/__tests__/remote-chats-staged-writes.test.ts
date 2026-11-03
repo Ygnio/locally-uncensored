@@ -95,6 +95,17 @@ beforeEach(() => {
 })
 
 describe('staged writes of the Code mode on the phone', () => {
+  it('reports queue-backed writes and overlay reads as pending until applied', async () => {
+    const t = setup()
+    expect(t.writer.pendingResult('file_write', { path: 'receipt.txt' })).toBe(false)
+    await t.writer.stageFileWrite({ path: 'receipt.txt', content: 'synthetic' })
+    expect(t.writer.pendingResult('file_write', { path: 'receipt.txt' })).toBe(true)
+    expect(t.writer.pendingResult('file_read', { path: 'receipt.txt' })).toBe(true)
+    expect(t.writer.pendingResult('file_read', { path: 'other.txt' })).toBe(false)
+    expect(t.writer.pendingResult('shell_execute', { path: 'receipt.txt' })).toBe(false)
+    useStagedChangesStore.getState().clear(t.convId)
+    expect(t.writer.pendingResult('file_read', { path: 'receipt.txt' })).toBe(false)
+  })
   it('a staged new file asks the phone; once writes it to disk', async () => {
     const t = setup()
     await t.writer.stageFileWrite({ path: 'hello.py', content: 'print("hello")\n' })

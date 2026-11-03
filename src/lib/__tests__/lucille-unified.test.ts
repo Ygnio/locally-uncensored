@@ -45,6 +45,10 @@ describe('unified identity and verified environment', () => {
     expect(first.local_datetime).toBe('2026-10-31 23:59:59')
     expect(second.local_datetime).toBe('2026-11-01 00:00:01')
     expect(second.timezone).toBe('America/Sao_Paulo')
+    const utc = verifiedEnvironment('code', runtime, new Date('2026-11-01T03:00:01Z'), 'UTC')
+    expect(utc.local_datetime).toBe('2026-11-01 03:00:01')
+    expect(utc.observed_at).toBe(second.observed_at)
+    expect(utc.timezone).toBe('UTC')
     expect(JSON.stringify(second)).not.toMatch(/hardware|workspace|C:\\|GPU/)
   })
   it('confirms real filesystem execution, preserves approval and rejects escape/error without inventing success', async () => {
@@ -70,6 +74,7 @@ describe('unified identity and verified environment', () => {
       await call('file_edit', 'fixture.txt')
       expect((await call('file_read', 'fixture.txt')).result).toBe('green telescope')
       expect(executorEvidence(created)).toMatchObject({ requested: true, executed: true, result_confirmed: true })
+      expect(executorEvidence(created, true)).toMatchObject({ executed: true, result_confirmed: false, outcome: 'staged' })
       expect(executorEvidence(await call('file_read', '../outside.txt'))).toMatchObject({ executed: true, result_confirmed: false, outcome: 'failed' })
       expect(executorEvidence(await call('unknown_tool', 'fixture.txt'))).toMatchObject({ executed: false, result_confirmed: false })
       const rejected = (await executeParallel([{ id: 'denied', toolName: 'file_write', args: { path: 'denied.txt', content: 'fixture' } }], { ...runtime, awaitApproval: async () => false }))[0]

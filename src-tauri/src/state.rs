@@ -461,6 +461,16 @@ impl AppState {
             println!("[Ollama] Using base URL: {}", initial_ollama_base);
         }
 
+        Self::from_bootstrap(python_bin, initial_port, initial_host, initial_ollama_base)
+    }
+
+    /// No discovery, persisted configuration, interpreter lookup or child process.
+    #[cfg(all(feature = "lucille-validation", desktop))]
+    pub(crate) fn for_lucille_validation() -> Self {
+        Self::from_bootstrap(String::new(), 15286, "127.0.0.1".into(), "http://127.0.0.1:15285".into())
+    }
+
+    fn from_bootstrap(python_bin: String, initial_port: u16, initial_host: String, initial_ollama_base: String) -> Self {
         Self {
             comfy_process: Mutex::new(None),
             ollama_process: Arc::new(Mutex::new(None)),

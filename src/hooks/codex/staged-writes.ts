@@ -77,6 +77,7 @@ export interface StagedWriterDeps {
 }
 
 export interface StagedWriter {
+  pendingResult(name: string, args: ToolArgs): boolean
   stageFileWrite(args: ToolArgs): Promise<string>
   stageFileEdit(args: ToolArgs): Promise<string>
   /**
@@ -241,5 +242,8 @@ export function createStagedWriter(deps: StagedWriterDeps): StagedWriter {
     return passthrough()
   }
 
-  return { stageFileWrite, stageFileEdit, dispatch }
+  // Metadata comes from the authoritative queue, never from model/tool prose.
+  const pendingResult = (name: string, args: ToolArgs) =>
+    ['file_write', 'file_edit', 'file_read'].includes(name) && !!findStagedForPath(useStagedChangesStore.getState().list(convId), String(args.path ?? ''))
+  return { stageFileWrite, stageFileEdit, dispatch, pendingResult }
 }
