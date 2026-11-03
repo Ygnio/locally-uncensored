@@ -15,6 +15,7 @@ use std::collections::BTreeMap;
 const TABLES: &[(&str, usize)] = &[
     ("learning_policy", 2),
     ("extraction_jobs", 15),
+    ("learning_inputs", 3),
     ("memory_quality", 13),
     ("memory_provenance", 4),
     ("memory_revisions", 4),
@@ -60,6 +61,7 @@ pub(crate) fn export(db: &Connection) -> Result<AuxBackup> {
 }
 pub(crate) fn clear(tx: &Transaction) -> Result<()> {
     for table in [
+        "learning_inputs",
         "memory_vectors",
         "embedding_spaces",
         "memory_provenance",
@@ -118,6 +120,23 @@ pub(crate) fn restore(tx: &Transaction, backup: &AuxBackup) -> Result<()> {
                     params_from_iter(values),
                 )
                 .map_err(db_error)?;
+            }
+        }
+    }
+    let invalid:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM learning_inputs i JOIN extraction_jobs j ON j.id=i.job_id WHERE j.state NOT IN ('queued','running','retry'))",[],|r|r.get(0)).map_err(db_error)?;
+    if invalid {
+        return Err("Terminal input retained in backup".into());
+    }
+    {
+        let mut q = tx
+            .prepare("SELECT user_text FROM learning_inputs")
+            .map_err(db_error)?;
+        let rows = q
+            .query_map([], |r| r.get::<_, String>(0))
+            .map_err(db_error)?;
+        for row in rows {
+            if !crate::llm::eligible_source(&row.map_err(db_error)?) {
+                return Err("Ineligible source backup".into());
             }
         }
     }

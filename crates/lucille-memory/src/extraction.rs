@@ -55,7 +55,7 @@ impl Claim {
 fn contains_any(text: &str, words: &[&str]) -> bool {
     words.iter().any(|word| text.contains(word))
 }
-fn unsafe_text(text: &str) -> bool {
+pub(crate) fn unsafe_text(text: &str) -> bool {
     if contains_any(
         text,
         &[

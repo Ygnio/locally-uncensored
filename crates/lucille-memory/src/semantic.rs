@@ -72,7 +72,8 @@ impl EmbeddingSpace {
         Ok(())
     }
 }
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct QueryVector {
     pub space: EmbeddingSpace,
     pub vector: Vec<f32>,
@@ -108,6 +109,22 @@ pub fn encode_query(
     })
 }
 impl Store {
+    pub fn embedding_status(&self) -> Result<serde_json::Value> {
+        let manifest: Option<String> = self
+            .db
+            .query_row(
+                "SELECT spec_json FROM embedding_spaces WHERE active=1",
+                [],
+                |r| r.get(0),
+            )
+            .optional()
+            .map_err(db_error)?;
+        let indexed:i64=self.db.query_row("SELECT count(*) FROM memory_vectors v JOIN memories m ON m.id=v.memory_id WHERE m.version=v.memory_version AND m.state='active'",[],|r|r.get(0)).map_err(db_error)?;
+        Ok(
+            serde_json::json!({"space":manifest.map(|s|serde_json::from_str::<EmbeddingSpace>(&s).map_err(|_|"Invalid manifest")).transpose()?,"indexed":indexed,"transport_verified":false}),
+        )
+    }
+
     pub fn configure_embedding_space(
         &mut self,
         spec: &EmbeddingSpace,

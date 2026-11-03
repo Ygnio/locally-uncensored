@@ -3,6 +3,7 @@ mod aux_backup;
 mod extraction;
 pub mod intelligent;
 pub mod isolation;
+pub mod llm;
 mod retrieval;
 pub mod semantic;
 mod types;
@@ -102,6 +103,7 @@ impl Store {
             include_str!("002_fts.sql"),
             include_str!("003_code.sql"),
             include_str!("004_intelligent.sql"),
+            include_str!("005_semantic_learning.sql"),
         ];
         if version < 0 || version > migrations.len() as i64 {
             return Err("Unsupported newer database schema".into());
@@ -505,7 +507,7 @@ impl Store {
             .map_err(db_error)?;
         drop(q);
         let result = serde_json::to_string(&Backup {
-            schema: 4,
+            schema: 5,
             intelligent: Some(aux_backup::export(&tx)?),
             identity: self.identity()?,
             memories,
@@ -522,10 +524,10 @@ impl Store {
             return Err("Backup too large".into());
         }
         let backup: Backup = serde_json::from_str(json).map_err(|_| "Invalid backup")?;
-        if ![2, 3, 4].contains(&backup.schema) {
+        if ![2, 3, 4, 5].contains(&backup.schema) {
             return Err("Unsupported backup schema".into());
         }
-        if backup.schema == 4 && backup.intelligent.is_none() {
+        if backup.schema >= 4 && backup.intelligent.is_none() {
             return Err("Missing learning backup state".into());
         }
         backup.identity.profile.validate()?;

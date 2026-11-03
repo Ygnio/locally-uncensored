@@ -163,13 +163,18 @@ pub(crate) fn select(
             .map_err(db_error)?;
     }
     let mut candidates: HashMap<String, (Memory, f64)> = HashMap::new();
+    // Zero lexical weight enables the semantic-only benchmark. If the query
+    // vector is unavailable, preserve the functional lexical fallback.
+    if policy.lexical_weight == 0.0 && semantic.is_some() {
+        lexical.clear()
+    }
     for (rank, m) in lexical.into_iter().enumerate() {
         candidates.insert(
             m.input.id.clone(),
             (m, policy.lexical_weight / (1.0 + rank as f64)),
         );
     }
-    if let Some(query) = semantic {
+    if let Some(query) = semantic.filter(|_| policy.semantic_weight > 0.0) {
         query.space.check_vector(&query.vector)?;
         let space = query.space.id()?;
         let current: Option<String> = tx
