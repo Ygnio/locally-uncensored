@@ -558,6 +558,12 @@ jobs:
           fi
           bash scripts/ci-tauri-build.sh
 
+      - name: Compile isolated full-application validation host
+        shell: bash
+        run: |
+          export TAURI_CONFIG="$(cat src-tauri/tauri.lucille-validation.conf.json)"
+          cargo build --locked --manifest-path src-tauri/Cargo.toml --features lucille-validation --bin lucille-full-validation
+
   # ── macOS (Apple Silicon), behind a switch ─────────────────────────────────
   #
   # The keyless half of the Mac lane: the same three questions cargo-check and
