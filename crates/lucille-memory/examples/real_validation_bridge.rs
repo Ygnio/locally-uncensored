@@ -71,6 +71,8 @@ fn run() -> Result<Value> {
             s.set_learning_policy(
                 LearningPolicy {
                     enabled: true,
+                    autonomous_preferences: v["autonomy"].as_bool().unwrap_or(false),
+                    automatic_indexing: v["automatic_indexing"].as_bool().unwrap_or(false),
                     extraction_mode: mode.clone(),
                     ..Default::default()
                 },
@@ -78,7 +80,10 @@ fn run() -> Result<Value> {
             )?;
             let text = v["text"].as_str().ok_or("Missing text")?;
             let enqueue = s.enqueue_learning(Interaction {
-                conversation_id: "real-model-synthetic".into(),
+                conversation_id: v["conversation_id"]
+                    .as_str()
+                    .unwrap_or("real-model-synthetic")
+                    .into(),
                 message_id: v["message_id"].as_str().unwrap_or("case").into(),
                 scope: scope.into(),
                 project: project.into(),
@@ -105,6 +110,17 @@ fn run() -> Result<Value> {
                 json!({"enqueue":enqueue,"validation": match validation {Ok(c)=>json!({"accepted":c}),Err(e)=>json!({"error":e})},"rejected":rejected,"details":s.memory_details(scope,project)?,"jobs":s.learning_jobs(scope,project)?,"identity":s.identity()?}),
             )
         }
+        "learning_config" => {
+            let p: LearningPolicy =
+                serde_json::from_value(v["policy"].clone()).map_err(|_| "Invalid policy")?;
+            s.set_learning_policy(p, &permit)?;
+            Ok(json!(s.learning_policy()?))
+        }
+        "metrics" => s.learning_metrics(scope, project),
+        "pending_embeddings" => {
+            s.pending_embedding_records(scope, project, v["limit"].as_u64().unwrap_or(8) as usize)
+        }
+        "export" => Ok(json!(s.export_backup(&permit)?)),
         "details" => Ok(json!(s.memory_details(scope, project)?)),
         "representation" => s.memory_embedding_text(
             v["id"].as_str().ok_or("Missing id")?,

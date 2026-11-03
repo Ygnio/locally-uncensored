@@ -183,6 +183,15 @@ pub enum Request {
         scope: String,
         project: String,
     },
+    PendingEmbeddings {
+        scope: String,
+        project: String,
+        limit: usize,
+    },
+    LearningMetrics {
+        scope: String,
+        project: String,
+    },
     LearningPolicy,
     SaveLearningPolicy {
         policy: lucille_memory::intelligent::LearningPolicy,
@@ -267,6 +276,8 @@ pub fn lucille_manage(
             | Request::Deleted { .. }
             | Request::IndexStatus
             | Request::EmbeddingText { .. }
+            | Request::PendingEmbeddings { .. }
+            | Request::LearningMetrics { .. }
     );
     let permit = ConfigurationPermit::explicit_settings_action(
         readonly || confirmation.as_deref() == Some("CONFIRM LUCILLE CONFIGURATION"),
@@ -312,6 +323,12 @@ pub fn lucille_manage(
         Request::EmbeddingText { id, scope, project } => {
             store.memory_embedding_text(&id, &scope, &project, "gloss")?
         }
+        Request::PendingEmbeddings {
+            scope,
+            project,
+            limit,
+        } => store.pending_embedding_records(&scope, &project, limit)?,
+        Request::LearningMetrics { scope, project } => store.learning_metrics(&scope, &project)?,
         Request::LearningPolicy => json!(store.learning_policy()?),
         Request::SaveLearningPolicy { policy } => {
             store.set_learning_policy(policy, &permit)?;

@@ -29,7 +29,7 @@ export interface LucilleTurnContext {
 export const isLucille = (conversation?: Pick<Conversation, 'lucille'>): boolean => conversation?.lucille?.profile === 'lucille'
 const injected = new WeakSet<ChatMessage>()
 type ContextLoader = (request: Record<string, unknown>, signal?: AbortSignal) => Promise<LucilleTurnContext>
-const loadContext: ContextLoader = async (request, signal) => { const { queryVector } = await import('./lucille-semantic'); const vector = await queryVector(String(request.query), signal); return invoke('lucille_context', { request, vector }) }
+const loadContext: ContextLoader = async (request, signal) => { const { queryVector } = await import('./lucille-semantic'); const vector = await queryVector(String(request.query), signal, { scope: String(request.scope), project: String(request.project) }); return invoke('lucille_context', { request, vector }) }
 const assertNotCancelled = (signal?: AbortSignal) => {
   if (signal?.aborted) throw new DOMException('Turn cancelled', 'AbortError')
 }

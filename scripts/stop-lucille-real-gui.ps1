@@ -1,4 +1,4 @@
-param([ValidateSet('21c','21d')][string]$Phase='21c')
+param([ValidateSet('21c','21d','22')][string]$Phase='21c')
 $ErrorActionPreference='Stop'
 $repo=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $real=(Resolve-Path (Join-Path $repo (".lucille-qa-runtime\lucille-synthetic-real$Phase"))).Path

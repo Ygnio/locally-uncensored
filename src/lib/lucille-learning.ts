@@ -20,7 +20,7 @@ export async function queueLucilleLearning(conversationId: string, assistantId: 
   const { useChatStore } = await import('../stores/chatStore')
   const conversation = useChatStore.getState().conversations.find(value => value.id === conversationId)
   const interaction = learningInteraction(conversation, assistantId, userText, mode, signal.aborted)
-  if (interaction) { await invoke('lucille_learn', { interaction }); const { startLucilleLlm } = await import('./lucille-llm'); startLucilleLlm() }
+  if (interaction) { await invoke('lucille_learn', { interaction }); const { startLucilleLlm } = await import('./lucille-llm'); startLucilleLlm(); const { startLucilleIndex } = await import('./lucille-index-worker'); startLucilleIndex() }
 }
 export async function resumeLucilleLearning() {
   const { useChatStore } = await import('../stores/chatStore')
@@ -28,5 +28,5 @@ export async function resumeLucilleLearning() {
     const off = useChatStore.persist.onFinishHydration(() => { off(); resolve() })
     if (useChatStore.persist.hasHydrated()) { off(); resolve() }
   })
-  if (useChatStore.getState().conversations.some(isLucille)) { await invoke('lucille_learning_wake'); const { startLucilleLlm } = await import('./lucille-llm'); startLucilleLlm() }
+  if (useChatStore.getState().conversations.some(isLucille)) { await invoke('lucille_learning_wake'); const { startLucilleLlm } = await import('./lucille-llm'); startLucilleLlm(); const { startLucilleIndex } = await import('./lucille-index-worker'); startLucilleIndex() }
 }

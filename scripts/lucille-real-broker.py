@@ -29,11 +29,13 @@ def sha(path):
         return hashlib.file_digest(stream, 'sha256').hexdigest()
 
 
-def atomic_schema_for(source, scope, project):
+def atomic_schema_for(source, scope, project, version=2):
     spans = list(dict.fromkeys(v.strip() for v in re.split(r'[.!;\n]', source) if v.strip()))
     if not 0 < len(spans) <= 64 or len(source.encode()) > 12000:
         raise ValueError('Atomic source ceiling')
     schema = json.loads((Path(__file__).resolve().parents[1] / 'src/lib/lucille-atomic-schema.json').read_text(encoding='utf-8'))
+    if version not in [2,3]: raise ValueError('Atomic version')
+    schema['properties']['version'] = {'const': version}
     schema['properties']['scope'] = {'const': scope}
     schema['properties']['project'] = {'const': project}
     schema['properties']['claims']['items']['properties']['evidence'] = {'type': 'string', 'enum': spans}
@@ -103,6 +105,9 @@ def main(args):
         return result
 
     pin = {'simulation': False, 'models': expected, 'runtime_sha256': contract['runtime_sha256']}
+    if 'memory_protocol' in contract:
+        if contract['memory_protocol'] != 3: raise ValueError('Unexpected protocol')
+        pin['memory_protocol'] = 3
     (root / 'reports' / 'real-public-pin.json').write_text(json.dumps(pin, indent=2), encoding='utf-8')
 
     class Handler(BaseHTTPRequestHandler):
@@ -152,13 +157,18 @@ def main(args):
                     data['model'] = 'lucille-real-gemma'
                     data['max_tokens'] = min(768, int(data.get('max_tokens', 512)))
                     messages = data.get('messages', [])
-                    if any(m.get('role') == 'system' and 'LUCILLE_ATOMIC_EXTRACTION_V2' in m.get('content', '') for m in messages):
+                    if any(m.get('role') == 'system' and any(marker in m.get('content', '') for marker in ['LUCILLE_ATOMIC_EXTRACTION_V2','LUCILLE_ATOMIC_EXTRACTION_V3']) for m in messages):
                         if data.get('tools') or data.get('tool_choice'):
                             raise ValueError('Extraction forbids tools')
                         source = json.loads(messages[-1]['content'])
-                        schema = atomic_schema_for(source['user_text'], source['scope'], source['project'])
+                        version = 3 if 'LUCILLE_ATOMIC_EXTRACTION_V3' in messages[0]['content'] else 2
+                        if version == 3 and contract.get('memory_protocol') != 3: raise ValueError('V3 pin required')
+                        schema = atomic_schema_for(source['user_text'], source['scope'], source['project'], version)
                         data['temperature'] = 0
                         data['response_format'] = {'type': 'json_object', 'schema': schema}
+                    if contract.get('memory_protocol') == 3:
+                        source_meta = locals().get('source', {}) if any(m.get('content', '').startswith('LUCILLE_ATOMIC_EXTRACTION_V3') for m in messages if isinstance(m.get('content'), str)) else {}
+                        (root / 'reports' / 'inflight-gemma.json').write_text(json.dumps({'began_unix': time.time(), 'scope': source_meta.get('scope'), 'project': source_meta.get('project'), 'extraction': bool(source_meta), 'request_sha256': hashlib.sha256(json.dumps(data, sort_keys=True).encode()).hexdigest()}), encoding='utf-8')
                     result = upstream('gemma', self.path, data)
                     kind = 'gemma'
                 elif self.path == '/v1/embeddings':
@@ -186,7 +196,7 @@ def main(args):
                     self.send(404, {'error': 'No such QA route'})
                     return
                 with (root / 'reports' / 'real-broker-calls.ndjson').open('a', encoding='utf-8') as log:
-                    log.write(json.dumps({'kind': kind, 'latency_seconds': time.monotonic()-started, 'request': data, 'response': result}, ensure_ascii=False) + '\n')
+                    log.write(json.dumps({'completed_unix': time.time(), 'kind': kind, 'latency_seconds': time.monotonic()-started, 'request': data, 'response': result}, ensure_ascii=False) + '\n')
                 if self.path == '/v1/chat/completions' and stream:
                     # Adapt the actual bounded upstream response to OpenAI SSE.
                     # No response text, token usage or finish reason is invented.

@@ -3,9 +3,10 @@ import { initializeSimulatedIndex, semanticStatus } from '../../lib/lucille-sema
 import { invoke } from '@tauri-apps/api/core'
 import { extractionStatus, startLucilleLlm } from '../../lib/lucille-llm'
 import { lucilleManage } from '../../lib/lucille-context'
+import { startLucilleIndex } from '../../lib/lucille-index-worker'
 import { probeRealGemma, realValidationPin } from '../../lib/lucille-real-validation'
 
-interface Policy { enabled: boolean; extraction_mode: 'rules' | 'llm' | 'hybrid'; auto_kinds: string[]; minimum_confidence: number; minimum_relevance: number; max_pending: number; lexical_weight: number; semantic_weight: number; minimum_similarity: number }
+interface Policy { autonomous_preferences?: boolean; automatic_indexing?: boolean; enabled: boolean; extraction_mode: 'rules' | 'llm' | 'hybrid'; auto_kinds: string[]; minimum_confidence: number; minimum_relevance: number; max_pending: number; lexical_weight: number; semantic_weight: number; minimum_similarity: number }
 interface Job { id: string; state: string; attempts: number; error_code?: string }
 export function LucilleLearningPanel({ scope, project, bound }: { scope: string; project: string; bound: boolean }) {
   const [policy, setPolicy] = useState<Policy | null>(null)
@@ -39,7 +40,7 @@ export function LucilleLearningPanel({ scope, project, bound }: { scope: string;
     try {
       await lucilleManage({ operation: 'save_learning_policy', policy: next }, true)
       setPolicy(next)
-      if (next.enabled) { await invoke('lucille_learning_wake'); startLucilleLlm() }
+      if (next.enabled) { await invoke('lucille_learning_wake'); startLucilleLlm(); startLucilleIndex() }
       await refresh()
     } catch { setNotice('Could not save learning settings.') } finally { setSaving(false) }
   }
@@ -52,6 +53,11 @@ export function LucilleLearningPanel({ scope, project, bound }: { scope: string;
       <label className="block">Extraction mode <select aria-label="Lucille extraction mode" value={policy.extraction_mode} disabled={saving} onChange={event => void save({ ...policy, extraction_mode: event.target.value as Policy['extraction_mode'] })}><option value="rules">Rules</option><option value="llm">LLM (requires isolated local endpoint)</option><option value="hybrid">Hybrid (rules + one LLM call)</option></select></label>
       <label className="block"><input type="checkbox" aria-label="Enable Lucille automatic learning" disabled={saving || !bound} checked={policy.enabled} onChange={event => void save({ ...policy, enabled: event.target.checked })} /> Learn from eligible user messages</label>
       <label className="block"><input type="checkbox" aria-label="Automatically approve simple preferences" disabled={saving} checked={policy.auto_kinds.includes('preference')} onChange={event => void save({ ...policy, auto_kinds: event.target.checked ? ['preference'] : [] })} /> Automatically approve clear, non-sensitive preferences without conflicts</label>
+      {realValidationPin?.memory_protocol === 3 && <>
+        <label className="block"><input type="checkbox" aria-label="Enable safe autonomous preferences" checked={policy.autonomous_preferences ?? false} disabled={saving || !bound} onChange={event => void save({ ...policy, autonomous_preferences: event.target.checked })} /> Learn clear preferences without asking for review</label>
+        <label className="block"><input type="checkbox" aria-label="Automatically update Lucille index" checked={policy.automatic_indexing ?? false} disabled={saving || !bound} onChange={event => void save({ ...policy, automatic_indexing: event.target.checked, ...(event.target.checked ? { minimum_similarity: 0.6, lexical_weight: 0.5, semantic_weight: 0.5 } : {}) })} /> Keep remembered information searchable automatically</label>
+        <p>Only independently verified preferences qualify. Projects, equipment and unclear changes stay in review. Explicit preference corrections keep history. Forgetting a topic blocks old replay; a fresh request to remember the same preference again needs review.</p>
+      </>}
       <p>Hardware, decisions, goals, tasks, hypotheses and ambiguous changes wait for review. Disabling learning cancels pending jobs.</p>
     </>}
     {!bound && <p>Bind this conversation before enabling learning.</p>}

@@ -13,6 +13,8 @@ use sha2::Digest;
 #[serde(default, deny_unknown_fields)]
 pub struct LearningPolicy {
     pub enabled: bool,
+    pub autonomous_preferences: bool,
+    pub automatic_indexing: bool,
     pub extraction_mode: crate::llm::ExtractionMode,
     pub auto_kinds: Vec<Kind>,
     pub minimum_confidence: f64,
@@ -26,6 +28,8 @@ impl Default for LearningPolicy {
     fn default() -> Self {
         Self {
             enabled: false,
+            autonomous_preferences: false,
+            automatic_indexing: false,
             extraction_mode: Default::default(),
             auto_kinds: vec![Kind::Preference],
             minimum_confidence: 0.96,
@@ -60,6 +64,12 @@ impl LearningPolicy {
         Ok(())
     }
     fn promotes(&self, c: &Claim) -> bool {
+        if self.autonomous_preferences {
+            return self.enabled
+                && self.auto_kinds.contains(&Kind::Preference)
+                && !c.rule.contains("renewal")
+                && crate::dialogue::safe_preference(c);
+        }
         self.enabled
             && self.auto_kinds.contains(&c.kind)
             && c.confidence >= self.minimum_confidence
@@ -193,8 +203,10 @@ pub(crate) fn snapshot(tx: &Transaction, m: &Memory) -> Result<()> {
 }
 pub(crate) fn before_change(tx: &Transaction, m: &Memory, action: &Action) -> Result<()> {
     if matches!(action, Action::Approve)
-        && quality(tx, &m.input.id)?
-            .is_some_and(|q| q.subject == "device.unspecified" || q.property == "capacity_update")
+        && quality(tx, &m.input.id)?.is_some_and(|q| {
+            q.subject == "device.unspecified"
+                || ["capacity_update", "equipment_change"].contains(&q.property.as_str())
+        })
     {
         return Err("Clarify equipment and capacity property before approval".into());
     }
@@ -326,7 +338,16 @@ impl Store {
         if !policy.enabled {
             return Ok(serde_json::json!({"state":"disabled"}));
         }
-        let mut claims = extract(&input.user_text);
+        if policy.autonomous_preferences {
+            if let Some(result) = self.forget_user_directive(&input)? {
+                return Ok(result);
+            }
+        }
+        let mut claims = if policy.autonomous_preferences {
+            crate::dialogue::extract(&input.user_text, &input.project)
+        } else {
+            extract(&input.user_text)
+        };
         claims.retain(|c| {
             c.project_hint
                 .as_ref()
@@ -335,7 +356,11 @@ impl Store {
         let mut seen = std::collections::HashSet::new();
         claims.retain(|c| seen.insert(c.fingerprint()));
         let use_llm = policy.extraction_mode != crate::llm::ExtractionMode::Rules
-            && crate::llm::eligible_source(&input.user_text);
+            && if policy.autonomous_preferences {
+                crate::dialogue::eligible_source(&input.user_text)
+            } else {
+                crate::llm::eligible_source(&input.user_text)
+            };
         if (claims.is_empty() && !use_llm)
             || (policy.extraction_mode == crate::llm::ExtractionMode::Llm && !use_llm)
         {
@@ -457,9 +482,11 @@ impl Store {
     ) -> Result<bool> {
         if llm.is_none()
             && (proposals.len() > 4
-                || proposals
-                    .iter()
-                    .any(|c| !lease.claims.contains(c) || !extract(&c.evidence).contains(c)))
+                || proposals.iter().any(|c| {
+                    !lease.claims.contains(c)
+                        || !extract(&c.evidence).contains(c)
+                            && !crate::dialogue::extract(&c.evidence, &lease.project).contains(c)
+                }))
         {
             return Err("Unverified extraction proposal".into());
         }
@@ -687,6 +714,11 @@ fn ingest(
     policy: &LearningPolicy,
     at: i64,
 ) -> Result<()> {
+    if policy.autonomous_preferences
+        && !crate::dialogue::project_scope_matches(&c.evidence, &lease.project)
+    {
+        return Ok(());
+    }
     let mut resolved = c.clone();
     if c.subject == "device.unspecified" || c.property == "capacity_update" {
         let old = crate::coverage::old_capacity(&c.evidence);
@@ -720,7 +752,11 @@ fn ingest(
     let c = &resolved;
     let erased:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_tombstones WHERE scope=?1 AND project=?2 AND claim_digest=?3)",params![lease.scope,lease.project,c.fingerprint()],|r|r.get(0)).map_err(db_error)?;
     if erased {
-        return Ok(());
+        let renewed:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memories m JOIN memory_quality q ON q.memory_id=m.id WHERE m.scope=?1 AND m.project=?2 AND m.state='active' AND q.subject=?3 AND q.property=?4 AND q.value=?5 AND q.evidence_rule LIKE '%renewal%')",params![lease.scope,lease.project,c.subject,c.property,c.value],|r|r.get(0)).map_err(db_error)?;
+        let fresh:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM extraction_jobs j WHERE j.id=?1 AND j.created_at >= COALESCE((SELECT max(deleted_at) FROM memory_tombstones WHERE scope=?2 AND project=?3 AND claim_digest=?4),j.created_at))",params![lease.id,lease.scope,lease.project,c.fingerprint()],|r|r.get(0)).map_err(db_error)?;
+        if !(policy.autonomous_preferences && (renewed || c.rule.contains("renewal") && fresh)) {
+            return Ok(());
+        }
     }
     let mut stmt=tx.prepare(&format!("SELECT {COLS} FROM memories WHERE scope=?1 AND project=?2 AND state!='obsolete' AND (id IN (SELECT memory_id FROM memory_quality WHERE subject=?3 AND property=?4) OR id NOT IN (SELECT memory_id FROM memory_quality)) ORDER BY CASE state WHEN 'active' THEN 0 ELSE 1 END,created_at,id LIMIT 501")).map_err(db_error)?;
     let records = stmt
@@ -775,7 +811,18 @@ fn ingest(
         q.replaces_id = Some(m.input.id.clone());
         q.replaces_version = Some(m.version);
     }
-    let state = if prior.is_some() {
+    let auto_replace = policy.autonomous_preferences
+        && policy.promotes(c)
+        && c.correction
+        && related.len() == 1
+        && prior.is_some_and(|(m, _)| m.state == crate::Status::Active);
+    if auto_replace {
+        let (old, _) = prior.unwrap();
+        snapshot(tx, old)?;
+        tx.execute("UPDATE memories SET state='obsolete',version=version+1,updated_at=?2 WHERE id=?1 AND version=?3",params![old.input.id,at,old.version]).map_err(db_error)?;
+        tx.execute("INSERT INTO history(memory_id,record_id,operation,version,at) VALUES(?1,?1,'auto_superseded',?2,?3)",params![old.input.id,old.version+1,at]).map_err(db_error)?;
+    }
+    let state = if prior.is_some() && !auto_replace {
         "conflict"
     } else if policy.promotes(c) {
         "active"
@@ -807,6 +854,21 @@ fn ingest(
     .map_err(db_error)?;
     put_quality(tx, &id, &q)?;
     provenance(tx, &id, lease, c, at)?;
+    if state == "active" && policy.autonomous_preferences {
+        tx.execute(
+            "INSERT INTO history(memory_id,record_id,operation,version,at) VALUES(?1,?1,?2,1,?3)",
+            params![
+                id,
+                if auto_replace {
+                    "auto_correct"
+                } else {
+                    "auto_promote"
+                },
+                at
+            ],
+        )
+        .map_err(db_error)?;
+    }
     tx.execute(
         "INSERT INTO history(memory_id,record_id,operation,version,at) VALUES(?1,?1,'create',1,?2)",
         params![id, at],

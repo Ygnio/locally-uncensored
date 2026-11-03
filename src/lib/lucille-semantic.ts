@@ -18,7 +18,7 @@ export function validateVector(vector: unknown, dimension: number): number[] {
   if (!Array.isArray(vector) || vector.length !== dimension || !vector.every(v => typeof v === 'number' && Number.isFinite(v)) || Math.abs(Math.sqrt(vector.reduce((n, v) => n + v * v, 0)) - 1) > 0.001) throw new Error('Invalid normalized embedding')
   return vector
 }
-async function manifest(signal?: AbortSignal) {
+export async function manifest(signal?: AbortSignal) {
   const response = await localFetch(origin + '/lucille/embedding-manifest', { signal, timeoutMs: 3000 })
   if (!response.ok) throw new Error('Embedding endpoint unavailable')
   const raw = await response.text()
@@ -60,8 +60,12 @@ export async function initializeSimulatedIndex(scope: string, project: string) {
   semanticStatus.state = realValidationPin ? 'REAL Nomic test index ready; pinned weights and owned endpoint verified' : 'SIMULATED index ready; real Nomic unverified'; semanticStatus.model = space.model; semanticStatus.simulation = !realValidationPin
   return manage<IndexStatus>({ operation: 'index_status' })
 }
-export async function queryVector(query: string, signal?: AbortSignal) {
+export async function queryVector(query: string, signal?: AbortSignal, binding?: { scope: string; project: string }) {
   try {
+    if (binding && realValidationPin?.memory_protocol === 3) {
+      const { syncLucilleIndex } = await import('./lucille-index-worker')
+      await syncLucilleIndex(binding.scope, binding.project, signal)
+    }
     const status = await manage<IndexStatus>({ operation: 'index_status' })
     if (!status.space) return null
     const space = validateSpace(status.space)

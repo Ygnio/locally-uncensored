@@ -177,7 +177,10 @@ pub(crate) fn restore(tx: &Transaction, backup: &AuxBackup) -> Result<()> {
         let claims: Vec<Claim> =
             serde_json::from_str(&raw).map_err(|_| "Invalid evidence backup")?;
         if claims.len() > 4
-            || claims.iter().any(|c| !extract(&c.evidence).contains(c))
+            || claims.iter().any(|c| {
+                !extract(&c.evidence).contains(c)
+                    && !crate::dialogue::extract(&c.evidence, &project).contains(c)
+            })
             || (!(0..=3).contains(&attempts))
             || (["done", "failed", "cancelled"].contains(&state.as_str()) && !claims.is_empty())
         {

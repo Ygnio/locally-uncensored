@@ -4,7 +4,7 @@ use crate::{
     intelligent::{quality, Quality},
     Memory, Result, Status, Store,
 };
-pub const REPRESENTATION_VERSION: u32 = 3;
+pub const REPRESENTATION_VERSION: u32 = 4;
 pub fn render(memory: &Memory, q: Option<&Quality>, style: &str) -> Result<String> {
     let original = memory.input.content.clone();
     let Some(q) = q.filter(|q| q.evidence_rule != "manual_revision") else {
@@ -30,7 +30,13 @@ pub fn render(memory: &Memory, q: Option<&Quality>, style: &str) -> Result<Strin
             let property=if q.property=="free_ram" {"free RAM available now / memória RAM livre agora"}else{"installed RAM capacity / capacidade de RAM instalada"};
             format!("User's {device}: {number} GB {property}.")
         },
-        ("database", value @ ("sqlite" | "postgresql" | "mysql")) if q.subject.starts_with("project.") => format!("Project {} uses {value} as its database. {original}",q.subject.trim_start_matches("project.")),
+        ("language", value @ ("python"|"rust"|"typescript"|"javascript")) if q.subject.starts_with("project.") => format!("Project {} {} {value} as its programming language. {original}",q.subject.trim_start_matches("project."),if q.temporal=="planned"{"plans to use"}else{"decided to use"}),
+        ("interface_theme", "dark")=>"User prefers the dark interface theme. Prefere interface em modo escuro.".into(),
+        ("interface_theme", "light")=>"User prefers the light interface theme. Prefere interface em modo claro.".into(),
+        ("communication_style", "concise")=>"User prefers concise short answers. Prefere respostas curtas e concisas.".into(),
+        ("communication_style", "detailed")=>"User prefers detailed answers. Prefere respostas detalhadas.".into(),
+        ("games_turn_strategy", "positive")=>"User likes turn-based strategy games. Prefere jogos de estratégia por turnos.".into(),
+        ("database", value @ ("sqlite" | "postgresql" | "mysql")) if q.subject.starts_with("project.") => format!("Project {} {} {value} as its database. {original}",q.subject.trim_start_matches("project."),if q.temporal=="planned"{"plans to use"}else{"uses"}),
         _ => format!("{}: {original}",match memory.input.kind {crate::Kind::Goal if q.temporal=="completed"=>"Completed goal / objetivo concluído",crate::Kind::Goal=>"User goal / objetivo",crate::Kind::Task=>"Dated user task / tarefa",crate::Kind::Solution=>"Resolved problem / solução",crate::Kind::Hypothesis=>"Uncertain intention, not installed hardware / hipótese",crate::Kind::Constraint=>"Constraint / restrição",_=>"Current user record"}),
     };
     match style {
