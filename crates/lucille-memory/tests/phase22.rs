@@ -654,3 +654,82 @@ fn temporary_english_preferences_and_denied_claims_never_auto_activate() {
     }
     assert_eq!(s.list("lucille", "demo").unwrap().len(), 1);
 }
+
+#[test]
+fn real_character_progression_preference_is_not_a_fictional_speakers_claim() {
+    let (_d, mut s) = setup(true);
+    learn(
+        &mut s,
+        "Nas partidas, eu curto RPG tático com progressão de personagem.",
+        "preference",
+    );
+    let rows = s.memory_details("lucille", "demo").unwrap();
+    assert_eq!(rows.len(), 1);
+    assert_eq!(rows[0].memory.state, Status::Active);
+    assert!(rows[0]
+        .quality
+        .as_ref()
+        .unwrap()
+        .facets
+        .contains(&"progression".to_string()));
+    for text in [
+        "Personagem de teste: eu prefiro modo escuro.",
+        "Character: I prefer a light interface theme.",
+        "Como personagem eu prefiro café com açúcar.",
+        "Uma personagem falou que eu gosto de RPG tático.",
+    ] {
+        s.enqueue_learning(input(text, &uuid::Uuid::new_v4().to_string()))
+            .unwrap();
+        assert!(s.claim_llm_learning(now() + 1).unwrap().is_none(), "{text}");
+    }
+    assert_eq!(s.list("lucille", "demo").unwrap().len(), 1);
+}
+
+#[test]
+fn role_headers_are_not_user_authorship_and_review_aliases_cannot_promote_preferences() {
+    for text in [
+        "ASSISTANT: I prefer a dark interface theme.",
+        "Assistente : eu prefiro café com açúcar.",
+        "**Tool:** I prefer short replies.",
+        "USER: eu gosto de RPG tático.",
+    ] {
+        let (_d, mut s) = setup(true);
+        s.enqueue_learning(input(text, "header")).unwrap();
+        assert!(s.claim_llm_learning(now() + 1).unwrap().is_none(), "{text}");
+    }
+    for (text, category, kind) in [
+        ("Preciso organizar o desenho amanhã.", "goal", Kind::Task),
+        (
+            "Não posso usar serviços remotos no protótipo.",
+            "decision",
+            Kind::Constraint,
+        ),
+        (
+            "Resolvi o problema de leitura usando um formato fixo.",
+            "goal",
+            Kind::Solution,
+        ),
+        (
+            "Troquei de computador durante a mudança.",
+            "project",
+            Kind::Hardware,
+        ),
+    ] {
+        let (_d, mut s) = setup(true);
+        learn(&mut s, text, category);
+        let rows = s.list("lucille", "demo").unwrap();
+        assert_eq!(rows.len(), 1);
+        assert_eq!(rows[0].input.kind, kind);
+        assert_eq!(rows[0].state, Status::Candidate);
+    }
+    let (_d, mut s) = setup(true);
+    s.enqueue_learning(input("Eu prefiro modo escuro.", "wrong-hint"))
+        .unwrap();
+    let lease = s.claim_llm_learning(now() + 1).unwrap().unwrap();
+    let _ = s.complete_llm_learning(
+        &lease,
+        &output("Eu prefiro modo escuro.", "goal"),
+        now() + 2,
+    );
+    assert!(s.list("lucille", "demo").unwrap().is_empty());
+}

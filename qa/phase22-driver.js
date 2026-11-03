@@ -87,7 +87,7 @@ async function run(control) {
     p.useSettingsStore.getState().updateSettings({ thinkingEnabled: false, maxTokens: 384, temperature: 0 })
     if (!control.resume) {
       let identity; try { identity = await manage({ operation: 'identity' }) } catch { identity = { version: 0 } }
-      await manage({ operation: 'configure_identity', expected_version: identity.version, profile: { name: 'Lucille Synthetic Phase22', description: 'Fictional isolated QA identity', personality: 'Concise', instructions: 'Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. No tools are needed in these synthetic memory checks.' } }, true)
+      await manage({ operation: 'configure_identity', expected_version: identity.version, profile: { name: 'Lucille Synthetic Phase22', description: 'Fictional isolated QA identity', personality: 'Concise', instructions: 'Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. No tools are needed in these synthetic memory checks.' } }, true)
     }
     await conversation(); await settings()
     await select('Lucille extraction mode', 'llm')

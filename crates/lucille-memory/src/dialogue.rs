@@ -14,6 +14,25 @@ pub fn eligible_source(text: &str) -> bool {
         return false;
     }
     let folded = fold(text);
+    let header =
+        folded.trim_start_matches(|c: char| c.is_whitespace() || ['*', '_', '[', ']'].contains(&c));
+    if [
+        "assistant",
+        "assistente",
+        "tool",
+        "ferramenta",
+        "user",
+        "usuario",
+    ]
+    .iter()
+    .any(|tag| {
+        header
+            .strip_prefix(tag)
+            .is_some_and(|rest| rest.trim_start().starts_with([':', '：']))
+    }) {
+        return false;
+    }
+
     if any(&folded, &["nao ", "not ", "never ", "nunca "])
         && any(
             &folded,
@@ -25,6 +44,51 @@ pub fn eligible_source(text: &str) -> bool {
         return false;
     }
 
+    // Fictional speech frames taint an embedded personal claim. A game's
+    // character progression is an object of a real user's preference, not an author.
+    let personal_at = [
+        "eu prefiro",
+        "eu gosto",
+        "eu curto",
+        "i prefer",
+        "i like",
+        "i don't like",
+        "i do not like",
+        "prefiro ",
+    ]
+    .iter()
+    .filter_map(|v| folded.find(v))
+    .min()
+    .unwrap_or(folded.len());
+    if let Some(actor_at) = ["personag", "character"]
+        .iter()
+        .filter_map(|v| folded.find(v))
+        .min()
+    {
+        if actor_at < personal_at {
+            let frame = &folded[..personal_at];
+            if frame[actor_at..].contains(':')
+                || any(
+                    frame,
+                    &[
+                        "falou",
+                        "afirm",
+                        "declar",
+                        "disse",
+                        "says",
+                        "said",
+                        "stated",
+                        "no papel",
+                        "in the role",
+                        "como personagem",
+                        "as a character",
+                    ],
+                )
+            {
+                return false;
+            }
+        }
+    }
     let chars = text.chars().collect::<Vec<_>>();
     let quoted = text.contains(['“', '‘', '«', '「'])
         || chars.windows(2).enumerate().any(|(i, pair)| {
@@ -57,7 +121,6 @@ pub fn eligible_source(text: &str) -> bool {
         w.starts_with("fictic")
             || w.starts_with("ficc")
             || w.starts_with("fiction")
-            || w.starts_with("personag")
             || w.starts_with("citad")
             || w.starts_with("citac")
             || [
@@ -704,8 +767,17 @@ pub fn normalize(text: &str, scope: &str, project: &str, raw: &str) -> Result<Ve
             continue;
         }
         for mut c in extract(span, project) {
+            // Coarse B-to-B taxonomy hints never gain promotion authority. The
+            // complete literal clause is independently parsed into the canonical kind.
+            let review_alias = (p.category == Kind::Goal
+                && matches!(c.kind, Kind::Task | Kind::Solution))
+                || (p.category == Kind::Decision && c.kind == Kind::Constraint)
+                || (p.category == Kind::Project
+                    && c.kind == Kind::Hardware
+                    && c.property == "equipment_change");
             if c.kind != p.category
                 && !(p.category == Kind::Fact && matches!(c.kind, Kind::Hardware | Kind::Project))
+                && !review_alias
             {
                 continue;
             }
