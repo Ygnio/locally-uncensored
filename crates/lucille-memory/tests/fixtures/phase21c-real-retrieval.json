@@ -1,0 +1,69 @@
+{
+  "version": "phase21c-real-retrieval-v1",
+  "minimum_similarity": 0.78,
+  "hybrid_weights": [
+    0.7,
+    0.3
+  ],
+  "precision_min": 0.95,
+  "recall_min": 0.8,
+  "concepts": [
+    {
+      "id": "concept-0",
+      "memory": "I enjoy tactical role-playing games with character classes.",
+      "exact_query": "tactical role-playing games",
+      "paraphrase_query": "Which RPGs offer deep profession systems?",
+      "irrelevant_query": "What is seven times nine?"
+    },
+    {
+      "id": "concept-1",
+      "memory": "I prefer unsweetened coffee.",
+      "exact_query": "unsweetened coffee",
+      "paraphrase_query": "Would I choose a sugar-free espresso?",
+      "irrelevant_query": "Explain the phases of the moon."
+    },
+    {
+      "id": "concept-2",
+      "memory": "My work laptop has eight gigabytes of RAM.",
+      "exact_query": "work laptop RAM",
+      "paraphrase_query": "How much memory is installed in the office notebook?",
+      "irrelevant_query": "How do ocean tides form?"
+    },
+    {
+      "id": "concept-3",
+      "memory": "The fictional atlas project stores its data in SQLite.",
+      "exact_query": "atlas SQLite",
+      "paraphrase_query": "Which embedded relational engine powers our demo catalog?",
+      "irrelevant_query": "What is the capital of Iceland?"
+    },
+    {
+      "id": "concept-4",
+      "memory": "My goal is to finish a watercolor landscape.",
+      "exact_query": "watercolor landscape",
+      "paraphrase_query": "What painting milestone am I trying to achieve?",
+      "irrelevant_query": "Describe a prime number."
+    },
+    {
+      "id": "concept-5",
+      "memory": "I solved the demo login failure by rotating the test certificate.",
+      "exact_query": "demo login certificate",
+      "paraphrase_query": "What fixed authentication in the sandbox application?",
+      "irrelevant_query": "How do clouds form rain?"
+    },
+    {
+      "id": "concept-6",
+      "memory": "I need to submit the fictional budget tomorrow.",
+      "exact_query": "fictional budget tomorrow",
+      "paraphrase_query": "Which financial report is due the next day?",
+      "irrelevant_query": "Define a right angle."
+    },
+    {
+      "id": "concept-7",
+      "memory": "The synthetic bicycle is teal.",
+      "exact_query": "synthetic bicycle teal",
+      "paraphrase_query": "What shade is the two-wheeled vehicle?",
+      "irrelevant_query": "What is photosynthesis?"
+    }
+  ],
+  "notes": "Same real embeddings/data/queries in all three modes; 16 relevant and 8 irrelevant queries; arbitrary synthetic manually approved facts isolate retrieval quality from extraction. No threshold tuning after results."
+}

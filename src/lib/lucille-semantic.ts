@@ -1,5 +1,6 @@
 import { invoke } from '@tauri-apps/api/core'
 import { localFetch } from '../api/backend'
+import { realValidationPin, validateRealManifest } from './lucille-real-validation'
 export interface EmbeddingSpace { model: string; revision: string; fingerprint: string; dimension: number; normalization: string; pooling: string; document_prefix: string; query_prefix: string; context_tokens: number; index_version: number }
 export interface IndexStatus { space: EmbeddingSpace | null; indexed: number; transport_verified: boolean }
 export const semanticStatus = { state: 'lexical fallback; no transport verified', model: '', simulation: false }
@@ -23,9 +24,10 @@ async function manifest(signal?: AbortSignal) {
   const raw = await response.text()
   if (raw.length > 4096) throw new Error('Oversized manifest')
   const data = JSON.parse(raw)
-  // Advertised names are not weight attestation. This stage permits the
-  // explicitly marked simulated test contract only, never claims real Nomic.
-  if (data.simulation !== true) throw new Error('Real weight attestation not established')
+  // Advertised names are not weight attestation. Normal builds remain
+  // simulation-only; dedicated real QA also requires the independent file pin.
+  if (realValidationPin) validateRealManifest(data, 'nomic')
+  else if (data.simulation !== true) throw new Error('Real weight attestation not established')
   return validateSpace(data.space)
 }
 export async function encodeIsolated(space: EmbeddingSpace, text: string, document: boolean, signal?: AbortSignal) {
@@ -48,7 +50,7 @@ export async function initializeSimulatedIndex(scope: string, project: string) {
     const vector = await encodeIsolated(space, memory.input.content, true)
     await manage({ operation: 'put_vector', id: memory.input.id, version: memory.version, space, vector }, true)
   }
-  semanticStatus.state = 'SIMULATED index ready; real Nomic unverified'; semanticStatus.model = space.model; semanticStatus.simulation = true
+  semanticStatus.state = realValidationPin ? 'REAL Nomic test index ready; pinned weights and owned endpoint verified' : 'SIMULATED index ready; real Nomic unverified'; semanticStatus.model = space.model; semanticStatus.simulation = !realValidationPin
   return manage<IndexStatus>({ operation: 'index_status' })
 }
 export async function queryVector(query: string, signal?: AbortSignal) {
@@ -57,7 +59,7 @@ export async function queryVector(query: string, signal?: AbortSignal) {
     if (!status.space) return null
     const space = validateSpace(status.space)
     const vector = await encodeIsolated(space, query, false, signal)
-    semanticStatus.state = 'SIMULATED hybrid retrieval; real Nomic unverified'; semanticStatus.simulation = true; semanticStatus.model = space.model
+    semanticStatus.state = realValidationPin ? 'REAL Nomic test query; pinned weights and owned endpoint verified' : 'SIMULATED hybrid retrieval; real Nomic unverified'; semanticStatus.simulation = !realValidationPin; semanticStatus.model = space.model
     return { space, vector }
   } catch { semanticStatus.state = 'lexical fallback; embedding endpoint unavailable or unverified'; return null }
 }
