@@ -2,9 +2,10 @@ name: Lucille identity and memory
 
 on:
   push:
-    branches: [feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code]
+    branches: [feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation]
   pull_request:
-    branches: [master, feature/lucille-memory-hybrid-phase1]
+    branches: [master, feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code]
+  workflow_dispatch:
 
 permissions:
   contents: read
