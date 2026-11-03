@@ -40,5 +40,7 @@ describe('isolated semantic transport', () => {
     expect(() => validateVector([2], 1)).toThrow()
     expect(() => validateVector([], 64)).toThrow()
     await expect(encodeIsolated(space, 'x'.repeat(8192), false)).rejects.toThrow('ceiling')
+    mock.fetch.mockImplementation(async (url: string) => url.endsWith('embedding-manifest') ? response({ simulation: true, space }) : response({ model: space.model, data: { length: 1, 0: { index: 0, embedding: vector } } }))
+    await expect(encodeIsolated(space, 'fictional', false)).rejects.toThrow('response')
   })
 })

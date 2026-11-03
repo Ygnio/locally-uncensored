@@ -37,7 +37,7 @@ export async function encodeIsolated(space: EmbeddingSpace, text: string, docume
   const raw = await response.text()
   if (raw.length > 100000) throw new Error('Oversized vector response')
   const data = JSON.parse(raw)
-  if (data.model !== space.model || data.data?.length !== 1 || data.data[0].index !== 0 || signature(await manifest(signal)) !== signature(space)) throw new Error('Embedding identity or response changed')
+  if (data.model !== space.model || !Array.isArray(data.data) || data.data.length !== 1 || data.data[0].index !== 0 || signature(await manifest(signal)) !== signature(space)) throw new Error('Embedding identity or response changed')
   return validateVector(data.data[0].embedding, space.dimension)
 }
 export async function initializeSimulatedIndex(scope: string, project: string) {

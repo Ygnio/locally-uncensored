@@ -41,10 +41,13 @@ if (process.argv[2] === 'stage') {
   console.log('PASS: verified synthetic queue entry scheduled and durably queued before native shutdown.')
 } else if (process.argv[2] === 'verify') {
   const fixture = JSON.parse(readFileSync(fixturePath, 'utf8'))
-  await page.waitForFunction(async ({ id, scope }) => {
-    const { lucilleManage } = await import('/src/lib/lucille-context.ts')
-    return (await lucilleManage({ operation: 'learning_jobs', scope, project: 'atlas' })).find(j => j.id === id)?.state === 'done'
-  }, fixture, { timeout: 60000 })
+  let complete=false
+  for(let attempt=0;attempt<240;attempt++) {
+    const state=await page.evaluate(async ({id,scope})=>{const {lucilleManage}=await import('/src/lib/lucille-context.ts');return (await lucilleManage({operation:'learning_jobs',scope,project:'atlas'})).find(j=>j.id===id)?.state},fixture)
+    if(state==='done'){complete=true;break}
+    await page.waitForTimeout(250)
+  }
+  assert(complete,'Persisted job must finish after reopening')
   const result = await page.evaluate(async ({ id, scope, conversation }) => {
     const [{ lucilleManage }, { useChatStore }] = await Promise.all([import('/src/lib/lucille-context.ts'), import('/src/stores/chatStore.ts')])
     const records = await lucilleManage({ operation: 'details', scope, project: 'atlas' })

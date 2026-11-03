@@ -1,6 +1,7 @@
 // Synthetic model protocol only. The complete application uses its real hooks,
 // real Rust HTTP proxy, real SQLite and real filesystem/tool executor.
 import http from 'node:http'
+import { syntheticSpace, syntheticVector, syntheticExtraction } from './lucille-phase21-fixtures.mjs'
 import {readFileSync,appendFileSync} from 'node:fs'
 import {resolve,join} from 'node:path'
 const root=resolve('.lucille-qa-runtime/lucille-synthetic-full')
@@ -13,16 +14,19 @@ http.createServer((req,res)=>{
   if(req.method==='OPTIONS'){res.writeHead(204).end();return}
   const json=value=>res.writeHead(200,{'Content-Type':'application/json'}).end(JSON.stringify(value))
   if(req.method==='GET'){
+    if(req.url==='/lucille/embedding-manifest')return json({simulation:true,space:syntheticSpace})
     if(req.url==='/v1/models')return json({object:'list',data:['aurora-qa','aurora-qa-alt'].map(id=>({id,object:'model',owned_by:'synthetic',context_length:16384,supports_function_calling:true}))})
     if(req.url==='/props')return json({default_generation_settings:{n_ctx:16384},chat_template_caps:{supports_tools:true,supports_tool_calls:true},model_alias:'aurora-qa',chat_template:'synthetic payload validation'})
     if(req.url==='/health')return json({status:'ok',synthetic:true})
     res.writeHead(404).end();return
   }
-  if(req.method!=='POST'||req.url!=='/v1/chat/completions'){res.writeHead(404).end();return}
+  if(req.method!=='POST'||!['/v1/chat/completions','/v1/embeddings'].includes(req.url)){res.writeHead(404).end();return}
   let raw='';req.on('data',chunk=>{raw+=chunk;if(raw.length>4_000_000)req.destroy()})
   req.on('end',()=>{try{
     const payload=JSON.parse(raw),messages=payload.messages??[],values=messages.flatMap(parse)
     appendFileSync(join(root,'captures.ndjson'),JSON.stringify({observed_at:new Date().toISOString(),payload})+'\n')
+    if(req.url==='/v1/embeddings')return json({object:'list',model:syntheticSpace.model,data:[{index:0,embedding:syntheticVector(payload.input)}],usage:{prompt_tokens:16,total_tokens:16},simulation:true})
+    if(messages[0]?.content?.startsWith('LUCILLE_STRUCTURED_EXTRACTION_V1'))return json({id:'synthetic-extractor',choices:[{index:0,message:{role:'assistant',content:syntheticExtraction(JSON.parse(messages.at(-1).content))},finish_reason:'stop'}],usage:{prompt_tokens:128,completion_tokens:64}})
     const identity=values.find(value=>value?.profile_id==='lucille'),environment=values.find(value=>value?.source==='local_host_clock_and_executor')
     const memories=values.filter(Array.isArray).flat().filter(value=>value?.id&&value?.version)
     // The real provider can merge adjacent user data/request messages.

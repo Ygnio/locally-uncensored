@@ -1,3 +1,6 @@
+#[allow(dead_code)]
+#[path = "fixtures/phase2-reference-extractor.rs"]
+mod phase2_reference;
 use lucille_memory::{intelligent::*, llm::*, semantic::*, *};
 fn permit() -> ConfigurationPermit {
     ConfigurationPermit::explicit_settings_action(true).unwrap()
@@ -376,4 +379,69 @@ fn llm_commit_database_failure_retains_retry_source_without_partial_memory() {
         )
         .unwrap());
     assert!(s.learning_input(&lease).unwrap().is_none());
+}
+
+#[test]
+fn independent_postfreeze_rule_evaluation_preserves_failures() {
+    let cases: Vec<serde_json::Value> =
+        serde_json::from_str(include_str!("fixtures/phase21-independent.json")).unwrap();
+    let (mut tp, mut fp, mut missed) = (0, 0, 0);
+    let mut failures = vec![];
+    let mut groups = std::collections::BTreeMap::<String, (usize, usize, usize)>::new();
+    for case in &cases {
+        let claims = extract(case["text"].as_str().unwrap());
+        let actual = claims
+            .first()
+            .map(|c| serde_json::to_value(&c.kind).unwrap());
+        let expected = case["expected"].as_str();
+        let correct = expected.is_some() && actual.as_ref().and_then(|v| v.as_str()) == expected;
+        let wrong = !claims.is_empty() && !correct;
+        let missing = expected.is_some() && !correct;
+        tp += usize::from(correct);
+        fp += usize::from(wrong);
+        missed += usize::from(missing);
+        for key in [
+            format!("language:{}", case["language"].as_str().unwrap()),
+            format!("category:{}", expected.unwrap_or("abstain")),
+        ] {
+            let g = groups.entry(key).or_default();
+            g.0 += usize::from(correct);
+            g.1 += usize::from(wrong);
+            g.2 += usize::from(missing);
+        }
+        if wrong || missing {
+            failures.push(
+                serde_json::json!({"id":case["id"],"expected":case["expected"],"actual":actual}),
+            );
+        }
+    }
+    let (mut baseline_tp, mut baseline_fp, mut baseline_missed) = (0, 0, 0);
+    for case in &cases {
+        let claims = phase2_reference::extract(case["text"].as_str().unwrap());
+        let actual = claims
+            .first()
+            .map(|c| serde_json::to_value(&c.kind).unwrap());
+        let expected = case["expected"].as_str();
+        let correct = expected.is_some() && actual.as_ref().and_then(|v| v.as_str()) == expected;
+        baseline_tp += usize::from(correct);
+        baseline_fp += usize::from(!claims.is_empty() && !correct);
+        baseline_missed += usize::from(expected.is_some() && !correct);
+    }
+    let report = serde_json::json!({"cases":cases.len(),"phase2_reference":{"commit":"c4a401b55d8f7231351039a744c861344c4a4cab","tp":baseline_tp,"false_positive":baseline_fp,"missed":baseline_missed,"precision":baseline_tp as f64/(baseline_tp+baseline_fp).max(1) as f64,"recall":baseline_tp as f64/(baseline_tp+baseline_missed).max(1) as f64},"rules":{"tp":tp,"false_positive":fp,"missed":missed,"precision":tp as f64/(tp+fp).max(1) as f64,"recall":tp as f64/(tp+missed).max(1) as f64,"by_language_and_category_tp_fp_missed":groups,"failures":failures},"real_llm":null,"real_nomic":null,"independent_from_development_examples":true});
+    if let Some(path) = std::env::var_os("LUCILLE_PHASE21_INDEPENDENT_OUT") {
+        std::fs::write(path, serde_json::to_string_pretty(&report).unwrap()).unwrap()
+    }
+    assert_eq!(fp, 0, "{report}");
+}
+#[test]
+fn forwarded_and_role_instructions_never_enter_any_extractor_mode() {
+    for text in [
+        "Encaminhado: prefiro café com açúcar.",
+        "Forwarded: I prefer coffee without sugar.",
+        "Seu papel: eu prefiro café sem açúcar.",
+        "Eu gosto de RPG tático, só que não.",
+    ] {
+        assert!(extract(text).is_empty(), "{text}");
+        assert!(!eligible_source(text));
+    }
 }
