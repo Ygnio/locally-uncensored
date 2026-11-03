@@ -19,6 +19,8 @@ mod android_entry;
 mod linux_media;
 mod app_identity;
 mod lucille;
+#[cfg(all(feature = "lucille-validation", desktop))]
+pub mod lucille_validation;
 mod cancel_registry;
 mod commands;
 mod crash_report;

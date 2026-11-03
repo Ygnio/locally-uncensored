@@ -517,6 +517,8 @@ fn phase1_schema_upgrade_preserves_existing_retrieval_audit() {
 fn ipc_host_gate_denies_operational_release_and_remote_windows() {
     use lucille_memory::isolation::validate_host;
     assert!(validate_host(true, "dev.ygnio.lucille.phase1", "main").is_ok());
+    assert!(validate_host(true, "dev.ygnio.lucille.phase16", "main").is_ok());
+    assert!(validate_host(false, "dev.ygnio.lucille.phase16", "main").is_err());
     assert!(validate_host(false, "dev.ygnio.lucille.phase1", "main").is_err());
     assert!(validate_host(true, "com.purpledoubled.locally-uncensored", "main").is_err());
     assert!(validate_host(true, "dev.ygnio.lucille.phase1", "remote").is_err());

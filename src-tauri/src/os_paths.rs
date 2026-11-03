@@ -19,11 +19,15 @@ use std::path::PathBuf;
 // A phone has its own `home` further down.
 #[cfg(any(desktop, test))]
 pub fn home() -> PathBuf {
+    #[cfg(all(feature = "lucille-validation", desktop))]
+    if let Some(path) = crate::lucille_validation::path("home") { return path; }
     dirs::home_dir().unwrap_or_else(|| PathBuf::from("."))
 }
 
 #[cfg(all(not(test), desktop))]
 pub fn data_dir() -> PathBuf {
+    #[cfg(feature = "lucille-validation")]
+    if let Some(path) = crate::lucille_validation::path("data") { return path; }
     dirs::data_local_dir()
         .or_else(dirs::data_dir)
         .unwrap_or_else(|| PathBuf::from("."))
@@ -32,6 +36,8 @@ pub fn data_dir() -> PathBuf {
 
 #[cfg(all(not(test), desktop))]
 pub fn cache_dir() -> PathBuf {
+    #[cfg(feature = "lucille-validation")]
+    if let Some(path) = crate::lucille_validation::path("cache") { return path; }
     dirs::cache_dir()
         .unwrap_or_else(|| PathBuf::from("."))
         .join(APP_DIR)
@@ -43,6 +49,8 @@ pub fn cache_dir() -> PathBuf {
 /// (`commands::video`).
 #[cfg(all(not(test), desktop))]
 pub fn config_root() -> PathBuf {
+    #[cfg(feature = "lucille-validation")]
+    if let Some(path) = crate::lucille_validation::path("config") { return path; }
     dirs::config_dir()
         .unwrap_or_else(|| PathBuf::from("."))
         .join(APP_DIR)
@@ -53,6 +61,8 @@ pub fn config_root() -> PathBuf {
 /// Konstante statt eines zweiten Literals.
 #[cfg(all(not(test), desktop))]
 pub fn app_config_dir() -> PathBuf {
+    #[cfg(feature = "lucille-validation")]
+    if let Some(path) = crate::lucille_validation::path("config") { return path; }
     dirs::config_dir()
         .unwrap_or_else(|| PathBuf::from("."))
         .join(APP_CONFIG_DIR)
