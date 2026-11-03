@@ -59,13 +59,17 @@ pub fn eligible_source(text: &str) -> bool {
             "corrigindo:",
             "na verdade",
             "troquei ",
+            "no cafe, minha escolha ",
+            "pra mim, cafe",
+            "para mim, cafe",
+            "when i pick games, i go for ",
+            "coffee tastes best to me ",
+            "conclui meu objetivo de ",
         ]
         .iter()
         .any(|prefix| s.starts_with(prefix))
         && ![
             "imagine",
-            "historia",
-            "story",
             "forwarded",
             "encaminhad",
             "voce disse",

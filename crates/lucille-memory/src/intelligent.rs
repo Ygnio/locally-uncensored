@@ -192,6 +192,12 @@ pub(crate) fn snapshot(tx: &Transaction, m: &Memory) -> Result<()> {
     Ok(())
 }
 pub(crate) fn before_change(tx: &Transaction, m: &Memory, action: &Action) -> Result<()> {
+    if matches!(action, Action::Approve)
+        && quality(tx, &m.input.id)?
+            .is_some_and(|q| q.subject == "device.unspecified" || q.property == "capacity_update")
+    {
+        return Err("Clarify equipment and capacity property before approval".into());
+    }
     if matches!(action, Action::Delete) {
         let fingerprint = quality(tx, &m.input.id)?
             .map(|q| digest(&format!("{}|{}|{}", q.subject, q.property, q.value)));
@@ -681,6 +687,37 @@ fn ingest(
     policy: &LearningPolicy,
     at: i64,
 ) -> Result<()> {
+    let mut resolved = c.clone();
+    if c.subject == "device.unspecified" || c.property == "capacity_update" {
+        let old = crate::coverage::old_capacity(&c.evidence);
+        let mut q=tx.prepare("SELECT memory_id,subject,value FROM memory_quality q JOIN memories m ON m.id=q.memory_id WHERE m.scope=?1 AND m.project=?2 AND m.state='active' AND q.property='ram_capacity' AND q.subject!='device.unspecified' AND (q.expires_at IS NULL OR q.expires_at>?3) LIMIT 501").map_err(db_error)?;
+        let rows = q
+            .query_map(params![lease.scope, lease.project, at], |r| {
+                Ok((
+                    r.get::<_, String>(0)?,
+                    r.get::<_, String>(1)?,
+                    r.get::<_, String>(2)?,
+                ))
+            })
+            .map_err(db_error)?
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .map_err(db_error)?;
+        let matching = rows
+            .iter()
+            .filter(|(_, subject, value)| {
+                if c.subject == "device.unspecified" {
+                    old.as_ref() == Some(value)
+                } else {
+                    subject == &c.subject
+                }
+            })
+            .collect::<Vec<_>>();
+        if rows.len() <= 500 && matching.len() == 1 {
+            resolved.subject = matching[0].1.clone();
+            resolved.property = "ram_capacity".into();
+        }
+    }
+    let c = &resolved;
     let erased:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_tombstones WHERE scope=?1 AND project=?2 AND claim_digest=?3)",params![lease.scope,lease.project,c.fingerprint()],|r|r.get(0)).map_err(db_error)?;
     if erased {
         return Ok(());

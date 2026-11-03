@@ -4,6 +4,7 @@ import http from 'node:http'
 import { syntheticSpace, syntheticVector, syntheticExtraction } from './lucille-phase21-fixtures.mjs'
 import {readFileSync,appendFileSync} from 'node:fs'
 import {resolve,join} from 'node:path'
+let embeddingsAvailable=true
 const root=resolve('.lucille-qa-runtime/lucille-synthetic-full')
 if(readFileSync(join(root,'.lucille-isolated'),'utf8')!=='synthetic-data-only\n')throw new Error('Synthetic root required')
 const parse=message=>(message.content??'').split('\n').flatMap(line=>{try{return [JSON.parse(line)]}catch{return []}})
@@ -14,6 +15,9 @@ http.createServer((req,res)=>{
   if(req.method==='OPTIONS'){res.writeHead(204).end();return}
   const json=value=>res.writeHead(200,{'Content-Type':'application/json'}).end(JSON.stringify(value))
   if(req.method==='GET'){
+    if(req.url==='/lucille/test/embeddings-disable'){embeddingsAvailable=false;return json({synthetic:true,embeddings_available:false})}
+    if(req.url==='/lucille/test/embeddings-enable'){embeddingsAvailable=true;return json({synthetic:true,embeddings_available:true})}
+    if(req.url==='/lucille/embedding-manifest'&&!embeddingsAvailable){res.writeHead(503).end();return}
     if(req.url==='/lucille/embedding-manifest')return json({simulation:true,space:syntheticSpace})
     if(req.url==='/v1/models')return json({object:'list',data:['aurora-qa','aurora-qa-alt'].map(id=>({id,object:'model',owned_by:'synthetic',context_length:16384,supports_function_calling:true}))})
     if(req.url==='/props')return json({default_generation_settings:{n_ctx:16384},chat_template_caps:{supports_tools:true,supports_tool_calls:true},model_alias:'aurora-qa',chat_template:'synthetic payload validation'})
