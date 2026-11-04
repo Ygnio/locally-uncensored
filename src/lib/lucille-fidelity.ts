@@ -108,7 +108,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     if (subject) {
       for (const m of q.matchAll(/\b(?:projeto|project)\s+["`']?([a-z0-9_.-]+)/g)) {
         const name = m[1] === fold(snapshot.project) ? m[1] : m[1].replace(/\.+$/, '')
-        if (!['de', 'do', 'da', 'esta', 'e', 'is', 'was', 'foi', 'sera', 'vai', 'ainda', 'has', 'tem', 'continua', 'planeja', 'agora', 'atualmente', 'hoje', 'usa', 'utiliza', 'possui', 'segue', 'parece', 'estava', 'estara', 'ja', 'nao', 'aqui', 'precisa', 'exige', 'requer', 'apresenta', 'will', 'uses', 'needs', 'requires', 'currently', 'now', 'already', 'still', 'seems', 'would', 'could', 'should', 'may', 'might', 'can'].includes(name) && name !== fold(snapshot.project)) add('unsupported_project_entity', span)
+        if (!['de', 'do', 'da', 'sem', 'com', 'para', 'with', 'without', 'esta', 'e', 'is', 'was', 'foi', 'sera', 'vai', 'ainda', 'has', 'tem', 'continua', 'planeja', 'agora', 'atualmente', 'hoje', 'usa', 'utiliza', 'possui', 'segue', 'parece', 'estava', 'estara', 'ja', 'nao', 'aqui', 'precisa', 'exige', 'requer', 'apresenta', 'will', 'uses', 'needs', 'requires', 'currently', 'now', 'already', 'still', 'seems', 'would', 'could', 'should', 'may', 'might', 'can'].includes(name) && name !== fold(snapshot.project)) add('unsupported_project_entity', span)
       }
     }
     if (subject || projectQuestion) {
@@ -184,8 +184,9 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
         }
       }
     }
-    const goalQuestion=personalQuestion && /objetiv|\bmeta\b|\bgoal\b/.test(query)
-    if ((subject && /objetiv|\bmeta\b|\bgoal\b/.test(q)) || (goalQuestion && span.length<200)) {
+    const goalDomain=/\b(?:objetivos?|metas?|goals?)\b/
+    const goalQuestion=personalQuestion && goalDomain.test(query)
+    if ((subject && goalDomain.test(q)) || (goalQuestion && span.length<200)) {
       const stop=new Set(['voce','seu','sua','seus','suas','your','you','the','was','foi','era','objetivo','goal','meta','concluiu','conclui','concluido','completed','finished','concluir','concluido','concluida','terminou','finalizou','apenas','seu','meu','minha','esta','seu','que','para','uma','um','de','do','da','em','of','to'])
       const tokens=(text:string)=>fold(text).split(/[^a-z0-9]+/).filter(t=>t.length>2 && !stop.has(t)).map(t=>({aprender:'learn',portugues:'portuguese',ingles:'english',espanhol:'spanish'} as Record<string,string>)[t] ?? t)
       const target=tokens(span), requiredCompletion=completion(span) || (goalQuestion && completion(query))

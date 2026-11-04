@@ -112,6 +112,16 @@ describe('temporal and preference boundaries added in 2.2B', () => {
 })
 
 describe('literal failures observed in real development answers', () => {
+  it('does not interpret objective replies as a personal goal', () => {
+    const f=fact({entity:'user',property:'communication_focus',value:'objective',modality:'preference'})
+    for (const query of ['Prefiro respostas objetivas.', 'Como eu prefiro as respostas?']) {
+      expect(verifyMemoryAnswer('Você prefere respostas objetivas.',snapshot([f],query)).violations).toEqual([])
+      expect(verifyMemoryAnswer('Entendido. Serei o mais direto possível nas próximas respostas.',snapshot([f],query)).violations).toEqual([])
+    }
+  })
+  it('does not parse a preposition as a foreign project name', () => {
+    expect(verifyMemoryAnswer('Essa quantidade é suficiente para lidar com o projeto sem gargalos de memória.',snapshot([])).violations).toEqual([])
+  })
   it('requires exact proof before claiming that RAM doubled', () => {
     expect(verifyMemoryAnswer('Você dobrou a capacidade de memória do seu computador.',snapshot([])).violations.map(v=>v.code)).toContain('unsupported_hardware_ratio')
     const f=fact({entity:'device.primary_computer',property:'ram_capacity',value:'50_gb',modality:'current_fact',evidence:[{role:'previous_property_link_not_current_value',text:'Meu computador principal tem 24 GB de RAM.'}]})
