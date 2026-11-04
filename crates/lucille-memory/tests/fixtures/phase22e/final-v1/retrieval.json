@@ -1,0 +1,743 @@
+{
+  "id": "phase22e-final-retrieval-v1",
+  "authored_after_development": {
+    "production_code_commit": "9fca27daf715ef5597e2536f6651583b48ec1f2b",
+    "ended_utc": "2026-11-04T23:08:29.325397+00:00",
+    "authored_utc": "2026-11-04 23:15:30 UTC",
+    "no_native_or_model_rehearsal": true,
+    "authoring": "New synthetic sources and semantic gold authored after development by the same Codex author/team as implementation. This is not external or fully independent blinded evaluation. One explicitly marked known_anchor is a known development anchor."
+  },
+  "events": [
+    {
+      "action": "learn",
+      "label": "purpose",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "text": "Estou começando um projeto de catálogo de miniaturas.",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "language-choice",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "text": "Escolhi Python como linguagem para o meu projeto.",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "database-plan",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "text": "No meu projeto, pretendo usar PostgreSQL como banco de dados.",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "primary-before",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "text": "No computador principal que uso há 48 GB de RAM.",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "work-ram",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "text": "O notebook de trabalho que utilizo tem 12 GB de RAM.",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "primary-now",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "text": "Meu computador principal agora tem 64 GB de RAM, em vez dos 48 GB anteriores.",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "coffee",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "text": "Meu café da tarde eu prefiro sem açúcar.",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "classes",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "text": "Gosto de jogos em que a escolha da classe do personagem fica comigo.",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "favorite",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "text": "A minha bebida favorita entre todas é chá.",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "deleted-creation",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "text": "A criação de personagens nos jogos é algo de que eu gosto.",
+      "approve": true
+    },
+    {
+      "action": "delete",
+      "target": "deleted-creation"
+    },
+    {
+      "action": "learn",
+      "label": "other-database",
+      "scope": "phase22e-final-ret-main",
+      "project": "pitanga",
+      "text": "Para o meu projeto, escolhi MySQL como banco de dados.",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "actual-language",
+      "scope": "phase22e-final-ret-main",
+      "project": "pitanga",
+      "text": "Neste projeto estou implementando em TypeScript.",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "future-language",
+      "scope": "phase22e-final-ret-main",
+      "project": "pitanga",
+      "text": "Pretendo usar Rust no meu projeto futuramente.",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "other-scope-ram",
+      "scope": "phase22e-final-ret-other",
+      "project": "jatoba",
+      "text": "O meu computador principal conta com 24 GB de RAM.",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "cancelled-language",
+      "scope": "phase22e-final-ret-main",
+      "project": "cedrinho",
+      "text": "Estou implementando o meu projeto em Rust.",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "cancelled-state",
+      "scope": "phase22e-final-ret-main",
+      "project": "cedrinho",
+      "text": "Eu cancelei o meu projeto.",
+      "approve": true
+    }
+  ],
+  "queries": [
+    {
+      "id": "er-001",
+      "query": "Qual a RAM atual do meu computador principal?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "identified_ram",
+      "expected": [
+        "primary-now"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "primary-before",
+        "work-ram",
+        "other-scope-ram",
+        "deleted-creation"
+      ]
+    },
+    {
+      "id": "er-002",
+      "query": "Quantos gigabytes de memória há no meu PC principal?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "identified_alias",
+      "expected": [
+        "primary-now"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "primary-before",
+        "work-ram",
+        "other-scope-ram",
+        "deleted-creation"
+      ]
+    },
+    {
+      "id": "er-003",
+      "query": "Quanto de RAM tem o notebook de trabalho que eu utilizo?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "work_ram",
+      "expected": [
+        "work-ram"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "primary-now",
+        "primary-before",
+        "other-scope-ram"
+      ]
+    },
+    {
+      "id": "er-004",
+      "query": "Compare a RAM do computador principal com a do notebook de trabalho.",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "two_devices",
+      "expected": [
+        "primary-now",
+        "work-ram"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "primary-before",
+        "other-scope-ram"
+      ]
+    },
+    {
+      "id": "er-005",
+      "query": "Qual era a RAM do computador principal antes e qual é agora?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "ram_history",
+      "expected": [
+        "primary-before",
+        "primary-now"
+      ],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "other-scope-ram"
+      ]
+    },
+    {
+      "id": "er-006",
+      "query": "Meu computador principal tem 128 GB de RAM ou há outra capacidade registrada?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "false_128_correction",
+      "expected": [
+        "primary-now"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "primary-before",
+        "other-scope-ram"
+      ]
+    },
+    {
+      "id": "er-007",
+      "query": "Qual é o assunto do catálogo do projeto que estou começando?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "purpose",
+      "expected": [
+        "purpose"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "deleted-creation"
+      ]
+    },
+    {
+      "id": "er-008",
+      "query": "Que linguagem escolhi para o meu projeto?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "chosen_language",
+      "expected": [
+        "language-choice"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "deleted-creation"
+      ]
+    },
+    {
+      "id": "er-009",
+      "query": "Qual banco de dados eu pretendo usar no projeto?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "planned_database",
+      "expected": [
+        "database-plan"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "deleted-creation"
+      ]
+    },
+    {
+      "id": "er-010",
+      "query": "Como prefiro meu café da tarde?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "coffee",
+      "expected": [
+        "coffee"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "deleted-creation"
+      ]
+    },
+    {
+      "id": "er-011",
+      "query": "O que eu gosto na escolha de classes dos jogos?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "classes",
+      "expected": [
+        "classes"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "deleted-creation"
+      ]
+    },
+    {
+      "id": "er-012",
+      "query": "Qual é a minha bebida favorita?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "favorite",
+      "expected": [
+        "favorite"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "deleted-creation"
+      ]
+    },
+    {
+      "id": "er-013",
+      "query": "Qual a RAM do meu computador principal e qual banco planejei para o projeto?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "two_properties",
+      "expected": [
+        "primary-now",
+        "database-plan"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "primary-before",
+        "other-scope-ram",
+        "other-database"
+      ]
+    },
+    {
+      "id": "er-014",
+      "query": "Qual é o tema do projeto, a linguagem escolhida e o banco planejado?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "three_properties",
+      "expected": [
+        "purpose",
+        "language-choice",
+        "database-plan"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "deleted-creation"
+      ]
+    },
+    {
+      "id": "er-015",
+      "query": "Continua registrada a minha preferência por criação de personagens?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "deleted_preference",
+      "expected": [],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "deleted-creation"
+      ]
+    },
+    {
+      "id": "er-016",
+      "query": "Qual placa de vídeo está registrada no meu computador principal?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "unknown_gpu",
+      "expected": [],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "primary-before",
+        "work-ram",
+        "primary-now",
+        "coffee",
+        "classes",
+        "favorite",
+        "deleted-creation",
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state"
+      ]
+    },
+    {
+      "id": "er-017",
+      "query": "Qual é a RAM do computador principal do meu irmão?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "foreign_actor_ram",
+      "expected": [],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "primary-before",
+        "work-ram",
+        "primary-now",
+        "coffee",
+        "classes",
+        "favorite",
+        "deleted-creation",
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state"
+      ]
+    },
+    {
+      "id": "er-018",
+      "query": "Compare o banco planejado para o meu projeto e o banco do meu irmão.",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "mixed_actor_comparison",
+      "expected": [
+        "database-plan"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "deleted-creation"
+      ]
+    },
+    {
+      "id": "er-019",
+      "query": "Qual RAM consta para o meu computador principal?",
+      "scope": "phase22e-final-ret-other",
+      "project": "jatoba",
+      "category": "other_scope",
+      "expected": [
+        "other-scope-ram"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "primary-before",
+        "work-ram",
+        "primary-now",
+        "coffee",
+        "classes",
+        "favorite",
+        "deleted-creation",
+        "other-database",
+        "actual-language",
+        "future-language",
+        "cancelled-language",
+        "cancelled-state"
+      ]
+    },
+    {
+      "id": "er-020",
+      "query": "Você lembra como eu prefiro o café?",
+      "scope": "phase22e-final-ret-empty",
+      "project": "jatoba",
+      "category": "empty_scope",
+      "expected": [],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "primary-before",
+        "work-ram",
+        "primary-now",
+        "coffee",
+        "classes",
+        "favorite",
+        "deleted-creation",
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state"
+      ]
+    },
+    {
+      "id": "er-021",
+      "query": "Qual banco de dados escolhi no projeto Pitanga?",
+      "scope": "phase22e-final-ret-main",
+      "project": "pitanga",
+      "category": "other_project",
+      "expected": [
+        "other-database"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "primary-before",
+        "work-ram",
+        "primary-now",
+        "coffee",
+        "classes",
+        "favorite",
+        "deleted-creation",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state"
+      ]
+    },
+    {
+      "id": "er-022",
+      "query": "Qual banco está planejado no projeto Jatobá?",
+      "scope": "phase22e-final-ret-main",
+      "project": "pitanga",
+      "category": "explicit_foreign_project",
+      "expected": [],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "primary-before",
+        "work-ram",
+        "primary-now",
+        "coffee",
+        "classes",
+        "favorite",
+        "deleted-creation",
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state"
+      ]
+    },
+    {
+      "id": "er-023",
+      "query": "Compare o banco deste projeto Jatobá com o do projeto Pitanga.",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "cross_project_partial",
+      "expected": [
+        "database-plan"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "deleted-creation"
+      ],
+      "unavailable_parts": [
+        "Pitanga: binding authorizes only phase22e-final-ret-main/jatoba"
+      ]
+    },
+    {
+      "id": "er-024",
+      "query": "Em qual linguagem estou implementando o projeto Pitanga?",
+      "scope": "phase22e-final-ret-main",
+      "project": "pitanga",
+      "category": "actual_implementation",
+      "expected": [
+        "actual-language"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "future-language"
+      ]
+    },
+    {
+      "id": "er-025",
+      "query": "Qual linguagem pretendo usar futuramente no projeto Pitanga?",
+      "scope": "phase22e-final-ret-main",
+      "project": "pitanga",
+      "category": "future_language",
+      "expected": [
+        "future-language"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "actual-language"
+      ]
+    },
+    {
+      "id": "er-026",
+      "query": "No Pitanga, compare a linguagem em implementação com a planejada para o futuro.",
+      "scope": "phase22e-final-ret-main",
+      "project": "pitanga",
+      "category": "plan_vs_execution",
+      "expected": [
+        "actual-language",
+        "future-language"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "primary-before",
+        "work-ram",
+        "primary-now",
+        "coffee",
+        "classes",
+        "favorite",
+        "deleted-creation",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state"
+      ]
+    },
+    {
+      "id": "er-027",
+      "query": "Antes de cancelar o projeto Cedrinho, em qual linguagem eu estava implementando?",
+      "scope": "phase22e-final-ret-main",
+      "project": "cedrinho",
+      "category": "cancelled_history",
+      "expected": [
+        "cancelled-language",
+        "cancelled-state"
+      ],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "primary-before",
+        "work-ram",
+        "primary-now",
+        "coffee",
+        "classes",
+        "favorite",
+        "deleted-creation",
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram"
+      ]
+    },
+    {
+      "id": "er-028",
+      "query": "Qual linguagem está em execução agora no projeto Cedrinho?",
+      "scope": "phase22e-final-ret-main",
+      "project": "cedrinho",
+      "category": "cancelled_not_current",
+      "expected": [
+        "cancelled-state"
+      ],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "cancelled-language"
+      ]
+    },
+    {
+      "id": "er-029",
+      "query": "Qual é a minha data de nascimento?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "true_negative_birth",
+      "expected": [],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "primary-before",
+        "work-ram",
+        "primary-now",
+        "coffee",
+        "classes",
+        "favorite",
+        "deleted-creation",
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state"
+      ]
+    }
+  ],
+  "scoring_note": "Every learn is one atomic semantic fact. Extraction failures remain failures, with no seed rehearsal. Delete is the only non-learn action. Scope/project authorizes exactly that pair; another project in query text grants no access. Exact injected-reference gold is separate from raw ranking and later verifier reads. All marked mandatory lexical queries must recover every expected atom without query vectors. Cross-project partial answers must name the unavailable part; that requested part remains unavailable in full-request completeness."
+}

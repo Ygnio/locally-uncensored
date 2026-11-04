@@ -1,0 +1,83 @@
+{
+  "captured_utc": "2026-11-04T23:10:50.286304+00:00",
+  "kind": "Frozen execution parameters and policy metadata, not scored linguistic corpus",
+  "gemma": {
+    "context_tokens": 65536,
+    "weights_sha256": "59656d7494d6376ca97e9e20b64ea2e16cd97f12ec6d47bfccba91cb785b5134"
+  },
+  "nomic": {
+    "context_tokens": 2048,
+    "dimension": 768,
+    "device": "CPU",
+    "weights_sha256": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+    "space": {
+      "model": "nomic-ai/nomic-embed-text-v1.5",
+      "revision": "0188c9bf409793f810680a5a431e7b899c46104c",
+      "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "dimension": 768,
+      "normalization": "layer_norm_then_l2",
+      "pooling": "mean",
+      "document_prefix": "search_document: ",
+      "query_prefix": "search_query: ",
+      "context_tokens": 2048,
+      "index_version": 5
+    }
+  },
+  "native": {
+    "schema": 5,
+    "representation": 5,
+    "index": 5,
+    "atomic_protocol": 3,
+    "source_authority": 2
+  },
+  "sampling": {
+    "standalone_extraction": {
+      "temperature": 0,
+      "max_tokens": 768
+    },
+    "gui": {
+      "temperature": 0,
+      "max_tokens": 384,
+      "thinking": false
+    },
+    "independent_answers": {
+      "temperature": 0,
+      "max_tokens": 384,
+      "stream": false,
+      "reasoning_effort": "none",
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      }
+    },
+    "gui_learning_extraction": {
+      "temperature": 0,
+      "max_tokens": 768
+    }
+  },
+  "server_argument_allowlist": {
+    "gemma": {
+      "--threads": "4",
+      "--batch-size": "128",
+      "--ubatch-size": "64",
+      "--fit": "off",
+      "--ctx-size": "65536",
+      "--gpu-layers": "99",
+      "--flash-attn": "on",
+      "--cache-type-k": "f16",
+      "--cache-type-v": "f16",
+      "--cache-ram": "0"
+    },
+    "nomic": {
+      "--threads": "4",
+      "--batch-size": "2048",
+      "--ubatch-size": "2048",
+      "--fit": "off",
+      "--ctx-size": "2048",
+      "--gpu-layers": "0",
+      "--embeddings": true,
+      "--pooling": "mean",
+      "--embd-normalize": "-1"
+    }
+  },
+  "private_credentials_and_paths": "Excluded; only public pins and whitelisted numeric/runtime options are sealed."
+}
