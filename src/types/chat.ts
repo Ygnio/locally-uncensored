@@ -95,6 +95,7 @@ export interface MessageError {
 }
 
 export interface Message {
+  lucilleFidelity?: import('../lib/lucille-answer').AnswerFidelityReport[]
   /** Original user interaction across regenerate/retry, never assistant content. */
   lucilleInteractionId?: string
   id: string

@@ -8,7 +8,8 @@ export function learningInteraction(conversation: Conversation | undefined, assi
   if (aborted || !isLucille(conversation) || !conversation || conversation.groupModels?.length || conversation.mode === 'remote') return null
   const index = conversation.messages.findIndex(message => message.id === assistantId)
   const answer = conversation.messages[index]
-  if (index < 0 || answer?.role !== 'assistant' || !answer.content.trim() || answer.error || answer.hidden) return null
+  const retained = answer?.error?.kind === 'generic' && answer.lucilleFidelity?.at(-1)?.status === 'blocked'
+  if (index < 0 || answer?.role !== 'assistant' || !answer.content.trim() || (answer.error && !retained) || answer.hidden) return null
   const user = conversation.messages.slice(0, index).findLast(message => message.role === 'user')
   if (!user || user.hidden || user.notice || user.content !== userText || user.content.length > 16000 || user.content.trim().length < 12) return null
   return { conversation_id: conversation.id, message_id: user.lucilleInteractionId ?? user.id,

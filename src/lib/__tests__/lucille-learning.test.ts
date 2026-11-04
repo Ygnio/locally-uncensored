@@ -39,3 +39,11 @@ describe('canonical Lucille learning boundary', () => {
     expect(source).toContain(hook === 'useChat' ? 'extractAndSave' : 'extractMemoriesFromPair')
   })
 })
+
+it('can learn only the durable user source when fidelity retains the assistant reply', () => {
+  const conversation=fixture()
+  conversation.messages[1].error={kind:'generic',detail:'Unverified response retained',at:0}
+  conversation.messages[1].lucilleFidelity=[{status:'blocked',attempts:[],refreshMs:0,verificationMs:0,extraGenerationMs:0,additionalUsage:{}}]
+  expect(learningInteraction(conversation,'answer',conversation.messages[0].content,'chat',false)?.user_text).toBe('Prefiro café sem açúcar.')
+  expect(learningInteraction(conversation,'answer',conversation.messages[0].content,'chat',true)).toBeNull()
+})
