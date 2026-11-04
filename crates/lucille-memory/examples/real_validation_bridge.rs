@@ -62,6 +62,12 @@ fn run() -> Result<Value> {
         .map_err(|_| "Clock failed")?
         .as_secs() as i64;
     match v["operation"].as_str().ok_or("Missing operation")? {
+        "configure_identity" => {
+            let profile: Profile = serde_json::from_value(v["profile"].clone())
+                .map_err(|_| "Invalid synthetic profile")?;
+            let expected = v["expected_version"].as_i64().ok_or("Missing identity version")?;
+            Ok(json!(s.configure_identity(profile, expected, &permit)?))
+        }
         "learn" => {
             if s.identity().is_err() {
                 s.configure_identity(Profile::fixture(), 0, &permit)?;

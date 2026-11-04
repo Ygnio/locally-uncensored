@@ -36,6 +36,10 @@ def main(a):
         if key not in vectors:vectors[key]=api('/v1/embeddings',{'model':space['model'],'input':key,'encoding_format':'float'})['data'][0]['embedding']
         return vectors[key]
     labels={};seed_evidence=[]
+    if freeze.get('identity'):
+        # Same explicitly approved synthetic profile as the actual GUI fixture.
+        # The native Store remains the writer; no direct SQL profile edits.
+        native({'operation':'configure_identity','expected_version':0,'profile':freeze['identity']['profile']})
     for item in dataset['events']:
         scope=item.get('scope','ret22');project=item.get('project','cedro')
         def scoped(op):return native({**op,'scope':scope,'project':project})
