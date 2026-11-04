@@ -12,6 +12,16 @@ export interface AuthorityClaim {
   reason: string; critical: boolean
 }
 export const normalizeEvidenceText = (text: string) => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+/** Denying an implication is not asserting poor (or good) actual performance.
+ * A later independent positive predicate must still be checked.
+ */
+export function deniesCapacityGuarantee(text: string): boolean {
+  const q=normalizeEvidenceText(text)
+  const denial=q.match(/\b(?:nao (?:garante|assegura|comprova|implica)|(?:does not|doesn.t|cannot|can.t) (?:guarantee|ensure|prove|imply))\b/)
+  if(!denial)return false
+  const tail=q.slice(denial.index!+denial[0].length)
+  return !/\b(?:mas|porem|but|however|e|and)\b.{0,80}\b(?:oferece|garante|assegura|proporciona|tem|e|is|offers|provides|guarantees|ensures|suficiente|sufficient|excelente|excellent|ideal)\b/.test(tail)
+}
 export function technologyRoles(text:string): {value:string;role:'origin'|'destination'}[] {
   const q=normalizeEvidenceText(text)
   const instead=q.search(/\bem vez de\b|\binstead of\b/)
@@ -27,6 +37,10 @@ export function memoryQuestionNeedsNoTools(query: string): boolean {
   // Explicit actions and advice requests retain the ordinary executable roster.
   if (/\b(?:list|read|open|inspect|check|search|write|create|run|execute|send|email|notify|liste|listar|leia|ler|abra|abrir|inspecione|verifique|pesquise|escreva|crie|execute|rode|envie|mande|notifique)\b|\b(?:arquivos?|files?|diretorio|directory|folder|pasta|repository|repositorio)\b/.test(q)) return false
   if (/\b(?:devo|should|recommend|recomenda|melhor|best|how to)\b/.test(q))return false
+  // Native memory directives are not filesystem actions. Keep the ordinary
+  // roster only when an external action/resource was explicitly requested above.
+  const memoryDirective=/^(?:por favor[, ]+|please[, ]+)?(?:esqueca|forget|memorize|memorise|guarde|registre|lembre|volte a (?:guardar|memorizar|registrar)|quero voltar a registrar|i want to remember|you can remember)\b/.test(q.trim())
+  if (memoryDirective && /preferenc|preference|memori|memory/.test(q)) return true
   const recalled=/\b(?:lembra|recorda|remember|recall)\b/.test(q)
   const personal=/\b(?:meu|minha|meus|minhas|my|our|aquele|aquela|that)\b/.test(q)
   const slots=/linguagem|language|banco|database|\bram\b|notebook|laptop|prefer|objetivo|goal|tema|theme|bebida|drink/.test(q)
@@ -40,8 +54,13 @@ export function requestedMemoryProperties(query: string): string[] {
   const q=normalizeEvidenceText(query), properties:string[]=[]
   if (/\b(?:linguagem|language)\b/.test(q)) properties.push('language')
   if (/\b(?:banco|database)\b/.test(q)) properties.push('database')
-  if (/\bram\b/.test(q)) properties.push(/livre|free/.test(q)?'free_ram':'ram_capacity')
+  if (/\bram\b|\b(?:memoria|memory|gigabytes)\b/.test(q) && !/gpu|vram|storage|armazenamento/.test(q)) properties.push(/livre|free/.test(q)?'free_ram':'ram_capacity')
   if (/\b(?:projeto|project)\b/.test(q) && /como esta|how is|status|estado atual|current state/.test(q)) properties.push('lifecycle')
+  if (/\bgpu\b|placa de video|graphics card/.test(q)) properties.push('gpu_model')
+  if (/data de nascimento|birth ?date|birthday/.test(q)) properties.push('birth_date')
+  if (/cafe|coffee/.test(q)) properties.push('coffee_sugar')
+  if (/bebida|beverage|drink/.test(q)) properties.push('favorite_beverage')
+  if (/tema|theme|modo escuro|dark mode/.test(q)) properties.push('interface_theme')
   return properties
 }
 
@@ -99,7 +118,7 @@ export function authorityClaims(text: string, snapshot: AnswerSnapshot): Authori
         add(span,'project.'+snapshot.project,'stack_transition',target.value,'transition',proof,'A decision to replace technology is not an executed replacement.')
       }
     }
-    if (project && /em desenvolvimento|em andamento|em execucao|esta avancando|is progressing|in development|in progress|under development|underway|being developed|is (?:still |currently )?developing/.test(q) && !epistemic && !hypothetical(/em desenvolvimento|em andamento|em execucao|avancando|progress|development|developed|developing|underway/)) {
+    if (project && /em desenvolvimento|em andamento|em execucao|esta (?:desenvolvendo|implementando|avancando)|is progressing|in development|in progress|under development|underway|being developed|is (?:still |currently )?developing/.test(q) && !epistemic && !hypothetical(/em desenvolvimento|em andamento|em execucao|avancando|progress|development|developed|developing|underway/)) {
       const proof = current.filter(f => f.entity === 'project.' + snapshot.project && ['in_progress','current_fact'].includes(f.modality) && ['lifecycle','project_status','language'].includes(f.property))
       const terminal = current.some(f => f.entity === 'project.' + snapshot.project && f.property === 'lifecycle' && ['cancelled','completed'].includes(f.modality))
       const negative=/nao (?:esta|segue)|is not|isn.t|not in/.test(q)
@@ -120,7 +139,7 @@ export function authorityClaims(text: string, snapshot: AnswerSnapshot): Authori
     if (project && /(?:nao (?:tem|possui|ha)|sem).{0,25}arquivos|(?:has no|does not have|doesn.t have|without).{0,20}files|(?:projeto|project).{0,40}(?:esta vazio|esta vazia|is empty)/.test(q) && !epistemic && !hypothetical(/nao tem|nao possui|nao ha|sem|has no|does not|doesn.t|without|vazio|vazia|empty/)) {
       add(span,'project.'+snapshot.project,'file_inventory','empty','observation',literalEvidence(span,current),'An observed directory is not an exhaustive project inventory. A resource/entity/coverage binding is required.',true,true)
     }
-    if (/ram|memoria|memory|computador|computer|desktop|notebook|laptop/.test(normalizeEvidenceText(text+' '+snapshot.query)) && /\b(?:voce|you|seu|sua|your|meu|minha|my)\b/.test(q+' '+normalizeEvidenceText(snapshot.query)) && /(?:excelente|ideal|suficiente|excellent|ideal|sufficient).{0,40}(?:capacidade|capacity|rodar|run|desempenho|performance)|(?:capacidade|capacity).{0,25}(?:excelente|excellent)|\bgarant.{0,45}(?:rodar|run|fluidez|desempenho)/.test(q) && !hypothetical(/excelente|ideal|suficiente|excellent|sufficient|garant/)) {
+    if (/\bram\b|\b\d+\s*(?:gb|gib)\b|computador|computer|desktop|notebook|laptop|(?:capacidade|how much|quanto).{0,20}(?:memoria|memory)/.test(normalizeEvidenceText(text+' '+snapshot.query)) && /\b(?:voce|you|seu|sua|your|meu|minha|my)\b/.test(q+' '+normalizeEvidenceText(snapshot.query)) && /(?:excelente|ideal|suficiente|excellent|ideal|sufficient).{0,40}(?:capacidade|capacity|rodar|run|desempenho|performance)|(?:capacidade|capacity).{0,25}(?:excelente|excellent)|\bgarant.{0,45}(?:rodar|run|fluidez|desempenho)/.test(q) && !deniesCapacityGuarantee(span) && !hypothetical(/excelente|ideal|suficiente|excellent|sufficient|garant/)) {
       add(span,'user','workload_performance','adequate','consequence',literalEvidence(span,current),'RAM quantity alone cannot attest workload suitability or performance.',false)
     }
   }

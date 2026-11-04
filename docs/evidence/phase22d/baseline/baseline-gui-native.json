@@ -1,0 +1,316 @@
+[
+  {
+    "original_source": {
+      "scope": "phase22c-final-conversations-v1",
+      "project": "corticeira",
+      "user_text": "Volte a guardar esta preferência: eu gosto de jogos em que posso escolher minha classe."
+    },
+    "actual_gemma_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"version\":3,\"scope\":\"phase22c-final-conversations-v1\",\"project\":\"corticeira\",\"claims\":[{\"evidence\":\"Volte a guardar esta preferência: eu gosto de jogos em que posso escolher minha classe\",\"category\":\"preference\"}]}"
+          }
+        }
+      ],
+      "created": 1793797735,
+      "model": "lucille-real-gemma",
+      "system_fingerprint": "b11064-a894dae93",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 62,
+        "prompt_tokens": 440,
+        "total_tokens": 502,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "id": "chatcmpl-IepVC0KoOukeycg2lT5O0wUWMe552J2q",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 440,
+        "prompt_ms": 519.868,
+        "prompt_per_token_ms": 1.181518181818182,
+        "prompt_per_second": 846.3686935914501,
+        "predicted_n": 62,
+        "predicted_ms": 2245.094,
+        "predicted_per_token_ms": 36.804819672131146,
+        "predicted_per_second": 27.170354559764533
+      }
+    },
+    "preceding_native_operations": [
+      {
+        "details": [
+          {
+            "memory": {
+              "created_at": 1793801678,
+              "input": {
+                "content": "Eu gosto de jogos em que posso escolher minha classe",
+                "fact_key": "user.games_class_selection",
+                "id": "6e13242b-26dd-2822-4626-82fb48817be8",
+                "kind": "preference",
+                "project": "corticeira",
+                "scope": "phase22c-final-conversations-v1",
+                "source": "user",
+                "source_id": "88c7288f188fe282b4681dde57014ab82bbbdfd319dad1d644df24743afdf698"
+              },
+              "state": "active",
+              "updated_at": 1793801678,
+              "version": 1
+            },
+            "provenance": [
+              {
+                "at": 1793801678,
+                "evidence": "Eu gosto de jogos em que posso escolher minha classe",
+                "interaction_id": "88c7288f188fe282b4681dde57014ab82bbbdfd319dad1d644df24743afdf698"
+              }
+            ],
+            "quality": {
+              "confidence": 0.9,
+              "evidence_rule": "explicit_v3_grounded",
+              "expires_at": null,
+              "facets": [],
+              "priority": 1,
+              "property": "games_class_selection",
+              "relevance": 0.8,
+              "replaces_id": null,
+              "replaces_version": null,
+              "subject": "user",
+              "temporal": "preference",
+              "value": "positive"
+            },
+            "revisions": []
+          }
+        ],
+        "enqueue": {
+          "attempts": 0,
+          "created_at": 1793801676,
+          "error_code": null,
+          "id": "88c7288f188fe282b4681dde57014ab82bbbdfd319dad1d644df24743afdf698",
+          "state": "queued",
+          "updated_at": 1793801676
+        },
+        "identity": {
+          "created_at": 1793801676,
+          "profile": {
+            "description": "Fictional QA profile",
+            "instructions": "Use synthetic examples.",
+            "name": "Lucille Test Fixture",
+            "personality": "Clear and concise"
+          },
+          "updated_at": 1793801676,
+          "version": 1
+        },
+        "jobs": [
+          {
+            "attempts": 1,
+            "created_at": 1793801676,
+            "error_code": null,
+            "id": "88c7288f188fe282b4681dde57014ab82bbbdfd319dad1d644df24743afdf698",
+            "state": "done",
+            "updated_at": 1793801678
+          }
+        ],
+        "rejected": null,
+        "validation": {
+          "accepted": []
+        }
+      },
+      {
+        "details": [],
+        "enqueue": {
+          "deleted": 1,
+          "id": "d126a1da9ae6666d73e6dbff1226d55f8959b77e24ae1136f5bcfc945d287220",
+          "property": "games_class_selection",
+          "reason": "user_forgot_topic",
+          "state": "done"
+        },
+        "identity": {
+          "created_at": 1793801676,
+          "profile": {
+            "description": "Fictional QA profile",
+            "instructions": "Use synthetic examples.",
+            "name": "Lucille Test Fixture",
+            "personality": "Clear and concise"
+          },
+          "updated_at": 1793801676,
+          "version": 1
+        },
+        "jobs": [
+          {
+            "attempts": 0,
+            "created_at": 1793801676,
+            "error_code": null,
+            "id": "d126a1da9ae6666d73e6dbff1226d55f8959b77e24ae1136f5bcfc945d287220",
+            "state": "done",
+            "updated_at": 1793801676
+          },
+          {
+            "attempts": 1,
+            "created_at": 1793801676,
+            "error_code": null,
+            "id": "88c7288f188fe282b4681dde57014ab82bbbdfd319dad1d644df24743afdf698",
+            "state": "done",
+            "updated_at": 1793801678
+          }
+        ],
+        "rejected": null,
+        "validation": {
+          "error": "Ineligible extraction source or response size"
+        }
+      }
+    ],
+    "native_replay": {
+      "details": [],
+      "enqueue": {
+        "attempts": 0,
+        "created_at": 1793801676,
+        "error_code": null,
+        "id": "3c677b071836260573191d9a4ee49ddf85b5a3a2e324319c931c0fc63cce32c2",
+        "state": "queued",
+        "updated_at": 1793801676
+      },
+      "identity": {
+        "created_at": 1793801676,
+        "profile": {
+          "description": "Fictional QA profile",
+          "instructions": "Use synthetic examples.",
+          "name": "Lucille Test Fixture",
+          "personality": "Clear and concise"
+        },
+        "updated_at": 1793801676,
+        "version": 1
+      },
+      "jobs": [
+        {
+          "attempts": 0,
+          "created_at": 1793801676,
+          "error_code": null,
+          "id": "d126a1da9ae6666d73e6dbff1226d55f8959b77e24ae1136f5bcfc945d287220",
+          "state": "done",
+          "updated_at": 1793801676
+        },
+        {
+          "attempts": 1,
+          "created_at": 1793801676,
+          "error_code": null,
+          "id": "88c7288f188fe282b4681dde57014ab82bbbdfd319dad1d644df24743afdf698",
+          "state": "done",
+          "updated_at": 1793801678
+        },
+        {
+          "attempts": 1,
+          "created_at": 1793801676,
+          "error_code": null,
+          "id": "3c677b071836260573191d9a4ee49ddf85b5a3a2e324319c931c0fc63cce32c2",
+          "state": "done",
+          "updated_at": 1793801678
+        }
+      ],
+      "rejected": null,
+      "validation": {
+        "accepted": [
+          {
+            "confidence": 0.9,
+            "content": "Volte a guardar esta preferência: eu gosto de jogos em que posso escolher minha classe",
+            "correction": false,
+            "evidence": "Volte a guardar esta preferência: eu gosto de jogos em que posso escolher minha classe",
+            "facets": [],
+            "kind": "preference",
+            "project_hint": null,
+            "property": "games_class_selection",
+            "relevance": 0.8,
+            "rule": "llm_v3_grounded:explicit_v3_grounded",
+            "subject": "user",
+            "temporal": "preference",
+            "ttl_seconds": null,
+            "value": "positive"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "original_source": {
+      "scope": "phase22c-final-conversations-v1",
+      "project": "piuva",
+      "user_text": "Planejo usar MySQL no meu projeto."
+    },
+    "actual_gemma_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"version\": 3,\n  \"scope\": \"phase22c-final-conversations-v1\",\n  \"project\": \"piuva\",\n  \"claims\": [\n    {\n      \"evidence\": \"Planejo usar MySQL no meu projeto\",\n      \"category\": \"decision\"\n    }\n  ]\n}"
+          }
+        }
+      ],
+      "created": 1793797921,
+      "model": "lucille-real-gemma",
+      "system_fingerprint": "b11064-a894dae93",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 82,
+        "prompt_tokens": 428,
+        "total_tokens": 510,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "id": "chatcmpl-ReaG2EfMzKn6TwGPVeUbhBdprDXXC6b9",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 428,
+        "prompt_ms": 507.211,
+        "prompt_per_token_ms": 1.185072429906542,
+        "prompt_per_second": 843.830279706079,
+        "predicted_n": 82,
+        "predicted_ms": 2737.209,
+        "predicted_per_token_ms": 33.7927037037037,
+        "predicted_per_second": 29.592186785882998
+      }
+    },
+    "preceding_native_operations": [],
+    "native_replay": {
+      "details": [],
+      "enqueue": {
+        "attempts": 0,
+        "created_at": 1793801676,
+        "error_code": null,
+        "id": "b873e158d659b4948e006c21cb99e7c80677a0b072ccbe72cb39de7e1736fe3e",
+        "state": "queued",
+        "updated_at": 1793801676
+      },
+      "identity": {
+        "created_at": 1793801676,
+        "profile": {
+          "description": "Fictional QA profile",
+          "instructions": "Use synthetic examples.",
+          "name": "Lucille Test Fixture",
+          "personality": "Clear and concise"
+        },
+        "updated_at": 1793801676,
+        "version": 1
+      },
+      "jobs": [
+        {
+          "attempts": 1,
+          "created_at": 1793801676,
+          "error_code": null,
+          "id": "b873e158d659b4948e006c21cb99e7c80677a0b072ccbe72cb39de7e1736fe3e",
+          "state": "done",
+          "updated_at": 1793801678
+        }
+      ],
+      "rejected": null,
+      "validation": {
+        "accepted": []
+      }
+    }
+  }
+]

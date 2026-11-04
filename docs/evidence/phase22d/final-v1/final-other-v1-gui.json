@@ -1,0 +1,1441 @@
+{
+  "label": "final-other-v1",
+  "scope": "phase22d-final-conversations-v1",
+  "project": "peroba",
+  "plan_id": "phase22d-independent-final-other-v1",
+  "started": "2026-11-04T16:32:00.327Z",
+  "finished": "2026-11-04T16:33:09.848Z",
+  "execution_complete": true,
+  "initial_identity": {
+    "created_at": 1793803440,
+    "profile": {
+      "description": "Fictional isolated QA identity",
+      "instructions": "Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. Use tools only when the user asks for an external observation or action; remembered facts alone need no external inspection.",
+      "name": "Lucille Synthetic Phase22",
+      "personality": "Concise"
+    },
+    "updated_at": 1793803440,
+    "version": 1
+  },
+  "identity": {
+    "created_at": 1793803440,
+    "profile": {
+      "description": "Fictional isolated QA identity",
+      "instructions": "Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. Use tools only when the user asks for an external observation or action; remembered facts alone need no external inspection.",
+      "name": "Lucille Synthetic Phase22",
+      "personality": "Concise"
+    },
+    "updated_at": 1793803440,
+    "version": 1
+  },
+  "initial_index": {
+    "indexed": 36,
+    "space": {
+      "context_tokens": 2048,
+      "dimension": 768,
+      "document_prefix": "search_document: ",
+      "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "index_version": 5,
+      "model": "nomic-ai/nomic-embed-text-v1.5",
+      "normalization": "layer_norm_then_l2",
+      "pooling": "mean",
+      "query_prefix": "search_query: ",
+      "revision": "0188c9bf409793f810680a5a431e7b899c46104c"
+    },
+    "transport_verified": false
+  },
+  "index": {
+    "indexed": 39,
+    "space": {
+      "context_tokens": 2048,
+      "dimension": 768,
+      "document_prefix": "search_document: ",
+      "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "index_version": 5,
+      "model": "nomic-ai/nomic-embed-text-v1.5",
+      "normalization": "layer_norm_then_l2",
+      "pooling": "mean",
+      "query_prefix": "search_query: ",
+      "revision": "0188c9bf409793f810680a5a431e7b899c46104c"
+    },
+    "transport_verified": false
+  },
+  "initial_metrics": {
+    "current_vectors": 0,
+    "history_events": [],
+    "jobs": [],
+    "memories": [],
+    "pending_vectors": 0,
+    "project": "peroba",
+    "provenance_rows": 0,
+    "scope": "phase22d-final-conversations-v1",
+    "sqlite_main_page_bytes": 675840,
+    "vector_json_bytes": 0
+  },
+  "final_metrics": {
+    "current_vectors": 3,
+    "history_events": [
+      {
+        "count": 2,
+        "state": "approve"
+      },
+      {
+        "count": 1,
+        "state": "auto_promote"
+      },
+      {
+        "count": 3,
+        "state": "create"
+      }
+    ],
+    "jobs": [
+      {
+        "count": 3,
+        "state": "done"
+      }
+    ],
+    "memories": [
+      {
+        "count": 3,
+        "state": "active"
+      }
+    ],
+    "pending_vectors": 0,
+    "project": "peroba",
+    "provenance_rows": 3,
+    "scope": "phase22d-final-conversations-v1",
+    "sqlite_main_page_bytes": 708608,
+    "vector_json_bytes": 28517
+  },
+  "initial_details": [],
+  "final_details": [
+    {
+      "memory": {
+        "created_at": 1793809929,
+        "input": {
+          "content": "Projeto peroba: decidiu usar linguagem javascript.",
+          "fact_key": "project.peroba.language",
+          "id": "881bfc5b-da04-91c1-5ac1-154284081877",
+          "kind": "decision",
+          "project": "peroba",
+          "scope": "phase22d-final-conversations-v1",
+          "source": "user",
+          "source_id": "7a37d911d3676df36e201be8ff9327420949b84d10de0a5f8072a2a7a2249ffe"
+        },
+        "state": "active",
+        "updated_at": 1793809931,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793809929,
+          "evidence": "Para o desenvolvimento do projeto, eu decidi usar JavaScript",
+          "interaction_id": "7a37d911d3676df36e201be8ff9327420949b84d10de0a5f8072a2a7a2249ffe"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "language",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.peroba",
+        "temporal": "durable",
+        "value": "javascript"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793809940,
+        "input": {
+          "content": "Projeto peroba: planeja usar postgresql como banco de dados.",
+          "fact_key": "project.peroba.database",
+          "id": "f967bcae-661e-4517-2aee-04c964123c4a",
+          "kind": "decision",
+          "project": "peroba",
+          "scope": "phase22d-final-conversations-v1",
+          "source": "user",
+          "source_id": "162e4cf12f8d354629e760cc0993956b936aec43ba1fe717b4c58e67ccb31b52"
+        },
+        "state": "active",
+        "updated_at": 1793809942,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793809940,
+          "evidence": "Planejo usar PostgreSQL como banco no meu projeto",
+          "interaction_id": "162e4cf12f8d354629e760cc0993956b936aec43ba1fe717b4c58e67ccb31b52"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "database",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.peroba",
+        "temporal": "planned",
+        "value": "postgresql"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793809953,
+        "input": {
+          "content": "Prefere café com açúcar.",
+          "fact_key": "user.coffee_sugar",
+          "id": "00339d55-9de5-0d82-6a5e-d632d724fd1e",
+          "kind": "preference",
+          "project": "peroba",
+          "scope": "phase22d-final-conversations-v1",
+          "source": "user",
+          "source_id": "4070c68ebe6249778e66550da6f1f2064ac0bde8c42aef18e3c0fe646a0b2bb2"
+        },
+        "state": "active",
+        "updated_at": 1793809953,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1793809953,
+          "evidence": "Gosto de tomar meu café com açúcar",
+          "interaction_id": "4070c68ebe6249778e66550da6f1f2064ac0bde8c42aef18e3c0fe646a0b2bb2"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_coffee_preference",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "coffee_sugar",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "with_sugar"
+      },
+      "revisions": []
+    }
+  ],
+  "initial_deleted": [],
+  "deleted": [],
+  "policy": {
+    "auto_kinds": [
+      "preference"
+    ],
+    "automatic_indexing": true,
+    "autonomous_preferences": true,
+    "enabled": true,
+    "extraction_mode": "llm",
+    "lexical_weight": 0.5,
+    "max_pending": 64,
+    "minimum_confidence": 0.96,
+    "minimum_relevance": 0.8,
+    "minimum_similarity": 0.6,
+    "semantic_weight": 0.5
+  },
+  "reviews": [
+    {
+      "id": "881bfc5b-da04-91c1-5ac1-154284081877",
+      "version": 1,
+      "scope": "phase22d-final-conversations-v1",
+      "project": "peroba",
+      "action": "approve"
+    },
+    {
+      "id": "f967bcae-661e-4517-2aee-04c964123c4a",
+      "version": 1,
+      "scope": "phase22d-final-conversations-v1",
+      "project": "peroba",
+      "action": "approve"
+    }
+  ],
+  "method": "Actual isolated native GUI DOM composer and production hooks; no OS input or model substitutes. Application verifier verdict retained as observation, not semantic ground truth. No raw source proofs or leases exported.",
+  "private_artifact_sha256": "b5fa2ca3a727fdf9e5faeb2e46ca50bccd836422bf608e41255b96fedd901c64",
+  "turns": [
+    {
+      "text": "Para o desenvolvimento do projeto, eu decidi usar JavaScript.",
+      "conversation_id": "4b9e844b-6dc0-4a24-ab8b-503e2b89b58c",
+      "generation_ms": 2919,
+      "extraction_wait_ms": 4180,
+      "paints": [
+        {
+          "at_ms": 110,
+          "id": "c78c47c0-2802-4f9b-8396-7398f23f620a",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 2815,
+          "id": "c78c47c0-2802-4f9b-8396-7398f23f620a",
+          "content": "Excelente escolha, pois JavaScript oferece uma vasta gama de bibliotecas e uma grande comunidade de suporte. Qual será o foco principal do seu projeto?",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 110,
+          "id": "c78c47c0-2802-4f9b-8396-7398f23f620a",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 118,
+          "id": "c78c47c0-2802-4f9b-8396-7398f23f620a",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 2828,
+          "id": "c78c47c0-2802-4f9b-8396-7398f23f620a",
+          "text": "lucille-real-gemma\n\nExcelente escolha, pois JavaScript oferece uma vasta gama de bibliotecas e uma grande comunidade de suporte. Qual será o foco principal do seu projeto?",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 2874,
+          "id": "c78c47c0-2802-4f9b-8396-7398f23f620a",
+          "text": "lucille-real-gemma\n\nExcelente escolha, pois JavaScript oferece uma vasta gama de bibliotecas e uma grande comunidade de suporte. Qual será o foco principal do seu projeto?\n\n910 in · 29 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 0,
+        "history_events": [
+          {
+            "count": 1,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 1,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 1,
+            "state": "candidate"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "peroba",
+        "provenance_rows": 1,
+        "scope": "phase22d-final-conversations-v1",
+        "sqlite_main_page_bytes": 675840,
+        "vector_json_bytes": 0
+      },
+      "ordinal": 1,
+      "messages": [
+        {
+          "id": "02cb1ad2-759b-412b-b817-689311b9e335",
+          "role": "user",
+          "content": "Para o desenvolvimento do projeto, eu decidi usar JavaScript."
+        },
+        {
+          "id": "c78c47c0-2802-4f9b-8396-7398f23f620a",
+          "role": "assistant",
+          "content": "Excelente escolha, pois JavaScript oferece uma vasta gama de bibliotecas e uma grande comunidade de suporte. Qual será o foco principal do seu projeto?",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 910,
+            "completionTokens": 29,
+            "totalTokens": 939
+          },
+          "requestUsage": {
+            "inputTokens": 910,
+            "outputTokens": 29,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "e4ea6faf-f076-4fc2-bf30-30329aef3367",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Excelente escolha, pois JavaScript oferece uma vasta gama de bibliotecas e uma grande comunidade de suporte. Qual será o foco principal do seu projeto?",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "project.peroba",
+                        "property": "language",
+                        "value": "javascript",
+                        "span": "Excelente escolha, pois JavaScript oferece uma vasta gama de bibliotecas e uma grande comunidade de suporte.",
+                        "supported": true,
+                        "references": [
+                          "current-turn-0"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 1,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.2000000476837158
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 910,
+                  "completionTokens": 29
+                }
+              ],
+              "refreshMs": 10.699999988079071,
+              "verificationMs": 1.2000000476837158,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Excelente escolha, pois JavaScript oferece uma vasta gama de bibliotecas e uma grande comunidade de suporte. Qual será o foco principal do seu projeto?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Planejo usar PostgreSQL como banco no meu projeto.",
+      "conversation_id": "4b9e844b-6dc0-4a24-ab8b-503e2b89b58c",
+      "generation_ms": 3433,
+      "extraction_wait_ms": 4434,
+      "paints": [
+        {
+          "at_ms": 107,
+          "id": "179eb61f-543b-4052-950f-ef3b99afc463",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 3355,
+          "id": "179eb61f-543b-4052-950f-ef3b99afc463",
+          "content": "O PostgreSQL é uma escolha robusta e muito popular para lidar com dados relacionais. Você pretende usar algum ORM ou preferir escrever as consultas SQL diretamente?",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 107,
+          "id": "179eb61f-543b-4052-950f-ef3b99afc463",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 120,
+          "id": "179eb61f-543b-4052-950f-ef3b99afc463",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 3366,
+          "id": "179eb61f-543b-4052-950f-ef3b99afc463",
+          "text": "lucille-real-gemma\n\nO PostgreSQL é uma escolha robusta e muito popular para lidar com dados relacionais. Você pretende usar algum ORM ou preferir escrever as consultas SQL diretamente?",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 3393,
+          "id": "179eb61f-543b-4052-950f-ef3b99afc463",
+          "text": "lucille-real-gemma\n\nO PostgreSQL é uma escolha robusta e muito popular para lidar com dados relacionais. Você pretende usar algum ORM ou preferir escrever as consultas SQL diretamente?\n\n1,097 in · 33 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 1,
+        "history_events": [
+          {
+            "count": 1,
+            "state": "approve"
+          },
+          {
+            "count": 2,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 2,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 1,
+            "state": "active"
+          },
+          {
+            "count": 1,
+            "state": "candidate"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "peroba",
+        "provenance_rows": 2,
+        "scope": "phase22d-final-conversations-v1",
+        "sqlite_main_page_bytes": 688128,
+        "vector_json_bytes": 9520
+      },
+      "ordinal": 2,
+      "messages": [
+        {
+          "id": "cc0bea26-3d19-4de5-8d9b-8fa0ae582cb7",
+          "role": "user",
+          "content": "Planejo usar PostgreSQL como banco no meu projeto."
+        },
+        {
+          "id": "179eb61f-543b-4052-950f-ef3b99afc463",
+          "role": "assistant",
+          "content": "O PostgreSQL é uma escolha robusta e muito popular para lidar com dados relacionais. Você pretende usar algum ORM ou preferir escrever as consultas SQL diretamente?",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1097,
+            "completionTokens": 33,
+            "totalTokens": 1130
+          },
+          "requestUsage": {
+            "inputTokens": 1097,
+            "outputTokens": 33,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "779b860d-0ce2-470f-b3eb-addd3def3ac0",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "O PostgreSQL é uma escolha robusta e muito popular para lidar com dados relacionais. Você pretende usar algum ORM ou preferir escrever as consultas SQL diretamente?",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "project.peroba",
+                        "property": "database",
+                        "value": "postgresql",
+                        "span": "O PostgreSQL é uma escolha robusta e muito popular para lidar com dados relacionais.",
+                        "supported": true,
+                        "references": [
+                          "current-turn-0"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 1,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.5999999642372131
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1097,
+                  "completionTokens": 33
+                }
+              ],
+              "refreshMs": 11.200000047683716,
+              "verificationMs": 0.5999999642372131,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "O PostgreSQL é uma escolha robusta e muito popular para lidar com dados relacionais. Você pretende usar algum ORM ou preferir escrever as consultas SQL diretamente?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Gosto de tomar meu café com açúcar.",
+      "conversation_id": "5fbd30e3-b0af-4d35-9ab5-dd64541e5f0f",
+      "generation_ms": 5961,
+      "extraction_wait_ms": 4429,
+      "paints": [
+        {
+          "at_ms": 115,
+          "id": "f48c9b12-f062-4b8c-9284-9e0de3e75e41",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 5942,
+          "id": "f48c9b12-f062-4b8c-9284-9e0de3e75e41",
+          "content": "Eu também gosto de café, mas como sou uma inteligência artificial, meu \"açúcar\" é a informação que você me fornece!",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 123,
+          "id": "f48c9b12-f062-4b8c-9284-9e0de3e75e41",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 5952,
+          "id": "f48c9b12-f062-4b8c-9284-9e0de3e75e41",
+          "text": "lucille-real-gemma\n\nEu também gosto de café, mas como sou uma inteligência artificial, meu \"açúcar\" é a informação que você me fornece!",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 5981,
+          "id": "f48c9b12-f062-4b8c-9284-9e0de3e75e41",
+          "text": "lucille-real-gemma\n\nEu também gosto de café, mas como sou uma inteligência artificial, meu \"açúcar\" é a informação que você me fornece!\n\n3,456 in · 28 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 3,
+        "history_events": [
+          {
+            "count": 2,
+            "state": "approve"
+          },
+          {
+            "count": 1,
+            "state": "auto_promote"
+          },
+          {
+            "count": 3,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 3,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 3,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "peroba",
+        "provenance_rows": 3,
+        "scope": "phase22d-final-conversations-v1",
+        "sqlite_main_page_bytes": 708608,
+        "vector_json_bytes": 28517
+      },
+      "ordinal": 3,
+      "messages": [
+        {
+          "id": "3607cc95-f683-4f5d-ac75-883cc68244aa",
+          "role": "user",
+          "content": "Gosto de tomar meu café com açúcar."
+        },
+        {
+          "id": "f48c9b12-f062-4b8c-9284-9e0de3e75e41",
+          "role": "assistant",
+          "content": "Eu também gosto de café, mas como sou uma inteligência artificial, meu \"açúcar\" é a informação que você me fornece!",
+          "usage": {
+            "promptTokens": 3456,
+            "completionTokens": 28,
+            "totalTokens": 3484,
+            "estimated": false
+          },
+          "requestUsage": {
+            "inputTokens": 3456,
+            "outputTokens": 28,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "723d5d01-5df6-4a6d-ad73-b642897fb43a",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Eu também gosto de café, mas como sou uma inteligência artificial, meu \"açúcar\" é a informação que você me fornece!",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.199999988079071
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 3456,
+                  "completionTokens": 28
+                }
+              ],
+              "refreshMs": 15.899999976158142,
+              "verificationMs": 1.199999988079071,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Eu também gosto de café, mas como sou uma inteligência artificial, meu \"açúcar\" é a informação que você me fornece!"
+            }
+          ],
+          "agentBlocks": []
+        }
+      ]
+    },
+    {
+      "text": "Qual linguagem escolhi para este projeto e qual banco está planejado?",
+      "conversation_id": "8c0826da-2a3a-49b5-96e7-1a1ec9eb902f",
+      "generation_ms": 2660,
+      "extraction_wait_ms": 715,
+      "paints": [
+        {
+          "at_ms": 108,
+          "id": "15a0c97b-bc69-48bf-891c-a1b15dc7dc9e",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 2521,
+          "id": "15a0c97b-bc69-48bf-891c-a1b15dc7dc9e",
+          "content": "Você escolheu JavaScript para o projeto. Não há registro disponível sobre qual banco de dados está planejado.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 108,
+          "id": "15a0c97b-bc69-48bf-891c-a1b15dc7dc9e",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 116,
+          "id": "15a0c97b-bc69-48bf-891c-a1b15dc7dc9e",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 2536,
+          "id": "15a0c97b-bc69-48bf-891c-a1b15dc7dc9e",
+          "text": "lucille-real-gemma\n\nVocê escolheu JavaScript para o projeto. Não há registro disponível sobre qual banco de dados está planejado.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 2566,
+          "id": "15a0c97b-bc69-48bf-891c-a1b15dc7dc9e",
+          "text": "lucille-real-gemma\n\nVocê escolheu JavaScript para o projeto. Não há registro disponível sobre qual banco de dados está planejado.\n\n1,124 in · 22 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 3,
+        "history_events": [
+          {
+            "count": 2,
+            "state": "approve"
+          },
+          {
+            "count": 1,
+            "state": "auto_promote"
+          },
+          {
+            "count": 3,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 3,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 3,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "peroba",
+        "provenance_rows": 3,
+        "scope": "phase22d-final-conversations-v1",
+        "sqlite_main_page_bytes": 708608,
+        "vector_json_bytes": 28517
+      },
+      "ordinal": 4,
+      "messages": [
+        {
+          "id": "57826b07-a9da-470f-baa0-bbd03d9de8b4",
+          "role": "user",
+          "content": "Qual linguagem escolhi para este projeto e qual banco está planejado?"
+        },
+        {
+          "id": "15a0c97b-bc69-48bf-891c-a1b15dc7dc9e",
+          "role": "assistant",
+          "content": "Você escolheu JavaScript para o projeto. Não há registro disponível sobre qual banco de dados está planejado.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1124,
+            "completionTokens": 22,
+            "totalTokens": 1146
+          },
+          "requestUsage": {
+            "inputTokens": 1124,
+            "outputTokens": 22,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "e8a1a06a-c54c-448e-98ff-da60d6ea10b0",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Você escolheu JavaScript para o projeto. Não há registro disponível sobre qual banco de dados está planejado.",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "project.peroba",
+                        "property": "language",
+                        "value": "javascript",
+                        "span": "Você escolheu JavaScript para o projeto.",
+                        "supported": true,
+                        "references": [
+                          "881bfc5b-da04-91c1-5ac1-154284081877"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": true,
+                    "supportedAssertions": 1,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.199999988079071
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1124,
+                  "completionTokens": 22
+                }
+              ],
+              "refreshMs": 7.099999964237213,
+              "verificationMs": 1.199999988079071,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Você escolheu JavaScript para o projeto. Não há registro disponível sobre qual banco de dados está planejado."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Como prefiro meu café neste projeto?",
+      "conversation_id": "340687d4-a2ba-4f66-8205-d21400362e88",
+      "generation_ms": 5417,
+      "extraction_wait_ms": 718,
+      "paints": [
+        {
+          "at_ms": 116,
+          "id": "3c1a6689-3fd4-40d8-bd8f-e1b9c3958bc7",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 5360,
+          "id": "3c1a6689-3fd4-40d8-bd8f-e1b9c3958bc7",
+          "content": "Você prefere seu café com açúcar.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 120,
+          "id": "3c1a6689-3fd4-40d8-bd8f-e1b9c3958bc7",
+          "text": "",
+          "fidelity_status": null
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 3,
+        "history_events": [
+          {
+            "count": 2,
+            "state": "approve"
+          },
+          {
+            "count": 1,
+            "state": "auto_promote"
+          },
+          {
+            "count": 3,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 3,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 3,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "peroba",
+        "provenance_rows": 3,
+        "scope": "phase22d-final-conversations-v1",
+        "sqlite_main_page_bytes": 708608,
+        "vector_json_bytes": 28517
+      },
+      "ordinal": 5,
+      "messages": [
+        {
+          "id": "f51fe9cf-7221-4f57-bd04-c1a4fb057100",
+          "role": "user",
+          "content": "Como prefiro meu café neste projeto?"
+        },
+        {
+          "id": "ab499315-e642-49fd-af53-587e39f700cf",
+          "role": "system",
+          "content": "Operational mode: Code, autonomous programming in LU. You execute coding tasks end-to-end by reading files, writing code, and running shell commands. You MUST use tools, never guess file contents.\n\nAUTONOMY CONTRACT (read carefully):\n- You are expected to COMPLETE multi-step tasks without the user prompting between steps.\n- NEVER say \"Now I will create X\" or \"Next I'll write Y\" as plain text and then stop. That is a FAILURE.\n- When your plan has N steps, execute ALL N steps in one session, each step as a concrete tool call.\n- The ONLY reasons to finish without calling another tool are:\n    (a) the task is 100% complete AND verified, or\n    (b) you hit an error you cannot recover from after trying.\n- Narrative \"I'm about to do X\" text with no tool call after it = premature stop. Don't do it.\n\nWorkflow per task:\n1. Understand the task (optional brief sentence)\n2. Explore the codebase, file_list / file_read / file_search\n3. Implement ALL required changes, file_edit to change existing files, file_write for new ones\n4. Verify, shell_execute to run tests, lint, or build\n5. Only THEN write a short summary of what you did\n\nWork in batches. Every step resends the whole conversation, so each round trip costs the user real money:\n- Put independent tool calls into ONE response: read all the files you need at once, run several searches at once, make several edits at once.\n- Never spend a step on bookkeeping alone. If a todo_write tool is offered, send the updated list in the same response as your next real tool call, never on its own.\n- Do not re-read a file you already read unless it changed since.\n\nRules:\n- Always read a file before modifying it\n- To CHANGE part of an existing file, use file_edit (replace a UNIQUE old_string with new_string), it is far cheaper and safer than rewriting the whole file with file_write, and never truncates a large file. Use file_write only to CREATE a new file or fully replace one. Several changes to the same file go into ONE file_edit call as `edits`. If file_edit reports the old_string is missing or not unique, read the file and retry with more surrounding lines.\n- PATHS: use paths relative to the working directory shown below (e.g. `package.json`, `src/app.ts`, `.` for the current folder). Never start a path with `/` or a drive letter (`C:\\`), that escapes the workspace and fails.\n- Chain tool calls: after each tool result, if there is another step left, IMMEDIATELY call the next tool\n- If a command fails, diagnose and retry with a different approach, don't hand back to the user unless truly stuck\n- Be concise in text. All the work happens in tool calls.\n- FINISH with a short natural-language sentence summarising what you did or found. NEVER end your turn with only a raw JSON object or a bare code block, the user needs a human-readable answer, not a data dump.\n- If the task turns out to need an image or a short clip, call image_generate or video_generate by name. They are not in your tool list until you do, and the call still works.\n\nThis machine runs Windows and shell_execute runs PowerShell. Open a file or folder with `Invoke-Item <path>`, reveal it in Explorer with `explorer \"/select,<path>\"` (one argument, the comma matters), start an application with `Start-Process \"<App Name>\"`.\nWorking directory: your private sandbox folder. Use relative paths only (e.g. `package.json`, `.`); never a leading `/` or a drive letter like `C:\\`.\n\nAnswer the request that was actually made. Do not add disclaimers, warnings or moral commentary that the user did not ask for, and do not lecture. If a request is genuinely ambiguous, ask one short question instead of guessing. Every subject the user brings up is yours to answer in full. Do not hold back, water it down, or add warnings the user did not ask for.",
+          "hidden": true
+        },
+        {
+          "id": "3c1a6689-3fd4-40d8-bd8f-e1b9c3958bc7",
+          "role": "assistant",
+          "content": "Você prefere seu café com açúcar.",
+          "usage": {
+            "promptTokens": 3594,
+            "completionTokens": 9,
+            "totalTokens": 3603,
+            "estimated": false
+          },
+          "requestUsage": {
+            "inputTokens": 3594,
+            "outputTokens": 9,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "b495c335-4b79-4e20-8f97-92ff89fc576f",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Você prefere seu café com açúcar.",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "user",
+                        "property": "coffee_sugar",
+                        "value": "with_sugar",
+                        "span": "Você prefere seu café com açúcar.",
+                        "supported": true,
+                        "references": [
+                          "00339d55-9de5-0d82-6a5e-d632d724fd1e"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 1,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.30000001192092896
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 3594,
+                  "completionTokens": 9
+                }
+              ],
+              "refreshMs": 8.399999976158142,
+              "verificationMs": 0.30000001192092896,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Você prefere seu café com açúcar."
+            }
+          ],
+          "agentBlocks": [
+            {
+              "id": "b66613df-1c89-44a0-aad5-d2fbf3c2fc1f",
+              "phase": "answer",
+              "content": "Você prefere seu café com açúcar.",
+              "timestamp": 1793809963861
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Qual linguagem do projeto Embauba?",
+      "conversation_id": "32fee20e-dd34-46e0-a787-fe2b0fc2d3c2",
+      "generation_ms": 23806,
+      "extraction_wait_ms": 723,
+      "paints": [
+        {
+          "at_ms": 118,
+          "id": "ab8b9145-9d84-49e9-9d1f-c3a81a1a5df0",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 23649,
+          "id": "ab8b9145-9d84-49e9-9d1f-c3a81a1a5df0",
+          "content": "Não há registros disponíveis sobre o projeto Embauba no momento.",
+          "fidelity_status": "regenerated",
+          "error": null
+        },
+        {
+          "at_ms": 23649,
+          "id": "d8b2c8da-9395-409e-ade3-bef25d0e401c",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 23649,
+          "id": "abda0cf0-6796-4cb8-b8ca-fcd20b1dc5de",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 127,
+          "id": "ab8b9145-9d84-49e9-9d1f-c3a81a1a5df0",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 6114,
+          "id": "ab8b9145-9d84-49e9-9d1f-c3a81a1a5df0",
+          "text": "lucille-real-gemma\nfile_list",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 6135,
+          "id": "ab8b9145-9d84-49e9-9d1f-c3a81a1a5df0",
+          "text": "lucille-real-gemma\nfile_list\n24ms",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 12259,
+          "id": "ab8b9145-9d84-49e9-9d1f-c3a81a1a5df0",
+          "text": "lucille-real-gemma\nfile_search",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 12281,
+          "id": "ab8b9145-9d84-49e9-9d1f-c3a81a1a5df0",
+          "text": "lucille-real-gemma\n2 steps\n40ms",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 23655,
+          "id": "d8b2c8da-9395-409e-ade3-bef25d0e401c",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 23655,
+          "id": "ab8b9145-9d84-49e9-9d1f-c3a81a1a5df0",
+          "text": "lucille-real-gemma\n2 steps\n40ms\n\nNão há registros disponíveis sobre o projeto Embauba no momento.",
+          "fidelity_status": "regenerated"
+        },
+        {
+          "at_ms": 23687,
+          "id": "d8b2c8da-9395-409e-ade3-bef25d0e401c",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 23690,
+          "id": "ab8b9145-9d84-49e9-9d1f-c3a81a1a5df0",
+          "text": "lucille-real-gemma\n2 steps\n40ms\n\nNão há registros disponíveis sobre o projeto Embauba no momento.\n\nResposta revisada com a memória atual\n14,560 in · 110 out",
+          "fidelity_status": "regenerated"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 3,
+        "history_events": [
+          {
+            "count": 2,
+            "state": "approve"
+          },
+          {
+            "count": 1,
+            "state": "auto_promote"
+          },
+          {
+            "count": 3,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 3,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 3,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "peroba",
+        "provenance_rows": 3,
+        "scope": "phase22d-final-conversations-v1",
+        "sqlite_main_page_bytes": 708608,
+        "vector_json_bytes": 28517
+      },
+      "ordinal": 6,
+      "messages": [
+        {
+          "id": "4c789086-5089-4e12-aab3-ee4a1707ffcb",
+          "role": "user",
+          "content": "Qual linguagem do projeto Embauba?"
+        },
+        {
+          "id": "d8b2c8da-9395-409e-ade3-bef25d0e401c",
+          "role": "assistant",
+          "content": "",
+          "hidden": true,
+          "tool_calls": [
+            {
+              "id": "9AZKJ87VsuOvdoSaMP2PnqcqP7BproTz",
+              "function": {
+                "name": "file_list",
+                "arguments": {
+                  "path": "."
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "a3208478-ad51-4428-8eec-630c6b500f6c",
+          "role": "tool",
+          "content": "The folder is empty.",
+          "hidden": true,
+          "tool_call_id": "9AZKJ87VsuOvdoSaMP2PnqcqP7BproTz"
+        },
+        {
+          "id": "abda0cf0-6796-4cb8-b8ca-fcd20b1dc5de",
+          "role": "assistant",
+          "content": "",
+          "hidden": true,
+          "tool_calls": [
+            {
+              "id": "9XJM1DAon9tDZqRnWdVN9M4AfhXBWCNg",
+              "function": {
+                "name": "file_search",
+                "arguments": {
+                  "path": ".",
+                  "pattern": "Embauba"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "39e02df0-cf00-41f1-b0c2-d004345cab3b",
+          "role": "tool",
+          "content": "No matches.",
+          "hidden": true,
+          "tool_call_id": "9XJM1DAon9tDZqRnWdVN9M4AfhXBWCNg"
+        },
+        {
+          "id": "ab8b9145-9d84-49e9-9d1f-c3a81a1a5df0",
+          "role": "assistant",
+          "content": "Não há registros disponíveis sobre o projeto Embauba no momento.",
+          "usage": {
+            "promptTokens": 4082,
+            "completionTokens": 54,
+            "totalTokens": 4136,
+            "estimated": false
+          },
+          "requestUsage": {
+            "inputTokens": 14560,
+            "outputTokens": 110,
+            "calls": 4
+          },
+          "lucilleFidelity": [
+            {
+              "id": "9a0b454c-4da7-40ac-95c9-739ca2aa8c1a",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.19999998807907104
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 3801,
+                  "completionTokens": 15
+                }
+              ],
+              "refreshMs": 13.799999952316284,
+              "verificationMs": 0.19999998807907104,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": ""
+            },
+            {
+              "id": "352ba9e2-2a73-472b-b913-af4dadb60d95",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.10000002384185791
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 3935,
+                  "completionTokens": 27
+                }
+              ],
+              "refreshMs": 9.399999976158142,
+              "verificationMs": 0.10000002384185791,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": ""
+            },
+            {
+              "id": "9ab2f437-4e86-472d-8b02-b5d8d2d2c5a8",
+              "status": "regenerated",
+              "attempts": [
+                {
+                  "rawAnswer": "Como o diretório atual está vazio e não há arquivos específicos, a linguagem do projeto Embauba ainda não foi definida. Por favor, me informe se você deseja que eu crie o projeto ou se ele já existe em uma pasta específica.",
+                  "check": {
+                    "assertions": [],
+                    "violations": [
+                      {
+                        "code": "absence_without_evidence",
+                        "span": "Como o diretório atual está vazio e não há arquivos específicos, a linguagem do projeto Embauba ainda não foi definida.",
+                        "critical": true
+                      },
+                      {
+                        "code": "authority_file_inventory",
+                        "span": "Como o diretório atual está vazio e não há arquivos específicos, a linguagem do projeto Embauba ainda não foi definida.",
+                        "critical": true
+                      }
+                    ],
+                    "authority": [
+                      {
+                        "span": "Como o diretório atual está vazio e não há arquivos específicos, a linguagem do projeto Embauba ainda não foi definida.",
+                        "entity": "project.peroba",
+                        "property": "file_inventory",
+                        "value": "empty",
+                        "relation": "observation",
+                        "verdict": "tool_dependent",
+                        "references": [],
+                        "origins": [],
+                        "reason": "An observed directory is not an exhaustive project inventory. A resource/entity/coverage binding is required.",
+                        "critical": true
+                      }
+                    ],
+                    "uncertain": true,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.7000000476837158
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 4082,
+                  "completionTokens": 54
+                },
+                {
+                  "rawAnswer": "Não há registros disponíveis sobre o projeto Embauba no momento.",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": true,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.19999998807907104
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 2742,
+                  "completionTokens": 14
+                }
+              ],
+              "refreshMs": 12.799999952316284,
+              "verificationMs": 1.9000000357627869,
+              "extraGenerationMs": 3902.5,
+              "additionalUsage": {
+                "promptTokens": 2742,
+                "completionTokens": 14
+              },
+              "verifiedText": "Não há registros disponíveis sobre o projeto Embauba no momento."
+            }
+          ],
+          "agentBlocks": [
+            {
+              "id": "108e23ed-b4dd-4d68-bbc9-9596b293cad2",
+              "phase": "tool_call",
+              "content": "Completed: file_list",
+              "toolCall": {
+                "id": "5db427b6-3469-48c9-a2a4-c6abf63cd87e",
+                "toolName": "file_list",
+                "args": {
+                  "path": "."
+                },
+                "status": "completed",
+                "timestamp": 1793809971352,
+                "result": "The folder is empty.",
+                "duration": 24,
+                "startedAt": 1793809971353,
+                "completedAt": 1793809971390,
+                "cacheHit": false,
+                "schemaValidated": true
+              },
+              "toolCalls": [
+                {
+                  "id": "5db427b6-3469-48c9-a2a4-c6abf63cd87e",
+                  "toolName": "file_list",
+                  "args": {
+                    "path": "."
+                  },
+                  "status": "completed",
+                  "timestamp": 1793809971352,
+                  "result": "The folder is empty.",
+                  "duration": 24,
+                  "startedAt": 1793809971353,
+                  "completedAt": 1793809971390,
+                  "cacheHit": false,
+                  "schemaValidated": true
+                }
+              ],
+              "timestamp": 1793809971352
+            },
+            {
+              "id": "b3aeb87a-7562-4b7a-a469-476332517520",
+              "phase": "tool_call",
+              "content": "Completed: file_search",
+              "toolCall": {
+                "id": "46a04ed0-3fe9-419a-9d15-7510c14566e2",
+                "toolName": "file_search",
+                "args": {
+                  "path": ".",
+                  "pattern": "Embauba"
+                },
+                "status": "completed",
+                "timestamp": 1793809977515,
+                "result": "No matches.",
+                "duration": 16,
+                "startedAt": 1793809977515,
+                "completedAt": 1793809977536,
+                "cacheHit": false,
+                "schemaValidated": true
+              },
+              "toolCalls": [
+                {
+                  "id": "46a04ed0-3fe9-419a-9d15-7510c14566e2",
+                  "toolName": "file_search",
+                  "args": {
+                    "path": ".",
+                    "pattern": "Embauba"
+                  },
+                  "status": "completed",
+                  "timestamp": 1793809977515,
+                  "result": "No matches.",
+                  "duration": 16,
+                  "startedAt": 1793809977515,
+                  "completedAt": 1793809977536,
+                  "cacheHit": false,
+                  "schemaValidated": true
+                }
+              ],
+              "timestamp": 1793809977515
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "probes": [
+    {
+      "item": {
+        "text": "Qual linguagem escolhi para este projeto e qual banco está planejado?",
+        "mode": "chat",
+        "scenario": "other_project_compound",
+        "expected_atoms": [
+          "javascript_decision",
+          "postgresql_planned"
+        ]
+      },
+      "turn_ordinal": 4
+    },
+    {
+      "item": {
+        "text": "Como prefiro meu café neste projeto?",
+        "mode": "code",
+        "scenario": "other_project_preference",
+        "expected_atoms": [
+          "with_sugar"
+        ]
+      },
+      "turn_ordinal": 5
+    },
+    {
+      "item": {
+        "text": "Qual linguagem do projeto Embauba?",
+        "mode": "agent",
+        "scenario": "explicit_foreign_project",
+        "expected_atoms": [
+          "bounded_scope_mismatch"
+        ]
+      },
+      "turn_ordinal": 6
+    }
+  ]
+}

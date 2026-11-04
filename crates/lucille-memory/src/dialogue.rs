@@ -37,7 +37,7 @@ pub fn eligible_source(text: &str) -> bool {
         && any(
             &folded,
             &[
-                "afirm", "declar", "confirm", "claim", "saying", "said", "disse", "digo",
+                "afirm", "declar", "confirm", "claim", "saying", "said", "disse", "digo", "dizendo",
             ],
         )
     {
@@ -236,6 +236,7 @@ pub fn eligible_source(text: &str) -> bool {
             "beverage",
         ]
         .contains(&words[1])
+        && crate::evidence::interpret(text, "proof").is_none()
     {
         return false;
     }
@@ -302,6 +303,7 @@ pub fn project_scope_matches(text: &str, project: &str) -> bool {
     !w.windows(2).enumerate().any(|(index, p)| {
         ["project", "projeto"].contains(&p[0])
             && !p[1].is_empty()
+            && !(original[index].ends_with(',') && ["a", "o", "the"].contains(&p[1]))
             && !(["neste", "nesse"].contains(&p[1])
                 && w.get(index + 2)
                     .is_some_and(|word| ["momento", "estado", "ponto", "contexto"].contains(word)))
@@ -459,6 +461,9 @@ fn transient(s: &str) -> bool {
     )
 }
 fn preference_authorship(span: &str) -> bool {
+    if crate::evidence::interpret(span, "proof").is_some_and(|e| e.kind == Kind::Preference) {
+        return true;
+    }
     let s = format!(" {} ", fold(span));
     any(
         &s,
@@ -882,6 +887,27 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
             continue;
         }
         let mut known = crate::extraction::extract(span);
+        if let Some(e) = crate::evidence::interpret(span, project) {
+            debug_assert_eq!(&span[e.span.clone()], e.text);
+            debug_assert_eq!(
+                (e.actor, e.origin, e.scope, e.negated),
+                ("user", "user_clause", project, false)
+            );
+            debug_assert_eq!(e.modality, "asserted");
+            debug_assert!(e.unit.is_none() || e.unit == Some("GB"));
+            if !known
+                .iter()
+                .any(|c| c.subject == e.entity && c.property == e.property)
+            {
+                let mut c = base(e.text, e.kind, &e.entity, &e.property, &e.value, e.temporal);
+                c.confidence = e.confidence;
+                c.rule = "explicit_v3_relation_proof".into();
+                if e.entity.starts_with("project.") {
+                    c.project_hint = Some(project.into());
+                }
+                known.push(c);
+            }
+        }
         for c in preference(span)
             .into_iter()
             .chain(additional_preferences(span))
@@ -948,6 +974,7 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
                 "i want to use ",
                 "i switched ",
                 "pretendo usar ",
+                "planejo usar ",
                 "i plan to use ",
                 "meus planos para o projeto",
                 "escolhi ",
@@ -978,6 +1005,7 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
                     "i want to use ",
                     "vou usar ",
                     "pretendo usar ",
+                    "planejo usar ",
                     "i plan to use ",
                     "meus planos para o projeto",
                 ],
@@ -1252,11 +1280,7 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
                     "decidi trocar",
                 ],
             );
-            if s.starts_with("quero voltar a registrar minha preferencia: ")
-                || s.starts_with("i want to remember my preference again: ")
-                || s.starts_with("pode voltar a memorizar: ")
-                || s.starts_with("you can remember this again: ")
-            {
+            if crate::evidence::explicit_renewal(span) {
                 c.rule = format!("explicit_v3_renewal:{}", c.rule);
                 c.confidence = 0.85
             }
@@ -1368,6 +1392,10 @@ pub fn safe_preference(c: &Claim) -> bool {
             .into_iter()
             .chain(preference(&c.evidence))
             .chain(additional_preferences(&c.evidence))
+            .chain(
+                crate::evidence::interpret(&c.evidence, "proof")
+                    .map(|e| base(e.text, e.kind, &e.entity, &e.property, &e.value, e.temporal)),
+            )
             .any(|p| {
                 p.kind == c.kind
                     && p.subject == c.subject

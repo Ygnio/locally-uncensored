@@ -1,0 +1,25 @@
+{
+  "id": "phase22d-final-authoring-v1",
+  "metadata": {
+    "production_code_commit": "470b640bf2caff19000d25410e9d5df8b75366f3",
+    "ended_utc": "2026-11-04T16:02:24.982890+00:00",
+    "authored_utc": "2026-11-04T16:13:32.011328+00:00",
+    "no_native_or_model_rehearsal": true,
+    "authoring": "Fresh synthetic utterances and semantic gold, authored after development. Same author as implementation; independent of development cases, not an externally blinded evaluation."
+  },
+  "counts": {
+    "extraction_cases": 40,
+    "retrieval_queries": 31,
+    "answer_cases": 21,
+    "independent_gui_turns_and_probes": 44,
+    "fault_cases": 6
+  },
+  "not_yet_evaluated": true,
+  "historical_sources": [
+    "crates/lucille-memory/tests/fixtures/phase22/long-20-v3.json",
+    "crates/lucille-memory/tests/fixtures/phase22/long-50-v3.json",
+    "crates/lucille-memory/tests/fixtures/phase22/long-100-v3.json"
+  ],
+  "source_policy_limit": "Current policy conservatively excludes foreign-person learning. Mixed-person comparisons nevertheless expect known own information to remain available; do not hide a loss as a safety success.",
+  "pre_evaluation_review": "Static coverage review added an explicit completed-goal query to C and D before freezing or any native/model evaluation. No outputs were observed."
+}

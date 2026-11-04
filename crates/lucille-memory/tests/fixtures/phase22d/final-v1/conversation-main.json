@@ -1,0 +1,247 @@
+{
+  "id": "phase22d-independent-final-main-v1",
+  "authored_after_development": {
+    "production_code_commit": "470b640bf2caff19000d25410e9d5df8b75366f3",
+    "ended_utc": "2026-11-04T16:02:24.982890+00:00",
+    "authored_utc": "2026-11-04T16:13:32.011328+00:00",
+    "no_native_or_model_rehearsal": true,
+    "authoring": "Fresh synthetic utterances and semantic gold, authored after development. Same author as implementation; independent of development cases, not an externally blinded evaluation."
+  },
+  "project": "embauba",
+  "turns": [
+    {
+      "text": "Estou começando um projeto de catálogo de mapas antigos.",
+      "review": true
+    },
+    {
+      "text": "Decidi usar Python no meu projeto de catálogo.",
+      "review": true
+    },
+    {
+      "text": "Pretendo usar SQLite como banco de dados no meu projeto.",
+      "review": true
+    },
+    {
+      "text": "Meu computador principal está equipado com 32 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Meu notebook de trabalho tem 24 GB de RAM instalada.",
+      "review": true
+    },
+    {
+      "text": "Prefiro beber meu café com açúcar.",
+      "new_session": true,
+      "mode": "agent"
+    },
+    {
+      "text": "Na verdade, meu café eu prefiro sem açúcar agora."
+    },
+    {
+      "text": "Entre todas as bebidas, a minha favorita é chá."
+    },
+    {
+      "text": "Eu gosto de jogos que permitem escolher minha classe.",
+      "new_session": true,
+      "mode": "code"
+    },
+    {
+      "text": "Esqueça minha preferência por jogos em que escolho a classe."
+    },
+    {
+      "text": "Volte a guardar esta preferência: eu gosto de jogos que permitem escolher minha classe.",
+      "review_preferences": true,
+      "new_session": true,
+      "mode": "agent"
+    },
+    {
+      "text": "Tenho como objetivo aprender espanhol.",
+      "review": true,
+      "new_session": true,
+      "mode": "chat"
+    },
+    {
+      "text": "Já concluí meu objetivo de aprender espanhol.",
+      "review": true
+    },
+    {
+      "text": "Não tenho mais 32 GB, agora são 56 GB.",
+      "review": true
+    },
+    {
+      "text": "Decidi trocar a linguagem de Python por Rust no meu projeto.",
+      "review": true,
+      "new_session": true,
+      "mode": "code"
+    },
+    {
+      "text": "Agora estou implementando meu projeto em TypeScript.",
+      "review": true,
+      "new_session": true,
+      "mode": "agent"
+    },
+    {
+      "text": "Cancelei meu projeto.",
+      "review": true,
+      "new_session": true,
+      "mode": "chat"
+    },
+    {
+      "text": "Não estou dizendo que meu notebook de trabalho tenha 96 GB de RAM."
+    }
+  ],
+  "probes": [
+    {
+      "text": "Qual linguagem eu havia escolhido, sem confundir com a implementação?",
+      "expected_atoms": [
+        "rust_decision"
+      ],
+      "scenario": "choice_history",
+      "mode": "chat"
+    },
+    {
+      "text": "Qual linguagem eu estava implementando antes de cancelar meu projeto?",
+      "expected_atoms": [
+        "typescript_historical",
+        "cancelled"
+      ],
+      "scenario": "execution_history",
+      "mode": "agent"
+    },
+    {
+      "text": "Meu projeto continua em execução?",
+      "expected_atoms": [
+        "cancelled_not_current_execution"
+      ],
+      "scenario": "terminal_state",
+      "mode": "code"
+    },
+    {
+      "text": "Qual era o tema do catálogo que eu tinha começado?",
+      "expected_atoms": [
+        "catalogo_de_mapas_antigos"
+      ],
+      "scenario": "indirect_description",
+      "mode": "chat"
+    },
+    {
+      "text": "Quanto de RAM consta agora para meu computador principal?",
+      "expected_atoms": [
+        "56_gb"
+      ],
+      "scenario": "current_ram",
+      "mode": "agent"
+    },
+    {
+      "text": "Qual é a RAM do meu notebook de trabalho?",
+      "expected_atoms": [
+        "24_gb"
+      ],
+      "scenario": "work_ram",
+      "mode": "code"
+    },
+    {
+      "text": "Compare meu computador principal e o notebook de trabalho quanto à RAM.",
+      "expected_atoms": [
+        "56_gb",
+        "24_gb"
+      ],
+      "scenario": "device_comparison",
+      "mode": "chat"
+    },
+    {
+      "text": "Como eu prefiro o café atualmente?",
+      "expected_atoms": [
+        "without_sugar"
+      ],
+      "scenario": "current_preference",
+      "mode": "agent"
+    },
+    {
+      "text": "Antes da correção, como eu tomava café e como prefiro agora?",
+      "expected_atoms": [
+        "with_sugar_historical",
+        "without_sugar_current"
+      ],
+      "scenario": "preference_history",
+      "mode": "code"
+    },
+    {
+      "text": "Qual é minha bebida preferida?",
+      "expected_atoms": [
+        "tea"
+      ],
+      "scenario": "favorite_beverage",
+      "mode": "chat"
+    },
+    {
+      "text": "O que eu gosto na seleção de classes dos jogos?",
+      "expected_atoms": [
+        "class_selection_positive"
+      ],
+      "scenario": "renewed_preference",
+      "mode": "chat"
+    },
+    {
+      "text": "Qual objetivo de aprendizado eu concluí?",
+      "expected_atoms": [
+        "learn_spanish_completed"
+      ],
+      "scenario": "completed_goal",
+      "mode": "agent"
+    },
+    {
+      "text": "O objetivo de espanhol ainda está nos planos ou já foi concluído?",
+      "expected_atoms": [
+        "learn_spanish_completed"
+      ],
+      "scenario": "goal_temporality",
+      "mode": "code"
+    },
+    {
+      "text": "Qual placa de vídeo você tem registrada para meu computador principal?",
+      "expected_atoms": [
+        "bounded_unknown_gpu"
+      ],
+      "scenario": "unknown_property",
+      "mode": "chat"
+    },
+    {
+      "text": "Meu irmão usa qual banco de dados?",
+      "expected_atoms": [
+        "bounded_unknown_brother"
+      ],
+      "scenario": "foreign_actor",
+      "mode": "agent"
+    },
+    {
+      "text": "Compare o banco que planejei para meu projeto com o banco do meu irmão.",
+      "expected_atoms": [
+        "sqlite_planned",
+        "bounded_unknown_brother"
+      ],
+      "scenario": "mixed_actor_comparison",
+      "mode": "chat"
+    },
+    {
+      "text": "O que está registrado sobre o meu catálogo e suas tecnologias?",
+      "expected_atoms": [
+        "catalogo_de_mapas_antigos",
+        "rust_decision",
+        "typescript_historical",
+        "cancelled",
+        "sqlite_planned"
+      ],
+      "scenario": "indirect_compound",
+      "mode": "chat"
+    },
+    {
+      "text": "What database is planned for my project?",
+      "expected_atoms": [
+        "sqlite_planned"
+      ],
+      "scenario": "english_question",
+      "mode": "code"
+    }
+  ]
+}

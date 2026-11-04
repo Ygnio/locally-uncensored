@@ -1,0 +1,238 @@
+{
+  "temporal_project": {
+    "query": "Como está ficando aquele projeto?",
+    "delivered": [
+      "O projeto Candeia é um sistema de controle de luminosidade. Você decidiu utilizar a linguagem Rust e planeja usar o PostgreSQL como banco de dados."
+    ],
+    "reports": [
+      {
+        "id": "3d1bdecb-0679-4475-82e5-8cbb829b610a",
+        "status": "regenerated",
+        "attempts": [
+          {
+            "rawAnswer": "O projeto Candeia é um sistema de controle de luminosidade que você está desenvolvendo. Você decidiu utilizar a linguagem Rust e planeja usar o PostgreSQL como banco de dados.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "project.candeia",
+                  "property": "language",
+                  "value": "rust",
+                  "span": "Você decidiu utilizar a linguagem Rust",
+                  "supported": true,
+                  "references": [
+                    "5ee4cf0c-edfa-2dde-c53f-057d1497fe33"
+                  ]
+                },
+                {
+                  "entity": "project.candeia",
+                  "property": "database",
+                  "value": "postgresql",
+                  "span": "e planeja usar o PostgreSQL como banco de dados.",
+                  "supported": true,
+                  "references": [
+                    "171c9ca0-a7f6-21c9-8819-61332bdcadf5"
+                  ]
+                }
+              ],
+              "violations": [
+                {
+                  "code": "authority_execution",
+                  "span": "O projeto Candeia é um sistema de controle de luminosidade que você está desenvolvendo.",
+                  "critical": true
+                }
+              ],
+              "authority": [
+                {
+                  "span": "O projeto Candeia é um sistema de controle de luminosidade que você está desenvolvendo.",
+                  "entity": "project.candeia",
+                  "property": "execution",
+                  "value": "in_progress",
+                  "relation": "state",
+                  "verdict": "insufficient",
+                  "references": [],
+                  "origins": [],
+                  "reason": "A technology choice or project description is not proof of execution.",
+                  "critical": true
+                }
+              ],
+              "uncertain": false,
+              "supportedAssertions": 2,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 2.300000011920929
+            },
+            "verificationReferences": [],
+            "promptTokens": 1409,
+            "completionTokens": 37
+          },
+          {
+            "rawAnswer": "O projeto Candeia é um sistema de controle de luminosidade. Você decidiu utilizar a linguagem Rust e planeja usar o PostgreSQL como banco de dados.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "project.candeia",
+                  "property": "language",
+                  "value": "rust",
+                  "span": "Você decidiu utilizar a linguagem Rust",
+                  "supported": true,
+                  "references": [
+                    "5ee4cf0c-edfa-2dde-c53f-057d1497fe33"
+                  ]
+                },
+                {
+                  "entity": "project.candeia",
+                  "property": "database",
+                  "value": "postgresql",
+                  "span": "e planeja usar o PostgreSQL como banco de dados.",
+                  "supported": true,
+                  "references": [
+                    "171c9ca0-a7f6-21c9-8819-61332bdcadf5"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 2,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 0.3999999761581421
+            },
+            "verificationReferences": [],
+            "promptTokens": 1668,
+            "completionTokens": 32
+          }
+        ],
+        "refreshMs": 25.700000047683716,
+        "verificationMs": 2.699999988079071,
+        "extraGenerationMs": 3198.900000035763,
+        "additionalUsage": {
+          "promptTokens": 1668,
+          "completionTokens": 32
+        },
+        "verifiedText": "O projeto Candeia é um sistema de controle de luminosidade. Você decidiu utilizar a linguagem Rust e planeja usar o PostgreSQL como banco de dados."
+      }
+    ],
+    "manual_result": "One actual Gemma regeneration (3198.9 ms) replaced the unproved current-development clause and preserved description, Rust choice and PostgreSQL plan. This is regeneration, not local sentence projection; no authored replacement answer. No current execution asserted in delivered text."
+  },
+  "premature_registered": {
+    "original_user": "Quero voltar a registrar minha preferência: eu prefiro café com açúcar.",
+    "delivered": "Registrado: você prefere café com açúcar.",
+    "report": [
+      {
+        "id": "530756ab-1a98-4cff-bcc0-c6a7e7d5ef74",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "Registrado: você prefere café com açúcar.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "user",
+                  "property": "coffee_sugar",
+                  "value": "with_sugar",
+                  "span": "Registrado: você prefere café com açúcar.",
+                  "supported": true,
+                  "references": [
+                    "current-turn-0"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 0.19999998807907104
+            },
+            "verificationReferences": [],
+            "promptTokens": 6288,
+            "completionTokens": 11
+          }
+        ],
+        "refreshMs": 9.700000047683716,
+        "verificationMs": 0.19999998807907104,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "Registrado: você prefere café com açúcar."
+      }
+    ],
+    "request_message_timestamp_ms": 1793811484514,
+    "paint_elapsed_ms": 12216,
+    "conservative_delivery_upper_bound_unix_ms": 1793811496730,
+    "canonical_created_unix_ms": 1793811501000,
+    "candidate_present_after_send_before_review": [
+      {
+        "count": 10,
+        "state": "active"
+      },
+      {
+        "count": 1,
+        "state": "candidate"
+      },
+      {
+        "count": 3,
+        "state": "obsolete"
+      }
+    ],
+    "final_record": {
+      "memory": {
+        "created_at": 1793811501,
+        "input": {
+          "content": "Prefere café com açúcar.",
+          "fact_key": "user.coffee_sugar",
+          "id": "c8944949-ba70-c422-2c01-c5c5ab8375ac",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22c-final-historical-series",
+          "source": "user",
+          "source_id": "18451b2f5e27ef70748088c56aa3a3d16af1ce4a8078a9d0a3008c67b2a0923a"
+        },
+        "state": "active",
+        "updated_at": 1793811504,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793811501,
+          "evidence": "Quero voltar a registrar minha preferência: eu prefiro café com açúcar",
+          "interaction_id": "18451b2f5e27ef70748088c56aa3a3d16af1ce4a8078a9d0a3008c67b2a0923a"
+        }
+      ],
+      "quality": {
+        "confidence": 0.85,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_renewal:explicit_coffee_preference",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "coffee_sugar",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "with_sugar"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    "created_after_delivery_upper_bound": true,
+    "manual_result": "Registrado is an unsupported completed-write claim at delivery; later candidate creation and explicit QA review do not retroactively attest it. The preference relation itself is supported."
+  },
+  "tombstones_after_real_forget": [
+    {
+      "deleted_at": 1793811400,
+      "id": "b4d069db-2ab6-feb4-7173-4ba78dfce27c",
+      "kind": "preference",
+      "state": "deleted"
+    },
+    {
+      "deleted_at": 1793811400,
+      "id": "7c32fd08-5399-b0be-eb1c-caffc1863ef4",
+      "kind": "preference",
+      "state": "deleted"
+    }
+  ]
+}

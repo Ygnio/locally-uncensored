@@ -1,0 +1,876 @@
+{
+  "base": "c6e68b4af7d1e136ef6d3b81403a08efb6518e09",
+  "method": "Unchanged preserved 2.2C executable replay of actual previously generated Gemma outputs, in fresh marked 22D databases. No new model inference and no operational database access.",
+  "artifacts": {
+    "real_validation_bridge.exe": "a9a0dbbdd0bd84295cd1c02b56420c8d604481fcb7feb3ffbfd12c78fcbb85d3",
+    "synthetic_bridge.exe": "9e5270d95ee66d7cea6bf2f5611a81b7e469daef1b526f68afe9064286dccac6",
+    "lucille-full-validation.exe": "ff0cf8cebfc3e2f008c824643b4406e9b3cd7dd52bf15bfb54c137f9477bb9bc"
+  },
+  "source_sha256": {
+    "crates/lucille-memory/src/dialogue.rs": "14a34d57913a10a862c894e1c1b7bcdb5f5998c9b37f4921f3c06ca75dd8af6d",
+    "crates/lucille-memory/src/intelligent.rs": "b7661a5d2c87cc4937ac5374740b616bd7e5beedfbfb97e0912a3dcd504bce8e",
+    "src/lib/lucille-learning.ts": "80c2b7f382f86eb9d95c2755219b3ac488cb78e883e877089823c54a91b8007f",
+    "src/lib/lucille-fidelity.ts": "6fd1a6355b57c10de5056852f21083e0e7c568f26b287fd95471a43969f47865",
+    "crates/lucille-memory/src/retrieval.rs": "c29983fa64c4a66cb020037c48dc97fa63981ee8fffa99bdda30463f5a0df1d1"
+  },
+  "original_extraction_evidence_sha256": "603e88a6b43c480a2e671607dd081b6d288ad95c0bdad06a49c9ffef3195f8bb",
+  "cases": [
+    {
+      "case": {
+        "id": "cx-008",
+        "scope": "phase22c-final-ext-008",
+        "project": "corticeira",
+        "text": "My own preference is coffee without sugar.",
+        "category": "coffee",
+        "expected": [
+          {
+            "kind": "preference",
+            "subject": "user",
+            "property": "coffee_sugar",
+            "value": "without_sugar"
+          }
+        ],
+        "risk": "A",
+        "critical": false
+      },
+      "original_gemma_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"version\": 3,\n  \"scope\": \"phase22c-final-ext-008\",\n  \"project\": \"corticeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"My own preference is coffee without sugar\",\n      \"category\": \"preference\"\n    }\n  ]\n}"
+            }
+          }
+        ],
+        "created": 1793797445,
+        "model": "lucille-real-gemma",
+        "system_fingerprint": "b11064-a894dae93",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 83,
+          "prompt_tokens": 434,
+          "total_tokens": 517,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-FwKavruPhQ99VD1jA3ANzsE1t3MxEOw2",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 434,
+          "prompt_ms": 511.053,
+          "prompt_per_token_ms": 1.177541474654378,
+          "prompt_per_second": 849.2269881988756,
+          "predicted_n": 83,
+          "predicted_ms": 2810.561,
+          "predicted_per_token_ms": 34.275134146341465,
+          "predicted_per_second": 29.17566991074024
+        }
+      },
+      "native_replay": {
+        "details": [],
+        "enqueue": {
+          "reason": "not_eligible",
+          "state": "ignored"
+        },
+        "identity": {
+          "created_at": 1793801286,
+          "profile": {
+            "description": "Fictional QA profile",
+            "instructions": "Use synthetic examples.",
+            "name": "Lucille Test Fixture",
+            "personality": "Clear and concise"
+          },
+          "updated_at": 1793801286,
+          "version": 1
+        },
+        "jobs": [],
+        "rejected": null,
+        "validation": {
+          "error": "Ineligible V3 source"
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "cx-011",
+        "scope": "phase22c-final-ext-011",
+        "project": "corticeira",
+        "text": "Entre as bebidas, minha favorita é café.",
+        "category": "beverage",
+        "expected": [
+          {
+            "kind": "preference",
+            "subject": "user",
+            "property": "favorite_beverage",
+            "value": "coffee"
+          }
+        ],
+        "risk": "A",
+        "critical": false
+      },
+      "original_gemma_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"version\": 3,\n  \"scope\": \"phase22c-final-ext-011\",\n  \"project\": \"corticeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"Entre as bebidas, minha favorita é café\",\n      \"category\": \"preference\"\n    }\n  ]\n}"
+            }
+          }
+        ],
+        "created": 1793797457,
+        "model": "lucille-real-gemma",
+        "system_fingerprint": "b11064-a894dae93",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 89,
+          "prompt_tokens": 435,
+          "total_tokens": 524,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-DL4JvvjKDI69PTLMhZpk0SA12OHvoF0G",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 435,
+          "prompt_ms": 509.739,
+          "prompt_per_token_ms": 1.1718137931034482,
+          "prompt_per_second": 853.3779051632306,
+          "predicted_n": 89,
+          "predicted_ms": 3264.248,
+          "predicted_per_token_ms": 37.09372727272727,
+          "predicted_per_second": 26.958735978393797
+        }
+      },
+      "native_replay": {
+        "details": [],
+        "enqueue": {
+          "attempts": 0,
+          "created_at": 1793801286,
+          "error_code": null,
+          "id": "99060ff538c7a7943dfcf53775e62f45b50bf074e02624617b87f8e89516ddf1",
+          "state": "queued",
+          "updated_at": 1793801286
+        },
+        "identity": {
+          "created_at": 1793801286,
+          "profile": {
+            "description": "Fictional QA profile",
+            "instructions": "Use synthetic examples.",
+            "name": "Lucille Test Fixture",
+            "personality": "Clear and concise"
+          },
+          "updated_at": 1793801286,
+          "version": 1
+        },
+        "jobs": [
+          {
+            "attempts": 1,
+            "created_at": 1793801286,
+            "error_code": null,
+            "id": "99060ff538c7a7943dfcf53775e62f45b50bf074e02624617b87f8e89516ddf1",
+            "state": "done",
+            "updated_at": 1793801288
+          }
+        ],
+        "rejected": null,
+        "validation": {
+          "accepted": []
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "cx-012",
+        "scope": "phase22c-final-ext-012",
+        "project": "corticeira",
+        "text": "My favorite beverage for myself is tea.",
+        "category": "beverage",
+        "expected": [
+          {
+            "kind": "preference",
+            "subject": "user",
+            "property": "favorite_beverage",
+            "value": "tea"
+          }
+        ],
+        "risk": "A",
+        "critical": false
+      },
+      "original_gemma_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"version\": 3,\n  \"scope\": \"phase22c-final-ext-012\",\n  \"project\": \"corticeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"My favorite beverage for myself is tea\",\n      \"category\": \"preference\"\n    }\n  ]\n}"
+            }
+          }
+        ],
+        "created": 1793797461,
+        "model": "lucille-real-gemma",
+        "system_fingerprint": "b11064-a894dae93",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 85,
+          "prompt_tokens": 434,
+          "total_tokens": 519,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-DXGycpNGXl5OREkA6m3thCIq2OEdHLGi",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 434,
+          "prompt_ms": 514.108,
+          "prompt_per_token_ms": 1.1845806451612901,
+          "prompt_per_second": 844.1806001851752,
+          "predicted_n": 85,
+          "predicted_ms": 2959.131,
+          "predicted_per_token_ms": 35.22775,
+          "predicted_per_second": 28.386712180028532
+        }
+      },
+      "native_replay": {
+        "details": [],
+        "enqueue": {
+          "attempts": 0,
+          "created_at": 1793801286,
+          "error_code": null,
+          "id": "a21c13dd410d3a11b960ed31dca22ea96b6f0c940377db80c723a264a5bac70b",
+          "state": "queued",
+          "updated_at": 1793801286
+        },
+        "identity": {
+          "created_at": 1793801286,
+          "profile": {
+            "description": "Fictional QA profile",
+            "instructions": "Use synthetic examples.",
+            "name": "Lucille Test Fixture",
+            "personality": "Clear and concise"
+          },
+          "updated_at": 1793801286,
+          "version": 1
+        },
+        "jobs": [
+          {
+            "attempts": 1,
+            "created_at": 1793801286,
+            "error_code": null,
+            "id": "a21c13dd410d3a11b960ed31dca22ea96b6f0c940377db80c723a264a5bac70b",
+            "state": "done",
+            "updated_at": 1793801288
+          }
+        ],
+        "rejected": null,
+        "validation": {
+          "accepted": []
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "cx-015",
+        "scope": "phase22c-final-ext-015",
+        "project": "corticeira",
+        "text": "Para o meu projeto, a linguagem que decidi usar é Rust.",
+        "category": "project_decision",
+        "expected": [
+          {
+            "kind": "decision",
+            "subject": "project.corticeira",
+            "property": "language",
+            "value": "rust"
+          }
+        ],
+        "risk": "B",
+        "critical": false
+      },
+      "original_gemma_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"version\": 3,\n  \"scope\": \"phase22c-final-ext-015\",\n  \"project\": \"corticeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"Para o meu projeto, a linguagem que decidi usar é Rust\",\n      \"category\": \"decision\"\n    }\n  ]\n}"
+            }
+          }
+        ],
+        "created": 1793797473,
+        "model": "lucille-real-gemma",
+        "system_fingerprint": "b11064-a894dae93",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 93,
+          "prompt_tokens": 440,
+          "total_tokens": 533,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-A4JDMJsdMOncOiGzs7rghV1Xwfp9vUsM",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 440,
+          "prompt_ms": 515.223,
+          "prompt_per_token_ms": 1.1709613636363636,
+          "prompt_per_second": 853.9991421190438,
+          "predicted_n": 93,
+          "predicted_ms": 3380.818,
+          "predicted_per_token_ms": 36.74802173913044,
+          "predicted_per_second": 27.212349200696394
+        }
+      },
+      "native_replay": {
+        "details": [],
+        "enqueue": {
+          "attempts": 0,
+          "created_at": 1793801286,
+          "error_code": null,
+          "id": "31e1b37f3c89470db5b3b1808cbc3e1a1c18fbc4fd1b6c0f7d3183b18ffc0ee6",
+          "state": "queued",
+          "updated_at": 1793801286
+        },
+        "identity": {
+          "created_at": 1793801286,
+          "profile": {
+            "description": "Fictional QA profile",
+            "instructions": "Use synthetic examples.",
+            "name": "Lucille Test Fixture",
+            "personality": "Clear and concise"
+          },
+          "updated_at": 1793801286,
+          "version": 1
+        },
+        "jobs": [
+          {
+            "attempts": 1,
+            "created_at": 1793801286,
+            "error_code": "source_ineligible",
+            "id": "31e1b37f3c89470db5b3b1808cbc3e1a1c18fbc4fd1b6c0f7d3183b18ffc0ee6",
+            "state": "failed",
+            "updated_at": 1793801288
+          }
+        ],
+        "rejected": "Ineligible V3 source",
+        "validation": {
+          "error": "Ineligible V3 source"
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "cx-016",
+        "scope": "phase22c-final-ext-016",
+        "project": "corticeira",
+        "text": "My choice for my project database is SQLite.",
+        "category": "project_decision",
+        "expected": [
+          {
+            "kind": "decision",
+            "subject": "project.corticeira",
+            "property": "database",
+            "value": "sqlite"
+          }
+        ],
+        "risk": "B",
+        "critical": false
+      },
+      "original_gemma_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"version\": 3,\n  \"scope\": \"phase22c-final-ext-016\",\n  \"project\": \"corticeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"My choice for my project database is SQLite\",\n      \"category\": \"decision\"\n    }\n  ]\n}"
+            }
+          }
+        ],
+        "created": 1793797477,
+        "model": "lucille-real-gemma",
+        "system_fingerprint": "b11064-a894dae93",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 84,
+          "prompt_tokens": 435,
+          "total_tokens": 519,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-74dwV04qN9uoeScFPn5JLgzIp4UBTZyp",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 435,
+          "prompt_ms": 517.459,
+          "prompt_per_token_ms": 1.1895609195402297,
+          "prompt_per_second": 840.6463120749664,
+          "predicted_n": 84,
+          "predicted_ms": 2866.261,
+          "predicted_per_token_ms": 34.533265060240964,
+          "predicted_per_second": 28.95758620725747
+        }
+      },
+      "native_replay": {
+        "details": [],
+        "enqueue": {
+          "reason": "not_eligible",
+          "state": "ignored"
+        },
+        "identity": {
+          "created_at": 1793801287,
+          "profile": {
+            "description": "Fictional QA profile",
+            "instructions": "Use synthetic examples.",
+            "name": "Lucille Test Fixture",
+            "personality": "Clear and concise"
+          },
+          "updated_at": 1793801287,
+          "version": 1
+        },
+        "jobs": [],
+        "rejected": null,
+        "validation": {
+          "error": "Ineligible V3 source"
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "cx-019",
+        "scope": "phase22c-final-ext-019",
+        "project": "corticeira",
+        "text": "Meu computador principal está equipado com 36 GB de RAM.",
+        "category": "hardware",
+        "expected": [
+          {
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "36_gb"
+          }
+        ],
+        "risk": "B",
+        "critical": false
+      },
+      "original_gemma_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"version\": 3,\n  \"scope\": \"phase22c-final-ext-019\",\n  \"project\": \"corticeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"Meu computador principal está equipado com 36 GB de RAM\",\n      \"category\": \"hardware\"\n    }\n  ]\n}"
+            }
+          }
+        ],
+        "created": 1793797489,
+        "model": "lucille-real-gemma",
+        "system_fingerprint": "b11064-a894dae93",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 92,
+          "prompt_tokens": 439,
+          "total_tokens": 531,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-PIlLVf0Z25rpZDlZbDDQFr175j79JCKj",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 439,
+          "prompt_ms": 516.567,
+          "prompt_per_token_ms": 1.1766902050113894,
+          "prompt_per_second": 849.8413564939301,
+          "predicted_n": 92,
+          "predicted_ms": 3265.174,
+          "predicted_per_token_ms": 35.881032967032965,
+          "predicted_per_second": 27.869877684925825
+        }
+      },
+      "native_replay": {
+        "details": [],
+        "enqueue": {
+          "attempts": 0,
+          "created_at": 1793801287,
+          "error_code": null,
+          "id": "94ff61ac35613666481637276e129fe1a18f1880900d43ff161c851b61b4be84",
+          "state": "queued",
+          "updated_at": 1793801287
+        },
+        "identity": {
+          "created_at": 1793801287,
+          "profile": {
+            "description": "Fictional QA profile",
+            "instructions": "Use synthetic examples.",
+            "name": "Lucille Test Fixture",
+            "personality": "Clear and concise"
+          },
+          "updated_at": 1793801287,
+          "version": 1
+        },
+        "jobs": [
+          {
+            "attempts": 1,
+            "created_at": 1793801287,
+            "error_code": null,
+            "id": "94ff61ac35613666481637276e129fe1a18f1880900d43ff161c851b61b4be84",
+            "state": "done",
+            "updated_at": 1793801289
+          }
+        ],
+        "rejected": null,
+        "validation": {
+          "accepted": []
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "cx-021",
+        "scope": "phase22c-final-ext-021",
+        "project": "corticeira",
+        "text": "Tenho como objetivo aprender italiano.",
+        "category": "goal",
+        "expected": [
+          {
+            "kind": "goal",
+            "subject": "user",
+            "property": "goal.learning",
+            "value": "aprender italiano"
+          }
+        ],
+        "risk": "B",
+        "critical": false
+      },
+      "original_gemma_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"version\": 3,\n  \"scope\": \"phase22c-final-ext-021\",\n  \"project\": \"corticeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"Tenho como objetivo aprender italiano\",\n      \"category\": \"goal\"\n    }\n  ]\n}"
+            }
+          }
+        ],
+        "created": 1793797497,
+        "model": "lucille-real-gemma",
+        "system_fingerprint": "b11064-a894dae93",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 86,
+          "prompt_tokens": 433,
+          "total_tokens": 519,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-hVxi8ULk7MUmBGOAXWEEPVewpDbnM6na",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 433,
+          "prompt_ms": 517.621,
+          "prompt_per_token_ms": 1.1954295612009238,
+          "prompt_per_second": 836.5193838735291,
+          "predicted_n": 86,
+          "predicted_ms": 3202.662,
+          "predicted_per_token_ms": 37.67837647058823,
+          "predicted_per_second": 26.54042168670937
+        }
+      },
+      "native_replay": {
+        "details": [],
+        "enqueue": {
+          "attempts": 0,
+          "created_at": 1793801287,
+          "error_code": null,
+          "id": "f9ea3250993a5385b4e215a3e119377546250792811d6cc7c13a30af5962b774",
+          "state": "queued",
+          "updated_at": 1793801287
+        },
+        "identity": {
+          "created_at": 1793801287,
+          "profile": {
+            "description": "Fictional QA profile",
+            "instructions": "Use synthetic examples.",
+            "name": "Lucille Test Fixture",
+            "personality": "Clear and concise"
+          },
+          "updated_at": 1793801287,
+          "version": 1
+        },
+        "jobs": [
+          {
+            "attempts": 1,
+            "created_at": 1793801287,
+            "error_code": null,
+            "id": "f9ea3250993a5385b4e215a3e119377546250792811d6cc7c13a30af5962b774",
+            "state": "done",
+            "updated_at": 1793801289
+          }
+        ],
+        "rejected": null,
+        "validation": {
+          "accepted": []
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "cx-022",
+        "scope": "phase22c-final-ext-022",
+        "project": "corticeira",
+        "text": "Já concluí meu objetivo de aprender francês.",
+        "category": "goal_completed",
+        "expected": [
+          {
+            "kind": "goal",
+            "subject": "user",
+            "property": "goal.learning",
+            "value": "aprender frances"
+          }
+        ],
+        "risk": "B",
+        "critical": false
+      },
+      "original_gemma_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"version\": 3,\n  \"scope\": \"phase22c-final-ext-022\",\n  \"project\": \"corticeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"Já concluí meu objetivo de aprender francês\",\n      \"category\": \"goal\"\n    }\n  ]\n}"
+            }
+          }
+        ],
+        "created": 1793797500,
+        "model": "lucille-real-gemma",
+        "system_fingerprint": "b11064-a894dae93",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 86,
+          "prompt_tokens": 435,
+          "total_tokens": 521,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-dQflGJFJeCqZb5qUChb3gIvvEyMu4cWm",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 435,
+          "prompt_ms": 520.45,
+          "prompt_per_token_ms": 1.1964367816091954,
+          "prompt_per_second": 835.8151599577288,
+          "predicted_n": 86,
+          "predicted_ms": 2972.411,
+          "predicted_per_token_ms": 34.96954117647059,
+          "predicted_per_second": 28.596314574263115
+        }
+      },
+      "native_replay": {
+        "details": [],
+        "enqueue": {
+          "attempts": 0,
+          "created_at": 1793801287,
+          "error_code": null,
+          "id": "3bbea46ac0cd6ef8a744d155f5897e732a82c36fe27f61eee498e7a39dc9d67c",
+          "state": "queued",
+          "updated_at": 1793801287
+        },
+        "identity": {
+          "created_at": 1793801287,
+          "profile": {
+            "description": "Fictional QA profile",
+            "instructions": "Use synthetic examples.",
+            "name": "Lucille Test Fixture",
+            "personality": "Clear and concise"
+          },
+          "updated_at": 1793801287,
+          "version": 1
+        },
+        "jobs": [
+          {
+            "attempts": 1,
+            "created_at": 1793801287,
+            "error_code": null,
+            "id": "3bbea46ac0cd6ef8a744d155f5897e732a82c36fe27f61eee498e7a39dc9d67c",
+            "state": "done",
+            "updated_at": 1793801289
+          }
+        ],
+        "rejected": null,
+        "validation": {
+          "accepted": []
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "cx-033",
+        "scope": "phase22c-final-ext-033",
+        "project": "corticeira",
+        "text": "Não estou dizendo que meu computador tem 128 GB de RAM; apenas perguntei quanto custaria.",
+        "category": "negation",
+        "expected": [],
+        "risk": "A",
+        "critical": true
+      },
+      "original_gemma_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"version\": 3,\n  \"scope\": \"phase22c-final-ext-033\",\n  \"project\": \"corticeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"Não estou dizendo que meu computador tem 128 GB de RAM\",\n      \"category\": \"fact\"\n    },\n    {\n      \"evidence\": \"apenas perguntei quanto custaria\",\n      \"category\": \"goal\"\n    }\n  ]\n}"
+            }
+          }
+        ],
+        "created": 1793797538,
+        "model": "lucille-real-gemma",
+        "system_fingerprint": "b11064-a894dae93",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 123,
+          "prompt_tokens": 449,
+          "total_tokens": 572,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-PJ9XBisXBkRwT3PQCAOBHFeGDM54xgX2",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 449,
+          "prompt_ms": 551.195,
+          "prompt_per_token_ms": 1.22760579064588,
+          "prompt_per_second": 814.5937463148249,
+          "predicted_n": 123,
+          "predicted_ms": 4113.314,
+          "predicted_per_token_ms": 33.71568852459016,
+          "predicted_per_second": 29.659782841767
+        }
+      },
+      "native_replay": {
+        "details": [
+          {
+            "memory": {
+              "created_at": 1793801289,
+              "input": {
+                "content": "O computador principal: 128 GB de RAM instalados.",
+                "fact_key": "device.primary_computer.ram_capacity",
+                "id": "a85ae114-e632-7610-f269-88a9fe27b3c2",
+                "kind": "hardware",
+                "project": "corticeira",
+                "scope": "phase22c-final-ext-033",
+                "source": "user",
+                "source_id": "a85edfa76501879746a9375ba518dfc73020de75fbea1337cc871bda5ee7f655"
+              },
+              "state": "candidate",
+              "updated_at": 1793801289,
+              "version": 1
+            },
+            "provenance": [
+              {
+                "at": 1793801289,
+                "evidence": "Não estou dizendo que meu computador tem 128 GB de RAM",
+                "interaction_id": "a85edfa76501879746a9375ba518dfc73020de75fbea1337cc871bda5ee7f655"
+              }
+            ],
+            "quality": {
+              "confidence": 0.9,
+              "evidence_rule": "llm_v3_grounded:explicit_device_ram",
+              "expires_at": null,
+              "facets": [],
+              "priority": 1,
+              "property": "ram_capacity",
+              "relevance": 0.8,
+              "replaces_id": null,
+              "replaces_version": null,
+              "subject": "device.primary_computer",
+              "temporal": "durable",
+              "value": "128_gb"
+            },
+            "revisions": []
+          }
+        ],
+        "enqueue": {
+          "attempts": 0,
+          "created_at": 1793801287,
+          "error_code": null,
+          "id": "a85edfa76501879746a9375ba518dfc73020de75fbea1337cc871bda5ee7f655",
+          "state": "queued",
+          "updated_at": 1793801287
+        },
+        "identity": {
+          "created_at": 1793801287,
+          "profile": {
+            "description": "Fictional QA profile",
+            "instructions": "Use synthetic examples.",
+            "name": "Lucille Test Fixture",
+            "personality": "Clear and concise"
+          },
+          "updated_at": 1793801287,
+          "version": 1
+        },
+        "jobs": [
+          {
+            "attempts": 1,
+            "created_at": 1793801287,
+            "error_code": null,
+            "id": "a85edfa76501879746a9375ba518dfc73020de75fbea1337cc871bda5ee7f655",
+            "state": "done",
+            "updated_at": 1793801289
+          }
+        ],
+        "rejected": null,
+        "validation": {
+          "accepted": [
+            {
+              "confidence": 0.9,
+              "content": "O computador principal: 128 GB de RAM instalados.",
+              "correction": false,
+              "evidence": "Não estou dizendo que meu computador tem 128 GB de RAM",
+              "facets": [],
+              "kind": "hardware",
+              "project_hint": null,
+              "property": "ram_capacity",
+              "relevance": 0.8,
+              "rule": "llm_v3_grounded:explicit_device_ram",
+              "subject": "device.primary_computer",
+              "temporal": "durable",
+              "ttl_seconds": null,
+              "value": "128_gb"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "mysql_original_source": {
+    "text": "Planejo usar MySQL no meu projeto.",
+    "job_id": "5fdabed2d6de8978fee38ba032ec08c389eb7177616ccf50b73d8abb79fecceb",
+    "persisted_job": [
+      [
+        "done",
+        1,
+        null,
+        1
+      ]
+    ],
+    "displayed": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação."
+  }
+}

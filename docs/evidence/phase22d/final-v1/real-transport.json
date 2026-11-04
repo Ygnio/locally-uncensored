@@ -1,0 +1,243 @@
+{
+  "method": "Supplemental post-holdout infrastructure fault, not unseen language or a changed final evaluator: exact frozen prepared-cancel source sent through actual DOM composer, only owned broker stopped, actual transport error persisted, one restoration per mode, existing frozen native observer audits durable source. Chat original failed external dynamic-import observer preserved; actual original GUI error and native job recovered without re-generation/re-sending.",
+  "dataset_sha256": "0d0788dce099fa5d6cf4842b436f05aa8be2b292987d93a216be65af5360880e",
+  "rows": [
+    {
+      "mode": "chat",
+      "scope": "phase22d-fault-transport-chat",
+      "source": "Prefiro café sem açúcar.",
+      "conversation_id": "96ddaef8-afeb-4c36-896f-3a7197bc6c3d",
+      "actual_messages": [
+        {
+          "id": "2e1b60ec-60d8-4924-90ab-e20986413a11",
+          "role": "user",
+          "content": "Prefiro café sem açúcar."
+        },
+        {
+          "id": "b67294af-a08f-4b14-89c4-9576ae3fc275",
+          "role": "assistant",
+          "content": "\n\nError: Synthetic payload inspector is not answering on 127.0.0.1:15284. It is either not running, still starting up, or listening on a different address. Start it and send again, or pick a different backend in Settings, AI Backends.",
+          "error": {
+            "kind": "engine",
+            "detail": "Synthetic payload inspector is not answering on 127.0.0.1:15284. It is either not running, still starting up, or listening on a different address. Start it and send again, or pick a different backend in Settings, AI Backends.",
+            "at": 0
+          }
+        }
+      ],
+      "jobs_after_recovery": [
+        {
+          "id": "faadbf7130c7779ceabd32385d9c69c7dde1a697180cb216afe3fa4681735205",
+          "conversation_id": null,
+          "message_id": null,
+          "scope": null,
+          "project": null,
+          "mode": null,
+          "state": "done",
+          "attempts": 1,
+          "error_code": null,
+          "created_at": 1793811815,
+          "updated_at": 1793811846
+        }
+      ],
+      "details_after_recovery": [
+        {
+          "memory": {
+            "created_at": 1793811846,
+            "input": {
+              "content": "Prefere café sem açúcar.",
+              "fact_key": "user.coffee_sugar",
+              "id": "599d1acb-0f92-248f-0f22-e1c98544a925",
+              "kind": "preference",
+              "project": "sintetico",
+              "scope": "phase22d-fault-transport-chat",
+              "source": "user",
+              "source_id": "faadbf7130c7779ceabd32385d9c69c7dde1a697180cb216afe3fa4681735205"
+            },
+            "state": "active",
+            "updated_at": 1793811846,
+            "version": 1
+          },
+          "provenance": [
+            {
+              "at": 1793811846,
+              "evidence": "Prefiro café sem açúcar",
+              "interaction_id": "faadbf7130c7779ceabd32385d9c69c7dde1a697180cb216afe3fa4681735205"
+            }
+          ],
+          "quality": {
+            "confidence": 0.9,
+            "evidence_rule": "llm_v3_grounded:explicit_coffee_preference",
+            "expires_at": null,
+            "facets": [],
+            "priority": 1,
+            "property": "coffee_sugar",
+            "relevance": 0.8,
+            "replaces_id": null,
+            "replaces_version": null,
+            "subject": "user",
+            "temporal": "preference",
+            "value": "without_sugar"
+          },
+          "revisions": []
+        }
+      ],
+      "passed": true,
+      "finished": "2026-11-04T17:15:19.524Z"
+    },
+    {
+      "mode": "agent",
+      "scope": "phase22d-fault-transport-agent-v2",
+      "source": "Prefiro café sem açúcar.",
+      "conversation_id": "fc9bb90a-0984-4556-b06c-0f1ae67dd136",
+      "actual_messages": [
+        {
+          "id": "11a8d49e-0b66-49ef-bef2-c8f60699aa00",
+          "role": "user",
+          "content": "Prefiro café sem açúcar."
+        },
+        {
+          "id": "ef4d9887-6ad2-41d9-a706-86cf53d65290",
+          "role": "assistant",
+          "content": "\n\nAgent error: Synthetic payload inspector is not answering on 127.0.0.1:15284. It is either not running, still starting up, or listening on a different address. Start it and send again, or pick a different backend in Settings, AI Backends."
+        }
+      ],
+      "jobs_after_recovery": [
+        {
+          "id": "bd8b63bc1611ba4e065fedca111b21c66fe171c2ea81dce94f20103a2bce2c39",
+          "conversation_id": null,
+          "message_id": null,
+          "scope": null,
+          "project": null,
+          "mode": null,
+          "state": "done",
+          "attempts": 1,
+          "error_code": null,
+          "created_at": 1793812115,
+          "updated_at": 1793812183
+        }
+      ],
+      "details_after_recovery": [
+        {
+          "memory": {
+            "created_at": 1793812183,
+            "input": {
+              "content": "Prefere café sem açúcar.",
+              "fact_key": "user.coffee_sugar",
+              "id": "a2566628-9e1d-8f82-9606-b0b0f10bb1b8",
+              "kind": "preference",
+              "project": "sintetico",
+              "scope": "phase22d-fault-transport-agent-v2",
+              "source": "user",
+              "source_id": "bd8b63bc1611ba4e065fedca111b21c66fe171c2ea81dce94f20103a2bce2c39"
+            },
+            "state": "active",
+            "updated_at": 1793812183,
+            "version": 1
+          },
+          "provenance": [
+            {
+              "at": 1793812183,
+              "evidence": "Prefiro café sem açúcar",
+              "interaction_id": "bd8b63bc1611ba4e065fedca111b21c66fe171c2ea81dce94f20103a2bce2c39"
+            }
+          ],
+          "quality": {
+            "confidence": 0.9,
+            "evidence_rule": "llm_v3_grounded:explicit_coffee_preference",
+            "expires_at": null,
+            "facets": [],
+            "priority": 1,
+            "property": "coffee_sugar",
+            "relevance": 0.8,
+            "replaces_id": null,
+            "replaces_version": null,
+            "subject": "user",
+            "temporal": "preference",
+            "value": "without_sugar"
+          },
+          "revisions": []
+        }
+      ],
+      "passed": true,
+      "finished": "2026-11-04T17:15:19.532Z"
+    },
+    {
+      "mode": "code",
+      "scope": "phase22d-fault-transport-code",
+      "source": "Prefiro café sem açúcar.",
+      "conversation_id": "0bd5246d-d16d-4df1-980d-f28eecfc23e7",
+      "actual_messages": [
+        {
+          "id": "89a881ab-c1c1-4783-b12b-ae3f0bc09381",
+          "role": "user",
+          "content": "Prefiro café sem açúcar."
+        },
+        {
+          "id": "49972ec5-0827-448e-b5cd-de4d97c21486",
+          "role": "assistant",
+          "content": "\n\nError: [network] HTTP 503 Synthetic payload inspector is not answering on 127.0.0.1:15284. It is either not running, still starting up, or listening on a different address. Start it and send again, or pick a different backend in Settings, AI Backends."
+        }
+      ],
+      "jobs_after_recovery": [
+        {
+          "id": "8f7c26778f7b334be9d4ab5680097ef33398a9e3a1422d980fa7d2eeed939457",
+          "conversation_id": null,
+          "message_id": null,
+          "scope": null,
+          "project": null,
+          "mode": null,
+          "state": "done",
+          "attempts": 1,
+          "error_code": null,
+          "created_at": 1793812243,
+          "updated_at": 1793812333
+        }
+      ],
+      "details_after_recovery": [
+        {
+          "memory": {
+            "created_at": 1793812333,
+            "input": {
+              "content": "Prefere café sem açúcar.",
+              "fact_key": "user.coffee_sugar",
+              "id": "33b3ff76-2043-b03d-5a2e-62ef9599358e",
+              "kind": "preference",
+              "project": "sintetico",
+              "scope": "phase22d-fault-transport-code",
+              "source": "user",
+              "source_id": "8f7c26778f7b334be9d4ab5680097ef33398a9e3a1422d980fa7d2eeed939457"
+            },
+            "state": "active",
+            "updated_at": 1793812333,
+            "version": 1
+          },
+          "provenance": [
+            {
+              "at": 1793812333,
+              "evidence": "Prefiro café sem açúcar",
+              "interaction_id": "8f7c26778f7b334be9d4ab5680097ef33398a9e3a1422d980fa7d2eeed939457"
+            }
+          ],
+          "quality": {
+            "confidence": 0.9,
+            "evidence_rule": "llm_v3_grounded:explicit_coffee_preference",
+            "expires_at": null,
+            "facets": [],
+            "priority": 1,
+            "property": "coffee_sugar",
+            "relevance": 0.8,
+            "replaces_id": null,
+            "replaces_version": null,
+            "subject": "user",
+            "temporal": "preference",
+            "value": "without_sugar"
+          },
+          "revisions": []
+        }
+      ],
+      "passed": true,
+      "finished": "2026-11-04T17:15:22.660Z"
+    }
+  ],
+  "all_passed": true
+}

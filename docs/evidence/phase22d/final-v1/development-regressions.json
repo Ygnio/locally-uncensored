@@ -1,0 +1,367 @@
+{
+  "method": "Development regressions, not final holdout; all failures preserved.",
+  "known_actual_40_gemma_output_replay": {
+    "method": "Known 2.2C actual-output replay, not new inference or final evaluation",
+    "bridge_sha256": "8e60c4b45f2ab67586b8c8e3da7efaeaf3a665a37673b9361b62667f6b4d6819",
+    "modes": {
+      "rules": {
+        "tp": 22,
+        "fp": 2,
+        "missed": 2,
+        "critical_writes": 0,
+        "precision": 0.9166666666666666,
+        "recall": 0.9166666666666666
+      },
+      "llm": {
+        "tp": 22,
+        "fp": 2,
+        "missed": 2,
+        "critical_writes": 0,
+        "precision": 0.9166666666666666,
+        "recall": 0.9166666666666666
+      },
+      "hybrid": {
+        "tp": 22,
+        "fp": 2,
+        "missed": 2,
+        "critical_writes": 0,
+        "precision": 0.9166666666666666,
+        "recall": 0.9166666666666666
+      }
+    }
+  },
+  "strict_original_gold": "Two goal representation differences remain as two FP/two miss, not re-scored as passes; original gold unchanged.",
+  "semantic_eight_regressions": "Native unit/integration evidence interpretation passed for eight exact prior Gemma spans; not equivalent to passing the old strict goal-format gold.",
+  "actual_localized_repair_observations": [
+    {
+      "development_version": 2,
+      "turn": 8,
+      "original_user": "Volte a memorizar minha preferência por café sem açúcar.",
+      "delivered": "Sua preferência por café sem açúcar foi memorizada.",
+      "report": {
+        "id": "fdeec946-3445-4d29-bb39-207a23248b79",
+        "status": "regenerated",
+        "attempts": [
+          {
+            "rawAnswer": "Memorizei sua preferência por café sem açúcar.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "user",
+                  "property": "coffee_sugar",
+                  "value": "without_sugar",
+                  "span": "Memorizei sua preferência por café sem açúcar.",
+                  "supported": true,
+                  "references": [
+                    "current-turn-0"
+                  ]
+                }
+              ],
+              "violations": [
+                {
+                  "code": "unconfirmed_memory_mutation",
+                  "span": "Memorizei sua preferência por café sem açúcar.",
+                  "critical": true
+                }
+              ],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 2.099999964237213
+            },
+            "verificationReferences": [],
+            "promptTokens": 2075,
+            "completionTokens": 11
+          },
+          {
+            "rawAnswer": "Sua preferência por café sem açúcar foi memorizada.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "user",
+                  "property": "coffee_sugar",
+                  "value": "without_sugar",
+                  "span": "Sua preferência por café sem açúcar foi memorizada.",
+                  "supported": true,
+                  "references": [
+                    "current-turn-0"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 0.2999999523162842
+            },
+            "verificationReferences": [],
+            "promptTokens": 2229,
+            "completionTokens": 13
+          }
+        ],
+        "refreshMs": 19.400000035762787,
+        "verificationMs": 2.3999999165534973,
+        "extraGenerationMs": 3207.300000011921,
+        "additionalUsage": {
+          "promptTokens": 2229,
+          "completionTokens": 13
+        },
+        "verifiedText": "Sua preferência por café sem açúcar foi memorizada."
+      }
+    },
+    {
+      "development_version": 2,
+      "turn": 14,
+      "original_user": "Não estou dizendo que meu computador tem 128 GB de RAM.",
+      "delivered": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+      "report": {
+        "id": "5fbbe83d-8451-4e7c-a3b0-ac069dc9e5ac",
+        "status": "blocked",
+        "attempts": [
+          {
+            "rawAnswer": "Entendido, você está apenas atualizando o valor para 48 GB. Qual é a nova capacidade total de RAM que você está considerando?",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "unspecified",
+                  "property": "ram_capacity",
+                  "value": "48_gb",
+                  "span": "Entendido, você está apenas atualizando o valor para 48 GB.",
+                  "supported": false,
+                  "references": []
+                }
+              ],
+              "violations": [
+                {
+                  "code": "unsupported_typed_value",
+                  "span": "Entendido, você está apenas atualizando o valor para 48 GB.",
+                  "critical": true
+                }
+              ],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 0,
+              "unsupportedAssertions": 1,
+              "elapsedMs": 1.300000011920929
+            },
+            "verificationReferences": [],
+            "promptTokens": 1012,
+            "completionTokens": 30
+          },
+          {
+            "rawAnswer": "Entendido, você está apenas atualizando a quantidade de memória para 48 GB. Como isso afeta o seu projeto de catálogo de conchas?",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "unspecified",
+                  "property": "ram_capacity",
+                  "value": "48_gb",
+                  "span": "Entendido, você está apenas atualizando a quantidade de memória para 48 GB.",
+                  "supported": false,
+                  "references": []
+                }
+              ],
+              "violations": [
+                {
+                  "code": "unsupported_typed_value",
+                  "span": "Entendido, você está apenas atualizando a quantidade de memória para 48 GB.",
+                  "critical": true
+                }
+              ],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 0,
+              "unsupportedAssertions": 1,
+              "elapsedMs": 0.19999998807907104
+            },
+            "verificationReferences": [],
+            "promptTokens": 1169,
+            "completionTokens": 32
+          }
+        ],
+        "refreshMs": 14.899999976158142,
+        "verificationMs": 1.5,
+        "extraGenerationMs": 2551.100000023842,
+        "additionalUsage": {
+          "promptTokens": 1169,
+          "completionTokens": 32
+        }
+      }
+    },
+    {
+      "development_version": 3,
+      "turn": 8,
+      "original_user": "Volte a memorizar minha preferência por café sem açúcar.",
+      "delivered": "\n\nAgent error: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+      "report": {
+        "id": "62edfad3-781d-40ff-8879-70ce5692c380",
+        "status": "blocked",
+        "attempts": [
+          {
+            "rawAnswer": "A preferência por café sem açúcar foi memorizada.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "user",
+                  "property": "coffee_sugar",
+                  "value": "without_sugar",
+                  "span": "A preferência por café sem açúcar foi memorizada.",
+                  "supported": true,
+                  "references": [
+                    "current-turn-0"
+                  ]
+                }
+              ],
+              "violations": [
+                {
+                  "code": "unconfirmed_memory_mutation",
+                  "span": "A preferência por café sem açúcar foi memorizada.",
+                  "critical": true
+                }
+              ],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 0.699999988079071
+            },
+            "verificationReferences": [],
+            "promptTokens": 2075,
+            "completionTokens": 12
+          },
+          {
+            "rawAnswer": "Sua preferência por café sem açúcar foi memorizada.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "user",
+                  "property": "coffee_sugar",
+                  "value": "without_sugar",
+                  "span": "Sua preferência por café sem açúcar foi memorizada.",
+                  "supported": true,
+                  "references": [
+                    "current-turn-0"
+                  ]
+                }
+              ],
+              "violations": [
+                {
+                  "code": "unconfirmed_memory_mutation",
+                  "span": "Sua preferência por café sem açúcar foi memorizada.",
+                  "critical": true
+                }
+              ],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 1
+            },
+            "verificationReferences": [],
+            "promptTokens": 2229,
+            "completionTokens": 13
+          }
+        ],
+        "refreshMs": 25.900000035762787,
+        "verificationMs": 1.699999988079071,
+        "extraGenerationMs": 3190,
+        "additionalUsage": {
+          "promptTokens": 2229,
+          "completionTokens": 13
+        }
+      }
+    },
+    {
+      "development_version": 3,
+      "turn": 14,
+      "original_user": "Não estou dizendo que meu computador tem 128 GB de RAM.",
+      "delivered": "Entendido, você está apenas corrigindo o valor atual para 48 GB.",
+      "report": {
+        "id": "00d9eef7-223f-42f0-a812-af7686f2bb43",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "Entendido, você está apenas corrigindo o valor atual para 48 GB. Isso deixa claro que o foco é o aumento recente, não uma capacidade total de 128 GB.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "device.primary_computer",
+                  "property": "ram_capacity",
+                  "value": "48_gb",
+                  "span": "Entendido, você está apenas corrigindo o valor atual para 48 GB.",
+                  "supported": true,
+                  "references": [
+                    "d993e7eb-9a1d-05a6-cbd6-1df14c34b188"
+                  ]
+                },
+                {
+                  "entity": "unspecified",
+                  "property": "ram_capacity_delta",
+                  "value": "128_gb",
+                  "span": "Isso deixa claro que o foco é o aumento recente, não uma capacidade total de 128 GB.",
+                  "supported": false,
+                  "references": []
+                }
+              ],
+              "violations": [
+                {
+                  "code": "unsupported_typed_value",
+                  "span": "Isso deixa claro que o foco é o aumento recente, não uma capacidade total de 128 GB.",
+                  "critical": true
+                }
+              ],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 1,
+              "elapsedMs": 1.7999999523162842
+            },
+            "verificationReferences": [],
+            "promptTokens": 1191,
+            "completionTokens": 40
+          }
+        ],
+        "refreshMs": 6.800000011920929,
+        "verificationMs": 1.7999999523162842,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "localizedRepair": {
+          "method": "independent_sentence_projection",
+          "original": "Entendido, você está apenas corrigindo o valor atual para 48 GB. Isso deixa claro que o foco é o aumento recente, não uma capacidade total de 128 GB.",
+          "delivered": "Entendido, você está apenas corrigindo o valor atual para 48 GB.",
+          "removed": [
+            "Isso deixa claro que o foco é o aumento recente, não uma capacidade total de 128 GB."
+          ],
+          "verification": {
+            "assertions": [
+              {
+                "entity": "device.primary_computer",
+                "property": "ram_capacity",
+                "value": "48_gb",
+                "span": "Entendido, você está apenas corrigindo o valor atual para 48 GB.",
+                "supported": true,
+                "references": [
+                  "d993e7eb-9a1d-05a6-cbd6-1df14c34b188"
+                ]
+              }
+            ],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 1,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.10000002384185791
+          },
+          "elapsedMs": 0.3999999761581421
+        },
+        "verifiedText": "Entendido, você está apenas corrigindo o valor atual para 48 GB."
+      }
+    }
+  ],
+  "limits": "Version 2 removed an unsupported future-storage promise and preserved the supported preference. Version 3 also removed a correct negative RAM contrast; overconservative repair, not full success."
+}

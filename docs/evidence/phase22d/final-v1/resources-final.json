@@ -1,0 +1,221 @@
+{
+  "window_start_utc": "2026-11-04T16:16:43.756730+00:00",
+  "window_end_sample_utc": "2026-11-04T17:15:26.6422313Z",
+  "scenario_A_measured": {
+    "physical_available_mib": {
+      "n": 3648,
+      "min": 1190.77734375,
+      "p50": 1693.515625,
+      "p95": 2057,
+      "max": 9423,
+      "sum": 6253332.63671875
+    },
+    "system_commit_mib_max": 22221.33984375,
+    "system_commit_headroom_mib_min": 10502.02734375,
+    "pagefile_current_mib": {
+      "n": 327,
+      "min": 926,
+      "p50": 927,
+      "p95": 1151,
+      "max": 1152,
+      "sum": 322118
+    },
+    "pagefile_allocated_mib": [
+      16384
+    ],
+    "pagefile_preexisting_boot_peak_mib": [
+      8007
+    ],
+    "cpu_global_percent": {
+      "n": 327,
+      "min": 2,
+      "p50": 31,
+      "p95": 63,
+      "max": 88,
+      "sum": 10423
+    },
+    "vram_device_mib_max": 9516.0,
+    "own_gui_working_set_mib": {
+      "n": 325,
+      "min": 41.0078125,
+      "p50": 48.05859375,
+      "p95": 51.046875,
+      "max": 51.39453125,
+      "sum": 15279.22265625
+    },
+    "models": {
+      "gemma": {
+        "working_set_mib": {
+          "n": 1664,
+          "min": 7261.85546875,
+          "p50": 7425.02734375,
+          "p95": 7431.3046875,
+          "max": 7449.1484375,
+          "sum": 12264136.75
+        },
+        "private_commit_mib": {
+          "n": 1664,
+          "min": 9312.32421875,
+          "p50": 9316.109375,
+          "p95": 9317.375,
+          "max": 9348.04296875,
+          "sum": 15501873.07421875
+        },
+        "cpu_seconds_observed_delta": 1671.40625,
+        "epochs": [
+          {
+            "started_unix": 1793806811.227276,
+            "samples": 1664,
+            "exit_code": 1,
+            "stop_identity_verified": true,
+            "cpu_seconds_observed_delta": 1671.40625
+          }
+        ]
+      },
+      "nomic": {
+        "working_set_mib": {
+          "n": 1657,
+          "min": 1.61328125,
+          "p50": 720.8828125,
+          "p95": 782.515625,
+          "max": 782.6796875,
+          "sum": 1200089.109375
+        },
+        "private_commit_mib": {
+          "n": 1657,
+          "min": 0.28515625,
+          "p50": 903.2265625,
+          "p95": 903.63671875,
+          "max": 917.20703125,
+          "sum": 1484357.8359375
+        },
+        "cpu_seconds_observed_delta": 293.1875,
+        "epochs": [
+          {
+            "started_unix": 1793810026.9100738,
+            "samples": 1180,
+            "exit_code": 1,
+            "stop_identity_verified": true,
+            "cpu_seconds_observed_delta": 194.296875
+          },
+          {
+            "started_unix": 1793806807.245883,
+            "samples": 477,
+            "exit_code": 1,
+            "stop_identity_verified": true,
+            "cpu_seconds_observed_delta": 98.890625
+          }
+        ]
+      }
+    }
+  },
+  "scenario_B_projection_only": {
+    "additional_physical_mib": 2048,
+    "projected_min_available_mib": 3238.77734375,
+    "not_measured": true,
+    "no_chatgpt_closure": true,
+    "no_assumed_commit_vram_or_speed_gain": true
+  },
+  "real_calls": {
+    "gemma": {
+      "calls": 370,
+      "latency_s": {
+        "n": 370,
+        "min": 1.236531600006856,
+        "p50": 3.739564099989366,
+        "p95": 11.279615700012073,
+        "max": 13.953763299970888,
+        "sum": 1722.667393099924
+      },
+      "prompt_tokens": 758384,
+      "completion_tokens": 16795,
+      "max_prompt_tokens": 6720
+    },
+    "nomic": {
+      "calls": 376,
+      "latency_s": {
+        "n": 376,
+        "min": 0.049733699997887015,
+        "p50": 0.09881389996735379,
+        "p95": 0.2606542999856174,
+        "max": 0.6828752000001259,
+        "sum": 43.903088599210605
+      },
+      "prompt_tokens": 8378,
+      "completion_tokens": 0,
+      "max_prompt_tokens": 51
+    }
+  },
+  "gemma_groups": {
+    "extraction": {
+      "calls": 95,
+      "latency_s": {
+        "n": 95,
+        "min": 1.5886846000212245,
+        "p50": 3.658241100027226,
+        "p95": 4.201351499999873,
+        "max": 6.921094399993308,
+        "sum": 341.1071861998644
+      },
+      "actual_predict_ms": {
+        "n": 95,
+        "min": 1043.003,
+        "p50": 3108.725,
+        "p95": 3660.28,
+        "max": 6014.17,
+        "sum": 287119.32
+      },
+      "actual_prompt_eval_ms": {
+        "n": 95,
+        "min": 495.974,
+        "p50": 518.184,
+        "p95": 770.343,
+        "max": 887.505,
+        "sum": 51510.499
+      }
+    },
+    "answer": {
+      "calls": 275,
+      "latency_s": {
+        "n": 275,
+        "min": 1.236531600006856,
+        "p50": 4.169815999979619,
+        "p95": 11.53584620001493,
+        "max": 13.953763299970888,
+        "sum": 1381.5602069000597
+      },
+      "actual_predict_ms": {
+        "n": 275,
+        "min": 140.137,
+        "p50": 947.084,
+        "p95": 2161.172,
+        "max": 2689.719,
+        "sum": 292261.309
+      },
+      "actual_prompt_eval_ms": {
+        "n": 275,
+        "min": 779.528,
+        "p50": 2725.783,
+        "p95": 7859.198,
+        "max": 8721.233,
+        "sum": 927621.1849999999
+      }
+    }
+  },
+  "native_retrieval_C_seconds_excluding_embeddings_and_model": {
+    "n": 93,
+    "min": 0.060314699949231,
+    "p50": 0.09357149997958913,
+    "p95": 0.11050200002500787,
+    "max": 0.11977420002222061,
+    "sum": 8.613506200024858
+  },
+  "limits": [
+    "Global physical/commit/CPU/VRAM include user applications; own GUI process sample excludes full WebView tree.",
+    "Model epoch timestamps use start+monotonic elapsed; minor launch offset, not a synchronized profiler.",
+    "Boot pagefile peak is not attributed to this phase.",
+    "Source extraction wait in GUI includes queue/retry/observation polling, not only model inference.",
+    "Broker converts non-streaming completion to SSE; native model streaming remains unvalidated.",
+    "Configured Gemma context 65536, Nomic 2048 CPU / 768D; no 200-turn or 62545-token saturation repetition."
+  ]
+}

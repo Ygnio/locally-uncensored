@@ -278,6 +278,31 @@ fn database_choice_intent(query: &str) -> bool {
             .iter()
             .any(|n| q.contains(n))
 }
+fn description_intent(query: &str) -> bool {
+    let q = fold(query);
+    [
+        "description",
+        "descricao",
+        "sobre o projeto",
+        "about the project",
+        "assunto do",
+        "assunto daquele",
+        "subject of",
+        "purpose of",
+    ]
+    .iter()
+    .any(|w| q.contains(w))
+}
+fn identified_ram_intent(query: &str) -> bool {
+    let q = fold(query);
+    (crate::coverage::device(&q).is_some() || implicit_device_comparison(query))
+        && ["ram", "memoria", "memory", "gigabytes"]
+            .iter()
+            .any(|w| q.split(|c: char| !c.is_alphanumeric()).any(|t| t == *w))
+        && !["gpu", "vram", "ssd", "armazenamento", "storage"]
+            .iter()
+            .any(|w| q.contains(w))
+}
 fn completed_goal_intent(query: &str) -> bool {
     let q = crate::relevance::normalize_query(query);
     any_completed_intent(&q)
@@ -336,9 +361,10 @@ fn eligible_source(
     // A clear correction in the current user message takes precedence even
     // before the asynchronous extractor has persisted its replacement.
     if let Some(current) = meta.as_ref().filter(|_| !historical) {
-        let current_claims = extract(query)
-            .into_iter()
-            .chain(crate::dialogue::extract(query, &m.input.project));
+        // Query-side shadowing must obey the same independent authorship and
+        // negation gate as learning. An ineligible embedded assertion is not a
+        // new value merely because the legacy classifier found a quantity.
+        let current_claims = crate::dialogue::extract(query, &m.input.project).into_iter();
         if current_claims.into_iter().any(|claim| {
             (claim.subject == current.subject
                 && claim.property == current.property
@@ -400,13 +426,11 @@ fn eligible_source(
     {
         return Ok(false);
     }
-    if recall(query) || canonical_claim {
-        return Ok(true);
-    }
-    if crate::relevance::knowledge_only(query) {
-        return Ok(false);
-    }
     if [
+        "meu irmao",
+        "minha irma",
+        "my brother",
+        "my sister",
         "meu amigo",
         "meu colega",
         "minha colega",
@@ -417,6 +441,12 @@ fn eligible_source(
     .iter()
     .any(|w| fold(query).contains(w))
     {
+        return Ok(false);
+    }
+    if recall(query) || canonical_claim {
+        return Ok(true);
+    }
+    if crate::relevance::knowledge_only(query) {
         return Ok(false);
     }
     let q = crate::relevance::normalize_query(query);
@@ -478,14 +508,7 @@ fn eligible_source(
         .as_ref()
         .is_some_and(|m| m.property == "description" && m.subject.starts_with("project."))
         && !summary
-        && ![
-            "description",
-            "descricao",
-            "sobre o projeto",
-            "about the project",
-        ]
-        .iter()
-        .any(|w| q.contains(w))
+        && !description_intent(query)
     {
         return Ok(false);
     }
@@ -549,7 +572,6 @@ fn eligible_source(
                 "database",
                 "banco",
                 "dados",
-                "data",
                 "sqlite",
                 "postgres",
                 "mysql",
@@ -770,7 +792,16 @@ impl crate::Store {
                 .references
                 .iter()
                 .any(|r| r.id == m.input.id && r.version == m.version);
-            trace.push(serde_json::json!({"id":m.input.id,"content":m.input.content,"version":m.version,"state":m.state,"quality":meta,"scope_project_pass":true,"state_temporal_entity_intent_pass":gate,"lexical_rank_bm25":lexical.get(&m.input.id),"lexical_coverage":coverage,"lexical_gate":coverage>=crate::relevance::LEXICAL_COVERAGE,"cosine":similarity,"semantic_threshold_pass":similarity.is_some_and(|s|s>=policy.minimum_similarity),"selected":selected,"reason":if selected{"selected_after_all_filters"}else if !active{"not_current"}else if !gate{"temporal_entity_intent_or_conflict_filter"}else{"threshold_margin_rank_diversity_or_budget"}}));
+            let canonical_lexical_match = meta.as_ref().is_some_and(|q| {
+                (identified_ram_intent(&req.query)
+                    && q.property == "ram_capacity"
+                    && (implicit_device_comparison(&req.query)
+                        || crate::coverage::device(&fold(&req.query)) == Some(q.subject.as_str())))
+                    || (description_intent(&req.query)
+                        && q.property == "description"
+                        && q.subject == format!("project.{}", req.project))
+            });
+            trace.push(serde_json::json!({"canonical_lexical_match":canonical_lexical_match,"id":m.input.id,"content":m.input.content,"version":m.version,"state":m.state,"quality":meta,"scope_project_pass":true,"state_temporal_entity_intent_pass":gate,"lexical_rank_bm25":lexical.get(&m.input.id),"lexical_coverage":coverage,"lexical_gate":coverage>=crate::relevance::LEXICAL_COVERAGE,"cosine":similarity,"semantic_threshold_pass":similarity.is_some_and(|s|s>=policy.minimum_similarity),"selected":selected,"reason":if selected{"selected_after_all_filters"}else if !active{"not_current"}else if !gate{"temporal_entity_intent_or_conflict_filter"}else{"threshold_margin_rank_diversity_or_budget"}}));
         }
         let mut raw = trace
             .iter()
@@ -800,6 +831,8 @@ pub(crate) fn select(
     let coffee = coffee_preparation_intent(&req.query);
     let database_choice = database_choice_intent(&req.query);
     let slots = preference_slots(&req.query);
+    let identified_ram = identified_ram_intent(&req.query);
+    let description = description_intent(&req.query);
     let lifecycle = ["status", "andamento", "conclu", "cancel", "progress"]
         .iter()
         .any(|w| fold(&req.query).contains(w))
@@ -807,6 +840,16 @@ pub(crate) fn select(
             .iter()
             .any(|w| fold(&req.query).contains(w));
     let completed_goal = completed_goal_intent(&req.query);
+    let general_expansion = recall(&req.query)
+        || summary
+        || communication
+        || completed_goal
+        || coffee
+        || history
+        || current_field
+        || lifecycle
+        || database_choice
+        || !slots.is_empty();
     if recall(&req.query)
         || summary
         || communication
@@ -817,10 +860,27 @@ pub(crate) fn select(
         || lifecycle
         || database_choice
         || !slots.is_empty()
+        || identified_ram
+        || description
     {
-        let mut q=tx.prepare(&format!("SELECT {COLS} FROM memories WHERE scope=?1 AND project=?2 AND (state='active' OR (state='obsolete' AND ?3)) ORDER BY updated_at DESC,id LIMIT 100")).map_err(db_error)?;
+        // Filter identified canonical slots before the existing 100-record cap:
+        // unrelated recent records must not crowd an older indexed property out.
+        let mut q=tx.prepare(&format!("SELECT {COLS} FROM memories WHERE scope=?1 AND project=?2 AND (state='active' OR (state='obsolete' AND ?3)) AND (?4 OR id IN (SELECT memory_id FROM memory_quality WHERE (?5 AND (?9 OR subject=?6) AND property='ram_capacity') OR (?7 AND subject=?8 AND property='description'))) ORDER BY updated_at DESC,id LIMIT 100")).map_err(db_error)?;
         lexical = q
-            .query_map(params![req.scope, req.project, history], row)
+            .query_map(
+                params![
+                    req.scope,
+                    req.project,
+                    history,
+                    general_expansion,
+                    identified_ram,
+                    crate::coverage::device(&fold(&req.query)).unwrap_or(""),
+                    description,
+                    format!("project.{}", req.project),
+                    implicit_device_comparison(&req.query)
+                ],
+                row,
+            )
             .map_err(db_error)?
             .collect::<rusqlite::Result<Vec<_>>>()
             .map_err(db_error)?;
@@ -845,9 +905,16 @@ pub(crate) fn select(
         let coffee_match =
             coffee && quality(tx, &m.input.id)?.is_some_and(|q| q.property == "coffee_sugar");
         let slot_match = quality(tx, &m.input.id)?.is_some_and(|q| {
-            (m.input.kind == Kind::Preference
-                && slots.contains(&q.property.as_str())
-                && (q.property != "coffee_sugar" || coffee))
+            (identified_ram
+                && q.property == "ram_capacity"
+                && (implicit_device_comparison(&req.query)
+                    || crate::coverage::device(&fold(&req.query)) == Some(q.subject.as_str())))
+                || (description
+                    && q.property == "description"
+                    && q.subject == format!("project.{}", req.project))
+                || (m.input.kind == Kind::Preference
+                    && slots.contains(&q.property.as_str())
+                    && (q.property != "coffee_sugar" || coffee))
                 || (database_choice
                     && q.property == "database"
                     && q.subject == format!("project.{}", req.project))

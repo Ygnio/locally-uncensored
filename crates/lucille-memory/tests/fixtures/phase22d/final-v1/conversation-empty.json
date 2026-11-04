@@ -1,0 +1,30 @@
+{
+  "id": "phase22d-independent-final-empty-v1",
+  "authored_after_development": {
+    "production_code_commit": "470b640bf2caff19000d25410e9d5df8b75366f3",
+    "ended_utc": "2026-11-04T16:02:24.982890+00:00",
+    "authored_utc": "2026-11-04T16:13:32.011328+00:00",
+    "no_native_or_model_rehearsal": true,
+    "authoring": "Fresh synthetic utterances and semantic gold, authored after development. Same author as implementation; independent of development cases, not an externally blinded evaluation."
+  },
+  "project": "bromelia",
+  "turns": [],
+  "probes": [
+    {
+      "text": "Quais preferências minhas estão disponíveis neste projeto?",
+      "mode": "chat",
+      "scenario": "empty_project",
+      "expected_atoms": [
+        "bounded_empty_scope"
+      ]
+    },
+    {
+      "text": "Qual era a quantidade de RAM que eu informei aqui?",
+      "mode": "chat",
+      "scenario": "empty_scope_ram",
+      "expected_atoms": [
+        "bounded_no_relevant_ram"
+      ]
+    }
+  ]
+}
