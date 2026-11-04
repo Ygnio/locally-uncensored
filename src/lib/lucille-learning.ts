@@ -13,6 +13,22 @@ export function userSourceInteraction(conversation: Conversation | undefined, as
   return {conversation_id:conversation.id,message_id:user.lucilleInteractionId ?? user.id,scope:conversation.lucille!.scope,project:conversation.lucille!.project,mode,role:'user',user_text:user.content}
 }
 export interface LucilleSourceProof { interaction: NonNullable<ReturnType<typeof userSourceInteraction>>; job_id: string | null }
+/** Called only after the host has durably committed the turn. Assistant quality
+ * is not USER authority. An explicit interruption still revokes the source;
+ * transport failure and verifier retention preserve the durable original USER.
+ * The native proof, not mutable UI project selection, owns its captured scope.
+ */
+export function durablePreparedInteraction(conversation: Conversation | undefined, assistantId: string, userText: string, mode: LucilleMode, proof: LucilleSourceProof, aborted: boolean) {
+  if (aborted || !proof.job_id) return null
+  const actual = userSourceInteraction(conversation, assistantId, mode)
+  const answer = conversation?.messages.find(message => message.id === assistantId)
+  const original = proof.interaction
+  if (!actual || answer?.error?.kind === 'interrupted' || actual.user_text.trim().length < 12
+    || actual.conversation_id !== original.conversation_id || actual.message_id !== original.message_id
+    || actual.user_text !== original.user_text || userText !== original.user_text
+    || actual.mode !== original.mode || original.role !== 'user') return null
+  return original
+}
 interface PreparedSource {
   proof:LucilleSourceProof; job:{state:string}; current_statements:MemoryFact[]; directive_receipt?:MemoryDirectiveReceipt | null
 }
@@ -65,7 +81,7 @@ export async function queueLucilleLearning(conversationId: string, assistantId: 
   try{
     if(prepared){
       const source=prepared.source
-      if(!interaction || !source || !source.proof.job_id || interaction.message_id!==source.proof.interaction.message_id || interaction.user_text!==source.proof.interaction.user_text){cancelLucilleSource(assistantId);return}
+      if(!source || !durablePreparedInteraction(conversation,assistantId,userText,mode,source.proof,signal.aborted)){cancelLucilleSource(assistantId);return}
       await invoke('lucille_learn',{interaction:source.proof.interaction,source:source.proof})
     }else if(interaction){await invoke('lucille_learn',{interaction})}else return
     const { startLucilleLlm } = await import('./lucille-llm'); startLucilleLlm(); const { startLucilleIndex } = await import('./lucille-index-worker'); startLucilleIndex()
