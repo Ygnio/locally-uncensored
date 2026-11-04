@@ -79,7 +79,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       // Only a linked previous property source can support an older value.
       if (!matching.some(f => f.evidence.some(e => e.role === 'previous_property_link_not_current_value' && mentions(e.text, value)))) add('unsupported_historical_state', span)
     }
-    if (/decidiu|escolheu|decided|chosen|selected/.test(fold(span)) && !matching.some(f => ['decision', 'current_fact', 'in_progress', 'completed'].includes(f.modality))) add('plan_as_decision', span)
+    if (/decidiu|escolheu|decided|chosen|selected/.test(fold(span)) && !matching.some(f => f.modality === 'decision')) add('unproven_decision', span)
     if (matching.every(f => f.modality === 'cancelled') && !/cancel/.test(fold(span))) add('cancelled_as_current', span)
     if (execution(span) && !matching.some(f => ['in_progress', 'current_fact'].includes(f.modality))) add('plan_or_decision_as_execution', span)
     if (!historical && execution(span) && entity === 'project.' + snapshot.project && current.some(f => f.entity === entity && f.property === 'lifecycle' && ['cancelled', 'completed'].includes(f.modality))) add('terminal_project_as_execution', span)

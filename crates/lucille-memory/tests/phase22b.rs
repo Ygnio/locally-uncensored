@@ -832,7 +832,10 @@ fn implicit_two_device_query_retains_both_entities_without_contamination() {
         .facts
         .iter()
         .any(|f| f.entity == "device.work_laptop" && f.value == "16_gb"));
-    assert!(!ctx.facts.iter().any(|f| f.entity == "device.other_computer"));
+    assert!(!ctx
+        .facts
+        .iter()
+        .any(|f| f.entity == "device.other_computer"));
     let one = s
         .context(request("Quanto de RAM tem meu notebook de trabalho?"))
         .unwrap();
@@ -880,6 +883,15 @@ fn current_language_precedence_and_terminal_project_qualifier_survive_reopen() {
         .iter()
         .any(|f| f.property == "lifecycle" && f.modality == "cancelled"));
     assert!(!ctx.facts.iter().any(|f| f.property == "language"));
+    let technical = s
+        .context(request(
+            "Meu projeto está sendo desenvolvido em Rust agora?",
+        ))
+        .unwrap();
+    assert!(technical
+        .facts
+        .iter()
+        .any(|f| f.property == "lifecycle" && f.modality == "cancelled"));
     assert!(s
         .answer_evidence(&request("Como está meu projeto?"), &ctx.references)
         .unwrap()

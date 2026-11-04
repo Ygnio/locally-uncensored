@@ -417,6 +417,8 @@ impl Store {
         // contradictions, diversity and the budget share one selection boundary.
         let (mut memories, _) = retrieval::select(&tx, &req, picks, used, semantic, &policy, at)?;
         context_facts::append_project_state(&tx, &req, &mut memories)?;
+        // The state qualifier participates in the same reference ceiling.
+        memories.truncate(12);
         let (facts, used) = loop {
             let facts = context_facts::project(&tx, &memories)?;
             let extra = if memories.is_empty() {

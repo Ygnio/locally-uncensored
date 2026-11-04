@@ -3,6 +3,12 @@ import { verifyMemoryAnswer, answerSnapshot, registerAnswerSnapshot, type Answer
 const fact = (changes: Partial<MemoryFact> = {}): MemoryFact => ({ id: 'fact-1', version: 2, entity: 'project.atlas', property: 'language', value: 'rust', modality: 'planned', validity: 'current', scope: 'test', project: 'atlas', review: 'reviewed', facets: [], evidence: [{ role: 'current_source', text: 'Planejo usar Rust.' }], ...changes })
 const snapshot = (facts: MemoryFact[] = [fact()], query = 'Como está meu projeto?'): AnswerSnapshot => ({ scope: 'test', project: 'atlas', query, facts, currentStatements: [] })
 describe('independent typed memory answer checks', () => {
+  it('requires a choice source before attributing a decision to the user', () => {
+    for (const modality of ['planned','current_fact','in_progress','completed']) {
+      expect(verifyMemoryAnswer('Você decidiu usar Rust.',snapshot([fact({modality})])).violations.some(v=>v.code==='unproven_decision')).toBe(true)
+    }
+    expect(verifyMemoryAnswer('Você decidiu usar Rust.',snapshot([fact({modality:'decision'})])).violations).toEqual([])
+  })
   it('binds a short historical answer to a historical question', () => {
     const s = snapshot([fact({ entity: 'user', property: 'coffee_sugar', value: 'without_sugar', modality: 'preference', validity: 'historical' })], 'Como eu tomava meu café antes?')
     expect(verifyMemoryAnswer('Sem açúcar.', s).violations).toEqual([])

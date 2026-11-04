@@ -50,6 +50,14 @@ pub(crate) fn append_project_state(
                 "cancel",
                 "conclu",
                 "complete",
+                "desenvolv",
+                "implement",
+                "execut",
+                "pronto",
+                "progress",
+                "build",
+                "using",
+                " usa",
             ]
             .iter()
             .any(|s| query.contains(s)));
