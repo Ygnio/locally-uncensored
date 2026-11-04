@@ -33,3 +33,11 @@ Antes da v1, passaram 112 testes Rust e uma suíte ampliada de 650 testes da int
 ## Próximo fechamento
 
 Corrigir a execução e confirmação nativa dos pedidos de esquecimento, a autoridade de fontes pendentes, temporalidade, normalização e seleção por propriedade. A próxima rodada usará outro congelamento e conjuntos inéditos. A v1 permanecerá como evidência negativa e regressão.
+
+## Desenvolvimento após a v1 — ainda sem aprovação real
+
+A fonte USER é reservada antes da geração e só é liberada para extração após a resposta durável. Cancelamento, expiração, reinício de processo e restauração revogam fontes ainda reservadas. A ordem de entrada, preservada no backup, impede uma extração antiga de substituir informação posterior. Pedidos explícitos de esquecimento usam uma gramática limitada a uma propriedade; a operação gera um comprovante na mesma transação da exclusão. Confirmações de exclusão sem esse comprovante e promessas de gravação já concluída são verificadas separadamente das afirmações de preferência.
+
+Foram corrigidas a temporalidade de preferências limitadas a hoje, formulações inversas de preferências seguras, escolhas e planos de projeto, hipótese de linguagem e observação de RAM livre. A recuperação ganhou seleção por propriedade e por equipamentos explicitamente comparados, conservando os limiares globais. As verificações de resposta distinguem o objetivo do projeto de metas pessoais e uma afirmação inicial de execução da explicação posterior sobre planos.
+
+Passaram 119 testes Rust e 656 testes de memória/interface, sem falhas ou skips, além da checagem de tipos, lint dos arquivos alterados e três testes de paridade do esquema. A aplicação nativa e a interface isolada foram compiladas. Esses resultados são de desenvolvimento: ainda falta a nova avaliação real congelada, as regressões longitudinais e a auditoria do CI no HEAD final. A reprovação da v1 permanece válida e preservada.

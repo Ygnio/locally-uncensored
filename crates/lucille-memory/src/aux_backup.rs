@@ -31,8 +31,15 @@ pub(crate) struct AuxBackup {
 pub(crate) fn export(db: &Connection) -> Result<AuxBackup> {
     let mut tables = BTreeMap::new();
     for &(table, columns) in TABLES {
+        // Preserve original source ordering across backup/restore. Other tables
+        // remain sorted by stable keys for deterministic exports.
+        let order = if table == "extraction_jobs" {
+            "rowid"
+        } else {
+            "1,2"
+        };
         let mut q = db
-            .prepare(&format!("SELECT * FROM {table} ORDER BY 1,2"))
+            .prepare(&format!("SELECT * FROM {table} ORDER BY {order}"))
             .map_err(db_error)?;
         let mut rows = q.query([]).map_err(db_error)?;
         let mut out = Vec::new();

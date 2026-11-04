@@ -138,6 +138,9 @@ fn communication_intent(query: &str) -> bool {
             "estilo de resposta",
             "formato das respostas",
             "how should you respond",
+            "respostas",
+            "answers",
+            "replies",
         ]
         .iter()
         .any(|w| q.contains(w))
@@ -147,7 +150,8 @@ fn coffee_preparation_intent(query: &str) -> bool {
     crate::relevance::personal(query)
         && ["cafe", "coffee"].iter().any(|w| q.contains(w))
         && [
-            "prefiro", "prefer", "como eu", "how do i", "acucar", "sugar",
+            "prefiro", "prefer", "como eu", "how do i", "acucar", "sugar", "gosto", "antes",
+            "agora", "before", "now",
         ]
         .iter()
         .any(|w| q.contains(w))
@@ -161,6 +165,64 @@ fn coffee_preparation_intent(query: &str) -> bool {
         ]
         .iter()
         .any(|w| q.contains(w))
+}
+fn preference_slots(query: &str) -> Vec<&'static str> {
+    let q = crate::relevance::normalize_query(query);
+    let mut slots = Vec::new();
+    for (property, nouns) in [
+        ("coffee_sugar", &["cafe", "coffee"][..]),
+        (
+            "interface_theme",
+            &["tema", "theme", "modo claro", "modo escuro"][..],
+        ),
+        ("favorite_beverage", &["bebida", "beverage", "drink"][..]),
+        (
+            "communication_style",
+            &["resposta", "answer", "repl", "explic", "explain"][..],
+        ),
+        (
+            "communication_focus",
+            &["resposta", "answer", "repl", "explic", "explain"][..],
+        ),
+        ("games_character_creation", &["personag", "character"][..]),
+        (
+            "games_class_selection",
+            &["classe", "class selection", "choose a class"][..],
+        ),
+        ("interface_clutter", &["poluid", "clutter", "carregad"][..]),
+    ] {
+        if nouns.iter().any(|n| q.contains(n)) {
+            slots.push(property);
+        }
+    }
+    if slots.contains(&"favorite_beverage")
+        && !["favorit", "favourit", "preferida", "preferido"]
+            .iter()
+            .any(|n| q.contains(n))
+    {
+        slots.push("coffee_sugar");
+    }
+    if ["jogos", "games", "rpg"].iter().any(|n| q.contains(n))
+        && !["personag", "character", "classe", "class selection"]
+            .iter()
+            .any(|n| q.contains(n))
+    {
+        slots.extend([
+            "games_character_creation",
+            "games_class_selection",
+            "games_tactics",
+            "games_turn_strategy",
+        ]);
+    }
+    slots
+}
+fn database_choice_intent(query: &str) -> bool {
+    let q = crate::relevance::normalize_query(query);
+    crate::relevance::personal(query)
+        && ["projeto", "project"].iter().any(|n| q.contains(n))
+        && ["armazenamento", "persistencia", "storage", "persistence"]
+            .iter()
+            .any(|n| q.contains(n))
 }
 fn completed_goal_intent(query: &str) -> bool {
     let q = crate::relevance::normalize_query(query);
@@ -190,6 +252,18 @@ pub(crate) fn historical_intent(query: &str) -> bool {
     })
 }
 pub(crate) fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> {
+    eligible_source(tx, m, query, at, false)
+}
+pub(crate) fn eligible_claim(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> {
+    eligible_source(tx, m, query, at, true)
+}
+fn eligible_source(
+    tx: &Transaction,
+    m: &Memory,
+    query: &str,
+    at: i64,
+    canonical_claim: bool,
+) -> Result<bool> {
     let blocked:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_quality q JOIN memories n ON n.id=q.memory_id WHERE q.replaces_id=?1 AND n.state IN ('candidate','conflict') AND (q.expires_at IS NULL OR q.expires_at>?2))",params![m.input.id,at],|r|r.get(0)).map_err(db_error)?;
     let historical = m.state == crate::Status::Obsolete;
     if historical && !historical_intent(query) {
@@ -272,7 +346,7 @@ pub(crate) fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Re
     {
         return Ok(false);
     }
-    if recall(query) {
+    if recall(query) || canonical_claim {
         return Ok(true);
     }
     if crate::relevance::knowledge_only(query) {
@@ -294,6 +368,12 @@ pub(crate) fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Re
     let q = crate::relevance::normalize_query(query);
     let summary = crate::dialogue::project_summary(query);
     if let Some(meta) = &meta {
+        if m.input.kind == Kind::Preference {
+            let slots = preference_slots(query);
+            if !slots.is_empty() && !slots.contains(&meta.property.as_str()) {
+                return Ok(false);
+            }
+        }
         if meta.subject.starts_with("project.")
             && ["language", "database"].contains(&meta.property.as_str())
             && !historical_intent(query)
@@ -473,6 +553,35 @@ pub(crate) fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Re
             || ["compare", "todos", "all ", "dois computadores"]
                 .iter()
                 .any(|word| q.contains(word));
+        if compare && meta.subject.starts_with("device.") {
+            let names = [
+                (
+                    "device.primary_computer",
+                    ["principal", "primary", "main desktop"]
+                        .iter()
+                        .any(|w| q.contains(w)),
+                ),
+                (
+                    "device.work_laptop",
+                    ["trabalho", "work laptop", "office laptop"]
+                        .iter()
+                        .any(|w| q.contains(w)),
+                ),
+                (
+                    "device.other_computer",
+                    ["outro", "other", "secondary"]
+                        .iter()
+                        .any(|w| q.contains(w)),
+                ),
+            ];
+            if names.iter().filter(|(_, named)| *named).count() >= 2
+                && !names
+                    .iter()
+                    .any(|(entity, named)| *named && *entity == meta.subject)
+            {
+                return Ok(false);
+            }
+        }
         if !compare && meta.subject.starts_with("device.") {
             let other = q.contains("outro")
                 || q.contains("other")
@@ -635,6 +744,8 @@ pub(crate) fn select(
     let summary = crate::dialogue::project_summary(&req.query);
     let communication = communication_intent(&req.query);
     let coffee = coffee_preparation_intent(&req.query);
+    let database_choice = database_choice_intent(&req.query);
+    let slots = preference_slots(&req.query);
     let lifecycle = ["status", "andamento", "conclu", "cancel", "progress"]
         .iter()
         .any(|w| fold(&req.query).contains(w))
@@ -650,6 +761,8 @@ pub(crate) fn select(
         || history
         || current_field
         || lifecycle
+        || database_choice
+        || !slots.is_empty()
     {
         let mut q=tx.prepare(&format!("SELECT {COLS} FROM memories WHERE scope=?1 AND project=?2 AND (state='active' OR (state='obsolete' AND ?3)) ORDER BY updated_at DESC,id LIMIT 100")).map_err(db_error)?;
         lexical = q
@@ -677,6 +790,22 @@ pub(crate) fn select(
             lifecycle && quality(tx, &m.input.id)?.is_some_and(|q| q.property == "lifecycle");
         let coffee_match =
             coffee && quality(tx, &m.input.id)?.is_some_and(|q| q.property == "coffee_sugar");
+        let slot_match = quality(tx, &m.input.id)?.is_some_and(|q| {
+            (m.input.kind == Kind::Preference
+                && slots.contains(&q.property.as_str())
+                && (q.property != "coffee_sugar" || coffee))
+                || (database_choice
+                    && q.property == "database"
+                    && q.subject == format!("project.{}", req.project))
+                || (q.subject == format!("project.{}", req.project)
+                    && q.property == "language"
+                    && ["projeto", "project"]
+                        .iter()
+                        .any(|w| fold(&req.query).contains(w))
+                    && ["linguagem", "language"]
+                        .iter()
+                        .any(|w| fold(&req.query).contains(w)))
+        });
         let goal_match = completed_goal
             && m.input.kind == Kind::Goal
             && quality(tx, &m.input.id)?.is_some_and(|q| q.temporal == "completed");
@@ -687,6 +816,7 @@ pub(crate) fn select(
             && !coffee_match
             && !lifecycle_match
             && !actual_match
+            && !slot_match
             && coverage < crate::relevance::LEXICAL_COVERAGE
         {
             continue;
@@ -702,6 +832,7 @@ pub(crate) fn select(
                     || coffee_match
                     || lifecycle_match
                     || actual_match
+                    || slot_match
                 {
                     1.0
                 } else {

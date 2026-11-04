@@ -3,6 +3,25 @@ import { verifyMemoryAnswer, answerSnapshot, registerAnswerSnapshot, type Answer
 const fact = (changes: Partial<MemoryFact> = {}): MemoryFact => ({ id: 'fact-1', version: 2, entity: 'project.atlas', property: 'language', value: 'rust', modality: 'planned', validity: 'current', scope: 'test', project: 'atlas', review: 'reviewed', facets: [], evidence: [{ role: 'current_source', text: 'Planejo usar Rust.' }], ...changes })
 const snapshot = (facts: MemoryFact[] = [fact()], query = 'Como está meu projeto?'): AnswerSnapshot => ({ scope: 'test', project: 'atlas', query, facts, currentStatements: [] })
 describe('independent typed memory answer checks', () => {
+  it('checks a leading affirmative against execution, even when the explanation mentions a plan',()=>{
+    const s=snapshot([fact()],'Meu projeto já está sendo desenvolvido em Rust?')
+    expect(verifyMemoryAnswer('Sim, você planeja usar Rust; não é implementação concluída.',s).violations.map(v=>v.code)).toContain('affirmed_unproven_project_execution')
+    expect(verifyMemoryAnswer('Sim, seu projeto está sendo desenvolvido em Rust.',{...s,facts:[fact({modality:'in_progress'})]}).violations).toEqual([])
+  })
+  it('requires a completed native receipt for the same deletion domain',()=>{
+    const s=snapshot([],'Esqueça minha preferência de tema de interface.')
+    const text='Removi sua preferência de tema da memória.'
+    expect(verifyMemoryAnswer(text,s).violations.map(v=>v.code)).toContain('unconfirmed_memory_mutation')
+    s.directiveReceipt={id:'a'.repeat(64),action:'forget',state:'done',property:'interface_theme',had_records:true,scope:s.scope,project:s.project,conversation_id:'c',source_message_id:'u'}
+    expect(verifyMemoryAnswer(text,s).violations).toEqual([])
+    expect(verifyMemoryAnswer('Removi sua preferência de café da memória.',s).violations.map(v=>v.code)).toContain('unconfirmed_memory_mutation')
+    expect(verifyMemoryAnswer('Reativei sua preferência de tema na memória.',s).violations.map(v=>v.code)).toContain('unconfirmed_memory_mutation')
+    s.directiveReceipt.had_records=false
+    expect(verifyMemoryAnswer(text,s).violations.map(v=>v.code)).toContain('unconfirmed_memory_mutation')
+  })
+  it('keeps project purpose separate from a personal learning goal',()=>{
+    expect(verifyMemoryAnswer('O objetivo do seu projeto é criar um catálogo.',snapshot([fact({entity:'user',property:'goal.learning',value:'italiano',modality:'completed'})])).violations).toEqual([])
+  })
   it('requires a choice source before attributing a decision to the user', () => {
     for (const modality of ['planned','current_fact','in_progress','completed']) {
       expect(verifyMemoryAnswer('Você decidiu usar Rust.',snapshot([fact({modality})])).violations.some(v=>v.code==='unproven_decision')).toBe(true)
@@ -158,7 +177,9 @@ describe('literal failures observed in real development answers', () => {
     }
   })
   it('does not parse a preposition as a foreign project name', () => {
-    expect(verifyMemoryAnswer('Essa quantidade é suficiente para lidar com o projeto sem gargalos de memória.',snapshot([])).violations).toEqual([])
+    const codes=verifyMemoryAnswer('Essa quantidade é suficiente para lidar com o projeto sem gargalos de memória.',snapshot([])).violations.map(v=>v.code)
+    expect(codes).not.toContain('unsupported_project_entity')
+    expect(codes).toContain('unproven_personal_performance')
   })
   it('requires exact proof before claiming that RAM doubled', () => {
     expect(verifyMemoryAnswer('Você dobrou a capacidade de memória do seu computador.',snapshot([])).violations.map(v=>v.code)).toContain('unsupported_hardware_ratio')

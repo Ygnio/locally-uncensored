@@ -6,28 +6,169 @@ use crate::{
     row, types, Action, Result, Store, COLS,
 };
 use rusqlite::{params, OptionalExtension, TransactionBehavior};
+/// Bounded imperative grammar. Unknown, conditional and quoted commands do not act.
+pub(crate) fn forget_property(text: &str) -> Option<&'static str> {
+    if text.trim_start().starts_with(['"', '\'', '`']) || text.contains('?') {
+        return None;
+    }
+    let s = fold(text);
+    let words = s
+        .split(|c: char| !c.is_alphanumeric())
+        .filter(|w| !w.is_empty())
+        .collect::<Vec<_>>();
+    let body = if words.starts_with(&["por", "favor"]) {
+        &words[2..]
+    } else if words.starts_with(&["please"]) {
+        &words[1..]
+    } else {
+        &words[..]
+    };
+    if !body
+        .first()
+        .is_some_and(|w| ["esqueca", "forget"].contains(w))
+    {
+        return None;
+    }
+    let body = &body[1..];
+    const WORDS: &[&str] = &[
+        "minha",
+        "meu",
+        "preferencia",
+        "preferencias",
+        "por",
+        "de",
+        "do",
+        "da",
+        "pelo",
+        "pela",
+        "o",
+        "a",
+        "os",
+        "as",
+        "na",
+        "no",
+        "em",
+        "nos",
+        "nas",
+        "sobre",
+        "para",
+        "cafe",
+        "idioma",
+        "preferido",
+        "tema",
+        "temas",
+        "interface",
+        "bebida",
+        "favorita",
+        "preferida",
+        "respostas",
+        "objetivas",
+        "poluida",
+        "poluidas",
+        "carregada",
+        "carregadas",
+        "criar",
+        "criacao",
+        "personagens",
+        "escolher",
+        "selecao",
+        "classe",
+        "classes",
+        "jogo",
+        "jogos",
+        "my",
+        "preference",
+        "preferences",
+        "coffee",
+        "preferred",
+        "language",
+        "theme",
+        "beverage",
+        "drink",
+        "favorite",
+        "favourite",
+        "objective",
+        "answer",
+        "answers",
+        "reply",
+        "replies",
+        "clutter",
+        "cluttered",
+        "screen",
+        "screens",
+        "character",
+        "characters",
+        "creation",
+        "create",
+        "choose",
+        "selection",
+        "class",
+        "games",
+        "game",
+        "about",
+        "for",
+        "the",
+        "of",
+        "in",
+    ];
+    if body.is_empty() || body.iter().any(|w| !WORDS.contains(w)) {
+        return None;
+    }
+    let has = |ws: &[&str]| body.iter().any(|w| ws.contains(w));
+    let mut fields = Vec::new();
+    if has(&["cafe", "coffee"]) {
+        fields.push("coffee_sugar")
+    }
+    if has(&["idioma", "language"]) && has(&["preferido", "preferred"]) {
+        fields.push("response_language")
+    }
+    if has(&["tema", "temas", "theme"]) {
+        fields.push("interface_theme")
+    }
+    if has(&["bebida", "beverage", "drink"])
+        && has(&["favorita", "preferida", "favorite", "favourite"])
+    {
+        fields.push("favorite_beverage")
+    }
+    if has(&["respostas", "answer", "answers", "reply", "replies"])
+        && has(&["objetivas", "objective"])
+    {
+        fields.push("communication_focus")
+    }
+    if has(&["interface", "screen", "screens"])
+        && has(&[
+            "poluida",
+            "poluidas",
+            "carregada",
+            "carregadas",
+            "clutter",
+            "cluttered",
+        ])
+    {
+        fields.push("interface_clutter")
+    }
+    if has(&["personagens", "character", "characters"])
+        && has(&["criar", "criacao", "creation", "create"])
+    {
+        fields.push("games_character_creation")
+    }
+    if has(&["classe", "classes", "class"]) && has(&["escolher", "selecao", "choose", "selection"])
+    {
+        fields.push("games_class_selection")
+    }
+    if fields.len() == 1 {
+        Some(fields[0])
+    } else {
+        None
+    }
+}
 impl Store {
     pub(crate) fn forget_user_directive(
         &mut self,
         input: &Interaction,
     ) -> Result<Option<serde_json::Value>> {
-        let s = fold(input.user_text.trim().trim_end_matches(['.', '!']));
-        let property = match s.as_str() {
-            "esqueca minha preferencia por cafe"
-            | "esqueca minha preferencia de cafe"
-            | "forget my coffee preference" => "coffee_sugar",
-            "esqueca meu idioma preferido" | "forget my preferred language" => "response_language",
-            "esqueca minha preferencia de tema" | "forget my theme preference" => "interface_theme",
-            "esqueca minha bebida favorita" | "forget my favorite beverage" => "favorite_beverage",
-            "esqueca minha preferencia por respostas objetivas"
-            | "forget my objective answer preference" => "communication_focus",
-            "esqueca minha preferencia sobre interface poluida"
-            | "forget my interface clutter preference" => "interface_clutter",
-            "esqueca minha preferencia por criar personagens"
-            | "forget my character creation preference" => "games_character_creation",
-            "esqueca minha preferencia por escolher classes"
-            | "forget my class selection preference" => "games_class_selection",
-            _ => return Ok(None),
+        let Some(property) = forget_property(&input.user_text) else {
+            return Ok(None);
         };
         if input.role != "user" || !self.learning_policy()?.autonomous_preferences {
             return Ok(None);
@@ -120,9 +261,22 @@ impl Store {
             tx.execute("INSERT INTO history(memory_id,record_id,operation,version,at) VALUES(NULL,?1,'delete',?2,?3)",params![memory.input.id,memory.version+1,at]).map_err(db_error)?;
         }
         tx.execute("INSERT INTO extraction_jobs(id,conversation_id,message_id,scope,project,mode,state,evidence_json,created_at,updated_at,next_at) VALUES(?1,?2,?3,?4,?5,?6,'done','[]',?7,?7,?7)",params![id,input.conversation_id,input.message_id,input.scope,input.project,types::label(&input.mode),at]).map_err(db_error)?;
+        tx.execute(
+            "INSERT INTO history(memory_id,record_id,operation,version,at) VALUES(NULL,?1,?2,1,?3)",
+            params![
+                crate::turn_sources::receipt_id(&id)?,
+                if memories.is_empty() {
+                    "forget_empty"
+                } else {
+                    "forget_applied"
+                },
+                at
+            ],
+        )
+        .map_err(db_error)?;
         tx.commit().map_err(db_error)?;
         Ok(Some(
-            serde_json::json!({"id":id,"state":"done","reason":"user_forgot_topic","deleted":memories.len()}),
+            serde_json::json!({"id":id,"state":"done","reason":"user_forgot_topic","property":property,"deleted":memories.len()}),
         ))
     }
     /// Pending derived work is discovered from canonical versions, so it survives

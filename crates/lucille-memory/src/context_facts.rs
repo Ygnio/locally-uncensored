@@ -217,6 +217,8 @@ pub(crate) fn statements(req: &TurnRequest) -> Vec<ContextFact> {
 pub struct AnswerEvidence {
     pub facts: Vec<ContextFact>,
     pub current_statements: Vec<ContextFact>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub directive_receipt: Option<serde_json::Value>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -242,6 +244,15 @@ impl Store {
         req: &TurnRequest,
         references: &[Reference],
         claims: &[ClaimedField],
+    ) -> Result<AnswerEvidence> {
+        self.answer_evidence_for_source(req, references, claims, None)
+    }
+    pub fn answer_evidence_for_source(
+        &mut self,
+        req: &TurnRequest,
+        references: &[Reference],
+        claims: &[ClaimedField],
+        source: Option<&crate::turn_sources::SourceProof>,
     ) -> Result<AnswerEvidence> {
         crate::identifier(&req.scope)?;
         crate::identifier(&req.project)?;
@@ -315,7 +326,10 @@ impl Store {
                 .map_err(db_error)?;
             for m in records {
                 if !memories.iter().any(|old| old.input.id == m.input.id)
-                    && crate::retrieval::eligible(&tx, &m, &req.query, crate::now())?
+                    // An exact generated field is a separate canonical lookup,
+                    // not another initial query-relevance injection. Preserve
+                    // current-source conflicts, expiry, review and deletion gates.
+                    && crate::retrieval::eligible_claim(&tx, &m, &req.query, crate::now())?
                 {
                     memories.push(m)
                 }
@@ -323,10 +337,21 @@ impl Store {
         }
         append_project_state(&tx, req, &mut memories)?;
         let facts = project(&tx, &memories)?;
+        let current_statements = if let Some(source) = source {
+            crate::turn_sources::statements(&tx, req, source)?
+        } else {
+            statements(req)
+        };
+        let directive_receipt = if let Some(source) = source {
+            crate::turn_sources::receipt(&tx, &source.interaction)?
+        } else {
+            None
+        };
         tx.commit().map_err(db_error)?;
         Ok(AnswerEvidence {
             facts,
-            current_statements: statements(req),
+            current_statements,
+            directive_receipt,
         })
     }
 }

@@ -49,7 +49,7 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
     let evidence: AnswerSnapshot = snapshot
     if (snapshot.refresh) {
       const fresh = await snapshot.refresh()
-      evidence = { ...snapshot, facts: fresh.facts, currentStatements: fresh.current_statements }
+      evidence = { ...snapshot, facts: fresh.facts, currentStatements: fresh.current_statements,directiveReceipt:fresh.directive_receipt }
     }
     abortIfNeeded(signal); report.refreshMs += performance.now() - refreshStart
     const settled = settleThinking(completion.content, completion.thinking ?? '', true)
@@ -63,7 +63,7 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
         abortIfNeeded(signal); report.refreshMs += performance.now()-began
         verificationReferences.push(...confirmed.facts.filter(f => !evidence.facts.some(old => old.id===f.id && old.version===f.version)).map(f => ({id:f.id,version:f.version})))
         // The second native read also fences deletion of the original references.
-        evidence = { ...snapshot, facts:confirmed.facts, currentStatements:confirmed.current_statements }
+        evidence = { ...snapshot, facts:confirmed.facts, currentStatements:confirmed.current_statements,directiveReceipt:confirmed.directive_receipt }
         report.verificationMs += check.elapsedMs
         check = verifyMemoryAnswer(settled.content,evidence)
       }

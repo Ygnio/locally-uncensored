@@ -10,8 +10,12 @@ export interface MemoryFact {
 }
 export interface AnswerSnapshot {
   scope: string; project: string; query: string; facts: MemoryFact[]; currentStatements: MemoryFact[]
-  refresh?: (claims?: { entity: string; property: string; value: string }[]) => Promise<{ facts: MemoryFact[]; current_statements: MemoryFact[] }>
+  directiveReceipt?:MemoryDirectiveReceipt | null
+  refresh?: (claims?: { entity: string; property: string; value: string }[]) => Promise<{ facts: MemoryFact[]; current_statements: MemoryFact[];directive_receipt?:MemoryDirectiveReceipt | null }>
   reload?: () => Promise<ChatMessage[]>
+}
+export interface MemoryDirectiveReceipt {
+  id:string;action:'forget';property:string;state:'done';had_records:boolean;scope:string;project:string;conversation_id:string;source_message_id:string
 }
 export interface MemoryAssertion {
   entity: string; property: string; value: string; span: string; supported: boolean; references: string[]
@@ -68,6 +72,13 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   const personalQuestion = /\b(?:meu|minha|meus|minhas|my|our|aquele|aquela|aqueles|aquelas|that)\b|pref|gosto|lembra|remember/.test(query) || (/\b(?:eu|i)\b/.test(query) && /tenho|tomo|bebo|gosto|escolhi|decidi|conclui|terminei|finalizei|have|drink|chose|choose|decided|like|prefer/.test(query))
   const preferenceQuestion = personalQuestion && /pref|gost|favorit|tema|theme|interface|bebida|beverage|respost|answer|repl|explain|cafe|coffee|idioma|language|jogo|game|character|personag|classe/.test(query)
   const projectQuestion = personalQuestion && /projeto|project|linguagem|language|banco|database/.test(query)
+  if (/^\s*(?:sim|yes)\b/.test(fold(text)) && projectQuestion && execution(query)) {
+    const values = ['typescript','javascript','python','rust','sqlite','postgresql','mysql'].filter(value => new RegExp('\\b'+value+'\\b').test(query))
+    const actual=current.filter(f => f.entity === 'project.'+snapshot.project && ['in_progress','current_fact'].includes(f.modality))
+    const proof = (values.length ? values.every(value=>actual.some(f=>f.value===value)) : actual.length>0)
+      && !current.some(f => f.entity === 'project.'+snapshot.project && f.property === 'lifecycle' && ['completed','cancelled'].includes(f.modality))
+    if (!proof) add('affirmed_unproven_project_execution',text)
+  }
   const record = (span: string, property: string, value: string, entity?: string, negative = false) => {
     const historical = past(span) || (past(snapshot.query) && !/\b(?:agora|atualmente|now|currently|prefere|prefiro|gosta|gosto|tem|tenho|possui|usa|utiliza|is|are|have|has|prefer|prefers|like|likes|uses)\b/.test(fold(span)))
     const candidates = all.filter(f => f.property === property && (!entity || f.entity === entity))
@@ -90,6 +101,15 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   const clauses = text.split(/(?<=[.!?;\n])\s+|\b(?:mas|porem|however|but)\b/i).slice(0, 128)
   for (const span of clauses) {
     const q = fold(span)
+    const mutation = /\b(?:removi|apaguei|exclui|esqueci|memorizei|guardei|salvei|registrei|reativei)\b|\b(?:i have |i.ve |i )(?:removed|deleted|forgotten|saved|memorized|stored|reactivated)\b/.test(q)
+    const memoryDomain = /memori|preferencia|preference|remember/.test(q) || /^\s*(?:por favor,?\s+|please\s+)?(?:esqueca|forget)\b/.test(query)
+    if (mutation && memoryDomain && !/\b(?:nao|not|haven.t|didn.t|cannot|can.t)\b.{0,35}(?:remov|apag|exclu|esquec|memoriz|guard|salv|registr|reativ|saved|stored|deleted|removed)/.test(q)) {
+      const deletion = /removi|apaguei|exclui|esqueci|removed|deleted|forgotten/.test(q)
+      const receipt = snapshot.directiveReceipt
+      const domains: [RegExp,string][] = [[/cafe|coffee/,'coffee_sugar'],[/tema|theme/,'interface_theme'],[/idioma|language/,'response_language'],[/bebida|beverage|drink/,'favorite_beverage'],[/objetiv|objective/,'communication_focus'],[/poluid|clutter|carregad/,'interface_clutter'],[/personag|character/,'games_character_creation'],[/classe|class/,'games_class_selection']]
+      const claimed = domains.filter(([pattern])=>pattern.test(q)).map(([,property])=>property)
+      if (!deletion || !receipt || receipt.action !== 'forget' || receipt.state !== 'done' || receipt.scope !== snapshot.scope || receipt.project !== snapshot.project || !receipt.had_records || claimed.some(property=>property!==receipt.property)) add('unconfirmed_memory_mutation',span)
+    }
     if (span.trim().endsWith('?') && /^(?:qual|quais|como|quando|onde|por que|what|which|how|when|where|why)\b/.test(q.trim())) continue
     if (unsupportedAbsence(span)) {
       const domain = q + ' ' + query
@@ -103,6 +123,10 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     if (epistemic && !/duvid|doubt|certeza|certain|,\s*(?:e |and |seu |your |o projeto|the project|voce |you )/.test(q)) continue
     if (uncertain(span) && !execution(span) && !completion(span)) continue
     const subject = /\b(?:voce|seus?|suas?|you|your)\b|projeto|project/.test(q)
+    if ((subject || (personalQuestion && /ram|computador|computer|notebook|laptop/.test(query))) && /fluidez|sem gargalos|sem travamentos|mais estavel|maior estabilidade|no bottlenecks|smooth performance|more stable|will run smoothly/.test(q) && !/\b(?:pode|poderia|talvez|depende|estimativa|might|could|may|depends|estimate)\b/.test(q)) {
+      const source=current.some(f=>f.evidence.some(e=>e.role!=='previous_property_link_not_current_value' && fold(e.text).includes(q.trim())))
+      if(!source)add('unproven_personal_performance',span,false)
+    }
     if (subject && /projeto|project/.test(q)) {
       const projectFacts = current.filter(f => f.entity === 'project.' + snapshot.project)
       if (/(?:cancelou|cancelei|cancelled|canceled)\s+(?:(?:o|seu|meu|the|your|my)\s+)*(?:projeto|project)\b/.test(q) && !/nao.{0,20}cancel|not.{0,20}cancel/.test(q)) record(span,'lifecycle','cancelled','project.'+snapshot.project)
@@ -111,9 +135,12 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       if (completion(span) && !projectFacts.some(f => ['lifecycle', 'project_status'].includes(f.property) && f.modality === 'completed')) add('unproven_project_completion', span)
     }
     if (subject) {
+      for (const m of q.matchAll(/\b(?:projeto|project)\s+["`']([a-z0-9_.-]+)["`']/g)) {
+        if (m[1] !== fold(snapshot.project)) add('unsupported_project_entity',span)
+      }
       for (const m of q.matchAll(/\b(?:projeto|project)\s+["`']?([a-z0-9_.-]+)/g)) {
         const name = m[1] === fold(snapshot.project) ? m[1] : m[1].replace(/\.+$/, '')
-        if (!['de', 'do', 'da', 'sem', 'com', 'para', 'with', 'without', 'esta', 'esteja', 'e', 'is', 'was', 'foi', 'sera', 'vai', 'ainda', 'has', 'tem', 'continua', 'planeja', 'agora', 'atualmente', 'recentemente', 'recently', 'anteriormente', 'previously', 'atual', 'current', 'ou', 'or', 'hoje', 'usa', 'usava', 'utiliza', 'utilizava', 'possui', 'segue', 'parece', 'estava', 'estara', 'ja', 'nao', 'aqui', 'precisa', 'exige', 'requer', 'apresenta', 'will', 'uses', 'needs', 'requires', 'currently', 'now', 'already', 'still', 'seems', 'would', 'could', 'should', 'may', 'might', 'can'].includes(name) && name !== fold(snapshot.project)) add('unsupported_project_entity', span)
+        if (!['de', 'do', 'da', 'que', 'that', 'which', 'sobre', 'about', 'sem', 'com', 'para', 'with', 'without', 'esta', 'esteja', 'e', 'is', 'was', 'foi', 'sera', 'vai', 'ainda', 'has', 'tem', 'continua', 'planeja', 'agora', 'atualmente', 'recentemente', 'recently', 'anteriormente', 'previously', 'atual', 'current', 'ou', 'or', 'hoje', 'usa', 'usava', 'utiliza', 'utilizava', 'possui', 'segue', 'parece', 'estava', 'estara', 'ja', 'nao', 'aqui', 'precisa', 'exige', 'requer', 'apresenta', 'will', 'uses', 'needs', 'requires', 'currently', 'now', 'already', 'still', 'seems', 'would', 'could', 'should', 'may', 'might', 'can'].includes(name) && name !== fold(snapshot.project)) add('unsupported_project_entity', span)
       }
     }
     if (subject || projectQuestion) {
@@ -191,7 +218,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     }
     const goalDomain=/\b(?:objetivos?|metas?|goals?)\b/
     const goalQuestion=personalQuestion && goalDomain.test(query) && (/\?/.test(query) || /\b(?:qual|quais|what|which|lembra|recorda|recall|remember)\b/.test(query))
-    if ((subject && goalDomain.test(q)) || (goalQuestion && span.length<200)) {
+    if ((subject && goalDomain.test(q) && !/\b(?:projeto|project)\b/.test(q)) || (goalQuestion && !projectQuestion && span.length<200)) {
       const stop=new Set(['voce','seu','sua','seus','suas','your','you','the','was','foi','era','objetivo','goal','meta','concluiu','conclui','concluido','completed','finished','concluir','concluido','concluida','terminou','finalizou','apenas','seu','meu','minha','esta','seu','que','para','uma','um','de','do','da','em','of','to'])
       const tokens=(text:string)=>fold(text).split(/[^a-z0-9]+/).filter(t=>t.length>2 && !stop.has(t)).map(t=>({aprender:'learn',portugues:'portuguese',ingles:'english',espanhol:'spanish'} as Record<string,string>)[t] ?? t)
       const goalAnchor=fold(span).match(goalDomain)

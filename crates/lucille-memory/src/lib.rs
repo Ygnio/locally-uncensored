@@ -2,6 +2,7 @@
 pub mod autonomous;
 mod aux_backup;
 pub mod context_facts;
+pub mod turn_sources;
 mod coverage;
 pub mod dialogue;
 mod extraction;
@@ -130,6 +131,7 @@ impl Store {
             tx.commit().map_err(db_error)?;
         }
         let mut store = Self { db };
+        store.recover_pending_user_turns(now())?;
         store.prune_obsolete_vectors()?;
         Ok(store)
     }
@@ -603,6 +605,8 @@ impl Store {
                     "auto_promote",
                     "auto_superseded",
                     "auto_correct",
+                    "forget_applied",
+                    "forget_empty",
                 ]
                 .contains(&change.operation.as_str())
             {
@@ -683,6 +687,8 @@ impl Store {
         if let Some(aux) = backup.intelligent {
             aux_backup::restore(&tx, &aux)?;
         }
+        tx.execute("UPDATE extraction_jobs SET state='cancelled',evidence_json='[]',error_code='restored_pending_user_turn',lease_token=NULL,lease_until=NULL WHERE state='queued' AND lease_token IS NOT NULL", []).map_err(db_error)?;
+        tx.execute("DELETE FROM learning_inputs WHERE job_id IN (SELECT id FROM extraction_jobs WHERE state='cancelled')", []).map_err(db_error)?;
         semantic::prune_in_transaction(&tx)?;
         tx.execute(
             "INSERT INTO memories_fts(memories_fts,rank) VALUES('integrity-check',1)",

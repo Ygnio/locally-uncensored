@@ -69,6 +69,7 @@ pub fn lucille_learn(
     window: tauri::WebviewWindow,
     state: tauri::State<'_, LucilleState>,
     interaction: lucille_memory::intelligent::Interaction,
+    source: Option<lucille_memory::turn_sources::SourceProof>,
 ) -> Result<Value, String> {
     let path = isolated_root(&window)?;
     let result = {
@@ -80,7 +81,16 @@ pub fn lucille_learn(
         if guard.is_none() {
             *guard = Some(Store::open(&path)?)
         }
-        guard.as_mut().unwrap().enqueue_learning(interaction)?
+        if let Some(source) = source {
+            if serde_json::to_value(&source.interaction).map_err(|_| "Invalid source")?
+                != serde_json::to_value(&interaction).map_err(|_| "Invalid interaction")?
+            {
+                return Err("Source mismatch".into());
+            }
+            guard.as_mut().unwrap().publish_user_turn(source)?
+        } else {
+            guard.as_mut().unwrap().enqueue_learning(interaction)?
+        }
     };
     if result["state"] != "disabled" && result["state"] != "ignored" {
         start_learning_worker(window.app_handle().clone());
@@ -160,11 +170,19 @@ pub fn lucille_context(
 #[derive(Deserialize)]
 #[serde(tag = "operation", rename_all = "snake_case", deny_unknown_fields)]
 pub enum Request {
+    PrepareUserTurn {
+        input: lucille_memory::intelligent::Interaction,
+    },
+    CancelUserTurn {
+        source: lucille_memory::turn_sources::SourceProof,
+    },
     AnswerEvidence {
         request: TurnRequest,
         references: Vec<lucille_memory::Reference>,
         #[serde(default)]
         claims: Vec<lucille_memory::context_facts::ClaimedField>,
+        #[serde(default)]
+        source: Option<lucille_memory::turn_sources::SourceProof>,
     },
     ClaimLlm,
     CompleteLlm {
@@ -270,9 +288,13 @@ pub fn lucille_manage(
     request: Request,
     confirmation: Option<String>,
 ) -> Result<Value, String> {
-    let readonly = matches!(
+    // User-source operations are authorized by the bound original USER input
+    // and the already configured learning policy, not by a model tool.
+    let without_settings_confirmation = matches!(
         &request,
         Request::Identity
+            | Request::PrepareUserTurn { .. }
+            | Request::CancelUserTurn { .. }
             | Request::AnswerEvidence { .. }
             | Request::List { .. }
             | Request::History { .. }
@@ -287,7 +309,8 @@ pub fn lucille_manage(
             | Request::LearningMetrics { .. }
     );
     let permit = ConfigurationPermit::explicit_settings_action(
-        readonly || confirmation.as_deref() == Some("CONFIRM LUCILLE CONFIGURATION"),
+        without_settings_confirmation
+            || confirmation.as_deref() == Some("CONFIRM LUCILLE CONFIGURATION"),
     )?;
     let path = isolated_root(&window)?;
     let mut guard = state
@@ -300,11 +323,19 @@ pub fn lucille_manage(
     }
     let store = guard.as_mut().unwrap();
     let value = match request {
+        Request::PrepareUserTurn { input } => store.begin_user_turn(input)?,
+        Request::CancelUserTurn { source } => json!({"cancelled":store.cancel_user_turn(source)?}),
         Request::AnswerEvidence {
             request,
             references,
             claims,
-        } => json!(store.answer_evidence_for_claims(&request, &references, &claims)?),
+            source,
+        } => json!(store.answer_evidence_for_source(
+            &request,
+            &references,
+            &claims,
+            source.as_ref()
+        )?),
         Request::ClaimLlm => {
             if let Some(lease) = store.claim_llm_learning(epoch())? {
                 json!({"input":store.learning_input(&lease)?,"lease":lease})

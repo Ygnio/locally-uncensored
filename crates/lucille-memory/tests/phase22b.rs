@@ -61,6 +61,385 @@ fn request(query: &str) -> TurnRequest {
 }
 
 #[test]
+fn prepared_sources_cannot_be_learned_before_publication_or_after_cancellation() {
+    use lucille_memory::turn_sources::SourceProof;
+    let (_d, mut s) = setup(true);
+    let original = input("Prefiro café sem açúcar.", "reserved");
+    let prepared = s.begin_user_turn(original.clone()).unwrap();
+    let proof: SourceProof = serde_json::from_value(prepared["proof"].clone()).unwrap();
+    assert_eq!(prepared["job"]["state"], "queued");
+    assert!(s.claim_llm_learning(now() + 1).unwrap().is_none());
+    assert!(s.list("lucille", "demo").unwrap().is_empty());
+    // Cancellation can race the delivery of the prepare response.
+    assert!(s
+        .cancel_user_turn(SourceProof {
+            interaction: original.clone(),
+            job_id: None
+        })
+        .unwrap());
+    assert_eq!(
+        s.publish_user_turn(proof.clone()).unwrap()["state"],
+        "cancelled"
+    );
+    assert!(s.claim_llm_learning(now() + 2).unwrap().is_none());
+    let mut req = request(&original.user_text);
+    req.conversation_id = original.conversation_id.clone();
+    assert!(s
+        .answer_evidence_for_source(&req, &[], &[], Some(&proof))
+        .unwrap()
+        .current_statements
+        .is_empty());
+    let prepared = s
+        .begin_user_turn(input("Prefiro tema claro.", "published"))
+        .unwrap();
+    let proof: SourceProof = serde_json::from_value(prepared["proof"].clone()).unwrap();
+    s.publish_user_turn(proof).unwrap();
+    assert!(s.claim_llm_learning(now() + 1).unwrap().is_some());
+}
+
+#[test]
+fn older_generation_cannot_overwrite_a_later_original_user_source() {
+    use lucille_memory::turn_sources::SourceProof;
+    let (_d, mut s) = setup(true);
+    let a = s
+        .begin_user_turn(input("Prefiro tema escuro.", "older"))
+        .unwrap();
+    let b = s
+        .begin_user_turn(input("Prefiro tema claro.", "newer"))
+        .unwrap();
+    for (prepared, text) in [(b, "Prefiro tema claro."), (a, "Prefiro tema escuro.")] {
+        let proof: SourceProof = serde_json::from_value(prepared["proof"].clone()).unwrap();
+        s.publish_user_turn(proof).unwrap();
+        let lease = s.claim_llm_learning(now() + 1).unwrap().unwrap();
+        s.complete_llm_learning(&lease, &output(text, "preference"), now() + 2)
+            .unwrap();
+    }
+    let details = s.memory_details("lucille", "demo").unwrap();
+    assert_eq!(details.len(), 1);
+    assert_eq!(details[0].quality.as_ref().unwrap().value, "light");
+    assert_eq!(details[0].memory.state, Status::Active);
+}
+
+#[test]
+fn development_paraphrases_preserve_kind_temporality_and_original_evidence() {
+    for (text, property, value, temporal) in [
+        (
+            "Criar personagens nos jogos é uma das coisas de que mais gosto.",
+            "games_character_creation",
+            "positive",
+            "preference",
+        ),
+        (
+            "A possibilidade de definir a classe nos jogos é o que mais me agrada.",
+            "games_class_selection",
+            "positive",
+            "preference",
+        ),
+        (
+            "Interfaces carregadas me incomodam.",
+            "interface_clutter",
+            "negative",
+            "preference",
+        ),
+        (
+            "Minha bebida preferida é chá.",
+            "favorite_beverage",
+            "tea",
+            "preference",
+        ),
+        (
+            "My favourite drink is tea.",
+            "favorite_beverage",
+            "tea",
+            "preference",
+        ),
+        (
+            "Entre todas as bebidas, chá é a que eu mais aprecio.",
+            "favorite_beverage",
+            "tea",
+            "preference",
+        ),
+        (
+            "Das respostas possíveis, as objetivas são minhas preferidas.",
+            "communication_focus",
+            "objective",
+            "preference",
+        ),
+        (
+            "I prefer glossy photo paper.",
+            "photo_paper",
+            "glossy",
+            "preference",
+        ),
+        (
+            "Para o meu projeto, pretendo usar Rust.",
+            "language",
+            "rust",
+            "planned",
+        ),
+        (
+            "I plan to use TypeScript in my project.",
+            "language",
+            "typescript",
+            "planned",
+        ),
+        (
+            "Rust faz parte dos meus planos para o projeto.",
+            "language",
+            "rust",
+            "planned",
+        ),
+        (
+            "Escolhi SQLite para meu projeto.",
+            "database",
+            "sqlite",
+            "durable",
+        ),
+        (
+            "I chose SQLite for my project.",
+            "database",
+            "sqlite",
+            "durable",
+        ),
+        (
+            "Ainda não defini o banco de dados do meu projeto.",
+            "database",
+            "undecided",
+            "unknown",
+        ),
+        (
+            "Talvez eu use Rust no meu projeto.",
+            "language",
+            "rust",
+            "hypothesis",
+        ),
+        (
+            "No meu projeto, eu uso Python.",
+            "language",
+            "python",
+            "current",
+        ),
+        (
+            "Hoje eu prefiro café sem açúcar.",
+            "coffee_sugar",
+            "without_sugar",
+            "temporary",
+        ),
+        (
+            "Agora tenho 6 GB de RAM livre no computador principal.",
+            "free_ram",
+            "6_gb",
+            "temporary",
+        ),
+    ] {
+        let claims = lucille_memory::dialogue::extract(text, "demo");
+        assert!(
+            claims.iter().any(|c| c.property == property
+                && c.value == value
+                && c.temporal == temporal
+                && text.contains(&c.evidence)),
+            "Missing grounded claim: {text}: {claims:?}"
+        );
+        if temporal == "temporary" {
+            assert!(claims
+                .iter()
+                .all(|c| c.property != property || c.ttl_seconds.is_some()));
+        }
+        if temporal == "hypothesis" {
+            assert!(claims
+                .iter()
+                .all(|c| c.property != property || c.kind == Kind::Hypothesis));
+        }
+    }
+}
+
+#[test]
+fn precise_query_slots_preserve_history_and_both_project_tracks() {
+    let (_d, mut s) = setup(true);
+    learn(&mut s, "Prefiro café com açúcar.", "preference");
+    learn(&mut s, "Agora prefiro café sem açúcar.", "preference");
+    learn(
+        &mut s,
+        "Eu gosto de criar personagens em jogos.",
+        "preference",
+    );
+    learn(&mut s, "Prefiro respostas objetivas.", "preference");
+    let facts = s
+        .context(request("Meu café era como antes e como é agora?"))
+        .unwrap()
+        .facts;
+    assert_eq!(facts.len(), 2, "{facts:?}");
+    assert!(facts
+        .iter()
+        .any(|f| f.value == "with_sugar" && f.validity == "historical"));
+    assert!(facts
+        .iter()
+        .any(|f| f.value == "without_sugar" && f.validity == "current"));
+    let facts = s
+        .context(request("Como eu gosto das respostas?"))
+        .unwrap()
+        .facts;
+    assert_eq!(facts.len(), 1);
+    assert_eq!(facts[0].property, "communication_focus");
+    let facts = s
+        .context(request("Qual classe eu gostava de escolher antes?"))
+        .unwrap()
+        .facts;
+    assert!(facts.is_empty(), "{facts:?}");
+    learn(
+        &mut s,
+        "Para o meu projeto, pretendo usar TypeScript.",
+        "decision",
+    );
+    learn(&mut s, "No meu projeto, eu uso Python.", "fact");
+    for row in s.list("lucille", "demo").unwrap() {
+        if row.state == Status::Candidate {
+            s.change(
+                &row.input.id,
+                "lucille",
+                "demo",
+                row.version,
+                Action::Approve,
+            )
+            .unwrap();
+        }
+    }
+    let facts = s
+        .context(request(
+            "Quais são a linguagem que planejo usar e a que meu projeto usa agora?",
+        ))
+        .unwrap()
+        .facts;
+    assert_eq!(facts.len(), 2, "{facts:?}");
+    assert!(facts
+        .iter()
+        .any(|f| f.value == "typescript" && f.modality == "planned"));
+    assert!(facts
+        .iter()
+        .any(|f| f.value == "python" && f.modality == "current_fact"));
+}
+
+#[test]
+fn prepared_source_expiry_and_foreign_process_recovery_purge_input() {
+    let (d, mut s) = setup(true);
+    let prepared = s
+        .begin_user_turn(input("Prefiro café sem açúcar.", "expires"))
+        .unwrap();
+    assert!(s.claim_llm_learning(now() + 901).unwrap().is_none());
+    assert_eq!(
+        s.learning_job(prepared["job"]["id"].as_str().unwrap())
+            .unwrap()
+            .unwrap()
+            .state,
+        "cancelled"
+    );
+    let prepared = s
+        .begin_user_turn(input("Prefiro tema claro.", "restart"))
+        .unwrap();
+    let path = d.path().join("synthetic.sqlite3");
+    drop(s);
+    let db = rusqlite::Connection::open(&path).unwrap();
+    db.execute(
+        "UPDATE extraction_jobs SET lease_token='previous-native-process' WHERE state='queued'",
+        [],
+    )
+    .unwrap();
+    drop(db);
+    let mut s = Store::open(&path).unwrap();
+    assert!(s.claim_llm_learning(now() + 1).unwrap().is_none());
+    assert_eq!(
+        s.learning_job(prepared["job"]["id"].as_str().unwrap())
+            .unwrap()
+            .unwrap()
+            .state,
+        "cancelled"
+    );
+    let db = rusqlite::Connection::open(&path).unwrap();
+    assert_eq!(
+        db.query_row("SELECT count(*) FROM learning_inputs", [], |r| r
+            .get::<_, i64>(0))
+            .unwrap(),
+        0
+    );
+}
+
+#[test]
+fn backup_restores_receipts_but_never_publishes_an_unfinished_ui_source() {
+    let (_d, mut s) = setup(true);
+    learn(&mut s, "Prefiro tema claro.", "preference");
+    let forget = input(
+        "Esqueça minha preferência de tema de interface.",
+        "backup-forget",
+    );
+    assert_eq!(
+        s.begin_user_turn(forget.clone()).unwrap()["directive_receipt"]["had_records"],
+        true
+    );
+    let pending = s
+        .begin_user_turn(input("Prefiro café sem açúcar.", "backup-pending"))
+        .unwrap();
+    let backup = s.export_backup(&permit()).unwrap();
+    let (_other, mut restored) = setup(true);
+    restored.restore_isolated(&backup, &permit()).unwrap();
+    assert_eq!(
+        restored
+            .learning_job(pending["job"]["id"].as_str().unwrap())
+            .unwrap()
+            .unwrap()
+            .state,
+        "cancelled"
+    );
+    assert!(restored.claim_llm_learning(now() + 1).unwrap().is_none());
+    assert_eq!(
+        restored.begin_user_turn(forget).unwrap()["directive_receipt"]["had_records"],
+        true
+    );
+    assert!(restored.list("lucille", "demo").unwrap().is_empty());
+}
+
+#[test]
+fn forget_receipt_requires_committed_scoped_deletion_and_old_replay_cannot_delete_renewal() {
+    let (_d, mut s) = setup(true);
+    learn(
+        &mut s,
+        "Eu gosto de criar personagens em jogos.",
+        "preference",
+    );
+    assert!(!s.list("lucille", "demo").unwrap().is_empty());
+    let forget = input(
+        "Esqueça minha preferência por criar personagens em jogos.",
+        "forget-source",
+    );
+    let prepared = s.begin_user_turn(forget.clone()).unwrap();
+    assert_eq!(prepared["directive_receipt"]["had_records"], true);
+    assert_eq!(
+        prepared["directive_receipt"]["property"],
+        "games_character_creation"
+    );
+    assert!(s.list("lucille", "demo").unwrap().is_empty());
+    learn(
+        &mut s,
+        "Quero voltar a registrar minha preferencia: eu gosto de criar personagens em jogos.",
+        "preference",
+    );
+    let count = s.list("lucille", "demo").unwrap().len();
+    assert!(count > 0);
+    s.begin_user_turn(forget).unwrap();
+    assert_eq!(s.list("lucille", "demo").unwrap().len(), count);
+    for text in [
+        "Se eu pedir, esqueça minha preferência de tema.",
+        "Esqueça minha preferência de tema?",
+        "Esqueça minha preferência de tema e café.",
+        "\"Esqueça minha preferência de tema\"",
+    ] {
+        assert!(s
+            .begin_user_turn(input(text, &uuid::Uuid::new_v4().to_string()))
+            .unwrap()["directive_receipt"]
+            .is_null());
+    }
+}
+
+#[test]
 fn typed_plan_and_fresh_evidence_revoke_deleted_authority() {
     let (_d, mut s) = setup(true);
     learn(&mut s, "Quero usar Rust.", "decision");
@@ -894,9 +1273,7 @@ fn current_language_precedence_and_terminal_project_qualifier_survive_reopen() {
         .any(|f| f.property == "lifecycle" && f.modality == "cancelled"));
     assert!(!technical.facts.iter().any(|f| f.property == "language"));
     let historical = s
-        .context(request(
-            "Qual linguagem meu projeto usa antes?",
-        ))
+        .context(request("Qual linguagem meu projeto usa antes?"))
         .unwrap();
     assert!(historical
         .facts

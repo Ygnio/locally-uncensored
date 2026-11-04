@@ -342,6 +342,8 @@ fn classify(sentence: &str) -> Option<Claim> {
                 "i installed ",
                 "i upgraded ",
                 "estou com ",
+                "no computador principal",
+                "on my primary computer",
             ],
         ) {
             return None;

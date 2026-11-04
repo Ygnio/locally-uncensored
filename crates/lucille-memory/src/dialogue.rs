@@ -223,6 +223,7 @@ pub fn eligible_source(text: &str) -> bool {
             "interface",
             "escolha",
             "favorite",
+            "favourite",
             "preferred",
             "respostas",
             "answers",
@@ -263,6 +264,14 @@ pub fn eligible_source(text: &str) -> bool {
 }
 pub fn project_scope_matches(text: &str, project: &str) -> bool {
     let s = fold(text);
+    let quoted = s.split_whitespace().collect::<Vec<_>>();
+    if quoted.windows(2).any(|pair| {
+        ["projeto", "project"].contains(&pair[0])
+            && pair[1].starts_with(['"', '\'', '`'])
+            && pair[1].trim_matches(|c: char| !c.is_alphanumeric()) != fold(project)
+    }) {
+        return false;
+    }
     let w = s
         .split_whitespace()
         .map(|s| s.trim_matches(|c: char| !c.is_alphanumeric()))
@@ -319,6 +328,18 @@ pub fn project_scope_matches(text: &str, project: &str) -> bool {
                 "ficticio",
                 "configuration",
                 "doing",
+                "que",
+                "sobre",
+                "para",
+                "sem",
+                "com",
+                "that",
+                "which",
+                "about",
+                "pretendo",
+                "pretende",
+                "planejo",
+                "planeja",
             ]
             .contains(&p[1])
             && p[1] != fold(project)
@@ -380,6 +401,11 @@ fn ambiguous_preference(s: &str) -> bool {
     )
 }
 fn transient(s: &str) -> bool {
+    if s.split(|c: char| !c.is_alphanumeric())
+        .any(|w| ["hoje", "today"].contains(&w))
+    {
+        return true;
+    }
     any(
         s,
         &[
@@ -428,6 +454,12 @@ fn preference_authorship(span: &str) -> bool {
             " minha preferencia de comunicacao ",
             " minha preferencia e ",
             " minha bebida favorita ",
+            " minha bebida preferida ",
+            " minhas preferidas ",
+            " meus preferidos ",
+            " me agrada ",
+            " me incomodam ",
+            " mais aprecio ",
             " my preferred language ",
             " my favorite drink ",
             " my favourite drink ",
@@ -564,16 +596,34 @@ pub fn preference(span: &str) -> Option<Claim> {
             "dislike",
             "odeio",
             "opto por",
+            "preferida",
+            "preferido",
+            "me agrada",
+            "me incomodam",
+            "mais aprecio",
         ],
     );
     let personal = any(
         &s,
         &[
-            "eu ", "meu ", "minha ", "meus ", "minhas ", "prefiro ", "gosto ", "adoro ", "amo ",
-            "i ", "my ", "to me",
+            "eu ",
+            "meu ",
+            "minha ",
+            "meus ",
+            "minhas ",
+            "prefiro ",
+            "gosto ",
+            "adoro ",
+            "amo ",
+            "i ",
+            "my ",
+            "to me",
+            "me agrada",
+            "me incomodam",
+            "aprecio",
         ],
     );
-    if !choose || !personal {
+    if !choose || !(personal || preference_authorship(span)) {
         return None;
     }
     let (property, value) = if any(&s, &["jogo", "game", "rpg"])
@@ -588,12 +638,24 @@ pub fn preference(span: &str) -> Option<Claim> {
         ) {
         ("games_character_creation", "positive")
     } else if any(&s, &["jogo", "game", "rpg"])
-        && (any(&s, &["escolh", "choos", "class selection"]) && any(&s, &["classe", "class"]))
+        && (any(
+            &s,
+            &[
+                "escolh",
+                "choos",
+                "class selection",
+                "definir",
+                "selecionar",
+            ],
+        ) && any(&s, &["classe", "class"]))
     {
         ("games_class_selection", "positive")
     } else if any(&s, &["interface", "tela", "screen"])
         && any(&s, &["poluida", "clutter", "carregada"])
-        && any(&s, &["desgosto", "detesto", "dislike", "odeio"])
+        && any(
+            &s,
+            &["desgosto", "detesto", "dislike", "odeio", "me incomodam"],
+        )
     {
         ("interface_clutter", "negative")
     } else if any(
@@ -603,6 +665,7 @@ pub fn preference(span: &str) -> Option<Claim> {
             "favorite drink",
             "bebida preferida",
             "favourite drink",
+            "bebidas",
         ],
     ) && s
         .split(|c: char| !c.is_alphanumeric())
@@ -629,6 +692,7 @@ pub fn preference(span: &str) -> Option<Claim> {
                 "fotos brilhantes",
                 "impressao brilhante",
                 "glossy photo prints",
+                "glossy photo paper",
             ],
         )
     {
@@ -806,6 +870,40 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
             }
         }
         let subject = format!("project.{project}");
+        if any(&s, &["talvez eu use ", "maybe i will use ", "i might use "])
+            && any(&s, &["projeto", "project"])
+            && !any(&s, &["nao ", "not "])
+        {
+            for (property, values) in [
+                (
+                    "language",
+                    &["python", "rust", "typescript", "javascript"][..],
+                ),
+                ("database", &["sqlite", "postgresql", "mysql"][..]),
+            ] {
+                let found = values
+                    .iter()
+                    .filter(|value| {
+                        s.split(|c: char| !c.is_alphanumeric())
+                            .any(|w| w == **value)
+                    })
+                    .collect::<Vec<_>>();
+                if found.len() == 1 {
+                    known.retain(|c| c.property != "hardware_intention" && c.property != property);
+                    let mut c = base(
+                        span,
+                        Kind::Hypothesis,
+                        &subject,
+                        property,
+                        found[0],
+                        "hypothesis",
+                    );
+                    c.project_hint = Some(project.into());
+                    c.ttl_seconds = Some(7 * 86400);
+                    known.push(c);
+                }
+            }
+        }
         let project_intent = any(
             &s,
             &[
@@ -817,6 +915,11 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
                 "i decided to use ",
                 "i want to use ",
                 "i switched ",
+                "pretendo usar ",
+                "i plan to use ",
+                "meus planos para o projeto",
+                "escolhi ",
+                "i chose ",
             ],
         );
         if project_intent && !any(&s, &["nao ", "not ", "talvez", "maybe", "might"]) {
@@ -836,7 +939,17 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
                 .into_iter()
                 .filter(|w| words.iter().any(|t| t == w))
                 .collect::<Vec<_>>();
-            let temporal = if any(&s, &["quero usar ", "i want to use ", "vou usar "]) {
+            let temporal = if any(
+                &s,
+                &[
+                    "quero usar ",
+                    "i want to use ",
+                    "vou usar ",
+                    "pretendo usar ",
+                    "i plan to use ",
+                    "meus planos para o projeto",
+                ],
+            ) {
                 "planned"
             } else {
                 "durable"
@@ -888,6 +1001,7 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
                 "ainda nao escolhi",
                 "i have not decided",
                 "i have not chosen",
+                "ainda nao defini",
             ],
         ) {
             for (property, labels) in [
@@ -964,7 +1078,17 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
             ],
         ) {
             Some("in_progress")
-        } else if any(&s, &["meu projeto usa ", "my project uses "]) {
+        } else if any(
+            &s,
+            &[
+                "meu projeto usa ",
+                "my project uses ",
+                "no meu projeto, eu uso ",
+                "no meu projeto eu uso ",
+                "in my project, i use ",
+                "in my project i use ",
+            ],
+        ) {
             Some("current")
         } else {
             None

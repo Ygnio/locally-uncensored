@@ -2,7 +2,7 @@ import { verifiedEnvironment, VERIFIED_EXECUTION_POLICY, operationalCodePrompt, 
 import { invoke } from '@tauri-apps/api/core'
 import type { ChatMessage } from '../api/providers/types'
 import type { Conversation } from '../types/chat'
-import { registerAnswerSnapshot, type MemoryFact } from './lucille-fidelity'
+import { registerAnswerSnapshot, type MemoryFact, type MemoryDirectiveReceipt } from './lucille-fidelity'
 
 export type { LucilleBinding } from '../types/chat'
 export interface LucilleProfile { name: string; description: string; personality: string; instructions: string }
@@ -37,8 +37,8 @@ const assertNotCancelled = (signal?: AbortSignal) => {
   if (signal?.aborted) throw new DOMException('Turn cancelled', 'AbortError')
 }
 
-/** Read canonical state at each transport send/retry; never persist these messages.
- * No model tool, permission object, native memory writer or embedding client is reachable here.
+/** Read canonical state and reserve the original UI source at each send/retry.
+ * Only the configured native learning policy can publish that source after output commits.
  * Fail closed for an opted-in profile: a failed identity load must not silently impersonate it.
  */
 export async function withLucilleContext(
@@ -58,6 +58,9 @@ export async function withLucilleContext(
   const envCost = environment ? new TextEncoder().encode(environment.content).length + 32 : 0
   const retrievalBudget = binding.tokenBudget - envCost
   if (retrievalBudget < 512) throw new Error("Verified environment exceeds Lucille context budget")
+  try {
+  const source = loader === loadContext ? await (await import('./lucille-learning')).prepareLucilleSource(conversation!.id, messageId, mode, binding, signal) : null
+  if (source) query = source.proof.interaction.user_text
   const context = await loader({
     conversation_id: conversation!.id, message_id: messageId, scope: binding.scope,
     project: binding.project, mode, query, token_budget: retrievalBudget,
@@ -75,7 +78,9 @@ export async function withLucilleContext(
     return true
   })
   const facts = (context.facts ?? []).filter(f => (f.validity === 'current' || (history && f.validity === 'historical')) && f.scope === binding.scope && f.project === binding.project && memories.some(m => m.input.id === f.id && m.version === f.version))
-  const currentStatements = (context.current_statements ?? []).filter(f => f.validity === 'current_user_statement' && f.scope === binding.scope && f.project === binding.project && f.version === 0 && f.evidence.some(e => e.role === 'current_user_statement' && query.includes(e.text)))
+  const currentStatements = (source?.current_statements ?? (loader !== loadContext ? context.current_statements ?? [] : [])).filter(f => f.validity === 'current_user_statement' && f.scope === binding.scope && f.project === binding.project && f.version === 0 && f.evidence.some(e => e.role === 'current_user_statement' && query.includes(e.text)))
+  const directiveReceipt = source?.directive_receipt
+  if (directiveReceipt && (directiveReceipt.action !== 'forget' || directiveReceipt.state !== 'done' || directiveReceipt.scope !== binding.scope || directiveReceipt.project !== binding.project || directiveReceipt.conversation_id !== conversation!.id || directiveReceipt.source_message_id !== source!.proof.interaction.message_id || !/^[a-f0-9]{64}$/.test(directiveReceipt.id))) throw new Error('Invalid memory operation receipt')
   const identity: ChatMessage = { role: 'system', content:
     'User-configured persistent identity (backend/model aliases do not define this identity):\n' +
     JSON.stringify({ profile_id: "lucille", identity_scope: "profile:lucille", version: context.identity.version, ...context.identity.profile }) +
@@ -89,6 +94,8 @@ export async function withLucilleContext(
       return { id: memory.input.id, version: memory.version, kind: memory.input.kind, content: memory.input.content,
         ...(fact ? { entity: fact.entity, property: fact.property, value: fact.value, modality: fact.modality, validity: fact.validity, scope: fact.scope, project: fact.project, review: fact.review, facets: fact.facets, evidence: fact.evidence } : { canonical: 'untyped_legacy_record' }) }
     })) }
+  if (directiveReceipt) identity.content += '\nNative memory operation receipt: ' + JSON.stringify({ action: directiveReceipt.action, property: directiveReceipt.property, state: directiveReceipt.state, had_records: directiveReceipt.had_records })
+  identity.content += '\nOnly a completed native memory operation receipt authorizes confirming that this turn deleted memory. A request to remember or reactivate information is not proof of a completed save or review. Answer execution questions consistently from the first word: an affirmative requires evidence of actual execution, even if a later sentence describes a plan. Hardware capacity alone does not prove smooth performance, stability or absence of bottlenecks. Keep project purpose separate from personal learning goals.'
   injected.add(identity)
   injected.add(data)
   if (environment) injected.add(environment)
@@ -98,12 +105,12 @@ export async function withLucilleContext(
   const at = lastUser < 0 ? clean.length : lastUser
   const result = [identity, ...(environment ? [environment] : []), ...clean.slice(0, at), ...(memories.length ? [data] : []), ...clean.slice(at)]
   registerAnswerSnapshot(identity, {
-    scope: binding.scope, project: binding.project, query, facts, currentStatements,
+    scope: binding.scope, project: binding.project, query, facts, currentStatements, directiveReceipt,
     refresh: async (claims = []) => {
       assertNotCancelled(signal)
       if (loader !== loadContext) return { facts, current_statements: currentStatements }
-      const refreshed = await lucilleManage<{ facts: MemoryFact[]; current_statements: MemoryFact[] }>({ operation: 'answer_evidence',
-        request: { conversation_id: conversation!.id, message_id: messageId, scope: binding.scope, project: binding.project, mode, query, token_budget: retrievalBudget }, references: memories.map(m => ({ id: m.input.id, version: m.version })), claims })
+      const refreshed = await lucilleManage<{ facts: MemoryFact[]; current_statements: MemoryFact[]; directive_receipt?: MemoryDirectiveReceipt | null }>({ operation: 'answer_evidence',
+        request: { conversation_id: conversation!.id, message_id: messageId, scope: binding.scope, project: binding.project, mode, query, token_budget: retrievalBudget }, references: memories.map(m => ({ id: m.input.id, version: m.version })), claims, source: source?.proof })
       assertNotCancelled(signal); return refreshed
     },
     reload: () => withLucilleContext(conversation, messageId, query, mode, clean, signal, loader, runtime),
@@ -112,6 +119,10 @@ export async function withLucilleContext(
   const actual = new TextEncoder().encode(identity.content + (memories.length ? data.content : '')).length + 32 + envCost
   if (actual > binding.tokenBudget) throw new Error('Lucille context exceeds configured budget')
   return result
+  } catch (error) {
+    if (loader === loadContext) (await import('./lucille-learning')).cancelLucilleSource(messageId)
+    throw error
+  }
 }
 
 /** Used at the tool roster AND executable lookup boundary. No dual authoritative writer. */

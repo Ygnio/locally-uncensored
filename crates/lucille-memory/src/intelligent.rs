@@ -328,6 +328,17 @@ impl Store {
         tx.commit().map_err(db_error)
     }
     pub fn enqueue_learning(&mut self, input: Interaction) -> Result<serde_json::Value> {
+        self.enqueue_learning_phase(input, false)
+    }
+    pub fn prepare_user_turn(&mut self, input: Interaction) -> Result<serde_json::Value> {
+        self.identity()?;
+        self.enqueue_learning_phase(input, true)
+    }
+    fn enqueue_learning_phase(
+        &mut self,
+        input: Interaction,
+        deferred: bool,
+    ) -> Result<serde_json::Value> {
         for id in [
             &input.conversation_id,
             &input.message_id,
@@ -382,6 +393,21 @@ impl Store {
             .map_err(|_| "Invalid interaction")?,
         );
         if let Some(job) = self.learning_job(&id)? {
+            if job.state == "queued" {
+                let held: bool = self
+                    .db
+                    .query_row(
+                        "SELECT lease_token IS NOT NULL FROM extraction_jobs WHERE id=?1",
+                        [&id],
+                        |r| r.get(0),
+                    )
+                    .map_err(db_error)?;
+                if held && !deferred {
+                    self.recover_pending_user_turns(now())?;
+                    self.db.execute("UPDATE extraction_jobs SET next_at=?2,lease_token=NULL,lease_until=NULL,updated_at=?2 WHERE id=?1 AND state='queued' AND lease_token=?3 AND lease_until>?2",params![id,now(),crate::turn_sources::owner()]).map_err(db_error)?;
+                    return Ok(serde_json::json!(self.learning_job(&id)?.unwrap()));
+                }
+            }
             return Ok(serde_json::json!(job));
         }
         let tx = self
@@ -399,6 +425,13 @@ impl Store {
             return Err("Learning queue is full".into());
         }
         tx.execute("INSERT OR IGNORE INTO extraction_jobs(id,conversation_id,message_id,scope,project,mode,state,evidence_json,created_at,updated_at,next_at) VALUES(?1,?2,?3,?4,?5,?6,'queued',?7,?8,?8,?8)",params![id,input.conversation_id,input.message_id,input.scope,input.project,types::label(&input.mode),serde_json::to_string(&claims).map_err(|_|"Invalid evidence")?,now()]).map_err(db_error)?;
+        if deferred {
+            tx.execute(
+                "UPDATE extraction_jobs SET next_at=?2,lease_token=?3,lease_until=?4 WHERE id=?1",
+                params![id, now() + 3600, crate::turn_sources::owner(), now() + 900],
+            )
+            .map_err(db_error)?;
+        }
         if use_llm {
             tx.execute(
                 "INSERT INTO learning_inputs VALUES(?1,?2,?3)",
@@ -438,6 +471,7 @@ impl Store {
         self.claim_learning_kind(at, true)
     }
     fn claim_learning_kind(&mut self, at: i64, llm: bool) -> Result<Option<Lease>> {
+        self.recover_pending_user_turns(at)?;
         if !self.learning_policy()?.enabled {
             return Ok(None);
         }
@@ -803,6 +837,12 @@ fn ingest(
         }
     }
     let c = &resolved;
+    // Order by original source reservation, not by extraction completion time.
+    // A slow older job cannot overwrite a later source for the same temporal track.
+    let newer: bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memories m JOIN memory_quality q ON q.memory_id=m.id JOIN memory_provenance p ON p.memory_id=m.id JOIN extraction_jobs newer ON newer.id=p.interaction_id JOIN extraction_jobs incoming ON incoming.id=?1 WHERE m.scope=?2 AND m.project=?3 AND m.state IN ('active','candidate','conflict') AND q.subject=?4 AND q.property=?5 AND newer.rowid>incoming.rowid AND (?6=0 OR (q.temporal IN ('in_progress','current','completed','cancelled'))=?7))",params![lease.id,lease.scope,lease.project,c.subject,c.property,c.subject.starts_with("project.") && ["language","database"].contains(&c.property.as_str()),crate::dialogue::execution_track(&c.subject,&c.property,&c.temporal)],|r|r.get(0)).map_err(db_error)?;
+    if newer {
+        return Ok(());
+    }
     let erased:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_tombstones WHERE scope=?1 AND project=?2 AND claim_digest=?3)",params![lease.scope,lease.project,c.fingerprint()],|r|r.get(0)).map_err(db_error)?;
     if erased {
         let renewed:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memories m JOIN memory_quality q ON q.memory_id=m.id WHERE m.scope=?1 AND m.project=?2 AND m.state='active' AND q.subject=?3 AND q.property=?4 AND q.value=?5 AND q.evidence_rule LIKE '%renewal%')",params![lease.scope,lease.project,c.subject,c.property,c.value],|r|r.get(0)).map_err(db_error)?;
