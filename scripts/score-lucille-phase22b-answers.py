@@ -102,7 +102,8 @@ def main(a):
                   by_category=dict(by_category), missing_scenarios=sorted(required-covered),
                   answer_gate=bool(final['assertions'] and final['fidelity'] >= .95
                                    and not final['critical'] and covered == required
-                                   and all(v['final']['critical'] == 0 and (v['final']['fidelity'] is None or v['final']['fidelity'] >= .95) for v in by_category.values())),
+                                   and all(v['final']['critical'] == 0 and (v['final']['fidelity'] is None or v['final']['fidelity'] >= .95) for v in by_category.values())
+                                   and all(by_category[c]['final']['delivered'] > 0 and (by_category[c]['final']['useful_expected'] == 0 or by_category[c]['final']['useful_retained'] > 0) for c in required)),
                   availability_gate=bool(final['responses'] and final['delivered'] == final['responses'] and final['utility_loss'] == 0),
                   limitation='Literal independent adjudication, with exact hashes and coverage; not a universal truth proof. Non-answers and useful omissions are reported separately and never auto-approved.')
     out = Path(a.output)

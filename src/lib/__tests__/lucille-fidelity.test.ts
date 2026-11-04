@@ -118,6 +118,22 @@ describe('temporal and preference boundaries added in 2.2B', () => {
 })
 
 describe('literal failures observed in real development answers', () => {
+  it('does not turn scoped uncertainty into an embedded execution assertion', () => {
+    const f=fact({property:'lifecycle',value:'cancelled',modality:'cancelled'})
+    const s=snapshot([f],'Meu projeto está sendo desenvolvido em Rust agora?')
+    const answer='Não há registros indicando que seu projeto está sendo desenvolvido em Rust no momento. De acordo com as memórias, você cancelou o projeto recentemente.'
+    const check=verifyMemoryAnswer(answer,s)
+    expect(check.violations).toEqual([])
+    expect(check.assertions.some(a=>a.property==='lifecycle' && a.supported)).toBe(true)
+    for (const text of ['Não há dúvida de que seu projeto usa Rust.', 'Não há registros, mas seu projeto já usa Rust.', 'Não tenho informações para confirmar, seu projeto já usa Rust.']) {
+      expect(verifyMemoryAnswer(text,s).violations.some(v=>v.critical)).toBe(true)
+    }
+  })
+  it('accepts an explicitly past verb with a typed historical implementation', () => {
+    const s=snapshot([fact({modality:'current_fact',validity:'historical'})],'Qual linguagem meu projeto usa antes?')
+    expect(verifyMemoryAnswer('Seu projeto usava Rust.',s).violations).toEqual([])
+    expect(verifyMemoryAnswer('Seu projeto usa Rust.',s).violations.some(v=>v.critical)).toBe(true)
+  })
   it('separates advice from goal assertions and binds completion acknowledgements to typed evidence', () => {
     const f=fact({entity:'user',property:'goal.spanish',value:'completed:aprender espanhol',modality:'completed',evidence:[{role:'current_source',text:'Concluí meu objetivo de aprender espanhol.'}]})
     expect(verifyMemoryAnswer('Para aprender espanhol com eficiência, você pode começar com o vocabulário básico e a prática diária de audição.',snapshot([f],'Meu objetivo é aprender espanhol.')).violations).toEqual([])
