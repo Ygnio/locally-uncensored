@@ -1,0 +1,14 @@
+{
+  "reviewed_utc": "2026-11-03T23:34:16.934572+00:00",
+  "parent_progress_sha256": "4268a348828da5597b8ceb3b0f2b1cbe6c3c0d358b82d8827a9251d7e8e2c1cd",
+  "question": "Como está ficando aquele projeto?",
+  "answer": "O projeto de controle de luminosidade (Projeto Candeia) está sendo desenvolvido usando TypeScript e terá o PostgreSQL como banco de dados.",
+  "finding": "Planned technology choices presented as ongoing implementation: está sendo desenvolvido usando TypeScript. No user source established implementation progress. Retrieval gold may be correct while answer use is not.",
+  "rubric_criteria_failed": [
+    "grounded_answer",
+    "current_versions"
+  ],
+  "critical_answer_extrapolation": true,
+  "automatic_regex_limitation": "Pattern matched desenvolvido em but not desenvolvido usando; literal review is authoritative, no silent pass.",
+  "approval": "Naturalness zero-critical gate failed for this scenario. Continue collecting prescribed scenarios and resilience evidence; no phase completion claim."
+}

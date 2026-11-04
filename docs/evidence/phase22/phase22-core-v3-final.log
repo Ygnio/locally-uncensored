@@ -1,0 +1,145 @@
+   Compiling lucille-memory v0.1.0 (<QA_CHECKOUT>\crates\lucille-memory)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.06s
+     Running unittests src\lib.rs (..\build\memory\debug\deps\lucille_memory-0826cd158fce2535.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\integration.rs (..\build\memory\debug\deps\integration-05b49fe339a3001b.exe)
+
+running 24 tests
+test deleted_id_cannot_be_replayed_to_resurrect_memory ... ok
+test chat_and_agent_retrieve_fact_and_durable_preference ... ok
+test concurrent_writer_conflicts_do_not_lose_updates ... ok
+test candidates_obsolete_and_other_projects_never_reach_context ... ok
+test ipc_host_gate_denies_operational_release_and_remote_windows ... ok
+test ipc_root_requires_marker_and_rejects_protected_storage_without_opening_a_database ... ok
+test all_eleven_categories_are_typed_and_round_trip ... ok
+test deletion_and_updates_are_revalidated_on_every_send ... ok
+test backup_preserves_metadata_audits_and_deletion_tombstones ... ok
+test fts_accepts_punctuation_without_query_language_injection ... ok
+test identity_requires_explicit_authorization_and_cas ... ok
+test backup_restore_is_atomic_and_fts_is_rebuilt ... ok
+test invalid_ids_scopes_budgets_and_unknown_fields_are_rejected ... ok
+test missing_identity_is_not_implicitly_created ... ok
+test malicious_memory_is_data_and_cannot_update_identity ... ok
+test migrations_are_repeatable_and_persist_after_reopen ... ok
+test repetition_is_idempotent_and_scope_is_enforced ... ok
+test rejection_revokes_candidate ... ok
+test negation_and_correction_do_not_auto_promote_contradictions ... ok
+test preference_changes_require_obsoletion_or_explicit_reapproval ... ok
+test sqlite_wal_migration_versions_and_future_schema_guard_are_real ... ok
+test phase1_schema_upgrade_preserves_existing_retrieval_audit ... ok
+test preferences_have_a_cap_and_context_has_no_duplicates ... ok
+test write_failure_does_not_corrupt_or_log_payload ... ok
+
+test result: ok. 24 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.71s
+
+     Running tests\intelligent.rs (..\build\memory\debug\deps\intelligent-9109929c82ef5590.exe)
+
+running 15 tests
+test malformed_learning_backup_rolls_back_without_erasing_current_memory ... ok
+test current_correction_precedes_async_write_and_negated_preferences_abstain ... ok
+test deletion_blocks_replay_and_related_automatic_relearning_without_retaining_content ... ok
+test embedding_client_must_preserve_prefix_identity_and_version ... ok
+test hybrid_index_never_mixes_model_spaces_stale_versions_or_deleted_memories ... ok
+test expiry_does_not_erase_durable_facts_and_irrelevant_preferences_are_not_injected ... ok
+test correction_aliases_replace_only_same_equipment_and_suspend_stale_context ... ok
+test model_confidence_and_invented_claims_never_authorize_promotion ... ok
+test queue_bounds_policy_disable_and_forged_lease_fail_closed ... ok
+test preferences_consolidate_facets_with_provenance_undo_and_no_scope_merge ... ok
+test queue_database_failure_rolls_back_and_two_connections_cannot_share_a_lease ... ok
+test phase4_backup_retains_pending_jobs_and_metadata_atomically ... ok
+test queue_is_durable_idempotent_and_fenced_after_restart_cancel_and_retry ... ok
+test retrieval_benchmark_measures_relevance_injection_scope_and_budget ... ok
+test frozen_extraction_benchmark_measures_precision_recall_unsafe_writes_and_latency ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.59s
+
+     Running tests\phase21.rs (..\build\memory\debug\deps\phase21-96ee0ed028f0d6bd.exe)
+
+running 10 tests
+test forwarded_and_role_instructions_never_enter_any_extractor_mode ... ok
+test source_qualifiers_cannot_be_cut_out_or_replaced_by_model_confidence ... ok
+test frozen_new_evaluation_records_rule_baseline_without_claiming_real_llm_metrics ... ok
+test independent_postfreeze_rule_evaluation_preserves_failures ... ok
+test novel_related_preferences_remain_separate_candidates_and_keep_provenance ... ok
+test llm_queue_survives_reopen_hybrid_deduplicates_and_purges_source ... ok
+test llm_commit_database_failure_retains_retry_source_without_partial_memory ... ok
+test forged_failure_count_mode_changes_and_terminal_cleanup_are_fenced ... ok
+test synthetic_retrieval_ablation_compares_all_three_modes ... ok
+test cancelled_disabled_expired_llm_leases_cannot_commit_and_backup_roundtrips ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.23s
+
+     Running tests\phase21b.rs (..\build\memory\debug\deps\phase21b-fbfa80369b4215f5.exe)
+
+running 8 tests
+test historical_misses_are_regressions_not_unseen_data ... ok
+test unsupported_attribution_negation_and_fiction_still_abstain ... ok
+test extended_claims_still_require_full_grounding_and_exact_scope ... ok
+test device_evolution_keeps_work_laptop_and_hypothesis_separate ... ok
+test coffee_withdrawal_and_completed_goals_suspend_old_context_until_review ... ok
+test unspecified_correction_resolves_only_a_unique_prior_capacity ... ok
+test expanded_retrieval_uses_same_24_queries_with_scope_and_uncertainty ... ok
+test frozen_final_evaluation_scores_typed_claims_and_scope_in_real_sqlite ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.31s
+
+     Running tests\phase21c.rs (..\build\memory\debug\deps\phase21c-0cbd1e7bef2217d4.exe)
+
+running 2 tests
+test opaque_storage_key_alias_never_overrides_semantic_grounding ... ok
+test real_evaluation_corpora_remain_sealed ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\phase21d.rs (..\build\memory\debug\deps\phase21d-a020a8fa06dc7906.exe)
+
+running 7 tests
+test sensitive_word_boundary_does_not_reject_ordinary_portuguese_verbs ... ok
+test authorization_inflections_never_become_learning_sources_or_permissions ... ok
+test atomic_normalizer_preserves_complete_support_and_never_fills_missing_evidence ... ok
+test atomic_game_features_preserve_source_without_assuming_tactics ... ok
+test atomic_output_requires_a_proposal_and_validates_each_one_independently ... ok
+test atomic_normalizer_rejects_unsafe_scope_negation_and_model_authority ... ok
+test index_description_tracks_current_record_version_and_rejects_deleted_records ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running tests\phase22.rs (..\build\memory\debug\deps\phase22-84923c67ba1d6531.exe)
+
+running 23 tests
+test autonomy_is_opt_in_and_numeric_confidence_alone_does_not_promote ... ok
+test explanation_paraphrases_are_still_grounded_preferences ... ok
+test equivalent_claims_deduplicate_but_related_genres_remain_distinct ... ok
+test communication_nomination_keeps_project_and_conflict_fences ... ok
+test communication_preference_supports_personal_explanation_but_not_unrelated_questions ... ok
+test equipment_change_retains_review_and_blocks_stale_capacity ... ok
+test explicit_unique_preference_correction_is_versioned_but_ambiguous_conflict_is_suspended ... ok
+test comparing_hardware_never_nominates_interface_or_communication_preferences ... ok
+test failed_independent_negation_and_ownership_challenge_becomes_regression ... ok
+test forgetting_is_idempotent_revokes_pending_leases_and_does_not_erase_new_preference_on_old_replay ... ok
+test fresh_explicit_renewal_of_deleted_value_requires_review_without_removing_tombstone ... ok
+test project_description_does_not_leak_into_an_unrelated_preference_correction ... ok
+test real_character_progression_preference_is_not_a_fictional_speakers_claim ... ok
+test generic_completed_goal_query_is_bound_to_current_completed_records ... ok
+test project_plan_is_split_and_replacement_does_not_leave_old_language_in_current_database_content ... ok
+test project_field_question_does_not_expand_into_full_project_summary ... ok
+test restarted_store_reclaims_expired_lease_and_preserves_pending_index_work ... ok
+test source_framing_and_denied_authorship_cannot_authorize_embedded_preferences ... ok
+test temporary_english_preferences_and_denied_claims_never_auto_activate ... ok
+test safe_preferences_promote_by_independent_proof_with_literal_provenance ... ok
+test untrusted_or_ambiguous_sources_never_become_automatic_preferences ... ok
+test review_only_kinds_and_transient_preferences_never_auto_promote ... ok
+test role_headers_are_not_user_authorship_and_review_aliases_cannot_promote_preferences ... ok
+
+test result: ok. 23 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.97s
+
+   Doc-tests lucille_memory
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,49 @@
+{
+  "original_completed_cases": 34,
+  "aborted_case": "v3-035",
+  "cached_response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"version\": 3,\n  \"scope\": \"heldout22-v3-035\",\n  \"project\": \"candeia\",\n  \"claims\": [\n    {\n      \"evidence\": \"Na interface do meu projeto, eu prefiro o tema claro\",\n      \"category\": \"preference\"\n    }\n  ]\n}"
+        }
+      }
+    ],
+    "created": 1793747993,
+    "model": "lucille-real-gemma",
+    "system_fingerprint": "b11064-a894dae93",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 89,
+      "prompt_tokens": 359,
+      "total_tokens": 448,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-5T8wkcHYTF9E2eTo7qxuB91ayNzZgbyy",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 359,
+      "prompt_ms": 421.34,
+      "prompt_per_token_ms": 1.1736490250696379,
+      "prompt_per_second": 852.0434803246784,
+      "predicted_n": 89,
+      "predicted_ms": 3033.149,
+      "predicted_per_token_ms": 34.46760227272727,
+      "predicted_per_second": 29.01275209361624
+    }
+  },
+  "cached_response_completed_unix": 1793747993.8093877,
+  "helper_sha256": "85b64fb63186e4cdb81a23bed282520c174dd64b0b822cbe8a1ab67330efe628",
+  "algorithm_and_corpora_unchanged": true,
+  "manual_diagnostic_replays": [
+    "rules exit0, ignored, empty details",
+    "llm exit0, cancelled, empty details",
+    "hybrid exit1: Ineligible extraction source or response size"
+  ],
+  "limitation": "Interrupted case is replayed idempotently using the same real response; latency for this case is cached replay, not real generation. Hybrid fallback bridge can leave a running lease on ineligible source; preserved as evaluator failure, not successful queue completion."
+}

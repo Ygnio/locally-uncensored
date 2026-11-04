@@ -1,0 +1,108 @@
+{
+  "fixture": "v3-forget-inline-scoring-input.json",
+  "scope": "phase22-v3-forget-fresh",
+  "project": "candeia",
+  "totals": {
+    "tp": 0,
+    "fp": 0,
+    "missed": 1,
+    "critical_references": 0,
+    "natural_points": 6,
+    "natural_applicable": 7,
+    "precision": 0.0,
+    "recall": 0.0,
+    "naturalness": 0.8571428571428571
+  },
+  "categories": {
+    "deleted_absent": {
+      "n": 1,
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    },
+    "renewed_current": {
+      "n": 1,
+      "tp": 0,
+      "fp": 0,
+      "missed": 1,
+      "natural_points": 2,
+      "natural_applicable": 3
+    }
+  },
+  "samples": [
+    {
+      "id": "heldout-v3-forget-fresh-inline-probe-01",
+      "question": "Qual é minha preferência por açúcar no café?",
+      "category": "deleted_absent",
+      "gold": [],
+      "actual_references": [],
+      "provenance": {},
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Atualmente, não tenho informações sobre sua preferência específica por açúcar no café. Você poderia me dizer como prefere?",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 25,
+        "prompt_tokens": 517,
+        "total_tokens": 542,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "irrelevant_uncontaminated": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-forget-fresh-inline-probe-02",
+      "question": "Como eu prefiro tomar o meu café?",
+      "category": "renewed_current",
+      "gold": [
+        {
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        }
+      ],
+      "actual_references": [],
+      "provenance": {},
+      "tp": 0,
+      "fp": 0,
+      "missed": 1,
+      "critical_references": 0,
+      "answer": "Como você ainda não me disse, não tenho essa informação no momento. Pode me contar como você prefere?",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 23,
+        "prompt_tokens": 516,
+        "total_tokens": 539,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": false,
+        "current_versions": true,
+        "no_gratuitous_announcement": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    }
+  ],
+  "review_pending": false,
+  "notes": [
+    "Context metrics score actual injected references, never an answer guessed without memory.",
+    "Forbidden mentions require literal review to distinguish obsolete-as-current from legitimate history/negation. Preliminary automatic rubric remains conservative.",
+    "Fewer than five examples per category: counts only; no generalization from percentages."
+  ]
+}

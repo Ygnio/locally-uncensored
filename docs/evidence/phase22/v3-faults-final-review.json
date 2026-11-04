@@ -1,0 +1,74 @@
+{
+  "utc": "2026-11-04T00:10:11.711634+00:00",
+  "attempts": {
+    "v3-cancel-fault-1-fault.json": {
+      "sha256": "6ba5f1993a672aa4eab9ffb2d1104c07d37da453ccfa006bab1a48f5b55c2269",
+      "actual_overlap": true,
+      "error": null,
+      "old_callback_result": {
+        "completed": false
+      },
+      "old_callback_canonical_unchanged": true,
+      "recovered_job": null,
+      "cancelled_job": {
+        "attempts": 1,
+        "created_at": 1793750177,
+        "error_code": null,
+        "id": "bc3a8ff1c930f0f278cd3e15c2f43677ad15452eea5c10de5be7f71e8607af9f",
+        "state": "cancelled",
+        "updated_at": 1793750178
+      }
+    },
+    "v3-restart-fault-1-fault.json": {
+      "sha256": "cc9dea3f6d313cf2380aaf11134a423f5a5f5ffa38572b09cd6e05381b237e9f",
+      "actual_overlap": true,
+      "error": "Error: spawnSync pwsh ETIMEDOUT",
+      "old_callback_result": null,
+      "old_callback_canonical_unchanged": null,
+      "recovered_job": null,
+      "cancelled_job": null
+    },
+    "v3-restart-fault-2-fault.json": {
+      "sha256": "fe848fb8cffe8798cef1c9d22a4cbdee6b7dd058e8da65569c3aabf0b1b62b0c",
+      "actual_overlap": true,
+      "error": "Error: spawnSync pwsh ETIMEDOUT",
+      "old_callback_result": null,
+      "old_callback_canonical_unchanged": null,
+      "recovered_job": null,
+      "cancelled_job": null
+    },
+    "v3-restart-fault-3-fault.json": {
+      "sha256": "dd9db88bef97e48cb913d8fc02a0dc535cde69acbfe4d497b4affb861deabc2d",
+      "actual_overlap": true,
+      "error": null,
+      "old_callback_result": {
+        "completed": false
+      },
+      "old_callback_canonical_unchanged": true,
+      "recovered_job": {
+        "attempts": 2,
+        "created_at": 1793750516,
+        "error_code": null,
+        "id": "2736729886b7f2be8e3f1604ccbe72f1aea112a91c0fcef8c24da382463dc9fc",
+        "state": "done",
+        "updated_at": 1793750551
+      },
+      "cancelled_job": null
+    }
+  },
+  "cancel_late_write_fence_proven": true,
+  "restart_late_write_fence_proven_on_attempt": 3,
+  "restart_fresh_probe": {
+    "tp": 1,
+    "fp": 0,
+    "missed": 0,
+    "critical_references": 0,
+    "natural_points": 4,
+    "natural_applicable": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "naturalness": 1.0
+  },
+  "instrumentation_note": "First two attempts recovered native jobs but synchronous Node-to-PowerShell launcher timed out; not counted as successful complete tests. Third used file-redirected Python launcher. Timing/controller retries are not independent quality samples.",
+  "encoding_note": "The additional restart fresh probe contains preserved mojibake in the literal Qual é text; source extraction text read from frozen lifecycle JSON is correct UTF-8. The actual recorded question was still understood and retrieved Portuguese preference; no claim of general Portuguese input-quality validation."
+}

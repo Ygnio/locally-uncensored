@@ -1,0 +1,607 @@
+{
+  "fixture": "driver-heldout-v3-long20-final.json",
+  "scope": "phase22-long-heldout-v3",
+  "project": "candeia",
+  "totals": {
+    "tp": 10,
+    "fp": 0,
+    "missed": 0,
+    "critical_references": 0,
+    "natural_points": 36,
+    "natural_applicable": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "naturalness": 1.0
+  },
+  "categories": {
+    "language": {
+      "n": 1,
+      "tp": 3,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 3,
+      "natural_applicable": 3
+    },
+    "coffee_sugar": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    },
+    "games_tactics": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    },
+    "communication_style": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    },
+    "interface_theme": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    },
+    "ram_capacity": {
+      "n": 2,
+      "tp": 2,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 6,
+      "natural_applicable": 6
+    },
+    "goal": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 3,
+      "natural_applicable": 3
+    },
+    "irrelevant": {
+      "n": 1,
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    },
+    "scope_fence": {
+      "n": 1,
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    }
+  },
+  "samples": [
+    {
+      "id": "heldout-v3-long20-probe-01",
+      "question": "Como está ficando aquele projeto?",
+      "category": "language",
+      "gold": [
+        {
+          "property": "language",
+          "value": "typescript",
+          "temporal": "planned"
+        },
+        {
+          "property": "database",
+          "value": "postgresql",
+          "temporal": "planned"
+        },
+        {
+          "property": "description"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "1d4c5b92-1302-60ba-4fe2-eb54d92fbd84",
+          "version": 2,
+          "kind": "decision",
+          "content": "Projeto candeia: planeja usar postgresql como banco de dados."
+        },
+        {
+          "id": "a973965a-3939-9789-4ac6-94d1f100be5c",
+          "version": 2,
+          "kind": "project",
+          "content": "Estou começando um projeto de controle de luminosidade"
+        },
+        {
+          "id": "2f77aca4-a64a-0fab-a170-85f5bee19ea3",
+          "version": 2,
+          "kind": "decision",
+          "content": "Projeto candeia: planeja usar linguagem typescript."
+        }
+      ],
+      "provenance": {
+        "1d4c5b92-1302-60ba-4fe2-eb54d92fbd84": [
+          {
+            "at": 1793748724,
+            "evidence": "Quero usar TypeScript e PostgreSQL",
+            "interaction_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+          }
+        ],
+        "a973965a-3939-9789-4ac6-94d1f100be5c": [
+          {
+            "at": 1793748724,
+            "evidence": "Estou começando um projeto de controle de luminosidade",
+            "interaction_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+          }
+        ],
+        "2f77aca4-a64a-0fab-a170-85f5bee19ea3": [
+          {
+            "at": 1793748724,
+            "evidence": "Quero usar TypeScript e PostgreSQL",
+            "interaction_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+          }
+        ]
+      },
+      "tp": 3,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "O projeto de controle de luminosidade (Projeto Candeia) está sendo desenvolvido usando TypeScript e terá o PostgreSQL como banco de dados.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 28,
+        "prompt_tokens": 704,
+        "total_tokens": 732,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long20-probe-02",
+      "question": "Should I sweeten my morning coffee?",
+      "category": "coffee_sugar",
+      "gold": [
+        {
+          "property": "coffee_sugar",
+          "value": "with_sugar"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "3749730b-c8fe-7340-c924-c1ebff3eeb56",
+          "version": 1,
+          "kind": "preference",
+          "content": "Prefere café com açúcar."
+        }
+      ],
+      "provenance": {
+        "3749730b-c8fe-7340-c924-c1ebff3eeb56": [
+          {
+            "at": 1793748687,
+            "evidence": "Nos meus intervalos, eu prefiro café com açúcar",
+            "interaction_id": "76a1e159dfc24414a25b2000985c64f1cd275619c84d44e60f198ef92bd2cde6"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Sim, você deve adoçar seu café, já que você prefere café com açúcar.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 19,
+        "prompt_tokens": 3439,
+        "total_tokens": 3458,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "no_repeated_preference": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long20-probe-03",
+      "question": "Que tipo de RPG combina com o meu gosto?",
+      "category": "games_tactics",
+      "gold": [
+        {
+          "property": "games_tactics",
+          "value": "positive"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "a0ed5509-a75f-6ff9-81c5-52db44696759",
+          "version": 2,
+          "kind": "preference",
+          "content": "Gosta de jogos táticos por turnos (classes, RPG)."
+        }
+      ],
+      "provenance": {
+        "a0ed5509-a75f-6ff9-81c5-52db44696759": [
+          {
+            "at": 1793748708,
+            "evidence": "Para jogar no tempo livre, eu curto RPG tático com classes",
+            "interaction_id": "6f29bf60fce637fcf74d79623e10d28afcb646d4bea5eb7787493fdea99610ed"
+          },
+          {
+            "at": 1793748763,
+            "evidence": "Nas minhas partidas eu prefiro RPGs com combate tático",
+            "interaction_id": "c295f90a5570a0903ea9f29c3886887ec48acdad8895af19269d97c732cc6893"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Jogos de RPG táticos por turnos, como *Final Fantasy Tactics* ou *Fire Emblem*, combinam perfeitamente com o seu gosto. Eles exploram profundamente as classes e a estratégia de posicionamento que você aprecia.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 48,
+        "prompt_tokens": 596,
+        "total_tokens": 644,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "no_repeated_preference": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long20-probe-04",
+      "question": "Como você deve explicar um conceito para mim?",
+      "category": "communication_style",
+      "gold": [
+        {
+          "property": "communication_style",
+          "value": "detailed"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "b89b2775-f92d-5a36-cc4e-a271871b8974",
+          "version": 1,
+          "kind": "preference",
+          "content": "No meu aprendizado, eu gosto de explicações detalhadas"
+        }
+      ],
+      "provenance": {
+        "b89b2775-f92d-5a36-cc4e-a271871b8974": [
+          {
+            "at": 1793748700,
+            "evidence": "No meu aprendizado, eu gosto de explicações detalhadas",
+            "interaction_id": "1b0701351339a98a7f5822037193b31daab8584c3efa332540de2703ef05e6d1"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Como você gosta de explicações detalhadas, devo fornecer uma análise profunda e completa de cada conceito. Isso inclui explorar nuances, exemplos práticos e as conexões entre diferentes partes do assunto.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 39,
+        "prompt_tokens": 596,
+        "total_tokens": 635,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "no_repeated_preference": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long20-probe-05",
+      "question": "Qual é minha preferência de tema de interface?",
+      "category": "interface_theme",
+      "gold": [
+        {
+          "property": "interface_theme",
+          "value": "light"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "372fd95f-ab92-4139-d745-97a9d1e0ed5b",
+          "version": 1,
+          "kind": "preference",
+          "content": "Para a interface do meu dia a dia, eu prefiro modo claro"
+        }
+      ],
+      "provenance": {
+        "372fd95f-ab92-4139-d745-97a9d1e0ed5b": [
+          {
+            "at": 1793748693,
+            "evidence": "Para a interface do meu dia a dia, eu prefiro modo claro",
+            "interaction_id": "2cf7a5fe1cb087b82d5f6c95ad58ce157dba1d0e6c9a8ba3f9a2917092640ee2"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Sua preferência de interface é o modo claro.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 12,
+        "prompt_tokens": 597,
+        "total_tokens": 609,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "no_repeated_preference": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long20-probe-06",
+      "question": "How much RAM does my work laptop have?",
+      "category": "ram_capacity",
+      "gold": [
+        {
+          "property": "ram_capacity",
+          "value": "18_gb",
+          "subject": "device.work_laptop"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "2ac52506-acba-fd3d-e8a3-df97a4b48fdf",
+          "version": 2,
+          "kind": "hardware",
+          "content": "Meu notebook de trabalho tem 18 GB de RAM"
+        }
+      ],
+      "provenance": {
+        "2ac52506-acba-fd3d-e8a3-df97a4b48fdf": [
+          {
+            "at": 1793748745,
+            "evidence": "Meu notebook de trabalho tem 18 GB de RAM",
+            "interaction_id": "3382549c43e7df29b97a2b04bae1a9354f1d9660e0ad6de736596ee0f2ba6366"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Seu notebook de trabalho tem 18 GB de RAM.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 14,
+        "prompt_tokens": 2789,
+        "total_tokens": 2803,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long20-probe-07",
+      "question": "Qual é a RAM do meu computador principal?",
+      "category": "ram_capacity",
+      "gold": [
+        {
+          "property": "ram_capacity",
+          "value": "26_gb",
+          "subject": "device.primary_computer"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "c0b38f14-c17a-c793-d61b-0ecbe7bc1b2a",
+          "version": 2,
+          "kind": "hardware",
+          "content": "Meu computador principal tem 26 GB de RAM"
+        }
+      ],
+      "provenance": {
+        "c0b38f14-c17a-c793-d61b-0ecbe7bc1b2a": [
+          {
+            "at": 1793748736,
+            "evidence": "Meu computador principal tem 26 GB de RAM",
+            "interaction_id": "8348abd9c1cc4fe960f7b6767bad48543eb142037bb1a4aae6d3df0169d4c225"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Seu computador principal tem 26 GB de RAM.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 13,
+        "prompt_tokens": 592,
+        "total_tokens": 605,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long20-probe-08",
+      "question": "Qual é meu objetivo atual sobre circuitos elétricos básicos?",
+      "category": "goal",
+      "gold": [
+        {
+          "property": "goal.",
+          "subject": "user",
+          "temporal": "durable"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "3719530e-3466-0277-e86f-0cb43d19cff6",
+          "version": 2,
+          "kind": "goal",
+          "content": "Quero aprender circuitos elétricos básicos"
+        }
+      ],
+      "provenance": {
+        "3719530e-3466-0277-e86f-0cb43d19cff6": [
+          {
+            "at": 1793748754,
+            "evidence": "Quero aprender circuitos elétricos básicos",
+            "interaction_id": "3e97dedc2e990c0536bf17f16f6669e6dec4b25092ef8b7667ff132662b7adc6"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Seu objetivo atual é aprender circuitos elétricos básicos.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 13,
+        "prompt_tokens": 594,
+        "total_tokens": 607,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long20-probe-09",
+      "question": "Qual é a capital da Argentina?",
+      "category": "irrelevant",
+      "gold": [],
+      "actual_references": [],
+      "provenance": {},
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "A capital da Argentina é Buenos Aires.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 9,
+        "prompt_tokens": 514,
+        "total_tokens": 523,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "irrelevant_uncontaminated": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long20-probe-10",
+      "question": "Qual banco está planejado no projeto candeia2?",
+      "category": "scope_fence",
+      "gold": [],
+      "actual_references": [],
+      "provenance": {},
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Até o momento, não há informações específicas sobre qual banco está planejado no projeto Candeia2.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 23,
+        "prompt_tokens": 519,
+        "total_tokens": 542,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "irrelevant_uncontaminated": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    }
+  ],
+  "review_pending": false,
+  "notes": [
+    "Context metrics score actual injected references, never an answer guessed without memory.",
+    "Forbidden mentions require literal review to distinguish obsolete-as-current from legitimate history/negation. Preliminary automatic rubric remains conservative.",
+    "Fewer than five examples per category: counts only; no generalization from percentages."
+  ]
+}

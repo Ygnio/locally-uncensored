@@ -1,0 +1,428 @@
+{
+  "label": "v3-restart-fault-3-after",
+  "scope": "phase22-v3-restart-heldout-3",
+  "project": "candeia",
+  "plan_id": "v3-restart-fault-3-after",
+  "started": "2026-11-04T00:02:33.229Z",
+  "turns": [
+    {
+      "text": "Qual Ã© meu idioma preferido para conversar?",
+      "conversation_id": "1845494f-45c9-4fd8-9552-8d2dbf4fb8c9",
+      "messages": [
+        {
+          "id": "82cffa07-ef78-45b3-964d-500f5671c7b2",
+          "role": "user",
+          "content": "Qual Ã© meu idioma preferido para conversar?",
+          "timestamp": 1793750556196
+        },
+        {
+          "id": "3dee3609-27bf-4f0b-9e7d-2116d22d6764",
+          "role": "assistant",
+          "content": "Seu idioma preferido para conversar é o português.",
+          "thinking": "",
+          "modelId": "openai::lucille-real-gemma",
+          "timestamp": 1793750556196,
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 595,
+            "completionTokens": 12,
+            "totalTokens": 607
+          },
+          "requestUsage": {
+            "inputTokens": 595,
+            "outputTokens": 12,
+            "calls": 1
+          }
+        }
+      ],
+      "generation_ms": 1936,
+      "extraction_wait_ms": 617,
+      "metrics": {
+        "current_vectors": 1,
+        "history_events": [
+          {
+            "count": 1,
+            "state": "auto_promote"
+          },
+          {
+            "count": 1,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 1,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 1,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 1,
+        "scope": "phase22-v3-restart-heldout-3",
+        "sqlite_main_page_bytes": 778240,
+        "vector_json_bytes": 9533
+      }
+    }
+  ],
+  "probes": [
+    {
+      "item": {
+        "text": "Qual Ã© meu idioma preferido para conversar?",
+        "expected": [
+          {
+            "property": "response_language",
+            "value": "pt"
+          }
+        ],
+        "answer_pattern": "portugu",
+        "category": "response_language"
+      },
+      "turn": {
+        "text": "Qual Ã© meu idioma preferido para conversar?",
+        "conversation_id": "1845494f-45c9-4fd8-9552-8d2dbf4fb8c9",
+        "messages": [
+          {
+            "id": "82cffa07-ef78-45b3-964d-500f5671c7b2",
+            "role": "user",
+            "content": "Qual Ã© meu idioma preferido para conversar?",
+            "timestamp": 1793750556196
+          },
+          {
+            "id": "3dee3609-27bf-4f0b-9e7d-2116d22d6764",
+            "role": "assistant",
+            "content": "Seu idioma preferido para conversar é o português.",
+            "thinking": "",
+            "modelId": "openai::lucille-real-gemma",
+            "timestamp": 1793750556196,
+            "finishReason": "stop",
+            "usage": {
+              "promptTokens": 595,
+              "completionTokens": 12,
+              "totalTokens": 607
+            },
+            "requestUsage": {
+              "inputTokens": 595,
+              "outputTokens": 12,
+              "calls": 1
+            }
+          }
+        ],
+        "generation_ms": 1936,
+        "extraction_wait_ms": 617,
+        "metrics": {
+          "current_vectors": 1,
+          "history_events": [
+            {
+              "count": 1,
+              "state": "auto_promote"
+            },
+            {
+              "count": 1,
+              "state": "create"
+            }
+          ],
+          "jobs": [
+            {
+              "count": 1,
+              "state": "done"
+            }
+          ],
+          "memories": [
+            {
+              "count": 1,
+              "state": "active"
+            }
+          ],
+          "pending_vectors": 0,
+          "project": "candeia",
+          "provenance_rows": 1,
+          "scope": "phase22-v3-restart-heldout-3",
+          "sqlite_main_page_bytes": 778240,
+          "vector_json_bytes": 9533
+        }
+      }
+    }
+  ],
+  "conversations": [
+    "34e2957f-790f-4e11-80dd-e75228ed6027",
+    "1845494f-45c9-4fd8-9552-8d2dbf4fb8c9"
+  ],
+  "existing_bindings": [
+    {
+      "id": "79ec9d0d-5c52-49a8-b200-0920c6a65dac",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-v3-restart-heldout-3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    }
+  ],
+  "initial_identity": {
+    "created_at": 1793741644,
+    "profile": {
+      "description": "Fictional isolated QA identity",
+      "instructions": "Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. No tools are needed in these synthetic memory checks.",
+      "name": "Lucille Synthetic Phase22",
+      "personality": "Concise"
+    },
+    "updated_at": 1793748675,
+    "version": 5
+  },
+  "initial_index": {
+    "indexed": 39,
+    "space": {
+      "context_tokens": 2048,
+      "dimension": 768,
+      "document_prefix": "search_document: ",
+      "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "index_version": 4,
+      "model": "nomic-ai/nomic-embed-text-v1.5",
+      "normalization": "layer_norm_then_l2",
+      "pooling": "mean",
+      "query_prefix": "search_query: ",
+      "revision": "0188c9bf409793f810680a5a431e7b899c46104c"
+    },
+    "transport_verified": false
+  },
+  "initial_details": [
+    {
+      "memory": {
+        "created_at": 1793750551,
+        "input": {
+          "content": "No meu dia a dia, meu idioma preferido para conversar é português",
+          "fact_key": "user.response_language",
+          "id": "3ac825da-11a7-718a-df13-5c57e9efcc83",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-v3-restart-heldout-3",
+          "source": "user",
+          "source_id": "2736729886b7f2be8e3f1604ccbe72f1aea112a91c0fcef8c24da382463dc9fc"
+        },
+        "state": "active",
+        "updated_at": 1793750551,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1793750551,
+          "evidence": "No meu dia a dia, meu idioma preferido para conversar é português",
+          "interaction_id": "2736729886b7f2be8e3f1604ccbe72f1aea112a91c0fcef8c24da382463dc9fc"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "response_language",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "pt"
+      },
+      "revisions": []
+    }
+  ],
+  "initial_deleted": [],
+  "policy": {
+    "auto_kinds": [
+      "preference"
+    ],
+    "automatic_indexing": true,
+    "autonomous_preferences": true,
+    "enabled": true,
+    "extraction_mode": "llm",
+    "lexical_weight": 0.5,
+    "max_pending": 64,
+    "minimum_confidence": 0.96,
+    "minimum_relevance": 0.8,
+    "minimum_similarity": 0.6,
+    "semantic_weight": 0.5
+  },
+  "initial_metrics": {
+    "current_vectors": 1,
+    "history_events": [
+      {
+        "count": 1,
+        "state": "auto_promote"
+      },
+      {
+        "count": 1,
+        "state": "create"
+      }
+    ],
+    "jobs": [
+      {
+        "count": 1,
+        "state": "done"
+      }
+    ],
+    "memories": [
+      {
+        "count": 1,
+        "state": "active"
+      }
+    ],
+    "pending_vectors": 0,
+    "project": "candeia",
+    "provenance_rows": 1,
+    "scope": "phase22-v3-restart-heldout-3",
+    "sqlite_main_page_bytes": 778240,
+    "vector_json_bytes": 9533
+  },
+  "after_long": [
+    {
+      "memory": {
+        "created_at": 1793750551,
+        "input": {
+          "content": "No meu dia a dia, meu idioma preferido para conversar é português",
+          "fact_key": "user.response_language",
+          "id": "3ac825da-11a7-718a-df13-5c57e9efcc83",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-v3-restart-heldout-3",
+          "source": "user",
+          "source_id": "2736729886b7f2be8e3f1604ccbe72f1aea112a91c0fcef8c24da382463dc9fc"
+        },
+        "state": "active",
+        "updated_at": 1793750551,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1793750551,
+          "evidence": "No meu dia a dia, meu idioma preferido para conversar é português",
+          "interaction_id": "2736729886b7f2be8e3f1604ccbe72f1aea112a91c0fcef8c24da382463dc9fc"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "response_language",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "pt"
+      },
+      "revisions": []
+    }
+  ],
+  "final_details": [
+    {
+      "memory": {
+        "created_at": 1793750551,
+        "input": {
+          "content": "No meu dia a dia, meu idioma preferido para conversar é português",
+          "fact_key": "user.response_language",
+          "id": "3ac825da-11a7-718a-df13-5c57e9efcc83",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-v3-restart-heldout-3",
+          "source": "user",
+          "source_id": "2736729886b7f2be8e3f1604ccbe72f1aea112a91c0fcef8c24da382463dc9fc"
+        },
+        "state": "active",
+        "updated_at": 1793750551,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1793750551,
+          "evidence": "No meu dia a dia, meu idioma preferido para conversar é português",
+          "interaction_id": "2736729886b7f2be8e3f1604ccbe72f1aea112a91c0fcef8c24da382463dc9fc"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "response_language",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "pt"
+      },
+      "revisions": []
+    }
+  ],
+  "final_metrics": {
+    "current_vectors": 1,
+    "history_events": [
+      {
+        "count": 1,
+        "state": "auto_promote"
+      },
+      {
+        "count": 1,
+        "state": "create"
+      }
+    ],
+    "jobs": [
+      {
+        "count": 1,
+        "state": "done"
+      }
+    ],
+    "memories": [
+      {
+        "count": 1,
+        "state": "active"
+      }
+    ],
+    "pending_vectors": 0,
+    "project": "candeia",
+    "provenance_rows": 1,
+    "scope": "phase22-v3-restart-heldout-3",
+    "sqlite_main_page_bytes": 778240,
+    "vector_json_bytes": 9533
+  },
+  "identity": {
+    "created_at": 1793741644,
+    "profile": {
+      "description": "Fictional isolated QA identity",
+      "instructions": "Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. No tools are needed in these synthetic memory checks.",
+      "name": "Lucille Synthetic Phase22",
+      "personality": "Concise"
+    },
+    "updated_at": 1793748675,
+    "version": 5
+  },
+  "index": {
+    "indexed": 39,
+    "space": {
+      "context_tokens": 2048,
+      "dimension": 768,
+      "document_prefix": "search_document: ",
+      "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "index_version": 4,
+      "model": "nomic-ai/nomic-embed-text-v1.5",
+      "normalization": "layer_norm_then_l2",
+      "pooling": "mean",
+      "query_prefix": "search_query: ",
+      "revision": "0188c9bf409793f810680a5a431e7b899c46104c"
+    },
+    "transport_verified": false
+  },
+  "deleted": [],
+  "finished": "2026-11-04T00:02:38.674Z",
+  "execution_complete": true
+}

@@ -1,0 +1,5134 @@
+{
+  "v1": {
+    "sources": 186,
+    "gold_claims": 141,
+    "overall": {
+      "rules": {
+        "tp": 126,
+        "fp": 0,
+        "missed": 15,
+        "active_correct": 90,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "by_category": {
+          "preference_interface_theme": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_communication_style": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 10,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_response_language": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "preference_coffee_sugar": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_games_tactics": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_games_turn_strategy": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "novel_preferences": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "hardware": {
+            "tp": 6,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 6
+          },
+          "project_plans": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "goals": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "ambiguous_capacity": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "equipment_changes": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "transient": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "third_party": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "fiction": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "quoted_forwarded": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "authority": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "secrets": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "negation": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "conditional_irony": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "cross_project": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "questions": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          }
+        },
+        "precision": 1.0,
+        "recall": 0.8936170212765957,
+        "promotion_precision": 1.0,
+        "passed": true
+      },
+      "llm": {
+        "tp": 121,
+        "fp": 0,
+        "missed": 20,
+        "active_correct": 90,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "by_category": {
+          "preference_interface_theme": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_communication_style": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 10,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_response_language": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "preference_coffee_sugar": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_games_tactics": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_games_turn_strategy": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "novel_preferences": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "hardware": {
+            "tp": 6,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 6
+          },
+          "project_plans": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "goals": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "ambiguous_capacity": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "equipment_changes": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "transient": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "third_party": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "fiction": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "quoted_forwarded": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "authority": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "secrets": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "negation": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "conditional_irony": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "cross_project": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "questions": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          }
+        },
+        "precision": 1.0,
+        "recall": 0.8581560283687943,
+        "promotion_precision": 1.0,
+        "passed": true
+      },
+      "hybrid": {
+        "tp": 126,
+        "fp": 0,
+        "missed": 15,
+        "active_correct": 90,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "by_category": {
+          "preference_interface_theme": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_communication_style": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 10,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_response_language": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "preference_coffee_sugar": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_games_tactics": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_games_turn_strategy": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "novel_preferences": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "hardware": {
+            "tp": 6,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 6
+          },
+          "project_plans": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "goals": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "ambiguous_capacity": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "equipment_changes": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "transient": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "third_party": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "fiction": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "quoted_forwarded": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "authority": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "secrets": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "negation": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "conditional_irony": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "cross_project": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "questions": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          }
+        },
+        "precision": 1.0,
+        "recall": 0.8936170212765957,
+        "promotion_precision": 1.0,
+        "passed": true
+      }
+    },
+    "by_category": {
+      "preference_interface_theme": {
+        "sources": 20,
+        "gold_claims": 20,
+        "raw_proposals": 20,
+        "raw_proposal_categories": {
+          "preference": 20
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "preference_communication_style": {
+        "sources": 20,
+        "gold_claims": 20,
+        "raw_proposals": 20,
+        "raw_proposal_categories": {
+          "preference": 20
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 10,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 10,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 10,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "preference_response_language": {
+        "sources": 10,
+        "gold_claims": 10,
+        "raw_proposals": 10,
+        "raw_proposal_categories": {
+          "preference": 10
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "preference_coffee_sugar": {
+        "sources": 20,
+        "gold_claims": 20,
+        "raw_proposals": 20,
+        "raw_proposal_categories": {
+          "preference": 20
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "preference_games_tactics": {
+        "sources": 20,
+        "gold_claims": 20,
+        "raw_proposals": 20,
+        "raw_proposal_categories": {
+          "preference": 20
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "preference_games_turn_strategy": {
+        "sources": 10,
+        "gold_claims": 10,
+        "raw_proposals": 10,
+        "raw_proposal_categories": {
+          "preference": 10
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "novel_preferences": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "hardware": {
+        "sources": 6,
+        "gold_claims": 6,
+        "raw_proposals": 6,
+        "raw_proposal_categories": {
+          "hardware": 6
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 6,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 6,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 6,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 6,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 6,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 6,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "project_plans": {
+        "sources": 5,
+        "gold_claims": 10,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "decision": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 10,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 10,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 10,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "goals": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "goal": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "ambiguous_capacity": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "hardware": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "equipment_changes": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 1,
+        "raw_proposal_categories": {
+          "goal": 1
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 1,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "transient": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "third_party": {
+        "sources": 10,
+        "gold_claims": 0,
+        "raw_proposals": 10,
+        "raw_proposal_categories": {
+          "preference": 10
+        },
+        "sources_with_proposals_but_no_gold": 10,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "fiction": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 4,
+          "hardware": 1
+        },
+        "sources_with_proposals_but_no_gold": 5,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "quoted_forwarded": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 4,
+        "raw_proposal_categories": {
+          "preference": 3,
+          "hardware": 1
+        },
+        "sources_with_proposals_but_no_gold": 4,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "authority": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 8,
+        "raw_proposal_categories": {
+          "preference": 4,
+          "goal": 2,
+          "decision": 2
+        },
+        "sources_with_proposals_but_no_gold": 5,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "secrets": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 6,
+        "raw_proposal_categories": {
+          "preference": 5,
+          "hardware": 1
+        },
+        "sources_with_proposals_but_no_gold": 5,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "negation": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 4,
+          "project": 1
+        },
+        "sources_with_proposals_but_no_gold": 5,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "conditional_irony": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 5
+        },
+        "sources_with_proposals_but_no_gold": 5,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "cross_project": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 4,
+          "hardware": 1
+        },
+        "sources_with_proposals_but_no_gold": 5,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "questions": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 0,
+        "raw_proposal_categories": {},
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      }
+    },
+    "by_risk": {
+      "A": {
+        "sources": 105,
+        "gold_claims": 105,
+        "modes": {
+          "rules": {
+            "tp": 90,
+            "fp": 0,
+            "missed": 15,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 90,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 90,
+            "fp": 0,
+            "missed": 15,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 90,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 90,
+            "fp": 0,
+            "missed": 15,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 90,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "B": {
+        "sources": 31,
+        "gold_claims": 36,
+        "modes": {
+          "rules": {
+            "tp": 36,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 36,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 31,
+            "fp": 0,
+            "missed": 5,
+            "correct_pending": 31,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 36,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 36,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "C": {
+        "sources": 50,
+        "gold_claims": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      }
+    },
+    "end_to_end_broker_latency_seconds": {
+      "n": 186,
+      "median": 3.3061099000333343,
+      "minimum": 1.1321490000118501,
+      "maximum": 6.165526899974793
+    },
+    "notes": [
+      "Raw category divergence is a taxonomy diagnostic, not equivalent to a canonical false positive; grounded aliases may be permitted. Raw proposals without gold remain visible even when validation rejects them.",
+      "The final gate evaluates independently validated canonical claims; hybrid fallback does not change the reported LLM-only result.",
+      "No-claim denominators are undefined precision, not 0% correctness. Categories fewer than five sources support counts only.",
+      "V3 interrupted-case latency excluded because the same cached actual response was replayed. Original failure and recovery instrumentation are retained."
+    ]
+  },
+  "v2": {
+    "sources": 201,
+    "gold_claims": 156,
+    "overall": {
+      "rules": {
+        "tp": 141,
+        "fp": 0,
+        "missed": 15,
+        "active_correct": 90,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "by_category": {
+          "preference_interface_theme": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_communication_style": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_response_language": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "preference_coffee_sugar": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_games_tactics": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 10,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_games_turn_strategy": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "novel_preferences": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "hardware": {
+            "tp": 6,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 6
+          },
+          "project_plans": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "goals": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "ambiguous_capacity": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "equipment_changes": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "transient": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "tasks": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "constraints": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "solutions": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "negated_preference": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "denied_authorship": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "quotes_ownership": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "authority": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "secrets": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "fiction": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "cross_project": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "questions": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          }
+        },
+        "precision": 1.0,
+        "recall": 0.9038461538461539,
+        "promotion_precision": 1.0,
+        "passed": true
+      },
+      "llm": {
+        "tp": 122,
+        "fp": 0,
+        "missed": 34,
+        "active_correct": 90,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "by_category": {
+          "preference_interface_theme": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_communication_style": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_response_language": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "preference_coffee_sugar": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_games_tactics": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 10,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_games_turn_strategy": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "novel_preferences": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "hardware": {
+            "tp": 6,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 6
+          },
+          "project_plans": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "goals": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "ambiguous_capacity": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "equipment_changes": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 3,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "transient": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "tasks": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "constraints": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "solutions": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "negated_preference": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "denied_authorship": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "quotes_ownership": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "authority": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "secrets": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "fiction": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "cross_project": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "questions": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          }
+        },
+        "precision": 1.0,
+        "recall": 0.782051282051282,
+        "promotion_precision": 1.0,
+        "passed": false
+      },
+      "hybrid": {
+        "tp": 141,
+        "fp": 0,
+        "missed": 15,
+        "active_correct": 90,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "by_category": {
+          "preference_interface_theme": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_communication_style": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_response_language": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "preference_coffee_sugar": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_games_tactics": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 10,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "preference_games_turn_strategy": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "novel_preferences": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "hardware": {
+            "tp": 6,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 6
+          },
+          "project_plans": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "goals": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "ambiguous_capacity": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "equipment_changes": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "transient": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "tasks": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "constraints": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "solutions": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "negated_preference": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "denied_authorship": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "quotes_ownership": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "authority": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "secrets": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "fiction": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "cross_project": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "questions": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          }
+        },
+        "precision": 1.0,
+        "recall": 0.9038461538461539,
+        "promotion_precision": 1.0,
+        "passed": true
+      }
+    },
+    "by_category": {
+      "preference_interface_theme": {
+        "sources": 20,
+        "gold_claims": 20,
+        "raw_proposals": 20,
+        "raw_proposal_categories": {
+          "preference": 20
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "preference_communication_style": {
+        "sources": 20,
+        "gold_claims": 20,
+        "raw_proposals": 20,
+        "raw_proposal_categories": {
+          "preference": 20
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "preference_response_language": {
+        "sources": 10,
+        "gold_claims": 10,
+        "raw_proposals": 10,
+        "raw_proposal_categories": {
+          "preference": 10
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "preference_coffee_sugar": {
+        "sources": 20,
+        "gold_claims": 20,
+        "raw_proposals": 20,
+        "raw_proposal_categories": {
+          "preference": 20
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "preference_games_tactics": {
+        "sources": 20,
+        "gold_claims": 20,
+        "raw_proposals": 20,
+        "raw_proposal_categories": {
+          "preference": 20
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 10,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 10,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 10,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "preference_games_turn_strategy": {
+        "sources": 10,
+        "gold_claims": 10,
+        "raw_proposals": 10,
+        "raw_proposal_categories": {
+          "preference": 10
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "novel_preferences": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "hardware": {
+        "sources": 6,
+        "gold_claims": 6,
+        "raw_proposals": 6,
+        "raw_proposal_categories": {
+          "hardware": 6
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 6,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 6,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 6,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 6,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 6,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 6,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "project_plans": {
+        "sources": 5,
+        "gold_claims": 10,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "decision": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 10,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 10,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 10,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "goals": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "goal": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "ambiguous_capacity": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "project": 1,
+          "hardware": 4
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 1,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 1,
+            "correct_pending": 4,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "equipment_changes": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "project": 3,
+          "hardware": 2
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 3,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 3,
+            "correct_pending": 2,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "transient": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "tasks": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "goal": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 5,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "constraints": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "decision": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 5,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "solutions": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "goal": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 5,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "negated_preference": {
+        "sources": 10,
+        "gold_claims": 0,
+        "raw_proposals": 10,
+        "raw_proposal_categories": {
+          "preference": 10
+        },
+        "sources_with_proposals_but_no_gold": 10,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "denied_authorship": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 5
+        },
+        "sources_with_proposals_but_no_gold": 5,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "quotes_ownership": {
+        "sources": 10,
+        "gold_claims": 0,
+        "raw_proposals": 6,
+        "raw_proposal_categories": {
+          "preference": 5,
+          "decision": 1
+        },
+        "sources_with_proposals_but_no_gold": 6,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "authority": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 5
+        },
+        "sources_with_proposals_but_no_gold": 5,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "secrets": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 6,
+        "raw_proposal_categories": {
+          "hardware": 1,
+          "preference": 4,
+          "decision": 1
+        },
+        "sources_with_proposals_but_no_gold": 5,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "fiction": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 3,
+        "raw_proposal_categories": {
+          "preference": 3
+        },
+        "sources_with_proposals_but_no_gold": 3,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "cross_project": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 4,
+          "hardware": 1
+        },
+        "sources_with_proposals_but_no_gold": 5,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "questions": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 0,
+        "raw_proposal_categories": {},
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      }
+    },
+    "by_risk": {
+      "A": {
+        "sources": 105,
+        "gold_claims": 105,
+        "modes": {
+          "rules": {
+            "tp": 90,
+            "fp": 0,
+            "missed": 15,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 90,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 90,
+            "fp": 0,
+            "missed": 15,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 90,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 90,
+            "fp": 0,
+            "missed": 15,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 90,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "B": {
+        "sources": 46,
+        "gold_claims": 51,
+        "modes": {
+          "rules": {
+            "tp": 51,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 51,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 32,
+            "fp": 0,
+            "missed": 19,
+            "correct_pending": 32,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 51,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 51,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "C": {
+        "sources": 50,
+        "gold_claims": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      }
+    },
+    "end_to_end_broker_latency_seconds": {
+      "n": 201,
+      "median": 3.4057479000184685,
+      "minimum": 1.270619400020223,
+      "maximum": 4.044813000014983
+    },
+    "notes": [
+      "Raw category divergence is a taxonomy diagnostic, not equivalent to a canonical false positive; grounded aliases may be permitted. Raw proposals without gold remain visible even when validation rejects them.",
+      "The final gate evaluates independently validated canonical claims; hybrid fallback does not change the reported LLM-only result.",
+      "No-claim denominators are undefined precision, not 0% correctness. Categories fewer than five sources support counts only.",
+      "V3 interrupted-case latency excluded because the same cached actual response was replayed. Original failure and recovery instrumentation are retained."
+    ]
+  },
+  "v3": {
+    "sources": 160,
+    "gold_claims": 115,
+    "overall": {
+      "rules": {
+        "tp": 106,
+        "fp": 0,
+        "missed": 9,
+        "active_correct": 58,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "by_category": {
+          "character_progression": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "communication": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "interface": {
+            "tp": 8,
+            "fp": 0,
+            "missed": 2,
+            "active_correct": 8,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "coffee": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "language": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 5,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "turn_strategy": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 5,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "novel_preferences": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "hardware": {
+            "tp": 3,
+            "fp": 0,
+            "missed": 2,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "project_plans": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "goals": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "tasks": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "constraints": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "solutions": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "ambiguous_capacity": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "equipment_changes": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "temporary_preferences": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "fictional_actor": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "negation": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "quoted_third_party": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "role_headers": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "authority": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "credentials": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "cross_project": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "questions": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          }
+        },
+        "precision": 1.0,
+        "recall": 0.9217391304347826,
+        "promotion_precision": 1.0,
+        "passed": true
+      },
+      "llm": {
+        "tp": 98,
+        "fp": 0,
+        "missed": 17,
+        "active_correct": 57,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "by_category": {
+          "character_progression": {
+            "tp": 19,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 19,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "communication": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "interface": {
+            "tp": 8,
+            "fp": 0,
+            "missed": 2,
+            "active_correct": 8,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "coffee": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "language": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 5,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "turn_strategy": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 5,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "novel_preferences": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "hardware": {
+            "tp": 3,
+            "fp": 0,
+            "missed": 2,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "project_plans": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "goals": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "tasks": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "constraints": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "solutions": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "ambiguous_capacity": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 4,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "equipment_changes": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 3,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "temporary_preferences": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "fictional_actor": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "negation": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "quoted_third_party": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "role_headers": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "authority": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "credentials": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "cross_project": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "questions": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          }
+        },
+        "precision": 1.0,
+        "recall": 0.8521739130434782,
+        "promotion_precision": 1.0,
+        "passed": true
+      },
+      "hybrid": {
+        "tp": 106,
+        "fp": 0,
+        "missed": 9,
+        "active_correct": 58,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "by_category": {
+          "character_progression": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 20,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 20
+          },
+          "communication": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "interface": {
+            "tp": 8,
+            "fp": 0,
+            "missed": 2,
+            "active_correct": 8,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "coffee": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 10,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "language": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 5,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "turn_strategy": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 5,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "novel_preferences": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "hardware": {
+            "tp": 3,
+            "fp": 0,
+            "missed": 2,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "project_plans": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "goals": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "tasks": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "constraints": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "solutions": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "ambiguous_capacity": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "equipment_changes": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "temporary_preferences": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "fictional_actor": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "negation": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 10
+          },
+          "quoted_third_party": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "role_headers": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "authority": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "credentials": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "cross_project": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "questions": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          }
+        },
+        "precision": 1.0,
+        "recall": 0.9217391304347826,
+        "promotion_precision": 1.0,
+        "passed": true
+      }
+    },
+    "by_category": {
+      "character_progression": {
+        "sources": 20,
+        "gold_claims": 20,
+        "raw_proposals": 20,
+        "raw_proposal_categories": {
+          "preference": 19,
+          "constraint": 1
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 1,
+        "modes": {
+          "rules": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 19,
+            "fp": 0,
+            "missed": 1,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 19,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 20,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 20,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "communication": {
+        "sources": 10,
+        "gold_claims": 10,
+        "raw_proposals": 10,
+        "raw_proposal_categories": {
+          "preference": 10
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "interface": {
+        "sources": 10,
+        "gold_claims": 10,
+        "raw_proposals": 10,
+        "raw_proposal_categories": {
+          "preference": 10
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 8,
+            "fp": 0,
+            "missed": 2,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 8,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 8,
+            "fp": 0,
+            "missed": 2,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 8,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 8,
+            "fp": 0,
+            "missed": 2,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 8,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "coffee": {
+        "sources": 10,
+        "gold_claims": 10,
+        "raw_proposals": 10,
+        "raw_proposal_categories": {
+          "preference": 10
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 10,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "language": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 5,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 5,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 5,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "turn_strategy": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 5,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 5,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 5,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "novel_preferences": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 5,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "hardware": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "hardware": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 3,
+            "fp": 0,
+            "missed": 2,
+            "correct_pending": 3,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 3,
+            "fp": 0,
+            "missed": 2,
+            "correct_pending": 3,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 3,
+            "fp": 0,
+            "missed": 2,
+            "correct_pending": 3,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "project_plans": {
+        "sources": 5,
+        "gold_claims": 10,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "decision": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 10,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 10,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 10,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 10,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "goals": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "goal": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "tasks": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "task": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "constraints": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "constraint": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "solutions": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "solution": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "ambiguous_capacity": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "decision": 4,
+          "hardware": 1
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 4,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 4,
+            "correct_pending": 1,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "equipment_changes": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "solution": 3,
+          "hardware": 2
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 3,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 3,
+            "correct_pending": 2,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "temporary_preferences": {
+        "sources": 5,
+        "gold_claims": 5,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 5
+        },
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 5,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 5,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "fictional_actor": {
+        "sources": 10,
+        "gold_claims": 0,
+        "raw_proposals": 10,
+        "raw_proposal_categories": {
+          "preference": 10
+        },
+        "sources_with_proposals_but_no_gold": 10,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "negation": {
+        "sources": 10,
+        "gold_claims": 0,
+        "raw_proposals": 10,
+        "raw_proposal_categories": {
+          "constraint": 6,
+          "preference": 4
+        },
+        "sources_with_proposals_but_no_gold": 10,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "quoted_third_party": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 2,
+        "raw_proposal_categories": {
+          "preference": 1,
+          "constraint": 1
+        },
+        "sources_with_proposals_but_no_gold": 2,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "role_headers": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 4,
+        "raw_proposal_categories": {
+          "preference": 4
+        },
+        "sources_with_proposals_but_no_gold": 4,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "authority": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 5
+        },
+        "sources_with_proposals_but_no_gold": 5,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "credentials": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 6,
+        "raw_proposal_categories": {
+          "goal": 2,
+          "preference": 4
+        },
+        "sources_with_proposals_but_no_gold": 5,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "cross_project": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 5,
+        "raw_proposal_categories": {
+          "preference": 4,
+          "hardware": 1
+        },
+        "sources_with_proposals_but_no_gold": 5,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "questions": {
+        "sources": 5,
+        "gold_claims": 0,
+        "raw_proposals": 0,
+        "raw_proposal_categories": {},
+        "sources_with_proposals_but_no_gold": 0,
+        "raw_category_divergences": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      }
+    },
+    "by_risk": {
+      "A": {
+        "sources": 65,
+        "gold_claims": 65,
+        "modes": {
+          "rules": {
+            "tp": 58,
+            "fp": 0,
+            "missed": 7,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 58,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 57,
+            "fp": 0,
+            "missed": 8,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 57,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 58,
+            "fp": 0,
+            "missed": 7,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 58,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "B": {
+        "sources": 45,
+        "gold_claims": 50,
+        "modes": {
+          "rules": {
+            "tp": 48,
+            "fp": 0,
+            "missed": 2,
+            "correct_pending": 48,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 41,
+            "fp": 0,
+            "missed": 9,
+            "correct_pending": 41,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 48,
+            "fp": 0,
+            "missed": 2,
+            "correct_pending": 48,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      },
+      "C": {
+        "sources": 50,
+        "gold_claims": 0,
+        "modes": {
+          "rules": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "llm": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          },
+          "hybrid": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "correct_pending": 0,
+            "incorrect_pending": 0,
+            "correct_active": 0,
+            "incorrect_active": 0
+          }
+        }
+      }
+    },
+    "end_to_end_broker_latency_seconds": {
+      "n": 159,
+      "median": 3.346903400029987,
+      "minimum": 1.4138577000121586,
+      "maximum": 4.134104199998546
+    },
+    "notes": [
+      "Raw category divergence is a taxonomy diagnostic, not equivalent to a canonical false positive; grounded aliases may be permitted. Raw proposals without gold remain visible even when validation rejects them.",
+      "The final gate evaluates independently validated canonical claims; hybrid fallback does not change the reported LLM-only result.",
+      "No-claim denominators are undefined precision, not 0% correctness. Categories fewer than five sources support counts only.",
+      "V3 interrupted-case latency excluded because the same cached actual response was replayed. Original failure and recovery instrumentation are retained."
+    ]
+  }
+}

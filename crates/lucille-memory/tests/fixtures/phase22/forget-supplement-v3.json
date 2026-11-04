@@ -1,0 +1,73 @@
+{
+  "id": "phase22-targeted-forget-supplement-v3",
+  "frozen_utc": "2026-11-03T23:52:18.026635+00:00",
+  "parent_freeze_sha256": "e226ecacaeaeed58db03c0fdbc74eda98823691e5fbdaf037af32c8a5427bf84",
+  "evaluated_source_commit": "80d6cc5d506cc4858c246f7ff1e4068fe8d067a0",
+  "design": "Supplementary targeted functional test to inspect fresh-session absence between delete and reviewed re-learning. Authored after earlier V3 observations, before its first execution. Not added to independent extraction/retrieval quality percentages. No code, policy or prompt changes.",
+  "scope": "phase22-v3-forget-fresh",
+  "project": "candeia",
+  "turns": [
+    {
+      "text": "No meu café da manhã, eu prefiro café sem açúcar."
+    },
+    {
+      "text": "Esqueça minha preferência por café."
+    },
+    {
+      "text": "Qual é minha preferência por açúcar no café?",
+      "new_session": true
+    },
+    {
+      "text": "Quanto é 31 menos 12?",
+      "replay_turn_index": 0
+    },
+    {
+      "text": "Quero voltar a registrar minha preferência: eu prefiro café sem açúcar.",
+      "review_preferences": true
+    },
+    {
+      "text": "Como eu prefiro tomar o meu café?",
+      "new_session": true
+    },
+    {
+      "text": "Quanto é 7 mais 8?",
+      "replay_turn_index": 1
+    }
+  ],
+  "probes": [
+    {
+      "text": "Que preferência válida existe agora sobre o açúcar no meu café?",
+      "expected": [
+        {
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        }
+      ],
+      "answer_pattern": "sem açúcar|without sugar",
+      "category": "coffee_sugar"
+    }
+  ],
+  "inline_probe_gold": [
+    {
+      "turn_index": 2,
+      "expected": [],
+      "answer_pattern": "não|not|informa|sei|know|defin",
+      "answer_none": [
+        "prefere café sem açúcar",
+        "prefere café com açúcar"
+      ],
+      "category": "deleted_absent"
+    },
+    {
+      "turn_index": 5,
+      "expected": [
+        {
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        }
+      ],
+      "answer_pattern": "sem açúcar|without sugar",
+      "category": "renewed_current"
+    }
+  ]
+}

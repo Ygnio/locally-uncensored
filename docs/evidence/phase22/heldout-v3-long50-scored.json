@@ -1,0 +1,484 @@
+{
+  "fixture": "driver-heldout-v3-long50-final.json",
+  "scope": "phase22-long-heldout-v3",
+  "project": "candeia2",
+  "totals": {
+    "tp": 8,
+    "fp": 0,
+    "missed": 0,
+    "critical_references": 0,
+    "natural_points": 27,
+    "natural_applicable": 28,
+    "precision": 1.0,
+    "recall": 1.0,
+    "naturalness": 0.9642857142857143
+  },
+  "categories": {
+    "language": {
+      "n": 1,
+      "tp": 3,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 3,
+      "natural_applicable": 3
+    },
+    "database": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 3,
+      "natural_applicable": 3
+    },
+    "coffee_sugar": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    },
+    "interface_theme": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    },
+    "ram_capacity": {
+      "n": 2,
+      "tp": 2,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 6,
+      "natural_applicable": 6
+    },
+    "scope_fence": {
+      "n": 1,
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 3,
+      "natural_applicable": 4
+    },
+    "irrelevant": {
+      "n": 1,
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    }
+  },
+  "samples": [
+    {
+      "id": "heldout-v3-long50-probe-01",
+      "question": "Como está ficando aquele projeto?",
+      "category": "language",
+      "gold": [
+        {
+          "property": "language",
+          "value": "javascript",
+          "temporal": "planned"
+        },
+        {
+          "property": "database",
+          "value": "sqlite",
+          "temporal": "planned"
+        },
+        {
+          "property": "description"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "42cc7c2e-6f11-95c2-df90-7570becd34dd",
+          "version": 2,
+          "kind": "project",
+          "content": "Estou começando um projeto de painel de iluminação residencial"
+        },
+        {
+          "id": "5f6f4506-7b49-bdb8-1550-7292da4d8427",
+          "version": 2,
+          "kind": "decision",
+          "content": "Projeto candeia2: planeja usar sqlite como banco de dados."
+        },
+        {
+          "id": "83f7aa52-5095-48a2-03ba-da708c50dfac",
+          "version": 2,
+          "kind": "decision",
+          "content": "Projeto candeia2: planeja usar linguagem javascript."
+        }
+      ],
+      "provenance": {
+        "42cc7c2e-6f11-95c2-df90-7570becd34dd": [
+          {
+            "at": 1793748858,
+            "evidence": "Estou começando um projeto de painel de iluminação residencial",
+            "interaction_id": "6fafaa487063d19d6fd420d85079e4945b57a4beb810a92ab884a33b1b7c1381"
+          }
+        ],
+        "5f6f4506-7b49-bdb8-1550-7292da4d8427": [
+          {
+            "at": 1793748858,
+            "evidence": "Quero usar JavaScript e SQLite",
+            "interaction_id": "6fafaa487063d19d6fd420d85079e4945b57a4beb810a92ab884a33b1b7c1381"
+          }
+        ],
+        "83f7aa52-5095-48a2-03ba-da708c50dfac": [
+          {
+            "at": 1793748858,
+            "evidence": "Quero usar JavaScript e SQLite",
+            "interaction_id": "6fafaa487063d19d6fd420d85079e4945b57a4beb810a92ab884a33b1b7c1381"
+          }
+        ]
+      },
+      "tp": 3,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "O projeto de painel de iluminação residencial está sendo desenvolvido com JavaScript e SQLite. Você planeja usar essas tecnologias para o projeto \"candeia2\".",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 33,
+        "prompt_tokens": 707,
+        "total_tokens": 740,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long50-probe-02",
+      "question": "Qual banco de dados eu planejo usar no meu projeto?",
+      "category": "database",
+      "gold": [
+        {
+          "property": "database",
+          "value": "sqlite",
+          "temporal": "planned"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "5f6f4506-7b49-bdb8-1550-7292da4d8427",
+          "version": 2,
+          "kind": "decision",
+          "content": "Projeto candeia2: planeja usar sqlite como banco de dados."
+        }
+      ],
+      "provenance": {
+        "5f6f4506-7b49-bdb8-1550-7292da4d8427": [
+          {
+            "at": 1793748858,
+            "evidence": "Quero usar JavaScript e SQLite",
+            "interaction_id": "6fafaa487063d19d6fd420d85079e4945b57a4beb810a92ab884a33b1b7c1381"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Você planeja usar o SQLite como banco de dados no projeto candeia2.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 18,
+        "prompt_tokens": 599,
+        "total_tokens": 617,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long50-probe-03",
+      "question": "Should I put sugar in my coffee?",
+      "category": "coffee_sugar",
+      "gold": [
+        {
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "fab94f99-28d1-9571-3343-4b8717cdeba8",
+          "version": 1,
+          "kind": "preference",
+          "content": "Prefere café sem açúcar."
+        }
+      ],
+      "provenance": {
+        "fab94f99-28d1-9571-3343-4b8717cdeba8": [
+          {
+            "at": 1793748871,
+            "evidence": "No lanche da minha tarde, eu prefiro café sem açúcar",
+            "interaction_id": "80bacf21b6b1950afd96a81f222cf5bcad963fe79dbf334c9d3e65c49d19a3ce"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Como você prefere café sem açúcar, a recomendação é não colocar. No entanto, se quiser realçar notas específicas do grão ou equilibrar a acidez, uma pequena quantidade pode ser uma boa opção.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 44,
+        "prompt_tokens": 3134,
+        "total_tokens": 3178,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "no_repeated_preference": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long50-probe-04",
+      "question": "Qual é minha preferência de tema visual?",
+      "category": "interface_theme",
+      "gold": [
+        {
+          "property": "interface_theme",
+          "value": "dark"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "c993f7dc-917f-f287-0f86-e336cec2ba74",
+          "version": 1,
+          "kind": "preference",
+          "content": "Na interface que uso diariamente, eu prefiro modo escuro"
+        }
+      ],
+      "provenance": {
+        "c993f7dc-917f-f287-0f86-e336cec2ba74": [
+          {
+            "at": 1793748877,
+            "evidence": "Na interface que uso diariamente, eu prefiro modo escuro",
+            "interaction_id": "21d0138935e5085a48f219f262a24dff652e4421241933b6308f92a66624f26c"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Você prefere o modo escuro na interface que usa diariamente.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 14,
+        "prompt_tokens": 593,
+        "total_tokens": 607,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "no_repeated_preference": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long50-probe-05",
+      "question": "How much RAM is installed in my main desktop?",
+      "category": "ram_capacity",
+      "gold": [
+        {
+          "property": "ram_capacity",
+          "value": "36_gb",
+          "subject": "device.primary_computer"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "dfab2f73-b9fa-c9f6-be76-fb84f72c476a",
+          "version": 2,
+          "kind": "hardware",
+          "content": "Meu computador principal tem 36 GB de RAM"
+        }
+      ],
+      "provenance": {
+        "dfab2f73-b9fa-c9f6-be76-fb84f72c476a": [
+          {
+            "at": 1793748884,
+            "evidence": "Meu computador principal tem 36 GB de RAM",
+            "interaction_id": "896b1de84f88318344aaa2b30b38fa3e9850dcf798b33fd71a205e0ae94c7a5e"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Seu computador principal tem 36 GB de RAM.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 13,
+        "prompt_tokens": 2790,
+        "total_tokens": 2803,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long50-probe-06",
+      "question": "Qual é a RAM do meu notebook de trabalho?",
+      "category": "ram_capacity",
+      "gold": [
+        {
+          "property": "ram_capacity",
+          "value": "10_gb",
+          "subject": "device.work_laptop"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "8b563c74-3c64-19db-d349-0785f7f52700",
+          "version": 2,
+          "kind": "hardware",
+          "content": "Meu notebook de trabalho tem 10 GB de RAM"
+        }
+      ],
+      "provenance": {
+        "8b563c74-3c64-19db-d349-0785f7f52700": [
+          {
+            "at": 1793748894,
+            "evidence": "Meu notebook de trabalho tem 10 GB de RAM",
+            "interaction_id": "1392ab1dd51ab76fad1503bb4e950c02b0382ebf6a42d3972ec4da25dc5dc18d"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Seu notebook de trabalho tem 10 GB de RAM.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 14,
+        "prompt_tokens": 596,
+        "total_tokens": 610,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long50-probe-07",
+      "question": "What database is planned for project candeia?",
+      "category": "scope_fence",
+      "gold": [],
+      "actual_references": [],
+      "provenance": {},
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "The specific database for project candeia has not been defined yet. Please let me know if you have a preference or would like a recommendation.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 30,
+        "prompt_tokens": 517,
+        "total_tokens": 547,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "irrelevant_uncontaminated": false
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long50-probe-08",
+      "question": "Quanto é 17 mais 18?",
+      "category": "irrelevant",
+      "gold": [],
+      "actual_references": [],
+      "provenance": {},
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "17 mais 18 é igual a 35.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 14,
+        "prompt_tokens": 517,
+        "total_tokens": 531,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "irrelevant_uncontaminated": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    }
+  ],
+  "review_pending": false,
+  "notes": [
+    "Context metrics score actual injected references, never an answer guessed without memory.",
+    "Forbidden mentions require literal review to distinguish obsolete-as-current from legitimate history/negation. Preliminary automatic rubric remains conservative.",
+    "Fewer than five examples per category: counts only; no generalization from percentages."
+  ]
+}

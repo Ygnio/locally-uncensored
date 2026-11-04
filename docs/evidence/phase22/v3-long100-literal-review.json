@@ -1,0 +1,72 @@
+{
+  "reviewed_utc": "2026-11-03T23:57:36.831371+00:00",
+  "parent_scored_sha256": "f8645ad2c1dcff39fef980c1f72cdd62594d288b3c089f6407efdbec91bd632c",
+  "automatic_totals_preserved": {
+    "tp": 10,
+    "fp": 0,
+    "missed": 0,
+    "critical_references": 0,
+    "natural_points": 35,
+    "natural_applicable": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "naturalness": 0.9722222222222222
+  },
+  "literal_reviewed_probe_ids": [
+    "heldout-v3-long100-probe-01",
+    "heldout-v3-long100-probe-02",
+    "heldout-v3-long100-probe-03",
+    "heldout-v3-long100-probe-04",
+    "heldout-v3-long100-probe-05",
+    "heldout-v3-long100-probe-06",
+    "heldout-v3-long100-probe-07",
+    "heldout-v3-long100-probe-08",
+    "heldout-v3-long100-probe-09",
+    "heldout-v3-long100-probe-10"
+  ],
+  "adjustments": [
+    {
+      "id": "heldout-v3-long100-probe-01",
+      "checks": {
+        "grounded_answer": false,
+        "current_versions": false
+      },
+      "critical": true,
+      "reason": "Decision to switch language is presented as actual development in Rust; no implementation-progress evidence. Automatic current_versions flag correctly failed, grounded_answer also fails."
+    },
+    {
+      "id": "heldout-v3-long100-probe-03",
+      "checks": {
+        "grounded_answer": false
+      },
+      "critical": false,
+      "reason": "The answer declines the requested RAM capacity while mentioning 50 GB. Store bound the update to the unique existing device RAM fact and explicit QA replacement review; injected payload exposes content without canonical property, so the literal source remains ambiguous to the model. Matching 50 GB alone is not proof of using the reviewed canonical fact."
+    }
+  ],
+  "reviewed_natural_points": 33,
+  "reviewed_natural_applicable": 36,
+  "reviewed_naturalness": 0.9166666666666666,
+  "critical_answer_failures": 1,
+  "passed": false,
+  "primary_turn_review": {
+    "body_turns": 100,
+    "all_body_answers_literally_inspected": true,
+    "parts": [
+      [
+        1,
+        55
+      ],
+      [
+        56,
+        100
+      ]
+    ],
+    "additional_critical_personal_state_extrapolations": 0,
+    "notes": [
+      "Ambiguous 39 GB was rejected due raw decision category; not retained as candidate, no overwrite.",
+      "50 GB source lacks the word RAM. Existing legacy unique-device resolution maps capacity_update to its single active RAM fact; replacement explicitly reviewed. No automatic hardware promotion claimed.",
+      "Forget acknowledgement mentions the old value historically, not as a current retained preference. Explicit re-record request acknowledgement is not scored as gratuitous memory announcement.",
+      "General science answers were inspected for memory contamination, not independently certified as scientific factual accuracy."
+    ]
+  }
+}

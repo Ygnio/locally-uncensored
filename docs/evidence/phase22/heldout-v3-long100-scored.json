@@ -1,0 +1,611 @@
+{
+  "fixture": "driver-heldout-v3-long100-final.json",
+  "scope": "phase22-long-heldout-v3",
+  "project": "candeia",
+  "totals": {
+    "tp": 10,
+    "fp": 0,
+    "missed": 0,
+    "critical_references": 0,
+    "natural_points": 35,
+    "natural_applicable": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "naturalness": 0.9722222222222222
+  },
+  "categories": {
+    "language": {
+      "n": 1,
+      "tp": 3,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 2,
+      "natural_applicable": 3
+    },
+    "coffee_sugar": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    },
+    "ram_capacity": {
+      "n": 2,
+      "tp": 2,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 6,
+      "natural_applicable": 6
+    },
+    "goal": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 3,
+      "natural_applicable": 3
+    },
+    "games_tactics": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    },
+    "communication_style": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    },
+    "interface_theme": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    },
+    "irrelevant": {
+      "n": 1,
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    },
+    "scope_fence": {
+      "n": 1,
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    }
+  },
+  "samples": [
+    {
+      "id": "heldout-v3-long100-probe-01",
+      "question": "Como está ficando aquele projeto?",
+      "category": "language",
+      "gold": [
+        {
+          "property": "language",
+          "value": "rust"
+        },
+        {
+          "property": "database",
+          "value": "postgresql",
+          "temporal": "planned"
+        },
+        {
+          "property": "description"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "1d4c5b92-1302-60ba-4fe2-eb54d92fbd84",
+          "version": 2,
+          "kind": "decision",
+          "content": "Projeto candeia: planeja usar postgresql como banco de dados."
+        },
+        {
+          "id": "a973965a-3939-9789-4ac6-94d1f100be5c",
+          "version": 2,
+          "kind": "project",
+          "content": "Estou começando um projeto de controle de luminosidade"
+        },
+        {
+          "id": "dbcc03d0-b221-218b-c5c1-9d41d13ef62a",
+          "version": 2,
+          "kind": "decision",
+          "content": "Projeto candeia: decidiu usar linguagem rust."
+        }
+      ],
+      "provenance": {
+        "1d4c5b92-1302-60ba-4fe2-eb54d92fbd84": [
+          {
+            "at": 1793748724,
+            "evidence": "Quero usar TypeScript e PostgreSQL",
+            "interaction_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+          }
+        ],
+        "a973965a-3939-9789-4ac6-94d1f100be5c": [
+          {
+            "at": 1793748724,
+            "evidence": "Estou começando um projeto de controle de luminosidade",
+            "interaction_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+          }
+        ],
+        "dbcc03d0-b221-218b-c5c1-9d41d13ef62a": [
+          {
+            "at": 1793749264,
+            "evidence": "Decidi trocar TypeScript por Rust",
+            "interaction_id": "956afd1c8fa7e591004f8c14bcd1ff94fa8e7c9abcbfe1e9cf2feb83a3e0941e"
+          }
+        ]
+      },
+      "tp": 3,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "O projeto de controle de luminosidade (Projeto Candeia) está sendo desenvolvido em Rust. Você também decidiu utilizar o PostgreSQL como banco de dados.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 31,
+        "prompt_tokens": 707,
+        "total_tokens": 738,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": false,
+        "no_gratuitous_announcement": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": true
+    },
+    {
+      "id": "heldout-v3-long100-probe-02",
+      "question": "Should I add sugar to my coffee now?",
+      "category": "coffee_sugar",
+      "gold": [
+        {
+          "property": "coffee_sugar",
+          "value": "with_sugar"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "3e7abee3-a123-a0be-2e20-bcb4e4fa9f51",
+          "version": 2,
+          "kind": "preference",
+          "content": "Prefere café com açúcar."
+        }
+      ],
+      "provenance": {
+        "3e7abee3-a123-a0be-2e20-bcb4e4fa9f51": [
+          {
+            "at": 1793749906,
+            "evidence": "Quero voltar a registrar minha preferência: eu prefiro café com açúcar",
+            "interaction_id": "cd8b0f07b00bcafb36a138fd2e4bc4cb034ec3a811370e2c0fd47105ad7df119"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Sim, você deve adicionar açúcar, já que você prefere café com açúcar.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 17,
+        "prompt_tokens": 3437,
+        "total_tokens": 3454,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "no_repeated_preference": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long100-probe-03",
+      "question": "What is the RAM capacity of my main desktop?",
+      "category": "ram_capacity",
+      "gold": [
+        {
+          "property": "ram_capacity",
+          "value": "50_gb",
+          "subject": "device.primary_computer"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "5ea43f15-45e2-045a-bbf2-7afe330761c7",
+          "version": 2,
+          "kind": "hardware",
+          "content": "Atualizei o computador principal para 50 GB"
+        }
+      ],
+      "provenance": {
+        "5ea43f15-45e2-045a-bbf2-7afe330761c7": [
+          {
+            "at": 1793749555,
+            "evidence": "Atualizei o computador principal para 50 GB",
+            "interaction_id": "cc25dfac78962758165d8d42ccbd9821e09c1f24f50c20624e39062eeb61ab47"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "The current information does not specify the RAM capacity of your main desktop, only that you updated it to 50 GB.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 26,
+        "prompt_tokens": 2791,
+        "total_tokens": 2817,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long100-probe-04",
+      "question": "Quanto de RAM tem meu notebook de trabalho?",
+      "category": "ram_capacity",
+      "gold": [
+        {
+          "property": "ram_capacity",
+          "value": "18_gb",
+          "subject": "device.work_laptop"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "2ac52506-acba-fd3d-e8a3-df97a4b48fdf",
+          "version": 2,
+          "kind": "hardware",
+          "content": "Meu notebook de trabalho tem 18 GB de RAM"
+        }
+      ],
+      "provenance": {
+        "2ac52506-acba-fd3d-e8a3-df97a4b48fdf": [
+          {
+            "at": 1793748745,
+            "evidence": "Meu notebook de trabalho tem 18 GB de RAM",
+            "interaction_id": "3382549c43e7df29b97a2b04bae1a9354f1d9660e0ad6de736596ee0f2ba6366"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Seu notebook de trabalho tem 18 GB de RAM.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 14,
+        "prompt_tokens": 590,
+        "total_tokens": 604,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long100-probe-05",
+      "question": "Qual objetivo eu concluí sobre circuitos elétricos básicos?",
+      "category": "goal",
+      "gold": [
+        {
+          "property": "goal.",
+          "subject": "user",
+          "temporal": "completed"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "02a6618b-37a7-4d4b-898f-d2167c4d9a7f",
+          "version": 2,
+          "kind": "goal",
+          "content": "Objetivo concluído: aprender circuitos eletricos basicos."
+        }
+      ],
+      "provenance": {
+        "02a6618b-37a7-4d4b-898f-d2167c4d9a7f": [
+          {
+            "at": 1793749323,
+            "evidence": "Concluí meu objetivo de aprender circuitos elétricos básicos",
+            "interaction_id": "85b559e301af02f2076fe1ad75cc7ef28948bf817eeb0510e1a4a2a06cc9ac66"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Você concluiu o objetivo de aprender circuitos elétricos básicos.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 14,
+        "prompt_tokens": 599,
+        "total_tokens": 613,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long100-probe-06",
+      "question": "Qual tipo de RPG combina com minhas preferências?",
+      "category": "games_tactics",
+      "gold": [
+        {
+          "property": "games_tactics",
+          "value": "positive"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "a0ed5509-a75f-6ff9-81c5-52db44696759",
+          "version": 3,
+          "kind": "preference",
+          "content": "Gosta de jogos táticos por turnos (classes, evolução de personagem, RPG)."
+        }
+      ],
+      "provenance": {
+        "a0ed5509-a75f-6ff9-81c5-52db44696759": [
+          {
+            "at": 1793748708,
+            "evidence": "Para jogar no tempo livre, eu curto RPG tático com classes",
+            "interaction_id": "6f29bf60fce637fcf74d79623e10d28afcb646d4bea5eb7787493fdea99610ed"
+          },
+          {
+            "at": 1793748763,
+            "evidence": "Nas minhas partidas eu prefiro RPGs com combate tático",
+            "interaction_id": "c295f90a5570a0903ea9f29c3886887ec48acdad8895af19269d97c732cc6893"
+          },
+          {
+            "at": 1793749713,
+            "evidence": "Eu gosto de RPG tático com evolução de personagem",
+            "interaction_id": "09d6acabeb6e4da839277a765295e34d749ea4ef58bd97b36fd3c220fb951bc0"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Jogos de RPG táticos por turnos com foco em classes e evolução de personagem são ideais para você. Exemplos clássicos incluem *Final Fantasy Tactics* e *Fire Emblem*.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 39,
+        "prompt_tokens": 599,
+        "total_tokens": 638,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "no_repeated_preference": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long100-probe-07",
+      "question": "Como você deve explicar um algoritmo para mim?",
+      "category": "communication_style",
+      "gold": [
+        {
+          "property": "communication_style",
+          "value": "detailed"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "b89b2775-f92d-5a36-cc4e-a271871b8974",
+          "version": 1,
+          "kind": "preference",
+          "content": "No meu aprendizado, eu gosto de explicações detalhadas"
+        }
+      ],
+      "provenance": {
+        "b89b2775-f92d-5a36-cc4e-a271871b8974": [
+          {
+            "at": 1793748700,
+            "evidence": "No meu aprendizado, eu gosto de explicações detalhadas",
+            "interaction_id": "1b0701351339a98a7f5822037193b31daab8584c3efa332540de2703ef05e6d1"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Como você gosta de explicações detalhadas, devo descrever cada etapa do algoritmo passo a passo, explicando a lógica por trás de cada operação. Além disso, incluirei exemplos práticos e a complexidade de cada parte para garantir uma compreensão profunda.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 52,
+        "prompt_tokens": 596,
+        "total_tokens": 648,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "no_repeated_preference": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long100-probe-08",
+      "question": "Qual tema eu prefiro na minha interface?",
+      "category": "interface_theme",
+      "gold": [
+        {
+          "property": "interface_theme",
+          "value": "light"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "372fd95f-ab92-4139-d745-97a9d1e0ed5b",
+          "version": 1,
+          "kind": "preference",
+          "content": "Para a interface do meu dia a dia, eu prefiro modo claro"
+        }
+      ],
+      "provenance": {
+        "372fd95f-ab92-4139-d745-97a9d1e0ed5b": [
+          {
+            "at": 1793748693,
+            "evidence": "Para a interface do meu dia a dia, eu prefiro modo claro",
+            "interaction_id": "2cf7a5fe1cb087b82d5f6c95ad58ce157dba1d0e6c9a8ba3f9a2917092640ee2"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Você prefere o modo claro na interface do seu dia a dia.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 15,
+        "prompt_tokens": 596,
+        "total_tokens": 611,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "no_repeated_preference": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long100-probe-09",
+      "question": "Qual é a capital da Bolívia?",
+      "category": "irrelevant",
+      "gold": [],
+      "actual_references": [],
+      "provenance": {},
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "A capital da Bolívia é Sucre. A cidade de La Paz também é considerada uma capital, sendo a sede do governo executivo.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 30,
+        "prompt_tokens": 516,
+        "total_tokens": 546,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "irrelevant_uncontaminated": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-long100-probe-10",
+      "question": "Qual linguagem está no projeto candeia2?",
+      "category": "scope_fence",
+      "gold": [],
+      "actual_references": [],
+      "provenance": {},
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Não há informações suficientes no contexto atual para determinar qual linguagem está no projeto candeia2. Você poderia especificar qual projeto ou contexto está se referindo?",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 32,
+        "prompt_tokens": 517,
+        "total_tokens": 549,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "irrelevant_uncontaminated": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    }
+  ],
+  "review_pending": true,
+  "notes": [
+    "Context metrics score actual injected references, never an answer guessed without memory.",
+    "Forbidden mentions require literal review to distinguish obsolete-as-current from legitimate history/negation. Preliminary automatic rubric remains conservative.",
+    "Fewer than five examples per category: counts only; no generalization from percentages."
+  ]
+}

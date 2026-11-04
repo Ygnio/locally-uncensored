@@ -1,0 +1,222 @@
+{
+  "started": "2026-11-03T23:54:17.129870+00:00",
+  "before_host_restart_manifest": {
+    "vite": {
+      "pid": 31868,
+      "created": "2026-11-03T20:29:50.51326-03:00",
+      "command": "\"<USER_HOME>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" node_modules/vite/bin/vite.js --config vite.lucille-validation.config.ts",
+      "executable": "<USER_HOME>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe"
+    },
+    "real_root": "<QA_CHECKOUT>\\.lucille-qa-runtime\\lucille-synthetic-real22",
+    "root": "<QA_CHECKOUT>\\.lucille-qa-runtime\\lucille-synthetic-full22",
+    "gui": {
+      "pid": 20604,
+      "created": "2026-11-03T20:29:53.862161-03:00",
+      "command": "\"<QA_WORK>\\build\\tauri\\x86_64-pc-windows-msvc\\debug\\lucille-full-validation.exe\"",
+      "executable": "<QA_WORK>\\build\\tauri\\x86_64-pc-windows-msvc\\debug\\lucille-full-validation.exe"
+    }
+  },
+  "host_restart_scores": {
+    "tp": 1,
+    "fp": 0,
+    "missed": 1,
+    "critical_references": 0,
+    "natural_points": 5,
+    "natural_applicable": 6,
+    "precision": 1.0,
+    "recall": 0.5,
+    "naturalness": 0.8333333333333334
+  },
+  "host_restart_persistence": {
+    "identity_equal": true,
+    "index_space_equal": true,
+    "details_equal": true,
+    "tombstones_equal": true,
+    "scope_bindings_restored": 31,
+    "notes": "Read snapshots before any post-restart turn. Global index_status may include the other project; compare identity/index metadata literally and explain differences."
+  },
+  "nomic_before": {
+    "pid": 26140,
+    "executable": "<QA_WORK>\\tooling\\phase21c-llama\\llama-server.exe",
+    "creation_filetime": 134382214172585805,
+    "command": [
+      "<QA_WORK>\\tooling\\phase21c-llama\\llama-server.exe",
+      "--model",
+      "<QA_WORK>\\tooling\\phase21c-models\\nomic-embed-text-v1.5.f16.gguf",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "15289",
+      "--alias",
+      "lucille-real-nomic",
+      "--parallel",
+      "1",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "4",
+      "--batch-size",
+      "2048",
+      "--ubatch-size",
+      "2048",
+      "--fit",
+      "off",
+      "--no-warmup",
+      "--api-key-file",
+      "<QA_CHECKOUT>\\.lucille-qa-runtime\\lucille-synthetic-real22\\nomic.api-key",
+      "--cors-origins",
+      "http://127.0.0.1:15283",
+      "--ctx-size",
+      "2048",
+      "--gpu-layers",
+      "0",
+      "--embeddings",
+      "--pooling",
+      "mean",
+      "--embd-normalize",
+      "-1"
+    ],
+    "model": "<QA_WORK>\\tooling\\phase21c-models\\nomic-embed-text-v1.5.f16.gguf",
+    "kind": "nomic",
+    "started_unix": 1793747817.2652407,
+    "ready": true,
+    "inference_verified": false,
+    "runtime_sha256": "d629481a5c60518afd6679b3fcb9e428a98523628470ed3b88d5261b0df712cb",
+    "test_environment": {
+      "GGML_CUDA_DISABLE_GRAPHS": ""
+    },
+    "initialization_seconds": 0.6563978000194766
+  },
+  "nomic_down_scores": {
+    "tp": 1,
+    "fp": 0,
+    "missed": 0,
+    "critical_references": 0,
+    "natural_points": 4,
+    "natural_applicable": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "naturalness": 1.0
+  },
+  "nomic_outage_duration_before_restart_seconds": 12.569966199982446,
+  "nomic_outage_metrics": {
+    "current_vectors": 10,
+    "history_events": [
+      {
+        "count": 10,
+        "state": "approve"
+      },
+      {
+        "count": 1,
+        "state": "auto_correct"
+      },
+      {
+        "count": 4,
+        "state": "auto_promote"
+      },
+      {
+        "count": 1,
+        "state": "auto_superseded"
+      },
+      {
+        "count": 15,
+        "state": "create"
+      },
+      {
+        "count": 3,
+        "state": "obsolete"
+      },
+      {
+        "count": 2,
+        "state": "update"
+      }
+    ],
+    "jobs": [
+      {
+        "count": 21,
+        "state": "done"
+      }
+    ],
+    "memories": [
+      {
+        "count": 11,
+        "state": "active"
+      },
+      {
+        "count": 4,
+        "state": "obsolete"
+      }
+    ],
+    "pending_vectors": 1,
+    "project": "candeia",
+    "provenance_rows": 18,
+    "scope": "phase22-long-heldout-v3",
+    "sqlite_main_page_bytes": 712704,
+    "vector_json_bytes": 133148
+  },
+  "nomic_after": {
+    "pid": 29804,
+    "executable": "<QA_WORK>\\tooling\\phase21c-llama\\llama-server.exe",
+    "creation_filetime": 134382237105515932,
+    "command": [
+      "<QA_WORK>\\tooling\\phase21c-llama\\llama-server.exe",
+      "--model",
+      "<QA_WORK>\\tooling\\phase21c-models\\nomic-embed-text-v1.5.f16.gguf",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "15289",
+      "--alias",
+      "lucille-real-nomic",
+      "--parallel",
+      "1",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "4",
+      "--batch-size",
+      "2048",
+      "--ubatch-size",
+      "2048",
+      "--fit",
+      "off",
+      "--no-warmup",
+      "--api-key-file",
+      "<QA_CHECKOUT>\\.lucille-qa-runtime\\lucille-synthetic-real22\\nomic.api-key",
+      "--cors-origins",
+      "http://127.0.0.1:15283",
+      "--ctx-size",
+      "2048",
+      "--gpu-layers",
+      "0",
+      "--embeddings",
+      "--pooling",
+      "mean",
+      "--embd-normalize",
+      "-1"
+    ],
+    "model": "<QA_WORK>\\tooling\\phase21c-models\\nomic-embed-text-v1.5.f16.gguf",
+    "kind": "nomic",
+    "started_unix": 1793750110.5587037,
+    "ready": true,
+    "inference_verified": false,
+    "runtime_sha256": "d629481a5c60518afd6679b3fcb9e428a98523628470ed3b88d5261b0df712cb",
+    "test_environment": {
+      "GGML_CUDA_DISABLE_GRAPHS": ""
+    },
+    "initialization_seconds": 0.6742426999844611
+  },
+  "nomic_recovery_scores": {
+    "tp": 1,
+    "fp": 0,
+    "missed": 0,
+    "critical_references": 0,
+    "natural_points": 4,
+    "natural_applicable": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "naturalness": 1.0
+  },
+  "post_ready_recovery_stage_seconds": 8.550679099978879,
+  "finished": "2026-11-03T23:55:19.807129+00:00"
+}

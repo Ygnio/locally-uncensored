@@ -1,0 +1,128 @@
+{
+  "fixture": "driver-heldout-v3-host-restart-final.json",
+  "scope": "phase22-long-heldout-v3",
+  "project": "candeia",
+  "totals": {
+    "tp": 1,
+    "fp": 0,
+    "missed": 1,
+    "critical_references": 0,
+    "natural_points": 5,
+    "natural_applicable": 6,
+    "precision": 1.0,
+    "recall": 0.5,
+    "naturalness": 0.8333333333333334
+  },
+  "categories": {
+    "language": {
+      "n": 1,
+      "tp": 0,
+      "fp": 0,
+      "missed": 1,
+      "natural_points": 2,
+      "natural_applicable": 3
+    },
+    "ram_capacity": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 3,
+      "natural_applicable": 3
+    }
+  },
+  "samples": [
+    {
+      "id": "heldout-v3-host-restart-probe-01",
+      "question": "Que linguagem está vigente no meu projeto agora?",
+      "category": "language",
+      "gold": [
+        {
+          "property": "language",
+          "value": "rust"
+        }
+      ],
+      "actual_references": [],
+      "provenance": {},
+      "tp": 0,
+      "fp": 0,
+      "missed": 1,
+      "critical_references": 0,
+      "answer": "Como você ainda não forneceu os arquivos ou o contexto do seu projeto, a linguagem vigente ainda não foi definida. Por favor, compartilhe o código ou o nome do projeto para que eu possa identificar.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 42,
+        "prompt_tokens": 516,
+        "total_tokens": 558,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": false,
+        "current_versions": true,
+        "no_gratuitous_announcement": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    },
+    {
+      "id": "heldout-v3-host-restart-probe-02",
+      "question": "Qual é a capacidade de RAM do meu computador principal?",
+      "category": "ram_capacity",
+      "gold": [
+        {
+          "property": "ram_capacity",
+          "value": "50_gb",
+          "subject": "device.primary_computer"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "5ea43f15-45e2-045a-bbf2-7afe330761c7",
+          "version": 2,
+          "kind": "hardware",
+          "content": "Atualizei o computador principal para 50 GB"
+        }
+      ],
+      "provenance": {
+        "5ea43f15-45e2-045a-bbf2-7afe330761c7": [
+          {
+            "at": 1793749555,
+            "evidence": "Atualizei o computador principal para 50 GB",
+            "interaction_id": "cc25dfac78962758165d8d42ccbd9821e09c1f24f50c20624e39062eeb61ab47"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "A capacidade de RAM do seu computador principal é de 50 GB.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 16,
+        "prompt_tokens": 593,
+        "total_tokens": 609,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    }
+  ],
+  "review_pending": false,
+  "notes": [
+    "Context metrics score actual injected references, never an answer guessed without memory.",
+    "Forbidden mentions require literal review to distinguish obsolete-as-current from legitimate history/negation. Preliminary automatic rubric remains conservative.",
+    "Fewer than five examples per category: counts only; no generalization from percentages."
+  ]
+}
