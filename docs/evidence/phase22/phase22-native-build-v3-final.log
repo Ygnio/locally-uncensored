@@ -1,0 +1,17 @@
+warning: use of deprecated method `std::sync::atomic::Atomic::<i64>::fetch_update`: renamed to `try_update` for consistency
+   --> plugins\lu-native\src\lib.rs:147:14
+    |
+147 |             .fetch_update(Ordering::AcqRel, Ordering::Acquire, |left| match left {
+    |              ^^^^^^^^^^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+help: replace the use of the deprecated method
+    |
+147 -             .fetch_update(Ordering::AcqRel, Ordering::Acquire, |left| match left {
+147 +             .try_update(Ordering::AcqRel, Ordering::Acquire, |left| match left {
+    |
+
+   Compiling lucille-memory v0.1.0 (<QA_CHECKOUT>\crates\lucille-memory)
+warning: `tauri-plugin-lu-native` (lib) generated 1 warning (run `cargo fix --lib -p tauri-plugin-lu-native` to apply 1 suggestion)
+   Compiling locally-uncensored v3.0.8 (<QA_CHECKOUT>\src-tauri)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 58.25s

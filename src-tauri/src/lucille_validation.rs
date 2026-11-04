@@ -53,16 +53,28 @@ fn allowed(command: &str, body: &serde_json::Value) -> bool {
 
 pub fn run() {
     assert!(cfg!(debug_assertions), "Validation cannot run as release");
-    let expected = Path::new(env!("CARGO_MANIFEST_DIR"))
+    let base = Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .unwrap()
-        .join(".lucille-qa-runtime/lucille-synthetic-full");
+        .join(".lucille-qa-runtime")
+        .canonicalize()
+        .expect("Checkout QA parent");
     let root = PathBuf::from(
         std::env::var_os("LUCILLE_PHASE1_ROOT").expect("Explicit synthetic root required"),
     )
     .canonicalize()
     .expect("Existing synthetic root");
-    assert_eq!(root, expected.canonicalize().expect("Checkout-owned root"));
+    assert_eq!(
+        root.parent(),
+        Some(base.as_path()),
+        "Root must be a direct checkout QA child"
+    );
+    assert!(
+        ["lucille-synthetic-full", "lucille-synthetic-full22"]
+            .iter()
+            .any(|n| root.file_name().is_some_and(|v| v == *n)),
+        "Explicit full-profile allowlist"
+    );
     lucille_memory::isolation::isolated_database_path(&root, &[]).expect("Synthetic marker");
     ROOT.set(root.clone()).expect("One validation host");
     for name in ["home", "data", "cache", "config", "webview", "tmp"] {
@@ -128,8 +140,20 @@ pub fn run() {
                 "main",
                 tauri::WebviewUrl::External("http://127.0.0.1:15283".parse().unwrap()),
             )
-            .title("Lucille Phase 1.6 - FULL application - synthetic ONLY")
+            .title(
+                if root
+                    .file_name()
+                    .is_some_and(|v| v == "lucille-synthetic-full22")
+                {
+                    "Lucille Phase 2.2 - FULL application - synthetic ONLY"
+                } else {
+                    "Lucille Phase 1.6 - FULL application - synthetic ONLY"
+                },
+            )
             .data_directory(root.join("webview"))
+            // Direct WebView2 options keep inspection scoped to this QA host.
+            // Recent runtimes can ignore environment-only debug overrides.
+            .additional_browser_args("--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProtection --remote-debugging-address=127.0.0.1 --remote-debugging-port=15287")
             .initialization_script(include_str!("../../qa/full-bootstrap.js"))
             .on_navigation(|url| {
                 url.scheme() == "http"

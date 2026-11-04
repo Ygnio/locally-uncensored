@@ -65,6 +65,34 @@ pub(crate) fn fts_query(query: &str) -> String {
         .collect::<Vec<_>>()
         .join(" OR ")
 }
+fn communication_intent(query: &str) -> bool {
+    let q = fold(query);
+    let words = q
+        .chars()
+        .map(|c| if c.is_alphanumeric() { c } else { ' ' })
+        .collect::<String>();
+    let personal = crate::relevance::personal(query)
+        || format!(" {words} ").contains(" para mim ")
+        || format!(" {words} ").contains(" to me ");
+    personal
+        && [
+            "explic",
+            "explain",
+            "communication style",
+            "estilo de resposta",
+            "formato das respostas",
+            "how should you respond",
+        ]
+        .iter()
+        .any(|w| q.contains(w))
+}
+fn completed_goal_intent(query: &str) -> bool {
+    let q = fold(query);
+    any_completed_intent(&q)
+        && ["goal", "objetiv", "meta", "milestone"]
+            .iter()
+            .any(|w| q.contains(w))
+}
 fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> {
     let blocked:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_quality q JOIN memories n ON n.id=q.memory_id WHERE q.replaces_id=?1 AND n.state IN ('candidate','conflict') AND (q.expires_at IS NULL OR q.expires_at>?2))",params![m.input.id,at],|r|r.get(0)).map_err(db_error)?;
     if blocked {
@@ -74,7 +102,10 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
     // A clear correction in the current user message takes precedence even
     // before the asynchronous extractor has persisted its replacement.
     if let Some(current) = &meta {
-        if extract(query).iter().any(|claim| {
+        let current_claims = extract(query)
+            .into_iter()
+            .chain(crate::dialogue::extract(query, &m.input.project));
+        if current_claims.into_iter().any(|claim| {
             (claim.subject == current.subject
                 && claim.property == current.property
                 && claim.value != current.value)
@@ -95,6 +126,10 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
             return Ok(false);
         }
         if current.property == "ram_capacity" {
+            let changed:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_quality q JOIN memories n ON n.id=q.memory_id WHERE n.scope=?1 AND n.project=?2 AND n.state IN ('candidate','conflict') AND q.property='equipment_change' AND (q.subject='device.unspecified' OR q.subject=?3))",params![m.input.scope,m.input.project,current.subject],|r|r.get(0)).map_err(db_error)?;
+            if changed {
+                return Ok(false);
+            }
             let mut q=tx.prepare("SELECT p.evidence,q.subject,q.property FROM memory_provenance p JOIN memory_quality q ON q.memory_id=p.memory_id JOIN memories n ON n.id=q.memory_id WHERE n.scope=?1 AND n.project=?2 AND n.state IN ('candidate','conflict') AND (q.subject='device.unspecified' OR q.property='capacity_update') LIMIT 501").map_err(db_error)?;
             let records = q
                 .query_map(params![m.input.scope, m.input.project], |r| {
@@ -145,6 +180,58 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
         return Ok(false);
     }
     let q = fold(query);
+    let summary = crate::dialogue::project_summary(query);
+    if let Some(meta) = &meta {
+        if meta.property == "communication_style" && !communication_intent(query) {
+            return Ok(false);
+        }
+        if meta.property == "interface_theme"
+            && ![
+                "interface",
+                "tema",
+                "theme",
+                "display",
+                "visual",
+                "appearance",
+                "aparencia",
+                "modo",
+                "mode",
+            ]
+            .iter()
+            .any(|w| q.contains(w))
+        {
+            return Ok(false);
+        }
+        if m.input.kind == Kind::Goal
+            && completed_goal_intent(query)
+            && meta.temporal != "completed"
+        {
+            return Ok(false);
+        }
+    }
+
+    if meta
+        .as_ref()
+        .is_some_and(|m| m.property == "description" && m.subject.starts_with("project."))
+        && !summary
+        && ![
+            "description",
+            "descricao",
+            "sobre o projeto",
+            "about the project",
+        ]
+        .iter()
+        .any(|w| q.contains(w))
+    {
+        return Ok(false);
+    }
+    if summary
+        && meta
+            .as_ref()
+            .is_none_or(|meta| meta.subject != format!("project.{}", m.input.project))
+    {
+        return Ok(false);
+    }
     let words = q
         .split_whitespace()
         .map(|s| s.trim_matches(|c: char| !c.is_alphanumeric()))
@@ -166,6 +253,11 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
                 "requires",
                 "ficticio",
                 "configuration",
+                "de",
+                "do",
+                "da",
+                "going",
+                "doing",
             ]
             .contains(&p[1])
             && p[1] != fold(&m.input.project)
@@ -173,6 +265,24 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
         return Ok(false);
     }
     if let Some(meta) = &meta {
+        if meta.property == "language"
+            && !summary
+            && ![
+                "project",
+                "projeto",
+                "language",
+                "linguagem",
+                "stack",
+                "tecnologia",
+                "escolhi",
+                "decidi",
+                "chosen",
+            ]
+            .iter()
+            .any(|p| q.contains(p))
+        {
+            return Ok(false);
+        }
         if ["ram_capacity", "free_ram"].contains(&meta.property.as_str())
             && [
                 "ssd",
@@ -195,6 +305,7 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
             return Ok(false);
         }
         if meta.property == "database"
+            && !summary
             && ![
                 "database",
                 "banco",
@@ -289,7 +400,11 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
         }
     }
     if m.input.kind == Kind::Preference {
-        let personal = crate::relevance::preference_intent(query);
+        let personal = crate::relevance::preference_intent(query)
+            || (communication_intent(query)
+                && meta
+                    .as_ref()
+                    .is_some_and(|m| m.property == "communication_style"));
         if !personal {
             return Ok(false);
         }
@@ -408,7 +523,10 @@ pub(crate) fn select(
     policy: &LearningPolicy,
     at: i64,
 ) -> Result<(Vec<Memory>, usize)> {
-    if recall(&req.query) {
+    let summary = crate::dialogue::project_summary(&req.query);
+    let communication = communication_intent(&req.query);
+    let completed_goal = completed_goal_intent(&req.query);
+    if recall(&req.query) || summary || communication || completed_goal {
         let mut q=tx.prepare(&format!("SELECT {COLS} FROM memories WHERE scope=?1 AND project=?2 AND state='active' ORDER BY updated_at DESC,id LIMIT 100")).map_err(db_error)?;
         lexical = q
             .query_map(params![req.scope, req.project], row)
@@ -424,14 +542,24 @@ pub(crate) fn select(
     }
     for (_rank, m) in lexical.into_iter().enumerate() {
         let coverage = crate::relevance::lexical_coverage(&req.query, &m.input.content);
-        if !recall(&req.query) && coverage < crate::relevance::LEXICAL_COVERAGE {
+        let style_match = communication
+            && quality(tx, &m.input.id)?.is_some_and(|q| q.property == "communication_style");
+        let goal_match = completed_goal
+            && m.input.kind == Kind::Goal
+            && quality(tx, &m.input.id)?.is_some_and(|q| q.temporal == "completed");
+        if !recall(&req.query)
+            && !summary
+            && !style_match
+            && !goal_match
+            && coverage < crate::relevance::LEXICAL_COVERAGE
+        {
             continue;
         }
         candidates.insert(
             m.input.id.clone(),
             (
                 m,
-                if recall(&req.query) {
+                if recall(&req.query) || summary || style_match || goal_match {
                     1.0
                 } else {
                     policy.lexical_weight * coverage
@@ -473,6 +601,7 @@ pub(crate) fn select(
             semantic_ranked
                 .sort_by(|a, b| b.1.total_cmp(&a.1).then(a.0.input.id.cmp(&b.0.input.id)));
             let multiple = recall(&req.query)
+                || summary
                 || ["compare", "todos", "all ", "dois computadores"]
                     .iter()
                     .any(|w| fold(&req.query).contains(w));
@@ -545,6 +674,7 @@ pub(crate) fn select(
             continue;
         }
         let multiple = recall(&req.query)
+            || summary
             || ["compare", "todos", "all ", "dois computadores"]
                 .iter()
                 .any(|w| fold(&req.query).contains(w));

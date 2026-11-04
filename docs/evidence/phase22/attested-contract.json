@@ -1,0 +1,29 @@
+{
+  "runtime_path": "<QA_WORK>\\tooling\\phase21c-llama\\llama-server.exe",
+  "runtime_sha256": "d629481a5c60518afd6679b3fcb9e428a98523628470ed3b88d5261b0df712cb",
+  "paths": {
+    "gemma": "C:\\AI\\models\\Gemma4-12B-QAT-Uncensored-HauhauCS-Balanced-Q4_K_M.gguf",
+    "nomic": "<QA_WORK>\\tooling\\phase21c-models\\nomic-embed-text-v1.5.f16.gguf"
+  },
+  "models": {
+    "gemma": {
+      "model": "HauhauCS/Gemma4-12B-QAT-Uncensored-HauhauCS-Balanced",
+      "revision": "ae8045ac2bd216293ca49a3065da2c942dde4b68",
+      "fingerprint": "59656d7494d6376ca97e9e20b64ea2e16cd97f12ec6d47bfccba91cb785b5134",
+      "context_tokens": 65536
+    },
+    "nomic": {
+      "model": "nomic-ai/nomic-embed-text-v1.5",
+      "revision": "0188c9bf409793f810680a5a431e7b899c46104c",
+      "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "dimension": 768,
+      "normalization": "layer_norm_then_l2",
+      "pooling": "mean",
+      "document_prefix": "search_document: ",
+      "query_prefix": "search_query: ",
+      "context_tokens": 2048,
+      "index_version": 4
+    }
+  },
+  "memory_protocol": 3
+}

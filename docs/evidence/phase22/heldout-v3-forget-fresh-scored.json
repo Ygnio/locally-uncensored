@@ -1,0 +1,85 @@
+{
+  "fixture": "driver-heldout-v3-forget-fresh-final.json",
+  "scope": "phase22-v3-forget-fresh",
+  "project": "candeia",
+  "totals": {
+    "tp": 1,
+    "fp": 0,
+    "missed": 0,
+    "critical_references": 0,
+    "natural_points": 4,
+    "natural_applicable": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "naturalness": 1.0
+  },
+  "categories": {
+    "coffee_sugar": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    }
+  },
+  "samples": [
+    {
+      "id": "heldout-v3-forget-fresh-probe-01",
+      "question": "Que preferência válida existe agora sobre o açúcar no meu café?",
+      "category": "coffee_sugar",
+      "gold": [
+        {
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "5b48be03-652d-b8a3-7dcc-0757499fc052",
+          "version": 2,
+          "kind": "preference",
+          "content": "Prefere café sem açúcar."
+        }
+      ],
+      "provenance": {
+        "5b48be03-652d-b8a3-7dcc-0757499fc052": [
+          {
+            "at": 1793750464,
+            "evidence": "Quero voltar a registrar minha preferência: eu prefiro café sem açúcar",
+            "interaction_id": "4578a62f60a37db9550e658516bf9d921069780e24ca0ca9f377608be41cc203"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Você prefere café sem açúcar.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 8,
+        "prompt_tokens": 591,
+        "total_tokens": 599,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "no_repeated_preference": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    }
+  ],
+  "review_pending": false,
+  "notes": [
+    "Context metrics score actual injected references, never an answer guessed without memory.",
+    "Forbidden mentions require literal review to distinguish obsolete-as-current from legitimate history/negation. Preliminary automatic rubric remains conservative.",
+    "Fewer than five examples per category: counts only; no generalization from percentages."
+  ]
+}

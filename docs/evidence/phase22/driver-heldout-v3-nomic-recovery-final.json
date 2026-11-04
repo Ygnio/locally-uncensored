@@ -1,0 +1,2690 @@
+{
+  "label": "heldout-v3-nomic-recovery",
+  "scope": "phase22-long-heldout-v3",
+  "project": "candeia",
+  "started": "2026-11-03T23:55:11.918Z",
+  "turns": [
+    {
+      "text": "Which interface theme is my current preference?",
+      "conversation_id": "238ed050-f0e4-4000-8782-2489d16d9ca4",
+      "messages": [
+        {
+          "id": "abd562c7-0c9a-4bc4-bb7a-dde273c72083",
+          "role": "user",
+          "content": "Which interface theme is my current preference?",
+          "timestamp": 1793750114680
+        },
+        {
+          "id": "5adb742c-2ae1-401b-ae1e-ce64c2635fe2",
+          "role": "assistant",
+          "content": "Você prefere o tema escuro na sua interface.",
+          "thinking": "",
+          "modelId": "lucille-real-gemma",
+          "timestamp": 1793750114680,
+          "agentBlocks": [],
+          "usage": {
+            "promptTokens": 903,
+            "completionTokens": 12,
+            "totalTokens": 915,
+            "estimated": false
+          },
+          "requestUsage": {
+            "inputTokens": 903,
+            "outputTokens": 12,
+            "calls": 1
+          }
+        }
+      ],
+      "generation_ms": 2150,
+      "extraction_wait_ms": 627,
+      "metrics": {
+        "current_vectors": 11,
+        "history_events": [
+          {
+            "count": 10,
+            "state": "approve"
+          },
+          {
+            "count": 1,
+            "state": "auto_correct"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 1,
+            "state": "auto_superseded"
+          },
+          {
+            "count": 15,
+            "state": "create"
+          },
+          {
+            "count": 3,
+            "state": "obsolete"
+          },
+          {
+            "count": 2,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 21,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 11,
+            "state": "active"
+          },
+          {
+            "count": 4,
+            "state": "obsolete"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 18,
+        "scope": "phase22-long-heldout-v3",
+        "sqlite_main_page_bytes": 724992,
+        "vector_json_bytes": 142677
+      }
+    }
+  ],
+  "probes": [
+    {
+      "item": {
+        "text": "Which interface theme is my current preference?",
+        "expected": [
+          {
+            "property": "interface_theme",
+            "value": "dark"
+          }
+        ],
+        "answer_pattern": "escur|dark",
+        "answer_none": [
+          "clar|light"
+        ],
+        "category": "interface_theme"
+      },
+      "turn": {
+        "text": "Which interface theme is my current preference?",
+        "conversation_id": "238ed050-f0e4-4000-8782-2489d16d9ca4",
+        "messages": [
+          {
+            "id": "abd562c7-0c9a-4bc4-bb7a-dde273c72083",
+            "role": "user",
+            "content": "Which interface theme is my current preference?",
+            "timestamp": 1793750114680
+          },
+          {
+            "id": "5adb742c-2ae1-401b-ae1e-ce64c2635fe2",
+            "role": "assistant",
+            "content": "Você prefere o tema escuro na sua interface.",
+            "thinking": "",
+            "modelId": "lucille-real-gemma",
+            "timestamp": 1793750114680,
+            "agentBlocks": [],
+            "usage": {
+              "promptTokens": 903,
+              "completionTokens": 12,
+              "totalTokens": 915,
+              "estimated": false
+            },
+            "requestUsage": {
+              "inputTokens": 903,
+              "outputTokens": 12,
+              "calls": 1
+            }
+          }
+        ],
+        "generation_ms": 2150,
+        "extraction_wait_ms": 627,
+        "metrics": {
+          "current_vectors": 11,
+          "history_events": [
+            {
+              "count": 10,
+              "state": "approve"
+            },
+            {
+              "count": 1,
+              "state": "auto_correct"
+            },
+            {
+              "count": 4,
+              "state": "auto_promote"
+            },
+            {
+              "count": 1,
+              "state": "auto_superseded"
+            },
+            {
+              "count": 15,
+              "state": "create"
+            },
+            {
+              "count": 3,
+              "state": "obsolete"
+            },
+            {
+              "count": 2,
+              "state": "update"
+            }
+          ],
+          "jobs": [
+            {
+              "count": 21,
+              "state": "done"
+            }
+          ],
+          "memories": [
+            {
+              "count": 11,
+              "state": "active"
+            },
+            {
+              "count": 4,
+              "state": "obsolete"
+            }
+          ],
+          "pending_vectors": 0,
+          "project": "candeia",
+          "provenance_rows": 18,
+          "scope": "phase22-long-heldout-v3",
+          "sqlite_main_page_bytes": 724992,
+          "vector_json_bytes": 142677
+        }
+      }
+    }
+  ],
+  "conversations": [
+    "bd000e61-b9bc-4395-a41c-4874a4e28823",
+    "238ed050-f0e4-4000-8782-2489d16d9ca4"
+  ],
+  "existing_bindings": [
+    {
+      "id": "c987bf35-2bda-47a0-92b8-846d8c942dfe",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "caf218c8-5377-4985-95d3-758fbe9012ad",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "f1008b71-cf06-495c-a2d6-fe5ca3f2140a",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "7935a209-f1da-4f1b-9fb6-733df15f6334",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "4874e43f-e78f-4015-85a7-138acacb6dfb",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "89190d4c-e22b-4bdf-b562-9c6236715539",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "40162e51-d40a-4c8c-8701-d8f310d3de6f",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "1477b7c6-1ec7-4428-be89-7b47fe7e93a4",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "f6dbcc5f-e4f5-478f-be0a-036905bc96f8",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "e40b72e6-6d64-4531-b9ca-cac0f3cd0525",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "69136d9f-7db7-4ef7-99bd-d662dd203c26",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "e88c1aac-adb1-4852-adad-5272c0a137cd",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "4c470356-7ca3-4e92-af72-d6ea002b0ac9",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "08432ab6-3849-4da5-987b-c93c04d1718f",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "3294ada1-e250-41c3-a558-1c2e0e07c605",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "de024382-5521-4ba1-a0bb-61a831d83f83",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "122afd8d-86d2-4e49-9824-25d93641a69f",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia2",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "592b83bc-83a7-4b78-94df-48b9d81ec5f1",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia2",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "6a909ddf-af52-44bd-b6cd-1a4957a12e92",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia2",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "49b05b20-c5ab-4250-9dd0-7b15250fe4dd",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia2",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "f6b4f3cb-432d-4a1e-a84e-59921b9a93b9",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia2",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "e76abcf2-39a2-4fbb-be8c-3c4a3e6ec5c5",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia2",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "5aeb6d50-9d0b-4d4c-a889-4a7d959f8871",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia2",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "e03f8680-c570-4c75-a99b-89f2211c8ebc",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia2",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "aa298789-c793-495b-973d-b3a8da67272a",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia2",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "c24ccda3-3fc3-4c11-a3ea-736d28be8b70",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "de918877-a25b-4006-8646-37c9f80406f6",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "88232b5f-d7c3-418e-bad3-71e406873a5d",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "72ad2020-05d3-4c0a-9aba-1951d299f06e",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "5f2f14e3-7edf-4951-8a0a-068910e2f474",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "dba10102-7ec5-4fbb-ba98-5ad45077fe2b",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "fd7c2586-3d86-4cd8-a49a-228d5d318166",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "a4fafa03-842e-48c0-b404-70626bb3826b",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "60f45965-2d78-44bf-b5ad-2e2b5095eaa6",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "88fcbd18-3c9f-426f-8d0b-644b12cbddbd",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    },
+    {
+      "id": "f3181b49-ad8f-41c8-ae9d-8aa72321b3b1",
+      "binding": {
+        "profile": "lucille",
+        "scope": "phase22-long-heldout-v3",
+        "project": "candeia",
+        "tokenBudget": 8192
+      }
+    }
+  ],
+  "initial_identity": {
+    "created_at": 1793741644,
+    "profile": {
+      "description": "Fictional isolated QA identity",
+      "instructions": "Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. No tools are needed in these synthetic memory checks.",
+      "name": "Lucille Synthetic Phase22",
+      "personality": "Concise"
+    },
+    "updated_at": 1793748675,
+    "version": 5
+  },
+  "initial_index": {
+    "indexed": 34,
+    "space": {
+      "context_tokens": 2048,
+      "dimension": 768,
+      "document_prefix": "search_document: ",
+      "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "index_version": 4,
+      "model": "nomic-ai/nomic-embed-text-v1.5",
+      "normalization": "layer_norm_then_l2",
+      "pooling": "mean",
+      "query_prefix": "search_query: ",
+      "revision": "0188c9bf409793f810680a5a431e7b899c46104c"
+    },
+    "transport_verified": false
+  },
+  "initial_details": [
+    {
+      "memory": {
+        "created_at": 1793748693,
+        "input": {
+          "content": "Para a interface do meu dia a dia, eu prefiro modo claro",
+          "fact_key": "user.interface_theme",
+          "id": "372fd95f-ab92-4139-d745-97a9d1e0ed5b",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "2cf7a5fe1cb087b82d5f6c95ad58ce157dba1d0e6c9a8ba3f9a2917092640ee2"
+        },
+        "state": "obsolete",
+        "updated_at": 1793750102,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793748693,
+          "evidence": "Para a interface do meu dia a dia, eu prefiro modo claro",
+          "interaction_id": "2cf7a5fe1cb087b82d5f6c95ad58ce157dba1d0e6c9a8ba3f9a2917092640ee2"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "interface_theme",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "light"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748700,
+        "input": {
+          "content": "No meu aprendizado, eu gosto de explicações detalhadas",
+          "fact_key": "user.communication_style",
+          "id": "b89b2775-f92d-5a36-cc4e-a271871b8974",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "1b0701351339a98a7f5822037193b31daab8584c3efa332540de2703ef05e6d1"
+        },
+        "state": "active",
+        "updated_at": 1793748700,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1793748700,
+          "evidence": "No meu aprendizado, eu gosto de explicações detalhadas",
+          "interaction_id": "1b0701351339a98a7f5822037193b31daab8584c3efa332540de2703ef05e6d1"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "communication_style",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "detailed"
+      },
+      "revisions": []
+    },
+    {
+      "memory": {
+        "created_at": 1793748708,
+        "input": {
+          "content": "Gosta de jogos táticos por turnos (classes, evolução de personagem, RPG).",
+          "fact_key": "user.games_tactics",
+          "id": "a0ed5509-a75f-6ff9-81c5-52db44696759",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "6f29bf60fce637fcf74d79623e10d28afcb646d4bea5eb7787493fdea99610ed"
+        },
+        "state": "active",
+        "updated_at": 1793749713,
+        "version": 3
+      },
+      "provenance": [
+        {
+          "at": 1793748708,
+          "evidence": "Para jogar no tempo livre, eu curto RPG tático com classes",
+          "interaction_id": "6f29bf60fce637fcf74d79623e10d28afcb646d4bea5eb7787493fdea99610ed"
+        },
+        {
+          "at": 1793748763,
+          "evidence": "Nas minhas partidas eu prefiro RPGs com combate tático",
+          "interaction_id": "c295f90a5570a0903ea9f29c3886887ec48acdad8895af19269d97c732cc6893"
+        },
+        {
+          "at": 1793749713,
+          "evidence": "Eu gosto de RPG tático com evolução de personagem",
+          "interaction_id": "09d6acabeb6e4da839277a765295e34d749ea4ef58bd97b36fd3c220fb951bc0"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_tactical_preference",
+        "expires_at": null,
+        "facets": [
+          "classes",
+          "progression",
+          "rpg"
+        ],
+        "priority": 1,
+        "property": "games_tactics",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "positive"
+      },
+      "revisions": [
+        2,
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748716,
+        "input": {
+          "content": "Entre os jogos, os de estratégia por turnos são os meus favoritos",
+          "fact_key": "user.games_turn_strategy",
+          "id": "cf80a569-0073-ad53-f061-94cd7e36f4ee",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "a63e6524a2eaceee452e9f3a0f827f71eff975e90036e4573f9841a2d76a8509"
+        },
+        "state": "active",
+        "updated_at": 1793748716,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1793748716,
+          "evidence": "Entre os jogos, os de estratégia por turnos são os meus favoritos",
+          "interaction_id": "a63e6524a2eaceee452e9f3a0f827f71eff975e90036e4573f9841a2d76a8509"
+        },
+        {
+          "at": 1793749657,
+          "evidence": "Jogos de estratégia por turnos são meus favoritos mesmo depois de experimentar outros gêneros",
+          "interaction_id": "301d23fd51fca7197daded2a73742ebe72550d448e24bf7eff3c0574b7121750"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "games_turn_strategy",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "positive"
+      },
+      "revisions": []
+    },
+    {
+      "memory": {
+        "created_at": 1793748724,
+        "input": {
+          "content": "Projeto candeia: planeja usar postgresql como banco de dados.",
+          "fact_key": "project.candeia.database",
+          "id": "1d4c5b92-1302-60ba-4fe2-eb54d92fbd84",
+          "kind": "decision",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        },
+        "state": "active",
+        "updated_at": 1793748726,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793748724,
+          "evidence": "Quero usar TypeScript e PostgreSQL",
+          "interaction_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "database",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.candeia",
+        "temporal": "planned",
+        "value": "postgresql"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748724,
+        "input": {
+          "content": "Projeto candeia: planeja usar linguagem typescript.",
+          "fact_key": "project.candeia.language",
+          "id": "2f77aca4-a64a-0fab-a170-85f5bee19ea3",
+          "kind": "decision",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        },
+        "state": "obsolete",
+        "updated_at": 1793749266,
+        "version": 3
+      },
+      "provenance": [
+        {
+          "at": 1793748724,
+          "evidence": "Quero usar TypeScript e PostgreSQL",
+          "interaction_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "language",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.candeia",
+        "temporal": "planned",
+        "value": "typescript"
+      },
+      "revisions": [
+        2,
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748724,
+        "input": {
+          "content": "Estou começando um projeto de controle de luminosidade",
+          "fact_key": "project.candeia.description",
+          "id": "a973965a-3939-9789-4ac6-94d1f100be5c",
+          "kind": "project",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        },
+        "state": "active",
+        "updated_at": 1793748728,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793748724,
+          "evidence": "Estou começando um projeto de controle de luminosidade",
+          "interaction_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "description",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.candeia",
+        "temporal": "durable",
+        "value": "estou comecando um projeto de controle de luminosidade"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748736,
+        "input": {
+          "content": "Meu computador principal tem 26 GB de RAM",
+          "fact_key": "device.primary_computer.ram_capacity",
+          "id": "c0b38f14-c17a-c793-d61b-0ecbe7bc1b2a",
+          "kind": "hardware",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "8348abd9c1cc4fe960f7b6767bad48543eb142037bb1a4aae6d3df0169d4c225"
+        },
+        "state": "obsolete",
+        "updated_at": 1793749557,
+        "version": 3
+      },
+      "provenance": [
+        {
+          "at": 1793748736,
+          "evidence": "Meu computador principal tem 26 GB de RAM",
+          "interaction_id": "8348abd9c1cc4fe960f7b6767bad48543eb142037bb1a4aae6d3df0169d4c225"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "ram_capacity",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "device.primary_computer",
+        "temporal": "durable",
+        "value": "26_gb"
+      },
+      "revisions": [
+        2,
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748745,
+        "input": {
+          "content": "Meu notebook de trabalho tem 18 GB de RAM",
+          "fact_key": "device.work_laptop.ram_capacity",
+          "id": "2ac52506-acba-fd3d-e8a3-df97a4b48fdf",
+          "kind": "hardware",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "3382549c43e7df29b97a2b04bae1a9354f1d9660e0ad6de736596ee0f2ba6366"
+        },
+        "state": "active",
+        "updated_at": 1793748747,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793748745,
+          "evidence": "Meu notebook de trabalho tem 18 GB de RAM",
+          "interaction_id": "3382549c43e7df29b97a2b04bae1a9354f1d9660e0ad6de736596ee0f2ba6366"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "ram_capacity",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "device.work_laptop",
+        "temporal": "durable",
+        "value": "18_gb"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748754,
+        "input": {
+          "content": "Quero aprender circuitos elétricos básicos",
+          "fact_key": "user.goal.f47cc78cd5ce",
+          "id": "3719530e-3466-0277-e86f-0cb43d19cff6",
+          "kind": "goal",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "3e97dedc2e990c0536bf17f16f6669e6dec4b25092ef8b7667ff132662b7adc6"
+        },
+        "state": "obsolete",
+        "updated_at": 1793749325,
+        "version": 3
+      },
+      "provenance": [
+        {
+          "at": 1793748754,
+          "evidence": "Quero aprender circuitos elétricos básicos",
+          "interaction_id": "3e97dedc2e990c0536bf17f16f6669e6dec4b25092ef8b7667ff132662b7adc6"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "goal.f47cc78cd5ce",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "durable",
+        "value": "quero aprender circuitos eletricos basicos"
+      },
+      "revisions": [
+        2,
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793749264,
+        "input": {
+          "content": "Projeto candeia: decidiu usar linguagem rust.",
+          "fact_key": "project.candeia.language",
+          "id": "dbcc03d0-b221-218b-c5c1-9d41d13ef62a",
+          "kind": "decision",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "956afd1c8fa7e591004f8c14bcd1ff94fa8e7c9abcbfe1e9cf2feb83a3e0941e"
+        },
+        "state": "active",
+        "updated_at": 1793749266,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793749264,
+          "evidence": "Decidi trocar TypeScript por Rust",
+          "interaction_id": "956afd1c8fa7e591004f8c14bcd1ff94fa8e7c9abcbfe1e9cf2feb83a3e0941e"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 2,
+        "property": "language",
+        "relevance": 0.8,
+        "replaces_id": "2f77aca4-a64a-0fab-a170-85f5bee19ea3",
+        "replaces_version": 2,
+        "subject": "project.candeia",
+        "temporal": "durable",
+        "value": "rust"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793749323,
+        "input": {
+          "content": "Objetivo concluído: aprender circuitos eletricos basicos.",
+          "fact_key": "user.goal.f47cc78cd5ce",
+          "id": "02a6618b-37a7-4d4b-898f-d2167c4d9a7f",
+          "kind": "goal",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "85b559e301af02f2076fe1ad75cc7ef28948bf817eeb0510e1a4a2a06cc9ac66"
+        },
+        "state": "active",
+        "updated_at": 1793749325,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793749323,
+          "evidence": "Concluí meu objetivo de aprender circuitos elétricos básicos",
+          "interaction_id": "85b559e301af02f2076fe1ad75cc7ef28948bf817eeb0510e1a4a2a06cc9ac66"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_completed_goal",
+        "expires_at": null,
+        "facets": [],
+        "priority": 2,
+        "property": "goal.f47cc78cd5ce",
+        "relevance": 0.8,
+        "replaces_id": "3719530e-3466-0277-e86f-0cb43d19cff6",
+        "replaces_version": 2,
+        "subject": "user",
+        "temporal": "completed",
+        "value": "completed:aprender circuitos eletricos basicos"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793749555,
+        "input": {
+          "content": "Atualizei o computador principal para 50 GB",
+          "fact_key": "device.primary_computer.ram_capacity",
+          "id": "5ea43f15-45e2-045a-bbf2-7afe330761c7",
+          "kind": "hardware",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "cc25dfac78962758165d8d42ccbd9821e09c1f24f50c20624e39062eeb61ab47"
+        },
+        "state": "active",
+        "updated_at": 1793749557,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793749555,
+          "evidence": "Atualizei o computador principal para 50 GB",
+          "interaction_id": "cc25dfac78962758165d8d42ccbd9821e09c1f24f50c20624e39062eeb61ab47"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+        "expires_at": null,
+        "facets": [],
+        "priority": 2,
+        "property": "ram_capacity",
+        "relevance": 0.8,
+        "replaces_id": "c0b38f14-c17a-c793-d61b-0ecbe7bc1b2a",
+        "replaces_version": 2,
+        "subject": "device.primary_computer",
+        "temporal": "durable",
+        "value": "50_gb"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793749906,
+        "input": {
+          "content": "Prefere café com açúcar.",
+          "fact_key": "user.coffee_sugar",
+          "id": "3e7abee3-a123-a0be-2e20-bcb4e4fa9f51",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "cd8b0f07b00bcafb36a138fd2e4bc4cb034ec3a811370e2c0fd47105ad7df119"
+        },
+        "state": "active",
+        "updated_at": 1793749908,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793749906,
+          "evidence": "Quero voltar a registrar minha preferência: eu prefiro café com açúcar",
+          "interaction_id": "cd8b0f07b00bcafb36a138fd2e4bc4cb034ec3a811370e2c0fd47105ad7df119"
+        }
+      ],
+      "quality": {
+        "confidence": 0.85,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_renewal:explicit_coffee_preference",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "coffee_sugar",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "with_sugar"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793750102,
+        "input": {
+          "content": "Na verdade, agora prefiro tema escuro na minha interface",
+          "fact_key": "user.interface_theme",
+          "id": "a6970c1d-427d-f631-db8c-ac700b3e896c",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "f15e8171d9154687ec5fbb0343f73a2da4c64bb883d21c9822b5a3ab5cd03ff6"
+        },
+        "state": "active",
+        "updated_at": 1793750102,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1793750102,
+          "evidence": "Na verdade, agora prefiro tema escuro na minha interface",
+          "interaction_id": "f15e8171d9154687ec5fbb0343f73a2da4c64bb883d21c9822b5a3ab5cd03ff6"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 2,
+        "property": "interface_theme",
+        "relevance": 0.8,
+        "replaces_id": "372fd95f-ab92-4139-d745-97a9d1e0ed5b",
+        "replaces_version": 1,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "dark"
+      },
+      "revisions": []
+    }
+  ],
+  "initial_deleted": [
+    {
+      "deleted_at": 1793749825,
+      "id": "fbaffab9-7c18-240d-8805-6808d869465a",
+      "kind": "preference",
+      "state": "deleted"
+    },
+    {
+      "deleted_at": 1793749825,
+      "id": "3749730b-c8fe-7340-c924-c1ebff3eeb56",
+      "kind": "preference",
+      "state": "deleted"
+    }
+  ],
+  "policy": {
+    "auto_kinds": [
+      "preference"
+    ],
+    "automatic_indexing": true,
+    "autonomous_preferences": true,
+    "enabled": true,
+    "extraction_mode": "llm",
+    "lexical_weight": 0.5,
+    "max_pending": 64,
+    "minimum_confidence": 0.96,
+    "minimum_relevance": 0.8,
+    "minimum_similarity": 0.6,
+    "semantic_weight": 0.5
+  },
+  "initial_metrics": {
+    "current_vectors": 11,
+    "history_events": [
+      {
+        "count": 10,
+        "state": "approve"
+      },
+      {
+        "count": 1,
+        "state": "auto_correct"
+      },
+      {
+        "count": 4,
+        "state": "auto_promote"
+      },
+      {
+        "count": 1,
+        "state": "auto_superseded"
+      },
+      {
+        "count": 15,
+        "state": "create"
+      },
+      {
+        "count": 3,
+        "state": "obsolete"
+      },
+      {
+        "count": 2,
+        "state": "update"
+      }
+    ],
+    "jobs": [
+      {
+        "count": 21,
+        "state": "done"
+      }
+    ],
+    "memories": [
+      {
+        "count": 11,
+        "state": "active"
+      },
+      {
+        "count": 4,
+        "state": "obsolete"
+      }
+    ],
+    "pending_vectors": 0,
+    "project": "candeia",
+    "provenance_rows": 18,
+    "scope": "phase22-long-heldout-v3",
+    "sqlite_main_page_bytes": 724992,
+    "vector_json_bytes": 142677
+  },
+  "after_long": [
+    {
+      "memory": {
+        "created_at": 1793748693,
+        "input": {
+          "content": "Para a interface do meu dia a dia, eu prefiro modo claro",
+          "fact_key": "user.interface_theme",
+          "id": "372fd95f-ab92-4139-d745-97a9d1e0ed5b",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "2cf7a5fe1cb087b82d5f6c95ad58ce157dba1d0e6c9a8ba3f9a2917092640ee2"
+        },
+        "state": "obsolete",
+        "updated_at": 1793750102,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793748693,
+          "evidence": "Para a interface do meu dia a dia, eu prefiro modo claro",
+          "interaction_id": "2cf7a5fe1cb087b82d5f6c95ad58ce157dba1d0e6c9a8ba3f9a2917092640ee2"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "interface_theme",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "light"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748700,
+        "input": {
+          "content": "No meu aprendizado, eu gosto de explicações detalhadas",
+          "fact_key": "user.communication_style",
+          "id": "b89b2775-f92d-5a36-cc4e-a271871b8974",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "1b0701351339a98a7f5822037193b31daab8584c3efa332540de2703ef05e6d1"
+        },
+        "state": "active",
+        "updated_at": 1793748700,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1793748700,
+          "evidence": "No meu aprendizado, eu gosto de explicações detalhadas",
+          "interaction_id": "1b0701351339a98a7f5822037193b31daab8584c3efa332540de2703ef05e6d1"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "communication_style",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "detailed"
+      },
+      "revisions": []
+    },
+    {
+      "memory": {
+        "created_at": 1793748708,
+        "input": {
+          "content": "Gosta de jogos táticos por turnos (classes, evolução de personagem, RPG).",
+          "fact_key": "user.games_tactics",
+          "id": "a0ed5509-a75f-6ff9-81c5-52db44696759",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "6f29bf60fce637fcf74d79623e10d28afcb646d4bea5eb7787493fdea99610ed"
+        },
+        "state": "active",
+        "updated_at": 1793749713,
+        "version": 3
+      },
+      "provenance": [
+        {
+          "at": 1793748708,
+          "evidence": "Para jogar no tempo livre, eu curto RPG tático com classes",
+          "interaction_id": "6f29bf60fce637fcf74d79623e10d28afcb646d4bea5eb7787493fdea99610ed"
+        },
+        {
+          "at": 1793748763,
+          "evidence": "Nas minhas partidas eu prefiro RPGs com combate tático",
+          "interaction_id": "c295f90a5570a0903ea9f29c3886887ec48acdad8895af19269d97c732cc6893"
+        },
+        {
+          "at": 1793749713,
+          "evidence": "Eu gosto de RPG tático com evolução de personagem",
+          "interaction_id": "09d6acabeb6e4da839277a765295e34d749ea4ef58bd97b36fd3c220fb951bc0"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_tactical_preference",
+        "expires_at": null,
+        "facets": [
+          "classes",
+          "progression",
+          "rpg"
+        ],
+        "priority": 1,
+        "property": "games_tactics",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "positive"
+      },
+      "revisions": [
+        2,
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748716,
+        "input": {
+          "content": "Entre os jogos, os de estratégia por turnos são os meus favoritos",
+          "fact_key": "user.games_turn_strategy",
+          "id": "cf80a569-0073-ad53-f061-94cd7e36f4ee",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "a63e6524a2eaceee452e9f3a0f827f71eff975e90036e4573f9841a2d76a8509"
+        },
+        "state": "active",
+        "updated_at": 1793748716,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1793748716,
+          "evidence": "Entre os jogos, os de estratégia por turnos são os meus favoritos",
+          "interaction_id": "a63e6524a2eaceee452e9f3a0f827f71eff975e90036e4573f9841a2d76a8509"
+        },
+        {
+          "at": 1793749657,
+          "evidence": "Jogos de estratégia por turnos são meus favoritos mesmo depois de experimentar outros gêneros",
+          "interaction_id": "301d23fd51fca7197daded2a73742ebe72550d448e24bf7eff3c0574b7121750"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "games_turn_strategy",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "positive"
+      },
+      "revisions": []
+    },
+    {
+      "memory": {
+        "created_at": 1793748724,
+        "input": {
+          "content": "Projeto candeia: planeja usar postgresql como banco de dados.",
+          "fact_key": "project.candeia.database",
+          "id": "1d4c5b92-1302-60ba-4fe2-eb54d92fbd84",
+          "kind": "decision",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        },
+        "state": "active",
+        "updated_at": 1793748726,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793748724,
+          "evidence": "Quero usar TypeScript e PostgreSQL",
+          "interaction_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "database",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.candeia",
+        "temporal": "planned",
+        "value": "postgresql"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748724,
+        "input": {
+          "content": "Projeto candeia: planeja usar linguagem typescript.",
+          "fact_key": "project.candeia.language",
+          "id": "2f77aca4-a64a-0fab-a170-85f5bee19ea3",
+          "kind": "decision",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        },
+        "state": "obsolete",
+        "updated_at": 1793749266,
+        "version": 3
+      },
+      "provenance": [
+        {
+          "at": 1793748724,
+          "evidence": "Quero usar TypeScript e PostgreSQL",
+          "interaction_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "language",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.candeia",
+        "temporal": "planned",
+        "value": "typescript"
+      },
+      "revisions": [
+        2,
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748724,
+        "input": {
+          "content": "Estou começando um projeto de controle de luminosidade",
+          "fact_key": "project.candeia.description",
+          "id": "a973965a-3939-9789-4ac6-94d1f100be5c",
+          "kind": "project",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        },
+        "state": "active",
+        "updated_at": 1793748728,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793748724,
+          "evidence": "Estou começando um projeto de controle de luminosidade",
+          "interaction_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "description",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.candeia",
+        "temporal": "durable",
+        "value": "estou comecando um projeto de controle de luminosidade"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748736,
+        "input": {
+          "content": "Meu computador principal tem 26 GB de RAM",
+          "fact_key": "device.primary_computer.ram_capacity",
+          "id": "c0b38f14-c17a-c793-d61b-0ecbe7bc1b2a",
+          "kind": "hardware",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "8348abd9c1cc4fe960f7b6767bad48543eb142037bb1a4aae6d3df0169d4c225"
+        },
+        "state": "obsolete",
+        "updated_at": 1793749557,
+        "version": 3
+      },
+      "provenance": [
+        {
+          "at": 1793748736,
+          "evidence": "Meu computador principal tem 26 GB de RAM",
+          "interaction_id": "8348abd9c1cc4fe960f7b6767bad48543eb142037bb1a4aae6d3df0169d4c225"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "ram_capacity",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "device.primary_computer",
+        "temporal": "durable",
+        "value": "26_gb"
+      },
+      "revisions": [
+        2,
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748745,
+        "input": {
+          "content": "Meu notebook de trabalho tem 18 GB de RAM",
+          "fact_key": "device.work_laptop.ram_capacity",
+          "id": "2ac52506-acba-fd3d-e8a3-df97a4b48fdf",
+          "kind": "hardware",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "3382549c43e7df29b97a2b04bae1a9354f1d9660e0ad6de736596ee0f2ba6366"
+        },
+        "state": "active",
+        "updated_at": 1793748747,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793748745,
+          "evidence": "Meu notebook de trabalho tem 18 GB de RAM",
+          "interaction_id": "3382549c43e7df29b97a2b04bae1a9354f1d9660e0ad6de736596ee0f2ba6366"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "ram_capacity",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "device.work_laptop",
+        "temporal": "durable",
+        "value": "18_gb"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748754,
+        "input": {
+          "content": "Quero aprender circuitos elétricos básicos",
+          "fact_key": "user.goal.f47cc78cd5ce",
+          "id": "3719530e-3466-0277-e86f-0cb43d19cff6",
+          "kind": "goal",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "3e97dedc2e990c0536bf17f16f6669e6dec4b25092ef8b7667ff132662b7adc6"
+        },
+        "state": "obsolete",
+        "updated_at": 1793749325,
+        "version": 3
+      },
+      "provenance": [
+        {
+          "at": 1793748754,
+          "evidence": "Quero aprender circuitos elétricos básicos",
+          "interaction_id": "3e97dedc2e990c0536bf17f16f6669e6dec4b25092ef8b7667ff132662b7adc6"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "goal.f47cc78cd5ce",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "durable",
+        "value": "quero aprender circuitos eletricos basicos"
+      },
+      "revisions": [
+        2,
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793749264,
+        "input": {
+          "content": "Projeto candeia: decidiu usar linguagem rust.",
+          "fact_key": "project.candeia.language",
+          "id": "dbcc03d0-b221-218b-c5c1-9d41d13ef62a",
+          "kind": "decision",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "956afd1c8fa7e591004f8c14bcd1ff94fa8e7c9abcbfe1e9cf2feb83a3e0941e"
+        },
+        "state": "active",
+        "updated_at": 1793749266,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793749264,
+          "evidence": "Decidi trocar TypeScript por Rust",
+          "interaction_id": "956afd1c8fa7e591004f8c14bcd1ff94fa8e7c9abcbfe1e9cf2feb83a3e0941e"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 2,
+        "property": "language",
+        "relevance": 0.8,
+        "replaces_id": "2f77aca4-a64a-0fab-a170-85f5bee19ea3",
+        "replaces_version": 2,
+        "subject": "project.candeia",
+        "temporal": "durable",
+        "value": "rust"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793749323,
+        "input": {
+          "content": "Objetivo concluído: aprender circuitos eletricos basicos.",
+          "fact_key": "user.goal.f47cc78cd5ce",
+          "id": "02a6618b-37a7-4d4b-898f-d2167c4d9a7f",
+          "kind": "goal",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "85b559e301af02f2076fe1ad75cc7ef28948bf817eeb0510e1a4a2a06cc9ac66"
+        },
+        "state": "active",
+        "updated_at": 1793749325,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793749323,
+          "evidence": "Concluí meu objetivo de aprender circuitos elétricos básicos",
+          "interaction_id": "85b559e301af02f2076fe1ad75cc7ef28948bf817eeb0510e1a4a2a06cc9ac66"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_completed_goal",
+        "expires_at": null,
+        "facets": [],
+        "priority": 2,
+        "property": "goal.f47cc78cd5ce",
+        "relevance": 0.8,
+        "replaces_id": "3719530e-3466-0277-e86f-0cb43d19cff6",
+        "replaces_version": 2,
+        "subject": "user",
+        "temporal": "completed",
+        "value": "completed:aprender circuitos eletricos basicos"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793749555,
+        "input": {
+          "content": "Atualizei o computador principal para 50 GB",
+          "fact_key": "device.primary_computer.ram_capacity",
+          "id": "5ea43f15-45e2-045a-bbf2-7afe330761c7",
+          "kind": "hardware",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "cc25dfac78962758165d8d42ccbd9821e09c1f24f50c20624e39062eeb61ab47"
+        },
+        "state": "active",
+        "updated_at": 1793749557,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793749555,
+          "evidence": "Atualizei o computador principal para 50 GB",
+          "interaction_id": "cc25dfac78962758165d8d42ccbd9821e09c1f24f50c20624e39062eeb61ab47"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+        "expires_at": null,
+        "facets": [],
+        "priority": 2,
+        "property": "ram_capacity",
+        "relevance": 0.8,
+        "replaces_id": "c0b38f14-c17a-c793-d61b-0ecbe7bc1b2a",
+        "replaces_version": 2,
+        "subject": "device.primary_computer",
+        "temporal": "durable",
+        "value": "50_gb"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793749906,
+        "input": {
+          "content": "Prefere café com açúcar.",
+          "fact_key": "user.coffee_sugar",
+          "id": "3e7abee3-a123-a0be-2e20-bcb4e4fa9f51",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "cd8b0f07b00bcafb36a138fd2e4bc4cb034ec3a811370e2c0fd47105ad7df119"
+        },
+        "state": "active",
+        "updated_at": 1793749908,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793749906,
+          "evidence": "Quero voltar a registrar minha preferência: eu prefiro café com açúcar",
+          "interaction_id": "cd8b0f07b00bcafb36a138fd2e4bc4cb034ec3a811370e2c0fd47105ad7df119"
+        }
+      ],
+      "quality": {
+        "confidence": 0.85,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_renewal:explicit_coffee_preference",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "coffee_sugar",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "with_sugar"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793750102,
+        "input": {
+          "content": "Na verdade, agora prefiro tema escuro na minha interface",
+          "fact_key": "user.interface_theme",
+          "id": "a6970c1d-427d-f631-db8c-ac700b3e896c",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "f15e8171d9154687ec5fbb0343f73a2da4c64bb883d21c9822b5a3ab5cd03ff6"
+        },
+        "state": "active",
+        "updated_at": 1793750102,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1793750102,
+          "evidence": "Na verdade, agora prefiro tema escuro na minha interface",
+          "interaction_id": "f15e8171d9154687ec5fbb0343f73a2da4c64bb883d21c9822b5a3ab5cd03ff6"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 2,
+        "property": "interface_theme",
+        "relevance": 0.8,
+        "replaces_id": "372fd95f-ab92-4139-d745-97a9d1e0ed5b",
+        "replaces_version": 1,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "dark"
+      },
+      "revisions": []
+    }
+  ],
+  "final_details": [
+    {
+      "memory": {
+        "created_at": 1793748693,
+        "input": {
+          "content": "Para a interface do meu dia a dia, eu prefiro modo claro",
+          "fact_key": "user.interface_theme",
+          "id": "372fd95f-ab92-4139-d745-97a9d1e0ed5b",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "2cf7a5fe1cb087b82d5f6c95ad58ce157dba1d0e6c9a8ba3f9a2917092640ee2"
+        },
+        "state": "obsolete",
+        "updated_at": 1793750102,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793748693,
+          "evidence": "Para a interface do meu dia a dia, eu prefiro modo claro",
+          "interaction_id": "2cf7a5fe1cb087b82d5f6c95ad58ce157dba1d0e6c9a8ba3f9a2917092640ee2"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "interface_theme",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "light"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748700,
+        "input": {
+          "content": "No meu aprendizado, eu gosto de explicações detalhadas",
+          "fact_key": "user.communication_style",
+          "id": "b89b2775-f92d-5a36-cc4e-a271871b8974",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "1b0701351339a98a7f5822037193b31daab8584c3efa332540de2703ef05e6d1"
+        },
+        "state": "active",
+        "updated_at": 1793748700,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1793748700,
+          "evidence": "No meu aprendizado, eu gosto de explicações detalhadas",
+          "interaction_id": "1b0701351339a98a7f5822037193b31daab8584c3efa332540de2703ef05e6d1"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "communication_style",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "detailed"
+      },
+      "revisions": []
+    },
+    {
+      "memory": {
+        "created_at": 1793748708,
+        "input": {
+          "content": "Gosta de jogos táticos por turnos (classes, evolução de personagem, RPG).",
+          "fact_key": "user.games_tactics",
+          "id": "a0ed5509-a75f-6ff9-81c5-52db44696759",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "6f29bf60fce637fcf74d79623e10d28afcb646d4bea5eb7787493fdea99610ed"
+        },
+        "state": "active",
+        "updated_at": 1793749713,
+        "version": 3
+      },
+      "provenance": [
+        {
+          "at": 1793748708,
+          "evidence": "Para jogar no tempo livre, eu curto RPG tático com classes",
+          "interaction_id": "6f29bf60fce637fcf74d79623e10d28afcb646d4bea5eb7787493fdea99610ed"
+        },
+        {
+          "at": 1793748763,
+          "evidence": "Nas minhas partidas eu prefiro RPGs com combate tático",
+          "interaction_id": "c295f90a5570a0903ea9f29c3886887ec48acdad8895af19269d97c732cc6893"
+        },
+        {
+          "at": 1793749713,
+          "evidence": "Eu gosto de RPG tático com evolução de personagem",
+          "interaction_id": "09d6acabeb6e4da839277a765295e34d749ea4ef58bd97b36fd3c220fb951bc0"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_tactical_preference",
+        "expires_at": null,
+        "facets": [
+          "classes",
+          "progression",
+          "rpg"
+        ],
+        "priority": 1,
+        "property": "games_tactics",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "positive"
+      },
+      "revisions": [
+        2,
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748716,
+        "input": {
+          "content": "Entre os jogos, os de estratégia por turnos são os meus favoritos",
+          "fact_key": "user.games_turn_strategy",
+          "id": "cf80a569-0073-ad53-f061-94cd7e36f4ee",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "a63e6524a2eaceee452e9f3a0f827f71eff975e90036e4573f9841a2d76a8509"
+        },
+        "state": "active",
+        "updated_at": 1793748716,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1793748716,
+          "evidence": "Entre os jogos, os de estratégia por turnos são os meus favoritos",
+          "interaction_id": "a63e6524a2eaceee452e9f3a0f827f71eff975e90036e4573f9841a2d76a8509"
+        },
+        {
+          "at": 1793749657,
+          "evidence": "Jogos de estratégia por turnos são meus favoritos mesmo depois de experimentar outros gêneros",
+          "interaction_id": "301d23fd51fca7197daded2a73742ebe72550d448e24bf7eff3c0574b7121750"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "games_turn_strategy",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "positive"
+      },
+      "revisions": []
+    },
+    {
+      "memory": {
+        "created_at": 1793748724,
+        "input": {
+          "content": "Projeto candeia: planeja usar postgresql como banco de dados.",
+          "fact_key": "project.candeia.database",
+          "id": "1d4c5b92-1302-60ba-4fe2-eb54d92fbd84",
+          "kind": "decision",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        },
+        "state": "active",
+        "updated_at": 1793748726,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793748724,
+          "evidence": "Quero usar TypeScript e PostgreSQL",
+          "interaction_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "database",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.candeia",
+        "temporal": "planned",
+        "value": "postgresql"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748724,
+        "input": {
+          "content": "Projeto candeia: planeja usar linguagem typescript.",
+          "fact_key": "project.candeia.language",
+          "id": "2f77aca4-a64a-0fab-a170-85f5bee19ea3",
+          "kind": "decision",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        },
+        "state": "obsolete",
+        "updated_at": 1793749266,
+        "version": 3
+      },
+      "provenance": [
+        {
+          "at": 1793748724,
+          "evidence": "Quero usar TypeScript e PostgreSQL",
+          "interaction_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "language",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.candeia",
+        "temporal": "planned",
+        "value": "typescript"
+      },
+      "revisions": [
+        2,
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748724,
+        "input": {
+          "content": "Estou começando um projeto de controle de luminosidade",
+          "fact_key": "project.candeia.description",
+          "id": "a973965a-3939-9789-4ac6-94d1f100be5c",
+          "kind": "project",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        },
+        "state": "active",
+        "updated_at": 1793748728,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793748724,
+          "evidence": "Estou começando um projeto de controle de luminosidade",
+          "interaction_id": "a6fc41ca85a33fe03feaa32a00e7163843b4688f80fc239ce9cccd527a3e74ba"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "description",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.candeia",
+        "temporal": "durable",
+        "value": "estou comecando um projeto de controle de luminosidade"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748736,
+        "input": {
+          "content": "Meu computador principal tem 26 GB de RAM",
+          "fact_key": "device.primary_computer.ram_capacity",
+          "id": "c0b38f14-c17a-c793-d61b-0ecbe7bc1b2a",
+          "kind": "hardware",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "8348abd9c1cc4fe960f7b6767bad48543eb142037bb1a4aae6d3df0169d4c225"
+        },
+        "state": "obsolete",
+        "updated_at": 1793749557,
+        "version": 3
+      },
+      "provenance": [
+        {
+          "at": 1793748736,
+          "evidence": "Meu computador principal tem 26 GB de RAM",
+          "interaction_id": "8348abd9c1cc4fe960f7b6767bad48543eb142037bb1a4aae6d3df0169d4c225"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "ram_capacity",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "device.primary_computer",
+        "temporal": "durable",
+        "value": "26_gb"
+      },
+      "revisions": [
+        2,
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748745,
+        "input": {
+          "content": "Meu notebook de trabalho tem 18 GB de RAM",
+          "fact_key": "device.work_laptop.ram_capacity",
+          "id": "2ac52506-acba-fd3d-e8a3-df97a4b48fdf",
+          "kind": "hardware",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "3382549c43e7df29b97a2b04bae1a9354f1d9660e0ad6de736596ee0f2ba6366"
+        },
+        "state": "active",
+        "updated_at": 1793748747,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793748745,
+          "evidence": "Meu notebook de trabalho tem 18 GB de RAM",
+          "interaction_id": "3382549c43e7df29b97a2b04bae1a9354f1d9660e0ad6de736596ee0f2ba6366"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "ram_capacity",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "device.work_laptop",
+        "temporal": "durable",
+        "value": "18_gb"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793748754,
+        "input": {
+          "content": "Quero aprender circuitos elétricos básicos",
+          "fact_key": "user.goal.f47cc78cd5ce",
+          "id": "3719530e-3466-0277-e86f-0cb43d19cff6",
+          "kind": "goal",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "3e97dedc2e990c0536bf17f16f6669e6dec4b25092ef8b7667ff132662b7adc6"
+        },
+        "state": "obsolete",
+        "updated_at": 1793749325,
+        "version": 3
+      },
+      "provenance": [
+        {
+          "at": 1793748754,
+          "evidence": "Quero aprender circuitos elétricos básicos",
+          "interaction_id": "3e97dedc2e990c0536bf17f16f6669e6dec4b25092ef8b7667ff132662b7adc6"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "goal.f47cc78cd5ce",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "durable",
+        "value": "quero aprender circuitos eletricos basicos"
+      },
+      "revisions": [
+        2,
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793749264,
+        "input": {
+          "content": "Projeto candeia: decidiu usar linguagem rust.",
+          "fact_key": "project.candeia.language",
+          "id": "dbcc03d0-b221-218b-c5c1-9d41d13ef62a",
+          "kind": "decision",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "956afd1c8fa7e591004f8c14bcd1ff94fa8e7c9abcbfe1e9cf2feb83a3e0941e"
+        },
+        "state": "active",
+        "updated_at": 1793749266,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793749264,
+          "evidence": "Decidi trocar TypeScript por Rust",
+          "interaction_id": "956afd1c8fa7e591004f8c14bcd1ff94fa8e7c9abcbfe1e9cf2feb83a3e0941e"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 2,
+        "property": "language",
+        "relevance": 0.8,
+        "replaces_id": "2f77aca4-a64a-0fab-a170-85f5bee19ea3",
+        "replaces_version": 2,
+        "subject": "project.candeia",
+        "temporal": "durable",
+        "value": "rust"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793749323,
+        "input": {
+          "content": "Objetivo concluído: aprender circuitos eletricos basicos.",
+          "fact_key": "user.goal.f47cc78cd5ce",
+          "id": "02a6618b-37a7-4d4b-898f-d2167c4d9a7f",
+          "kind": "goal",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "85b559e301af02f2076fe1ad75cc7ef28948bf817eeb0510e1a4a2a06cc9ac66"
+        },
+        "state": "active",
+        "updated_at": 1793749325,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793749323,
+          "evidence": "Concluí meu objetivo de aprender circuitos elétricos básicos",
+          "interaction_id": "85b559e301af02f2076fe1ad75cc7ef28948bf817eeb0510e1a4a2a06cc9ac66"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_completed_goal",
+        "expires_at": null,
+        "facets": [],
+        "priority": 2,
+        "property": "goal.f47cc78cd5ce",
+        "relevance": 0.8,
+        "replaces_id": "3719530e-3466-0277-e86f-0cb43d19cff6",
+        "replaces_version": 2,
+        "subject": "user",
+        "temporal": "completed",
+        "value": "completed:aprender circuitos eletricos basicos"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793749555,
+        "input": {
+          "content": "Atualizei o computador principal para 50 GB",
+          "fact_key": "device.primary_computer.ram_capacity",
+          "id": "5ea43f15-45e2-045a-bbf2-7afe330761c7",
+          "kind": "hardware",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "cc25dfac78962758165d8d42ccbd9821e09c1f24f50c20624e39062eeb61ab47"
+        },
+        "state": "active",
+        "updated_at": 1793749557,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793749555,
+          "evidence": "Atualizei o computador principal para 50 GB",
+          "interaction_id": "cc25dfac78962758165d8d42ccbd9821e09c1f24f50c20624e39062eeb61ab47"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+        "expires_at": null,
+        "facets": [],
+        "priority": 2,
+        "property": "ram_capacity",
+        "relevance": 0.8,
+        "replaces_id": "c0b38f14-c17a-c793-d61b-0ecbe7bc1b2a",
+        "replaces_version": 2,
+        "subject": "device.primary_computer",
+        "temporal": "durable",
+        "value": "50_gb"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793749906,
+        "input": {
+          "content": "Prefere café com açúcar.",
+          "fact_key": "user.coffee_sugar",
+          "id": "3e7abee3-a123-a0be-2e20-bcb4e4fa9f51",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "cd8b0f07b00bcafb36a138fd2e4bc4cb034ec3a811370e2c0fd47105ad7df119"
+        },
+        "state": "active",
+        "updated_at": 1793749908,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793749906,
+          "evidence": "Quero voltar a registrar minha preferência: eu prefiro café com açúcar",
+          "interaction_id": "cd8b0f07b00bcafb36a138fd2e4bc4cb034ec3a811370e2c0fd47105ad7df119"
+        }
+      ],
+      "quality": {
+        "confidence": 0.85,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_renewal:explicit_coffee_preference",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "coffee_sugar",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "with_sugar"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793750102,
+        "input": {
+          "content": "Na verdade, agora prefiro tema escuro na minha interface",
+          "fact_key": "user.interface_theme",
+          "id": "a6970c1d-427d-f631-db8c-ac700b3e896c",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22-long-heldout-v3",
+          "source": "user",
+          "source_id": "f15e8171d9154687ec5fbb0343f73a2da4c64bb883d21c9822b5a3ab5cd03ff6"
+        },
+        "state": "active",
+        "updated_at": 1793750102,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1793750102,
+          "evidence": "Na verdade, agora prefiro tema escuro na minha interface",
+          "interaction_id": "f15e8171d9154687ec5fbb0343f73a2da4c64bb883d21c9822b5a3ab5cd03ff6"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 2,
+        "property": "interface_theme",
+        "relevance": 0.8,
+        "replaces_id": "372fd95f-ab92-4139-d745-97a9d1e0ed5b",
+        "replaces_version": 1,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "dark"
+      },
+      "revisions": []
+    }
+  ],
+  "final_metrics": {
+    "current_vectors": 11,
+    "history_events": [
+      {
+        "count": 10,
+        "state": "approve"
+      },
+      {
+        "count": 1,
+        "state": "auto_correct"
+      },
+      {
+        "count": 4,
+        "state": "auto_promote"
+      },
+      {
+        "count": 1,
+        "state": "auto_superseded"
+      },
+      {
+        "count": 15,
+        "state": "create"
+      },
+      {
+        "count": 3,
+        "state": "obsolete"
+      },
+      {
+        "count": 2,
+        "state": "update"
+      }
+    ],
+    "jobs": [
+      {
+        "count": 21,
+        "state": "done"
+      }
+    ],
+    "memories": [
+      {
+        "count": 11,
+        "state": "active"
+      },
+      {
+        "count": 4,
+        "state": "obsolete"
+      }
+    ],
+    "pending_vectors": 0,
+    "project": "candeia",
+    "provenance_rows": 18,
+    "scope": "phase22-long-heldout-v3",
+    "sqlite_main_page_bytes": 724992,
+    "vector_json_bytes": 142677
+  },
+  "identity": {
+    "created_at": 1793741644,
+    "profile": {
+      "description": "Fictional isolated QA identity",
+      "instructions": "Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. No tools are needed in these synthetic memory checks.",
+      "name": "Lucille Synthetic Phase22",
+      "personality": "Concise"
+    },
+    "updated_at": 1793748675,
+    "version": 5
+  },
+  "index": {
+    "indexed": 35,
+    "space": {
+      "context_tokens": 2048,
+      "dimension": 768,
+      "document_prefix": "search_document: ",
+      "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "index_version": 4,
+      "model": "nomic-ai/nomic-embed-text-v1.5",
+      "normalization": "layer_norm_then_l2",
+      "pooling": "mean",
+      "query_prefix": "search_query: ",
+      "revision": "0188c9bf409793f810680a5a431e7b899c46104c"
+    },
+    "transport_verified": false
+  },
+  "deleted": [
+    {
+      "deleted_at": 1793749825,
+      "id": "fbaffab9-7c18-240d-8805-6808d869465a",
+      "kind": "preference",
+      "state": "deleted"
+    },
+    {
+      "deleted_at": 1793749825,
+      "id": "3749730b-c8fe-7340-c924-c1ebff3eeb56",
+      "kind": "preference",
+      "state": "deleted"
+    }
+  ],
+  "finished": "2026-11-03T23:55:17.372Z",
+  "execution_complete": true
+}

@@ -1,0 +1,58 @@
+{
+  "reviewed_utc": "2026-11-03T23:34:53.320770+00:00",
+  "parent_scored_sha256": "9b994c9f222f93b79c55bb9e85969cf95f8e5c729167dd65a0de60396da72086",
+  "automatic_totals_preserved": {
+    "tp": 10,
+    "fp": 0,
+    "missed": 0,
+    "critical_references": 0,
+    "natural_points": 36,
+    "natural_applicable": 36,
+    "precision": 1.0,
+    "recall": 1.0,
+    "naturalness": 1.0
+  },
+  "literal_reviewed_probe_ids": [
+    "heldout-v3-long20-probe-01",
+    "heldout-v3-long20-probe-02",
+    "heldout-v3-long20-probe-03",
+    "heldout-v3-long20-probe-04",
+    "heldout-v3-long20-probe-05",
+    "heldout-v3-long20-probe-06",
+    "heldout-v3-long20-probe-07",
+    "heldout-v3-long20-probe-08",
+    "heldout-v3-long20-probe-09",
+    "heldout-v3-long20-probe-10"
+  ],
+  "adjustments": [
+    {
+      "id": "heldout-v3-long20-probe-01",
+      "checks": {
+        "grounded_answer": false,
+        "current_versions": false
+      },
+      "critical": true,
+      "reason": "Planned TypeScript choice presented as ongoing development (está sendo desenvolvido usando TypeScript). No implementation-progress evidence."
+    }
+  ],
+  "reviewed_natural_points": 34,
+  "reviewed_natural_applicable": 36,
+  "reviewed_naturalness": 0.9444444444444444,
+  "critical_answer_failures": 1,
+  "passed": false,
+  "primary_turn_review": {
+    "body_turns": 20,
+    "all_body_answers_literally_inspected": true,
+    "gratuitous_recording_acknowledgements": [
+      {
+        "turn": 2,
+        "text": "Anotei que você prefere o modo claro para a interface do seu dia a dia."
+      }
+    ],
+    "notes": [
+      "The two primary genres remain distinct in canonical memory; turn 5 conversational causal wording is not deduplication proof.",
+      "Primary factual math/science and code examples inspected; quantitative fixed rubric above is for the ten fresh probes only, not an invented all-conversation approval."
+    ]
+  },
+  "additional_non_gate_observation": "English Agent and Code questions received Portuguese responses despite QA identity asking question-language matching. Not silently added to the frozen scoring rubric."
+}

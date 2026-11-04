@@ -1,0 +1,85 @@
+{
+  "fixture": "driver-v3-restart-fault-3-after-final.json",
+  "scope": "phase22-v3-restart-heldout-3",
+  "project": "candeia",
+  "totals": {
+    "tp": 1,
+    "fp": 0,
+    "missed": 0,
+    "critical_references": 0,
+    "natural_points": 4,
+    "natural_applicable": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "naturalness": 1.0
+  },
+  "categories": {
+    "response_language": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    }
+  },
+  "samples": [
+    {
+      "id": "v3-restart-fault-3-after-probe-01",
+      "question": "Qual Ã© meu idioma preferido para conversar?",
+      "category": "response_language",
+      "gold": [
+        {
+          "property": "response_language",
+          "value": "pt"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "3ac825da-11a7-718a-df13-5c57e9efcc83",
+          "version": 1,
+          "kind": "preference",
+          "content": "No meu dia a dia, meu idioma preferido para conversar é português"
+        }
+      ],
+      "provenance": {
+        "3ac825da-11a7-718a-df13-5c57e9efcc83": [
+          {
+            "at": 1793750551,
+            "evidence": "No meu dia a dia, meu idioma preferido para conversar é português",
+            "interaction_id": "2736729886b7f2be8e3f1604ccbe72f1aea112a91c0fcef8c24da382463dc9fc"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Seu idioma preferido para conversar é o português.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 12,
+        "prompt_tokens": 595,
+        "total_tokens": 607,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "no_repeated_preference": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    }
+  ],
+  "review_pending": false,
+  "notes": [
+    "Context metrics score actual injected references, never an answer guessed without memory.",
+    "Forbidden mentions require literal review to distinguish obsolete-as-current from legitimate history/negation. Preliminary automatic rubric remains conservative.",
+    "Fewer than five examples per category: counts only; no generalization from percentages."
+  ]
+}

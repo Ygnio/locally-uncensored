@@ -1,0 +1,47 @@
+{
+  "started": "2026-11-03T23:56:14.603858+00:00",
+  "faults": {
+    "cancel": [
+      {
+        "label": "v3-cancel-fault-1",
+        "exit_code": 0,
+        "actual_overlap": true,
+        "error": null,
+        "old_callback_result": {
+          "completed": false
+        },
+        "old_callback_canonical_unchanged": true
+      }
+    ],
+    "restart": [
+      {
+        "label": "v3-restart-fault-1",
+        "exit_code": 1,
+        "actual_overlap": true,
+        "error": "Error: spawnSync pwsh ETIMEDOUT",
+        "old_callback_result": null,
+        "old_callback_canonical_unchanged": null
+      },
+      {
+        "label": "v3-restart-fault-2",
+        "exit_code": 1,
+        "actual_overlap": true,
+        "error": "Error: spawnSync pwsh ETIMEDOUT",
+        "old_callback_result": null,
+        "old_callback_canonical_unchanged": null
+      }
+    ]
+  },
+  "forget_inline_score": {
+    "tp": 0,
+    "fp": 0,
+    "missed": 1,
+    "critical_references": 0,
+    "natural_points": 6,
+    "natural_applicable": 7,
+    "precision": 0.0,
+    "recall": 0.0,
+    "naturalness": 0.8571428571428571
+  },
+  "finished": "2026-11-04T00:01:18.282913+00:00"
+}

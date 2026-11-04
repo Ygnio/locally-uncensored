@@ -103,6 +103,12 @@ pub fn eligible_source(text: &str) -> bool {
 pub fn validate(text: &str, scope: &str, project: &str, json: &str) -> Result<Vec<Claim>> {
     if serde_json::from_str::<serde_json::Value>(json)
         .ok()
+        .is_some_and(|v| v["version"] == 3)
+    {
+        return crate::dialogue::normalize(text, scope, project, json);
+    }
+    if serde_json::from_str::<serde_json::Value>(json)
+        .ok()
         .is_some_and(|v| v.get("version").is_some())
     {
         return Ok(crate::normalization::normalize(text, scope, project, json)?

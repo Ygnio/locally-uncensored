@@ -1,0 +1,214 @@
+{
+  "id": "phase22-long-20-v2",
+  "project": "candeia",
+  "turns": [
+    {
+      "text": "Nos meus intervalos, eu prefiro café com açúcar.",
+      "review": false
+    },
+    {
+      "text": "Para a interface do meu dia a dia, eu prefiro modo claro.",
+      "review": false
+    },
+    {
+      "text": "No meu aprendizado, eu gosto de explicações detalhadas.",
+      "review": false
+    },
+    {
+      "text": "Para jogar no tempo livre, eu curto RPG tático com classes.",
+      "review": false
+    },
+    {
+      "text": "Entre os jogos, os de estratégia por turnos são os meus favoritos.",
+      "review": false
+    },
+    {
+      "text": "Estou começando um projeto de controle de luminosidade. Quero usar TypeScript e PostgreSQL.",
+      "review": true
+    },
+    {
+      "text": "Meu computador principal tem 26 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Meu notebook de trabalho tem 18 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Quero aprender circuitos elétricos básicos.",
+      "review": true
+    },
+    {
+      "text": "Nas minhas partidas eu prefiro RPGs com combate tático.",
+      "review": false
+    },
+    {
+      "text": "Como funciona a rotação da Terra?"
+    },
+    {
+      "text": "Como eu represento o número 14 em uma variável?"
+    },
+    {
+      "text": "Quanto é 17 somado a 23?"
+    },
+    {
+      "text": "Como funciona a condução de calor?"
+    },
+    {
+      "text": "Como eu represento o número 17 em uma variável?"
+    },
+    {
+      "text": "Quanto é 20 somado a 26?"
+    },
+    {
+      "text": "Como funciona um ímã?"
+    },
+    {
+      "text": "Como eu represento o número 20 em uma variável?"
+    },
+    {
+      "text": "Quanto é 23 somado a 29?"
+    },
+    {
+      "text": "Como funciona a difusão de um cheiro?"
+    }
+  ],
+  "probes": [
+    {
+      "text": "Como está ficando aquele projeto?",
+      "expected": [
+        {
+          "property": "language",
+          "value": "typescript",
+          "temporal": "planned"
+        },
+        {
+          "property": "database",
+          "value": "postgresql",
+          "temporal": "planned"
+        },
+        {
+          "property": "description"
+        }
+      ],
+      "answer_pattern": "TypeScript",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "language"
+    },
+    {
+      "text": "Should I sweeten my morning coffee?",
+      "expected": [
+        {
+          "property": "coffee_sugar",
+          "value": "with_sugar"
+        }
+      ],
+      "answer_pattern": "with sugar|com açúcar|\\byes\\b|\\bsim\\b",
+      "mode": "agent",
+      "answer_none": [
+        "without sugar|sem açúcar|unsweetened|no sugar"
+      ],
+      "category": "coffee_sugar"
+    },
+    {
+      "text": "Que tipo de RPG combina com o meu gosto?",
+      "expected": [
+        {
+          "property": "games_tactics",
+          "value": "positive"
+        }
+      ],
+      "answer_pattern": "táti|tacti",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "games_tactics"
+    },
+    {
+      "text": "Como você deve explicar um conceito para mim?",
+      "expected": [
+        {
+          "property": "communication_style",
+          "value": "detailed"
+        }
+      ],
+      "answer_pattern": "detalh|detail|explica",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "communication_style"
+    },
+    {
+      "text": "Qual é minha preferência de tema de interface?",
+      "expected": [
+        {
+          "property": "interface_theme",
+          "value": "light"
+        }
+      ],
+      "answer_pattern": "clar|light",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "interface_theme"
+    },
+    {
+      "text": "How much RAM does my work laptop have?",
+      "expected": [
+        {
+          "property": "ram_capacity",
+          "value": "18_gb",
+          "subject": "device.work_laptop"
+        }
+      ],
+      "answer_pattern": "18\\s*GB",
+      "mode": "code",
+      "answer_none": [],
+      "category": "ram_capacity"
+    },
+    {
+      "text": "Qual é a RAM do meu computador principal?",
+      "expected": [
+        {
+          "property": "ram_capacity",
+          "value": "26_gb",
+          "subject": "device.primary_computer"
+        }
+      ],
+      "answer_pattern": "26\\s*GB",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "ram_capacity"
+    },
+    {
+      "text": "Qual é meu objetivo atual sobre circuitos elétricos básicos?",
+      "expected": [
+        {
+          "property": "goal.",
+          "subject": "user",
+          "temporal": "durable"
+        }
+      ],
+      "answer_pattern": "circuit|elétr|eletr",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "goal"
+    },
+    {
+      "text": "Qual é a capital da Argentina?",
+      "expected": [],
+      "answer_pattern": "Buenos Aires",
+      "mode": "chat",
+      "answer_none": [],
+      "category": "irrelevant"
+    },
+    {
+      "text": "Qual banco está planejado no projeto candeia2?",
+      "expected": [],
+      "answer_pattern": "não|not|informa|context|defin|sei|know",
+      "mode": "chat",
+      "answer_none": [
+        "PostgreSQL"
+      ],
+      "category": "scope_fence"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "reviewed_utc": "2026-11-03T23:51:02.802353+00:00",
+  "parent_progress_sha256": "0b38fa1e1688f407ce0c2ebdece2ded1a9df13d210b970be91531386960bb98c",
+  "literal_primary_turns_reviewed": [
+    1,
+    55
+  ],
+  "critical_personal_state_extrapolations_in_reviewed_range": 0,
+  "ambiguity_observation": {
+    "turn": 41,
+    "source": "Na verdade, agora são 39 GB.",
+    "actual_llm_category": "decision",
+    "actual_memory_outcome": "No candidate retained, no active overwrite; independently grounded category mismatch rejected. Coverage miss, not candidate retention success.",
+    "metrics_after": {
+      "current_vectors": 11,
+      "history_events": [
+        {
+          "count": 8,
+          "state": "approve"
+        },
+        {
+          "count": 1,
+          "state": "auto_correct"
+        },
+        {
+          "count": 5,
+          "state": "auto_promote"
+        },
+        {
+          "count": 1,
+          "state": "auto_superseded"
+        },
+        {
+          "count": 14,
+          "state": "create"
+        },
+        {
+          "count": 2,
+          "state": "obsolete"
+        },
+        {
+          "count": 1,
+          "state": "update"
+        }
+      ],
+      "jobs": [
+        {
+          "count": 14,
+          "state": "done"
+        }
+      ],
+      "memories": [
+        {
+          "count": 11,
+          "state": "active"
+        },
+        {
+          "count": 3,
+          "state": "obsolete"
+        }
+      ],
+      "pending_vectors": 0,
+      "project": "candeia",
+      "provenance_rows": 15,
+      "scope": "phase22-long-heldout-v3",
+      "sqlite_main_page_bytes": 684032,
+      "vector_json_bytes": 133149
+    }
+  },
+  "additional_non_memory_observation": "Compass response simplified magnetic north as geographic north. General knowledge factual quality is outside the quantitative fresh-memory-probe score; no claim that all science answers were externally verified."
+}

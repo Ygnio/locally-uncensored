@@ -1,0 +1,90 @@
+{
+  "id": "phase22-lifecycle-v3",
+  "scope": "phase22-long-heldout-v3",
+  "project": "candeia",
+  "host_restart": {
+    "turns": [],
+    "probes": [
+      {
+        "text": "Que linguagem está vigente no meu projeto agora?",
+        "expected": [
+          {
+            "property": "language",
+            "value": "rust"
+          }
+        ],
+        "answer_pattern": "Rust",
+        "answer_none": [
+          "TypeScript"
+        ],
+        "category": "language"
+      },
+      {
+        "text": "Qual é a capacidade de RAM do meu computador principal?",
+        "expected": [
+          {
+            "property": "ram_capacity",
+            "value": "50_gb",
+            "subject": "device.primary_computer"
+          }
+        ],
+        "answer_pattern": "50\\s*GB",
+        "answer_none": [
+          "26\\s*GB",
+          "39\\s*GB"
+        ],
+        "category": "ram_capacity"
+      }
+    ]
+  },
+  "nomic_down": {
+    "turns": [
+      {
+        "text": "Na verdade, agora prefiro tema escuro na minha interface."
+      }
+    ],
+    "probes": [
+      {
+        "text": "Qual é meu tema atual preferido na interface?",
+        "expected": [
+          {
+            "property": "interface_theme",
+            "value": "dark"
+          }
+        ],
+        "answer_pattern": "escur|dark",
+        "answer_none": [
+          "clar|light"
+        ],
+        "category": "interface_theme"
+      }
+    ]
+  },
+  "nomic_recovery": {
+    "turns": [],
+    "probes": [
+      {
+        "text": "Which interface theme is my current preference?",
+        "expected": [
+          {
+            "property": "interface_theme",
+            "value": "dark"
+          }
+        ],
+        "answer_pattern": "escur|dark",
+        "answer_none": [
+          "clar|light"
+        ],
+        "category": "interface_theme"
+      }
+    ]
+  },
+  "cancel": {
+    "source": "Nas conversas do cotidiano eu prefiro respostas bem curtas.",
+    "scope": "phase22-v3-cancel-heldout"
+  },
+  "restart_during_extraction": {
+    "source": "No meu dia a dia, meu idioma preferido para conversar é português.",
+    "scope": "phase22-v3-restart-heldout"
+  }
+}

@@ -18,6 +18,12 @@ class AtomicGrammar(unittest.TestCase):
         spans=actual['properties']['claims']['items']['properties']['evidence']['enum']
         self.assertEqual(len(spans),3);self.assertIn('Meu vizinho usa 80 GB',spans)
         self.assertNotIn('agora são 36 GB',spans)
+    def test_v3_shared_schema_preserves_all_literal_clauses(self):
+        source='Estou começando um projeto de automação. Quero usar Python e SQLite.'
+        script="import {conversationSchemaFor} from './src/lib/lucille-atomic.ts';const x=JSON.parse(process.argv[1]);process.stdout.write(JSON.stringify(conversationSchemaFor(...x)))"
+        actual=json.loads(subprocess.check_output(['node','--input-type=module','-e',script,json.dumps([source,'qa','casa'])],cwd=repo,text=True,encoding='utf-8'))
+        self.assertEqual(actual,broker.atomic_schema_for(source,'qa','casa',3))
+        self.assertEqual(actual['properties']['version'],{'const':3})
     def test_boundaries(self):
         for source in ['', 'é'*6001, ';'.join('claim'+str(i) for i in range(65))]:
             with self.assertRaises(ValueError):broker.atomic_schema_for(source,'s','p')

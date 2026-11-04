@@ -119,6 +119,11 @@ pub(crate) fn unsafe_text(text: &str) -> bool {
             text,
             &[
                 "password",
+                "credencial",
+                "credential",
+                "chave de acesso",
+                "secret key",
+                "access key",
                 "api_key",
                 "api key",
                 "bearer ",

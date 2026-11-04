@@ -1,0 +1,49 @@
+1 v3-001 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+2 v3-002 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+3 v3-003 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+4 v3-004 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+5 v3-005 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+6 v3-006 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+7 v3-007 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+8 v3-008 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+9 v3-009 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+10 v3-010 [('rules', (1, 0, 0)), ('llm', (0, 0, 1)), ('hybrid', (1, 0, 0))]
+11 v3-011 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+12 v3-012 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+13 v3-013 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+14 v3-014 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+15 v3-015 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+16 v3-016 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+17 v3-017 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+18 v3-018 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+19 v3-019 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+20 v3-020 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+21 v3-021 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+22 v3-022 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+23 v3-023 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+24 v3-024 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+25 v3-025 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+26 v3-026 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+27 v3-027 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+28 v3-028 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+29 v3-029 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+30 v3-030 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+31 v3-031 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+32 v3-032 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+33 v3-033 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+34 v3-034 [('rules', (1, 0, 0)), ('llm', (1, 0, 0)), ('hybrid', (1, 0, 0))]
+Traceback (most recent call last):
+  File "<QA_CHECKOUT>\scripts\test-lucille-phase22-extraction.py", line 55, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--root',required=True);p.add_argument('--bridge',required=True);p.add_argument('--dataset',required=True);p.add_argument('--label',required=True);p.add_argument('--freeze');main(p.parse_args())
+                                                                                                                                                                                                                             ~~~~^^^^^^^^^^^^^^^^
+  File "<QA_CHECKOUT>\scripts\test-lucille-phase22-extraction.py", line 37, in main
+    c['native_modes'][mode]=h.bridge(Path(a.bridge).resolve(),root/a.label/('lucille-synthetic-'+mode+'-'+case['id']),{'operation':'learn','mode':mode,'autonomy':True,'automatic_indexing':True,'text':case['text'],'scope':scope,'project':project,'message_id':case['id'],'output':output})
+                            ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<QA_CHECKOUT>\scripts\test-lucille-real-extraction.py", line 22, in bridge
+    result = subprocess.run([str(executable)], input=json.dumps(request), text=True,
+                            encoding='utf-8', capture_output=True, env=env, check=True,
+                            creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0)
+  File "C:\Program Files\Python314\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['<QA_WORK>\\build\\memory\\debug\\examples\\real_validation_bridge.exe']' returned non-zero exit status 1.

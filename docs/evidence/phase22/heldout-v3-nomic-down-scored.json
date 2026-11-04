@@ -1,0 +1,85 @@
+{
+  "fixture": "driver-heldout-v3-nomic-down-final.json",
+  "scope": "phase22-long-heldout-v3",
+  "project": "candeia",
+  "totals": {
+    "tp": 1,
+    "fp": 0,
+    "missed": 0,
+    "critical_references": 0,
+    "natural_points": 4,
+    "natural_applicable": 4,
+    "precision": 1.0,
+    "recall": 1.0,
+    "naturalness": 1.0
+  },
+  "categories": {
+    "interface_theme": {
+      "n": 1,
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "natural_points": 4,
+      "natural_applicable": 4
+    }
+  },
+  "samples": [
+    {
+      "id": "heldout-v3-nomic-down-probe-01",
+      "question": "Qual é meu tema atual preferido na interface?",
+      "category": "interface_theme",
+      "gold": [
+        {
+          "property": "interface_theme",
+          "value": "dark"
+        }
+      ],
+      "actual_references": [
+        {
+          "id": "a6970c1d-427d-f631-db8c-ac700b3e896c",
+          "version": 1,
+          "kind": "preference",
+          "content": "Na verdade, agora prefiro tema escuro na minha interface"
+        }
+      ],
+      "provenance": {
+        "a6970c1d-427d-f631-db8c-ac700b3e896c": [
+          {
+            "at": 1793750102,
+            "evidence": "Na verdade, agora prefiro tema escuro na minha interface",
+            "interaction_id": "f15e8171d9154687ec5fbb0343f73a2da4c64bb883d21c9822b5a3ab5cd03ff6"
+          }
+        ]
+      },
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "answer": "Seu tema preferido atual é o tema escuro.",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 13,
+        "prompt_tokens": 596,
+        "total_tokens": 609,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "fresh_user_messages": 1,
+      "checks": {
+        "grounded_answer": true,
+        "current_versions": true,
+        "no_gratuitous_announcement": true,
+        "no_repeated_preference": true
+      },
+      "forbidden_mentions_requiring_review": [],
+      "planned_implementation_requiring_review": false
+    }
+  ],
+  "review_pending": false,
+  "notes": [
+    "Context metrics score actual injected references, never an answer guessed without memory.",
+    "Forbidden mentions require literal review to distinguish obsolete-as-current from legitimate history/negation. Preliminary automatic rubric remains conservative.",
+    "Fewer than five examples per category: counts only; no generalization from percentages."
+  ]
+}

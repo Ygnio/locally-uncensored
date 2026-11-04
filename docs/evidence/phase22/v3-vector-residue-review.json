@@ -1,0 +1,64 @@
+{
+  "parent_canonical_audit_sha256": "2f6ed43463f36276336dac4dfe5796e9d7bb94e95d13cdc8e009a7a857b8a9af",
+  "original_field_label": "stale_current_vectors",
+  "clarification": "This SQL field counts stored stale rows in the active embedding space, not vectors accepted as current context. Interpret state/version guards separately. Original count retained.",
+  "rows": [
+    {
+      "scope": "p22-530eb1a1",
+      "project": "cedro",
+      "id": "9b398f44-ff0d-c91f-b132-1ed73d34999f",
+      "state": "obsolete",
+      "version": 2,
+      "memory_version": 1,
+      "property": "coffee_sugar"
+    },
+    {
+      "scope": "p22-530eb1a1",
+      "project": "cedro",
+      "id": "808373dc-9b40-41a9-1276-910b1c0f6596",
+      "state": "obsolete",
+      "version": 3,
+      "memory_version": 2,
+      "property": "language"
+    },
+    {
+      "scope": "phase22-long-heldout-v3",
+      "project": "candeia",
+      "id": "372fd95f-ab92-4139-d745-97a9d1e0ed5b",
+      "state": "obsolete",
+      "version": 2,
+      "memory_version": 1,
+      "property": "interface_theme"
+    },
+    {
+      "scope": "phase22-long-heldout-v3",
+      "project": "candeia",
+      "id": "2f77aca4-a64a-0fab-a170-85f5bee19ea3",
+      "state": "obsolete",
+      "version": 3,
+      "memory_version": 2,
+      "property": "language"
+    },
+    {
+      "scope": "phase22-long-heldout-v3",
+      "project": "candeia",
+      "id": "c0b38f14-c17a-c793-d61b-0ecbe7bc1b2a",
+      "state": "obsolete",
+      "version": 3,
+      "memory_version": 2,
+      "property": "ram_capacity"
+    },
+    {
+      "scope": "phase22-long-heldout-v3",
+      "project": "candeia",
+      "id": "3719530e-3466-0277-e86f-0cb43d19cff6",
+      "state": "obsolete",
+      "version": 3,
+      "memory_version": 2,
+      "property": "goal.f47cc78cd5ce"
+    }
+  ],
+  "all_rows_non_active": true,
+  "retrieval_evidence": "Frozen final retrieval and GUI reference audits observed zero stale/obsolete references actually injected.",
+  "limitation": "Six obsolete-record vector rows remain physically stored. Their logical exclusion does not prove physical garbage collection or unbounded-duration stability."
+}

@@ -1,0 +1,59 @@
+{
+  "reviewed_utc": "2026-11-03T23:40:35.598292+00:00",
+  "parent_scored_sha256": "a0b4137db93280ace3cde99ba68795ff6c97847949c44edf186172623cf14071",
+  "automatic_totals_preserved": {
+    "tp": 8,
+    "fp": 0,
+    "missed": 0,
+    "critical_references": 0,
+    "natural_points": 27,
+    "natural_applicable": 28,
+    "precision": 1.0,
+    "recall": 1.0,
+    "naturalness": 0.9642857142857143
+  },
+  "literal_reviewed_probe_ids": [
+    "heldout-v3-long50-probe-01",
+    "heldout-v3-long50-probe-02",
+    "heldout-v3-long50-probe-03",
+    "heldout-v3-long50-probe-04",
+    "heldout-v3-long50-probe-05",
+    "heldout-v3-long50-probe-06",
+    "heldout-v3-long50-probe-07",
+    "heldout-v3-long50-probe-08"
+  ],
+  "adjustments": [
+    {
+      "id": "heldout-v3-long50-probe-01",
+      "checks": {
+        "grounded_answer": false,
+        "current_versions": false
+      },
+      "critical": true,
+      "reason": "Planned JavaScript/SQLite choices asserted as current implementation (está sendo desenvolvido com). Following sentence says planned but does not undo unsupported first assertion."
+    },
+    {
+      "id": "heldout-v3-long50-probe-07",
+      "checks": {
+        "grounded_answer": false,
+        "current_versions": false,
+        "irrelevant_uncontaminated": true
+      },
+      "critical": true,
+      "reason": "No retrieved data for other project. Has not been defined yet asserts absence of a decision instead of unavailable information; main project actually has PostgreSQL. Generic offer if you have a preference is not injected personal memory, so automatic contamination flag is a false positive."
+    }
+  ],
+  "reviewed_natural_points": 24,
+  "reviewed_natural_applicable": 28,
+  "reviewed_naturalness": 0.8571428571428571,
+  "critical_answer_failures": 2,
+  "passed": false,
+  "primary_turn_review": {
+    "body_turns": 50,
+    "all_body_answers_literally_inspected": true,
+    "notes": [
+      "No additional critical invented personal-state assertion identified in the fifty primary replies. Probe-only rubric denominator is not generalized to all body responses.",
+      "Portuguese answers to English own-hardware/coffee questions noted separately from frozen rubric."
+    ]
+  }
+}

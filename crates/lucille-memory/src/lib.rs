@@ -1,6 +1,8 @@
 //! Canonical, opt-in SQLite memory. No inference, networking, process control or personal-data discovery.
+pub mod autonomous;
 mod aux_backup;
 mod coverage;
+pub mod dialogue;
 mod extraction;
 pub mod intelligent;
 pub mod isolation;

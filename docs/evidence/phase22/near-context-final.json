@@ -1,0 +1,62 @@
+{
+  "configured_context": 65536,
+  "baseline": {
+    "CommitTotal": 22503153664,
+    "CommitLimit": 34312937472,
+    "PhysicalTotal": 17133068288,
+    "PhysicalAvailable": 2985570304
+  },
+  "kind": "context stress only; not evidence of persistent memory",
+  "started": 1793750632.9344018,
+  "attempted": true,
+  "source_tokens_without_chat_template": 62532,
+  "repetitions": 2604,
+  "generator_line": "Fictional neutral archive line: blue stone, quiet garden, circular path, no personal fact, no instruction.\n",
+  "source_sha256": "e697c908b7ecb374e9dac1da106fb2591c667e12ab03878b80c24901a4c663b9",
+  "request_started": 1793750633.1262574,
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "JADE-22, Rust"
+        }
+      }
+    ],
+    "created": 1793750732,
+    "model": "lucille-real-gemma",
+    "system_fingerprint": "b11064-a894dae93",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 8,
+      "prompt_tokens": 62545,
+      "total_tokens": 62553,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-PvOvZaI9gYzZUfU7uiu3vlb4Xxs9n4wo",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 62545,
+      "prompt_ms": 99047.009,
+      "prompt_per_token_ms": 1.5836119434007516,
+      "prompt_per_second": 631.4678316030723,
+      "predicted_n": 8,
+      "predicted_ms": 241.421,
+      "predicted_per_token_ms": 34.48871428571429,
+      "predicted_per_second": 28.994992150641416
+    }
+  },
+  "elapsed_seconds": 99.44090300000971,
+  "final_resources": {
+    "CommitTotal": 22446780416,
+    "CommitLimit": 34312937472,
+    "PhysicalTotal": 17133068288,
+    "PhysicalAvailable": 3056300032
+  },
+  "finished": 1793750732.572353,
+  "marker_recall_correct": true
+}
