@@ -1,0 +1,43 @@
+{
+  "id": "phase22b-unseen-answers-ended-v3",
+  "project": "jatoba-azul",
+  "turns": [
+    {
+      "text": "Estou implementando meu projeto em JavaScript.",
+      "review": true
+    },
+    {
+      "text": "Cancelei meu projeto.",
+      "review": true
+    },
+    {
+      "text": "Decidi usar SQLite no meu projeto.",
+      "review": true
+    }
+  ],
+  "probes": [
+    {
+      "text": "Como está meu projeto neste momento?",
+      "scenario": "cancelled_project",
+      "mode": "agent",
+      "expected": [
+        {
+          "property": "lifecycle",
+          "value": "cancelled",
+          "temporal": "cancelled"
+        }
+      ]
+    },
+    {
+      "text": "Que linguagem era usada antes de eu cancelar esse projeto?",
+      "scenario": "current_vs_historical",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "javascript"
+        }
+      ]
+    }
+  ]
+}

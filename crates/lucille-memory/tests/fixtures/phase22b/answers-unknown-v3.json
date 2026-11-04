@@ -1,0 +1,24 @@
+{
+  "id": "phase22b-unseen-answers-unknown-v3",
+  "project": "araucaria",
+  "turns": [
+    {
+      "text": "I have not chosen a database for my project.",
+      "review": true
+    }
+  ],
+  "probes": [
+    {
+      "text": "Eu já defini qual banco de dados usar nesse projeto?",
+      "scenario": "absence_vs_negative_decision",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "database",
+          "value": "undecided",
+          "temporal": "unknown"
+        }
+      ]
+    }
+  ]
+}
