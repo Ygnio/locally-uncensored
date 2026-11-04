@@ -1,0 +1,640 @@
+{
+  "id": "phase22b-unseen-retrieval-v1",
+  "design": "Actual index-5 Nomic vectors with scoped canonical events. Initial injection scored independently of later answer confirmation. Explicit history queries request both transition sides. Current ended-project queries require the terminal qualifier and exclude old execution.",
+  "events": [
+    {
+      "action": "learn",
+      "label": "description",
+      "text": "Estou começando um projeto de catálogo de folhas.",
+      "scope": "phase22b-ret-a",
+      "project": "garapeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "language",
+      "text": "Decidi usar Rust no meu projeto.",
+      "scope": "phase22b-ret-a",
+      "project": "garapeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "database",
+      "text": "Quero usar SQLite no meu projeto.",
+      "scope": "phase22b-ret-a",
+      "project": "garapeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "primary",
+      "text": "Meu computador principal tem 48 GB de RAM.",
+      "scope": "phase22b-ret-a",
+      "project": "garapeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "work",
+      "text": "Meu notebook de trabalho tem 20 GB de RAM.",
+      "scope": "phase22b-ret-a",
+      "project": "garapeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "other",
+      "text": "Meu outro computador tem 12 GB de RAM.",
+      "scope": "phase22b-ret-a",
+      "project": "garapeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "coffee-old",
+      "text": "Eu prefiro café com açúcar.",
+      "scope": "phase22b-ret-a",
+      "project": "garapeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "coffee-now",
+      "text": "Na verdade, agora prefiro café sem açúcar.",
+      "scope": "phase22b-ret-a",
+      "project": "garapeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "theme",
+      "text": "Eu prefiro o tema escuro na interface.",
+      "scope": "phase22b-ret-a",
+      "project": "garapeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "objective",
+      "text": "Eu prefiro respostas objetivas.",
+      "scope": "phase22b-ret-a",
+      "project": "garapeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "characters",
+      "text": "Eu gosto de jogos com criação de personagens.",
+      "scope": "phase22b-ret-a",
+      "project": "garapeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "classes-deleted",
+      "text": "Eu gosto de jogos em que posso escolher minha classe.",
+      "scope": "phase22b-ret-a",
+      "project": "garapeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "goal-complete",
+      "text": "Concluí meu objetivo de aprender francês.",
+      "scope": "phase22b-ret-a",
+      "project": "garapeira",
+      "approve": true
+    },
+    {
+      "action": "delete",
+      "target": "classes-deleted"
+    },
+    {
+      "action": "learn",
+      "label": "foreign-language",
+      "text": "Decidi usar JavaScript no meu projeto.",
+      "scope": "phase22b-ret-a",
+      "project": "garapeira2",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "foreign-coffee",
+      "text": "Eu prefiro café com açúcar.",
+      "scope": "phase22b-ret-other",
+      "project": "garapeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "future-choice",
+      "text": "Quero usar TypeScript no meu projeto.",
+      "scope": "phase22b-ret-a",
+      "project": "guatambu",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "actual-language",
+      "text": "Meu projeto usa Python.",
+      "scope": "phase22b-ret-a",
+      "project": "guatambu",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "ended-language",
+      "text": "Meu projeto usa JavaScript.",
+      "scope": "phase22b-ret-a",
+      "project": "peroba",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "ended-state",
+      "text": "Cancelei meu projeto.",
+      "scope": "phase22b-ret-a",
+      "project": "peroba",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "unknown-language",
+      "text": "Ainda não decidi a linguagem do meu projeto.",
+      "scope": "phase22b-ret-a",
+      "project": "embauba",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "pending-choice",
+      "text": "Quero usar Rust no meu projeto.",
+      "scope": "phase22b-ret-a",
+      "project": "catuaba",
+      "approve": false
+    }
+  ],
+  "queries": [
+    {
+      "id": "br-001",
+      "query": "Que linguagem eu decidi usar no meu projeto?",
+      "expected": [
+        "language"
+      ],
+      "category": "language_choice",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-002",
+      "query": "Qual linguagem está vigente no meu projeto agora?",
+      "expected": [
+        "language"
+      ],
+      "category": "restart_language",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-003",
+      "query": "Lembra qual linguagem escolhi para o projeto?",
+      "expected": [
+        "language"
+      ],
+      "category": "indirect_language",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-004",
+      "query": "Que linguagm eu decidi usar no meu projeto?",
+      "expected": [
+        "language"
+      ],
+      "category": "bounded_typo",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-005",
+      "query": "Which language did I choose for my project?",
+      "expected": [
+        "language"
+      ],
+      "category": "multilingual",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-006",
+      "query": "Qual banco de dados quero usar no meu projeto?",
+      "expected": [
+        "database"
+      ],
+      "category": "planned_database",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-007",
+      "query": "Lembra minha escolha de armazenamento para o projeto?",
+      "expected": [
+        "database"
+      ],
+      "category": "indirect_database",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-008",
+      "query": "Which database do I plan to use for my project?",
+      "expected": [
+        "database"
+      ],
+      "category": "multilingual",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-009",
+      "query": "Qual é a capacidade de RAM do meu computador principal?",
+      "expected": [
+        "primary"
+      ],
+      "category": "primary_equipment",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-010",
+      "query": "Quanto de RAM tem meu notebook de trabalho?",
+      "expected": [
+        "work"
+      ],
+      "category": "work_equipment",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-011",
+      "query": "Quanto de RAM tem meu outro computador?",
+      "expected": [
+        "other"
+      ],
+      "category": "other_equipment",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-012",
+      "query": "Qual é a RAM do meu comptador principal?",
+      "expected": [
+        "primary"
+      ],
+      "category": "bounded_typo",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-013",
+      "query": "Quanto de RAM têm meu principal e meu notebook de trabalho?",
+      "expected": [
+        "primary",
+        "work"
+      ],
+      "category": "implicit_comparison",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-014",
+      "query": "Qual a RAM do meu outro computador e do meu notebook de trabalho?",
+      "expected": [
+        "other",
+        "work"
+      ],
+      "category": "implicit_comparison",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-015",
+      "query": "Compare a RAM dos meus três computadores.",
+      "expected": [
+        "primary",
+        "work",
+        "other"
+      ],
+      "category": "explicit_comparison",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-016",
+      "query": "Como eu prefiro tomar meu café?",
+      "expected": [
+        "coffee-now"
+      ],
+      "category": "renewed_coffee",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": [
+        "coffee-old"
+      ]
+    },
+    {
+      "id": "br-017",
+      "query": "Como gosto do meu café agora?",
+      "expected": [
+        "coffee-now"
+      ],
+      "category": "renewed_coffee",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": [
+        "coffee-old"
+      ]
+    },
+    {
+      "id": "br-018",
+      "query": "Do I take my coffee with sugar or without it?",
+      "expected": [
+        "coffee-now"
+      ],
+      "category": "multilingual",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": [
+        "coffee-old"
+      ]
+    },
+    {
+      "id": "br-019",
+      "query": "Meu café era como antes e como é agora?",
+      "expected": [
+        "coffee-old",
+        "coffee-now"
+      ],
+      "category": "historical_preference",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-020",
+      "query": "Que tema de interface eu prefiro?",
+      "expected": [
+        "theme"
+      ],
+      "category": "interface_theme",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-021",
+      "query": "Como eu prefiro que você responda?",
+      "expected": [
+        "objective"
+      ],
+      "category": "objective_replies",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-022",
+      "query": "Como eu gosto das respostas?",
+      "expected": [
+        "objective"
+      ],
+      "category": "objective_replies",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-023",
+      "query": "Do I enjoy creating characters in games?",
+      "expected": [
+        "characters"
+      ],
+      "category": "character_creation",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-024",
+      "query": "Qual é minha preferência sobre criação de personagens em jogos?",
+      "expected": [
+        "characters"
+      ],
+      "category": "character_creation",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-025",
+      "query": "Minha preferência pela escolha de classes ainda está registrada?",
+      "expected": [],
+      "category": "deleted_information",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": [
+        "classes-deleted"
+      ]
+    },
+    {
+      "id": "br-026",
+      "query": "No histórico, qual era minha preferência pela escolha de classes?",
+      "expected": [],
+      "category": "deleted_information",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": [
+        "classes-deleted"
+      ]
+    },
+    {
+      "id": "br-027",
+      "query": "Qual objetivo eu concluí?",
+      "expected": [
+        "goal-complete"
+      ],
+      "category": "completed_goal",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-028",
+      "query": "What goal did I complete?",
+      "expected": [
+        "goal-complete"
+      ],
+      "category": "multilingual",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-029",
+      "query": "Que linguagem meu projeto usa agora?",
+      "expected": [
+        "actual-language"
+      ],
+      "category": "current_vs_future",
+      "project": "guatambu",
+      "scope": "phase22b-ret-a",
+      "forbidden": [
+        "future-choice"
+      ]
+    },
+    {
+      "id": "br-030",
+      "query": "Quais são a linguagem que planejo usar e a que meu projeto usa agora?",
+      "expected": [
+        "future-choice",
+        "actual-language"
+      ],
+      "category": "current_vs_future",
+      "project": "guatambu",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-031",
+      "query": "Meu projeto está sendo desenvolvido em JavaScript agora?",
+      "expected": [
+        "ended-state"
+      ],
+      "category": "cancelled_project",
+      "project": "peroba",
+      "scope": "phase22b-ret-a",
+      "forbidden": [
+        "ended-language"
+      ]
+    },
+    {
+      "id": "br-032",
+      "query": "Qual é o estado atual do meu projeto?",
+      "expected": [
+        "ended-state"
+      ],
+      "category": "cancelled_project",
+      "project": "peroba",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-033",
+      "query": "Que linguagem eu usava antes e qual é o estado atual deste projeto?",
+      "expected": [
+        "ended-language",
+        "ended-state"
+      ],
+      "category": "historical_project",
+      "project": "peroba",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-034",
+      "query": "Eu já decidi a linguagem do meu projeto?",
+      "expected": [
+        "unknown-language"
+      ],
+      "category": "explicit_unknown",
+      "project": "embauba",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-035",
+      "query": "Que linguagem meu projeto usa? ",
+      "expected": [],
+      "category": "pending_review",
+      "project": "catuaba",
+      "scope": "phase22b-ret-a",
+      "forbidden": [
+        "pending-choice"
+      ]
+    },
+    {
+      "id": "br-036",
+      "query": "Qual é a minha data de aniversário?",
+      "expected": [],
+      "category": "no_memory",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-037",
+      "query": "Quanto de espaço meu SSD tem?",
+      "expected": [],
+      "category": "unrelated_property",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-038",
+      "query": "Qual a RAM do computador do meu colega?",
+      "expected": [],
+      "category": "other_person",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "br-039",
+      "query": "Que linguagem escolhi para o projeto garapeira2?",
+      "expected": [],
+      "category": "exact_project_boundary",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": [
+        "foreign-language"
+      ]
+    },
+    {
+      "id": "br-040",
+      "query": "Como eu prefiro meu café?",
+      "expected": [
+        "foreign-coffee"
+      ],
+      "category": "exact_scope_boundary",
+      "project": "garapeira",
+      "scope": "phase22b-ret-other",
+      "forbidden": []
+    },
+    {
+      "id": "br-041",
+      "query": "Que linguagem escolhi para o projeto garapeira3?",
+      "expected": [],
+      "category": "no_fuzzy_project_names",
+      "project": "garapeira",
+      "scope": "phase22b-ret-a",
+      "forbidden": []
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "phase22b-unseen-ended-v1",
+  "project": "aroeira",
+  "turns": [
+    {
+      "text": "Estou começando um projeto de agenda de horta.",
+      "review": true
+    },
+    {
+      "text": "Meu projeto usa JavaScript.",
+      "review": true
+    },
+    {
+      "text": "Cancelei meu projeto.",
+      "review": true
+    }
+  ],
+  "probes": [
+    {
+      "text": "Segundo o último registro, qual é o estado desse projeto?",
+      "scenario": "cancelled_project",
+      "mode": "agent",
+      "expected": [
+        {
+          "property": "lifecycle",
+          "value": "cancelled",
+          "temporal": "cancelled"
+        }
+      ]
+    },
+    {
+      "text": "Que linguagem eu usava antes neste projeto?",
+      "scenario": "current_vs_historical",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "javascript",
+          "temporal": "current"
+        }
+      ]
+    }
+  ]
+}
