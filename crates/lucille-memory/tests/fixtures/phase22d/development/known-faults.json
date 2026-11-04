@@ -1,0 +1,50 @@
+{
+  "id": "phase22d-known-development-faults-v1",
+  "cases": [
+    {
+      "id": "dev-cancel-chat",
+      "type": "prepared_cancel",
+      "mode": "chat",
+      "project": "cacto",
+      "text": "Prefiro café sem açúcar."
+    },
+    {
+      "id": "dev-cancel-agent",
+      "type": "prepared_cancel",
+      "mode": "agent",
+      "project": "cacto",
+      "text": "Prefiro café sem açúcar."
+    },
+    {
+      "id": "dev-cancel-code",
+      "type": "prepared_cancel",
+      "mode": "code",
+      "project": "cacto",
+      "text": "Prefiro café sem açúcar."
+    },
+    {
+      "id": "dev-source-order",
+      "type": "ordered_sources",
+      "mode": "chat",
+      "project": "cacto",
+      "texts": [
+        "Prefiro café com açúcar.",
+        "Na verdade, agora prefiro café sem açúcar."
+      ],
+      "expected_value": "without_sugar"
+    },
+    {
+      "id": "dev-cancel-lease",
+      "type": "leased_cancel",
+      "project": "cacto",
+      "text": "Prefiro café sem açúcar. Meu idioma preferido é português. Eu gosto de jogos em que posso escolher minha classe. Prefiro modo escuro para a interface."
+    },
+    {
+      "id": "dev-restart-lease",
+      "type": "restart",
+      "project": "cacto",
+      "text": "Prefiro café sem açúcar. Meu idioma preferido é português. Eu gosto de jogos em que posso escolher minha classe. Prefiro modo escuro para a interface.",
+      "expected_records": 4
+    }
+  ]
+}
