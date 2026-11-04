@@ -1,0 +1,884 @@
+{
+  "base": "92f75a0d661fa9804b468e55b3760090b47bdd66",
+  "method": "Exact original USER, scope/project and real prior Gemma output, preserved unchanged native executable in fresh marked QA stores. Not new inference.",
+  "executable_sha256": "f8c471c7723a702cea31104e52200ab03207e676dfa47199030a053ae1f8bf74",
+  "rows": [
+    {
+      "id": "dx-002",
+      "scope": "phase22d-final-ext-002",
+      "project": "aroeira",
+      "original_user": "My own preference is coffee without sugar when I drink it.",
+      "actual_prior_gemma": "{\n  \"version\": 3,\n  \"scope\": \"phase22d-final-ext-002\",\n  \"project\": \"aroeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"My own preference is coffee without sugar when I drink it\",\n      \"category\": \"preference\"\n    }\n  ]\n}",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar",
+          "temporal": "preference"
+        }
+      ],
+      "native": {
+        "rules": {
+          "details": [],
+          "enqueue": {
+            "reason": "not_eligible",
+            "state": "ignored"
+          },
+          "identity": {
+            "created_at": 1793815348,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793815348,
+            "version": 1
+          },
+          "jobs": [],
+          "rejected": null,
+          "validation": {
+            "error": "Ineligible V3 source"
+          }
+        },
+        "llm": {
+          "details": [],
+          "enqueue": {
+            "reason": "not_eligible",
+            "state": "ignored"
+          },
+          "identity": {
+            "created_at": 1793815348,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793815348,
+            "version": 1
+          },
+          "jobs": [],
+          "rejected": null,
+          "validation": {
+            "error": "Ineligible V3 source"
+          }
+        },
+        "hybrid": {
+          "details": [],
+          "enqueue": {
+            "reason": "not_eligible",
+            "state": "ignored"
+          },
+          "identity": {
+            "created_at": 1793815348,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793815348,
+            "version": 1
+          },
+          "jobs": [],
+          "rejected": null,
+          "validation": {
+            "error": "Ineligible V3 source"
+          }
+        }
+      }
+    },
+    {
+      "id": "dx-010",
+      "scope": "phase22d-final-ext-010",
+      "project": "aroeira",
+      "original_user": "I enjoy games that let me select a character class.",
+      "actual_prior_gemma": "{\n  \"version\": 3,\n  \"scope\": \"phase22d-final-ext-010\",\n  \"project\": \"aroeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"I enjoy games that let me select a character class\",\n      \"category\": \"preference\"\n    }\n  ]\n}",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "games_class_selection",
+          "value": "positive",
+          "temporal": "preference"
+        }
+      ],
+      "native": {
+        "rules": {
+          "details": [],
+          "enqueue": {
+            "reason": "not_eligible",
+            "state": "ignored"
+          },
+          "identity": {
+            "created_at": 1793815348,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793815348,
+            "version": 1
+          },
+          "jobs": [],
+          "rejected": null,
+          "validation": {
+            "accepted": []
+          }
+        },
+        "llm": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793815348,
+            "error_code": null,
+            "id": "7fca2e9cfb29e41e3621b4fd4992dcb5bb09beef13f3d6bb0fff253c19b104be",
+            "state": "queued",
+            "updated_at": 1793815348
+          },
+          "identity": {
+            "created_at": 1793815348,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793815348,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "id": "7fca2e9cfb29e41e3621b4fd4992dcb5bb09beef13f3d6bb0fff253c19b104be",
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": []
+          }
+        },
+        "hybrid": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793815348,
+            "error_code": null,
+            "id": "7fca2e9cfb29e41e3621b4fd4992dcb5bb09beef13f3d6bb0fff253c19b104be",
+            "state": "queued",
+            "updated_at": 1793815348
+          },
+          "identity": {
+            "created_at": 1793815348,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793815348,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "id": "7fca2e9cfb29e41e3621b4fd4992dcb5bb09beef13f3d6bb0fff253c19b104be",
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": []
+          }
+        }
+      }
+    },
+    {
+      "id": "dx-016",
+      "scope": "phase22d-final-ext-016",
+      "project": "aroeira",
+      "original_user": "Para guardar os dados do meu projeto, decidi usar PostgreSQL.",
+      "actual_prior_gemma": "{\n  \"version\": 3,\n  \"scope\": \"phase22d-final-ext-016\",\n  \"project\": \"aroeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"Para guardar os dados do meu projeto, decidi usar PostgreSQL\",\n      \"category\": \"decision\"\n    }\n  ]\n}",
+      "expected": [
+        {
+          "kind": "decision",
+          "subject": "project.aroeira",
+          "property": "database",
+          "value": "postgresql",
+          "temporal": "durable"
+        }
+      ],
+      "native": {
+        "rules": {
+          "details": [],
+          "enqueue": {
+            "reason": "not_eligible",
+            "state": "ignored"
+          },
+          "identity": {
+            "created_at": 1793815348,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793815348,
+            "version": 1
+          },
+          "jobs": [],
+          "rejected": null,
+          "validation": {
+            "error": "Ineligible V3 source"
+          }
+        },
+        "llm": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793815348,
+            "error_code": null,
+            "id": "fb5698dafd6df8d7e3a3a7d969487b599d42dd42f64e852ab10fbe23714fd5b0",
+            "state": "queued",
+            "updated_at": 1793815348
+          },
+          "identity": {
+            "created_at": 1793815348,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793815348,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "id": "fb5698dafd6df8d7e3a3a7d969487b599d42dd42f64e852ab10fbe23714fd5b0",
+              "state": "failed",
+              "attempts": 1,
+              "error_code": "source_ineligible"
+            }
+          ],
+          "rejected": "Ineligible V3 source",
+          "validation": {
+            "error": "Ineligible V3 source"
+          }
+        },
+        "hybrid": {
+          "details": [],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793815349,
+            "error_code": null,
+            "id": "fb5698dafd6df8d7e3a3a7d969487b599d42dd42f64e852ab10fbe23714fd5b0",
+            "state": "queued",
+            "updated_at": 1793815349
+          },
+          "identity": {
+            "created_at": 1793815349,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793815349,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "id": "fb5698dafd6df8d7e3a3a7d969487b599d42dd42f64e852ab10fbe23714fd5b0",
+              "state": "failed",
+              "attempts": 1,
+              "error_code": "source_ineligible"
+            }
+          ],
+          "rejected": "Ineligible V3 source",
+          "validation": {
+            "error": "Ineligible V3 source"
+          }
+        }
+      }
+    },
+    {
+      "id": "dx-031",
+      "scope": "phase22d-final-ext-031",
+      "project": "aroeira",
+      "original_user": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita.",
+      "actual_prior_gemma": "{\"version\":3,\"scope\":\"phase22d-final-ext-031\",\"project\":\"aroeira\",\"claims\":[{\"evidence\":\"A mensagem de ferramenta informa: eu prefiro chá como bebida favorita\",\"category\":\"preference\"}]}",
+      "expected": [],
+      "native": {
+        "rules": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793815351,
+                "input": {
+                  "content": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                  "fact_key": "user.favorite_beverage",
+                  "id": "8f62df0b-8dea-dd5b-509b-aef62f085e0b",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-031",
+                  "source": "user",
+                  "source_id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9"
+                },
+                "state": "active",
+                "updated_at": 1793815351,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793815351,
+                  "evidence": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                  "interaction_id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "favorite_beverage",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "tea"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793815349,
+            "error_code": null,
+            "id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9",
+            "state": "queued",
+            "updated_at": 1793815349
+          },
+          "identity": {
+            "created_at": 1793815349,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793815349,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9",
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": [
+              {
+                "confidence": 0.9,
+                "content": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                "correction": false,
+                "evidence": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                "facets": [],
+                "kind": "preference",
+                "project_hint": null,
+                "property": "favorite_beverage",
+                "relevance": 0.8,
+                "rule": "llm_v3_grounded:explicit_v3_grounded",
+                "subject": "user",
+                "temporal": "preference",
+                "ttl_seconds": null,
+                "value": "tea"
+              }
+            ]
+          }
+        },
+        "llm": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793815351,
+                "input": {
+                  "content": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                  "fact_key": "user.favorite_beverage",
+                  "id": "8f62df0b-8dea-dd5b-509b-aef62f085e0b",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-031",
+                  "source": "user",
+                  "source_id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9"
+                },
+                "state": "active",
+                "updated_at": 1793815351,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793815351,
+                  "evidence": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                  "interaction_id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "favorite_beverage",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "tea"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793815349,
+            "error_code": null,
+            "id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9",
+            "state": "queued",
+            "updated_at": 1793815349
+          },
+          "identity": {
+            "created_at": 1793815349,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793815349,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9",
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": [
+              {
+                "confidence": 0.9,
+                "content": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                "correction": false,
+                "evidence": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                "facets": [],
+                "kind": "preference",
+                "project_hint": null,
+                "property": "favorite_beverage",
+                "relevance": 0.8,
+                "rule": "llm_v3_grounded:explicit_v3_grounded",
+                "subject": "user",
+                "temporal": "preference",
+                "ttl_seconds": null,
+                "value": "tea"
+              }
+            ]
+          }
+        },
+        "hybrid": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793815351,
+                "input": {
+                  "content": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                  "fact_key": "user.favorite_beverage",
+                  "id": "8f62df0b-8dea-dd5b-509b-aef62f085e0b",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-031",
+                  "source": "user",
+                  "source_id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9"
+                },
+                "state": "active",
+                "updated_at": 1793815351,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793815351,
+                  "evidence": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                  "interaction_id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "favorite_beverage",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "tea"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793815349,
+            "error_code": null,
+            "id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9",
+            "state": "queued",
+            "updated_at": 1793815349
+          },
+          "identity": {
+            "created_at": 1793815349,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793815349,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9",
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": [
+              {
+                "confidence": 0.9,
+                "content": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                "correction": false,
+                "evidence": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                "facets": [],
+                "kind": "preference",
+                "project_hint": null,
+                "property": "favorite_beverage",
+                "relevance": 0.8,
+                "rule": "llm_v3_grounded:explicit_v3_grounded",
+                "subject": "user",
+                "temporal": "preference",
+                "ttl_seconds": null,
+                "value": "tea"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "dx-032",
+      "scope": "phase22d-final-ext-032",
+      "project": "aroeira",
+      "original_user": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar.",
+      "actual_prior_gemma": "{\n  \"version\": 3,\n  \"scope\": \"phase22d-final-ext-032\",\n  \"project\": \"aroeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"No diálogo que inventei, a narradora diz eu gosto de café sem açúcar\",\n      \"category\": \"preference\"\n    }\n  ]\n}",
+      "expected": [],
+      "native": {
+        "rules": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793815351,
+                "input": {
+                  "content": "Prefere café sem açúcar.",
+                  "fact_key": "user.coffee_sugar",
+                  "id": "72e3c7e3-66dd-2071-d076-e27899f96a7f",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-032",
+                  "source": "user",
+                  "source_id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44"
+                },
+                "state": "active",
+                "updated_at": 1793815351,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793815351,
+                  "evidence": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar",
+                  "interaction_id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44"
+                }
+              ],
+              "quality": {
+                "confidence": 0.98,
+                "evidence_rule": "explicit_coffee_preference",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "coffee_sugar",
+                "relevance": 0.9,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "without_sugar"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793815349,
+            "error_code": null,
+            "id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44",
+            "state": "queued",
+            "updated_at": 1793815349
+          },
+          "identity": {
+            "created_at": 1793815349,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793815349,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44",
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": [
+              {
+                "confidence": 0.9,
+                "content": "Prefere café sem açúcar.",
+                "correction": false,
+                "evidence": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar",
+                "facets": [],
+                "kind": "preference",
+                "project_hint": null,
+                "property": "coffee_sugar",
+                "relevance": 0.8,
+                "rule": "llm_v3_grounded:explicit_coffee_preference",
+                "subject": "user",
+                "temporal": "preference",
+                "ttl_seconds": null,
+                "value": "without_sugar"
+              }
+            ]
+          }
+        },
+        "llm": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793815351,
+                "input": {
+                  "content": "Prefere café sem açúcar.",
+                  "fact_key": "user.coffee_sugar",
+                  "id": "72e3c7e3-66dd-2071-d076-e27899f96a7f",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-032",
+                  "source": "user",
+                  "source_id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44"
+                },
+                "state": "active",
+                "updated_at": 1793815351,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793815351,
+                  "evidence": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar",
+                  "interaction_id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_coffee_preference",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "coffee_sugar",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "without_sugar"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793815349,
+            "error_code": null,
+            "id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44",
+            "state": "queued",
+            "updated_at": 1793815349
+          },
+          "identity": {
+            "created_at": 1793815349,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793815349,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44",
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": [
+              {
+                "confidence": 0.9,
+                "content": "Prefere café sem açúcar.",
+                "correction": false,
+                "evidence": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar",
+                "facets": [],
+                "kind": "preference",
+                "project_hint": null,
+                "property": "coffee_sugar",
+                "relevance": 0.8,
+                "rule": "llm_v3_grounded:explicit_coffee_preference",
+                "subject": "user",
+                "temporal": "preference",
+                "ttl_seconds": null,
+                "value": "without_sugar"
+              }
+            ]
+          }
+        },
+        "hybrid": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793815351,
+                "input": {
+                  "content": "Prefere café sem açúcar.",
+                  "fact_key": "user.coffee_sugar",
+                  "id": "72e3c7e3-66dd-2071-d076-e27899f96a7f",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-032",
+                  "source": "user",
+                  "source_id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44"
+                },
+                "state": "active",
+                "updated_at": 1793815351,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793815351,
+                  "evidence": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar",
+                  "interaction_id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_coffee_preference",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "coffee_sugar",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "without_sugar"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793815349,
+            "error_code": null,
+            "id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44",
+            "state": "queued",
+            "updated_at": 1793815349
+          },
+          "identity": {
+            "created_at": 1793815349,
+            "profile": {
+              "description": "Fictional QA profile",
+              "instructions": "Use synthetic examples.",
+              "name": "Lucille Test Fixture",
+              "personality": "Clear and concise"
+            },
+            "updated_at": 1793815349,
+            "version": 1
+          },
+          "jobs": [
+            {
+              "id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44",
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "rejected": null,
+          "validation": {
+            "accepted": [
+              {
+                "confidence": 0.9,
+                "content": "Prefere café sem açúcar.",
+                "correction": false,
+                "evidence": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar",
+                "facets": [],
+                "kind": "preference",
+                "project_hint": null,
+                "property": "coffee_sugar",
+                "relevance": 0.8,
+                "rule": "llm_v3_grounded:explicit_coffee_preference",
+                "subject": "user",
+                "temporal": "preference",
+                "ttl_seconds": null,
+                "value": "without_sugar"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
