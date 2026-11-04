@@ -9,6 +9,11 @@ export interface ToolEvidence {
   executed: boolean
   result_confirmed: boolean
   outcome: 'completed' | 'failed' | 'rejected' | 'cached' | 'staged'
+  observation?: {
+    operation: string; resource: string | null; observed_at: number
+    result: string; result_truncated: boolean
+    coverage: 'requested_resource_only'
+  }
 }
 export interface VerifiedRuntime {
   backend: string
@@ -23,7 +28,16 @@ export function executorEvidence(result: ExecutionResult, pendingReview = false)
   const staged = pendingReview && result.status === 'completed' && !failed
   return { call_id: result.id, tool: result.toolName, requested: true, executed: result.dispatched === true,
     result_confirmed: result.dispatched === true && result.status === 'completed' && !failed && !staged,
-    outcome: failed ? 'failed' : staged ? 'staged' : result.status }
+    outcome: failed ? 'failed' : staged ? 'staged' : result.status,
+    ...(result.dispatched === true ? { observation: {
+      operation: result.toolName,
+      resource: typeof result.dispatchedArgs?.path === 'string' ? result.dispatchedArgs.path : null,
+      observed_at: result.completedAt,
+      result: (result.result ?? result.error ?? '').slice(0, 2000),
+      result_truncated: (result.result ?? result.error ?? '').length > 2000,
+      coverage: 'requested_resource_only' as const,
+    } } : {}),
+  }
 }
 
 export function verifiedEnvironment(mode: LucilleMode, runtime: VerifiedRuntime, now = new Date(), zone = Intl.DateTimeFormat().resolvedOptions().timeZone) {
@@ -31,7 +45,14 @@ export function verifiedEnvironment(mode: LucilleMode, runtime: VerifiedRuntime,
   const local = new Intl.DateTimeFormat('sv-SE', { timeZone: zone, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' }).format(now)
   return { source: 'local_host_clock_and_executor', observed_at: now.toISOString(), local_datetime: local,
     timezone: zone, mode, backend: runtime.backend, model: runtime.model,
-    available_tools: [...new Set(runtime.availableTools)].sort(), execution_receipts: runtime.receipts ?? [] }
+    available_tools: [...new Set(runtime.availableTools)].sort(), execution_receipts: (runtime.receipts ?? []).map(receipt => {
+      if (!receipt.observation) return receipt
+      // The raw result stays in the tool channel and private verification snapshot.
+      // Never promote untrusted tool prose into this host-authority SYSTEM envelope.
+      const { result: _untrustedResult, ...observation } = receipt.observation
+      void _untrustedResult
+      return { ...receipt, observation }
+    }) }
 }
 
 /** Replace ONLY known upstream Code self-labels, preserving every operational rule. */

@@ -3,6 +3,7 @@ import { invoke } from '@tauri-apps/api/core'
 import type { ChatMessage } from '../api/providers/types'
 import type { Conversation } from '../types/chat'
 import { registerAnswerSnapshot, type MemoryFact, type MemoryDirectiveReceipt } from './lucille-fidelity'
+import { memoryQuestionNeedsNoTools } from './lucille-authority'
 
 export type { LucilleBinding } from '../types/chat'
 export interface LucilleProfile { name: string; description: string; personality: string; instructions: string }
@@ -97,6 +98,9 @@ export async function withLucilleContext(
   if (directiveReceipt) identity.content += '\nNative memory operation receipt: ' + JSON.stringify({ action: directiveReceipt.action, property: directiveReceipt.property, state: directiveReceipt.state, had_records: directiveReceipt.had_records })
   identity.content += '\nOnly a completed native memory operation receipt authorizes confirming that this turn deleted memory. A request to remember or reactivate information is not proof of a completed save or review. Answer execution questions consistently from the first word: an affirmative requires evidence of actual execution, even if a later sentence describes a plan. Hardware capacity alone does not prove smooth performance, stability or absence of bottlenecks. Keep project purpose separate from personal learning goals.'
   identity.content += '\nAcknowledge the user content naturally, without saying Anotei/I saved/I registered and without promising it will be included in preferences, hardware or goals. The learning operation runs after this answer; important facts require review. A reserved source is not a completed memory write. Keep the decision actor clear: the user decides their project choices. Describe record meanings plainly rather than echoing internal IDs or enum labels.'
+  const memoryOnly = memoryQuestionNeedsNoTools(query)
+  identity.content += '\nEvidence authority: an approved memory supports what its source stated; history supports earlier states; a tool supports only its observed resource and coverage. A directory is not the entire remembered project without an explicit verified binding. A memory deletion or renewal never proves the user stopped or resumed liking something. Preserve each predicate’s modality independently. Current USER question language controls the answer and any repair; Portuguese memory does not require a Portuguese reply to an English question.'
+  if (memoryOnly) identity.content += '\nThis turn requests remembered facts, not external inspection. Answer from scoped memory or bounded uncertainty. Do not call tools or narrate a plan to inspect files.'
   injected.add(identity)
   injected.add(data)
   if (environment) injected.add(environment)
@@ -106,7 +110,8 @@ export async function withLucilleContext(
   const at = lastUser < 0 ? clean.length : lastUser
   const result = [identity, ...(environment ? [environment] : []), ...clean.slice(0, at), ...(memories.length ? [data] : []), ...clean.slice(at)]
   registerAnswerSnapshot(identity, {
-    scope: binding.scope, project: binding.project, query, facts, currentStatements, directiveReceipt,
+    scope: binding.scope, project: binding.project, query, facts, currentStatements, directiveReceipt, memoryOnly,
+    toolObservations: runtime?.receipts,
     refresh: async (claims = []) => {
       assertNotCancelled(signal)
       if (loader !== loadContext) return { facts, current_statements: currentStatements }

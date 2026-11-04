@@ -1,0 +1,584 @@
+{
+  "evaluation": "known-case diagnostic ablation, not unseen and not a real-generation availability measurement",
+  "base": "97d610e7b508dbf5de9d964be56c41254f739ec7",
+  "input_sha256": "53c90ad7c988e3fabde04c97ddf8a9b3ecd9115b1190327ab9dcd6b2063333fc",
+  "legacy_source_sha256": "1f7dd61aa2c32623e748fd4e63de66fa770fbccca0c360a8e3828b25cc65fa39",
+  "current_source_sha256": "ad0a8581a3ea792e5289fa317544d574c9dcfb396f1e84c7e097c63014a9d308",
+  "variants": {
+    "legacy": {
+      "unsafe_raw_answers_prevented": 0,
+      "unsafe_raw_answers_missed": 4,
+      "supported_raw_answers_falsely_blocked": 5,
+      "supported_raw_answers_accepted": 1
+    },
+    "authority_only": {
+      "unsafe_raw_answers_prevented": 3,
+      "unsafe_raw_answers_missed": 1,
+      "supported_raw_answers_falsely_blocked": 5,
+      "supported_raw_answers_accepted": 1
+    },
+    "authority_and_predicate_roles": {
+      "unsafe_raw_answers_prevented": 3,
+      "unsafe_raw_answers_missed": 1,
+      "supported_raw_answers_falsely_blocked": 0,
+      "supported_raw_answers_accepted": 6
+    }
+  },
+  "localized_repair": "Verbatim independent-sentence projection is separately unit tested. Real regeneration, availability, completeness and token costs require the full model/GUI development run; no simulated completion is counted here.",
+  "rows": [
+    {
+      "id": "decision-execution",
+      "original_answer": "Não, a decisão de usar TypeScript indica uma escolha de tecnologia, não a conclusão do projeto. Como você mesmo decidiu, o projeto ainda está em desenvolvimento.",
+      "expected_raw_intervention": true,
+      "legacy": {
+        "assertions": [
+          {
+            "entity": "project.ingazeiro",
+            "property": "language",
+            "value": "typescript",
+            "span": "Não, a decisão de usar TypeScript indica uma escolha de tecnologia, não a conclusão do projeto.",
+            "supported": true,
+            "references": [
+              "3f39bf1442bb91d8"
+            ]
+          }
+        ],
+        "violations": [],
+        "uncertain": false,
+        "supportedAssertions": 1,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 9.023400000000038
+      },
+      "authority_only_would_intervene": true,
+      "authority_and_predicate_roles": {
+        "assertions": [
+          {
+            "entity": "project.ingazeiro",
+            "property": "language",
+            "value": "typescript",
+            "span": "Não, a decisão de usar TypeScript indica uma escolha de tecnologia, não a conclusão do projeto.",
+            "supported": true,
+            "references": [
+              "3f39bf1442bb91d8"
+            ]
+          }
+        ],
+        "violations": [
+          {
+            "code": "authority_execution",
+            "span": "Como você mesmo decidiu, o projeto ainda está em desenvolvimento.",
+            "critical": true
+          }
+        ],
+        "authority": [
+          {
+            "span": "Como você mesmo decidiu, o projeto ainda está em desenvolvimento.",
+            "entity": "project.ingazeiro",
+            "property": "execution",
+            "value": "in_progress",
+            "relation": "state",
+            "verdict": "insufficient",
+            "references": [],
+            "origins": [],
+            "reason": "A technology choice or project description is not proof of execution.",
+            "critical": true
+          }
+        ],
+        "uncertain": false,
+        "supportedAssertions": 1,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 4.745300000000043
+      }
+    },
+    {
+      "id": "relearn-liking",
+      "original_answer": "Agora você voltou a gostar de jogos em que pode escolher sua classe.",
+      "expected_raw_intervention": true,
+      "legacy": {
+        "assertions": [
+          {
+            "entity": "user",
+            "property": "games_class_selection",
+            "value": "positive",
+            "span": "Agora você voltou a gostar de jogos em que pode escolher sua classe.",
+            "supported": true,
+            "references": [
+              "4915fdc767d07029"
+            ]
+          }
+        ],
+        "violations": [],
+        "uncertain": false,
+        "supportedAssertions": 1,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 1.6985999999999422
+      },
+      "authority_only_would_intervene": false,
+      "authority_and_predicate_roles": {
+        "assertions": [
+          {
+            "entity": "user",
+            "property": "games_class_selection",
+            "value": "positive",
+            "span": "Agora você voltou a gostar de jogos em que pode escolher sua classe.",
+            "supported": true,
+            "references": [
+              "4915fdc767d07029"
+            ]
+          }
+        ],
+        "violations": [],
+        "authority": [],
+        "uncertain": false,
+        "supportedAssertions": 1,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 1.1300000000001091
+      }
+    },
+    {
+      "id": "unlinked-empty-folder",
+      "original_answer": "Como a pasta atual está vazia, seu projeto ainda não tem arquivos definidos.",
+      "expected_raw_intervention": true,
+      "legacy": {
+        "assertions": [],
+        "violations": [],
+        "uncertain": false,
+        "supportedAssertions": 0,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 0.49909999999999854
+      },
+      "authority_only_would_intervene": true,
+      "authority_and_predicate_roles": {
+        "assertions": [],
+        "violations": [
+          {
+            "code": "authority_file_inventory",
+            "span": "Como a pasta atual está vazia, seu projeto ainda não tem arquivos definidos.",
+            "critical": true
+          }
+        ],
+        "authority": [
+          {
+            "span": "Como a pasta atual está vazia, seu projeto ainda não tem arquivos definidos.",
+            "entity": "project.ingazeiro",
+            "property": "file_inventory",
+            "value": "empty",
+            "relation": "observation",
+            "verdict": "tool_dependent",
+            "references": [],
+            "origins": [],
+            "reason": "An observed directory is not an exhaustive project inventory. A resource/entity/coverage binding is required.",
+            "critical": true
+          }
+        ],
+        "uncertain": false,
+        "supportedAssertions": 0,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 1.0748000000000957
+      }
+    },
+    {
+      "id": "ram-performance",
+      "original_answer": "Com 28 GB de RAM, você tem uma excelente capacidade para rodar o ambiente de desenvolvimento e o banco de dados simultaneamente.",
+      "expected_raw_intervention": true,
+      "legacy": {
+        "assertions": [
+          {
+            "entity": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "28_gb",
+            "span": "Com 28 GB de RAM, você tem uma excelente capacidade para rodar o ambiente de desenvolvimento e o banco de dados simultaneamente.",
+            "supported": true,
+            "references": [
+              "4c8388a4e5172a1f"
+            ]
+          }
+        ],
+        "violations": [],
+        "uncertain": false,
+        "supportedAssertions": 1,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 1.4482000000000426
+      },
+      "authority_only_would_intervene": true,
+      "authority_and_predicate_roles": {
+        "assertions": [
+          {
+            "entity": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "28_gb",
+            "span": "Com 28 GB de RAM, você tem uma excelente capacidade para rodar o ambiente de desenvolvimento e o banco de dados simultaneamente.",
+            "supported": true,
+            "references": [
+              "4c8388a4e5172a1f"
+            ]
+          }
+        ],
+        "violations": [
+          {
+            "code": "authority_workload_performance",
+            "span": "Com 28 GB de RAM, você tem uma excelente capacidade para rodar o ambiente de desenvolvimento e o banco de dados simultaneamente.",
+            "critical": false
+          }
+        ],
+        "authority": [
+          {
+            "span": "Com 28 GB de RAM, você tem uma excelente capacidade para rodar o ambiente de desenvolvimento e o banco de dados simultaneamente.",
+            "entity": "user",
+            "property": "workload_performance",
+            "value": "adequate",
+            "relation": "consequence",
+            "verdict": "insufficient",
+            "references": [],
+            "origins": [],
+            "reason": "RAM quantity alone cannot attest workload suitability or performance.",
+            "critical": false
+          }
+        ],
+        "uncertain": false,
+        "supportedAssertions": 1,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 1.0351999999998043
+      }
+    },
+    {
+      "id": "decision-replacement",
+      "original_answer": "Você decidiu trocar o MySQL pelo PostgreSQL no seu projeto de catálogo de minerais.",
+      "expected_raw_intervention": false,
+      "legacy": {
+        "assertions": [
+          {
+            "entity": "project.ingazeiro",
+            "property": "database",
+            "value": "postgresql",
+            "span": "Você decidiu trocar o MySQL pelo PostgreSQL no seu projeto de catálogo de minerais.",
+            "supported": true,
+            "references": [
+              "a0cb8c81cf5fe61f"
+            ]
+          },
+          {
+            "entity": "project.ingazeiro",
+            "property": "database",
+            "value": "mysql",
+            "span": "Você decidiu trocar o MySQL pelo PostgreSQL no seu projeto de catálogo de minerais.",
+            "supported": false,
+            "references": []
+          }
+        ],
+        "violations": [
+          {
+            "code": "unsupported_typed_value",
+            "span": "Você decidiu trocar o MySQL pelo PostgreSQL no seu projeto de catálogo de minerais.",
+            "critical": true
+          }
+        ],
+        "uncertain": false,
+        "supportedAssertions": 1,
+        "unsupportedAssertions": 1,
+        "elapsedMs": 0.5080000000000382
+      },
+      "authority_only_would_intervene": true,
+      "authority_and_predicate_roles": {
+        "assertions": [
+          {
+            "entity": "project.ingazeiro",
+            "property": "database",
+            "value": "postgresql",
+            "span": "Você decidiu trocar o MySQL pelo PostgreSQL no seu projeto de catálogo de minerais.",
+            "supported": true,
+            "references": [
+              "a0cb8c81cf5fe61f"
+            ]
+          },
+          {
+            "entity": "project.ingazeiro",
+            "property": "database",
+            "value": "mysql",
+            "span": "Você decidiu trocar o MySQL pelo PostgreSQL no seu projeto de catálogo de minerais.",
+            "supported": true,
+            "references": [
+              "e999944a335ff3a5"
+            ]
+          }
+        ],
+        "violations": [],
+        "authority": [],
+        "uncertain": false,
+        "supportedAssertions": 2,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 1.0114000000000942
+      }
+    },
+    {
+      "id": "historical-plan",
+      "original_answer": "Seu projeto Ingazeiro é um catálogo de minerais desenvolvido em Python. Você decidiu utilizar PostgreSQL como banco de dados, embora também tenha planejado o uso de JavaScript.",
+      "expected_raw_intervention": false,
+      "legacy": {
+        "assertions": [
+          {
+            "entity": "project.ingazeiro",
+            "property": "language",
+            "value": "python",
+            "span": "Seu projeto Ingazeiro é um catálogo de minerais desenvolvido em Python.",
+            "supported": true,
+            "references": [
+              "ac6d3e21a8eb5e5f"
+            ]
+          },
+          {
+            "entity": "project.ingazeiro",
+            "property": "language",
+            "value": "javascript",
+            "span": "Você decidiu utilizar PostgreSQL como banco de dados, embora também tenha planejado o uso de JavaScript.",
+            "supported": true,
+            "references": [
+              "f1077a1eb857a257"
+            ]
+          },
+          {
+            "entity": "project.ingazeiro",
+            "property": "database",
+            "value": "postgresql",
+            "span": "Você decidiu utilizar PostgreSQL como banco de dados, embora também tenha planejado o uso de JavaScript.",
+            "supported": true,
+            "references": [
+              "a0cb8c81cf5fe61f"
+            ]
+          }
+        ],
+        "violations": [
+          {
+            "code": "unproven_decision",
+            "span": "Você decidiu utilizar PostgreSQL como banco de dados, embora também tenha planejado o uso de JavaScript.",
+            "critical": true
+          }
+        ],
+        "uncertain": false,
+        "supportedAssertions": 3,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 0.5131000000001222
+      },
+      "authority_only_would_intervene": true,
+      "authority_and_predicate_roles": {
+        "assertions": [
+          {
+            "entity": "project.ingazeiro",
+            "property": "language",
+            "value": "python",
+            "span": "Seu projeto Ingazeiro é um catálogo de minerais desenvolvido em Python.",
+            "supported": true,
+            "references": [
+              "ac6d3e21a8eb5e5f"
+            ]
+          },
+          {
+            "entity": "project.ingazeiro",
+            "property": "database",
+            "value": "postgresql",
+            "span": "Você decidiu utilizar PostgreSQL como banco de dados,",
+            "supported": true,
+            "references": [
+              "a0cb8c81cf5fe61f"
+            ]
+          },
+          {
+            "entity": "project.ingazeiro",
+            "property": "language",
+            "value": "javascript",
+            "span": "embora também tenha planejado o uso de JavaScript.",
+            "supported": true,
+            "references": [
+              "f1077a1eb857a257"
+            ]
+          }
+        ],
+        "violations": [],
+        "authority": [],
+        "uncertain": false,
+        "supportedAssertions": 3,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 0.7602000000001681
+      }
+    },
+    {
+      "id": "historical-cancelled",
+      "original_answer": "Você estava usando JavaScript para implementar o projeto Ingazeiro.",
+      "expected_raw_intervention": false,
+      "legacy": {
+        "assertions": [
+          {
+            "entity": "project.ingazeiro",
+            "property": "language",
+            "value": "javascript",
+            "span": "Você estava usando JavaScript para implementar o projeto Ingazeiro.",
+            "supported": true,
+            "references": [
+              "34b6537cf123d937"
+            ]
+          }
+        ],
+        "violations": [],
+        "uncertain": false,
+        "supportedAssertions": 1,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 0.5802999999998519
+      },
+      "authority_only_would_intervene": false,
+      "authority_and_predicate_roles": {
+        "assertions": [
+          {
+            "entity": "project.ingazeiro",
+            "property": "language",
+            "value": "javascript",
+            "span": "Você estava usando JavaScript para implementar o projeto Ingazeiro.",
+            "supported": true,
+            "references": [
+              "34b6537cf123d937"
+            ]
+          }
+        ],
+        "violations": [],
+        "authority": [],
+        "uncertain": false,
+        "supportedAssertions": 1,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 0.39210000000002765
+      }
+    },
+    {
+      "id": "current-goal",
+      "original_answer": "Seu objetivo atual é aprender circuitos elétricos básicos.",
+      "expected_raw_intervention": false,
+      "legacy": {
+        "assertions": [
+          {
+            "entity": "user",
+            "property": "goal_target",
+            "value": "atual_learn_circuitos_eletricos_basicos",
+            "span": "Seu objetivo atual é aprender circuitos elétricos básicos.",
+            "supported": false,
+            "references": []
+          }
+        ],
+        "violations": [
+          {
+            "code": "unsupported_goal_target",
+            "span": "Seu objetivo atual é aprender circuitos elétricos básicos.",
+            "critical": true
+          }
+        ],
+        "uncertain": false,
+        "supportedAssertions": 0,
+        "unsupportedAssertions": 1,
+        "elapsedMs": 0.5645999999999276
+      },
+      "authority_only_would_intervene": true,
+      "authority_and_predicate_roles": {
+        "assertions": [
+          {
+            "entity": "user",
+            "property": "goal_target",
+            "value": "learn_circuitos_eletricos_basicos",
+            "span": "Seu objetivo atual é aprender circuitos elétricos básicos.",
+            "supported": true,
+            "references": [
+              "29b1fccb432e847d"
+            ]
+          }
+        ],
+        "violations": [],
+        "authority": [],
+        "uncertain": false,
+        "supportedAssertions": 1,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 0.4230999999999767
+      }
+    },
+    {
+      "id": "empty-forget",
+      "original_answer": "Esqueci sua preferência de tema de interface.",
+      "expected_raw_intervention": false,
+      "legacy": {
+        "assertions": [],
+        "violations": [
+          {
+            "code": "unconfirmed_memory_mutation",
+            "span": "Esqueci sua preferência de tema de interface.",
+            "critical": true
+          }
+        ],
+        "uncertain": false,
+        "supportedAssertions": 0,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 0.8253999999999451
+      },
+      "authority_only_would_intervene": true,
+      "authority_and_predicate_roles": {
+        "assertions": [],
+        "violations": [],
+        "authority": [],
+        "uncertain": false,
+        "supportedAssertions": 0,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 0.6054999999998927
+      }
+    },
+    {
+      "id": "historical-name-alias",
+      "original_answer": "Você estava usando JavaScript para implementar o projeto Jatoba Azul.",
+      "expected_raw_intervention": false,
+      "legacy": {
+        "assertions": [
+          {
+            "entity": "project.jatoba-azul",
+            "property": "language",
+            "value": "javascript",
+            "span": "Você estava usando JavaScript para implementar o projeto Jatoba Azul.",
+            "supported": true,
+            "references": [
+              "34b6537cf123d937"
+            ]
+          }
+        ],
+        "violations": [
+          {
+            "code": "unsupported_project_entity",
+            "span": "Você estava usando JavaScript para implementar o projeto Jatoba Azul.",
+            "critical": true
+          }
+        ],
+        "uncertain": false,
+        "supportedAssertions": 1,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 0.17410000000018044
+      },
+      "authority_only_would_intervene": true,
+      "authority_and_predicate_roles": {
+        "assertions": [
+          {
+            "entity": "project.jatoba-azul",
+            "property": "language",
+            "value": "javascript",
+            "span": "Você estava usando JavaScript para implementar o projeto Jatoba Azul.",
+            "supported": true,
+            "references": [
+              "34b6537cf123d937"
+            ]
+          }
+        ],
+        "violations": [],
+        "authority": [],
+        "uncertain": false,
+        "supportedAssertions": 1,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 0.3239000000000942
+      }
+    }
+  ],
+  "limitations": [
+    "Known cases used for development; no new quality gate approval.",
+    "These counts distinguish detector misses and false raw blocks, not final answer availability after repair.",
+    "Semantic recognition remains finite; typed authority does not prove unrestricted natural-language understanding."
+  ]
+}

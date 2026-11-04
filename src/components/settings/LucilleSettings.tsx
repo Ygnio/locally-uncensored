@@ -96,7 +96,7 @@ export function LucilleSettings({ conversation }: { conversation: Conversation }
     <ul>{entries.filter(entry => {
       const expired = !!details[entry.input.id]?.quality?.expires_at && details[entry.input.id].quality!.expires_at! <= Date.now() / 1000
       return (category === 'all' || entry.input.kind === category) && (status === 'all' || (expired ? 'expired' : entry.state) === status) && entry.input.content.toLowerCase().includes(search.toLowerCase())
-    }).map(entry => <li key={entry.input.id} className="my-2 border-t p-2">
+    }).map(entry => <li key={entry.input.id} data-lucille-memory-id={entry.input.id} className="my-2 border-t p-2">
       <p>{entry.input.kind} · {entry.state} · v{entry.version} · {entry.input.fact_key}</p><p className="whitespace-pre-wrap">{entry.input.content}</p>
       <p>Source: {entry.input.source} · {new Date(entry.created_at * 1000).toLocaleString()}</p>
       {details[entry.input.id]?.quality?.expires_at && <p>{details[entry.input.id].quality!.expires_at! <= Date.now() / 1000 ? 'Expired' : 'Valid until'}: {new Date(details[entry.input.id].quality!.expires_at! * 1000).toLocaleString()}</p>}

@@ -32,6 +32,7 @@ export const HIDDEN_HISTORY_MAX = 60
 export function capHiddenToolHistory(
   all: ChatMessage[],
   max: number = HIDDEN_HISTORY_MAX,
+  includeLedger = true,
 ): ChatMessage[] {
   let toolHistory = all.slice(-max)
   // Never start the kept slice on an orphan tool result — strict
@@ -44,7 +45,7 @@ export function capHiddenToolHistory(
   // nichts davor, also fing es von vorn an. Die weggeschnittenen Aufrufe
   // kommen deshalb als eine Zeile je Aufruf an die erste behaltene Nachricht.
   const dropped = all.slice(0, all.length - toolHistory.length)
-  const ledger = dropped.length > 0 ? runLedger(dropped as unknown as DecayMessage[]) : null
+  const ledger = includeLedger && dropped.length > 0 ? runLedger(dropped as unknown as DecayMessage[]) : null
   if (ledger && toolHistory.length > 0) {
     const [first, ...rest] = toolHistory
     const body = typeof first.content === 'string' ? first.content : ''

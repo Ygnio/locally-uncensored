@@ -1,3 +1,4 @@
+import { authorityClaims as evaluateAuthority, type AuthorityClaim, technologyRoles } from './lucille-authority'
 /** Bounded independent checks for typed memory assertions, never a general truth oracle.
  * No model, persistence writer, tools or permissions are reachable in this module.
  */
@@ -13,6 +14,8 @@ export interface AnswerSnapshot {
   directiveReceipt?:MemoryDirectiveReceipt | null
   hasScopedRecords?:boolean
   refresh?: (claims?: { entity: string; property: string; value: string }[]) => Promise<{ facts: MemoryFact[]; current_statements: MemoryFact[];directive_receipt?:MemoryDirectiveReceipt | null;has_scoped_records?:boolean }>
+  memoryOnly?: boolean
+  toolObservations?: readonly import('./verified-environment').ToolEvidence[]
   reload?: () => Promise<ChatMessage[]>
 }
 export interface MemoryDirectiveReceipt {
@@ -25,6 +28,7 @@ export interface FidelityViolation { code: string; span: string; critical: boole
 export interface FidelityCheck {
   assertions: MemoryAssertion[]; violations: FidelityViolation[]; uncertain: boolean
   supportedAssertions: number; unsupportedAssertions: number; elapsedMs: number
+  authority?: AuthorityClaim[]
 }
 const snapshots = new WeakMap<object, AnswerSnapshot>()
 export function registerAnswerSnapshot(identity: ChatMessage, snapshot: AnswerSnapshot) { snapshots.set(identity, snapshot) }
@@ -81,8 +85,8 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     if (!proof) add('affirmed_unproven_project_execution',text)
   }
   if (/^\s*(?:nao|no)\s*[,!.](?:\s|$)/.test(fold(text)) && projectQuestion && execution(query) && !/significa|quer dizer|\bmeans?\b|implies/.test(query) && !current.some(f=>f.entity==='project.'+snapshot.project && f.property==='lifecycle' && ['cancelled','completed'].includes(f.modality)))add('denied_unproven_project_execution',text)
-  const record = (span: string, property: string, value: string, entity?: string, negative = false) => {
-    const historical = past(span) || (past(snapshot.query) && !/\b(?:agora|atualmente|now|currently|prefere|prefiro|gosta|gosto|tem|tenho|possui|usa|utiliza|is|are|have|has|prefer|prefers|like|likes|uses)\b/.test(fold(span)))
+  const record = (span: string, property: string, value: string, entity?: string, negative = false, choiceOrigin = false) => {
+    const historical = choiceOrigin || past(span) || (past(snapshot.query) && !/\b(?:agora|atualmente|now|currently|prefere|prefiro|gosta|gosto|tem|tenho|possui|usa|utiliza|is|are|have|has|prefer|prefers|like|likes|uses)\b/.test(fold(span)))
     const candidates = all.filter(f => f.property === property && (!entity || f.entity === entity))
     const matching = candidates.filter(f => negative ? f.value !== value && f.validity !== 'historical' : (f.value === value && (f.validity !== 'historical' || historical)) || (historical && property==='ram_capacity' && /^\d+_gb$/.test(value) && f.evidence.some(e=>{
       if(e.role!=='previous_property_link_not_current_value')return false
@@ -93,19 +97,19 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     assertions.push(assertion)
     if (!assertion.supported) { add('unsupported_typed_value', span); return }
     const earlierMention=/\b(?:mencionou|disse|informou|mentioned|said|told)\b/.test(fold(span)) && !/antes de|before the/.test(fold(span)) && matching.some(f=>f.validity==='current' && f.evidence.some(e=>e.role==='current_source') && (planned(span) || !['planned','hypothesis'].includes(f.modality)))
-    if (historical && !earlierMention && !matching.some(f => f.validity === 'historical')) {
+    if (historical && !choiceOrigin && !earlierMention && !matching.some(f => f.validity === 'historical')) {
       // Only a linked previous property source can support an older value.
       if (!matching.some(f => f.evidence.some(e => e.role === 'previous_property_link_not_current_value' && mentions(e.text, value)))) add('unsupported_historical_state', span)
     }
-    if (/decidiu|escolheu|decided|chosen|selected/.test(fold(span)) && !matching.some(f => f.modality === 'decision')) add('unproven_decision', span)
+    if (!choiceOrigin && /decidiu|escolheu|decided|chosen|selected/.test(fold(span)) && !matching.some(f => f.modality === 'decision')) add('unproven_decision', span)
     if (matching.every(f => f.modality === 'cancelled') && !/cancel/.test(fold(span))) add('cancelled_as_current', span)
-    if (execution(span) && !matching.some(f => ['in_progress', 'current_fact'].includes(f.modality))) add('plan_or_decision_as_execution', span)
+    if (!choiceOrigin && execution(span) && !matching.some(f => ['in_progress', 'current_fact'].includes(f.modality))) add('plan_or_decision_as_execution', span)
     if (!historical && execution(span) && entity === 'project.' + snapshot.project && current.some(f => f.entity === entity && f.property === 'lifecycle' && ['cancelled', 'completed'].includes(f.modality))) add('terminal_project_as_execution', span)
     if (completion(span) && !matching.some(f => f.modality === 'completed')) add('unproven_completion', span)
-    if (!historical && !planned(span) && !execution(span) && matching.every(f => ['planned', 'hypothesis'].includes(f.modality)) && !planned(snapshot.query)) add('modality_omitted', span, false)
+    if (!choiceOrigin && !historical && !planned(span) && !execution(span) && matching.every(f => ['planned', 'hypothesis'].includes(f.modality)) && !planned(snapshot.query)) add('modality_omitted', span, false)
     if (matching.every(f => f.modality === 'hypothesis') && !/talvez|pode ser|might|maybe|hipot|possib/.test(fold(span))) add('hypothesis_as_fact', span)
   }
-  const clauses = text.split(/(?<=[.!?;\n])\s+|\b(?:mas|porem|however|but)\b/i).slice(0, 128)
+  const clauses = text.split(/(?<=[.!?;\n])\s+|\b(?:mas|porem|however|but)\b|\s+(?=(?:embora|although)\b)/i).slice(0, 128)
   let favoriteSlotBound=false
   for (const span of clauses) {
     const q = fold(span)
@@ -122,7 +126,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       const receipt = snapshot.directiveReceipt
       const domains: [RegExp,string][] = [[/cafe|coffee/,'coffee_sugar'],[/tema|theme/,'interface_theme'],[/idioma|language/,'response_language'],[/bebida|beverage|drink/,'favorite_beverage'],[/objetiv|objective/,'communication_focus'],[/poluid|clutter|carregad/,'interface_clutter'],[/personag|character/,'games_character_creation'],[/classe|class/,'games_class_selection']]
       const claimed = domains.filter(([pattern])=>pattern.test(q)).map(([,property])=>property)
-      const confirmed=deletion && receipt?.action==='forget' && receipt.state==='done' && receipt.scope===snapshot.scope && receipt.project===snapshot.project && receipt.had_records && claimed.every(property=>property===receipt.property)
+      const confirmed=deletion && receipt?.action==='forget' && receipt.state==='done' && receipt.scope===snapshot.scope && receipt.project===snapshot.project && (receipt.had_records || (forgetQuestion && /\besqueci\b|\bforgotten\b/.test(q))) && claimed.every(property=>property===receipt.property)
       if(!confirmed)add('unconfirmed_memory_mutation',span)
       // A committed removal is an operation, not a claim that its deleted value
       // remains a current preference. Independent coordinated claims still run.
@@ -163,7 +167,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       for (const m of q.matchAll(/\b(?:projeto|project)\s+["`']([a-z0-9_.-]+)["`']/g)) {
         if (m[1] !== fold(snapshot.project)) add('unsupported_project_entity',span)
       }
-      for (const m of span.matchAll(/\b(?:projeto|project)\s+["`']?([\p{L}\p{N}_.-]+)/giu)) {
+      for (const m of (snapshot.project.includes('-') ? span.replace(new RegExp(snapshot.project.split('-').map(v=>v.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('[ -]'), 'gi'),snapshot.project) : span).matchAll(/\b(?:projeto|project)\s+["`']?([\p{L}\p{N}_.-]+)/giu)) {
         const rawName=m[1], foldedName=fold(rawName)
         const name = foldedName === fold(snapshot.project) ? foldedName : foldedName.replace(/\.+$/, '')
         const identitySyntax=/^[\p{Lu}]/u.test(rawName) || /[0-9_.-]/.test(name) || /^\s+(?:esta|foi|era|e|usa|utiliza|tem|is|was|uses|has)\b/.test(fold(span.slice(m.index!+m[0].length)))
@@ -174,7 +178,10 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       for (const value of ['typescript', 'javascript', 'python', 'rust', 'sqlite', 'postgresql', 'mysql']) {
         if (!new RegExp('\\b' + value + '\\b').test(q)) continue
         const property = ['sqlite', 'postgresql', 'mysql'].includes(value) ? 'database' : 'language'
-        if (/\bprojeto|\bproject|linguagem|programming language|banco de dados|database/.test(q) || projectQuestion || (subject && personalQuestion && /escolh|decid|guardar|armazen|persist|store|stack/.test(query)) || (current.some(f => f.property === property && f.entity === 'project.' + snapshot.project) && !/objetivo|goal|aprender|learn|estud|study/.test(q))) record(span, property, value, 'project.' + snapshot.project)
+        if (/\bprojeto|\bproject|linguagem|programming language|banco de dados|database/.test(q) || projectQuestion || (subject && personalQuestion && /escolh|decid|guardar|armazen|persist|store|stack/.test(query)) || (current.some(f => f.property === property && f.entity === 'project.' + snapshot.project) && !/objetivo|goal|aprender|learn|estud|study/.test(q))) {
+          const choiceOrigin=technologyRoles(span).some(role=>role.value===value && role.role==='origin')
+          record(span, property, value, 'project.' + snapshot.project, false, choiceOrigin)
+        }
       }
     }
     if (/dobr|triplic|doubled|tripled|twice|three times/.test(q) && /memoria|memory|ram|computador|computer|notebook|laptop/.test(q)) {
@@ -250,7 +257,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     const goalDomain=/\b(?:objetivos?|metas?|goals?)\b/
     const goalQuestion=personalQuestion && goalDomain.test(query) && (/\?/.test(query) || /\b(?:qual|quais|what|which|lembra|recorda|recall|remember)\b/.test(query))
     if ((subject && goalDomain.test(q) && !/\b(?:projeto|project)\b/.test(q)) || (goalQuestion && !projectQuestion && span.length<200)) {
-      const stop=new Set(['voce','seu','sua','seus','suas','your','you','the','was','foi','era','objetivo','goal','meta','concluiu','conclui','concluido','completed','finished','concluir','concluido','concluida','terminou','finalizou','apenas','seu','meu','minha','esta','seu','que','para','uma','um','de','do','da','em','of','to','pessoais','personal'])
+      const stop=new Set(['voce','seu','sua','seus','suas','your','you','the','was','foi','era','objetivo','goal','meta','concluiu','conclui','concluido','completed','finished','concluir','concluido','concluida','terminou','finalizou','apenas','seu','meu','minha','esta','seu','que','para','uma','um','de','do','da','em','of','to','pessoais','personal','atual','atualmente','current','currently'])
       const tokens=(text:string)=>fold(text).split(/[^a-z0-9]+/).filter(t=>t.length>2 && !stop.has(t)).map(t=>({aprender:'learn',portugues:'portuguese',ingles:'english',espanhol:'spanish',japones:'japanese',frances:'french',italiano:'italian',alemao:'german'} as Record<string,string>)[t] ?? t)
       const goalAnchor=fold(span).match(goalDomain)
       const target=tokens(goalAnchor ? span.slice(goalAnchor.index!+goalAnchor[0].length) : span), requiredCompletion=completion(span) || (goalQuestion && completion(query))
@@ -266,6 +273,8 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   }
   const relevantKnown = current.some(f => f.validity === 'current')
   if (personalQuestion && relevantKnown && uncertain(text) && assertions.length === 0) add('known_information_not_used', text, false)
-  return { assertions, violations, uncertain: uncertain(text), supportedAssertions: assertions.filter(c => c.supported).length,
+  const authority=evaluateAuthority(text,snapshot)
+  for (const claim of authority) if (!['supported','historical','hypothetical','non_memory'].includes(claim.verdict)) add('authority_'+claim.property,claim.span,claim.critical)
+  return { assertions, violations, authority, uncertain: uncertain(text), supportedAssertions: assertions.filter(c => c.supported).length,
     unsupportedAssertions: assertions.filter(c => !c.supported).length, elapsedMs: performance.now() - began }
 }

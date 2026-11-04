@@ -267,8 +267,20 @@ pub fn project_scope_matches(text: &str, project: &str) -> bool {
     let quoted = s.split_whitespace().collect::<Vec<_>>();
     if quoted.windows(2).any(|pair| {
         ["projeto", "project"].contains(&pair[0])
-            && pair[1].starts_with(['"', '\'', '`'])
+            && pair[1].starts_with(['"', '\'', '`', '“', '‘', '«'])
             && pair[1].trim_matches(|c: char| !c.is_alphanumeric()) != fold(project)
+    }) {
+        return false;
+    }
+    // Closed-class temporal/deictic phrases are not identifiers. Preserve an
+    // explicit proper-case/quoted name even when its spelling is a connective.
+    let original = text.split_whitespace().collect::<Vec<_>>();
+    if original.windows(2).any(|p| {
+        ["project", "projeto"].contains(&fold(p[0]).as_str())
+            && ["hoje", "today", "continua", "continues", "neste", "nesse"]
+                .contains(&fold(p[1]).as_str())
+            && p[1].chars().next().is_some_and(|c| c.is_uppercase())
+            && fold(p[1]) != fold(project)
     }) {
         return false;
     }
@@ -287,9 +299,12 @@ pub fn project_scope_matches(text: &str, project: &str) -> bool {
     {
         return false;
     }
-    !w.windows(2).any(|p| {
+    !w.windows(2).enumerate().any(|(index, p)| {
         ["project", "projeto"].contains(&p[0])
             && !p[1].is_empty()
+            && !(["neste", "nesse"].contains(&p[1])
+                && w.get(index + 2)
+                    .is_some_and(|word| ["momento", "estado", "ponto", "contexto"].contains(word)))
             && ![
                 "de",
                 "do",
@@ -353,6 +368,10 @@ pub fn project_scope_matches(text: &str, project: &str) -> bool {
                 "pretende",
                 "planejo",
                 "planeja",
+                "hoje",
+                "today",
+                "continua",
+                "continues",
             ]
             .contains(&p[1])
             && p[1] != fold(project)
@@ -1140,6 +1159,10 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
                     "estou comecando um projeto de ",
                     "iniciei um projeto de ",
                     "i am starting a project ",
+                    "o projeto continua sendo um ",
+                    "meu projeto continua sendo um ",
+                    "my project remains a ",
+                    "the project remains a ",
                 ],
             )
         {
