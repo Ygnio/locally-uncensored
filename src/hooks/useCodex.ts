@@ -1,3 +1,4 @@
+import { collectMemoryCompletion, validateLucilleCompletion, MemoryAnswerBlocked } from '../lib/lucille-answer'
 import { CODEX_REVIEW_SYSTEM_PROMPT, CODEX_SYSTEM_PROMPT, CODEX_SYSTEM_PROMPT_LEAN, CODEX_ASSET_HINT, CODEX_ASSET_LINE } from '../lib/codex-prompts'
 import { isLucille, withLucilleContext, lucilleToolAllowed } from '../lib/lucille-context'
 import { queueLucilleLearning } from '../lib/lucille-learning'
@@ -1235,6 +1236,10 @@ export function useCodex() {
         // unten in der Weiche ohne Werkzeugaufruf: ein abgeschnittener Zug
         // sah dort bis Fehler D genauso aus wie ein fertiges Modell.
         let turnFinishReason: string | undefined
+        let fidelityUsage: { promptEvalCount?: number; evalCount?: number } = {}
+        const publishLiveThinking = (text: string) => {
+          if (!isLucille(lucilleConversation)) useChatStore.getState().updateMessageThinking(convId!,assistantMsg.id,text)
+        }
 
         // Plain-text-planner escape for Gemma 3/4 — see useChat.ts.
         const canThinkCx = codexCanThink(activeModel)
@@ -1310,7 +1315,8 @@ export function useCodex() {
         let stepPromptEstimate = 0
         let stepToolsEstimate = 0
         let sendMessages: ChatMessage[] = messages.slice()
-        const prepareMessages = (availableTools: string[]) => withLucilleContext(lucilleConversation, assistantMsg.id, instruction, "code", sendMessages, abort.signal, undefined, { backend: providerId, model: modelToUse, availableTools, receipts: toolEvidence.slice(-8) })
+        let answerWire: ChatMessage[] | undefined
+        const prepareMessages = async (availableTools: string[]) => answerWire = await withLucilleContext(lucilleConversation, assistantMsg.id, instruction, "code", sendMessages, abort.signal, undefined, { backend: providerId, model: modelToUse, availableTools, receipts: toolEvidence.slice(-8) })
         let trimmedReadKeys: ReadonlySet<string> = NO_TRIMMED_KEYS
         try {
           // Bound the carried history FIRST, in whole blocks and measured on
@@ -1413,7 +1419,7 @@ export function useCodex() {
         // Ein Puffer, drei Transporte, ein Bild pro Zeichenrunde — und ein
         // settle(), das ein wartendes Bild loescht: hooks/codex/live-paint.ts.
         const livePaint = createLivePaint({
-          suppress: (c) => echoRetriesRemaining > 0 && isSystemPromptEcho(c),
+          suppress: (c) => isLucille(lucilleConversation) || (echoRetriesRemaining > 0 && isSystemPromptEcho(c)),
           prefix: () => fullContent,
           paint: (text) => useChatStore.getState().updateMessageContent(convId!, assistantMsg.id, text),
         })
@@ -1564,7 +1570,7 @@ export function useCodex() {
                     (t) => {
                       if (keepThinking) {
                         const combined = thinkingContent ? thinkingContent + '\n\n' + t : t
-                        useChatStore.getState().updateMessageThinking(convId!, assistantMsg.id, combined)
+                        publishLiveThinking(combined)
                       }
                     },
                   )
@@ -1613,7 +1619,8 @@ export function useCodex() {
             turnContent = turn.content || ''
             turnFinishReason = turn.doneReason
             reportTurnUsage(convId!, assistantMsg.id, turn)
-            requestUsage.add(turn)
+            fidelityUsage = turn
+          requestUsage.add(turn)
             diagLog('streamWithTools-return', {
               iter: i,
               toolCallsCount: toolCalls.length,
@@ -1624,7 +1631,7 @@ export function useCodex() {
             })
             if (keepThinking && turn.thinking) {
               thinkingContent += (thinkingContent ? '\n\n' : '') + turn.thinking
-              useChatStore.getState().updateMessageThinking(convId!, assistantMsg.id, thinkingContent)
+              publishLiveThinking(thinkingContent)
             }
 
             // Werkzeugaufrufe, die im Fliesstext stehen — und die Prosa, die dabei
@@ -1646,7 +1653,7 @@ export function useCodex() {
             const liveThinking = (t: string) => {
               if (keepThinking) {
                 const combined = thinkingContent ? thinkingContent + '\n\n' + t : t
-                useChatStore.getState().updateMessageThinking(convId!, assistantMsg.id, combined)
+                publishLiveThinking(combined)
               }
             }
             // A call still being written names itself on the run anchor
@@ -1669,7 +1676,8 @@ export function useCodex() {
             turnContent = turn.content || ''
             turnFinishReason = turn.finishReason
             reportTurnUsage(convId!, assistantMsg.id, turn)
-            requestUsage.add(turn)
+            fidelityUsage = turn
+          requestUsage.add(turn)
             // GH #147: a model on LU Cloud wrote its calls into the text
             // (!function_call:{"call": "file_read", ...}). This path never
             // looked, so the run stopped on prose. A call from the text counts
@@ -1689,7 +1697,7 @@ export function useCodex() {
             }
             if (keepThinking && turn.thinking) {
               thinkingContent += (thinkingContent ? '\n\n' : '') + turn.thinking
-              useChatStore.getState().updateMessageThinking(convId!, assistantMsg.id, thinkingContent)
+              publishLiveThinking(thinkingContent)
             }
           }
         } else {
@@ -1751,8 +1759,7 @@ export function useCodex() {
             if (!keepThinking) return
             const live = thinkSink.live()
             if (!live) return
-            useChatStore.getState().updateMessageThinking(
-              convId!, assistantMsg.id, thinkingContent ? thinkingContent + '\n\n' + live : live,
+            publishLiveThinking(thinkingContent ? thinkingContent + '\n\n' + live : live,
             )
           }
           const feedUI = (part: { prose: string; thinking: string }) => {
@@ -1814,15 +1821,16 @@ export function useCodex() {
           // abschneiden, und dann steht hier ebenfalls kein Werkzeugaufruf.
           // Gleiche Stelle wie in useAgentChat.
           turnFinishReason = hermesTurn.finishReason
+          fidelityUsage = hermesTurn
           requestUsage.add(hermesTurn)
           if (keepThinking && hermesTurn.thinking) {
             thinkingContent += (thinkingContent ? '\n\n' : '') + hermesTurn.thinking
-            useChatStore.getState().updateMessageThinking(convId!, assistantMsg.id, thinkingContent)
+            publishLiveThinking(thinkingContent)
           }
           // Final paint DIRECT + settle the coalesced frame, so a queued
           // stale frame can never fire after the writes below (audit D1).
           settleLivePaint()
-          if (shown) useChatStore.getState().updateMessageContent(convId!, assistantMsg.id, fullContent ? fullContent + '\n\n' + shown : shown)
+          if (shown && !isLucille(lucilleConversation)) useChatStore.getState().updateMessageContent(convId!, assistantMsg.id, fullContent ? fullContent + '\n\n' + shown : shown)
           const raw = hermesTurn.content
           if (hasToolCallTags(raw)) {
             toolCalls = parseHermesToolCalls(raw).map(tc => ({
@@ -1858,6 +1866,28 @@ export function useCodex() {
           continue
         }
 
+        if (isLucille(lucilleConversation)) {
+          if (!answerWire) throw new Error('Lucille response has no prepared context')
+          try {
+            const accepted = await validateLucilleCompletion(answerWire,
+              { ...fidelityUsage, content: turnContent, thinking: thinkingContent, toolCalls, finishReason: turnFinishReason },
+              wire => collectMemoryCompletion(provider.chatStream(modelToUse, wire, chatOptions)), abort.signal)
+            turnContent = accepted.completion.content
+            thinkingContent = accepted.completion.thinking ?? ''
+            toolCalls = accepted.completion.toolCalls ?? []
+            turnFinishReason = accepted.completion.finishReason
+            useChatStore.getState().addMessageFidelity(convId!, assistantMsg.id, accepted.report)
+            if (accepted.report.status === 'regenerated') requestUsage.add(accepted.completion)
+          } catch (error) {
+            if (error instanceof MemoryAnswerBlocked) {
+              useChatStore.getState().addMessageFidelity(convId!, assistantMsg.id, error.report)
+              const usage = error.report.additionalUsage
+              requestUsage.add({ promptEvalCount: usage.promptTokens, evalCount: usage.completionTokens })
+            }
+            throw error
+          }
+        }
+
         // End-of-turn settlement, through the ONE shared routine every path
         // uses now (lib/thinking-stripper settleThinking): balanced blocks,
         // the pre-opened Qwen3 thought that only ever sends its closer, a
@@ -1866,7 +1896,7 @@ export function useCodex() {
         {
           const settled = settleThinking(turnContent, thinkingContent, keepThinking)
           turnContent = settled.content
-          if (settled.thinking !== thinkingContent) {
+          if (settled.thinking !== thinkingContent || isLucille(lucilleConversation)) {
             thinkingContent = settled.thinking
             useChatStore.getState().updateMessageThinking(convId!, assistantMsg.id, thinkingContent)
           }
@@ -2790,9 +2820,9 @@ export function useCodex() {
       // and where Code did not: it used to run in the statement above, so the
       // extractor's synchronous prologue ran before this turn's write had
       // started. Fire-and-forget or not, nothing gets to go first.
-      if (convId && fullContent) {
-        if (isLucille(lucilleConversation)) void queueLucilleLearning(convId, assistantMsg.id, rawInstruction, 'code', abort.signal).catch(() => {})
-        void (!isLucille(lucilleConversation) ? extractMemoriesFromPair(instruction, fullContent, convId, { scope: memoryScope }) : Promise.resolve()).catch(() => {})
+      if (convId && isLucille(lucilleConversation)) void queueLucilleLearning(convId, assistantMsg.id, rawInstruction, 'code', abort.signal).catch(() => {})
+      if (convId && fullContent && !isLucille(lucilleConversation)) {
+        void extractMemoriesFromPair(instruction, fullContent, convId, { scope: memoryScope }).catch(() => {})
       }
 
       // The per-batch bump above only fires when a batch RETURNS. A user who

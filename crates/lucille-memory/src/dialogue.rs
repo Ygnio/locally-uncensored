@@ -205,6 +205,8 @@ pub fn eligible_source(text: &str) -> bool {
         && ![
             "objetivo",
             "goal",
+            "projeto",
+            "project",
             "pc",
             "computador",
             "notebook",
@@ -221,6 +223,7 @@ pub fn eligible_source(text: &str) -> bool {
             "interface",
             "escolha",
             "favorite",
+            "favourite",
             "preferred",
             "respostas",
             "answers",
@@ -228,6 +231,9 @@ pub fn eligible_source(text: &str) -> bool {
             "tema",
             "theme",
             "comunicacao",
+            "bebida",
+            "drink",
+            "beverage",
         ]
         .contains(&words[1])
     {
@@ -258,16 +264,95 @@ pub fn eligible_source(text: &str) -> bool {
 }
 pub fn project_scope_matches(text: &str, project: &str) -> bool {
     let s = fold(text);
+    let quoted = s.split_whitespace().collect::<Vec<_>>();
+    if quoted.windows(2).any(|pair| {
+        ["projeto", "project"].contains(&pair[0])
+            && pair[1].starts_with(['"', '\'', '`'])
+            && pair[1].trim_matches(|c: char| !c.is_alphanumeric()) != fold(project)
+    }) {
+        return false;
+    }
     let w = s
         .split_whitespace()
         .map(|s| s.trim_matches(|c: char| !c.is_alphanumeric()))
         .collect::<Vec<_>>();
+    if w.len() > 1
+        && ["projeto", "project"].contains(&w[w.len() - 2])
+        && [
+            "em", "in", "que", "that", "which", "de", "do", "da", "com", "sem", "para", "with",
+            "without", "about", "sobre",
+        ]
+        .contains(&w[w.len() - 1])
+        && w[w.len() - 1] != fold(project)
+    {
+        return false;
+    }
     !w.windows(2).any(|p| {
         ["project", "projeto"].contains(&p[0])
             && !p[1].is_empty()
             && ![
-                "de", "do", "da", "novo", "new", "pessoal", "personal", "is", "e", "usa", "uses",
-                "utiliza", "requires", "requer", "precisa", "needs", "aqui", "here", "going",
+                "de",
+                "do",
+                "da",
+                "novo",
+                "new",
+                "pessoal",
+                "personal",
+                "is",
+                "e",
+                "usa",
+                "uses",
+                "utiliza",
+                "requires",
+                "requer",
+                "precisa",
+                "needs",
+                "aqui",
+                "here",
+                "going",
+                "agora",
+                "now",
+                "eu",
+                "i",
+                "atualmente",
+                "currently",
+                "esta",
+                "estava",
+                "estara",
+                "foi",
+                "sera",
+                "vai",
+                "nao",
+                "ja",
+                "ainda",
+                "atual",
+                "current",
+                "was",
+                "will",
+                "database",
+                "banco",
+                "dados",
+                "stores",
+                "should",
+                "has",
+                "tem",
+                "ficticio",
+                "configuration",
+                "doing",
+                "que",
+                "sobre",
+                "para",
+                "sem",
+                "com",
+                "that",
+                "which",
+                "about",
+                "em",
+                "in",
+                "pretendo",
+                "pretende",
+                "planejo",
+                "planeja",
             ]
             .contains(&p[1])
             && p[1] != fold(project)
@@ -329,6 +414,11 @@ fn ambiguous_preference(s: &str) -> bool {
     )
 }
 fn transient(s: &str) -> bool {
+    if s.split(|c: char| !c.is_alphanumeric())
+        .any(|w| ["hoje", "today"].contains(&w))
+    {
+        return true;
+    }
     any(
         s,
         &[
@@ -349,8 +439,98 @@ fn transient(s: &str) -> bool {
         ],
     )
 }
+fn preference_authorship(span: &str) -> bool {
+    let s = format!(" {} ", fold(span));
+    any(
+        &s,
+        &[
+            " prefiro ",
+            " gosto ",
+            " adoro ",
+            " curto ",
+            " detesto ",
+            " odeio ",
+            " opto por ",
+            " eu amo ",
+            " i prefer ",
+            " i like ",
+            " i love ",
+            " i adore ",
+            " i enjoy ",
+            " i dislike ",
+            " i don't like ",
+            " i do not like ",
+            " meu idioma preferido ",
+            " minha lingua preferida ",
+            " minha preferencia de interface ",
+            " minha preferencia de tema ",
+            " minha preferencia de comunicacao ",
+            " minha preferencia e ",
+            " minha bebida favorita ",
+            " minha bebida preferida ",
+            " minhas preferidas ",
+            " meus preferidos ",
+            " me agrada ",
+            " me incomodam ",
+            " mais aprecio ",
+            " my preferred language ",
+            " my favorite drink ",
+            " my favourite drink ",
+            " my favorite beverage ",
+            " my favourite beverage ",
+            " my preferred theme ",
+            " my favorite hobby ",
+            " my favourite hobby ",
+            " sao meus favoritos ",
+            " sao minhas favoritas ",
+            " are my favorites ",
+            " are my favourites ",
+            " are my favorite ",
+            " are my favourite ",
+            " my favorite games ",
+            " my favourite games ",
+        ],
+    )
+}
 pub fn preference(span: &str) -> Option<Claim> {
     let s = fold(span);
+    if !preference_authorship(span) {
+        return None;
+    }
+
+    if eligible_source(span)
+        && !span.contains('?')
+        && !ambiguous_preference(&s)
+        && any(
+            &s,
+            &[
+                "nao curto",
+                "nao gosto",
+                "nao prefiro",
+                "i dislike",
+                "i don't like",
+                "i do not like",
+            ],
+        )
+        && any(&s, &["interface", "screen", "tela"])
+        && any(&s, &["carregad", "poluid", "clutter"])
+        && !any(&s, &[" mas ", " but ", "talvez", "maybe"])
+    {
+        let mut c = base(
+            span,
+            Kind::Preference,
+            "user",
+            "interface_clutter",
+            "negative",
+            "preference",
+        );
+        if transient(&s) {
+            c.temporal = "temporary".into();
+            c.ttl_seconds = Some(3600)
+        }
+        return Some(c);
+    }
+
     if eligible_source(span)
         && !span.contains('?')
         && !ambiguous_preference(&s)
@@ -413,23 +593,133 @@ pub fn preference(span: &str) -> Option<Claim> {
             "prefiro",
             "prefer",
             "gosto",
+            "adoro",
+            "adore",
+            "love",
+            "enjoy",
+            "curto",
+            "favourit",
+            "amo ",
             "like ",
             "favorit",
             "escolho",
             "minha escolha",
+            "detesto",
+            "desgosto",
+            "dislike",
+            "odeio",
             "opto por",
+            "preferida",
+            "preferido",
+            "me agrada",
+            "me incomodam",
+            "mais aprecio",
         ],
     );
     let personal = any(
         &s,
         &[
-            "eu ", "meu ", "minha ", "meus ", "minhas ", "prefiro ", "gosto ", "i ", "my ", "to me",
+            "eu ",
+            "meu ",
+            "minha ",
+            "meus ",
+            "minhas ",
+            "prefiro ",
+            "gosto ",
+            "adoro ",
+            "amo ",
+            "i ",
+            "my ",
+            "to me",
+            "me agrada",
+            "me incomodam",
+            "aprecio",
         ],
     );
-    if !choose || !personal {
+    if !choose || !(personal || preference_authorship(span)) {
         return None;
     }
-    let (property, value) = if any(&s, &["interface", "tema", "theme", "modo", "mode"])
+    let (property, value) = if any(&s, &["jogo", "game", "rpg"])
+        && any(
+            &s,
+            &[
+                "criacao de personagens",
+                "criar personagens",
+                "character creation",
+                "creating characters",
+            ],
+        ) {
+        ("games_character_creation", "positive")
+    } else if any(&s, &["jogo", "game", "rpg"])
+        && (any(
+            &s,
+            &[
+                "escolh",
+                "choos",
+                "class selection",
+                "definir",
+                "selecionar",
+            ],
+        ) && any(&s, &["classe", "class"]))
+    {
+        ("games_class_selection", "positive")
+    } else if any(&s, &["interface", "tela", "screen"])
+        && any(&s, &["poluida", "clutter", "carregada"])
+        && any(
+            &s,
+            &["desgosto", "detesto", "dislike", "odeio", "me incomodam"],
+        )
+    {
+        ("interface_clutter", "negative")
+    } else if any(
+        &s,
+        &[
+            "bebida favorita",
+            "favorite drink",
+            "bebida preferida",
+            "favourite drink",
+            "bebidas",
+        ],
+    ) && s
+        .split(|c: char| !c.is_alphanumeric())
+        .any(|w| w == "cha" || w == "tea")
+    {
+        ("favorite_beverage", "tea")
+    } else if any(&s, &["resposta", "answer", "reply", "replies"])
+        && any(&s, &["objetiv", "objective"])
+    {
+        ("communication_focus", "objective")
+    } else if any(&s, &["violao acustico", "acoustic guitar"]) && any(&s, &["tocar", "play"]) {
+        ("hobby", "acoustic_guitar")
+    } else if any(&s, &["violao acustico", "acoustic guitar"]) {
+        ("music_instrument", "acoustic_guitar")
+    } else if any(&s, &["romances de aventura", "adventure novels"]) {
+        ("book_genre", "adventure")
+    } else if any(&s, &["trilhas curtas", "short trails"]) {
+        ("outing", "short_trails")
+    } else if any(&s, &["foto", "photo"])
+        && any(
+            &s,
+            &[
+                "papel brilhante",
+                "fotos brilhantes",
+                "impressao brilhante",
+                "glossy photo prints",
+                "glossy photo paper",
+            ],
+        )
+    {
+        ("photo_paper", "glossy")
+    } else if any(
+        &s,
+        &[
+            "estantes de madeira",
+            "wooden bookshelves",
+            "wood bookshelves",
+        ],
+    ) {
+        ("shelf_material", "wood")
+    } else if any(&s, &["interface", "tema", "theme", "modo", "mode"])
         && any(&s, &["escuro", "dark"])
     {
         ("interface_theme", "dark")
@@ -523,6 +813,34 @@ pub fn preference(span: &str) -> Option<Claim> {
     }
     Some(c)
 }
+fn additional_preferences(span: &str) -> Vec<Claim> {
+    let Some(primary) = preference(span) else {
+        return vec![];
+    };
+    let s = fold(span);
+    if primary.property == "games_character_creation"
+        && any(&s, &["escolh", "choos", "class selection"])
+        && any(&s, &["classe", "class"])
+    {
+        let mut secondary = primary;
+        secondary.property = "games_class_selection".into();
+        vec![secondary]
+    } else {
+        vec![]
+    }
+}
+/// Project choice and observed implementation are separate tracks. A future
+/// language choice cannot erase the language in an existing implementation.
+pub(crate) fn execution_track(subject: &str, property: &str, temporal: &str) -> bool {
+    subject.starts_with("project.")
+        && ["language", "database"].contains(&property)
+        && ["in_progress", "current", "completed", "cancelled"].contains(&temporal)
+}
+pub(crate) fn separate_tracks(subject: &str, property: &str, left: &str, right: &str) -> bool {
+    subject.starts_with("project.")
+        && ["language", "database"].contains(&property)
+        && execution_track(subject, property, left) != execution_track(subject, property, right)
+}
 pub fn extract(text: &str, project: &str) -> Vec<Claim> {
     if !eligible_source(text) || !project_scope_matches(text, project) {
         return vec![];
@@ -545,12 +863,60 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
             continue;
         }
         let mut known = crate::extraction::extract(span);
-        if known.is_empty() {
-            if let Some(c) = preference(span) {
+        for c in preference(span)
+            .into_iter()
+            .chain(additional_preferences(span))
+        {
+            if let Some(old) = known
+                .iter_mut()
+                .find(|old| old.subject == c.subject && old.property == c.property)
+            {
+                if old.value == c.value
+                    && old.temporal == c.temporal
+                    && c.facets.len() > old.facets.len()
+                    && old.facets.iter().all(|f| c.facets.contains(f))
+                {
+                    *old = c;
+                }
+            } else {
                 known.push(c)
             }
         }
         let subject = format!("project.{project}");
+        if any(&s, &["talvez eu use ", "maybe i will use ", "i might use "])
+            && any(&s, &["projeto", "project"])
+            && !any(&s, &["nao ", "not "])
+        {
+            for (property, values) in [
+                (
+                    "language",
+                    &["python", "rust", "typescript", "javascript"][..],
+                ),
+                ("database", &["sqlite", "postgresql", "mysql"][..]),
+            ] {
+                let found = values
+                    .iter()
+                    .filter(|value| {
+                        s.split(|c: char| !c.is_alphanumeric())
+                            .any(|w| w == **value)
+                    })
+                    .collect::<Vec<_>>();
+                if found.len() == 1 {
+                    known.retain(|c| c.property != "hardware_intention" && c.property != property);
+                    let mut c = base(
+                        span,
+                        Kind::Hypothesis,
+                        &subject,
+                        property,
+                        found[0],
+                        "hypothesis",
+                    );
+                    c.project_hint = Some(project.into());
+                    c.ttl_seconds = Some(7 * 86400);
+                    known.push(c);
+                }
+            }
+        }
         let project_intent = any(
             &s,
             &[
@@ -562,6 +928,11 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
                 "i decided to use ",
                 "i want to use ",
                 "i switched ",
+                "pretendo usar ",
+                "i plan to use ",
+                "meus planos para o projeto",
+                "escolhi ",
+                "i chose ",
             ],
         );
         if project_intent && !any(&s, &["nao ", "not ", "talvez", "maybe", "might"]) {
@@ -581,7 +952,17 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
                 .into_iter()
                 .filter(|w| words.iter().any(|t| t == w))
                 .collect::<Vec<_>>();
-            let temporal = if any(&s, &["quero usar ", "i want to use ", "vou usar "]) {
+            let temporal = if any(
+                &s,
+                &[
+                    "quero usar ",
+                    "i want to use ",
+                    "vou usar ",
+                    "pretendo usar ",
+                    "i plan to use ",
+                    "meus planos para o projeto",
+                ],
+            ) {
                 "planned"
             } else {
                 "durable"
@@ -624,6 +1005,132 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
                     dbs[0]
                 );
                 known.push(c)
+            }
+        }
+        if any(
+            &s,
+            &[
+                "ainda nao decidi",
+                "ainda nao escolhi",
+                "i have not decided",
+                "i have not chosen",
+                "ainda nao defini",
+            ],
+        ) {
+            for (property, labels) in [
+                ("language", &["linguagem", "language"][..]),
+                ("database", &["banco de dados", "database"][..]),
+            ] {
+                if any(&s, labels) {
+                    known.retain(|c| c.property != property);
+                    let mut c = base(
+                        span,
+                        Kind::Decision,
+                        &subject,
+                        property,
+                        "undecided",
+                        "unknown",
+                    );
+                    c.project_hint = Some(project.into());
+                    known.push(c);
+                }
+            }
+        }
+        for (temporal, phrases) in [
+            (
+                "completed",
+                &[
+                    "conclui meu projeto",
+                    "conclui o meu projeto",
+                    "i completed my project",
+                ][..],
+            ),
+            (
+                "cancelled",
+                &[
+                    "cancelei meu projeto",
+                    "cancelei o meu projeto",
+                    "i cancelled my project",
+                ][..],
+            ),
+        ] {
+            if any(&s, phrases) {
+                let mut c = base(
+                    span,
+                    Kind::Project,
+                    &subject,
+                    "lifecycle",
+                    temporal,
+                    temporal,
+                );
+                c.project_hint = Some(project.into());
+                known.push(c);
+            }
+        }
+        let observed = if any(
+            &s,
+            &[
+                "conclui a implementacao",
+                "terminei a implementacao",
+                "i completed the implementation",
+            ],
+        ) {
+            Some("completed")
+        } else if any(
+            &s,
+            &["cancelei a implementacao", "i cancelled the implementation"],
+        ) {
+            Some("cancelled")
+        } else if any(
+            &s,
+            &[
+                "estou desenvolvendo",
+                "estou implementando",
+                "i am developing",
+                "i am implementing",
+            ],
+        ) {
+            Some("in_progress")
+        } else if any(
+            &s,
+            &[
+                "meu projeto usa ",
+                "my project uses ",
+                "no meu projeto, eu uso ",
+                "no meu projeto eu uso ",
+                "in my project, i use ",
+                "in my project i use ",
+            ],
+        ) {
+            Some("current")
+        } else {
+            None
+        };
+        if let Some(temporal) = observed.filter(|_| {
+            !any(
+                &s,
+                &[
+                    "nao ", "not ", "talvez", "maybe", "might", "se eu ", "if i ",
+                ],
+            )
+        }) {
+            for (property, values) in [
+                (
+                    "language",
+                    &["python", "rust", "typescript", "javascript"][..],
+                ),
+                ("database", &["sqlite", "postgresql", "mysql"][..]),
+            ] {
+                let found = values
+                    .iter()
+                    .filter(|v| s.split(|c: char| !c.is_alphanumeric()).any(|w| w == **v))
+                    .collect::<Vec<_>>();
+                if found.len() == 1 {
+                    known.retain(|c| c.property != property);
+                    let mut c = base(span, Kind::Fact, &subject, property, found[0], temporal);
+                    c.project_hint = Some(project.into());
+                    known.push(c);
+                }
             }
         }
         if known.is_empty()
@@ -707,6 +1214,9 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
             }
         }
         for mut c in known {
+            if c.kind == Kind::Preference && !preference_authorship(&c.evidence) {
+                continue;
+            }
             c.correction |= any(
                 &s,
                 &[
@@ -721,6 +1231,8 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
             );
             if s.starts_with("quero voltar a registrar minha preferencia: ")
                 || s.starts_with("i want to remember my preference again: ")
+                || s.starts_with("pode voltar a memorizar: ")
+                || s.starts_with("you can remember this again: ")
             {
                 c.rule = format!("explicit_v3_renewal:{}", c.rule);
                 c.confidence = 0.85
@@ -729,10 +1241,11 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
                 c.temporal = "temporary".into();
                 c.ttl_seconds = Some(3600)
             }
-            if !out
-                .iter()
-                .any(|v: &Claim| v.fingerprint() == c.fingerprint())
-            {
+            if !out.iter().any(|v: &Claim| {
+                v.fingerprint() == c.fingerprint()
+                    && v.temporal == c.temporal
+                    && v.facets == c.facets
+            }) {
                 out.push(c)
             }
             if out.len() == 4 {
@@ -784,10 +1297,11 @@ pub fn normalize(text: &str, scope: &str, project: &str, raw: &str) -> Result<Ve
             c.confidence = c.confidence.min(0.9);
             c.relevance = c.relevance.min(0.8);
             c.rule = format!("llm_v3_grounded:{}", c.rule);
-            if !accepted
-                .iter()
-                .any(|v: &Claim| v.fingerprint() == c.fingerprint())
-            {
+            if !accepted.iter().any(|v: &Claim| {
+                v.fingerprint() == c.fingerprint()
+                    && v.temporal == c.temporal
+                    && v.facets == c.facets
+            }) {
                 accepted.push(c)
             }
         }
@@ -799,6 +1313,7 @@ pub fn normalize(text: &str, scope: &str, project: &str, raw: &str) -> Result<Ve
 }
 pub fn safe_preference(c: &Claim) -> bool {
     !ambiguous_preference(&fold(&c.evidence))
+        && preference_authorship(&c.evidence)
         && c.kind == Kind::Preference
         && c.subject == "user"
         && c.temporal == "preference"
@@ -813,11 +1328,23 @@ pub fn safe_preference(c: &Claim) -> bool {
             "games_turn_strategy",
             "interface_theme",
             "communication_style",
+            "games_character_creation",
+            "games_class_selection",
+            "interface_clutter",
+            "favorite_beverage",
+            "communication_focus",
+            "music_instrument",
+            "book_genre",
+            "hobby",
+            "outing",
+            "photo_paper",
+            "shelf_material",
         ]
         .contains(&c.property.as_str())
         && crate::extraction::extract(&c.evidence)
             .into_iter()
             .chain(preference(&c.evidence))
+            .chain(additional_preferences(&c.evidence))
             .any(|p| {
                 p.kind == c.kind
                     && p.subject == c.subject
@@ -854,6 +1381,10 @@ pub fn project_summary(query: &str) -> bool {
                 "how is",
                 "project going",
                 "project progress",
+                "lembra",
+                "recorda",
+                "remember",
+                "recall",
             ],
         )
 }

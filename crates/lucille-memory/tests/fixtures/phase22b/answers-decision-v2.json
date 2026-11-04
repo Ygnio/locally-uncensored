@@ -1,0 +1,49 @@
+{
+  "id": "phase22b-unseen-answers-decision-v2",
+  "project": "cajazeira",
+  "turns": [
+    {
+      "text": "Decidi usar Rust para o meu projeto.",
+      "review": true
+    },
+    {
+      "text": "Escolhi SQLite como banco para meu projeto.",
+      "review": true
+    }
+  ],
+  "probes": [
+    {
+      "text": "Que linguagem eu escolhi para o projeto?",
+      "scenario": "different_projects",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "rust"
+        }
+      ]
+    },
+    {
+      "text": "A minha decisão significa que eu já concluí o projeto em Rust?",
+      "scenario": "decision_vs_completion",
+      "mode": "agent",
+      "expected": [
+        {
+          "property": "language",
+          "value": "rust"
+        }
+      ]
+    },
+    {
+      "text": "O que escolhi para armazenar os dados deste projeto?",
+      "scenario": "indirect_question",
+      "mode": "code",
+      "expected": [
+        {
+          "property": "database",
+          "value": "sqlite"
+        }
+      ]
+    }
+  ]
+}

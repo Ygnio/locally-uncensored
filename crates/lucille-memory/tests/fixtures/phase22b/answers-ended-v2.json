@@ -1,0 +1,43 @@
+{
+  "id": "phase22b-unseen-answers-ended-v2",
+  "project": "guabiroba",
+  "turns": [
+    {
+      "text": "Estou desenvolvendo meu projeto em JavaScript.",
+      "review": true
+    },
+    {
+      "text": "Cancelei meu projeto.",
+      "review": true
+    },
+    {
+      "text": "Decidi usar MySQL no meu projeto.",
+      "review": true
+    }
+  ],
+  "probes": [
+    {
+      "text": "Qual é a situação atual do meu projeto?",
+      "scenario": "cancelled_project",
+      "mode": "agent",
+      "expected": [
+        {
+          "property": "lifecycle",
+          "value": "cancelled",
+          "temporal": "cancelled"
+        }
+      ]
+    },
+    {
+      "text": "Qual linguagem eu usava antes de cancelar este projeto?",
+      "scenario": "current_vs_historical",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "javascript"
+        }
+      ]
+    }
+  ]
+}

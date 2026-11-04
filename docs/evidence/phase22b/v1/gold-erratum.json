@@ -1,0 +1,13 @@
+{
+  "case": "bx-065",
+  "original_frozen_corpus_unchanged": true,
+  "original_scores_retained": true,
+  "issue": "The gold kind was written as decision for an explicitly hypothetical statement. The existing domain type is hypothesis. The actual rules/hybrid result still assigned a project-language hypothesis to user.hardware_intention, so the typed domain is also incorrect. This erratum is not used to turn the failed v1 round into a pass.",
+  "future_gold": {
+    "kind": "hypothesis",
+    "subject": "project.tamarindo",
+    "property": "language",
+    "value": "rust",
+    "temporal": "hypothesis"
+  }
+}

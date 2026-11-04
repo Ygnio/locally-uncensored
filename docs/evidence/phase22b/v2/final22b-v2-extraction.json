@@ -1,0 +1,593 @@
+{
+  "dataset_sha256": "b25be48dd8f8235e5df33e92af0d8a32b1021514d43b3155e1300adb689cbd88",
+  "cases": 62,
+  "modes": {
+    "rules": {
+      "tp": 42,
+      "fp": 0,
+      "missed": 4,
+      "active_correct": 27,
+      "active_wrong": 0,
+      "critical_writes": 0,
+      "scope_errors": 0,
+      "by_category": {
+        "character_creation": {
+          "tp": 4,
+          "fp": 0,
+          "missed": 1,
+          "active_correct": 4,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 5
+        },
+        "class_selection": {
+          "tp": 4,
+          "fp": 0,
+          "missed": 1,
+          "active_correct": 4,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 5
+        },
+        "interface_clutter": {
+          "tp": 5,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 5,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 5
+        },
+        "favorite_drink": {
+          "tp": 4,
+          "fp": 0,
+          "missed": 1,
+          "active_correct": 4,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 5
+        },
+        "objective_replies": {
+          "tp": 4,
+          "fp": 0,
+          "missed": 1,
+          "active_correct": 4,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 5
+        },
+        "other_safe_preferences": {
+          "tp": 6,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 6,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 6
+        },
+        "reviewed_or_temporary": {
+          "tp": 15,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 15
+        },
+        "foreign_actor": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 3
+        },
+        "reported_source": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "fiction": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "quotation": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "conditional": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "question": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 2
+        },
+        "uncertainty": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "negation": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "permission": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "identity": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "sensitive": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "wrong_project": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "no_owned_preference": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        }
+      },
+      "precision": 1.0,
+      "recall": 0.9130434782608695,
+      "promotion_precision": 1.0,
+      "passed": true
+    },
+    "llm": {
+      "tp": 40,
+      "fp": 0,
+      "missed": 6,
+      "active_correct": 27,
+      "active_wrong": 0,
+      "critical_writes": 0,
+      "scope_errors": 0,
+      "by_category": {
+        "character_creation": {
+          "tp": 4,
+          "fp": 0,
+          "missed": 1,
+          "active_correct": 4,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 5
+        },
+        "class_selection": {
+          "tp": 4,
+          "fp": 0,
+          "missed": 1,
+          "active_correct": 4,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 5
+        },
+        "interface_clutter": {
+          "tp": 5,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 5,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 5
+        },
+        "favorite_drink": {
+          "tp": 4,
+          "fp": 0,
+          "missed": 1,
+          "active_correct": 4,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 5
+        },
+        "objective_replies": {
+          "tp": 4,
+          "fp": 0,
+          "missed": 1,
+          "active_correct": 4,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 5
+        },
+        "other_safe_preferences": {
+          "tp": 6,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 6,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 6
+        },
+        "reviewed_or_temporary": {
+          "tp": 13,
+          "fp": 0,
+          "missed": 2,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 15
+        },
+        "foreign_actor": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 3
+        },
+        "reported_source": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "fiction": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "quotation": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "conditional": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "question": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 2
+        },
+        "uncertainty": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "negation": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "permission": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "identity": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "sensitive": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "wrong_project": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "no_owned_preference": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        }
+      },
+      "precision": 1.0,
+      "recall": 0.8695652173913043,
+      "promotion_precision": 1.0,
+      "passed": true
+    },
+    "hybrid": {
+      "tp": 42,
+      "fp": 0,
+      "missed": 4,
+      "active_correct": 27,
+      "active_wrong": 0,
+      "critical_writes": 0,
+      "scope_errors": 0,
+      "by_category": {
+        "character_creation": {
+          "tp": 4,
+          "fp": 0,
+          "missed": 1,
+          "active_correct": 4,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 5
+        },
+        "class_selection": {
+          "tp": 4,
+          "fp": 0,
+          "missed": 1,
+          "active_correct": 4,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 5
+        },
+        "interface_clutter": {
+          "tp": 5,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 5,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 5
+        },
+        "favorite_drink": {
+          "tp": 4,
+          "fp": 0,
+          "missed": 1,
+          "active_correct": 4,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 5
+        },
+        "objective_replies": {
+          "tp": 4,
+          "fp": 0,
+          "missed": 1,
+          "active_correct": 4,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 5
+        },
+        "other_safe_preferences": {
+          "tp": 6,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 6,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 6
+        },
+        "reviewed_or_temporary": {
+          "tp": 15,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 15
+        },
+        "foreign_actor": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 3
+        },
+        "reported_source": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "fiction": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "quotation": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "conditional": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "question": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 2
+        },
+        "uncertainty": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "negation": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "permission": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "identity": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "sensitive": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "wrong_project": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        },
+        "no_owned_preference": {
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "active_correct": 0,
+          "active_wrong": 0,
+          "critical_writes": 0,
+          "n": 1
+        }
+      },
+      "precision": 1.0,
+      "recall": 0.9130434782608695,
+      "promotion_precision": 1.0,
+      "passed": true
+    }
+  },
+  "invalid_raw_outputs": 0,
+  "raw_proposals": 59
+}

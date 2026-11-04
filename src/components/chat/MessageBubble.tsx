@@ -311,6 +311,7 @@ function MessageBubbleImpl({ message, onRegenerate, onEdit, pendingApprovalId, o
 
   return (
     <motion.div
+      data-message-id={message.id}
       className={'flex gap-2 px-3 py-1 group ' + (isUser ? 'flex-row-reverse' : '')}
       onContextMenu={(e) => {
         if (!actionsAvailable) return
@@ -700,6 +701,11 @@ function MessageBubbleImpl({ message, onRegenerate, onEdit, pendingApprovalId, o
             <button onClick={actions.remove} className={'p-1 rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-white/10 ' + (confirmDelete ? 'text-red-500' : 'text-gray-400 dark:text-gray-500 hover:text-red-500')} aria-label="Delete message" title={confirmDelete ? 'Click again to delete' : 'Delete message'}>
               <Trash2 size={12} />
             </button>
+            {!isUser && message.lucilleFidelity?.some(r => r.status !== 'checked') && (
+              <span data-lucille-fidelity={message.lucilleFidelity.some(r => r.status === 'blocked') ? 'blocked' : 'regenerated'} className="text-xs text-gray-500">
+                {message.lucilleFidelity.some(r => r.status === 'blocked') ? 'Resposta retida na verificação de memória' : 'Resposta revisada com a memória atual'}
+              </span>
+            )}
             {!isUser && <RequestUsageLine usage={message.requestUsage} className="pl-1.5" />}
           </div>
         )}

@@ -1,3 +1,4 @@
+import { collectMemoryCompletion, validateLucilleCompletion, MemoryAnswerBlocked } from '../lib/lucille-answer'
 import { executorEvidence, type ToolEvidence } from '../lib/verified-environment'
 import { queueLucilleLearning } from '../lib/lucille-learning'
 import { isLucille, withLucilleContext, lucilleToolAllowed } from "../lib/lucille-context"
@@ -1615,7 +1616,7 @@ export function useAgentChat() {
     let steeredAnswer: { text: string; blockId: string; calls: number; links: string[] } | null = null
     // And while the round after the link steer writes (below): whether that text is an answer or a reply to
     // the steer is known only when it is whole, and an apology that flashes up and goes is still read.
-    const holdLiveText = () => (searchOrdered && !searchSynthesized && executedCallKeys.size === 0) || (steeredAnswer !== null && executedCallKeys.size === steeredAnswer.calls)
+    const holdLiveText = () => isLucille(conv) || (searchOrdered && !searchSynthesized && executedCallKeys.size === 0) || (steeredAnswer !== null && executedCallKeys.size === steeredAnswer.calls)
     // The first search of an ordered run was given the words of the user (lib/explicit-search.ts, withOrderedQuery).
     let searchQueryPinned = false
     let forceNoThink = false
@@ -1722,6 +1723,7 @@ export function useAgentChat() {
         // dort genauso aus wie ein fertiges Modell (Fehler D, Symptom 2, im
         // Code Reiter am 11.09.2026 geschlossen, hier stand es noch offen).
         let turnFinishReason: string | undefined
+        let fidelityUsage: { promptEvalCount?: number; evalCount?: number } = {}
 
         // Plain-text-planner escape: Gemma 3/4 with think=false drops
         // into structured plain-text planning (Plan: / Constraint
@@ -1919,7 +1921,8 @@ export function useAgentChat() {
         // phone is 4096 tokens at most, smaller than the floors the builder
         // above keeps. Returns the same array on a desktop and for a cloud model.
         sendMessages = fitRequestForPhone(sendMessages, agentCtx, 0, runQuestion, phoneMeasured)
-        const prepareMessages = (availableTools: string[]) => withLucilleContext(conv, assistantMessage.id, userContent, "agent", sendMessages, abort.signal, undefined, { backend: providerId, model: modelToUse, availableTools, receipts: toolEvidence.slice(-8) })
+        let answerWire: ChatMessage[] | undefined
+        const prepareMessages = async (availableTools: string[]) => answerWire = await withLucilleContext(conv, assistantMessage.id, userContent, "agent", sendMessages, abort.signal, undefined, { backend: providerId, model: modelToUse, availableTools, receipts: toolEvidence.slice(-8) })
         // Phone only: the engine's own count of the first request of the run.
         const notePhoneCount = (promptTokens: number | undefined) => {
           if (phoneMeasureTaken || !promptTokens || !phoneFitApplies(agentCtx)) return
@@ -2077,7 +2080,7 @@ export function useAgentChat() {
                     // 'always' reasoner: nothing streamed live, then the whole
                     // thought appeared at once when the turn ended.
                     if (keepThinking) {
-                      runState.thinking = t
+                      if (!isLucille(conv)) runState.thinking = t
                       scheduleUIUpdate()
                     } else {
                       hiddenThoughtArrived(convId)
@@ -2175,7 +2178,7 @@ export function useAgentChat() {
               markFirstSign()
               // Same gate as the end-of-turn routing, see the Ollama branch.
               if (keepThinking) {
-                runState.thinking = t
+                if (!isLucille(conv)) runState.thinking = t
                 scheduleUIUpdate()
               } else {
                 hiddenThoughtArrived(convId)
@@ -2250,6 +2253,7 @@ export function useAgentChat() {
               estimated: false,
             })
           }
+          fidelityUsage = turn
           requestUsage.add(turn)
           // Native thinking field (Ollama; LU Cloud reasoning_content)
           if (turn.thinking) turnThinking = turn.thinking
@@ -2282,7 +2286,7 @@ export function useAgentChat() {
           const thinkSink = createTurnThinkingSink()
           const paintThink = () => {
             if (!keepThinking) return
-            runState.thinking = thinkSink.live()
+            if (!isLucille(conv)) runState.thinking = thinkSink.live()
             scheduleUIUpdate()
           }
           const feedUI = (chunk: { prose: string; thinking: string }) => {
@@ -2343,6 +2347,7 @@ export function useAgentChat() {
           // Prompt-Transport kann den Zug genauso mitten im `<tool_call>`
           // abschneiden, und dann steht hier ebenfalls kein Werkzeugaufruf.
           turnFinishReason = hermesTurn.finishReason
+          fidelityUsage = hermesTurn
           requestUsage.add(hermesTurn)
           notePhoneCount(hermesTurn.promptEvalCount)
           if (hermesTurn.thinking) {
@@ -2359,6 +2364,28 @@ export function useAgentChat() {
             turnContent = stripToolCallTags(rawContent)
           } else {
             turnContent = rawContent
+          }
+        }
+
+        if (isLucille(conv)) {
+          if (!answerWire) throw new Error('Lucille response has no prepared context')
+          try {
+            const accepted = await validateLucilleCompletion(answerWire,
+              { ...fidelityUsage, content: turnContent, thinking: turnThinking, toolCalls, finishReason: turnFinishReason },
+              wire => collectMemoryCompletion(provider.chatStream(modelToUse, wire, chatOptions)), abort.signal)
+            turnContent = accepted.completion.content
+            turnThinking = accepted.completion.thinking ?? ''
+            toolCalls = accepted.completion.toolCalls ?? []
+            turnFinishReason = accepted.completion.finishReason
+            useChatStore.getState().addMessageFidelity(convId!, assistantMessage.id, accepted.report)
+            if (accepted.report.status === 'regenerated') requestUsage.add(accepted.completion)
+          } catch (error) {
+            if (error instanceof MemoryAnswerBlocked) {
+              useChatStore.getState().addMessageFidelity(convId!, assistantMessage.id, error.report)
+              const usage = error.report.additionalUsage
+              requestUsage.add({ promptEvalCount: usage.promptTokens, evalCount: usage.completionTokens })
+            }
+            throw error
           }
         }
 
@@ -3731,7 +3758,7 @@ export function useAgentChat() {
       // agent loop never had.
       // Not for the hidden report after a Create run: that "question" is the
       // app talking, not the customer, and nothing in it is worth remembering.
-      if (isLucille(conv) && runState.content.trim() && convId && !opts?.hiddenUser && !opts?.displayContent) {
+      if (isLucille(conv) && convId && !opts?.hiddenUser && !opts?.displayContent) {
         void queueLucilleLearning(convId, assistantMessage.id, userContent, 'agent', abort.signal).catch(() => {})
       }
       if (!isLucille(conv) && runState.content.trim() && convId && !(opts?.hiddenUser && opts.createTools)) {

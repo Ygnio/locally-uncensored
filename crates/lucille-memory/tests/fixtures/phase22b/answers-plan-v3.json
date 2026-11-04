@@ -1,0 +1,57 @@
+{
+  "id": "phase22b-unseen-answers-plan-v3",
+  "project": "grumixama",
+  "turns": [
+    {
+      "text": "Estou começando um projeto de catálogo de fósseis.",
+      "review": true
+    },
+    {
+      "text": "Quero usar Rust e SQLite no meu projeto.",
+      "review": true
+    }
+  ],
+  "probes": [
+    {
+      "text": "Meu projeto já está implementado em Rust ou isso ainda é um plano?",
+      "scenario": "plan_vs_execution",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "rust",
+          "temporal": "planned"
+        }
+      ]
+    },
+    {
+      "text": "What database is in my plans for this project?",
+      "scenario": "multilingual_question",
+      "mode": "code",
+      "expected": [
+        {
+          "property": "database",
+          "value": "sqlite",
+          "temporal": "planned"
+        }
+      ]
+    },
+    {
+      "text": "Pode me lembrar daquele projeto de que falei?",
+      "scenario": "indirect_question",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "rust",
+          "temporal": "planned"
+        },
+        {
+          "property": "database",
+          "value": "sqlite",
+          "temporal": "planned"
+        }
+      ]
+    }
+  ]
+}

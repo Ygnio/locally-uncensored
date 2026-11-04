@@ -1,0 +1,44 @@
+{
+  "id": "phase22b-unseen-decision-v1",
+  "project": "imbuia",
+  "turns": [
+    {
+      "text": "Decidi usar Rust no meu projeto.",
+      "review": true
+    },
+    {
+      "text": "Escolhi SQLite para o banco de dados do meu projeto.",
+      "review": true
+    }
+  ],
+  "probes": [
+    {
+      "text": "Que linguagem eu decidi usar neste projeto?",
+      "scenario": "decision_vs_completion",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "rust"
+        }
+      ]
+    },
+    {
+      "text": "Segundo a memória, eu já concluí esse projeto?",
+      "scenario": "decision_vs_completion",
+      "mode": "agent",
+      "expected": []
+    },
+    {
+      "text": "Which database did I choose for my project?",
+      "scenario": "different_projects",
+      "mode": "code",
+      "expected": [
+        {
+          "property": "database",
+          "value": "sqlite"
+        }
+      ]
+    }
+  ]
+}

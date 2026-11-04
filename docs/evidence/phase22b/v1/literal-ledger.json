@@ -1,0 +1,2322 @@
+{
+  "adjudication_method": "independent_literal_review",
+  "rubric_frozen_sha256": "5fc7e3f2a983d2fedd9c855851d44d5115ed2cc5514214802bb8b7000344eba7",
+  "fixtures": {
+    "driver-final22b-v1-plan-final.json": "0496e70147f3dd8a5d6f8cef5c8f4dee640290b7a868d05d56e49b4bc9d2fefc",
+    "driver-final22b-v1-decision-final.json": "8762de1256f0e66bc787a12c95b7fa6076e6b5591dc4ce5b13088595a7cfc757",
+    "driver-final22b-v1-long24-final.json": "b7881182330ba26d3c48c1b2b53b7a73675ffa11b08977b784871b9c50d130f7",
+    "driver-final22b-v1-ended-final.json": "d5a1a5734601fb0358b2085850f0db9dcb46c7fd958835fec0f163c44fef90d4",
+    "driver-final22b-v1-unknown-final.json": "982d7cf05bed86e3264f35cecc57eac4c49a3ce41abc95b9483c06cc2bca0e07",
+    "driver-final22b-v1-empty-final.json": "469fd40d984c785bde22b07ec8e66ff206595ce1dbef271543fd03230bc7c01b"
+  },
+  "samples": [
+    {
+      "fixture": "driver-final22b-v1-plan-final.json",
+      "turn": 0,
+      "message_id": "e64c859b-731e-4b02-a665-eca45dadd7dc",
+      "query": "Estou começando um projeto de catálogo de sementes.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "99754df13b592be4446f89a82a726480cb127606105f163ed6722096145e57a8",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "99754df13b592be4446f89a82a726480cb127606105f163ed6722096145e57a8",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-plan-final.json",
+      "turn": 1,
+      "message_id": "5390ec09-4150-43a8-a40a-74581984fcc3",
+      "query": "Quero usar TypeScript e PostgreSQL nesse projeto.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "fde044d8d638d271deecc431ffc9f00be6263082262cde57f5ef8e9601c7bcfb",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "fde044d8d638d271deecc431ffc9f00be6263082262cde57f5ef8e9601c7bcfb",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-plan-final.json",
+      "turn": 2,
+      "message_id": "38558c27-6378-4510-8455-56854c1578a7",
+      "query": "Segundo a sua memória, meu projeto já está sendo desenvolvido em TypeScript?",
+      "scenario": "plan_vs_execution",
+      "raw": [
+        {
+          "sha256": "a44cbdaaaddc8b4fa05626e470361550670cd8eb99d0432220c876d7967b4c2e",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Sim",
+              "supported": false,
+              "critical": true,
+              "reason": "Affirms an already-developing presupposition despite only planned language evidence; denying completion later does not establish ongoing implementation.",
+              "evidence": []
+            },
+            {
+              "literal": "você planeja usar TypeScript no projeto Pinhao.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            },
+            {
+              "literal": "essa é uma decisão planejada e não uma implementação concluída.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "a44cbdaaaddc8b4fa05626e470361550670cd8eb99d0432220c876d7967b4c2e",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Sim",
+            "supported": false,
+            "critical": true,
+            "reason": "Affirms an already-developing presupposition despite only planned language evidence; denying completion later does not establish ongoing implementation.",
+            "evidence": []
+          },
+          {
+            "literal": "você planeja usar TypeScript no projeto Pinhao.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          },
+          {
+            "literal": "essa é uma decisão planejada e não uma implementação concluída.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-plan-final.json",
+      "turn": 3,
+      "message_id": "46050a85-f4ea-42e1-806e-44033288b181",
+      "query": "Qual banco de dados faz parte dos meus planos para esse projeto?",
+      "scenario": "plan_vs_execution",
+      "raw": [
+        {
+          "sha256": "caad9884664b77906c19d349eb5bcbe54a80ef7c847a25627baea1e3c63ab440",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você planeja usar o PostgreSQL como banco de dados para o projeto Pinhao.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "caad9884664b77906c19d349eb5bcbe54a80ef7c847a25627baea1e3c63ab440",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você planeja usar o PostgreSQL como banco de dados para o projeto Pinhao.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-plan-final.json",
+      "turn": 4,
+      "message_id": "88c34214-fdf7-48f3-a05b-9c6cc7469a4a",
+      "query": "Como está aquele projeto que comentei?",
+      "scenario": "indirect_question",
+      "raw": [
+        {
+          "sha256": "a4b7d979884d9899f013639b2f7ffcf7acd862f20987e3ce45d68c3cde54c5fe",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "a4b7d979884d9899f013639b2f7ffcf7acd862f20987e3ce45d68c3cde54c5fe",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 2,
+      "useful_retained": 0,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-decision-final.json",
+      "turn": 0,
+      "message_id": "a8ce9a75-9e85-4f8b-ba11-2d8d4331e3e1",
+      "query": "Decidi usar Rust no meu projeto.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "fc68b9159684dd8298d9d773fffe60ab50a0ddc7de76eea9f42419f011f17370",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "fc68b9159684dd8298d9d773fffe60ab50a0ddc7de76eea9f42419f011f17370",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-decision-final.json",
+      "turn": 1,
+      "message_id": "62f61cec-66ac-43fc-8ba7-e56d2d0f83d4",
+      "query": "Escolhi SQLite para o banco de dados do meu projeto.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "ff7c1e306cce71abaecb7e5e82fd50563a2cb19125e0a016fc8149dc0a671f60",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "SQLite é uma excelente escolha para o projeto Imbuia, oferecendo simplicidade e eficiência.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            },
+            {
+              "literal": "você já decidiu usar Rust",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        },
+        {
+          "sha256": "ebcb7a186c903aab8fb8c4257fcf06f8dae4cb0ce0f337970d78eb6bad9feef7",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "SQLite é uma excelente escolha para o projeto Imbuia, combinando simplicidade com grande eficiência.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            },
+            {
+              "literal": "você já decidiu usar Rust",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "6a36d47c9a0266fcd8cbac6bf814227d40cf0de1c9cf73a7316b9570c6d3dcbd",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": false,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-decision-final.json",
+      "turn": 2,
+      "message_id": "1e349afb-47ea-4618-afae-aae95a8b724f",
+      "query": "Que linguagem eu decidi usar neste projeto?",
+      "scenario": "decision_vs_completion",
+      "raw": [
+        {
+          "sha256": "188a8cfcce6352696ad338e4dfb920e9ca69f387ec35c1faef9d4396fbbc7067",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você decidiu usar a linguagem Rust no projeto Imbuia.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "188a8cfcce6352696ad338e4dfb920e9ca69f387ec35c1faef9d4396fbbc7067",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você decidiu usar a linguagem Rust no projeto Imbuia.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-decision-final.json",
+      "turn": 3,
+      "message_id": "7ccd8ec0-876a-4006-9ee2-18150aa49fdf",
+      "query": "Segundo a memória, eu já concluí esse projeto?",
+      "scenario": "decision_vs_completion",
+      "raw": [
+        {
+          "sha256": "9d6aceb54a8c167e3f670d4b0fc6ef76dcae015a811dc5b9723a49339bcae31b",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Não há um registro específico na memória indicando que o projeto já foi concluído.",
+              "supported": true,
+              "critical": false,
+              "reason": "No completion record was supplied; scoped lack of evidence is not a claim that completion never occurred.",
+              "evidence": [
+                "initial_retrieval_audit_and_original_sources"
+              ]
+            },
+            {
+              "literal": "a decisão de usar a linguagem Rust no projeto Imbuia.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "9d6aceb54a8c167e3f670d4b0fc6ef76dcae015a811dc5b9723a49339bcae31b",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Não há um registro específico na memória indicando que o projeto já foi concluído.",
+            "supported": true,
+            "critical": false,
+            "reason": "No completion record was supplied; scoped lack of evidence is not a claim that completion never occurred.",
+            "evidence": [
+              "initial_retrieval_audit_and_original_sources"
+            ]
+          },
+          {
+            "literal": "a decisão de usar a linguagem Rust no projeto Imbuia.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-decision-final.json",
+      "turn": 4,
+      "message_id": "cbe70ef8-36fa-410f-82d1-e3678bbec432",
+      "query": "Which database did I choose for my project?",
+      "scenario": "different_projects",
+      "raw": [
+        {
+          "sha256": "b5bbf8ce401b3a0b1bb3cb978e21f6dd6d6b9d206db47678a24e5cf3866e4d1f",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "No relevant record is available for the database choice in the provided contextual data.",
+              "supported": true,
+              "critical": false,
+              "reason": "Accurate about provided contextual data, but the original database choice was missed by extraction.",
+              "evidence": [
+                "initial_context_has_no_database_reference"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "b5bbf8ce401b3a0b1bb3cb978e21f6dd6d6b9d206db47678a24e5cf3866e4d1f",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "No relevant record is available for the database choice in the provided contextual data.",
+            "supported": true,
+            "critical": false,
+            "reason": "Accurate about provided contextual data, but the original database choice was missed by extraction.",
+            "evidence": [
+              "initial_context_has_no_database_reference"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 0,
+      "message_id": "7c350ae6-edcf-49c8-a4a9-883d02c0a66b",
+      "query": "Estou começando um projeto de catálogo de trilhas.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "90df78a1e835963133c7f9b47a4cfb41820a3910ae5702089ecd6d4e22cc70b7",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "90df78a1e835963133c7f9b47a4cfb41820a3910ae5702089ecd6d4e22cc70b7",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 1,
+      "message_id": "a7977a52-36fe-49ec-a3c4-fbcb01b95961",
+      "query": "Quero usar TypeScript e SQLite.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "a02640108a9b361f0c45eb9323fa9d3aa3bba16f34f9636ad583fef7df7c173d",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "a02640108a9b361f0c45eb9323fa9d3aa3bba16f34f9636ad583fef7df7c173d",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 2,
+      "message_id": "440cdadd-a36a-4f6f-9c2c-fe3423833956",
+      "query": "Meu computador principal tem 32 GB de RAM.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "4cdc1d24b8edbf533f9c0ba74011e9ba6396b7341521ca9bd310cc3a11e0194d",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "32 GB de RAM",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            },
+            {
+              "literal": "Com 32 GB de RAM, você terá uma excelente fluidez para rodar o ambiente de desenvolvimento, incluindo o VS Code, o compilador do TypeScript e o banco de dados simultaneamente.",
+              "supported": false,
+              "critical": false,
+              "reason": "RAM capacity alone does not prove guaranteed personal workload fluency.",
+              "evidence": []
+            },
+            {
+              "literal": "Você não terá gargalos de memória para este projeto.",
+              "supported": false,
+              "critical": false,
+              "reason": "No measured workload supports a personal no-bottleneck or sufficiency guarantee from capacity alone.",
+              "evidence": []
+            }
+          ]
+        },
+        {
+          "sha256": "a2694bd5d4d1aa68ef2a7368bb8570f606100c0f976ae7fa27bc1da5ee857290",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "32 GB de RAM",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            },
+            {
+              "literal": "Com 32 GB de RAM, você terá uma excelente fluidez para rodar o ambiente de desenvolvimento, permitindo abrir várias ferramentas simultaneamente sem gargalos.",
+              "supported": false,
+              "critical": false,
+              "reason": "RAM capacity alone does not prove guaranteed personal workload fluency.",
+              "evidence": []
+            },
+            {
+              "literal": "Essa memória é mais do que suficiente para lidar com o TypeScript e o SQLite com facilidade.",
+              "supported": false,
+              "critical": false,
+              "reason": "No measured workload supports a personal no-bottleneck or sufficiency guarantee from capacity alone.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "a2694bd5d4d1aa68ef2a7368bb8570f606100c0f976ae7fa27bc1da5ee857290",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "32 GB de RAM",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          },
+          {
+            "literal": "Com 32 GB de RAM, você terá uma excelente fluidez para rodar o ambiente de desenvolvimento, permitindo abrir várias ferramentas simultaneamente sem gargalos.",
+            "supported": false,
+            "critical": false,
+            "reason": "RAM capacity alone does not prove guaranteed personal workload fluency.",
+            "evidence": []
+          },
+          {
+            "literal": "Essa memória é mais do que suficiente para lidar com o TypeScript e o SQLite com facilidade.",
+            "supported": false,
+            "critical": false,
+            "reason": "No measured workload supports a personal no-bottleneck or sufficiency guarantee from capacity alone.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 3,
+      "message_id": "092bc307-3321-4130-b063-e5e24208299b",
+      "query": "Meu notebook de trabalho tem 20 GB de RAM.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "caaa4dddf5a52e150a8a4e504cea02183b91982176a5bff03b529aa34d06bbc1",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "20 GB de RAM",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            },
+            {
+              "literal": "quase tão estável quanto a do seu computador principal.",
+              "supported": false,
+              "critical": false,
+              "reason": "Neither machine stability was supplied or measured; capacity does not establish comparative stability.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "caaa4dddf5a52e150a8a4e504cea02183b91982176a5bff03b529aa34d06bbc1",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "20 GB de RAM",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          },
+          {
+            "literal": "quase tão estável quanto a do seu computador principal.",
+            "supported": false,
+            "critical": false,
+            "reason": "Neither machine stability was supplied or measured; capacity does not establish comparative stability.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 4,
+      "message_id": "09d9cf1f-6a59-4483-bb99-ada75b74e786",
+      "query": "Eu prefiro tomar meu café com açúcar.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "4bc0f6d9ed0d5860e4c6c277ef0c270fe18ac6e4c5dbf117d2b3318fc683d5af",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "você prefere o café com açúcar.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "4bc0f6d9ed0d5860e4c6c277ef0c270fe18ac6e4c5dbf117d2b3318fc683d5af",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "você prefere o café com açúcar.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 5,
+      "message_id": "6450d053-4b1e-4937-a1e3-31daaac59bdf",
+      "query": "Eu gosto de criar personagens em jogos.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "086f7a9977f19876918053146c461e5185c336578f02442a83bf651d888ff4a2",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "086f7a9977f19876918053146c461e5185c336578f02442a83bf651d888ff4a2",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 6,
+      "message_id": "d008e10e-8a44-47fe-8351-2140d2f811ef",
+      "query": "Gosto de jogos em que posso escolher minha classe.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "4ac4a2875155fe31d7d22cbe31f052679488707d5fbcb05ca495b3e227dd1d4e",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "4ac4a2875155fe31d7d22cbe31f052679488707d5fbcb05ca495b3e227dd1d4e",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 7,
+      "message_id": "ae594435-c0db-44ef-a4a6-562e0ea77a08",
+      "query": "Não gosto de interfaces muito carregadas.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "de9cde791c1c1f859c361cc4057d767cbccfea126f86447d7f21dae20e0bdb63",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "de9cde791c1c1f859c361cc4057d767cbccfea126f86447d7f21dae20e0bdb63",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 8,
+      "message_id": "c935704a-94a1-4771-97a1-fed6c67699fd",
+      "query": "Eu prefiro respostas objetivas.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "179dedb66b499eea96402dd29e3b46e1de41bb98d22bf38ea6fd2fa8e1012ba5",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "179dedb66b499eea96402dd29e3b46e1de41bb98d22bf38ea6fd2fa8e1012ba5",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 9,
+      "message_id": "f4e10dfe-55af-4455-8744-f8c95a059ccc",
+      "query": "Quanto é 17 somado a 28?",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "ec0eff04ee2964e1eb9706262922d41dae482f71cd327f07751c305908c6b86a",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "ec0eff04ee2964e1eb9706262922d41dae482f71cd327f07751c305908c6b86a",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 10,
+      "message_id": "5a1503a8-6dfb-4516-8a2a-6ae3583bca72",
+      "query": "No meu projeto, eu uso Python.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "1d08bb1a4a96a9cbdbd790ce6336d8913eb5c30f9f8a4b749abdc2350dbd41e3",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você mencionou anteriormente que usaria TypeScript e SQLite.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        },
+        {
+          "sha256": "1d08bb1a4a96a9cbdbd790ce6336d8913eb5c30f9f8a4b749abdc2350dbd41e3",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você mencionou anteriormente que usaria TypeScript e SQLite.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "6a36d47c9a0266fcd8cbac6bf814227d40cf0de1c9cf73a7316b9570c6d3dcbd",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": false,
+      "useful_expected": 2,
+      "useful_retained": 0,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 11,
+      "message_id": "cf911fbf-0007-43f5-b432-933b26b8a7a8",
+      "query": "Não tenho mais 32 GB, agora são 48 GB.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "cd61a8a9c858df820758b52b1b0fd0176f92b4d7bbb2424b1765de06030c0b17",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você aumentou sua memória para 48 GB. Isso oferece ainda mais folga para o seu fluxo de trabalho.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "cd61a8a9c858df820758b52b1b0fd0176f92b4d7bbb2424b1765de06030c0b17",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você aumentou sua memória para 48 GB. Isso oferece ainda mais folga para o seu fluxo de trabalho.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 12,
+      "message_id": "863735d5-4157-438e-a08c-a5f5e7c382e5",
+      "query": "Na verdade, eu prefiro café sem açúcar.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "c4e38bd515cba1eaede2e4f06151757a287e4962241c685f3d74b2aac991b567",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você agora prefere café sem açúcar.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "c4e38bd515cba1eaede2e4f06151757a287e4962241c685f3d74b2aac991b567",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você agora prefere café sem açúcar.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 13,
+      "message_id": "a26cbfd2-745e-4469-ab93-31e49c05cf2c",
+      "query": "Meu objetivo é aprender italiano.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "c8f28d14f46964f50a14253e03a38a98e2f7c6a6281b58231b83f8b41b5256d0",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Excelente objetivo. Como você prefere objetividade, quer começar com vocabulário básico, gramática ou conversação?",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "c8f28d14f46964f50a14253e03a38a98e2f7c6a6281b58231b83f8b41b5256d0",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Excelente objetivo. Como você prefere objetividade, quer começar com vocabulário básico, gramática ou conversação?",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 14,
+      "message_id": "96177c26-9091-48d8-9f77-838fa62ff79e",
+      "query": "Por que um objeto cai quando é solto?",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "22b22f70e41b2bb11a12fcbd4506e44c0ad1673a3ddd3cc2332c0b41bb412958",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "22b22f70e41b2bb11a12fcbd4506e44c0ad1673a3ddd3cc2332c0b41bb412958",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 15,
+      "message_id": "b0d732db-9623-44c1-99c3-4fdf24edd271",
+      "query": "Concluí meu objetivo de aprender italiano.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "643be15b75bbfe456dce41df0d0cc6b151beb406f55e1be76632030bbff008b4",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Parabéns por concluir seu objetivo de aprender italiano! Agora você pode começar a praticar ou aplicar o idioma em situações reais.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "643be15b75bbfe456dce41df0d0cc6b151beb406f55e1be76632030bbff008b4",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Parabéns por concluir seu objetivo de aprender italiano! Agora você pode começar a praticar ou aplicar o idioma em situações reais.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 16,
+      "message_id": "06f683d9-ce1b-4bd3-8ff0-73d6ae64dce6",
+      "query": "Esqueça minha preferência por criar personagens em jogos.",
+      "scenario": "deleted_information",
+      "raw": [
+        {
+          "sha256": "365c8605a6362b8b7ed0376377cae9f12f042e24e0e8948bf0405df9aa8e44df",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Entendido. Removi sua preferência por criar personagens em jogos.",
+              "supported": false,
+              "critical": true,
+              "reason": "No matching native removal/reactivation operation had completed. The imperative was not recognized; the native history has no corresponding deletion.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "365c8605a6362b8b7ed0376377cae9f12f042e24e0e8948bf0405df9aa8e44df",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Entendido. Removi sua preferência por criar personagens em jogos.",
+            "supported": false,
+            "critical": true,
+            "reason": "No matching native removal/reactivation operation had completed. The imperative was not recognized; the native history has no corresponding deletion.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 17,
+      "message_id": "97780f7f-14d2-4800-b73b-726e3370af04",
+      "query": "Por que o arco-íris se forma?",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "6a77feaca247069ded5d0c0a02ba40ea6ea8b37643417c21d11d3c0ef39089b4",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "6a77feaca247069ded5d0c0a02ba40ea6ea8b37643417c21d11d3c0ef39089b4",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 18,
+      "message_id": "95afa641-e0ab-4ea5-8f0d-961bd3e94747",
+      "query": "Pode voltar a memorizar: eu gosto de criar personagens em jogos.",
+      "scenario": "deleted_information",
+      "raw": [
+        {
+          "sha256": "438358b21bbd529d410c0a49d7e1060bcf1018441c4221bf57c65de203341090",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Entendido. Reativei sua preferência por criar personagens em jogos.",
+              "supported": false,
+              "critical": true,
+              "reason": "No matching native removal/reactivation operation had completed. The imperative was not recognized; the native history has no corresponding deletion.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "438358b21bbd529d410c0a49d7e1060bcf1018441c4221bf57c65de203341090",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Entendido. Reativei sua preferência por criar personagens em jogos.",
+            "supported": false,
+            "critical": true,
+            "reason": "No matching native removal/reactivation operation had completed. The imperative was not recognized; the native history has no corresponding deletion.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 19,
+      "message_id": "ea6055f3-8985-4507-b282-88b14b1c9f2c",
+      "query": "Agora tenho 6 GB de RAM livre no computador principal.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "1488814b6a2758880ec065a210903b975a7bec6c9ce4fcf5fd79e55563bc2896",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você agora tem 6 GB de RAM livre no computador principal.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        },
+        {
+          "sha256": "1488814b6a2758880ec065a210903b975a7bec6c9ce4fcf5fd79e55563bc2896",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você agora tem 6 GB de RAM livre no computador principal.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "6a36d47c9a0266fcd8cbac6bf814227d40cf0de1c9cf73a7316b9570c6d3dcbd",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": false,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 20,
+      "message_id": "63ef8e21-8787-43a0-bc90-b69741888d70",
+      "query": "Eu prefiro tema claro na interface.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "48bb25505eed2350b9f53268e178fd533d393572da1a2c0b53a86c6d1c5ffa77",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você prefere o tema claro na interface.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "48bb25505eed2350b9f53268e178fd533d393572da1a2c0b53a86c6d1c5ffa77",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você prefere o tema claro na interface.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 21,
+      "message_id": "371b6505-4a25-41ae-96b6-c0bfe47b5751",
+      "query": "Esqueça minha preferência de tema de interface.",
+      "scenario": "deleted_information",
+      "raw": [
+        {
+          "sha256": "77260022eb61a5ddf88b825bb378f3bcf5642900b254389f02600e7ba7983f3e",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Entendido. Removi sua preferência por tema claro na interface.",
+              "supported": false,
+              "critical": true,
+              "reason": "No matching native removal/reactivation operation had completed. The imperative was not recognized; the native history has no corresponding deletion.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "77260022eb61a5ddf88b825bb378f3bcf5642900b254389f02600e7ba7983f3e",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Entendido. Removi sua preferência por tema claro na interface.",
+            "supported": false,
+            "critical": true,
+            "reason": "No matching native removal/reactivation operation had completed. The imperative was not recognized; the native history has no corresponding deletion.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 22,
+      "message_id": "534d80a4-f09f-49de-9f6b-1b57e4177847",
+      "query": "Meu outro computador tem 12 GB de RAM.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "b38edf5ddbd801e7c1ae7c217388943cbc8c674f2e4a48aac4e7d6d1f3672cbf",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Seu outro computador agora tem 12 GB de RAM.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "b38edf5ddbd801e7c1ae7c217388943cbc8c674f2e4a48aac4e7d6d1f3672cbf",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Seu outro computador agora tem 12 GB de RAM.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 23,
+      "message_id": "fd9ae243-5eb5-40ed-967d-b58ccdec9a96",
+      "query": "Qual é a diferença entre uma lista e um conjunto?",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "379afb519dbb797e086c7cc9dfd7a5d0037a592f56176214038525b1deda8222",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "379afb519dbb797e086c7cc9dfd7a5d0037a592f56176214038525b1deda8222",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 24,
+      "message_id": "faf7d056-eaef-4691-9f1b-a150f720e1f7",
+      "query": "Que linguagem meu projeto usa atualmente?",
+      "scenario": "different_projects",
+      "raw": [
+        {
+          "sha256": "2150be7299e90a6604360307f1ffe8a26b913116ba37b206d24ef456e1db32dc",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Seu projeto Tamarindo planeja usar a linguagem TypeScript.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "2150be7299e90a6604360307f1ffe8a26b913116ba37b206d24ef456e1db32dc",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Seu projeto Tamarindo planeja usar a linguagem TypeScript.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 25,
+      "message_id": "6d648760-2842-429f-8a7f-23b3921c88a2",
+      "query": "Qual banco de dados eu planejo usar nesse projeto?",
+      "scenario": "plan_vs_execution",
+      "raw": [
+        {
+          "sha256": "6f610d6709cd775ba99caccbf4708af42f8148929b1db0a36f2d41acbd7cd825",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você planeja usar o SQLite como banco de dados no projeto Tamarindo.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "6f610d6709cd775ba99caccbf4708af42f8148929b1db0a36f2d41acbd7cd825",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você planeja usar o SQLite como banco de dados no projeto Tamarindo.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 26,
+      "message_id": "5270a1e8-eafd-43d4-806b-c73d7c19018d",
+      "query": "Quanto de RAM meu computador principal tem agora?",
+      "scenario": "ram_correction",
+      "raw": [
+        {
+          "sha256": "a1d8401b1e0a4479c8faa4f205eac5e10b0b49ff0811aff9ede03b653d3eba0a",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Seu computador principal tem agora 48 GB de RAM.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "a1d8401b1e0a4479c8faa4f205eac5e10b0b49ff0811aff9ede03b653d3eba0a",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Seu computador principal tem agora 48 GB de RAM.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 27,
+      "message_id": "025f6d86-8eef-46ad-a6a5-54d666695d90",
+      "query": "Quais são as capacidades de RAM do meu computador principal e do meu notebook de trabalho?",
+      "scenario": "different_equipment",
+      "raw": [
+        {
+          "sha256": "eea5aeb66a9c02b2d0ff7a43f58001f79113eae1fc66393b5c0170945f422907",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Seu computador principal tem 48 GB de RAM",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            },
+            {
+              "literal": "seu notebook de trabalho tem 20 GB de RAM.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "eea5aeb66a9c02b2d0ff7a43f58001f79113eae1fc66393b5c0170945f422907",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Seu computador principal tem 48 GB de RAM",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          },
+          {
+            "literal": "seu notebook de trabalho tem 20 GB de RAM.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 2,
+      "useful_retained": 2,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 28,
+      "message_id": "35b1da5a-bdb0-45e3-91ed-dd81f359d289",
+      "query": "Como eu prefiro meu café hoje?",
+      "scenario": "corrected_preference",
+      "raw": [
+        {
+          "sha256": "f4e617b20aa642bebf4a15608a872c83b8f90fc3ea6bc743fac9850494fe6960",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você prefere seu café sem açúcar.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "f4e617b20aa642bebf4a15608a872c83b8f90fc3ea6bc743fac9850494fe6960",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você prefere seu café sem açúcar.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 29,
+      "message_id": "baa0b11d-5e4f-42c7-b3a9-697ce3647d05",
+      "query": "Como eu tomava meu café antes?",
+      "scenario": "current_vs_historical",
+      "raw": [
+        {
+          "sha256": "d84209906434101d075ebcefb65228ff4d35dbaa1b94624a5024174ce6f7935a",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você preferia tomar seu café com açúcar.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "d84209906434101d075ebcefb65228ff4d35dbaa1b94624a5024174ce6f7935a",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você preferia tomar seu café com açúcar.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 30,
+      "message_id": "40bd630a-4220-47bb-b0d3-175d6537c4b5",
+      "query": "De que aspectos dos jogos eu gosto?",
+      "scenario": "corrected_preference",
+      "raw": [
+        {
+          "sha256": "16682fc6eaa2111c2789de6de13420ce4ada5833427d386df998c284143cc5b1",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você gosta de criar personagens nos jogos.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "16682fc6eaa2111c2789de6de13420ce4ada5833427d386df998c284143cc5b1",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você gosta de criar personagens nos jogos.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 2,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 31,
+      "message_id": "2bf057cb-bc29-462d-8fc3-9071350d0684",
+      "query": "Como eu prefiro suas respostas?",
+      "scenario": "multilingual_question",
+      "raw": [
+        {
+          "sha256": "3b6a5837e08ad2de92782dac9c8e2fce2b06e9c8361c77182637a1b14579a0d6",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você prefere respostas objetivas.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "3b6a5837e08ad2de92782dac9c8e2fce2b06e9c8361c77182637a1b14579a0d6",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você prefere respostas objetivas.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 32,
+      "message_id": "dfccac9a-68de-4895-aa51-b15cb143c081",
+      "query": "Qual é minha opinião sobre interfaces carregadas?",
+      "scenario": "corrected_preference",
+      "raw": [
+        {
+          "sha256": "529fcfe4058a1c58d68a926d826ef299b4d3be76dc56272232aeea68894f4a7d",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você não gosta de interfaces muito carregadas.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "529fcfe4058a1c58d68a926d826ef299b4d3be76dc56272232aeea68894f4a7d",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você não gosta de interfaces muito carregadas.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 33,
+      "message_id": "146b8c44-3211-496a-ba8d-e052e347bd5c",
+      "query": "Qual objetivo eu concluí?",
+      "scenario": "completed_goal",
+      "raw": [
+        {
+          "sha256": "d70fe259a19a043b7cfd63749a4a1be7ccd42d8194fb6f4f53dc594e9cf71e11",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você concluiu o objetivo de aprender italiano.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "d70fe259a19a043b7cfd63749a4a1be7ccd42d8194fb6f4f53dc594e9cf71e11",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você concluiu o objetivo de aprender italiano.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 34,
+      "message_id": "d3be82ec-bad2-413e-a3b9-b436bac91a94",
+      "query": "Qual tema de interface eu prefiro?",
+      "scenario": "deleted_information",
+      "raw": [
+        {
+          "sha256": "48bb25505eed2350b9f53268e178fd533d393572da1a2c0b53a86c6d1c5ffa77",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você prefere o tema claro na interface.",
+              "supported": false,
+              "critical": true,
+              "reason": "The earlier explicit forget request revoked this preference. The parser failed to execute it and a current answer exposed it again.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "48bb25505eed2350b9f53268e178fd533d393572da1a2c0b53a86c6d1c5ffa77",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você prefere o tema claro na interface.",
+            "supported": false,
+            "critical": true,
+            "reason": "The earlier explicit forget request revoked this preference. The parser failed to execute it and a current answer exposed it again.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 35,
+      "message_id": "b364b138-26bb-4dd9-b4cf-f2001733bf1b",
+      "query": "Qual é a minha data de aniversário?",
+      "scenario": "no_memory",
+      "raw": [
+        {
+          "sha256": "b7670426a496c8b3e598c364584a0180b129fb436a462b19bf46ed63aad0f3f4",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Não há nenhum registro disponível sobre a sua data de aniversário no momento.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "b7670426a496c8b3e598c364584a0180b129fb436a462b19bf46ed63aad0f3f4",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Não há nenhum registro disponível sobre a sua data de aniversário no momento.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 36,
+      "message_id": "a245efd5-a951-4e50-b30e-a66efceb5fe2",
+      "query": "Como está aquele projeto de catálogo?",
+      "scenario": "indirect_question",
+      "raw": [
+        {
+          "sha256": "3abefeb18fc28d925087e5a5a3def9acf5f2e93b4b3731d58e6965c9476745fe",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "O projeto Tamarindo está em fase inicial, com o objetivo de criar um catálogo de trilhas.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            },
+            {
+              "literal": "Você planeja desenvolvê-lo utilizando TypeScript e SQLite.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        },
+        {
+          "sha256": "4fbd1d487e5e222e2a12d65cba513c5f5e04b8a9d8760155004ca53e23328080",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "O projeto Tamarindo está em fase inicial, com o objetivo de criar um catálogo de trilhas.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            },
+            {
+              "literal": "Você planeja desenvolvê-lo utilizando TypeScript e SQLite como banco de dados.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "6a36d47c9a0266fcd8cbac6bf814227d40cf0de1c9cf73a7316b9570c6d3dcbd",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": false,
+      "useful_expected": 2,
+      "useful_retained": 0,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-long24-final.json",
+      "turn": 37,
+      "message_id": "763c839a-e252-4f93-832a-db6f02eb8016",
+      "query": "Which database do I plan to use for this project?",
+      "scenario": "multilingual_question",
+      "raw": [
+        {
+          "sha256": "7e12dd91a0120347b0ff0b53551252c51143d74054e16a6b9373613dca99dcca",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "You plan to use SQLite as the database for the Tamarindo project.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "7e12dd91a0120347b0ff0b53551252c51143d74054e16a6b9373613dca99dcca",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "You plan to use SQLite as the database for the Tamarindo project.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-ended-final.json",
+      "turn": 0,
+      "message_id": "67dee6e2-b8ea-4ae7-9102-30901cf581ef",
+      "query": "Estou começando um projeto de agenda de horta.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "b3ff3e1c82613953d55a29d9fd0f9dc2916b1ff9077fff2cef92e462fd32697b",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "b3ff3e1c82613953d55a29d9fd0f9dc2916b1ff9077fff2cef92e462fd32697b",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-ended-final.json",
+      "turn": 1,
+      "message_id": "b9182435-8af5-4745-8170-4761f42629c1",
+      "query": "Meu projeto usa JavaScript.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "82c326cc6b3faa921c80a99a50196fde3fac7ded5031fa4150b4c1f1281ce1d4",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "82c326cc6b3faa921c80a99a50196fde3fac7ded5031fa4150b4c1f1281ce1d4",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-ended-final.json",
+      "turn": 2,
+      "message_id": "868c24db-fc63-4ef1-8664-53eab1487502",
+      "query": "Cancelei meu projeto.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "9da129259b563b05e419d51fcbdcf168969b9a8bf8d4694687b1af2e59dff79f",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Entendido, você cancelou o projeto da agenda de horta. Deseja começar algo novo ou apenas pausar por enquanto?",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "9da129259b563b05e419d51fcbdcf168969b9a8bf8d4694687b1af2e59dff79f",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Entendido, você cancelou o projeto da agenda de horta. Deseja começar algo novo ou apenas pausar por enquanto?",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-ended-final.json",
+      "turn": 3,
+      "message_id": "a17a18a8-e1d7-44c9-bcaf-43166579f11e",
+      "query": "Segundo o último registro, qual é o estado desse projeto?",
+      "scenario": "cancelled_project",
+      "raw": [
+        {
+          "sha256": "99b64ac5e37953905f2b0224ad5adf0cab76374272e8043c9197879a3857c00f",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "O estado do projeto é \"cancelled\" (cancelado).",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "99b64ac5e37953905f2b0224ad5adf0cab76374272e8043c9197879a3857c00f",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "O estado do projeto é \"cancelled\" (cancelado).",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-ended-final.json",
+      "turn": 4,
+      "message_id": "c367d48d-930f-47bc-b1e4-66301bd0b09e",
+      "query": "Que linguagem eu usava antes neste projeto?",
+      "scenario": "current_vs_historical",
+      "raw": [
+        {
+          "sha256": "ea28179edb9e2bdba2069d8808f95efe469b7d54599a3550d78623cde0e166f1",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você usava JavaScript no projeto Aroeira.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "ea28179edb9e2bdba2069d8808f95efe469b7d54599a3550d78623cde0e166f1",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você usava JavaScript no projeto Aroeira.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-unknown-final.json",
+      "turn": 0,
+      "message_id": "103a4330-44ef-49f9-9e3c-970973ce444b",
+      "query": "Ainda não decidi a linguagem do meu projeto.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "e2b308906d5cf5c2fd4c2168c6f9c01a4945f4b7d74feb1e9791de7917ec9c9a",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "e2b308906d5cf5c2fd4c2168c6f9c01a4945f4b7d74feb1e9791de7917ec9c9a",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-unknown-final.json",
+      "turn": 1,
+      "message_id": "1f365faa-51a3-42d6-9406-73045951942b",
+      "query": "A linguagem do meu projeto já foi decidida?",
+      "scenario": "absence_vs_negative_decision",
+      "raw": [
+        {
+          "sha256": "53f158d3c70439fb5153ce69d33cb205643816acd80f886da4e691093f37bf3b",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Ainda não foi decidida.",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            },
+            {
+              "literal": "a linguagem do projeto Pitangueira está marcada como \"undecided\".",
+              "supported": true,
+              "critical": false,
+              "reason": "Literal original user source supports this scoped assertion.",
+              "evidence": [
+                "original_user_sources_in_frozen_plan"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "53f158d3c70439fb5153ce69d33cb205643816acd80f886da4e691093f37bf3b",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Ainda não foi decidida.",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          },
+          {
+            "literal": "a linguagem do projeto Pitangueira está marcada como \"undecided\".",
+            "supported": true,
+            "critical": false,
+            "reason": "Literal original user source supports this scoped assertion.",
+            "evidence": [
+              "original_user_sources_in_frozen_plan"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-empty-final.json",
+      "turn": 0,
+      "message_id": "8c8d1ea8-d4dd-4be8-8bb1-12c1e4efca80",
+      "query": "Qual banco de dados eu escolhi para meu projeto?",
+      "scenario": "absence_vs_negative_decision",
+      "raw": [
+        {
+          "sha256": "c167f70cb0d293044fc3b1b63e787d77e5291799c93de8e3fb78c9a16ab768b6",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Não há nenhum registro disponível sobre qual banco de dados você escolheu para o seu projeto.",
+              "supported": true,
+              "critical": false,
+              "reason": "No such fact exists in this fresh project; this is a bounded availability statement, not a claim the user never informed it.",
+              "evidence": [
+                "initial_details_empty_and_native_retrieval_audit"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "c167f70cb0d293044fc3b1b63e787d77e5291799c93de8e3fb78c9a16ab768b6",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Não há nenhum registro disponível sobre qual banco de dados você escolheu para o seu projeto.",
+            "supported": true,
+            "critical": false,
+            "reason": "No such fact exists in this fresh project; this is a bounded availability statement, not a claim the user never informed it.",
+            "evidence": [
+              "initial_details_empty_and_native_retrieval_audit"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    },
+    {
+      "fixture": "driver-final22b-v1-empty-final.json",
+      "turn": 1,
+      "message_id": "75b89751-7f17-4ffe-a4ff-d94706be2199",
+      "query": "Qual é a capacidade de RAM do meu computador principal?",
+      "scenario": "no_memory",
+      "raw": [
+        {
+          "sha256": "466c93a4e56a22c9e649fd3b957638c9be71666edc97b59b5abfe03c27f3d73d",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Não há registro disponível sobre a capacidade de RAM do seu computador principal.",
+              "supported": true,
+              "critical": false,
+              "reason": "No such fact exists in this fresh project; this is a bounded availability statement, not a claim the user never informed it.",
+              "evidence": [
+                "initial_details_empty_and_native_retrieval_audit"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "466c93a4e56a22c9e649fd3b957638c9be71666edc97b59b5abfe03c27f3d73d",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Não há registro disponível sobre a capacidade de RAM do seu computador principal.",
+            "supported": true,
+            "critical": false,
+            "reason": "No such fact exists in this fresh project; this is a bounded availability statement, not a claim the user never informed it.",
+            "evidence": [
+              "initial_details_empty_and_native_retrieval_audit"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent literal review against original user sources, native action history and scope; no grading by verifier verdict."
+    }
+  ]
+}

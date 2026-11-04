@@ -2,8 +2,81 @@
 use crate::extraction::fold;
 pub const LEXICAL_COVERAGE: f64 = 0.4;
 pub const SEMANTIC_MARGIN: f64 = 0.04;
+/// Correct only one-edit domain nouns. Names, values, quantities, negation and
+/// source evidence never gain fuzzy authority. Ambiguous matches abstain.
+pub(crate) fn normalize_query(text: &str) -> String {
+    fn close(a: &str, b: &str) -> bool {
+        let a = a.chars().collect::<Vec<_>>();
+        let b = b.chars().collect::<Vec<_>>();
+        if a.len().abs_diff(b.len()) > 1 {
+            return false;
+        }
+        if a.len() == b.len() {
+            let differing = (0..a.len()).filter(|i| a[*i] != b[*i]).collect::<Vec<_>>();
+            return differing.len() == 1
+                || (differing.len() == 2
+                    && differing[1] == differing[0] + 1
+                    && a[differing[0]] == b[differing[1]]
+                    && a[differing[1]] == b[differing[0]]);
+        }
+        let (short, long) = if a.len() < b.len() {
+            (&a, &b)
+        } else {
+            (&b, &a)
+        };
+        let mut i = 0;
+        let mut j = 0;
+        let mut skipped = false;
+        while i < short.len() && j < long.len() {
+            if short[i] == long[j] {
+                i += 1;
+                j += 1
+            } else if skipped {
+                return false;
+            } else {
+                skipped = true;
+                j += 1
+            }
+        }
+        true
+    }
+    const NOUNS: &[&str] = &[
+        "linguagem",
+        "language",
+        "computador",
+        "computer",
+        "notebook",
+        "memoria",
+        "memory",
+        "preferencia",
+        "preference",
+        "coffee",
+        "acucar",
+        "database",
+    ];
+    let text = fold(text);
+    text.split_inclusive(|c: char| !c.is_alphanumeric())
+        .map(|part| {
+            let word = part.trim_end_matches(|c: char| !c.is_alphanumeric());
+            let matches = if word.len() >= 5 && !NOUNS.contains(&word) {
+                NOUNS
+                    .iter()
+                    .filter(|known| close(word, known))
+                    .copied()
+                    .collect::<Vec<_>>()
+            } else {
+                vec![]
+            };
+            format!(
+                "{}{}",
+                if matches.len() == 1 { matches[0] } else { word },
+                &part[word.len()..]
+            )
+        })
+        .collect()
+}
 pub fn tokens(text: &str) -> Vec<String> {
-    let folded = fold(text);
+    let folded = normalize_query(text);
     let mut words = Vec::new();
     for raw in folded.split(|c: char| !c.is_alphanumeric()) {
         if raw.len() < 2 || STOP.contains(&raw) {

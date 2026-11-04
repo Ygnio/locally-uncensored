@@ -1,0 +1,588 @@
+{
+  "id": "phase22b-unseen-retrieval-v3",
+  "design": "New original queries and reversed coffee history/new numerical and project values after final development. Same reviewed source protocol, same thresholds and actual Nomic vectors. No tuning after execution.",
+  "events": [
+    {
+      "action": "learn",
+      "label": "description",
+      "text": "Estou começando um projeto de catálogo de rochas.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "sapucaia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "language",
+      "text": "Decidi usar TypeScript no meu projeto.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "sapucaia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "database",
+      "text": "Escolhi MySQL para meu projeto.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "sapucaia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "primary",
+      "text": "Meu computador principal tem 44 GB de RAM.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "sapucaia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "work",
+      "text": "Meu notebook de trabalho tem 14 GB de RAM.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "sapucaia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "other",
+      "text": "Meu outro computador tem 10 GB de RAM.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "sapucaia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "coffee-old",
+      "text": "Prefiro café sem açúcar.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "sapucaia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "coffee-now",
+      "text": "Na verdade, agora prefiro café com açúcar.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "sapucaia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "theme",
+      "text": "Prefiro tema claro.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "sapucaia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "objective",
+      "text": "Prefiro respostas objetivas.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "sapucaia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "classes",
+      "text": "Eu gosto de jogos em que posso escolher minha classe.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "sapucaia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "characters-deleted",
+      "text": "Eu gosto de criar personagens em jogos.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "sapucaia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "goal",
+      "text": "Concluí meu objetivo de aprender alemão.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "sapucaia",
+      "approve": true
+    },
+    {
+      "action": "delete",
+      "target": "characters-deleted"
+    },
+    {
+      "action": "learn",
+      "label": "foreign-language",
+      "text": "Decidi usar Rust no meu projeto.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "sapucaia2",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "foreign-coffee",
+      "text": "Prefiro café sem açúcar.",
+      "scope": "phase22b-v3-ret-other",
+      "project": "sapucaia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "future",
+      "text": "Quero usar Python no meu projeto.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "grumixama",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "actual",
+      "text": "Meu projeto usa JavaScript.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "grumixama",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "ended-language",
+      "text": "Estou implementando meu projeto em TypeScript.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "ingazeiro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "ended-state",
+      "text": "Cancelei meu projeto.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "ingazeiro",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "unknown",
+      "text": "Ainda não defini a linguagem do meu projeto.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "araucaria",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "pending",
+      "text": "Quero usar PostgreSQL no meu projeto.",
+      "scope": "phase22b-v3-ret-a",
+      "project": "guapuruvu",
+      "approve": false
+    }
+  ],
+  "queries": [
+    {
+      "id": "dr-001",
+      "query": "Qual linguagem ficou escolhida para o meu projeto?",
+      "expected": [
+        "language"
+      ],
+      "category": "language",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-002",
+      "query": "Você recorda que linguagem eu decidi usar?",
+      "expected": [
+        "language"
+      ],
+      "category": "language",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-003",
+      "query": "What language did I choose for my project?",
+      "expected": [
+        "language"
+      ],
+      "category": "language",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-004",
+      "query": "Qual linguageem está na minha escolha para o projeto?",
+      "expected": [
+        "language"
+      ],
+      "category": "language",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-005",
+      "query": "Você lembra do banco que escolhi para meu projeto?",
+      "expected": [
+        "database"
+      ],
+      "category": "database",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-006",
+      "query": "Qual armazenamento eu escolhi para os dados do meu projeto?",
+      "expected": [
+        "database"
+      ],
+      "category": "database",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-007",
+      "query": "What database did I choose for my project?",
+      "expected": [
+        "database"
+      ],
+      "category": "database",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-008",
+      "query": "Você se lembra do projeto de catálogo de que falei?",
+      "expected": [
+        "description",
+        "language",
+        "database"
+      ],
+      "category": "indirect_project",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-009",
+      "query": "Você lembra a capacidade de RAM do meu computador principal?",
+      "expected": [
+        "primary"
+      ],
+      "category": "equipment",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-010",
+      "query": "Quanta RAM está no meu notebook de trabalho?",
+      "expected": [
+        "work"
+      ],
+      "category": "equipment",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-011",
+      "query": "Quanta RAM meu outro computador tem?",
+      "expected": [
+        "other"
+      ],
+      "category": "equipment",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-012",
+      "query": "Quanto de RAM tem cada um, meu computador principal e o notebook de trabalho?",
+      "expected": [
+        "primary",
+        "work"
+      ],
+      "category": "equipment",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-013",
+      "query": "Quanta RAM têm o notebook de trabalho e meu outro computador?",
+      "expected": [
+        "work",
+        "other"
+      ],
+      "category": "equipment",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-014",
+      "query": "Mostre a RAM de todos os meus computadores.",
+      "expected": [
+        "primary",
+        "work",
+        "other"
+      ],
+      "category": "equipment",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-015",
+      "query": "Você lembra como eu prefiro meu café atualmente?",
+      "expected": [
+        "coffee-now"
+      ],
+      "category": "coffee",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-016",
+      "query": "Como eu gosto de tomar café agora?",
+      "expected": [
+        "coffee-now"
+      ],
+      "category": "coffee",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-017",
+      "query": "O meu café era como antes e como prefiro agora?",
+      "expected": [
+        "coffee-old",
+        "coffee-now"
+      ],
+      "category": "coffee",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-018",
+      "query": "How do I prefer to drink my coffee?",
+      "expected": [
+        "coffee-now"
+      ],
+      "category": "coffee",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-019",
+      "query": "Que tipo de respostas eu prefiro receber?",
+      "expected": [
+        "objective"
+      ],
+      "category": "communication",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-020",
+      "query": "Como eu prefiro o tema da interface?",
+      "expected": [
+        "theme"
+      ],
+      "category": "theme",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-021",
+      "query": "Qual é minha preferência de escolher classes nos jogos?",
+      "expected": [
+        "classes"
+      ],
+      "category": "games",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-022",
+      "query": "Qual era minha preferência por criar personagens nos jogos? Em termos históricos.",
+      "expected": [],
+      "category": "deleted",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": [
+        "characters-deleted"
+      ]
+    },
+    {
+      "id": "dr-023",
+      "query": "Que objetivo de aprendizado eu já completei?",
+      "expected": [
+        "goal"
+      ],
+      "category": "completed_goal",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-024",
+      "query": "Como meu colega prefere o café?",
+      "expected": [],
+      "category": "foreign_actor",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-025",
+      "query": "O que é um processador?",
+      "expected": [],
+      "category": "knowledge",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-026",
+      "query": "Qual minha credencial de acesso?",
+      "expected": [],
+      "category": "sensitive",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-027",
+      "query": "Qual linguagem eu escolhi no projeto sapucaia2?",
+      "expected": [],
+      "category": "foreign_project",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-028",
+      "query": "Qual linguagem escolhi para meu projeto?",
+      "expected": [
+        "foreign-language"
+      ],
+      "category": "distinct_project",
+      "project": "sapucaia2",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-029",
+      "query": "Como eu prefiro meu café?",
+      "expected": [
+        "foreign-coffee"
+      ],
+      "category": "distinct_scope",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-other",
+      "forbidden": []
+    },
+    {
+      "id": "dr-030",
+      "query": "Qual linguagem meu projeto está usando agora?",
+      "expected": [
+        "actual"
+      ],
+      "category": "actual_vs_future",
+      "project": "grumixama",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": [
+        "future"
+      ]
+    },
+    {
+      "id": "dr-031",
+      "query": "Que linguagem planejo usar e qual meu projeto usa atualmente?",
+      "expected": [
+        "future",
+        "actual"
+      ],
+      "category": "actual_vs_future",
+      "project": "grumixama",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-032",
+      "query": "Você lembra como está meu projeto agora?",
+      "expected": [
+        "ended-state"
+      ],
+      "category": "cancelled",
+      "project": "ingazeiro",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": [
+        "ended-language"
+      ]
+    },
+    {
+      "id": "dr-033",
+      "query": "Antes do cancelamento, que linguagem eu usava e qual é o status do projeto hoje?",
+      "expected": [
+        "ended-language",
+        "ended-state"
+      ],
+      "category": "historical_project",
+      "project": "ingazeiro",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-034",
+      "query": "Que linguagem está definida para meu projeto?",
+      "expected": [
+        "unknown"
+      ],
+      "category": "unknown",
+      "project": "araucaria",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-035",
+      "query": "Que banco escolhi para meu projeto?",
+      "expected": [],
+      "category": "pending_review",
+      "project": "guapuruvu",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": [
+        "pending"
+      ]
+    },
+    {
+      "id": "dr-036",
+      "query": "Qual é a placa de vídeo do meu notebook?",
+      "expected": [],
+      "category": "unsupported_hardware",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "dr-037",
+      "query": "Qual medicamento devo comprar?",
+      "expected": [],
+      "category": "unrelated",
+      "project": "sapucaia",
+      "scope": "phase22b-v3-ret-a",
+      "forbidden": []
+    }
+  ]
+}

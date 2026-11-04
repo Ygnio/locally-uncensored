@@ -1,0 +1,91 @@
+{
+  "query": {
+    "id": "dr-033",
+    "query": "Antes do cancelamento, que linguagem eu usava e qual é o status do projeto hoje?",
+    "expected": [
+      "ended-language",
+      "ended-state"
+    ],
+    "category": "historical_project",
+    "project": "ingazeiro",
+    "scope": "phase22b-v3-ret-a",
+    "forbidden": []
+  },
+  "expected_facts": 2,
+  "actual_selected": [],
+  "missed": 2,
+  "native_trace": [
+    {
+      "content": "Estou implementando meu projeto em TypeScript",
+      "cosine": 0.596058604350415,
+      "id": "be99cc0d-de83-1041-2347-3e6fbe85e2f9",
+      "lexical_coverage": 0.14285714285714285,
+      "lexical_gate": false,
+      "lexical_rank_bm25": [
+        2,
+        -1.0067516879219806e-06
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "language",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.ingazeiro",
+        "temporal": "in_progress",
+        "value": "typescript"
+      },
+      "reason": "temporal_entity_intent_or_conflict_filter",
+      "scope_project_pass": true,
+      "selected": false,
+      "semantic_threshold_pass": false,
+      "state": "active",
+      "state_temporal_entity_intent_pass": false,
+      "version": 2
+    },
+    {
+      "content": "Cancelei meu projeto",
+      "cosine": 0.7033346077646231,
+      "id": "cf01c4ff-30e1-6290-26ae-ccf5c3d112fb",
+      "lexical_coverage": 0.14285714285714285,
+      "lexical_gate": false,
+      "lexical_rank_bm25": [
+        1,
+        -1.2624647224835371e-06
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "lifecycle",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.ingazeiro",
+        "temporal": "cancelled",
+        "value": "cancelled"
+      },
+      "reason": "temporal_entity_intent_or_conflict_filter",
+      "scope_project_pass": true,
+      "selected": false,
+      "semantic_threshold_pass": true,
+      "state": "active",
+      "state_temporal_entity_intent_pass": false,
+      "version": 2
+    }
+  ],
+  "independent_diagnosis": [
+    "This is one compound question with two missed expected facts, not two separate failed queries.",
+    "Both stored records pass scope/project binding but fail the combined temporal/entity/intent eligibility predicate before selection.",
+    "The cancelled lifecycle has actual cosine 0.7033, above 0.6, yet is rejected by the eligibility predicate. Lowering the semantic threshold would not fix this exclusion.",
+    "Language cosine 0.5961 is also below 0.6 and lexical coverage 1/7 below 0.4; eligibility fails independently.",
+    "The frozen trace reports a combined predicate, so it does not isolate which individual temporal/entity/intent branch rejected each record. No new instrumentation or code was introduced during evaluation."
+  ],
+  "status": "Unresolved actual retrieval defect; preserve partial result and frozen thresholds."
+}

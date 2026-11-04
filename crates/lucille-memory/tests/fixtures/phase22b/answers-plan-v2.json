@@ -1,0 +1,57 @@
+{
+  "id": "phase22b-unseen-answers-plan-v2",
+  "project": "buriti",
+  "turns": [
+    {
+      "text": "Estou começando um projeto de catálogo de cavernas.",
+      "review": true
+    },
+    {
+      "text": "Para o meu projeto, pretendo usar Python e PostgreSQL.",
+      "review": true
+    }
+  ],
+  "probes": [
+    {
+      "text": "A implementação do meu projeto já usa Python?",
+      "scenario": "plan_vs_execution",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "python",
+          "temporal": "planned"
+        }
+      ]
+    },
+    {
+      "text": "Which database is planned for my project?",
+      "scenario": "multilingual_question",
+      "mode": "code",
+      "expected": [
+        {
+          "property": "database",
+          "value": "postgresql",
+          "temporal": "planned"
+        }
+      ]
+    },
+    {
+      "text": "Você lembra como está aquele projeto que eu mencionei?",
+      "scenario": "indirect_question",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "python",
+          "temporal": "planned"
+        },
+        {
+          "property": "database",
+          "value": "postgresql",
+          "temporal": "planned"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "evaluation": "frozen_v2_actual_A",
+  "models": {
+    "gemma": {
+      "samples": 495,
+      "working_set_peak_bytes": 7911878656,
+      "private_bytes_peak": 9798692864,
+      "cpu_seconds": 489.09375,
+      "physical_available_min_bytes": 733405184,
+      "commit_headroom_min_bytes": 10034040832,
+      "vram_used_peak_mib": 9649,
+      "stop_reason": "requested test shutdown",
+      "stop_identity_verified": true,
+      "exit_code": 1
+    },
+    "nomic": {
+      "samples": 497,
+      "working_set_peak_bytes": 811126784,
+      "private_bytes_peak": 983035904,
+      "cpu_seconds": 75.96875,
+      "physical_available_min_bytes": 757174272,
+      "commit_headroom_min_bytes": 10035580928,
+      "vram_used_peak_mib": 9637,
+      "stop_reason": "requested test shutdown",
+      "stop_identity_verified": true,
+      "exit_code": 1
+    }
+  },
+  "system": {
+    "samples": 94,
+    "physical_available_min_mib": 730,
+    "commit_headroom_min_bytes": 10052415488,
+    "pagefile_current_peak_mib": 1075,
+    "pagefile_global_preexisting_peak_mib": 8007,
+    "cpu_total_peak_percent": 84,
+    "owned_gui_host_private_peak_bytes": 20443136,
+    "sqlite_files_max_bytes": {
+      "lucille-phase1.sqlite3": 1044480,
+      "lucille-phase1.sqlite3-wal": 4148872,
+      "lucille-phase1.sqlite3-shm": 32768
+    }
+  },
+  "projection_B": {
+    "measured": false,
+    "physical_available_min_mib": 2778,
+    "assumption": "Exactly 2 GiB more available physical memory. No application was closed to obtain this projection; commit headroom is not projected as improved."
+  },
+  "limitations": [
+    "System totals include existing user applications.",
+    "GUI process figures cover the native host, not the complete WebView child process tree.",
+    "Global historical pagefile peak predates this run and is not attributed to this evaluation.",
+    "Controlled supervisors terminate their verified owned server processes with exit code 1; stop_reason distinguishes this from resource-pressure failure."
+  ]
+}

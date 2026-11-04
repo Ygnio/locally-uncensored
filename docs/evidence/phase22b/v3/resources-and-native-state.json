@@ -1,0 +1,99 @@
+{
+  "evaluation": "Measured actual A: final v3 extraction/retrieval/full GUI plus historical 20/50/100 regressions, one owned model epoch",
+  "models": {
+    "gemma": {
+      "samples": 1780,
+      "working_set_peak_bytes": 7908605952,
+      "private_bytes_peak_bytes": 9802665984,
+      "cpu_total_seconds": 2142.796875,
+      "physical_available_min_bytes": 1893371904,
+      "commit_headroom_min_bytes": 12004098048,
+      "gpu_used_peak_mib": 9394,
+      "exit_code": 1,
+      "stop_reason": "requested test shutdown",
+      "stop_identity_verified": true
+    },
+    "nomic": {
+      "samples": 1780,
+      "working_set_peak_bytes": 812081152,
+      "private_bytes_peak_bytes": 983867392,
+      "cpu_total_seconds": 381.375,
+      "physical_available_min_bytes": 1882046464,
+      "commit_headroom_min_bytes": 12018880512,
+      "gpu_used_peak_mib": 9395,
+      "exit_code": 1,
+      "stop_reason": "requested test shutdown",
+      "stop_identity_verified": true
+    }
+  },
+  "system": {
+    "samples": 341,
+    "physical_available_min_mib": 1809,
+    "commit_headroom_min_bytes": 12025241600,
+    "cpu_peak_percent": 88,
+    "pagefile_current_peak_mib": 1145,
+    "pagefile_preexisting_global_peak_mib": 8007,
+    "owned_native_gui_host_private_peak_bytes": 35942400,
+    "sqlite_file_max_bytes": {
+      "lucille-phase1.sqlite3": 2203648,
+      "lucille-phase1.sqlite3-wal": 4161232,
+      "lucille-phase1.sqlite3-shm": 32768
+    }
+  },
+  "projected_B": {
+    "measured": false,
+    "physical_available_min_mib": 3857,
+    "assumption": "Exactly 2 GiB more physical memory available. Commit headroom unchanged. No user application closed."
+  },
+  "native_sqlite_read_only_audit": {
+    "integrity_check": [
+      [
+        "ok"
+      ]
+    ],
+    "foreign_key_violations": [],
+    "schema_version": 5,
+    "memory_states": {
+      "active": 145,
+      "candidate": 4,
+      "obsolete": 19
+    },
+    "job_states": {
+      "cancelled": 2,
+      "done": 197,
+      "failed": 4
+    },
+    "nonterminal_jobs": 0,
+    "terminal_jobs_retaining_lease": 0,
+    "physical_vectors": 145,
+    "obsolete_or_wrong_version_vectors": 0,
+    "inactive_space_vectors": 0,
+    "expired_vectors": 0,
+    "revision_rows": 132,
+    "history_operations": {
+      "approve": 111,
+      "auto_correct": 6,
+      "auto_promote": 55,
+      "auto_superseded": 6,
+      "create": 176,
+      "delete": 8,
+      "forget_applied": 7,
+      "forget_empty": 1,
+      "obsolete": 14,
+      "update": 2
+    },
+    "tombstone_rows": 8,
+    "provenance_rows": 192,
+    "physical_vector_json_bytes": 1378543,
+    "sqlite_main_page_bytes": 2244608
+  },
+  "limitations": [
+    "System figures include all existing user applications.",
+    "GPU CSV reports device-wide usage. The peaks in each model sampling stream are concurrent global GPU totals, not per-process attributed allocations.",
+    "Process figures for GUI cover native host only, not the complete WebView child tree.",
+    "Global historical pagefile peak predates this run; do not attribute it to QA.",
+    "Exit 1 from identity-verified controlled model shutdown is distinct from a resource-pressure stop.",
+    "The database contains prior development and failed isolated-regression setup scopes as well as the final v3 and corrected shared-scope regression series; global counts are not only final-v3 scopes.",
+    "The full 62545-token historical stress test was not repeated; optional 200-turn stage was not run."
+  ]
+}

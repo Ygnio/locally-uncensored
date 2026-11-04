@@ -8,7 +8,7 @@ export const realValidationPin: Pin | null = (() => {
   if (typeof raw !== 'string' || !raw) return null
   try {
     const pin = JSON.parse(raw) as Pin
-    if (![2, 3].includes(pin.memory_protocol ?? 2) || (pin.memory_protocol === 3 && pin.models.nomic.index_version !== 4) || pin.simulation !== false || !/^[a-f0-9]{64}$/.test(pin.runtime_sha256) || pin.models.gemma.context_tokens !== 65536 || pin.models.nomic.model !== 'nomic-ai/nomic-embed-text-v1.5' || !Object.values(pin.models).every(m => /^[a-f0-9]{64}$/.test(m.fingerprint) && m.revision)) return null
+    if (![2, 3].includes(pin.memory_protocol ?? 2) || (pin.memory_protocol === 3 && ![4, 5].includes(pin.models.nomic.index_version ?? 0)) || pin.simulation !== false || !/^[a-f0-9]{64}$/.test(pin.runtime_sha256) || pin.models.gemma.context_tokens !== 65536 || pin.models.nomic.model !== 'nomic-ai/nomic-embed-text-v1.5' || !Object.values(pin.models).every(m => /^[a-f0-9]{64}$/.test(m.fingerprint) && m.revision)) return null
     return pin
   } catch { return null }
 })()

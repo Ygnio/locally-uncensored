@@ -1,3 +1,4 @@
+import { collectMemoryCompletion, validateLucilleStream } from '../lib/lucille-answer'
 import { isLucille, withLucilleContext } from "../lib/lucille-context"
 import { queueLucilleLearning } from '../lib/lucille-learning'
 import { useState, useCallback, useEffect } from "react"
@@ -1622,11 +1623,12 @@ export function useChat() {
       // payload the server just refused. The 400 fires on request
       // validation, before any token streams, so a retry never duplicates
       // visible output. The conversation itself is never touched.
+      let answerWire: typeof messages | undefined
       async function* createStreamWithFallback() {
         // One card and a render from the chat holds it (3.0.8, A2): wait
         // visibly here instead of inside the provider without a word.
         await waitForChatCard(convId, !!activeModel && isLocalModelByName(activeModel), abort.signal)
-        const prepareMessages = (payload: typeof messages) => withLucilleContext(conv, assistantMessage.id, content, "chat", payload, abort.signal, undefined, { backend: providerId, model: modelId, availableTools: [] })
+        const prepareMessages = async (payload: typeof messages) => answerWire = await withLucilleContext(conv, assistantMessage.id, content, "chat", payload, abort.signal, undefined, { backend: providerId, model: modelId, availableTools: [] })
         try {
           yield* provider.chatStream(modelId, await prepareMessages(messages), chatOpts)
         } catch (err) {
@@ -1688,7 +1690,19 @@ export function useChat() {
         }
       }
 
-      const stream = createStreamWithFallback()
+      const rawStream = createStreamWithFallback()
+      const stream = isLucille(conv) ? validateLucilleStream(rawStream, () => answerWire,
+        wire => collectMemoryCompletion(provider.chatStream(modelId, wire, chatOpts)), report => {
+          useChatStore.getState().addMessageFidelity(run.convId, assistantMessage.id, report)
+          if (report.attempts.length > 1) {
+            const first = report.attempts[0]
+            requestUsageTracker(run.convId, assistantMessage.id).add({ promptEvalCount: first.promptTokens, evalCount: first.completionTokens })
+          }
+          if (report.status === 'blocked') {
+            const last = report.attempts.at(-1)
+            if (last) requestUsageTracker(run.convId, assistantMessage.id).add({ promptEvalCount:last.promptTokens, evalCount:last.completionTokens })
+          }
+        }, abort.signal) : rawStream
 
       let firstChunk = true
       // Thinking visibility is driven by the toggle. When OFF, we still
@@ -2074,7 +2088,7 @@ export function useChat() {
 
       // Auto-extract memories (fire-and-forget)
       const memSettings = useMemoryStore.getState().settings
-      if (isLucille(conv) && run.content.trim() && run.convId) {
+      if (isLucille(conv) && run.convId) {
         void queueLucilleLearning(run.convId, assistantMessage.id, content, 'chat', abort.signal).catch(() => {})
       }
       if (!isLucille(conv) && memSettings.autoExtractEnabled && memSettings.autoExtractInAllModes && run.content.trim() && run.convId) {

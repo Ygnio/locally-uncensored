@@ -276,6 +276,7 @@ interface ChatState {
   recordCompaction: (conversationId: string, record: CompactionRecord) => void
   insertMessageBefore: (conversationId: string, beforeId: string, message: Message) => void
   insertMessagesBefore: (conversationId: string, beforeId: string, messages: Message[]) => void
+  addMessageFidelity: (conversationId: string, messageId: string, report: import('../lib/lucille-answer').AnswerFidelityReport) => void
   updateMessageContent: (conversationId: string, messageId: string, content: string) => void
   updateMessageThinking: (conversationId: string, messageId: string, thinking: string) => void
   updateMessageUsage: (conversationId: string, messageId: string, usage: { promptTokens: number; completionTokens: number; totalTokens: number; estimated?: boolean }) => void
@@ -801,6 +802,13 @@ export const useChatStore = create<ChatState>()(
             return { ...c, messages: msgs, updatedAt: Date.now() }
           }),
         })),
+
+      addMessageFidelity: (conversationId, messageId, report) =>
+        set((state) => ({ conversations: state.conversations.map(c => c.id !== conversationId ? c : {
+          ...c, messages: c.messages.map(m => m.id !== messageId ? m : {
+            ...m, lucilleFidelity: [...(m.lucilleFidelity ?? []), report].slice(-32),
+          }),
+        }) })),
 
       updateMessageContent: (conversationId, messageId, content) =>
         set((state) => ({

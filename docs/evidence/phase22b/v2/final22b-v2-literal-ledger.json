@@ -1,0 +1,2826 @@
+{
+  "adjudication_method": "independent_literal_review",
+  "rubric_frozen_sha256": "7d6f73424383d39d0a124585219ff4813208935b636d9d74eb62608f5df37459",
+  "fixtures": {
+    "driver-final22b-v2-plan-final.json": "7ab428781cce0e5673ba3d67a4c961a952d2f3fb7a2ef8837f0b2cf8df216c73",
+    "driver-final22b-v2-decision-final.json": "479b559be09b713b842431e5ff92052446d3ce80e2f2d32020a854e2146df566",
+    "driver-final22b-v2-long28-final.json": "c85751904d9a72521dccf650a956c3d4757b9675c7e84cb09c667d730952f239",
+    "driver-final22b-v2-ended-final.json": "18f26f3829cdd3a13dc40b3ec3a0b445fa4648b8b8021e1ec1f6b44f6403ae69",
+    "driver-final22b-v2-unknown-final.json": "3306e7e217cc20f8bc36ef97cd10cf6da2dccfb994b0d966bf92168ba65c8f91",
+    "driver-final22b-v2-empty-final.json": "bd514db08be452ddec5059ddf9226d1aafcdf894ae39685082864c5c3961c06d"
+  },
+  "samples": [
+    {
+      "fixture": "driver-final22b-v2-plan-final.json",
+      "turn": 0,
+      "message_id": "31e787b6-0b1b-4145-b214-eb94c6e8d26f",
+      "query": "Estou começando um projeto de catálogo de cavernas.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "55c2187b098d86aeb46927775269c216a383deb8c92baa49d824654d7ab77f5d",
+          "reviewed_entire_answer": true,
+          "claims": []
+        },
+        {
+          "sha256": "413af42ee251e5e16a3162286b5c07651d7be7197b1943b5d6fbfd9216fb4f2e",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "6a36d47c9a0266fcd8cbac6bf814227d40cf0de1c9cf73a7316b9570c6d3dcbd",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": false,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-plan-final.json",
+      "turn": 1,
+      "message_id": "196843a0-c6f6-40a5-a6df-cbf37698d9e9",
+      "query": "Para o meu projeto, pretendo usar Python e PostgreSQL.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "a269e5072f8deaf62a11f4c189713da32fdb1dd1423b0c78bf281df1e4aed7ed",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "a269e5072f8deaf62a11f4c189713da32fdb1dd1423b0c78bf281df1e4aed7ed",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-plan-final.json",
+      "turn": 2,
+      "message_id": "a2df6f95-aebe-4fba-8c28-4f65f1bbfc10",
+      "query": "A implementação do meu projeto já usa Python?",
+      "scenario": "plan_vs_execution",
+      "raw": [
+        {
+          "sha256": "db8631dee0f3e5b8abac1040b8087868c06897f77663d873ac6440419c660267",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Sim,",
+              "supported": false,
+              "critical": true,
+              "reason": "Affirms current execution in response to an execution question, but the source only proposes future Python use.",
+              "evidence": []
+            },
+            {
+              "literal": "você planeja usar Python",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Para o meu projeto, pretendo usar Python e PostgreSQL."
+              ]
+            }
+          ]
+        },
+        {
+          "sha256": "db8631dee0f3e5b8abac1040b8087868c06897f77663d873ac6440419c660267",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Sim,",
+              "supported": false,
+              "critical": true,
+              "reason": "Affirms current execution in response to an execution question, but the source only proposes future Python use.",
+              "evidence": []
+            },
+            {
+              "literal": "você planeja usar Python",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Para o meu projeto, pretendo usar Python e PostgreSQL."
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "6a36d47c9a0266fcd8cbac6bf814227d40cf0de1c9cf73a7316b9570c6d3dcbd",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": false,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-plan-final.json",
+      "turn": 3,
+      "message_id": "839a3b14-a35c-4828-bbbd-aea39551f3ae",
+      "query": "Which database is planned for my project?",
+      "scenario": "multilingual_question",
+      "raw": [
+        {
+          "sha256": "0557f3fcfe7a9cc079f2cb030820ea73a1bddeaa0f3f3465d0506512c238f0ff",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "PostgreSQL is planned for your project.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Para o meu projeto, pretendo usar Python e PostgreSQL."
+              ]
+            }
+          ]
+        },
+        {
+          "sha256": "bd43194a76ae976b86c729406f0a73ea4f6a14987b748ec67b38078fa5c9afac",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "O banco de dados planejado para o seu projeto é o PostgreSQL.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Para o meu projeto, pretendo usar Python e PostgreSQL."
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "bd43194a76ae976b86c729406f0a73ea4f6a14987b748ec67b38078fa5c9afac",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "O banco de dados planejado para o seu projeto é o PostgreSQL.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Para o meu projeto, pretendo usar Python e PostgreSQL."
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support. The final response changed to Portuguese despite the English question; language compliance is separate from factual support."
+    },
+    {
+      "fixture": "driver-final22b-v2-plan-final.json",
+      "turn": 4,
+      "message_id": "d20352cb-db89-4c37-8935-5bf4f7e8d090",
+      "query": "Você lembra como está aquele projeto que eu mencionei?",
+      "scenario": "indirect_question",
+      "raw": [
+        {
+          "sha256": "30da5f41d4da1a9ab1845dc30501e09ff5c7d5e707865e4a72caf8620b0dd3b6",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Lembro que você está começando um projeto de catálogo de cavernas chamado \"buriti\".",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Estou começando um projeto de catálogo de cavernas.; scoped project binding buriti"
+              ]
+            },
+            {
+              "literal": "Você planeja utilizar Python",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Para o meu projeto, pretendo usar Python e PostgreSQL."
+              ]
+            },
+            {
+              "literal": "PostgreSQL como banco de dados",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Para o meu projeto, pretendo usar Python e PostgreSQL."
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "30da5f41d4da1a9ab1845dc30501e09ff5c7d5e707865e4a72caf8620b0dd3b6",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Lembro que você está começando um projeto de catálogo de cavernas chamado \"buriti\".",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Estou começando um projeto de catálogo de cavernas.; scoped project binding buriti"
+            ]
+          },
+          {
+            "literal": "Você planeja utilizar Python",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Para o meu projeto, pretendo usar Python e PostgreSQL."
+            ]
+          },
+          {
+            "literal": "PostgreSQL como banco de dados",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Para o meu projeto, pretendo usar Python e PostgreSQL."
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 2,
+      "useful_retained": 2,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-decision-final.json",
+      "turn": 0,
+      "message_id": "2cbe021d-0820-4278-96af-22d2cade863e",
+      "query": "Decidi usar Rust para o meu projeto.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "20537111a4c5321193054e259e7d26c18eb0aa93f7e283b6278ab2e3469c4f7f",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "20537111a4c5321193054e259e7d26c18eb0aa93f7e283b6278ab2e3469c4f7f",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-decision-final.json",
+      "turn": 1,
+      "message_id": "4f97cb58-6c2b-4c5f-9699-66975d0e5faa",
+      "query": "Escolhi SQLite como banco para meu projeto.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "3011d1fa9200ba09b2483f5fe2575d03e8c935a5deffef04c983e090aaf0a3c2",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "3011d1fa9200ba09b2483f5fe2575d03e8c935a5deffef04c983e090aaf0a3c2",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-decision-final.json",
+      "turn": 2,
+      "message_id": "31a96f3b-e9c2-4276-bd83-cdd464f59f9b",
+      "query": "Que linguagem eu escolhi para o projeto?",
+      "scenario": "different_projects",
+      "raw": [
+        {
+          "sha256": "25580edfbc82af5b57b1dd716cc52fb6a5eff1c2443cbd8fff42bd8364383eff",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você escolheu a linguagem Rust para o projeto Cajazeira.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Decidi usar Rust para o meu projeto.; scoped project binding cajazeira"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "25580edfbc82af5b57b1dd716cc52fb6a5eff1c2443cbd8fff42bd8364383eff",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você escolheu a linguagem Rust para o projeto Cajazeira.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Decidi usar Rust para o meu projeto.; scoped project binding cajazeira"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-decision-final.json",
+      "turn": 3,
+      "message_id": "c6651887-2332-4c10-8a9f-db9e123003b6",
+      "query": "A minha decisão significa que eu já concluí o projeto em Rust?",
+      "scenario": "decision_vs_completion",
+      "raw": [
+        {
+          "sha256": "65f42da317930976bf540eac65952bb137931a84504d531b6f4fc138f2f823d7",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "65f42da317930976bf540eac65952bb137931a84504d531b6f4fc138f2f823d7",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-decision-final.json",
+      "turn": 4,
+      "message_id": "065df70b-f7a9-42e9-b358-52b64eb27a04",
+      "query": "O que escolhi para armazenar os dados deste projeto?",
+      "scenario": "indirect_question",
+      "raw": [
+        {
+          "sha256": "8dba37499ecdb14289822881f8b67e0a7bce6baf80105e087c5caff539e4ed60",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você escolheu o SQLite como banco de dados para o projeto Cajazeira.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Escolhi SQLite como banco para meu projeto.; scoped project binding cajazeira"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "8dba37499ecdb14289822881f8b67e0a7bce6baf80105e087c5caff539e4ed60",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você escolheu o SQLite como banco de dados para o projeto Cajazeira.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Escolhi SQLite como banco para meu projeto.; scoped project binding cajazeira"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 0,
+      "message_id": "116329e4-c800-45aa-98f2-5519db8e057e",
+      "query": "Estou começando um projeto de catálogo de fontes termais.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "a375e25bb2265f59ead7881a88372c152999674217154a89580b7d3bf35a21fe",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "a375e25bb2265f59ead7881a88372c152999674217154a89580b7d3bf35a21fe",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 1,
+      "message_id": "a471e0a6-c78f-44b9-a923-032fc95147a9",
+      "query": "Quero usar TypeScript e SQLite no meu projeto.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "aa15a39ea217b07e49a7eb71cecf38eef20f4a5fb3f29f705a1300caa476639f",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "aa15a39ea217b07e49a7eb71cecf38eef20f4a5fb3f29f705a1300caa476639f",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 2,
+      "message_id": "34e22cf9-a79e-464b-83c3-a0c18e3d3b92",
+      "query": "Meu computador principal tem 24 GB de RAM.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "cc50b251e2d6a66200ea591f38288ea454be41ba6b7d53a9e7ea2029f23d5f9f",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Com 24 GB de RAM",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Meu computador principal tem 24 GB de RAM."
+              ]
+            },
+            {
+              "literal": "Com 24 GB de RAM, você terá uma experiência muito fluida para desenvolver esse projeto. Essa quantidade é ideal para rodar o VS Code, o compilador do TypeScript e o banco de dados simultaneamente sem gargalos.",
+              "supported": false,
+              "critical": false,
+              "reason": "RAM quantity alone does not prove smooth personal performance or absence of bottlenecks for these applications.",
+              "evidence": []
+            }
+          ]
+        },
+        {
+          "sha256": "a00c7767a8f2d484abc78744ce0850f5df7ebe5d74c5340c7b5cecac943e1f75",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Com 24 GB de RAM",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Meu computador principal tem 24 GB de RAM."
+              ]
+            },
+            {
+              "literal": "Com 24 GB de RAM, você terá uma experiência muito fluida para desenvolver esse projeto. Essa quantidade é ideal para rodar o VS Code, o compilador do TypeScript e o banco de dados SQLite simultaneamente sem gargalos.",
+              "supported": false,
+              "critical": false,
+              "reason": "RAM quantity alone does not prove smooth personal performance or absence of bottlenecks for these applications.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "6a36d47c9a0266fcd8cbac6bf814227d40cf0de1c9cf73a7316b9570c6d3dcbd",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": false,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 3,
+      "message_id": "bdaef73a-3c7f-42b0-8338-e798af6a0ae8",
+      "query": "Meu notebook de trabalho tem 12 GB de RAM.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "458fa6396e77f056f9148083dba85a4443d33105fccb67f973200bc64123b9f6",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Com 12 GB de RAM",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Meu notebook de trabalho tem 12 GB de RAM."
+              ]
+            },
+            {
+              "literal": "Com 12 GB de RAM, seu notebook de trabalho terá um desempenho muito fluido para rodar o projeto com TypeScript e SQLite. É uma quantidade ideal para desenvolvimento web e manipulação de dados sem grandes gargalos.",
+              "supported": false,
+              "critical": false,
+              "reason": "RAM quantity alone does not prove smooth personal performance or absence of bottlenecks for these applications.",
+              "evidence": []
+            }
+          ]
+        },
+        {
+          "sha256": "458fa6396e77f056f9148083dba85a4443d33105fccb67f973200bc64123b9f6",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Com 12 GB de RAM",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Meu notebook de trabalho tem 12 GB de RAM."
+              ]
+            },
+            {
+              "literal": "Com 12 GB de RAM, seu notebook de trabalho terá um desempenho muito fluido para rodar o projeto com TypeScript e SQLite. É uma quantidade ideal para desenvolvimento web e manipulação de dados sem grandes gargalos.",
+              "supported": false,
+              "critical": false,
+              "reason": "RAM quantity alone does not prove smooth personal performance or absence of bottlenecks for these applications.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "6a36d47c9a0266fcd8cbac6bf814227d40cf0de1c9cf73a7316b9570c6d3dcbd",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": false,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 4,
+      "message_id": "ba020cf6-61fd-47e4-8bea-b9048147805a",
+      "query": "Prefiro café com açúcar.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "1fee531f87167dc11bc22242fd9abed83723acfa0d8ea24d558192c26b5a56cb",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "você prefere café com açúcar",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Prefiro café com açúcar."
+              ]
+            },
+            {
+              "literal": "Isso será incluído em suas preferências pessoais.",
+              "supported": false,
+              "critical": false,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "1fee531f87167dc11bc22242fd9abed83723acfa0d8ea24d558192c26b5a56cb",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "você prefere café com açúcar",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Prefiro café com açúcar."
+            ]
+          },
+          {
+            "literal": "Isso será incluído em suas preferências pessoais.",
+            "supported": false,
+            "critical": false,
+            "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 5,
+      "message_id": "6c280874-08cc-4ea4-939f-b29d3e8bdc58",
+      "query": "Eu adoro jogos com criação de personagens.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "5bfb7cf95302bb6453ef4cebd14150c57f6636552179d9a214d791518fd01554",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "você adora jogos com criação de personagens",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Eu adoro jogos com criação de personagens."
+              ]
+            },
+            {
+              "literal": "Isso será incluído em suas preferências pessoais.",
+              "supported": false,
+              "critical": false,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "5bfb7cf95302bb6453ef4cebd14150c57f6636552179d9a214d791518fd01554",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "você adora jogos com criação de personagens",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Eu adoro jogos com criação de personagens."
+            ]
+          },
+          {
+            "literal": "Isso será incluído em suas preferências pessoais.",
+            "supported": false,
+            "critical": false,
+            "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 6,
+      "message_id": "bae9bf0f-d36e-4b5c-8a0a-8efa2443385c",
+      "query": "Eu gosto de jogos em que posso escolher uma classe.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "89aa76260cfdc24d4205bc369e90e9eb96e20c3015859ba5a976d9b5b59efd0c",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "você gosta de jogos em que pode escolher uma classe",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Eu gosto de jogos em que posso escolher uma classe."
+              ]
+            },
+            {
+              "literal": "Isso será incluído em suas preferências pessoais.",
+              "supported": false,
+              "critical": false,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "89aa76260cfdc24d4205bc369e90e9eb96e20c3015859ba5a976d9b5b59efd0c",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "você gosta de jogos em que pode escolher uma classe",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Eu gosto de jogos em que posso escolher uma classe."
+            ]
+          },
+          {
+            "literal": "Isso será incluído em suas preferências pessoais.",
+            "supported": false,
+            "critical": false,
+            "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 7,
+      "message_id": "3088d670-ffbf-4363-b396-7b4e1cfddfe1",
+      "query": "Eu detesto interfaces carregadas.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "7adbe1beba05a967793a2d41676dcfdb69c1a5738a9f2e0a2650952636f8fbed",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "você detesta interfaces carregadas",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Eu detesto interfaces carregadas."
+              ]
+            },
+            {
+              "literal": "Isso será incluído em suas preferências pessoais.",
+              "supported": false,
+              "critical": false,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "7adbe1beba05a967793a2d41676dcfdb69c1a5738a9f2e0a2650952636f8fbed",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "você detesta interfaces carregadas",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Eu detesto interfaces carregadas."
+            ]
+          },
+          {
+            "literal": "Isso será incluído em suas preferências pessoais.",
+            "supported": false,
+            "critical": false,
+            "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 8,
+      "message_id": "766e83f9-6580-4cc2-a726-31044bdddb9a",
+      "query": "Minha bebida preferida é chá.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "34a7d81b22a81815370109a89e60574ac5ecf0d70b06d07f04149fc5a364cb0f",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "sua bebida preferida é o chá",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Minha bebida preferida é chá."
+              ]
+            },
+            {
+              "literal": "Isso será incluído em suas preferências pessoais.",
+              "supported": false,
+              "critical": false,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "34a7d81b22a81815370109a89e60574ac5ecf0d70b06d07f04149fc5a364cb0f",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "sua bebida preferida é o chá",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Minha bebida preferida é chá."
+            ]
+          },
+          {
+            "literal": "Isso será incluído em suas preferências pessoais.",
+            "supported": false,
+            "critical": false,
+            "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 9,
+      "message_id": "8e919bc4-a342-487f-bf73-455873b626da",
+      "query": "Eu prefiro respostas objetivas.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "bbb8670c73ccdca7a8ede630aab75992ce4175f202582f2e45d9b039a1464554",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "você prefere respostas objetivas",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Eu prefiro respostas objetivas."
+              ]
+            },
+            {
+              "literal": "Isso será incluído em suas preferências pessoais.",
+              "supported": false,
+              "critical": false,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "bbb8670c73ccdca7a8ede630aab75992ce4175f202582f2e45d9b039a1464554",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "você prefere respostas objetivas",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Eu prefiro respostas objetivas."
+            ]
+          },
+          {
+            "literal": "Isso será incluído em suas preferências pessoais.",
+            "supported": false,
+            "critical": false,
+            "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 10,
+      "message_id": "1ce800f5-e928-4763-be0c-49dc695f7ef6",
+      "query": "No meu projeto, eu uso Rust.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "a12db3b461b4fe75ffadaf34bbdcbbc0a0eab8eb59742e8172ca79999369b97d",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "você usa Rust no seu projeto",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "No meu projeto, eu uso Rust."
+              ]
+            },
+            {
+              "literal": "Isso será incluído em suas preferências de projeto.",
+              "supported": false,
+              "critical": false,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "a12db3b461b4fe75ffadaf34bbdcbbc0a0eab8eb59742e8172ca79999369b97d",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "você usa Rust no seu projeto",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "No meu projeto, eu uso Rust."
+            ]
+          },
+          {
+            "literal": "Isso será incluído em suas preferências de projeto.",
+            "supported": false,
+            "critical": false,
+            "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 11,
+      "message_id": "a6c5561c-93fd-44ab-9eef-48e0f96ff1dc",
+      "query": "Não tenho mais 24 GB, agora são 40 GB.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "9f5eb43bc7d5a166d137f08c48417e68cc597ac310ea3f8bafca17010bfac6c6",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "seu computador principal agora tem 40 GB de RAM",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Não tenho mais 24 GB, agora são 40 GB.; earlier original sources uniquely associate 24 GB with the primary computer, not the 12 GB work laptop."
+              ]
+            },
+            {
+              "literal": "Isso atualizará sua configuração de hardware.",
+              "supported": false,
+              "critical": false,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        },
+        {
+          "sha256": "35b32d0f934716a064e406b3c55fa1972cdabba1fd62045034c2b45989fd0041",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "seu computador principal agora tem 40 GB de RAM",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Não tenho mais 24 GB, agora são 40 GB.; earlier original sources uniquely associate 24 GB with the primary computer, not the 12 GB work laptop."
+              ]
+            },
+            {
+              "literal": "Isso será incluído em suas preferências de hardware.",
+              "supported": false,
+              "critical": false,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "6a36d47c9a0266fcd8cbac6bf814227d40cf0de1c9cf73a7316b9570c6d3dcbd",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": false,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 12,
+      "message_id": "e372d50f-445a-4b0f-87b5-a9d9da4f0228",
+      "query": "Na verdade, agora prefiro café sem açúcar.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "19d9601abb5631b5b9a1f459f768073d508613c11d60650a5aaeb3c8fa15df98",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "agora você prefere café sem açúcar",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Na verdade, agora prefiro café sem açúcar."
+              ]
+            },
+            {
+              "literal": "Isso atualizará sua preferência anterior.",
+              "supported": false,
+              "critical": false,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "19d9601abb5631b5b9a1f459f768073d508613c11d60650a5aaeb3c8fa15df98",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "agora você prefere café sem açúcar",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Na verdade, agora prefiro café sem açúcar."
+            ]
+          },
+          {
+            "literal": "Isso atualizará sua preferência anterior.",
+            "supported": false,
+            "critical": false,
+            "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 13,
+      "message_id": "c3666064-c221-4652-8ca8-3ddee405fa18",
+      "query": "Meu objetivo é aprender japonês.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "04df6068ac1e81f7a76d0b426d136310cf3495b7a6adb7202fffb6d77f8311ed",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "seu objetivo é aprender japonês",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Meu objetivo é aprender japonês."
+              ]
+            },
+            {
+              "literal": "Isso será incluído em suas metas pessoais.",
+              "supported": false,
+              "critical": false,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        },
+        {
+          "sha256": "04df6068ac1e81f7a76d0b426d136310cf3495b7a6adb7202fffb6d77f8311ed",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "seu objetivo é aprender japonês",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Meu objetivo é aprender japonês."
+              ]
+            },
+            {
+              "literal": "Isso será incluído em suas metas pessoais.",
+              "supported": false,
+              "critical": false,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "6a36d47c9a0266fcd8cbac6bf814227d40cf0de1c9cf73a7316b9570c6d3dcbd",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": false,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 14,
+      "message_id": "eae64692-5785-4b15-8f52-cf270bd50759",
+      "query": "Concluí meu objetivo de aprender japonês.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "3dad29c081e9351307e9e945c35ecde13ddb76ec33cf17d41f1226289e59cc9e",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "você concluiu seu objetivo de aprender japonês",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Concluí meu objetivo de aprender japonês."
+              ]
+            },
+            {
+              "literal": "Isso será registrado como uma conquista finalizada.",
+              "supported": false,
+              "critical": false,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "3dad29c081e9351307e9e945c35ecde13ddb76ec33cf17d41f1226289e59cc9e",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "você concluiu seu objetivo de aprender japonês",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Concluí meu objetivo de aprender japonês."
+            ]
+          },
+          {
+            "literal": "Isso será registrado como uma conquista finalizada.",
+            "supported": false,
+            "critical": false,
+            "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 15,
+      "message_id": "c2b80558-f0be-4305-ac2b-f2b0ea2e3ecd",
+      "query": "Esqueça minha preferência por criar personagens em jogos.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "862b7e017548464ee090951f0e66ae59d7895b9ef234e68d0a80052515a80ed3",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "A preferência por jogos com criação de personagens foi removida das suas memórias.",
+              "supported": true,
+              "critical": false,
+              "reason": "This is a completed deletion operation, not a positive assertion that the removed preference remains current.",
+              "evidence": [
+                "Committed native forget operation for games_character_creation, deletion history/tombstone and removal of the original record."
+              ]
+            }
+          ]
+        },
+        {
+          "sha256": "4edd507627d90aa91897132d63a72a7cf679ac302f63761f224495325295e216",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Esqueci sua preferência por jogos com criação de personagens.",
+              "supported": true,
+              "critical": false,
+              "reason": "This is a completed deletion operation, not a positive assertion that the removed preference remains current.",
+              "evidence": [
+                "Committed native forget operation for games_character_creation, deletion history/tombstone and removal of the original record."
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "6a36d47c9a0266fcd8cbac6bf814227d40cf0de1c9cf73a7316b9570c6d3dcbd",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": false,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 16,
+      "message_id": "1e1801bb-103f-402d-b6f0-fb3810123f7a",
+      "query": "Pode voltar a memorizar: eu gosto de criar personagens em jogos.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "f5a0018162a9a1695dfef233b9d1e143f2613efdcb3cce88bdca57df5b23b02e",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "você gosta de criar personagens em jogos",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Pode voltar a memorizar: eu gosto de criar personagens em jogos."
+              ]
+            },
+            {
+              "literal": "Isso será incluído em suas preferências pessoais.",
+              "supported": false,
+              "critical": true,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "f5a0018162a9a1695dfef233b9d1e143f2613efdcb3cce88bdca57df5b23b02e",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "você gosta de criar personagens em jogos",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Pode voltar a memorizar: eu gosto de criar personagens em jogos."
+            ]
+          },
+          {
+            "literal": "Isso será incluído em suas preferências pessoais.",
+            "supported": false,
+            "critical": true,
+            "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 17,
+      "message_id": "0d8115c5-90b2-49e2-87d5-f23ae79cc99a",
+      "query": "Quero voltar a registrar minha preferência: eu gosto de criar personagens em jogos.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "f5a0018162a9a1695dfef233b9d1e143f2613efdcb3cce88bdca57df5b23b02e",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "você gosta de criar personagens em jogos",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Quero voltar a registrar minha preferência: eu gosto de criar personagens em jogos."
+              ]
+            },
+            {
+              "literal": "Isso será incluído em suas preferências pessoais.",
+              "supported": false,
+              "critical": false,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "f5a0018162a9a1695dfef233b9d1e143f2613efdcb3cce88bdca57df5b23b02e",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "você gosta de criar personagens em jogos",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Quero voltar a registrar minha preferência: eu gosto de criar personagens em jogos."
+            ]
+          },
+          {
+            "literal": "Isso será incluído em suas preferências pessoais.",
+            "supported": false,
+            "critical": false,
+            "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 18,
+      "message_id": "e74a193e-0db8-40ca-a03d-15bd9f421362",
+      "query": "Agora tenho 5 GB de RAM livre no computador principal.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "de548d5013302791fc7c903e80348986a1093ff21bed09d1aa29116b1409ace0",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "você tem 5 GB de RAM livre no computador principal",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Agora tenho 5 GB de RAM livre no computador principal."
+              ]
+            },
+            {
+              "literal": "Isso será incluído em suas informações de hardware.",
+              "supported": false,
+              "critical": false,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "de548d5013302791fc7c903e80348986a1093ff21bed09d1aa29116b1409ace0",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "você tem 5 GB de RAM livre no computador principal",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Agora tenho 5 GB de RAM livre no computador principal."
+            ]
+          },
+          {
+            "literal": "Isso será incluído em suas informações de hardware.",
+            "supported": false,
+            "critical": false,
+            "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 19,
+      "message_id": "657432f5-0f7d-4a7e-b796-722e0e08d8f8",
+      "query": "Prefiro tema claro.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "3a63b888d4e0d6286590320556e6563ae20fb0574041e98439982bad540352d8",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "você prefere o tema claro",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Prefiro tema claro."
+              ]
+            },
+            {
+              "literal": "Isso será incluído em suas preferências de interface.",
+              "supported": false,
+              "critical": false,
+              "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "3a63b888d4e0d6286590320556e6563ae20fb0574041e98439982bad540352d8",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "você prefere o tema claro",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Prefiro tema claro."
+            ]
+          },
+          {
+            "literal": "Isso será incluído em suas preferências de interface.",
+            "supported": false,
+            "critical": false,
+            "reason": "Unqualified future persistence/update guarantee at delivery: this USER source is still reserved, publication/extraction occurs after the answer, and no completed native write is attested. This does not assert that every such promise remained unfulfilled later.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 20,
+      "message_id": "29801483-8f97-4dde-b065-f07b8c9988bb",
+      "query": "Esqueça minha preferência de tema de interface.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "95205043ab10a019c7dab619ea48fcb9217ca8ae9a118a7ba4d0004af1f579d6",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Anotei que você esqueceu sua preferência de tema de interface.",
+              "supported": false,
+              "critical": true,
+              "reason": "The USER asked the assistant store to forget; there is no evidence that the USER mentally forgot their own preference.",
+              "evidence": []
+            },
+            {
+              "literal": "Isso será atualizado em suas configurações.",
+              "supported": false,
+              "critical": false,
+              "reason": "Native memory deletion does not attest an upcoming settings update.",
+              "evidence": []
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "95205043ab10a019c7dab619ea48fcb9217ca8ae9a118a7ba4d0004af1f579d6",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Anotei que você esqueceu sua preferência de tema de interface.",
+            "supported": false,
+            "critical": true,
+            "reason": "The USER asked the assistant store to forget; there is no evidence that the USER mentally forgot their own preference.",
+            "evidence": []
+          },
+          {
+            "literal": "Isso será atualizado em suas configurações.",
+            "supported": false,
+            "critical": false,
+            "reason": "Native memory deletion does not attest an upcoming settings update.",
+            "evidence": []
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 21,
+      "message_id": "b0b166a3-7030-41eb-9072-9a4bb63b08bf",
+      "query": "Minha bebida favorita é chá.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "015b8a0c1a1a1374b911ea31de1096657858614abcc9c93ac54a7403c2adef3a",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Sim, você mencionou que sua bebida preferida é o chá.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Minha bebida favorita é chá.; earlier original sources and corresponding scoped canonical records"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "015b8a0c1a1a1374b911ea31de1096657858614abcc9c93ac54a7403c2adef3a",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Sim, você mencionou que sua bebida preferida é o chá.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Minha bebida favorita é chá.; earlier original sources and corresponding scoped canonical records"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 22,
+      "message_id": "65554678-59b9-4a47-8feb-b0c9c6018439",
+      "query": "Prefiro respostas objetivas.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "b703cfdf373932a49b45b69962dbfaff46c743f1008341e358871359d2d27915",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você já mencionou que prefere respostas objetivas.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Prefiro respostas objetivas.; earlier original sources and corresponding scoped canonical records"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "b703cfdf373932a49b45b69962dbfaff46c743f1008341e358871359d2d27915",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você já mencionou que prefere respostas objetivas.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Prefiro respostas objetivas.; earlier original sources and corresponding scoped canonical records"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 23,
+      "message_id": "45c43ef5-dba3-4f85-9478-310e14dae243",
+      "query": "Eu detesto interfaces carregadas.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "ac248e522673aaa66f7b5424fc080ab5d97340a1f3f13b68f521fe5e55bf8e12",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Sim, você detesta interfaces carregadas.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Eu detesto interfaces carregadas.; earlier original sources and corresponding scoped canonical records"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "ac248e522673aaa66f7b5424fc080ab5d97340a1f3f13b68f521fe5e55bf8e12",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Sim, você detesta interfaces carregadas.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Eu detesto interfaces carregadas.; earlier original sources and corresponding scoped canonical records"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 24,
+      "message_id": "4b7b26e5-96ff-4e1b-ba03-0a79950d2ce8",
+      "query": "Eu gosto de criar personagens em jogos.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "c7853b66bc24780d61511ce0deaaea0ba07d30bdc5df0178f4073383b2d2d4d6",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Sim, você gosta de criar personagens em jogos.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Eu gosto de criar personagens em jogos.; earlier original sources and corresponding scoped canonical records"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "c7853b66bc24780d61511ce0deaaea0ba07d30bdc5df0178f4073383b2d2d4d6",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Sim, você gosta de criar personagens em jogos.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Eu gosto de criar personagens em jogos.; earlier original sources and corresponding scoped canonical records"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 25,
+      "message_id": "8989e1af-9824-4c3f-9f07-16575b1a2727",
+      "query": "Eu gosto de jogos em que posso escolher uma classe.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "d8ab01375235a92cd553233f9d1101f4604d32f8cf7e343d9c4b33f630ac4691",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Sim, você gosta de jogos em que pode escolher uma classe.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Eu gosto de jogos em que posso escolher uma classe.; earlier original sources and corresponding scoped canonical records"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "d8ab01375235a92cd553233f9d1101f4604d32f8cf7e343d9c4b33f630ac4691",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Sim, você gosta de jogos em que pode escolher uma classe.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Eu gosto de jogos em que posso escolher uma classe.; earlier original sources and corresponding scoped canonical records"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 26,
+      "message_id": "26c4f0e2-b226-489b-9985-1f17047b812a",
+      "query": "Prefiro café sem açúcar.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "816314d112fb38152dd27b385bc52d062c7569623d49956007bb3fa81c868b76",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Sim, você prefere café sem açúcar.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Prefiro café sem açúcar.; earlier original sources and corresponding scoped canonical records"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "816314d112fb38152dd27b385bc52d062c7569623d49956007bb3fa81c868b76",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Sim, você prefere café sem açúcar.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Prefiro café sem açúcar.; earlier original sources and corresponding scoped canonical records"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 27,
+      "message_id": "90fdcc93-8d48-4195-9a13-ab4144fb8dd0",
+      "query": "O projeto continua sendo o mesmo catálogo de fontes termais.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "f4c1212b7c377898d23fe4dbcd4b54a917a5e86eaf235b37efcdc5b9eeaa068a",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Sim, o projeto continua sendo o catálogo de fontes termais.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "O projeto continua sendo o mesmo catálogo de fontes termais.; earlier original sources and corresponding scoped canonical records"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "f4c1212b7c377898d23fe4dbcd4b54a917a5e86eaf235b37efcdc5b9eeaa068a",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Sim, o projeto continua sendo o catálogo de fontes termais.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "O projeto continua sendo o mesmo catálogo de fontes termais.; earlier original sources and corresponding scoped canonical records"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 28,
+      "message_id": "bec0743e-b749-4cd3-b0e9-f4b51e0d0464",
+      "query": "Qual é a capacidade de RAM do meu computador principal agora?",
+      "scenario": "ram_correction",
+      "raw": [
+        {
+          "sha256": "85db746a6cfb96a8a029555b2639e6f7c1125d35654100407aa9400c0c56a20c",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Seu computador principal agora tem 40 GB de RAM.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Não tenho mais 24 GB, agora são 40 GB.; reviewed unique 24-to-40 primary-computer correction"
+              ]
+            },
+            {
+              "literal": "essa capacidade aumentou em relação aos 24 GB anteriores",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Meu computador principal tem 24 GB de RAM.; original 24-to-40 correction and canonical previous-property link"
+              ]
+            }
+          ]
+        },
+        {
+          "sha256": "8d3eb1a4df22b4189ccb2c291cc97834be05c349cd5c5cb5f30385064f9a1520",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Seu computador principal agora tem 40 GB de RAM.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Não tenho mais 24 GB, agora são 40 GB.; reviewed unique 24-to-40 primary-computer correction"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "8d3eb1a4df22b4189ccb2c291cc97834be05c349cd5c5cb5f30385064f9a1520",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Seu computador principal agora tem 40 GB de RAM.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Não tenho mais 24 GB, agora são 40 GB.; reviewed unique 24-to-40 primary-computer correction"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support. Regeneration unnecessarily removed the valid optional historical 24 GB detail, while preserving the requested current 40 GB value.",
+      "optional_supported_information_lost": 1
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 29,
+      "message_id": "abb5e4e8-ffc4-4c0f-b7b1-31f682598f00",
+      "query": "Quanto de RAM têm meu computador principal e meu notebook de trabalho?",
+      "scenario": "different_equipment",
+      "raw": [
+        {
+          "sha256": "e49fccc1378a5e445e9d1368017e15a938688e12f982b5dc00d03d6b69e2eb56",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Seu computador principal tem 40 GB de RAM",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Não tenho mais 24 GB, agora são 40 GB."
+              ]
+            },
+            {
+              "literal": "seu notebook de trabalho tem 12 GB",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Meu notebook de trabalho tem 12 GB de RAM."
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "e49fccc1378a5e445e9d1368017e15a938688e12f982b5dc00d03d6b69e2eb56",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Seu computador principal tem 40 GB de RAM",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Não tenho mais 24 GB, agora são 40 GB."
+            ]
+          },
+          {
+            "literal": "seu notebook de trabalho tem 12 GB",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Meu notebook de trabalho tem 12 GB de RAM."
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 2,
+      "useful_retained": 2,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 30,
+      "message_id": "149321f2-cec0-4408-8f1e-e53708e36f9b",
+      "query": "Como eu tomava café antes e como prefiro agora?",
+      "scenario": "current_vs_historical",
+      "raw": [
+        {
+          "sha256": "f181116fbc01c09d093b2fbdadd918da7443e333b3034e4a55444a2b28574c04",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Antes você preferia café com açúcar",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Prefiro café com açúcar.; obsolete canonical record with active prior revision"
+              ]
+            },
+            {
+              "literal": "agora prefere café sem açúcar",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Na verdade, agora prefiro café sem açúcar."
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "f181116fbc01c09d093b2fbdadd918da7443e333b3034e4a55444a2b28574c04",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Antes você preferia café com açúcar",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Prefiro café com açúcar.; obsolete canonical record with active prior revision"
+            ]
+          },
+          {
+            "literal": "agora prefere café sem açúcar",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Na verdade, agora prefiro café sem açúcar."
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 2,
+      "useful_retained": 2,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 31,
+      "message_id": "e1d34c8a-cf61-4014-acfb-7b393dd6f09e",
+      "query": "Qual linguagem meu projeto usa atualmente?",
+      "scenario": "current_vs_historical",
+      "raw": [
+        {
+          "sha256": "bc98983173ec3ce6c2480defb118ea37a2c2389d291e235743aeceb6b9ff8908",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Seu projeto usa a linguagem Rust.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "No meu projeto, eu uso Rust.; reviewed current execution track"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "bc98983173ec3ce6c2480defb118ea37a2c2389d291e235743aeceb6b9ff8908",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Seu projeto usa a linguagem Rust.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "No meu projeto, eu uso Rust.; reviewed current execution track"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 32,
+      "message_id": "67a7fd78-f921-4a22-a12f-7f7830f872ea",
+      "query": "Você se lembra do meu projeto e das escolhas que fiz?",
+      "scenario": "indirect_question",
+      "raw": [
+        {
+          "sha256": "38a68b9a71fc061d6e53aec0c9e3ac5bc0272ec9495fb6b91bbb45688e2ce605",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "não há registros de memórias salvos até agora",
+              "supported": false,
+              "critical": true,
+              "reason": "Many scoped canonical project and preference records exist; an empty retrieval does not establish that nothing is saved.",
+              "evidence": []
+            },
+            {
+              "literal": "ainda não tenho detalhes específicos sobre o seu projeto",
+              "supported": true,
+              "critical": false,
+              "reason": "Scoped availability to this generation is missing, despite records existing canonically. The requested project details are lost.",
+              "evidence": [
+                "This query returned no contextual records."
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "38a68b9a71fc061d6e53aec0c9e3ac5bc0272ec9495fb6b91bbb45688e2ce605",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "não há registros de memórias salvos até agora",
+            "supported": false,
+            "critical": true,
+            "reason": "Many scoped canonical project and preference records exist; an empty retrieval does not establish that nothing is saved.",
+            "evidence": []
+          },
+          {
+            "literal": "ainda não tenho detalhes específicos sobre o seu projeto",
+            "supported": true,
+            "critical": false,
+            "reason": "Scoped availability to this generation is missing, despite records existing canonically. The requested project details are lost.",
+            "evidence": [
+              "This query returned no contextual records."
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 2,
+      "useful_retained": 0,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 33,
+      "message_id": "8f6328e0-dcb4-41d5-b928-f0d85d3de6bd",
+      "query": "Quais recursos de jogos eu gosto?",
+      "scenario": "corrected_preference",
+      "raw": [
+        {
+          "sha256": "7d9506a5fbb1844c0de5a6a27deeb8c707d8324ada260277c879dcd716d8b734",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você gosta de criar personagens em jogos.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Quero voltar a registrar minha preferência: eu gosto de criar personagens em jogos.; explicit renewed preference approved through the real settings UI"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "7d9506a5fbb1844c0de5a6a27deeb8c707d8324ada260277c879dcd716d8b734",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você gosta de criar personagens em jogos.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Quero voltar a registrar minha preferência: eu gosto de criar personagens em jogos.; explicit renewed preference approved through the real settings UI"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 2,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 34,
+      "message_id": "b0652f6c-3280-485f-9930-7e6d50cd84e0",
+      "query": "How do I prefer your replies?",
+      "scenario": "multilingual_question",
+      "raw": [
+        {
+          "sha256": "3b6a5837e08ad2de92782dac9c8e2fce2b06e9c8361c77182637a1b14579a0d6",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você prefere respostas objetivas.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Eu prefiro respostas objetivas."
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "3b6a5837e08ad2de92782dac9c8e2fce2b06e9c8361c77182637a1b14579a0d6",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você prefere respostas objetivas.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Eu prefiro respostas objetivas."
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support. The final response changed to Portuguese despite the English question; language compliance is separate from factual support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 35,
+      "message_id": "d4a24b4d-555f-4c73-8b28-9b00154e56ad",
+      "query": "Como eu me sinto em relação a interfaces carregadas?",
+      "scenario": "corrected_preference",
+      "raw": [
+        {
+          "sha256": "8fc74b91cc02584af406a1e289f90f730b32e9eff9c9e090d707265682aa2992",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você detesta interfaces carregadas.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Eu detesto interfaces carregadas."
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "8fc74b91cc02584af406a1e289f90f730b32e9eff9c9e090d707265682aa2992",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você detesta interfaces carregadas.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Eu detesto interfaces carregadas."
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 36,
+      "message_id": "9395905f-583a-48d6-bc22-6ba062725acf",
+      "query": "Que objetivo pessoal eu já concluí?",
+      "scenario": "completed_goal",
+      "raw": [
+        {
+          "sha256": "05cab18d7952551b12d3c4e4a1c9e50dbb32b99e95a5a440e6975a8d5e0a6888",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Você já concluiu o objetivo de aprender japonês.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Concluí meu objetivo de aprender japonês."
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "05cab18d7952551b12d3c4e4a1c9e50dbb32b99e95a5a440e6975a8d5e0a6888",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Você já concluiu o objetivo de aprender japonês.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Concluí meu objetivo de aprender japonês."
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 37,
+      "message_id": "4eabda00-5bd1-425a-970e-36d3f82cfb5e",
+      "query": "Você consegue lembrar qual tema de interface eu prefiro?",
+      "scenario": "deleted_information",
+      "raw": [
+        {
+          "sha256": "8358afa60024b86687063ac5278cf07ddbb0f7bd11fd817fa11ee01cf511c9f2",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Não há nenhum registro relevante disponível na memória sobre o seu tema de interface preferido.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Committed theme deletion; no remaining interface_theme record in final scoped canonical details."
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "8358afa60024b86687063ac5278cf07ddbb0f7bd11fd817fa11ee01cf511c9f2",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Não há nenhum registro relevante disponível na memória sobre o seu tema de interface preferido.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Committed theme deletion; no remaining interface_theme record in final scoped canonical details."
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 38,
+      "message_id": "99e9af64-2e74-4a30-8849-2eff5e6b5b5d",
+      "query": "Qual é a minha bebida favorita?",
+      "scenario": "corrected_preference",
+      "raw": [
+        {
+          "sha256": "58091772f33fc1d3a09107567247893572223ec1d1f894d880eb744d244d9b12",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Sua bebida favorita é chá.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Minha bebida preferida é chá."
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "58091772f33fc1d3a09107567247893572223ec1d1f894d880eb744d244d9b12",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Sua bebida favorita é chá.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Minha bebida preferida é chá."
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 39,
+      "message_id": "8d1be925-a087-483f-b45d-08f11c3e0156",
+      "query": "Em qual dia e mês eu nasci?",
+      "scenario": "no_memory",
+      "raw": [
+        {
+          "sha256": "2ad822b6e6a3e5a8cb95160569adbef70636f1189ba333173a4b1dfb4bf206a9",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Não há nenhum registro disponível sobre a sua data de nascimento na minha memória atual.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "No birthday exists in these synthetic scoped original sources or canonical records."
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "2ad822b6e6a3e5a8cb95160569adbef70636f1189ba333173a4b1dfb4bf206a9",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Não há nenhum registro disponível sobre a sua data de nascimento na minha memória atual.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "No birthday exists in these synthetic scoped original sources or canonical records."
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-long28-final.json",
+      "turn": 40,
+      "message_id": "b621ffab-6fc0-4dfc-84bb-106f264af6cb",
+      "query": "Qual banco está nos planos para aquele projeto?",
+      "scenario": "plan_vs_execution",
+      "raw": [
+        {
+          "sha256": "90075d1cef3ea334e9493c79daf91fe77ceac986684781997458ef66ea047047",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "O plano para o projeto mangabeira é utilizar o SQLite como banco de dados.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Quero usar TypeScript e SQLite no meu projeto.; reviewed planned database sqlite"
+              ]
+            }
+          ]
+        },
+        {
+          "sha256": "90075d1cef3ea334e9493c79daf91fe77ceac986684781997458ef66ea047047",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "O plano para o projeto mangabeira é utilizar o SQLite como banco de dados.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Quero usar TypeScript e SQLite no meu projeto.; reviewed planned database sqlite"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "994c773948080f2439cd0c5d88c860749dbefeb7ab937543f499f7d126f4fb29",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": false,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-ended-final.json",
+      "turn": 0,
+      "message_id": "bb54238c-804a-4e1d-ad75-cde771acb60d",
+      "query": "Estou desenvolvendo meu projeto em JavaScript.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "aced9ea09c2dc7be19e8c576319fc6492f7f23bf39259f3821f7b6d825c2ec97",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "aced9ea09c2dc7be19e8c576319fc6492f7f23bf39259f3821f7b6d825c2ec97",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-ended-final.json",
+      "turn": 1,
+      "message_id": "be6dd5f7-77aa-47e0-82a7-60547930985c",
+      "query": "Cancelei meu projeto.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "28b9407bf30da40e54982e098609c6942ccaff4109d4d008889c95594a54c26f",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "28b9407bf30da40e54982e098609c6942ccaff4109d4d008889c95594a54c26f",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-ended-final.json",
+      "turn": 2,
+      "message_id": "1c532f46-39c6-4abd-ad0b-fa5f785005d0",
+      "query": "Decidi usar MySQL no meu projeto.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "a9a8315107e9f61650f951396fd47f093e67e2cdd7ba1c0aae445c263af0d01d",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "a9a8315107e9f61650f951396fd47f093e67e2cdd7ba1c0aae445c263af0d01d",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-ended-final.json",
+      "turn": 3,
+      "message_id": "7281e5cd-1b96-4599-a436-87ebcace66b1",
+      "query": "Qual é a situação atual do meu projeto?",
+      "scenario": "cancelled_project",
+      "raw": [
+        {
+          "sha256": "fdc1a3e43589920ae10321ff7da301eaa7505745299bb5f445e463d17816b677",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "O seu projeto (guabiroba) está atualmente cancelado.",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Cancelei meu projeto.; native reviewed lifecycle cancelled"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "fdc1a3e43589920ae10321ff7da301eaa7505745299bb5f445e463d17816b677",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "O seu projeto (guabiroba) está atualmente cancelado.",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Cancelei meu projeto.; native reviewed lifecycle cancelled"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-ended-final.json",
+      "turn": 4,
+      "message_id": "f5abe84c-5ca8-4708-8365-e6df002fb58c",
+      "query": "Qual linguagem eu usava antes de cancelar este projeto?",
+      "scenario": "current_vs_historical",
+      "raw": [
+        {
+          "sha256": "1226289496541a20daf37713760de3859d1c240445b38561e9bc944cad927b31",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Não há registro específico sobre qual linguagem você usava antes de cancelar o projeto Guabiroba.",
+              "supported": true,
+              "critical": false,
+              "reason": "This is a scoped record-availability statement, not a claim that the USER never supplied the language. Requested historical information is nevertheless lost.",
+              "evidence": [
+                "Native initial retrieval and canonical details contain no stored language: the original language source was incorrectly rejected."
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "1226289496541a20daf37713760de3859d1c240445b38561e9bc944cad927b31",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Não há registro específico sobre qual linguagem você usava antes de cancelar o projeto Guabiroba.",
+            "supported": true,
+            "critical": false,
+            "reason": "This is a scoped record-availability statement, not a claim that the USER never supplied the language. Requested historical information is nevertheless lost.",
+            "evidence": [
+              "Native initial retrieval and canonical details contain no stored language: the original language source was incorrectly rejected."
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 0,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-unknown-final.json",
+      "turn": 0,
+      "message_id": "e90997b5-b484-419b-bbd3-88a2d2faa761",
+      "query": "Ainda não defini o banco de dados do meu projeto.",
+      "scenario": "longitudinal_nonprobe",
+      "raw": [
+        {
+          "sha256": "f0de63f2880b3eec76a0714a78f5a23c9b883d8f68821edfcf5ae0d8a9f24675",
+          "reviewed_entire_answer": true,
+          "claims": []
+        }
+      ],
+      "final": {
+        "sha256": "f0de63f2880b3eec76a0714a78f5a23c9b883d8f68821edfcf5ae0d8a9f24675",
+        "reviewed_entire_answer": true,
+        "claims": []
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-unknown-final.json",
+      "turn": 1,
+      "message_id": "b07795d3-b73d-4bb5-acf3-76f5e0785965",
+      "query": "Eu já tenho uma decisão sobre o banco deste projeto?",
+      "scenario": "absence_vs_negative_decision",
+      "raw": [
+        {
+          "sha256": "bf2b4e2835cb3890df05310f2895a5833dcb51e0cb9d5bb6f23d81ba1777c5ee",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Ainda não defini o banco de dados do seu projeto Araticum.",
+              "supported": false,
+              "critical": true,
+              "reason": "The first-person decision actor is the assistant, while the literal unknown decision belongs to the USER.",
+              "evidence": []
+            },
+            {
+              "literal": "O status atual está marcado como \"undecided\".",
+              "supported": true,
+              "critical": false,
+              "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+              "evidence": [
+                "Ainda não defini o banco de dados do meu projeto.; native reviewed database unknown"
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "bf2b4e2835cb3890df05310f2895a5833dcb51e0cb9d5bb6f23d81ba1777c5ee",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Ainda não defini o banco de dados do seu projeto Araticum.",
+            "supported": false,
+            "critical": true,
+            "reason": "The first-person decision actor is the assistant, while the literal unknown decision belongs to the USER.",
+            "evidence": []
+          },
+          {
+            "literal": "O status atual está marcado como \"undecided\".",
+            "supported": true,
+            "critical": false,
+            "reason": "Original USER source and scoped canonical evidence support this literal assertion.",
+            "evidence": [
+              "Ainda não defini o banco de dados do meu projeto.; native reviewed database unknown"
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-empty-final.json",
+      "turn": 0,
+      "message_id": "ee7a992f-cc5d-457a-aa90-a53c1a3e546c",
+      "query": "Você sabe qual linguagem eu escolhi para este projeto?",
+      "scenario": "absence_vs_negative_decision",
+      "raw": [
+        {
+          "sha256": "a4e790723e5b24ba5bc812fa6087bb8c719ec00311fa381e00f5cc9faadf6060",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Não há nenhum registro disponível sobre a linguagem que você escolheu para este projeto.",
+              "supported": true,
+              "critical": false,
+              "reason": "Bounded absence of available records, not an assertion that the USER never decided or informed it.",
+              "evidence": [
+                "Fresh scoped canonical details and initial retrieval are empty."
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "a4e790723e5b24ba5bc812fa6087bb8c719ec00311fa381e00f5cc9faadf6060",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Não há nenhum registro disponível sobre a linguagem que você escolheu para este projeto.",
+            "supported": true,
+            "critical": false,
+            "reason": "Bounded absence of available records, not an assertion that the USER never decided or informed it.",
+            "evidence": [
+              "Fresh scoped canonical details and initial retrieval are empty."
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    },
+    {
+      "fixture": "driver-final22b-v2-empty-final.json",
+      "turn": 1,
+      "message_id": "0bcbc9e6-6afb-4751-b9fd-6794d116f189",
+      "query": "Qual é a minha data de nascimento?",
+      "scenario": "no_memory",
+      "raw": [
+        {
+          "sha256": "220cd01e79d4915e5fb1b15b5c3d855837b4ba6f8bfff6f847cd67350fe41774",
+          "reviewed_entire_answer": true,
+          "claims": [
+            {
+              "literal": "Não há nenhum registro disponível sobre a sua data de nascimento.",
+              "supported": true,
+              "critical": false,
+              "reason": "Bounded absence of available records, not an assertion that the USER never decided or informed it.",
+              "evidence": [
+                "Fresh scoped canonical details and initial retrieval are empty."
+              ]
+            }
+          ]
+        }
+      ],
+      "final": {
+        "sha256": "220cd01e79d4915e5fb1b15b5c3d855837b4ba6f8bfff6f847cd67350fe41774",
+        "reviewed_entire_answer": true,
+        "claims": [
+          {
+            "literal": "Não há nenhum registro disponível sobre a sua data de nascimento.",
+            "supported": true,
+            "critical": false,
+            "reason": "Bounded absence of available records, not an assertion that the USER never decided or informed it.",
+            "evidence": [
+              "Fresh scoped canonical details and initial retrieval are empty."
+            ]
+          }
+        ]
+      },
+      "delivered": true,
+      "useful_expected": 1,
+      "useful_retained": 1,
+      "review_note": "Independent full literal review against original USER sources, committed operations and canonical state; application checks do not determine support."
+    }
+  ],
+  "limitations": "Literal review of bounded synthetic cases. Unqualified persistence guarantees are marked unproven at delivery; later completion does not make a completed-write claim true retroactively. Ambiguous acknowledgement is not scored as a separate extra mutation.",
+  "original_private_fixture_sha256": {
+    "driver-final22b-v2-plan-final.json": "534164af2f3d93a4b4f75704c5b1ce9b2ba0afbef1fe80539ae09b2491a8e4b7",
+    "driver-final22b-v2-decision-final.json": "df11f6b95ff686ce1ce7cc0401af3d105049b574d8acc3c1fea0e0ec24459d89",
+    "driver-final22b-v2-long28-final.json": "0e74e9f0b97056f15997e4016c9a4e27e3010c4982150b1decd8df5407a3220b",
+    "driver-final22b-v2-ended-final.json": "2779b464e5d0821801b67d93eafa9960a23facd101a6ebd1d6df6db7bfa6912f",
+    "driver-final22b-v2-unknown-final.json": "6ef3da5fddab825dd3fc3922f42ce77e0159d18bdcf041d071facd49a7c6df8f",
+    "driver-final22b-v2-empty-final.json": "77c735e3b93f513163ba5c568c27571edc180240b67d7c5fe8dc5f4b594dfee1"
+  },
+  "public_curation": "Fixture hashes identify curated public copies without private system context. Evaluated assistant texts and hashes are unchanged; original private hashes are retained above."
+}

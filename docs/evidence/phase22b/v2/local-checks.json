@@ -1,0 +1,32 @@
+{
+  "phase": "development_checks_before_real_v2",
+  "synthetic_only": true,
+  "native_tests": {
+    "passed": 119,
+    "failed": 0,
+    "skipped": 0
+  },
+  "typescript_tests": {
+    "numTotalTests": 656,
+    "numPassedTests": 656,
+    "numFailedTests": 0,
+    "numPendingTests": 0
+  },
+  "checks": {
+    "typecheck": "passed",
+    "changed_file_eslint": "passed",
+    "atomic_schema_parity": "3 passed",
+    "native_application_build": "passed",
+    "isolated_full_frontend_build": "passed"
+  },
+  "logs_sha256": {
+    "phase22b-v2-native-final1.log": "cf9d64f88b4ed0edb578f2a671ce0021ec7c9ad9a01b4f184d36cf22e7219789",
+    "phase22b-v2-typescript-final.json": "f1805d22ee419618f4f610505c56f0f4447c0aa983c6b27aac510c1404ad9613",
+    "phase22b-v2-typecheck2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "phase22b-v2-lint-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "phase22b-v2-schema.log": "eb12640f146b042d34045f5014d674917ea6984203d086e9dbe477429f8029f9",
+    "phase22b-v2-nativegui1.log": "cc4c50c3e0a65a12fb3e30855b0af5f62b8aa414b4eb20377a14486e09a66863",
+    "phase22b-v2-static2.log": "0a629fa3fe4020ddb9f78efa68842d509f5fa2e13c44a723aadd979333c159f5"
+  },
+  "limitation": "These local checks do not approve actual answer fidelity or remote CI."
+}

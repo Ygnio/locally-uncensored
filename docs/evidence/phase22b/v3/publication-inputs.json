@@ -1,0 +1,251 @@
+{
+  "utc": "2026-11-04T10:42:51.163300+00:00",
+  "base_head": "c1840255292724cc07cb3892f964619e39b5584e",
+  "report_preparation_head": "ae463cf62131cae81284b318ca6d8a90b42b998a",
+  "branch": "feature/lucille-phase22b-answer-fidelity",
+  "base_branch": "feature/lucille-phase22-autonomous-memory",
+  "draft_pr": "https://github.com/Ygnio/locally-uncensored/pull/10",
+  "production_code_commit": "03ca5fece02b06c8f0a1e286c7ee784175f28e3d",
+  "native_source_commit": "2c38b650",
+  "new_corpora_commit": "0d9b86b27349e5c214b6b7aff828d50899e603ff",
+  "freeze_commit": "c753ea1cf4e01e4045f0f136a7460f08d2ab701a",
+  "commits_before_delivery_report": [
+    {
+      "sha": "8a31cba797e2b78d6078e98011863886b24eec33",
+      "subject": "feat(memory): preserve typed temporal evidence and canonical answer authority"
+    },
+    {
+      "sha": "c6fef2b1edc0e8ca723e5cc21df86f1c3f3e2392",
+      "subject": "feat(lucille): verify memory answers before display across chat agent and code"
+    },
+    {
+      "sha": "f0e8fb752ddeb97c187fc38a27cd9b504306a0ad",
+      "subject": "test(lucille): add isolated phase22b QA and independent answer adjudication"
+    },
+    {
+      "sha": "593b2df1870e1cd259ded3fb38875e1bf9eb412b",
+      "subject": "fix(lucille): distinguish objective replies from personal goals"
+    },
+    {
+      "sha": "3558c7f03217ead7381a818e59194b83662dfd99",
+      "subject": "fix(lucille): verify goal acknowledgements without rejecting advice"
+    },
+    {
+      "sha": "ede00e485c9874372e73954726ea3a9a0d877b46",
+      "subject": "fix(qa): inspect owned listeners without slow network CIM polling"
+    },
+    {
+      "sha": "32b11680e9b9f04e8946f3727bdcd0c2ec73f270",
+      "subject": "fix(memory): preserve project state in technical questions and require explicit decisions"
+    },
+    {
+      "sha": "9ad1e0e93b026b18f530c5d67ab795d59487fa1b",
+      "subject": "fix(memory): prevent ended project implementations from remaining current"
+    },
+    {
+      "sha": "13616ff64080a8d783094cce4708258278d2ba7a",
+      "subject": "fix(lucille): preserve scoped uncertainty and historical phrasing"
+    },
+    {
+      "sha": "d195b65af4564574924bac21efaf8197d6a76f1c",
+      "subject": "fix(lucille): preserve planned infinitives and pin full-app evaluation controls"
+    },
+    {
+      "sha": "e10607fd0d651e2b0a21e2de76b3913c1a5c6529",
+      "subject": "test(lucille): attest native frontend and model pins for frozen evaluations"
+    },
+    {
+      "sha": "f3dd5ac79998e3cdfae876d7a87be84b86e5c12b",
+      "subject": "test(lucille): freeze independent phase22b corpora and evaluation artifacts"
+    },
+    {
+      "sha": "6e844384fea89b470591fc1b037fc091606f3ac6",
+      "subject": "docs(lucille): preserve failed frozen v1 and independent literal review"
+    },
+    {
+      "sha": "4021c86a7057c9d2263cb2c56493fc92e51c4209",
+      "subject": "fix: bind learning to original user sources and committed forget receipts"
+    },
+    {
+      "sha": "8e38293d4b6fde94e966b908d3dc7a3883c9566d",
+      "subject": "test: seal new phase 22b extraction retrieval and longitudinal scenarios"
+    },
+    {
+      "sha": "e13eb3616a9ed96d67009248d70f912f5f50bbb2",
+      "subject": "test: freeze phase 22b v2 source corpus and actual build fingerprints"
+    },
+    {
+      "sha": "9cb5897edf9ffe19bb1a9dc99f9097258e0f05b0",
+      "subject": "docs: preserve failed frozen v2 real inference and literal answer evidence"
+    },
+    {
+      "sha": "2c38b65013017289b2d8b86e97437e01539b346d",
+      "subject": "fix: ground availability operations actors and retry constraints in native evidence"
+    },
+    {
+      "sha": "03ca5fece02b06c8f0a1e286c7ee784175f28e3d",
+      "subject": "fix: distinguish prior speech clarification and favorite-drink assertions"
+    },
+    {
+      "sha": "0d9b86b27349e5c214b6b7aff828d50899e603ff",
+      "subject": "test: seal final v3 unseen memory corpora after development regressions"
+    },
+    {
+      "sha": "c753ea1cf4e01e4045f0f136a7460f08d2ab701a",
+      "subject": "test: freeze final v3 source model runtime and build fingerprints"
+    },
+    {
+      "sha": "ae463cf62131cae81284b318ca6d8a90b42b998a",
+      "subject": "test(lucille): preserve failed frozen v3 answer evaluation"
+    }
+  ],
+  "changed_files": [
+    ".github/workflows/lucille-memory.yml",
+    ".gitignore",
+    "crates/lucille-memory/examples/real_validation_bridge.rs",
+    "crates/lucille-memory/src/autonomous.rs",
+    "crates/lucille-memory/src/aux_backup.rs",
+    "crates/lucille-memory/src/context_facts.rs",
+    "crates/lucille-memory/src/dialogue.rs",
+    "crates/lucille-memory/src/extraction.rs",
+    "crates/lucille-memory/src/intelligent.rs",
+    "crates/lucille-memory/src/lib.rs",
+    "crates/lucille-memory/src/relevance.rs",
+    "crates/lucille-memory/src/retrieval.rs",
+    "crates/lucille-memory/src/semantic.rs",
+    "crates/lucille-memory/src/semantic_text.rs",
+    "crates/lucille-memory/src/turn_sources.rs",
+    "crates/lucille-memory/src/types.rs",
+    "crates/lucille-memory/tests/fixtures/phase22b/answer-rubric-v1.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answer-rubric-v2.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answer-rubric-v3.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answers-decision-v1.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answers-decision-v2.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answers-decision-v3.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answers-empty-v1.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answers-empty-v2.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answers-empty-v3.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answers-ended-v1.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answers-ended-v2.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answers-ended-v3.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answers-plan-v1.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answers-plan-v2.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answers-plan-v3.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answers-unknown-v1.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answers-unknown-v2.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/answers-unknown-v3.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/extraction-v1.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/extraction-v2.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/extraction-v3.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/freeze-v1.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/freeze-v2.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/freeze-v3.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/long-24-v1.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/long-28-v2.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/long-32-v3.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/retrieval-v1.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/retrieval-v2.json",
+    "crates/lucille-memory/tests/fixtures/phase22b/retrieval-v3.json",
+    "crates/lucille-memory/tests/phase22b.rs",
+    "docs/evidence/phase22b/development-v3/manifest.json",
+    "docs/evidence/phase22b/development-v3/native-model-faults-and-retrieval.json",
+    "docs/evidence/phase22b/v1/answer-scores.json",
+    "docs/evidence/phase22b/v1/driver-final22b-v1-decision-final.json",
+    "docs/evidence/phase22b/v1/driver-final22b-v1-empty-final.json",
+    "docs/evidence/phase22b/v1/driver-final22b-v1-ended-final.json",
+    "docs/evidence/phase22b/v1/driver-final22b-v1-long24-final.json",
+    "docs/evidence/phase22b/v1/driver-final22b-v1-plan-final.json",
+    "docs/evidence/phase22b/v1/driver-final22b-v1-unknown-final.json",
+    "docs/evidence/phase22b/v1/extraction-cases.json",
+    "docs/evidence/phase22b/v1/extraction-summary.json",
+    "docs/evidence/phase22b/v1/gold-erratum.json",
+    "docs/evidence/phase22b/v1/literal-ledger.json",
+    "docs/evidence/phase22b/v1/manifest.json",
+    "docs/evidence/phase22b/v1/retrieval-summary.json",
+    "docs/evidence/phase22b/v2/driver-final22b-v2-decision-final.json",
+    "docs/evidence/phase22b/v2/driver-final22b-v2-empty-final.json",
+    "docs/evidence/phase22b/v2/driver-final22b-v2-ended-final.json",
+    "docs/evidence/phase22b/v2/driver-final22b-v2-long28-final.json",
+    "docs/evidence/phase22b/v2/driver-final22b-v2-plan-final.json",
+    "docs/evidence/phase22b/v2/driver-final22b-v2-unknown-final.json",
+    "docs/evidence/phase22b/v2/final22b-v2-answer-scores.json",
+    "docs/evidence/phase22b/v2/final22b-v2-extraction.json",
+    "docs/evidence/phase22b/v2/final22b-v2-literal-ledger.json",
+    "docs/evidence/phase22b/v2/local-checks.json",
+    "docs/evidence/phase22b/v2/manifest.json",
+    "docs/evidence/phase22b/v2/resources.json",
+    "docs/evidence/phase22b/v2/retrieval-failure.json",
+    "docs/evidence/phase22b/v3/canonical-new-corpus-audit.json",
+    "docs/evidence/phase22b/v3/cleanup.json",
+    "docs/evidence/phase22b/v3/driver-final22b-v3-decision-final.json",
+    "docs/evidence/phase22b/v3/driver-final22b-v3-empty-final.json",
+    "docs/evidence/phase22b/v3/driver-final22b-v3-ended-final.json",
+    "docs/evidence/phase22b/v3/driver-final22b-v3-long32-final.json",
+    "docs/evidence/phase22b/v3/driver-final22b-v3-plan-final.json",
+    "docs/evidence/phase22b/v3/driver-final22b-v3-unknown-final.json",
+    "docs/evidence/phase22b/v3/driver-invalid-isolated-long100-failure.json",
+    "docs/evidence/phase22b/v3/driver-regression22b-v3-long20-final.json",
+    "docs/evidence/phase22b/v3/driver-regression22b-v3-long50-final.json",
+    "docs/evidence/phase22b/v3/driver-regression22b-v3-series100-final.json",
+    "docs/evidence/phase22b/v3/driver-regression22b-v3-series50-final.json",
+    "docs/evidence/phase22b/v3/extraction-cases.json",
+    "docs/evidence/phase22b/v3/final22b-v3-answer-scores.json",
+    "docs/evidence/phase22b/v3/final22b-v3-extraction.json",
+    "docs/evidence/phase22b/v3/final22b-v3-literal-ledger.json",
+    "docs/evidence/phase22b/v3/final22b-v3-retrieval.json",
+    "docs/evidence/phase22b/v3/gui-extraction-failure.json",
+    "docs/evidence/phase22b/v3/historical-regression-literal-notes.json",
+    "docs/evidence/phase22b/v3/historical-retrieval-diagnosis.json",
+    "docs/evidence/phase22b/v3/local-checks.json",
+    "docs/evidence/phase22b/v3/manifest.json",
+    "docs/evidence/phase22b/v3/publication-inputs.json",
+    "docs/evidence/phase22b/v3/regression-orchestration-erratum.json",
+    "docs/evidence/phase22b/v3/regression-shared-scope-before-correction.json",
+    "docs/evidence/phase22b/v3/regression22b-v3-long20-scores.json",
+    "docs/evidence/phase22b/v3/regression22b-v3-long50-scores.json",
+    "docs/evidence/phase22b/v3/regression22b-v3-series100-scores.json",
+    "docs/evidence/phase22b/v3/regression22b-v3-series50-scores.json",
+    "docs/evidence/phase22b/v3/resources-and-native-state.json",
+    "docs/evidence/phase22b/v3/runtime-new-corpus.json",
+    "docs/evidence/phase22b/v3/tool-round-literal-review.json",
+    "docs/lucille-phase22b-design.md",
+    "docs/lucille-phase22b.md",
+    "qa/phase22b-driver.js",
+    "scripts/lucille-real-broker.py",
+    "scripts/lucille-real-server.py",
+    "scripts/run-lucille-phase22b-owned.py",
+    "scripts/sample-lucille-phase22b.ps1",
+    "scripts/score-lucille-phase22b-answers.py",
+    "scripts/start-lucille-real-gui.ps1",
+    "scripts/stop-lucille-real-gui.ps1",
+    "scripts/test-lucille-phase22b-control.py",
+    "scripts/test-lucille-phase22b-extraction.py",
+    "scripts/test-lucille-phase22b-retrieval.py",
+    "src-tauri/src/lucille.rs",
+    "src-tauri/src/lucille_validation.rs",
+    "src/components/chat/MessageBubble.tsx",
+    "src/components/settings/MemorySettings.tsx",
+    "src/hooks/useAgentChat.ts",
+    "src/hooks/useChat.ts",
+    "src/hooks/useCodex.ts",
+    "src/lib/__tests__/lucille-answer.test.ts",
+    "src/lib/__tests__/lucille-fidelity.test.ts",
+    "src/lib/__tests__/lucille-learning.test.ts",
+    "src/lib/__tests__/lucille-prepared-source.test.ts",
+    "src/lib/lucille-answer.ts",
+    "src/lib/lucille-atomic.ts",
+    "src/lib/lucille-context.ts",
+    "src/lib/lucille-fidelity.ts",
+    "src/lib/lucille-learning.ts",
+    "src/lib/lucille-real-validation.ts",
+    "src/stores/chatStore.ts",
+    "src/types/chat.ts",
+    "vite.lucille-validation.config.ts"
+  ],
+  "changed_file_count": 141,
+  "publication_rules": [
+    "No merge, release or operational installation.",
+    "No weights, SQLite databases, real conversations, private profiles, credentials or private logs published.",
+    "Final exact HEAD, remote verification and final-head CI audit recorded outside Git in PR body and local final report, so the audited commit is not changed by recording its own hash."
+  ]
+}

@@ -214,7 +214,18 @@ def main(args):
                 else:
                     self.send(200, result)
             except Exception as error:
-                self.send(503, {'error': type(error).__name__, 'state': 'failed; no mock response'})
+                reasons = {'Resource pressure; no new test inference': 'resource_pressure',
+                           'Owned model is unavailable': 'owned_model_unavailable',
+                           'Owned model is not running': 'owned_model_not_running',
+                           'Owned PID/path/creation identity changed': 'owned_identity_changed'}
+                with (root / 'reports' / 'real-broker-errors.ndjson').open('a', encoding='utf-8') as log:
+                    log.write(json.dumps({'completed_unix': time.time(), 'error': type(error).__name__,
+                                          'reason': reasons.get(str(error), 'other_bounded_request_failure')}) + '\n')
+                try:
+                    self.send(503, {'error': type(error).__name__, 'state': 'failed; no mock response'})
+                except (ConnectionError, OSError):
+                    pass  # Client cancellation cannot manufacture a successful reply.
+
 
     current = type('OwnedHandle', (), {'_handle': -1, 'pid': os.getpid()})()
     process_identity = owned.identity(current)

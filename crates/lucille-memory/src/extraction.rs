@@ -16,6 +16,7 @@ pub fn fold(text: &str) -> String {
             'ó' | 'ô' | 'õ' | 'ö' | 'ò' => 'o',
             'ú' | 'ü' | 'ù' | 'û' => 'u',
             'ç' => 'c',
+            '’' | '‘' => '\'',
             _ => c,
         })
         .collect::<String>()
@@ -341,6 +342,8 @@ fn classify(sentence: &str) -> Option<Claim> {
                 "i installed ",
                 "i upgraded ",
                 "estou com ",
+                "no computador principal",
+                "on my primary computer",
             ],
         ) {
             return None;

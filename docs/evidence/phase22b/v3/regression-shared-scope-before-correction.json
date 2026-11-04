@@ -1,0 +1,42 @@
+{
+  "utc": "2026-11-04T10:26:49.388406+00:00",
+  "method": "Read-only SQLite snapshot during corrected shared-scope series, before explicit primary-capacity 50 GB turn.",
+  "scope": "phase22b-regression-v3-20",
+  "project": "candeia",
+  "hardware_records": [
+    {
+      "id": "826bbfcf-7970-95ec-9f0b-ee6b71f4b63a",
+      "state": "active",
+      "version": 2,
+      "subject": "device.primary_computer",
+      "property": "ram_capacity",
+      "value": "26_gb",
+      "temporal": "durable",
+      "replaces_id": null,
+      "replaces_version": null
+    },
+    {
+      "id": "5d43e9c6-84c7-a51e-7802-af1f695125ba",
+      "state": "candidate",
+      "version": 1,
+      "subject": "device.unspecified",
+      "property": "capacity_update",
+      "value": "39_gb",
+      "temporal": "pending",
+      "replaces_id": null,
+      "replaces_version": null
+    },
+    {
+      "id": "8ba90bec-7bab-5d53-a2b5-3425b21723f1",
+      "state": "active",
+      "version": 2,
+      "subject": "device.work_laptop",
+      "property": "ram_capacity",
+      "value": "18_gb",
+      "temporal": "durable",
+      "replaces_id": null,
+      "replaces_version": null
+    }
+  ],
+  "source": "Existing 26 GB primary computer and 18 GB work laptop from actual completed 20-turn scenario; no direct canonical writer or synthetic reseeding. The unspecified 39 GB update cannot establish a RAM property/device by itself."
+}

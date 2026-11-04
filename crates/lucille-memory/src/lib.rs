@@ -1,6 +1,8 @@
 //! Canonical, opt-in SQLite memory. No inference, networking, process control or personal-data discovery.
 pub mod autonomous;
 mod aux_backup;
+pub mod context_facts;
+pub mod turn_sources;
 mod coverage;
 pub mod dialogue;
 mod extraction;
@@ -128,7 +130,10 @@ impl Store {
                 .map_err(db_error)?;
             tx.commit().map_err(db_error)?;
         }
-        Ok(Self { db })
+        let mut store = Self { db };
+        store.recover_pending_user_turns(now())?;
+        store.prune_obsolete_vectors()?;
+        Ok(store)
     }
     pub fn identity(&self) -> Result<Identity> {
         self.db.query_row("SELECT name,description,personality,instructions,version,created_at,updated_at FROM identity_profile WHERE id=1",[],|r|Ok(Identity{profile:Profile{name:r.get(0)?,description:r.get(1)?,personality:r.get(2)?,instructions:r.get(3)?},version:r.get(4)?,created_at:r.get(5)?,updated_at:r.get(6)?})).optional().map_err(db_error)?.ok_or("Configure Lucille identity explicitly before use".into())
@@ -277,7 +282,15 @@ impl Store {
                 if !matches!(state, Status::Candidate | Status::Conflict) {
                     return Err("Only candidates or conflicts can be approved".into());
                 }
-                let n:i64=tx.query_row("SELECT count(*) FROM memories WHERE scope=?1 AND project=?2 AND fact_key=?3 AND state='active' AND id!=?4",params![scope,project,key,id],|r|r.get(0)).map_err(db_error)?;
+                let track = intelligent::quality(&tx, id)?;
+                let typed_project = track.as_ref().is_some_and(|q| {
+                    q.subject.starts_with("project.")
+                        && ["language", "database"].contains(&q.property.as_str())
+                });
+                let execution = track.as_ref().is_some_and(|q| {
+                    dialogue::execution_track(&q.subject, &q.property, &q.temporal)
+                });
+                let n:i64=tx.query_row("SELECT count(*) FROM memories m LEFT JOIN memory_quality q ON q.memory_id=m.id WHERE m.scope=?1 AND m.project=?2 AND m.fact_key=?3 AND m.state='active' AND m.id!=?4 AND (?5=0 OR q.memory_id IS NULL OR (q.temporal IN ('in_progress','current','completed','cancelled'))=?6)",params![scope,project,key,id,typed_project,execution],|r|r.get(0)).map_err(db_error)?;
                 state = if n > 0 {
                     Status::Conflict
                 } else {
@@ -404,7 +417,30 @@ impl Store {
         }
         // No unconditional preference injection: relevance, expiry, pending
         // contradictions, diversity and the budget share one selection boundary.
-        let (memories, used) = retrieval::select(&tx, &req, picks, used, semantic, &policy, at)?;
+        let (mut memories, _) = retrieval::select(&tx, &req, picks, used, semantic, &policy, at)?;
+        context_facts::append_project_state(&tx, &req, &mut memories)?;
+        // The state qualifier participates in the same reference ceiling.
+        memories.truncate(12);
+        let (facts, used) = loop {
+            let facts = context_facts::project(&tx, &memories)?;
+            let extra = if memories.is_empty() {
+                0
+            } else {
+                serde_json::to_vec(&memories)
+                    .map_err(|_| "Invalid memories")?
+                    .len()
+                    + serde_json::to_vec(&facts)
+                        .map_err(|_| "Invalid facts")?
+                        .len()
+                    + 64
+            };
+            if used + extra <= req.token_budget {
+                break (facts, used + extra);
+            }
+            if memories.pop().is_none() {
+                return Err("Identity exceeds context budget".into());
+            }
+        };
         let references: Vec<_> = memories
             .iter()
             .map(|m| Reference {
@@ -416,6 +452,7 @@ impl Store {
             .map_err(db_error)?;
         tx.execute("INSERT INTO retrieval_audit(conversation_id,message_id,mode,scope,project,identity_version,references_json,budget,used,at) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10)",params![req.conversation_id,req.message_id,types::label(&req.mode),req.scope,req.project,identity.version,serde_json::to_string(&references).map_err(|_|"Invalid references")?,req.token_budget as i64,used as i64,now()]).map_err(db_error)?;
         tx.commit().map_err(db_error)?;
+        let current_statements = context_facts::statements(&req);
         Ok(TurnContext {
             conversation_id: req.conversation_id,
             message_id: req.message_id,
@@ -424,6 +461,8 @@ impl Store {
             mode: req.mode,
             identity,
             memories,
+            facts,
+            current_statements,
             references,
             token_budget: req.token_budget,
             used_upper_bound: used,
@@ -556,7 +595,18 @@ impl Store {
             uuid::Uuid::parse_str(&change.record_id).map_err(|_| "Invalid history ID")?;
             if change.version < 1
                 || ![
-                    "create", "approve", "reject", "obsolete", "update", "delete", "restore",
+                    "create",
+                    "approve",
+                    "reject",
+                    "obsolete",
+                    "update",
+                    "delete",
+                    "restore",
+                    "auto_promote",
+                    "auto_superseded",
+                    "auto_correct",
+                    "forget_applied",
+                    "forget_empty",
                 ]
                 .contains(&change.operation.as_str())
             {
@@ -637,6 +687,9 @@ impl Store {
         if let Some(aux) = backup.intelligent {
             aux_backup::restore(&tx, &aux)?;
         }
+        tx.execute("UPDATE extraction_jobs SET state='cancelled',evidence_json='[]',error_code='restored_pending_user_turn',lease_token=NULL,lease_until=NULL WHERE state='queued' AND lease_token IS NOT NULL", []).map_err(db_error)?;
+        tx.execute("DELETE FROM learning_inputs WHERE job_id IN (SELECT id FROM extraction_jobs WHERE state='cancelled')", []).map_err(db_error)?;
+        semantic::prune_in_transaction(&tx)?;
         tx.execute(
             "INSERT INTO memories_fts(memories_fts,rank) VALUES('integrity-check',1)",
             [],

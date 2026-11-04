@@ -1,0 +1,417 @@
+{
+  "evaluation": "known historical regression; never unseen",
+  "fixture": "driver-regression22b-v3-series50-final.json",
+  "fixture_sha256": "9d8e17f0f7c82d6d363800acb6b21ea667fe8132c0076d388da0926a73c05723",
+  "totals": {
+    "tp": 8,
+    "fp": 0,
+    "missed": 0,
+    "critical_references": 0,
+    "delivered": 7,
+    "raw_attempts": 9,
+    "conservative_original_answer_pass": 6,
+    "probes": 8,
+    "precision": 1.0,
+    "recall": 1.0
+  },
+  "samples": [
+    {
+      "question": "Como está ficando aquele projeto?",
+      "category": "language",
+      "gold": [
+        {
+          "property": "language",
+          "value": "javascript",
+          "temporal": "planned"
+        },
+        {
+          "property": "database",
+          "value": "sqlite",
+          "temporal": "planned"
+        },
+        {
+          "property": "description"
+        }
+      ],
+      "answer": "O projeto Candeia2 está avançando como um painel de iluminação residencial. Você planeja desenvolvê-lo utilizando JavaScript com SQLite como banco de dados.",
+      "answer_sha256": "722d551c837e4d7bba98098e032e88655fa85cd18dc423aef02ded7cca74185e",
+      "delivered": true,
+      "status": "checked",
+      "raw_attempts": 1,
+      "initial_references": [
+        {
+          "id": "4ff0f500-2c7d-55c8-bf7e-2a1da5716df4",
+          "version": 2,
+          "kind": "project",
+          "content": "Estou começando um projeto de painel de iluminação residencial",
+          "entity": "project.candeia2",
+          "property": "description",
+          "value": "estou comecando um projeto de painel de iluminacao residencial",
+          "modality": "current_fact",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia2",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Estou começando um projeto de painel de iluminação residencial"
+            }
+          ]
+        },
+        {
+          "id": "3852b68f-c198-7a42-19c5-091ae8fb8840",
+          "version": 2,
+          "kind": "decision",
+          "content": "Projeto candeia2: planeja usar sqlite como banco de dados.",
+          "entity": "project.candeia2",
+          "property": "database",
+          "value": "sqlite",
+          "modality": "planned",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia2",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Quero usar JavaScript e SQLite"
+            }
+          ]
+        },
+        {
+          "id": "d78117b2-eca5-c282-5d97-77f8d822450e",
+          "version": 2,
+          "kind": "decision",
+          "content": "Projeto candeia2: planeja usar linguagem javascript.",
+          "entity": "project.candeia2",
+          "property": "language",
+          "value": "javascript",
+          "modality": "planned",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia2",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Quero usar JavaScript e SQLite"
+            }
+          ]
+        }
+      ],
+      "verification_references": [
+        []
+      ],
+      "tp": 3,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": true,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": true
+    },
+    {
+      "question": "Qual banco de dados eu planejo usar no meu projeto?",
+      "category": "database",
+      "gold": [
+        {
+          "property": "database",
+          "value": "sqlite",
+          "temporal": "planned"
+        }
+      ],
+      "answer": "Você planeja usar o SQLite como banco de dados no projeto candeia2.",
+      "answer_sha256": "3b4cbf88a6a993d674b8d60c08d09f34e5d0a34220c995c82646b3bf05c35042",
+      "delivered": true,
+      "status": "checked",
+      "raw_attempts": 1,
+      "initial_references": [
+        {
+          "id": "3852b68f-c198-7a42-19c5-091ae8fb8840",
+          "version": 2,
+          "kind": "decision",
+          "content": "Projeto candeia2: planeja usar sqlite como banco de dados.",
+          "entity": "project.candeia2",
+          "property": "database",
+          "value": "sqlite",
+          "modality": "planned",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia2",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Quero usar JavaScript e SQLite"
+            }
+          ]
+        }
+      ],
+      "verification_references": [
+        []
+      ],
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": true,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": true
+    },
+    {
+      "question": "Should I put sugar in my coffee?",
+      "category": "coffee_sugar",
+      "gold": [
+        {
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        }
+      ],
+      "answer": "Como você prefere café sem açúcar, o ideal é tomar sem.",
+      "answer_sha256": "381d81ede4b10bfe8c37028b4e599add17258a85207068f6d03b1647e3526ad7",
+      "delivered": true,
+      "status": "checked",
+      "raw_attempts": 1,
+      "initial_references": [
+        {
+          "id": "56f3883f-8685-4609-06e1-65b383bb51e2",
+          "version": 1,
+          "kind": "preference",
+          "content": "Prefere café sem açúcar.",
+          "entity": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar",
+          "modality": "preference",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia2",
+          "review": "independently_grounded_active",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "No lanche da minha tarde, eu prefiro café sem açúcar"
+            }
+          ]
+        }
+      ],
+      "verification_references": [
+        []
+      ],
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": true,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": true
+    },
+    {
+      "question": "Qual é minha preferência de tema visual?",
+      "category": "interface_theme",
+      "gold": [
+        {
+          "property": "interface_theme",
+          "value": "dark"
+        }
+      ],
+      "answer": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+      "answer_sha256": "6a36d47c9a0266fcd8cbac6bf814227d40cf0de1c9cf73a7316b9570c6d3dcbd",
+      "delivered": false,
+      "status": "blocked",
+      "raw_attempts": 2,
+      "initial_references": [
+        {
+          "id": "c9e052d5-5ecb-d163-e3e7-5ea32a6b9d60",
+          "version": 1,
+          "kind": "preference",
+          "content": "Na interface que uso diariamente, eu prefiro modo escuro",
+          "entity": "user",
+          "property": "interface_theme",
+          "value": "dark",
+          "modality": "preference",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia2",
+          "review": "independently_grounded_active",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Na interface que uso diariamente, eu prefiro modo escuro"
+            }
+          ]
+        }
+      ],
+      "verification_references": [
+        [],
+        []
+      ],
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": false,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": false
+    },
+    {
+      "question": "How much RAM is installed in my main desktop?",
+      "category": "ram_capacity",
+      "gold": [
+        {
+          "property": "ram_capacity",
+          "value": "36_gb",
+          "subject": "device.primary_computer"
+        }
+      ],
+      "answer": "Your main computer has 36 GB of RAM.",
+      "answer_sha256": "0780ebb78b170488101936746b893d463f1a53218d18e103715b06b385f21fe2",
+      "delivered": true,
+      "status": "checked",
+      "raw_attempts": 1,
+      "initial_references": [
+        {
+          "id": "8bc70361-050f-ed56-02f3-1ec95008b8e1",
+          "version": 2,
+          "kind": "hardware",
+          "content": "Meu computador principal tem 36 GB de RAM",
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "36_gb",
+          "modality": "current_fact",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia2",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Meu computador principal tem 36 GB de RAM"
+            }
+          ]
+        }
+      ],
+      "verification_references": [
+        []
+      ],
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": true,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": true
+    },
+    {
+      "question": "Qual é a RAM do meu notebook de trabalho?",
+      "category": "ram_capacity",
+      "gold": [
+        {
+          "property": "ram_capacity",
+          "value": "10_gb",
+          "subject": "device.work_laptop"
+        }
+      ],
+      "answer": "Seu notebook de trabalho tem 10 GB de RAM.",
+      "answer_sha256": "1ebbae37da587b7ea2ff1d017994c30d7fab2a24666b8b014164eb4c6d8ea4b0",
+      "delivered": true,
+      "status": "checked",
+      "raw_attempts": 1,
+      "initial_references": [
+        {
+          "id": "9a778881-deb2-4789-c554-1e64d0208f35",
+          "version": 2,
+          "kind": "hardware",
+          "content": "Meu notebook de trabalho tem 10 GB de RAM",
+          "entity": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "10_gb",
+          "modality": "current_fact",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia2",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Meu notebook de trabalho tem 10 GB de RAM"
+            }
+          ]
+        }
+      ],
+      "verification_references": [
+        []
+      ],
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": true,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": true
+    },
+    {
+      "question": "What database is planned for project candeia?",
+      "category": "scope_fence",
+      "gold": [],
+      "answer": "No relevant record is available regarding the specific database planned for project candeia.",
+      "answer_sha256": "81de6d6d93db982654ac4db700482b484604835b09bcde262d23edb4ff2f902d",
+      "delivered": true,
+      "status": "checked",
+      "raw_attempts": 1,
+      "initial_references": [],
+      "verification_references": [
+        []
+      ],
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": false,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": false
+    },
+    {
+      "question": "Quanto é 17 mais 18?",
+      "category": "irrelevant",
+      "gold": [],
+      "answer": "17 mais 18 é igual a 35.",
+      "answer_sha256": "da18dcb172b88a59f212a0b6cccc23cf54f204538d753b6ed1b6f39b1a15ac2a",
+      "delivered": true,
+      "status": "checked",
+      "raw_attempts": 1,
+      "initial_references": [],
+      "verification_references": [
+        []
+      ],
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": true,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": true
+    }
+  ],
+  "limitations": [
+    "Initial injected references are scored independently of additional read-only verifier confirmations.",
+    "Original answer regexes remain unchanged. Forbidden mentions may be valid negations/history and require literal review.",
+    "Displayed nonanswers are unavailable, not successes."
+  ]
+}

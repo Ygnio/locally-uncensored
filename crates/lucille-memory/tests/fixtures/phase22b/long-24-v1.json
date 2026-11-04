@@ -1,0 +1,257 @@
+{
+  "id": "phase22b-unseen-longitudinal-24-v1",
+  "project": "tamarindo",
+  "design": "New longitudinal corpus after development, including correction, per-device distinction, explicit forget/relearn and replay. No prewritten assistant responses.",
+  "turns": [
+    {
+      "text": "Estou começando um projeto de catálogo de trilhas.",
+      "review": true
+    },
+    {
+      "text": "Quero usar TypeScript e SQLite.",
+      "review": true
+    },
+    {
+      "text": "Meu computador principal tem 32 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Meu notebook de trabalho tem 20 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Eu prefiro tomar meu café com açúcar."
+    },
+    {
+      "text": "Eu gosto de criar personagens em jogos."
+    },
+    {
+      "text": "Gosto de jogos em que posso escolher minha classe."
+    },
+    {
+      "text": "Não gosto de interfaces muito carregadas."
+    },
+    {
+      "text": "Eu prefiro respostas objetivas."
+    },
+    {
+      "text": "Quanto é 17 somado a 28?"
+    },
+    {
+      "text": "No meu projeto, eu uso Python.",
+      "review": true
+    },
+    {
+      "text": "Não tenho mais 32 GB, agora são 48 GB.",
+      "review": true
+    },
+    {
+      "text": "Na verdade, eu prefiro café sem açúcar."
+    },
+    {
+      "text": "Meu objetivo é aprender italiano.",
+      "review": true
+    },
+    {
+      "text": "Por que um objeto cai quando é solto?"
+    },
+    {
+      "text": "Concluí meu objetivo de aprender italiano.",
+      "review": true
+    },
+    {
+      "text": "Esqueça minha preferência por criar personagens em jogos."
+    },
+    {
+      "text": "Por que o arco-íris se forma?"
+    },
+    {
+      "text": "Pode voltar a memorizar: eu gosto de criar personagens em jogos."
+    },
+    {
+      "text": "Agora tenho 6 GB de RAM livre no computador principal.",
+      "review": true
+    },
+    {
+      "text": "Eu prefiro tema claro na interface."
+    },
+    {
+      "text": "Esqueça minha preferência de tema de interface.",
+      "replay_turn_index": 20
+    },
+    {
+      "text": "Meu outro computador tem 12 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Qual é a diferença entre uma lista e um conjunto?"
+    }
+  ],
+  "probes": [
+    {
+      "text": "Que linguagem meu projeto usa atualmente?",
+      "scenario": "different_projects",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "python",
+          "temporal": "current"
+        }
+      ]
+    },
+    {
+      "text": "Qual banco de dados eu planejo usar nesse projeto?",
+      "scenario": "plan_vs_execution",
+      "mode": "code",
+      "expected": [
+        {
+          "property": "database",
+          "value": "sqlite",
+          "temporal": "planned"
+        }
+      ]
+    },
+    {
+      "text": "Quanto de RAM meu computador principal tem agora?",
+      "scenario": "ram_correction",
+      "mode": "chat",
+      "expected": [
+        {
+          "subject": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "48_gb"
+        }
+      ]
+    },
+    {
+      "text": "Quais são as capacidades de RAM do meu computador principal e do meu notebook de trabalho?",
+      "scenario": "different_equipment",
+      "mode": "agent",
+      "expected": [
+        {
+          "subject": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "48_gb"
+        },
+        {
+          "subject": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "20_gb"
+        }
+      ]
+    },
+    {
+      "text": "Como eu prefiro meu café hoje?",
+      "scenario": "corrected_preference",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        }
+      ]
+    },
+    {
+      "text": "Como eu tomava meu café antes?",
+      "scenario": "current_vs_historical",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "coffee_sugar",
+          "value": "with_sugar"
+        }
+      ]
+    },
+    {
+      "text": "De que aspectos dos jogos eu gosto?",
+      "scenario": "corrected_preference",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "games_character_creation",
+          "value": "positive"
+        },
+        {
+          "property": "games_class_selection",
+          "value": "positive"
+        }
+      ]
+    },
+    {
+      "text": "Como eu prefiro suas respostas?",
+      "scenario": "multilingual_question",
+      "mode": "code",
+      "expected": [
+        {
+          "property": "communication_focus",
+          "value": "objective"
+        }
+      ]
+    },
+    {
+      "text": "Qual é minha opinião sobre interfaces carregadas?",
+      "scenario": "corrected_preference",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "interface_clutter",
+          "value": "negative"
+        }
+      ]
+    },
+    {
+      "text": "Qual objetivo eu concluí?",
+      "scenario": "completed_goal",
+      "mode": "chat",
+      "expected": [
+        {
+          "property_prefix": "goal.",
+          "value": "completed:aprender italiano",
+          "temporal": "completed"
+        }
+      ]
+    },
+    {
+      "text": "Qual tema de interface eu prefiro?",
+      "scenario": "deleted_information",
+      "mode": "chat",
+      "expected": []
+    },
+    {
+      "text": "Qual é a minha data de aniversário?",
+      "scenario": "no_memory",
+      "mode": "chat",
+      "expected": []
+    },
+    {
+      "text": "Como está aquele projeto de catálogo?",
+      "scenario": "indirect_question",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "python",
+          "temporal": "current"
+        },
+        {
+          "property": "database",
+          "value": "sqlite",
+          "temporal": "planned"
+        }
+      ]
+    },
+    {
+      "text": "Which database do I plan to use for this project?",
+      "scenario": "multilingual_question",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "database",
+          "value": "sqlite",
+          "temporal": "planned"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "phase22b-unseen-answers-decision-v3",
+  "project": "ingazeiro",
+  "turns": [
+    {
+      "text": "Decidi usar TypeScript para meu projeto.",
+      "review": true
+    },
+    {
+      "text": "Escolhi PostgreSQL para o banco do meu projeto.",
+      "review": true
+    }
+  ],
+  "probes": [
+    {
+      "text": "Você lembra qual linguagem eu escolhi para este projeto?",
+      "scenario": "different_projects",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "typescript"
+        }
+      ]
+    },
+    {
+      "text": "Ter decidido usar TypeScript comprova que o projeto já foi concluído?",
+      "scenario": "decision_vs_completion",
+      "mode": "agent",
+      "expected": [
+        {
+          "property": "language",
+          "value": "typescript"
+        }
+      ]
+    },
+    {
+      "text": "Qual foi a minha escolha de armazenamento para este projeto?",
+      "scenario": "indirect_question",
+      "mode": "code",
+      "expected": [
+        {
+          "property": "database",
+          "value": "postgresql"
+        }
+      ]
+    }
+  ]
+}

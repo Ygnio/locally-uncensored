@@ -1,0 +1,588 @@
+{
+  "id": "phase22b-unseen-retrieval-v2",
+  "design": "New independently authored queries and values after production commit 4021c86a. Same global thresholds. Scoped reviewed source events; actual Nomic vectors only. Independent retrieval ablation before answer generation.",
+  "events": [
+    {
+      "action": "learn",
+      "label": "description",
+      "text": "Estou começando um projeto de catálogo de pegadas.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "mangabeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "language",
+      "text": "Decidi usar Rust para o meu projeto.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "mangabeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "database",
+      "text": "Escolhi PostgreSQL para meu projeto.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "mangabeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "primary",
+      "text": "Meu computador principal tem 40 GB de RAM.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "mangabeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "work",
+      "text": "Meu notebook de trabalho tem 12 GB de RAM.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "mangabeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "other",
+      "text": "Meu outro computador tem 8 GB de RAM.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "mangabeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "coffee-old",
+      "text": "Prefiro café com açúcar.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "mangabeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "coffee-now",
+      "text": "Na verdade, agora prefiro café sem açúcar.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "mangabeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "theme",
+      "text": "Prefiro tema escuro.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "mangabeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "objective",
+      "text": "Prefiro respostas objetivas.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "mangabeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "characters",
+      "text": "Eu adoro jogos com criação de personagens.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "mangabeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "classes-deleted",
+      "text": "Eu gosto de jogos em que posso escolher uma classe.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "mangabeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "goal",
+      "text": "Concluí meu objetivo de aprender japonês.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "mangabeira",
+      "approve": true
+    },
+    {
+      "action": "delete",
+      "target": "classes-deleted"
+    },
+    {
+      "action": "learn",
+      "label": "foreign-language",
+      "text": "Decidi usar Python no meu projeto.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "mangabeira2",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "foreign-coffee",
+      "text": "Prefiro café com açúcar.",
+      "scope": "phase22b-v2-ret-other",
+      "project": "mangabeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "future",
+      "text": "Quero usar JavaScript no meu projeto.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "buriti",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "actual",
+      "text": "No meu projeto, eu uso TypeScript.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "buriti",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "ended-language",
+      "text": "Estou desenvolvendo meu projeto em Python.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "cajazeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "ended-state",
+      "text": "Cancelei meu projeto.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "cajazeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "unknown",
+      "text": "Ainda não defini o banco de dados do meu projeto.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "guabiroba",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "pending",
+      "text": "Quero usar Rust no meu projeto.",
+      "scope": "phase22b-v2-ret-a",
+      "project": "araticum",
+      "approve": false
+    }
+  ],
+  "queries": [
+    {
+      "id": "cr-001",
+      "query": "Você lembra qual linguagem escolhi para meu projeto?",
+      "expected": [
+        "language"
+      ],
+      "category": "language_choice",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-002",
+      "query": "Que linguagem eu tinha decidido usar?",
+      "expected": [
+        "language"
+      ],
+      "category": "language_choice",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-003",
+      "query": "Which language did I choose for my project?",
+      "expected": [
+        "language"
+      ],
+      "category": "language_choice",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-004",
+      "query": "Qual linguageem eu escolhi para o projeto?",
+      "expected": [
+        "language"
+      ],
+      "category": "language_choice",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-005",
+      "query": "Lembra qual banco escolhi para armazenar os dados do projeto?",
+      "expected": [
+        "database"
+      ],
+      "category": "indirect_database",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-006",
+      "query": "Qual foi minha escolha de armazenamento para o projeto?",
+      "expected": [
+        "database"
+      ],
+      "category": "indirect_database",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-007",
+      "query": "Which database did I choose?",
+      "expected": [
+        "database"
+      ],
+      "category": "indirect_database",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-008",
+      "query": "Pode me lembrar do projeto de catálogo que mencionei?",
+      "expected": [
+        "description",
+        "language",
+        "database"
+      ],
+      "category": "project_summary",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-009",
+      "query": "Qual é a RAM do meu computador principal?",
+      "expected": [
+        "primary"
+      ],
+      "category": "equipment",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-010",
+      "query": "Meu notebook de trabalho tem quanta RAM?",
+      "expected": [
+        "work"
+      ],
+      "category": "equipment",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-011",
+      "query": "E o outro computador, quanto ele tem de RAM?",
+      "expected": [
+        "other"
+      ],
+      "category": "equipment",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-012",
+      "query": "Quantos GB de RAM têm meu computador principal e meu notebook de trabalho?",
+      "expected": [
+        "primary",
+        "work"
+      ],
+      "category": "equipment",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-013",
+      "query": "E o outro computador e o notebook de trabalho, quanto de RAM cada um tem?",
+      "expected": [
+        "other",
+        "work"
+      ],
+      "category": "equipment",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-014",
+      "query": "Quanta memória RAM tenho nos meus três computadores?",
+      "expected": [
+        "primary",
+        "work",
+        "other"
+      ],
+      "category": "equipment",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-015",
+      "query": "Como gosto de tomar meu café atualmente?",
+      "expected": [
+        "coffee-now"
+      ],
+      "category": "coffee",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-016",
+      "query": "Como eu prefiro café agora?",
+      "expected": [
+        "coffee-now"
+      ],
+      "category": "coffee",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-017",
+      "query": "Qual era meu café preferido antes e qual é o de agora?",
+      "expected": [
+        "coffee-old",
+        "coffee-now"
+      ],
+      "category": "coffee",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-018",
+      "query": "How do I prefer my coffee?",
+      "expected": [
+        "coffee-now"
+      ],
+      "category": "coffee",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-019",
+      "query": "Como eu gosto de receber as respostas?",
+      "expected": [
+        "objective"
+      ],
+      "category": "communication",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-020",
+      "query": "Qual tema eu prefiro para a interface?",
+      "expected": [
+        "theme"
+      ],
+      "category": "theme",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-021",
+      "query": "Que recurso de criação de personagens eu gosto nos jogos?",
+      "expected": [
+        "characters"
+      ],
+      "category": "games",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-022",
+      "query": "Você lembra a minha preferência por escolher classes nos jogos? quando existia? Em termos históricos. ",
+      "expected": [],
+      "category": "deleted",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": [
+        "classes-deleted"
+      ]
+    },
+    {
+      "id": "cr-023",
+      "query": "Qual meta pessoal eu já concluí?",
+      "expected": [
+        "goal"
+      ],
+      "category": "completed_goal",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-024",
+      "query": "Como faço café para minha colega?",
+      "expected": [],
+      "category": "foreign_actor",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-025",
+      "query": "Qual a capital de Portugal?",
+      "expected": [],
+      "category": "knowledge",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-026",
+      "query": "Qual é minha senha de acesso?",
+      "expected": [],
+      "category": "sensitive",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-027",
+      "query": "Qual linguagem eu escolhi no projeto mangabeira2?",
+      "expected": [],
+      "category": "foreign_project",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-028",
+      "query": "Qual linguagem escolhi para meu projeto?",
+      "expected": [
+        "foreign-language"
+      ],
+      "category": "distinct_project",
+      "project": "mangabeira2",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-029",
+      "query": "Como prefiro café?",
+      "expected": [
+        "foreign-coffee"
+      ],
+      "category": "distinct_scope",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-other",
+      "forbidden": []
+    },
+    {
+      "id": "cr-030",
+      "query": "Que linguagem meu projeto usa agora?",
+      "expected": [
+        "actual"
+      ],
+      "category": "actual_vs_future",
+      "project": "buriti",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": [
+        "future"
+      ]
+    },
+    {
+      "id": "cr-031",
+      "query": "Que linguagem planejo usar e qual meu projeto usa agora?",
+      "expected": [
+        "future",
+        "actual"
+      ],
+      "category": "actual_vs_future",
+      "project": "buriti",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-032",
+      "query": "Como está meu projeto atualmente?",
+      "expected": [
+        "ended-state"
+      ],
+      "category": "cancelled",
+      "project": "cajazeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": [
+        "ended-language"
+      ]
+    },
+    {
+      "id": "cr-033",
+      "query": "Que linguagem eu usava antes e como está meu projeto agora?",
+      "expected": [
+        "ended-language",
+        "ended-state"
+      ],
+      "category": "historical_project",
+      "project": "cajazeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-034",
+      "query": "Eu escolhi algum banco para o meu projeto?",
+      "expected": [
+        "unknown"
+      ],
+      "category": "explicit_unknown",
+      "project": "guabiroba",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-035",
+      "query": "Qual linguagem eu escolhi para meu projeto?",
+      "expected": [],
+      "category": "pending_review",
+      "project": "araticum",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": [
+        "pending"
+      ]
+    },
+    {
+      "id": "cr-036",
+      "query": "Qual GPU está no meu computador?",
+      "expected": [],
+      "category": "unsupported_hardware",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    },
+    {
+      "id": "cr-037",
+      "query": "Que remédio devo tomar?",
+      "expected": [],
+      "category": "unrelated",
+      "project": "mangabeira",
+      "scope": "phase22b-v2-ret-a",
+      "forbidden": []
+    }
+  ]
+}

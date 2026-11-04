@@ -1,4 +1,5 @@
 import { LucilleSettings } from "./LucilleSettings"
+import { realValidationPin } from '../../lib/lucille-real-validation'
 import { useState, useRef, useEffect } from 'react'
 import { Brain, Download, Upload, Trash2, Search, Plus, X, Check, Pencil, Zap, FileJson, Archive, Sparkles } from 'lucide-react'
 import { useMemoryStore, effectiveMemoryBudget, describeMemoryImport } from '../../stores/memoryStore'
@@ -495,7 +496,7 @@ function MemorySettingsPanel() {
         </>)}
       </div>
 
-      {import.meta.env.DEV && import.meta.env.VITE_LUCILLE_PHASE1 === "1" && conversation && <LucilleSettings conversation={conversation} />}
+      {(import.meta.env.DEV || realValidationPin !== null) && import.meta.env.VITE_LUCILLE_PHASE1 === "1" && conversation && <LucilleSettings conversation={conversation} />}
 
       {/* Search */}
       {conversation && (

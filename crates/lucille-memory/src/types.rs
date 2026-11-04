@@ -140,6 +140,10 @@ pub struct TurnContext {
     pub mode: Mode,
     pub identity: Identity,
     pub memories: Vec<Memory>,
+    #[serde(default)]
+    pub facts: Vec<crate::context_facts::ContextFact>,
+    #[serde(default)]
+    pub current_statements: Vec<crate::context_facts::ContextFact>,
     pub references: Vec<Reference>,
     pub token_budget: usize,
     pub used_upper_bound: usize,

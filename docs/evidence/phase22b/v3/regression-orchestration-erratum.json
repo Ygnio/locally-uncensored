@@ -1,0 +1,48 @@
+{
+  "classification": "Orchestration error; not a valid execution of the historical combined protocol",
+  "cause": "The first attempt incorrectly used a distinct scope per length. The historical series carries candeia state from 20 into 100, with candeia2 isolated by project in the same scope. Without that baseline the 100-turn attempt had no prior known RAM property.",
+  "invalid_attempt": {
+    "fixture": "driver-invalid-isolated-long100-failure.json",
+    "completed_source_turns": 61,
+    "completed_probe_turns": 0,
+    "error": "Review did not drain",
+    "observed_native_state": [
+      "Unspecified capacity_update 39 GB remained pending.",
+      "Explicit primary-computer capacity_update 50 GB remained an unapproved candidate, with no proven prior RAM property in this wrongly empty scope.",
+      "The UI QA reviewer uses broad category/state selection and did not drain after 16 passes. The failure fixture does not establish the exact row selected on each pass. No invented hardware approval or canonical seed was introduced."
+    ],
+    "quality_scores": null,
+    "resource_pressure": false
+  },
+  "additional_isolated50": {
+    "fixture": "driver-regression22b-v3-long50-final.json",
+    "scores": "regression22b-v3-long50-scores.json",
+    "role": "Supplemental isolated scenario, not the correctly shared-scope historical series"
+  },
+  "corrected_series": {
+    "scope": "phase22b-regression-v3-20",
+    "order": [
+      {
+        "turns": 20,
+        "fixture": "driver-regression22b-v3-long20-final.json"
+      },
+      {
+        "turns": 50,
+        "fixture": "driver-regression22b-v3-series50-final.json"
+      },
+      {
+        "turns": 100,
+        "fixture": "driver-regression22b-v3-series100-final.json"
+      }
+    ],
+    "reason": "Reuse the completed valid 20-turn baseline, then run original 50 and 100 plans in their original shared-scope order. No code/prompt/policy/model/gold change and no direct canonical writer."
+  },
+  "old_expression_literal_review": {
+    "fixture": "driver-regression22b-v3-long50-final.json",
+    "probe_index": 6,
+    "answer": "No relevant record is available regarding the specific database planned for project candeia.",
+    "answer_sha256": "81de6d6d93db982654ac4db700482b484604835b09bcde262d23edb4ff2f902d",
+    "independent_review": "Correct scoped availability statement for foreign project. The original answer regex does not recognize this wording; its false score is preserved, not silently relabeled."
+  },
+  "disclosure": "The error was identified and disclosed before the corrected repetition. The original new-corpus v3 evaluation is unchanged and remains failed independently of this regression setup correction."
+}

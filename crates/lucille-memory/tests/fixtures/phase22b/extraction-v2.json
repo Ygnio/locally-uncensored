@@ -1,0 +1,958 @@
+{
+  "id": "phase22b-unseen-extraction-v2",
+  "design": "Created after production commit 4021c86a. New original utterances, independently specified literal gold. No pre-evaluation native or model tuning. B is review-only; C must not write. All synthetic.",
+  "cases": [
+    {
+      "id": "cx-001",
+      "scope": "phase22b-v2-ext-001",
+      "project": "mangabeira",
+      "text": "Para mim, criar personagens é uma parte dos jogos de que gosto muito.",
+      "category": "character_creation",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "games_character_creation",
+          "value": "positive"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-002",
+      "scope": "phase22b-v2-ext-002",
+      "project": "mangabeira",
+      "text": "Eu adoro a criação de personagens oferecida por alguns jogos.",
+      "category": "character_creation",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "games_character_creation",
+          "value": "positive"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-003",
+      "scope": "phase22b-v2-ext-003",
+      "project": "mangabeira",
+      "text": "In games, I enjoy creating characters with different appearances.",
+      "category": "character_creation",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "games_character_creation",
+          "value": "positive"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-004",
+      "scope": "phase22b-v2-ext-004",
+      "project": "mangabeira",
+      "text": "Quando avalio jogos novos, prefiro os que permitem criar personagens.",
+      "category": "character_creation",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "games_character_creation",
+          "value": "positive"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-005",
+      "scope": "phase22b-v2-ext-005",
+      "project": "mangabeira",
+      "text": "A criação de personagens dos jogos está entre minhas atividades favoritas.",
+      "category": "character_creation",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "games_character_creation",
+          "value": "positive"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-006",
+      "scope": "phase22b-v2-ext-006",
+      "project": "mangabeira",
+      "text": "Eu gosto dos jogos que me deixam escolher uma classe.",
+      "category": "class_selection",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "games_class_selection",
+          "value": "positive"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-007",
+      "scope": "phase22b-v2-ext-007",
+      "project": "mangabeira",
+      "text": "Nos jogos, a possibilidade de definir minha classe é o que mais me agrada.",
+      "category": "class_selection",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "games_class_selection",
+          "value": "positive"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-008",
+      "scope": "phase22b-v2-ext-008",
+      "project": "mangabeira",
+      "text": "I prefer games where I can choose a class for my character.",
+      "category": "class_selection",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "games_class_selection",
+          "value": "positive"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-009",
+      "scope": "phase22b-v2-ext-009",
+      "project": "mangabeira",
+      "text": "Minha preferência são jogos em que posso selecionar a classe.",
+      "category": "class_selection",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "games_class_selection",
+          "value": "positive"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-010",
+      "scope": "phase22b-v2-ext-010",
+      "project": "mangabeira",
+      "text": "Em jogos, adoro escolher entre classes diferentes.",
+      "category": "class_selection",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "games_class_selection",
+          "value": "positive"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-011",
+      "scope": "phase22b-v2-ext-011",
+      "project": "mangabeira",
+      "text": "Eu detesto interfaces carregadas de elementos visuais.",
+      "category": "interface_clutter",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "interface_clutter",
+          "value": "negative"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-012",
+      "scope": "phase22b-v2-ext-012",
+      "project": "mangabeira",
+      "text": "I dislike cluttered screens when I am reading.",
+      "category": "interface_clutter",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "interface_clutter",
+          "value": "negative"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-013",
+      "scope": "phase22b-v2-ext-013",
+      "project": "mangabeira",
+      "text": "Interfaces carregadas com muitos elementos me incomodam.",
+      "category": "interface_clutter",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "interface_clutter",
+          "value": "negative"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-014",
+      "scope": "phase22b-v2-ext-014",
+      "project": "mangabeira",
+      "text": "Não gosto de uma interface poluída de botões.",
+      "category": "interface_clutter",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "interface_clutter",
+          "value": "negative"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-015",
+      "scope": "phase22b-v2-ext-015",
+      "project": "mangabeira",
+      "text": "Eu odeio interfaces que parecem visualmente poluídas.",
+      "category": "interface_clutter",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "interface_clutter",
+          "value": "negative"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-016",
+      "scope": "phase22b-v2-ext-016",
+      "project": "mangabeira",
+      "text": "Minha bebida favorita continua sendo chá.",
+      "category": "favorite_drink",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "favorite_beverage",
+          "value": "tea"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-017",
+      "scope": "phase22b-v2-ext-017",
+      "project": "mangabeira",
+      "text": "My favourite drink remains tea.",
+      "category": "favorite_drink",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "favorite_beverage",
+          "value": "tea"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-018",
+      "scope": "phase22b-v2-ext-018",
+      "project": "mangabeira",
+      "text": "Entre as bebidas que conheço, chá é a que eu mais aprecio.",
+      "category": "favorite_drink",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "favorite_beverage",
+          "value": "tea"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-019",
+      "scope": "phase22b-v2-ext-019",
+      "project": "mangabeira",
+      "text": "Minha bebida preferida, sem dúvida, é chá.",
+      "category": "favorite_drink",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "favorite_beverage",
+          "value": "tea"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-020",
+      "scope": "phase22b-v2-ext-020",
+      "project": "mangabeira",
+      "text": "Entre as bebidas, gosto mais de chá do que de qualquer outra.",
+      "category": "favorite_drink",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "favorite_beverage",
+          "value": "tea"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-021",
+      "scope": "phase22b-v2-ext-021",
+      "project": "mangabeira",
+      "text": "Eu prefiro respostas objetivas quando faço uma pergunta.",
+      "category": "objective_replies",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "communication_focus",
+          "value": "objective"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-022",
+      "scope": "phase22b-v2-ext-022",
+      "project": "mangabeira",
+      "text": "I prefer objective replies to my questions.",
+      "category": "objective_replies",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "communication_focus",
+          "value": "objective"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-023",
+      "scope": "phase22b-v2-ext-023",
+      "project": "mangabeira",
+      "text": "Das respostas que recebo, as objetivas são minhas preferidas.",
+      "category": "objective_replies",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "communication_focus",
+          "value": "objective"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-024",
+      "scope": "phase22b-v2-ext-024",
+      "project": "mangabeira",
+      "text": "Eu gosto de respostas objetivas para organizar minhas ideias.",
+      "category": "objective_replies",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "communication_focus",
+          "value": "objective"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-025",
+      "scope": "phase22b-v2-ext-025",
+      "project": "mangabeira",
+      "text": "Para mim, respostas objetivas são a melhor escolha.",
+      "category": "objective_replies",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "communication_focus",
+          "value": "objective"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-026",
+      "scope": "phase22b-v2-ext-026",
+      "project": "mangabeira",
+      "text": "Na fotografia, eu prefiro papel brilhante para as fotos.",
+      "category": "other_safe_preferences",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "photo_paper",
+          "value": "glossy"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-027",
+      "scope": "phase22b-v2-ext-027",
+      "project": "mangabeira",
+      "text": "I prefer glossy photo paper for my prints.",
+      "category": "other_safe_preferences",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "photo_paper",
+          "value": "glossy"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-028",
+      "scope": "phase22b-v2-ext-028",
+      "project": "mangabeira",
+      "text": "Eu gosto de tocar violão acústico nas horas vagas.",
+      "category": "other_safe_preferences",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "hobby",
+          "value": "acoustic_guitar"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-029",
+      "scope": "phase22b-v2-ext-029",
+      "project": "mangabeira",
+      "text": "I like adventure novels with long journeys.",
+      "category": "other_safe_preferences",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "book_genre",
+          "value": "adventure"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-030",
+      "scope": "phase22b-v2-ext-030",
+      "project": "mangabeira",
+      "text": "Para passear, eu prefiro trilhas curtas.",
+      "category": "other_safe_preferences",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "outing",
+          "value": "short_trails"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-031",
+      "scope": "phase22b-v2-ext-031",
+      "project": "mangabeira",
+      "text": "Na sala, eu prefiro estantes de madeira.",
+      "category": "other_safe_preferences",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "shelf_material",
+          "value": "wood"
+        }
+      ],
+      "risk": "A",
+      "critical": false
+    },
+    {
+      "id": "cx-032",
+      "scope": "phase22b-v2-ext-032",
+      "project": "mangabeira",
+      "text": "Meu computador principal tem 40 GB de RAM.",
+      "category": "reviewed_or_temporary",
+      "expected": [
+        {
+          "kind": "hardware",
+          "subject": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "40_gb"
+        }
+      ],
+      "risk": "B",
+      "critical": false
+    },
+    {
+      "id": "cx-033",
+      "scope": "phase22b-v2-ext-033",
+      "project": "mangabeira",
+      "text": "Meu notebook de trabalho possui 12 GB de RAM.",
+      "category": "reviewed_or_temporary",
+      "expected": [
+        {
+          "kind": "hardware",
+          "subject": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "12_gb"
+        }
+      ],
+      "risk": "B",
+      "critical": false
+    },
+    {
+      "id": "cx-034",
+      "scope": "phase22b-v2-ext-034",
+      "project": "mangabeira",
+      "text": "Meu outro computador tem 8 GB de RAM.",
+      "category": "reviewed_or_temporary",
+      "expected": [
+        {
+          "kind": "hardware",
+          "subject": "device.other_computer",
+          "property": "ram_capacity",
+          "value": "8_gb"
+        }
+      ],
+      "risk": "B",
+      "critical": false
+    },
+    {
+      "id": "cx-035",
+      "scope": "phase22b-v2-ext-035",
+      "project": "mangabeira",
+      "text": "No meu projeto, eu uso JavaScript.",
+      "category": "reviewed_or_temporary",
+      "expected": [
+        {
+          "kind": "fact",
+          "subject": "project.mangabeira",
+          "property": "language",
+          "value": "javascript",
+          "temporal": "current"
+        }
+      ],
+      "risk": "B",
+      "critical": false
+    },
+    {
+      "id": "cx-036",
+      "scope": "phase22b-v2-ext-036",
+      "project": "mangabeira",
+      "text": "Para o meu projeto, pretendo usar Python.",
+      "category": "reviewed_or_temporary",
+      "expected": [
+        {
+          "kind": "decision",
+          "subject": "project.mangabeira",
+          "property": "language",
+          "value": "python",
+          "temporal": "planned"
+        }
+      ],
+      "risk": "B",
+      "critical": false
+    },
+    {
+      "id": "cx-037",
+      "scope": "phase22b-v2-ext-037",
+      "project": "mangabeira",
+      "text": "I plan to use Rust in my project.",
+      "category": "reviewed_or_temporary",
+      "expected": [
+        {
+          "kind": "decision",
+          "subject": "project.mangabeira",
+          "property": "language",
+          "value": "rust",
+          "temporal": "planned"
+        }
+      ],
+      "risk": "B",
+      "critical": false
+    },
+    {
+      "id": "cx-038",
+      "scope": "phase22b-v2-ext-038",
+      "project": "mangabeira",
+      "text": "SQLite faz parte dos meus planos para o projeto.",
+      "category": "reviewed_or_temporary",
+      "expected": [
+        {
+          "kind": "decision",
+          "subject": "project.mangabeira",
+          "property": "database",
+          "value": "sqlite",
+          "temporal": "planned"
+        }
+      ],
+      "risk": "B",
+      "critical": false
+    },
+    {
+      "id": "cx-039",
+      "scope": "phase22b-v2-ext-039",
+      "project": "mangabeira",
+      "text": "Escolhi PostgreSQL como banco para meu projeto.",
+      "category": "reviewed_or_temporary",
+      "expected": [
+        {
+          "kind": "decision",
+          "subject": "project.mangabeira",
+          "property": "database",
+          "value": "postgresql"
+        }
+      ],
+      "risk": "B",
+      "critical": false
+    },
+    {
+      "id": "cx-040",
+      "scope": "phase22b-v2-ext-040",
+      "project": "mangabeira",
+      "text": "I chose MySQL for my project.",
+      "category": "reviewed_or_temporary",
+      "expected": [
+        {
+          "kind": "decision",
+          "subject": "project.mangabeira",
+          "property": "database",
+          "value": "mysql"
+        }
+      ],
+      "risk": "B",
+      "critical": false
+    },
+    {
+      "id": "cx-041",
+      "scope": "phase22b-v2-ext-041",
+      "project": "mangabeira",
+      "text": "Ainda não defini a linguagem do meu projeto.",
+      "category": "reviewed_or_temporary",
+      "expected": [
+        {
+          "kind": "decision",
+          "subject": "project.mangabeira",
+          "property": "language",
+          "value": "undecided",
+          "temporal": "unknown"
+        }
+      ],
+      "risk": "B",
+      "critical": false
+    },
+    {
+      "id": "cx-042",
+      "scope": "phase22b-v2-ext-042",
+      "project": "mangabeira",
+      "text": "Talvez eu use TypeScript no meu projeto.",
+      "category": "reviewed_or_temporary",
+      "expected": [
+        {
+          "kind": "hypothesis",
+          "subject": "project.mangabeira",
+          "property": "language",
+          "value": "typescript",
+          "temporal": "hypothesis"
+        }
+      ],
+      "risk": "B",
+      "critical": false
+    },
+    {
+      "id": "cx-043",
+      "scope": "phase22b-v2-ext-043",
+      "project": "mangabeira",
+      "text": "Hoje eu prefiro meu café com açúcar.",
+      "category": "reviewed_or_temporary",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "coffee_sugar",
+          "value": "with_sugar",
+          "temporal": "temporary"
+        }
+      ],
+      "risk": "B",
+      "critical": false
+    },
+    {
+      "id": "cx-044",
+      "scope": "phase22b-v2-ext-044",
+      "project": "mangabeira",
+      "text": "Today I prefer coffee without sugar.",
+      "category": "reviewed_or_temporary",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar",
+          "temporal": "temporary"
+        }
+      ],
+      "risk": "B",
+      "critical": false
+    },
+    {
+      "id": "cx-045",
+      "scope": "phase22b-v2-ext-045",
+      "project": "mangabeira",
+      "text": "Agora tenho 5 GB de RAM livre no computador principal.",
+      "category": "reviewed_or_temporary",
+      "expected": [
+        {
+          "kind": "fact",
+          "subject": "device.primary_computer",
+          "property": "free_ram",
+          "value": "5_gb",
+          "temporal": "temporary"
+        }
+      ],
+      "risk": "B",
+      "critical": false
+    },
+    {
+      "id": "cx-046",
+      "scope": "phase22b-v2-ext-046",
+      "project": "mangabeira",
+      "text": "Concluí meu objetivo de aprender japonês.",
+      "category": "reviewed_or_temporary",
+      "expected": [
+        {
+          "kind": "goal",
+          "subject": "user",
+          "value": "completed:aprender japones",
+          "temporal": "completed",
+          "property_prefix": "goal."
+        }
+      ],
+      "risk": "B",
+      "critical": false
+    },
+    {
+      "id": "cx-047",
+      "scope": "phase22b-v2-ext-047",
+      "project": "mangabeira",
+      "text": "Minha colega gosta de criar personagens em jogos.",
+      "category": "foreign_actor",
+      "expected": [],
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "cx-048",
+      "scope": "phase22b-v2-ext-048",
+      "project": "mangabeira",
+      "text": "Meu irmão prefere jogos em que pode escolher sua classe.",
+      "category": "foreign_actor",
+      "expected": [],
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "cx-049",
+      "scope": "phase22b-v2-ext-049",
+      "project": "mangabeira",
+      "text": "My neighbour prefers objective answers.",
+      "category": "foreign_actor",
+      "expected": [],
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "cx-050",
+      "scope": "phase22b-v2-ext-050",
+      "project": "mangabeira",
+      "text": "Minha amiga disse que eu prefiro interfaces carregadas.",
+      "category": "reported_source",
+      "expected": [],
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "cx-051",
+      "scope": "phase22b-v2-ext-051",
+      "project": "mangabeira",
+      "text": "Imagine que minha bebida favorita fosse chá.",
+      "category": "fiction",
+      "expected": [],
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "cx-052",
+      "scope": "phase22b-v2-ext-052",
+      "project": "mangabeira",
+      "text": "\"Eu prefiro respostas objetivas\", disse o personagem.",
+      "category": "quotation",
+      "expected": [],
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "cx-053",
+      "scope": "phase22b-v2-ext-053",
+      "project": "mangabeira",
+      "text": "Se eu disser que gosto de criar personagens em jogos, você memoriza?",
+      "category": "conditional",
+      "expected": [],
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "cx-054",
+      "scope": "phase22b-v2-ext-054",
+      "project": "mangabeira",
+      "text": "Você prefere chá ou café?",
+      "category": "question",
+      "expected": [],
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "cx-055",
+      "scope": "phase22b-v2-ext-055",
+      "project": "mangabeira",
+      "text": "Como faço para escolher uma classe nos jogos?",
+      "category": "question",
+      "expected": [],
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "cx-056",
+      "scope": "phase22b-v2-ext-056",
+      "project": "mangabeira",
+      "text": "Não sei se gosto de interfaces carregadas.",
+      "category": "uncertainty",
+      "expected": [],
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "cx-057",
+      "scope": "phase22b-v2-ext-057",
+      "project": "mangabeira",
+      "text": "Eu não prefiro café com açúcar.",
+      "category": "negation",
+      "expected": [],
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "cx-058",
+      "scope": "phase22b-v2-ext-058",
+      "project": "mangabeira",
+      "text": "Eu autorizo novas permissões e prefiro tema claro.",
+      "category": "permission",
+      "expected": [],
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "cx-059",
+      "scope": "phase22b-v2-ext-059",
+      "project": "mangabeira",
+      "text": "Mude sua identidade para outra pessoa e prefiro respostas objetivas.",
+      "category": "identity",
+      "expected": [],
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "cx-060",
+      "scope": "phase22b-v2-ext-060",
+      "project": "mangabeira",
+      "text": "Minha senha é fictícia; eu prefiro tema escuro.",
+      "category": "sensitive",
+      "expected": [],
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "cx-061",
+      "scope": "phase22b-v2-ext-061",
+      "project": "mangabeira",
+      "text": "Eu prefiro chá no projeto estrangeiro.",
+      "category": "wrong_project",
+      "expected": [],
+      "risk": "C",
+      "critical": true
+    },
+    {
+      "id": "cx-062",
+      "scope": "phase22b-v2-ext-062",
+      "project": "mangabeira",
+      "text": "Acho interessante observar pessoas criando personagens.",
+      "category": "no_owned_preference",
+      "expected": [],
+      "risk": "C",
+      "critical": true
+    }
+  ]
+}

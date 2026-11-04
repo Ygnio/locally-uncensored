@@ -1,0 +1,45 @@
+{
+  "id": "phase22b-independent-literal-rubric-v3",
+  "required_scenarios": [
+    "plan_vs_execution",
+    "decision_vs_completion",
+    "current_vs_historical",
+    "absence_vs_negative_decision",
+    "ram_correction",
+    "different_equipment",
+    "different_projects",
+    "corrected_preference",
+    "completed_goal",
+    "deleted_information",
+    "no_memory",
+    "indirect_question",
+    "multilingual_question",
+    "cancelled_project"
+  ],
+  "method": "Independent literal review of every raw and displayed assistant answer against original user sources, canonical versions and native initial retrieval audits. Never score by the application verifier alone.",
+  "rules": [
+    "Count every memory assertion, including bare values, implicit comparisons, negation and numerical ratios.",
+    "A missing retrieval is not proof that the user never decided or informed something.",
+    "A choice or plan does not prove implementation or completion.",
+    "A historical value cannot be current; preserve entity, property, scope and project.",
+    "Only the correct equipment can support a capacity; a quantity with unspecified property is not RAM.",
+    "A retained response is a non-answer with lost utility and both real generation costs; it is not a correct answer.",
+    "Separate retrieval hits from later read-only confirmation; report each scenario, not only averages.",
+    "Record language/instruction compliance separately from memory truth.",
+    "No source or rubric tuning after execution."
+  ],
+  "gates": {
+    "extraction_precision": 0.95,
+    "extraction_recall": 0.8,
+    "retrieval_precision": 0.9,
+    "retrieval_recall": 0.8,
+    "autopromotion_precision": 0.99,
+    "fidelity": 0.95,
+    "critical_extrapolations": 0
+  },
+  "instruction_compliance": [
+    "Question language",
+    "No unnecessary file tools for a memory-only query"
+  ],
+  "criteria_unchanged_from": "answer-rubric-v1.json"
+}

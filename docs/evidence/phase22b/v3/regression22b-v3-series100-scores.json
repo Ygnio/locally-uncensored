@@ -1,0 +1,555 @@
+{
+  "evaluation": "known historical regression; never unseen",
+  "fixture": "driver-regression22b-v3-series100-final.json",
+  "fixture_sha256": "e9bc4420babcf6211c2ce3b6b0d4b70572bac1060ae6b81a23997596e2e204df",
+  "totals": {
+    "tp": 10,
+    "fp": 1,
+    "missed": 0,
+    "critical_references": 0,
+    "delivered": 9,
+    "raw_attempts": 11,
+    "conservative_original_answer_pass": 9,
+    "probes": 10,
+    "precision": 0.9090909090909091,
+    "recall": 1.0
+  },
+  "samples": [
+    {
+      "question": "Como está ficando aquele projeto?",
+      "category": "language",
+      "gold": [
+        {
+          "property": "language",
+          "value": "rust"
+        },
+        {
+          "property": "database",
+          "value": "postgresql",
+          "temporal": "planned"
+        },
+        {
+          "property": "description"
+        }
+      ],
+      "answer": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+      "answer_sha256": "6a36d47c9a0266fcd8cbac6bf814227d40cf0de1c9cf73a7316b9570c6d3dcbd",
+      "delivered": false,
+      "status": "blocked",
+      "raw_attempts": 2,
+      "initial_references": [
+        {
+          "id": "c81082c4-9061-da64-8c6c-1925d20cbf2a",
+          "version": 2,
+          "kind": "decision",
+          "content": "Projeto candeia: planeja usar postgresql como banco de dados.",
+          "entity": "project.candeia",
+          "property": "database",
+          "value": "postgresql",
+          "modality": "planned",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Quero usar TypeScript e PostgreSQL"
+            }
+          ]
+        },
+        {
+          "id": "bfa1e222-02af-f3f5-07c1-c419ae9e9801",
+          "version": 2,
+          "kind": "project",
+          "content": "Estou começando um projeto de controle de luminosidade",
+          "entity": "project.candeia",
+          "property": "description",
+          "value": "estou comecando um projeto de controle de luminosidade",
+          "modality": "current_fact",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Estou começando um projeto de controle de luminosidade"
+            }
+          ]
+        },
+        {
+          "id": "ef6e546e-19ff-add7-e6af-69dce5f619b0",
+          "version": 2,
+          "kind": "decision",
+          "content": "Projeto candeia: decidiu usar linguagem rust.",
+          "entity": "project.candeia",
+          "property": "language",
+          "value": "rust",
+          "modality": "decision",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Decidi trocar TypeScript por Rust"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Quero usar TypeScript e PostgreSQL"
+            }
+          ]
+        }
+      ],
+      "verification_references": [
+        [],
+        []
+      ],
+      "tp": 3,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": false,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": false
+    },
+    {
+      "question": "Should I add sugar to my coffee now?",
+      "category": "coffee_sugar",
+      "gold": [
+        {
+          "property": "coffee_sugar",
+          "value": "with_sugar"
+        }
+      ],
+      "answer": "Sim, você deve adicionar açúcar, já que você prefere café com açúcar.",
+      "answer_sha256": "1893d098c1ab402b8bc0cc877e13a45550277d6f9a6bce8f6e6f2443aef117e1",
+      "delivered": true,
+      "status": "checked",
+      "raw_attempts": 1,
+      "initial_references": [
+        {
+          "id": "fc617098-257b-d3f7-5555-f138c9a1d010",
+          "version": 2,
+          "kind": "preference",
+          "content": "Prefere café com açúcar.",
+          "entity": "user",
+          "property": "coffee_sugar",
+          "value": "with_sugar",
+          "modality": "preference",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Quero voltar a registrar minha preferência: eu prefiro café com açúcar"
+            }
+          ]
+        }
+      ],
+      "verification_references": [
+        []
+      ],
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": true,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": true
+    },
+    {
+      "question": "What is the RAM capacity of my main desktop?",
+      "category": "ram_capacity",
+      "gold": [
+        {
+          "property": "ram_capacity",
+          "value": "50_gb",
+          "subject": "device.primary_computer"
+        }
+      ],
+      "answer": "Your main desktop has 50 GB of RAM.",
+      "answer_sha256": "f9f0e9c9435aad1a106d96634881b4f39fb2a6b804e9b376d24748d85745d02d",
+      "delivered": true,
+      "status": "checked",
+      "raw_attempts": 1,
+      "initial_references": [
+        {
+          "id": "bd8477ec-d5ba-eb9b-ce18-dba03b407c20",
+          "version": 2,
+          "kind": "hardware",
+          "content": "Atualizei o computador principal para 50 GB",
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "50_gb",
+          "modality": "current_fact",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Atualizei o computador principal para 50 GB"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Meu computador principal tem 26 GB de RAM"
+            }
+          ]
+        }
+      ],
+      "verification_references": [
+        []
+      ],
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": true,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": true
+    },
+    {
+      "question": "Quanto de RAM tem meu notebook de trabalho?",
+      "category": "ram_capacity",
+      "gold": [
+        {
+          "property": "ram_capacity",
+          "value": "18_gb",
+          "subject": "device.work_laptop"
+        }
+      ],
+      "answer": "Seu notebook de trabalho tem 18 GB de RAM.",
+      "answer_sha256": "5faf4a839000e9ee22b1c2fdd0da4d62834fa0109fb7dcfaa7490834b96c8196",
+      "delivered": true,
+      "status": "checked",
+      "raw_attempts": 1,
+      "initial_references": [
+        {
+          "id": "8ba90bec-7bab-5d53-a2b5-3425b21723f1",
+          "version": 2,
+          "kind": "hardware",
+          "content": "Meu notebook de trabalho tem 18 GB de RAM",
+          "entity": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "18_gb",
+          "modality": "current_fact",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Meu notebook de trabalho tem 18 GB de RAM"
+            }
+          ]
+        }
+      ],
+      "verification_references": [
+        []
+      ],
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": true,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": true
+    },
+    {
+      "question": "Qual objetivo eu concluí sobre circuitos elétricos básicos?",
+      "category": "goal",
+      "gold": [
+        {
+          "property": "goal.",
+          "subject": "user",
+          "temporal": "completed"
+        }
+      ],
+      "answer": "Você concluiu o objetivo de aprender circuitos elétricos básicos.",
+      "answer_sha256": "ed3f9917b864c93740af90b534630fc0d3583d4ad827e8c08af809564fb48143",
+      "delivered": true,
+      "status": "checked",
+      "raw_attempts": 1,
+      "initial_references": [
+        {
+          "id": "406521e2-d74f-2250-a79b-b0270036ada3",
+          "version": 2,
+          "kind": "goal",
+          "content": "Objetivo concluído: aprender circuitos eletricos basicos.",
+          "entity": "user",
+          "property": "goal.f47cc78cd5ce",
+          "value": "completed:aprender circuitos eletricos basicos",
+          "modality": "completed",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Concluí meu objetivo de aprender circuitos elétricos básicos"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Quero aprender circuitos elétricos básicos"
+            }
+          ]
+        }
+      ],
+      "verification_references": [
+        []
+      ],
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": true,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": true
+    },
+    {
+      "question": "Qual tipo de RPG combina com minhas preferências?",
+      "category": "games_tactics",
+      "gold": [
+        {
+          "property": "games_tactics",
+          "value": "positive"
+        }
+      ],
+      "answer": "RPGs táticos por turnos combinam perfeitamente com suas preferências, especialmente aqueles que focam em classes e evolução de personagem. Jogos que misturam estratégia e progressão detalhada são os ideais para você.",
+      "answer_sha256": "8ea7966a40acbdefd9f3f3276fd35f31924a6523d64eba79025c6487319453ed",
+      "delivered": true,
+      "status": "checked",
+      "raw_attempts": 1,
+      "initial_references": [
+        {
+          "id": "5af2b9cd-75ea-4f68-9f29-4b7e1b6264c7",
+          "version": 3,
+          "kind": "preference",
+          "content": "Gosta de jogos táticos por turnos (classes, evolução de personagem, RPG).",
+          "entity": "user",
+          "property": "games_tactics",
+          "value": "positive",
+          "modality": "preference",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia",
+          "review": "independently_grounded_active",
+          "facets": [
+            "classes",
+            "progression",
+            "rpg"
+          ],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Eu gosto de RPG tático com evolução de personagem"
+            },
+            {
+              "role": "current_source",
+              "text": "Nas minhas partidas eu prefiro RPGs com combate tático"
+            }
+          ]
+        },
+        {
+          "id": "2abbea2e-f185-4360-2509-04c62e8f9bf9",
+          "version": 1,
+          "kind": "preference",
+          "content": "Jogos de estratégia por turnos são meus favoritos mesmo depois de experimentar outros gêneros",
+          "entity": "user",
+          "property": "games_turn_strategy",
+          "value": "positive",
+          "modality": "preference",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia",
+          "review": "independently_grounded_active",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Jogos de estratégia por turnos são meus favoritos mesmo depois de experimentar outros gêneros"
+            }
+          ]
+        }
+      ],
+      "verification_references": [
+        []
+      ],
+      "tp": 1,
+      "fp": 1,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": true,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": true
+    },
+    {
+      "question": "Como você deve explicar um algoritmo para mim?",
+      "category": "communication_style",
+      "gold": [
+        {
+          "property": "communication_style",
+          "value": "detailed"
+        }
+      ],
+      "answer": "Como você prefere explicações detalhadas, devo descrever cada etapa do algoritmo com profundidade, cobrindo a lógica interna e os detalhes técnicos. Isso inclui explicar o \"porquê\" de cada passo, além de fornecer exemplos claros e a complexidade envolvida.",
+      "answer_sha256": "d86ad3599431ef87f6852701461c9d726cdf641ca6f1944889b509536c84f6ad",
+      "delivered": true,
+      "status": "checked",
+      "raw_attempts": 1,
+      "initial_references": [
+        {
+          "id": "e373731b-1d0e-3313-ccf5-4555cbe8f3e1",
+          "version": 1,
+          "kind": "preference",
+          "content": "No meu aprendizado, eu gosto de explicações detalhadas",
+          "entity": "user",
+          "property": "communication_style",
+          "value": "detailed",
+          "modality": "preference",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia",
+          "review": "independently_grounded_active",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "No meu aprendizado, eu gosto de explicações detalhadas"
+            }
+          ]
+        }
+      ],
+      "verification_references": [
+        []
+      ],
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": true,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": true
+    },
+    {
+      "question": "Qual tema eu prefiro na minha interface?",
+      "category": "interface_theme",
+      "gold": [
+        {
+          "property": "interface_theme",
+          "value": "light"
+        }
+      ],
+      "answer": "Você prefere o modo claro para a interface do seu dia a dia.",
+      "answer_sha256": "9ee5b2b142e2932d1afcad07824eee3299e954dff5791ab72e8a9c4c9d0fb9db",
+      "delivered": true,
+      "status": "checked",
+      "raw_attempts": 1,
+      "initial_references": [
+        {
+          "id": "aa038a97-bc5c-7326-878a-92488ef216b3",
+          "version": 1,
+          "kind": "preference",
+          "content": "Para a interface do meu dia a dia, eu prefiro modo claro",
+          "entity": "user",
+          "property": "interface_theme",
+          "value": "light",
+          "modality": "preference",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia",
+          "review": "independently_grounded_active",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Para a interface do meu dia a dia, eu prefiro modo claro"
+            }
+          ]
+        }
+      ],
+      "verification_references": [
+        []
+      ],
+      "tp": 1,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": true,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": true
+    },
+    {
+      "question": "Qual é a capital da Bolívia?",
+      "category": "irrelevant",
+      "gold": [],
+      "answer": "A capital da Bolívia é Sucre. A cidade de La Paz também é considerada uma capital, sendo a sede do governo executivo.",
+      "answer_sha256": "efb397f162d3a84764829f1b00d231e691f5ea54efff8ad733635a8a4feeb62f",
+      "delivered": true,
+      "status": "checked",
+      "raw_attempts": 1,
+      "initial_references": [],
+      "verification_references": [
+        []
+      ],
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": true,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": true
+    },
+    {
+      "question": "Qual linguagem está no projeto candeia2?",
+      "category": "scope_fence",
+      "gold": [],
+      "answer": "Não há registro específico sobre a linguagem utilizada no projeto candeia2. Poderia me informar qual é o projeto ou fornecer mais detalhes?",
+      "answer_sha256": "5e03846e38edce210ad0c0111a18eebe856f46777ee5ecdafbd384aac6b33ae6",
+      "delivered": true,
+      "status": "checked",
+      "raw_attempts": 1,
+      "initial_references": [],
+      "verification_references": [
+        []
+      ],
+      "tp": 0,
+      "fp": 0,
+      "missed": 0,
+      "critical_references": 0,
+      "original_answer_pattern_match": true,
+      "original_answer_all_match": true,
+      "forbidden_mentions_requiring_literal_review": [],
+      "conservative_original_answer_pass": true
+    }
+  ],
+  "limitations": [
+    "Initial injected references are scored independently of additional read-only verifier confirmations.",
+    "Original answer regexes remain unchanged. Forbidden mentions may be valid negations/history and require literal review.",
+    "Displayed nonanswers are unavailable, not successes."
+  ]
+}

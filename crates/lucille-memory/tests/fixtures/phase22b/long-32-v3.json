@@ -1,0 +1,279 @@
+{
+  "id": "phase22b-unseen-long-32-v3",
+  "project": "sapucaia",
+  "turns": [
+    {
+      "text": "Estou começando um projeto de catálogo de minerais.",
+      "review": true
+    },
+    {
+      "text": "Quero usar JavaScript e MySQL no meu projeto.",
+      "review": true
+    },
+    {
+      "text": "Meu computador principal tem 28 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Meu notebook de trabalho tem 14 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Prefiro café sem açúcar."
+    },
+    {
+      "text": "Eu gosto de jogos em que posso escolher minha classe."
+    },
+    {
+      "text": "Eu adoro jogos com criação de personagens."
+    },
+    {
+      "text": "Não curto interfaces carregadas."
+    },
+    {
+      "text": "Minha bebida favorita é chá."
+    },
+    {
+      "text": "Prefiro respostas objetivas."
+    },
+    {
+      "text": "No meu projeto, eu uso Python.",
+      "review": true
+    },
+    {
+      "text": "Não tenho mais 28 GB, agora são 44 GB.",
+      "review": true
+    },
+    {
+      "text": "Na verdade, agora prefiro café com açúcar."
+    },
+    {
+      "text": "Meu objetivo é aprender alemão.",
+      "review": true
+    },
+    {
+      "text": "Concluí meu objetivo de aprender alemão.",
+      "review": true
+    },
+    {
+      "text": "Esqueça minha preferência de escolher classes nos jogos."
+    },
+    {
+      "text": "Pode voltar a memorizar: eu gosto de jogos em que posso escolher minha classe.",
+      "review_preferences": true
+    },
+    {
+      "text": "Agora tenho 4 GB de RAM livre no computador principal.",
+      "review": true
+    },
+    {
+      "text": "Prefiro tema escuro."
+    },
+    {
+      "text": "Esqueça minha preferência de tema de interface."
+    },
+    {
+      "text": "Decidi trocar o banco de dados por PostgreSQL.",
+      "review": true
+    },
+    {
+      "text": "Prefiro romances de aventura."
+    },
+    {
+      "text": "Eu gosto de trilhas curtas."
+    },
+    {
+      "text": "Minha bebida preferida é chá."
+    },
+    {
+      "text": "Prefiro respostas objetivas."
+    },
+    {
+      "text": "Eu adoro jogos com criação de personagens."
+    },
+    {
+      "text": "Não curto interfaces carregadas."
+    },
+    {
+      "text": "Eu gosto de jogos em que posso escolher minha classe."
+    },
+    {
+      "text": "Prefiro café com açúcar."
+    },
+    {
+      "text": "O projeto continua sendo um catálogo de minerais.",
+      "replay_turn_index": 1
+    },
+    {
+      "text": "Esqueça minha preferência de tema de interface."
+    },
+    {
+      "text": "Prefiro respostas objetivas."
+    }
+  ],
+  "probes": [
+    {
+      "text": "Quanto de RAM tem meu computador principal atualmente?",
+      "scenario": "ram_correction",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "ram_capacity",
+          "value": "44_gb"
+        }
+      ]
+    },
+    {
+      "text": "E a RAM do meu computador principal e do notebook de trabalho?",
+      "scenario": "different_equipment",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "ram_capacity",
+          "value": "44_gb"
+        },
+        {
+          "property": "ram_capacity",
+          "value": "14_gb"
+        }
+      ]
+    },
+    {
+      "text": "Qual era minha preferência de café antes e qual é a atual?",
+      "scenario": "current_vs_historical",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        },
+        {
+          "property": "coffee_sugar",
+          "value": "with_sugar"
+        }
+      ]
+    },
+    {
+      "text": "Que linguagem eu uso no meu projeto agora?",
+      "scenario": "current_vs_historical",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "python",
+          "temporal": "current"
+        }
+      ]
+    },
+    {
+      "text": "Você recorda como está meu projeto e quais escolhas eu fiz?",
+      "scenario": "indirect_question",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "python",
+          "temporal": "current"
+        },
+        {
+          "property": "database",
+          "value": "postgresql"
+        }
+      ]
+    },
+    {
+      "text": "O que gosto de fazer nos jogos?",
+      "scenario": "corrected_preference",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "games_class_selection",
+          "value": "positive"
+        },
+        {
+          "property": "games_character_creation",
+          "value": "positive"
+        }
+      ]
+    },
+    {
+      "text": "What kind of replies do I prefer?",
+      "scenario": "multilingual_question",
+      "mode": "code",
+      "expected": [
+        {
+          "property": "communication_focus",
+          "value": "objective"
+        }
+      ]
+    },
+    {
+      "text": "Eu gosto ou não de interfaces carregadas?",
+      "scenario": "corrected_preference",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "interface_clutter",
+          "value": "negative"
+        }
+      ]
+    },
+    {
+      "text": "Which learning goal have I already completed?",
+      "scenario": "completed_goal",
+      "mode": "chat",
+      "expected": [
+        {
+          "property_prefix": "goal.",
+          "value": "completed:aprender alemao",
+          "temporal": "completed"
+        }
+      ]
+    },
+    {
+      "text": "Qual tema está registrado como meu preferido?",
+      "scenario": "deleted_information",
+      "mode": "chat",
+      "expected": []
+    },
+    {
+      "text": "De qual bebida eu mais gosto?",
+      "scenario": "corrected_preference",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "favorite_beverage",
+          "value": "tea"
+        }
+      ]
+    },
+    {
+      "text": "Você sabe o dia do meu nascimento?",
+      "scenario": "no_memory",
+      "mode": "chat",
+      "expected": []
+    },
+    {
+      "text": "Qual banco eu decidi usar após trocar o anterior?",
+      "scenario": "decision_vs_completion",
+      "mode": "agent",
+      "expected": [
+        {
+          "property": "database",
+          "value": "postgresql"
+        }
+      ]
+    },
+    {
+      "text": "Que gênero de livros eu prefiro?",
+      "scenario": "corrected_preference",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "book_genre",
+          "value": "adventure"
+        }
+      ]
+    }
+  ]
+}

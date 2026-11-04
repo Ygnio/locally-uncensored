@@ -94,6 +94,8 @@ def serve(args):
     if args.kind == 'gemma':
         command += ['--ctx-size', '65536', '--gpu-layers', '99', '--flash-attn', 'on',
                     '--cache-type-k', 'f16', '--cache-type-v', 'f16', '--reasoning', 'off']
+        if args.lazy_embeddings:
+            command += ['--load-mode', 'mmap', '--lazy-mode', 'on']
         if args.prompt_cache_mib is not None:
             command += ['--cache-ram', str(args.prompt_cache_mib), '--ctx-checkpoints', str(args.context_checkpoints)]
     else:
@@ -167,6 +169,7 @@ if __name__ == '__main__':
     parser.add_argument('--model', required=True)
     parser.add_argument('--kind', choices=['gemma', 'nomic'], required=True)
     parser.add_argument('--disable-cuda-graphs', action='store_true', help='Owned child only; compare memory/latency, never global environment')
+    parser.add_argument('--lazy-embeddings', action='store_true', help='Owned Gemma only: runtime-supported on-demand tensor rows; context remains 65536')
     parser.add_argument('--prompt-cache-mib', type=int, choices=range(0,1025), help='Bound optional CPU prompt cache only; never the 65536-token context')
     parser.add_argument('--context-checkpoints', type=int, choices=range(0,33), default=0)
     serve(parser.parse_args())
