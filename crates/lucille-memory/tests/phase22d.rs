@@ -216,9 +216,15 @@ fn typed_lexical_lookup_uses_canonical_links_after_short_correction_and_reopen()
     for m in s.list("lucille", "demo").unwrap().into_iter().filter(|m| m.state == Status::Candidate) {
         s.change(&m.input.id, "lucille", "demo", m.version, Action::Approve).unwrap();
     }
+    // More than the normal nomination cap of unrelated, newer active records.
+    std::thread::sleep(std::time::Duration::from_secs(1));
+    for index in 0..110 {
+        let candidate = s.create_candidate(Candidate { id:uuid::Uuid::new_v4().to_string(),scope:"lucille".into(),project:"demo".into(),kind:Kind::Fact,content:format!("Unrelated synthetic item {index}"),fact_key:format!("synthetic.item{index}"),source:Source::Manual,source_id:format!("synthetic-item-{index}") }).unwrap();
+        s.change(&candidate.input.id,"lucille","demo",candidate.version,Action::Approve).unwrap();
+    }
     drop(s);
     let mut s = Store::open(&d.path().join("synthetic.sqlite3")).unwrap();
-    for query in ["Qual a memória RAM do meu computador principal?", "Quanto de RAM tem meu PC principal?", "Qual a capacidade de memória do computador principal?", "Meu computador principal possui quantos gigabytes?"] {
+    for query in ["Qual a memória RAM do meu computador principal?", "Quanto de RAM tem meu PC principal?", "Qual a capacidade de memória do computador principal?", "Meu computador principal possui quantos gigabytes?", "Não estou dizendo que meu computador tem 128 GB de RAM."] {
         let c = s.context(request(query)).unwrap();
         assert!(c.facts.iter().any(|f| f.property == "ram_capacity" && f.entity == "device.primary_computer" && f.value == "48_gb"), "{query}: {:?}", c.facts);
         assert!(!c.facts.iter().any(|f| f.entity == "device.work_laptop"));
@@ -254,4 +260,20 @@ fn renewal_after_restart_is_reviewed_and_does_not_erase_tombstones_or_infer_liki
     }
     assert!(dialogue::extract("Voltei a gostar de café sem açúcar.", "demo").iter().all(|c| !c.rule.contains("renewal")));
     assert!(dialogue::extract("Você lembra minha preferência por café sem açúcar?", "demo").is_empty());
+}
+
+#[test]
+fn project_purpose_is_project_description_in_both_current_source_and_approved_context() {
+    let (_d, mut s) = setup(true);
+    let text="Estou começando um projeto de catálogo de conchas.";
+    let source=s.begin_user_turn(input(text,"purpose-source")).unwrap();
+    assert!(source["current_statements"].as_array().unwrap().iter().any(|f|f["property"]=="description" && f["modality"]=="project_description"));
+    let proof=serde_json::from_value(source["proof"].clone()).unwrap();
+    s.publish_user_turn(proof).unwrap();
+    let lease=s.claim_llm_learning(now()+1).unwrap().unwrap();
+    s.complete_llm_learning(&lease,&output(text,"project"),now()+2).unwrap();
+    for m in s.list("lucille","demo").unwrap(){s.change(&m.input.id,"lucille","demo",m.version,Action::Approve).unwrap();}
+    let c=s.context(request("Como está ficando aquele projeto?")).unwrap();
+    assert!(c.facts.iter().any(|f|f.property=="description" && f.modality=="project_description"));
+    assert!(c.facts.iter().all(|f|f.modality!="in_progress"));
 }
