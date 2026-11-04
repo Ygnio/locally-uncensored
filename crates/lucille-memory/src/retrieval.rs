@@ -278,6 +278,17 @@ fn database_choice_intent(query: &str) -> bool {
             .iter()
             .any(|n| q.contains(n))
 }
+fn description_intent(query: &str) -> bool {
+    let q = fold(query);
+    ["description", "descricao", "sobre o projeto", "about the project", "assunto do", "assunto daquele", "subject of", "purpose of"]
+        .iter().any(|w| q.contains(w))
+}
+fn identified_ram_intent(query: &str) -> bool {
+    let q = fold(query);
+    crate::coverage::device(&q).is_some()
+        && ["ram", "memoria", "memory", "gigabytes"].iter().any(|w| q.split(|c: char| !c.is_alphanumeric()).any(|t| t == *w))
+        && !["gpu", "vram", "ssd", "armazenamento", "storage"].iter().any(|w| q.contains(w))
+}
 fn completed_goal_intent(query: &str) -> bool {
     let q = crate::relevance::normalize_query(query);
     any_completed_intent(&q)
@@ -400,13 +411,8 @@ fn eligible_source(
     {
         return Ok(false);
     }
-    if recall(query) || canonical_claim {
-        return Ok(true);
-    }
-    if crate::relevance::knowledge_only(query) {
-        return Ok(false);
-    }
     if [
+        "meu irmao", "minha irma", "my brother", "my sister",
         "meu amigo",
         "meu colega",
         "minha colega",
@@ -417,6 +423,12 @@ fn eligible_source(
     .iter()
     .any(|w| fold(query).contains(w))
     {
+        return Ok(false);
+    }
+    if recall(query) || canonical_claim {
+        return Ok(true);
+    }
+    if crate::relevance::knowledge_only(query) {
         return Ok(false);
     }
     let q = crate::relevance::normalize_query(query);
@@ -478,14 +490,7 @@ fn eligible_source(
         .as_ref()
         .is_some_and(|m| m.property == "description" && m.subject.starts_with("project."))
         && !summary
-        && ![
-            "description",
-            "descricao",
-            "sobre o projeto",
-            "about the project",
-        ]
-        .iter()
-        .any(|w| q.contains(w))
+        && !description_intent(query)
     {
         return Ok(false);
     }
@@ -549,7 +554,6 @@ fn eligible_source(
                 "database",
                 "banco",
                 "dados",
-                "data",
                 "sqlite",
                 "postgres",
                 "mysql",
@@ -800,6 +804,8 @@ pub(crate) fn select(
     let coffee = coffee_preparation_intent(&req.query);
     let database_choice = database_choice_intent(&req.query);
     let slots = preference_slots(&req.query);
+    let identified_ram = identified_ram_intent(&req.query);
+    let description = description_intent(&req.query);
     let lifecycle = ["status", "andamento", "conclu", "cancel", "progress"]
         .iter()
         .any(|w| fold(&req.query).contains(w))
@@ -817,6 +823,8 @@ pub(crate) fn select(
         || lifecycle
         || database_choice
         || !slots.is_empty()
+        || identified_ram
+        || description
     {
         let mut q=tx.prepare(&format!("SELECT {COLS} FROM memories WHERE scope=?1 AND project=?2 AND (state='active' OR (state='obsolete' AND ?3)) ORDER BY updated_at DESC,id LIMIT 100")).map_err(db_error)?;
         lexical = q
@@ -845,7 +853,9 @@ pub(crate) fn select(
         let coffee_match =
             coffee && quality(tx, &m.input.id)?.is_some_and(|q| q.property == "coffee_sugar");
         let slot_match = quality(tx, &m.input.id)?.is_some_and(|q| {
-            (m.input.kind == Kind::Preference
+            (identified_ram && q.property == "ram_capacity" && crate::coverage::device(&fold(&req.query)) == Some(q.subject.as_str()))
+                || (description && q.property == "description" && q.subject == format!("project.{}", req.project))
+                || (m.input.kind == Kind::Preference
                 && slots.contains(&q.property.as_str())
                 && (q.property != "coffee_sugar" || coffee))
                 || (database_choice

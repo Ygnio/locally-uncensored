@@ -130,3 +130,102 @@ fn nominal_relations_cannot_take_authority_from_third_party_or_ambiguous_targets
         assert!(dialogue::extract(source, "demo").is_empty(), "{source}");
     }
 }
+
+use lucille_memory::{intelligent::*, llm::ExtractionMode, *};
+fn permit() -> ConfigurationPermit {
+    ConfigurationPermit::explicit_settings_action(true).unwrap()
+}
+fn now() -> i64 {
+    std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .unwrap()
+        .as_secs() as i64
+}
+fn setup(auto: bool) -> (tempfile::TempDir, Store) {
+    let d = tempfile::tempdir().unwrap();
+    let mut s = Store::open(&d.path().join("synthetic.sqlite3")).unwrap();
+    s.configure_identity(Profile::fixture(), 0, &permit())
+        .unwrap();
+    s.set_learning_policy(
+        LearningPolicy {
+            enabled: true,
+            autonomous_preferences: auto,
+            automatic_indexing: auto,
+            extraction_mode: ExtractionMode::Llm,
+            ..Default::default()
+        },
+        &permit(),
+    )
+    .unwrap();
+    (d, s)
+}
+fn input(text: &str, id: &str) -> Interaction {
+    Interaction {
+        conversation_id: "conversation".into(),
+        message_id: id.into(),
+        scope: "lucille".into(),
+        project: "demo".into(),
+        mode: Mode::Chat,
+        role: "user".into(),
+        user_text: text.into(),
+    }
+}
+fn output(text: &str, kind: &str) -> String {
+    serde_json::json!({"version":3,"scope":"lucille","project":"demo","claims":[{"evidence":text.trim().trim_end_matches('.'),"category":kind}]}).to_string()
+}
+fn learn(s: &mut Store, text: &str, kind: &str) {
+    s.enqueue_learning(input(text, &uuid::Uuid::new_v4().to_string()))
+        .unwrap();
+    if let Some(l) = s.claim_llm_learning(now() + 1).unwrap() {
+        s.complete_llm_learning(&l, &output(text, kind), now() + 2)
+            .unwrap();
+    }
+}
+fn request(query: &str) -> TurnRequest {
+    TurnRequest {
+        conversation_id: "new-empty-session".into(),
+        message_id: uuid::Uuid::new_v4().to_string(),
+        scope: "lucille".into(),
+        project: "demo".into(),
+        mode: Mode::Chat,
+        query: query.into(),
+        token_budget: 8192,
+    }
+}
+
+
+#[test]
+fn typed_lexical_lookup_uses_canonical_links_after_short_correction_and_reopen() {
+    let (d, mut s) = setup(true);
+    for (source, kind) in [
+        ("Meu computador principal tem 36 GB de RAM.", "hardware"),
+        ("Meu notebook de trabalho tem 12 GB de RAM.", "hardware"),
+        ("My choice for my project database is SQLite", "decision"),
+        ("Estou começando um projeto de catálogo de minerais.", "project"),
+    ] {
+        learn(&mut s, source, kind);
+        for m in s.list("lucille", "demo").unwrap().into_iter().filter(|m| m.state == Status::Candidate) {
+            s.change(&m.input.id, "lucille", "demo", m.version, Action::Approve).unwrap();
+        }
+    }
+    learn(&mut s, "Não tenho mais 36 GB, agora são 48 GB.", "hardware");
+    for detail in s.memory_details("lucille", "demo").unwrap().into_iter().filter(|d| d.memory.state == Status::Conflict) {
+        let q = detail.quality.unwrap();
+        s.resolve_conflict(&detail.memory.input.id, "lucille", "demo", detail.memory.version, q.replaces_version.unwrap(), &permit()).unwrap();
+    }
+    for m in s.list("lucille", "demo").unwrap().into_iter().filter(|m| m.state == Status::Candidate) {
+        s.change(&m.input.id, "lucille", "demo", m.version, Action::Approve).unwrap();
+    }
+    drop(s);
+    let mut s = Store::open(&d.path().join("synthetic.sqlite3")).unwrap();
+    for query in ["Qual a memória RAM do meu computador principal?", "Quanto de RAM tem meu PC principal?", "Qual a capacidade de memória do computador principal?", "Meu computador principal possui quantos gigabytes?"] {
+        let c = s.context(request(query)).unwrap();
+        assert!(c.facts.iter().any(|f| f.property == "ram_capacity" && f.entity == "device.primary_computer" && f.value == "48_gb"), "{query}: {:?}", c.facts);
+        assert!(!c.facts.iter().any(|f| f.entity == "device.work_laptop"));
+    }
+    assert!(s.context(request("Qual era o assunto do catálogo que eu estava fazendo?")).unwrap().facts.iter().any(|f| f.property == "description"));
+    for query in ["Meu irmão usa qual banco de dados?", "Você lembra qual banco meu irmão usa?", "Você sabe qual é minha data de nascimento?", "Qual banco meu colega escolheu?"] {
+        assert!(s.context(request(query)).unwrap().facts.is_empty(), "{query}");
+    }
+}
+
