@@ -27,24 +27,23 @@ def main(a):
     spec = importlib.util.spec_from_file_location('check', repo/'scripts/test-lucille-real-quality-extraction.py')
     check = importlib.util.module_from_spec(spec); spec.loader.exec_module(check)
     freeze = check.verify(repo, a.freeze)
+    artifact_spec = importlib.util.spec_from_file_location('artifact_check', repo/'qa/phase22e-artifact-check.py')
+    artifacts = importlib.util.module_from_spec(artifact_spec); artifact_spec.loader.exec_module(artifacts)
+    initial_artifacts = artifacts.verify_artifacts(repo, root, freeze)
     corpus = Path(a.dataset).resolve(strict=True)
     assert corpus.relative_to(repo).as_posix() in freeze['corpus_sha256']
     cases = json.loads(corpus.read_text(encoding='utf-8'))['cases']
     reports = root / 'reports'
     output = reports / (a.label + '-faults.json')
     assert not output.exists()
+    assert 1 <= len(a.label) <= 50 and all(c.islower() or c.isdigit() or c=='-' for c in a.label)
     lock = reports / 'phase22e-controller.lock'
     nonce = str(uuid.uuid4())
     with lock.open('x', encoding='utf-8') as f: f.write(nonce)
-    assert 1 <= len(a.label) <= 50 and all(c.islower() or c.isdigit() or c=='-' for c in a.label)
     rows = []
 
     def wait_file(path, timeout=120):
-        until = time.monotonic()+timeout
-        while time.monotonic() < until:
-            if path.exists(): return json.loads(path.read_text(encoding='utf-8'))
-            time.sleep(.1)
-        raise RuntimeError('Own QA report timeout: '+path.name)
+        return artifacts.read_report(path, timeout=timeout)
 
     def control(label, body, suffix='fault'):
         path = reports / ('driver-'+label+'-'+suffix+'.json')
@@ -195,7 +194,8 @@ def main(a):
             (reports/(a.label+'-faults-progress.json')).write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
             print(label,'passed',flush=True)
         check.verify(repo,a.freeze)
-        with output.open('x',encoding='utf-8') as f:json.dump(dict(freeze_sha256=hashlib.sha256(Path(a.freeze).read_bytes()).hexdigest(),rows=rows,passed=all(r['passed'] for r in rows)),f,ensure_ascii=False,indent=2)
+        final_artifacts = artifacts.verify_artifacts(repo, root, freeze)
+        with output.open('x',encoding='utf-8') as f:json.dump(dict(freeze_sha256=hashlib.sha256(Path(a.freeze).read_bytes()).hexdigest(),rows=rows,passed=all(r['passed'] for r in rows),initial_artifacts=initial_artifacts,final_artifacts=final_artifacts),f,ensure_ascii=False,indent=2)
     finally:
         if lock.exists() and lock.read_text(encoding='utf-8')==nonce:lock.unlink()
 

@@ -18,6 +18,9 @@ sys.dont_write_bytecode = True
 spec = importlib.util.spec_from_file_location('freeze_check', Path(__file__).with_name('test-lucille-real-quality-extraction.py'))
 h = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(h)
+artifact_spec = importlib.util.spec_from_file_location('artifact_check', Path(__file__).resolve().parents[1]/'qa/phase22e-artifact-check.py')
+artifacts = importlib.util.module_from_spec(artifact_spec)
+artifact_spec.loader.exec_module(artifacts)
 
 
 def main(a):
@@ -39,7 +42,7 @@ def main(a):
     assert native == (repo.parent / 'build/tauri/x86_64-pc-windows-msvc/debug/lucille-full-validation.exe').resolve(strict=True)
     assert hashlib.sha256(native.read_bytes()).hexdigest() == freeze['native_gui_sha256']
     assert json.loads((reports / 'real-public-pin.json').read_text(encoding='utf-8')) == freeze['model_pin']
-    ready = json.loads((reports / 'driver-ready-progress.json').read_text(encoding='utf-8'))
+    ready = artifacts.read_report(reports / 'driver-ready-progress.json', timeout=5)
     assert ready['native'] is True
     assert datetime.datetime.fromisoformat(ready['ready'].replace('Z', '+00:00')) >= datetime.datetime.fromisoformat(gui['gui']['created'])
     final = reports / ('driver-' + a.label + '-final.json')
@@ -57,7 +60,7 @@ def main(a):
         while not final.exists():
             failures = list(reports.glob('driver-' + a.label + '-failure-*.json'))
             if failures:
-                failure = json.loads(failures[0].read_text(encoding='utf-8'))
+                failure = artifacts.read_report(failures[0], timeout=5)
                 raise RuntimeError('Actual full-app stage failed: ' + failure.get('error', 'unknown'))
             assert time.monotonic() - began < a.timeout, 'Full-app stage timeout; evidence retained'
             progress = reports / ('driver-' + a.label + '-progress.json')
@@ -68,10 +71,10 @@ def main(a):
                     if state != previous:
                         print(a.label, 'turns', state[0], 'probes', state[1], flush=True)
                         previous = state
-                except json.JSONDecodeError:
+                except (json.JSONDecodeError, UnicodeDecodeError):
                     pass  # A progress write can be observed mid-write, never final evidence.
             time.sleep(2)
-        d = json.loads(final.read_text(encoding='utf-8'))
+        d = artifacts.read_report(final, timeout=5)
         assert d['execution_complete'] is True and d['scope'] == a.scope
         assert len(d['probes']) == len(plan.get('probes', []))
         assert len(d['turns']) == len(plan.get('turns', [])) + len(plan.get('probes', []))

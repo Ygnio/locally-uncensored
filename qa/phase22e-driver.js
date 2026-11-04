@@ -6,6 +6,7 @@ const p = Object.assign({}, ...await Promise.all([
   import('/src/stores/modelStore.ts'), import('/src/stores/agentModeStore.ts'),
   import('/src/stores/uiStore.ts'), import('/src/stores/generationStore.ts'),
   import('/src/stores/settingsStore.ts'), import('/src/lib/lucille-context.ts'),
+  import('/src/api/workspace-slug.ts'),
 ]))
 if (!globalThis.__TAURI_INTERNALS__) throw Error('Actual native host required')
 const manage = (request, confirm = false) => p.lucilleManage(request, confirm)
@@ -51,7 +52,9 @@ async function run(control) {
     if (mode === 'agent') p.useAgentModeStore.getState().setAgentModeActive(id, true)
     for(const file of control.plan.fixture_files??[]){
       if(!/^[a-z0-9-]{1,40}\.txt$/.test(file.name) || typeof file.text!=='string' || file.text.length>2000)throw Error('Bounded synthetic tool fixture required')
-      await globalThis.__TAURI_INTERNALS__.invoke('fs_write',{path:file.name,content:file.text,chatId:id,workingDirectory:null})
+      const title=p.useChatStore.getState().conversations.find(c=>c.id===id)?.title
+      const slug=await p.resolveChatWorkspaceSlug(id,title)
+      await globalThis.__TAURI_INTERNALS__.invoke('fs_write',{path:file.name,content:file.text,chatId:slug,workingDirectory:null})
       fixture.files??=[];fixture.files.push({conversation_id:id,name:file.name,synthetic_fixture:true})
     }
     p.useUIStore.getState().setView('chat'); fixture.conversations.push(id); await sleep(400); return id
@@ -63,6 +66,9 @@ async function run(control) {
     const paints = [], domPaints = [], notePaints = [], operationSnapshots=[], seen = new Map(), seenNotes = new Set()
     let nativeReads=Promise.resolve()
     const sampleOperation=event=>{
+      // observed_at marks the trigger. Native evidence and job status are
+      // separate asynchronous reads bounded by read_started/read_finished;
+      // they do not establish the exact SQLite state at the paint instant.
       const original=chat().messages.findLast(m=>m.role==='user' && !m.hidden)
       if(!original)return
       const interaction={conversation_id:chat().id,message_id:original.lucilleInteractionId??original.id,scope,project,mode:currentMode,role:'user',user_text:original.content}
@@ -71,7 +77,7 @@ async function run(control) {
       nativeReads=nativeReads.then(async()=>{
         const read_started_ms=Date.now()-start
         try{
-          const evidence=await manage({operation:'answer_evidence',scope,project,request,references:[],claims:[],source:{interaction,job_id:null}})
+          const evidence=await manage({operation:'answer_evidence',request,references:[],claims:[],source:{interaction,job_id:null}})
           const sha=async text=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text)))].map(v=>v.toString(16).padStart(2,'0')).join('')
           const jobId=await sha(JSON.stringify([interaction.conversation_id,interaction.message_id,scope,project,await sha(interaction.user_text)]))
           const job=(await scoped('learning_jobs')).find(j=>j.id===jobId)??null
@@ -213,7 +219,7 @@ async function copyVerifiedReply(control){
  try{
   navigator.clipboard.writeText=async function(text){
    captured=text
-   try{await original.call(navigator.clipboard,text);outcome={status:'system_write_resolved'}}catch(error){outcome={status:'system_write_rejected',error:String(error)}}
+   try{await original.call(navigator.clipboard,text);outcome={status:'system_write_resolved'}}catch(error){outcome={status:'system_write_rejected',error:String(error)};throw error}
   }
   button.click();await until(()=>outcome!==null,'original clipboard write',10000)
  }finally{navigator.clipboard.writeText=original}

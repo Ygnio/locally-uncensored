@@ -18,6 +18,18 @@ def digest(path, lf=False):
     return hashlib.sha256(data.replace(b'\r\n',b'\n') if lf else data).hexdigest()
 
 
+def validate_identity_fixture(fixture):
+    assert isinstance(fixture, dict) and fixture.get('execution_complete') is True, 'Final identity fixture must be a completed GUI execution'
+    identity = fixture.get('identity')
+    assert isinstance(identity, dict) and type(identity.get('version')) is int and identity['version'] > 0, 'Final requires a persisted native identity'
+    profile = identity.get('profile')
+    assert isinstance(profile, dict) and all(isinstance(profile.get(key), str) and profile[key].strip() for key in ['name', 'description', 'personality', 'instructions']), 'Final requires the native identity profile'
+    policy = fixture.get('policy')
+    assert isinstance(policy, dict) and policy, 'Final requires a native learning policy'
+    assert all(isinstance(policy.get(key), bool) for key in ['enabled', 'autonomous_preferences', 'automatic_indexing']), 'Final native policy flags are missing'
+    assert policy.get('extraction_mode') in ['rules', 'llm', 'hybrid'], 'Final native extraction policy is missing'
+
+
 def main(a):
     repo=Path(__file__).resolve().parents[1]
     root=Path(a.root).resolve(strict=True)
@@ -57,6 +69,7 @@ def main(a):
     gui=repo.parent/'build/tauri/x86_64-pc-windows-msvc/debug/lucille-full-validation.exe'
     bridge=repo.parent/'build/memory/debug/examples/real_validation_bridge.exe'
     fixture=json.loads(Path(a.identity).read_text(encoding='utf-8')) if a.identity else None
+    if a.kind=='final':validate_identity_fixture(fixture)
     data=dict(id='phase22e-'+a.kind+'-'+a.label,kind=a.kind,
         created_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
         base='92f75a0d661fa9804b468e55b3760090b47bdd66',
