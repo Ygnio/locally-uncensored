@@ -1,0 +1,60 @@
+{
+  "method": "independent_literal_review",
+  "fixture": "driver-final22b-v3-ended-final.json",
+  "turn": 3,
+  "main_message_id": "95f7f78a-5c37-4a70-99e2-bdc253601a36",
+  "pre_tool_round": {
+    "raw_answer": "Para saber como está seu projeto, preciso primeiro explorar os arquivos na pasta atual. Vou começar listando o conteúdo do diretório.\n\n",
+    "sha256": "c48f6fef2d7f20dcf2ea09602195f710ce07f8d4a0636649408c8abdece1d158",
+    "reviewed_entire_answer": true,
+    "memory_claims": [],
+    "independent_reason": "Prospective file inspection narration only. It does not assert a personal memory or completed persistence operation. The tool detour is inappropriate for the memory question and remains a compliance failure.",
+    "actual_fidelity_report": {
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Para saber como está seu projeto, preciso primeiro explorar os arquivos na pasta atual. Vou começar listando o conteúdo do diretório.\n\n",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.800000011920929
+          },
+          "verificationReferences": [],
+          "promptTokens": 3658,
+          "completionTokens": 46
+        }
+      ],
+      "refreshMs": 7.699999988079071,
+      "verificationMs": 0.800000011920929,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      }
+    }
+  },
+  "copied_store_note": {
+    "message_id": "96c1ede8-f7b3-4a19-81b2-074edb7a7418",
+    "content": "Para saber como está seu projeto, preciso primeiro explorar os arquivos na pasta atual. Vou começar listando o conteúdo do diretório.",
+    "sha256": "f52aab6726b3b466fc602165494c7ed4f845dc0f086dc6a995089e6f56a63709",
+    "copied_at_ms": 12290,
+    "fidelity_metadata_missing": true,
+    "correlation": "This text was already checked in the original first fidelity report before the tool call. The later copied note omits the report metadata. The DOM displayed the original Agent notes with checked status at 6350 ms, before the final answer at 12298 ms. Preserve the missing metadata observation; do not present it as a newly unverified partial memory answer."
+  },
+  "denominators": {
+    "final_requested_answer_slots": 65,
+    "main_last_report_raw_attempts": 71,
+    "additional_pre_tool_narration_rounds": 1,
+    "all_actual_fidelity_raw_attempts": 72,
+    "additional_displayed_narration_texts": 1,
+    "additional_memory_assertions": 0,
+    "main_fidelity_ratio_unchanged": "55/59"
+  },
+  "limitations": [
+    "Frozen scorer covers the last report for every final answer slot. This explicit supplemental review closes the earlier Agent tool-round coverage gap without editing the frozen scorer or executed fixtures.",
+    "No claim that arbitrary Agent tool flows are fully proven safe; one copied note lacks fidelity metadata."
+  ]
+}

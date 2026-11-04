@@ -1,0 +1,1620 @@
+{
+  "label": "final22b-v3-plan",
+  "scope": "phase22b-final-v3",
+  "project": "grumixama",
+  "plan_id": "phase22b-unseen-answers-plan-v3",
+  "started": "2026-11-04T09:48:31.934Z",
+  "turns": [
+    {
+      "paints": [
+        {
+          "at_ms": 120,
+          "id": "8794b43a-6c86-4463-a81f-c266eeb24753",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 2556,
+          "id": "8794b43a-6c86-4463-a81f-c266eeb24753",
+          "content": "Que projeto fascinante! Qual será o foco principal do seu catálogo, como a diversidade de espécies ou a organização por períodos geológicos?",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 120,
+          "id": "8794b43a-6c86-4463-a81f-c266eeb24753",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 157,
+          "id": "8794b43a-6c86-4463-a81f-c266eeb24753",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 2576,
+          "id": "8794b43a-6c86-4463-a81f-c266eeb24753",
+          "text": "lucille-real-gemma\n\nQue projeto fascinante! Qual será o foco principal do seu catálogo, como a diversidade de espécies ou a organização por períodos geológicos?",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 2602,
+          "id": "8794b43a-6c86-4463-a81f-c266eeb24753",
+          "text": "lucille-real-gemma\n\nQue projeto fascinante! Qual será o foco principal do seu catálogo, como a diversidade de espécies ou a organização por períodos geológicos?\n\n809 in · 29 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "text": "Estou começando um projeto de catálogo de fósseis.",
+      "conversation_id": "adeec177-d49c-4520-94a3-e6e7113bd3fb",
+      "messages": [
+        {
+          "id": "547d9b57-fcbf-41e5-bd72-aafec6ba8d8d",
+          "role": "user",
+          "content": "Estou começando um projeto de catálogo de fósseis.",
+          "timestamp": 1793785714243
+        },
+        {
+          "id": "8794b43a-6c86-4463-a81f-c266eeb24753",
+          "role": "assistant",
+          "content": "Que projeto fascinante! Qual será o foco principal do seu catálogo, como a diversidade de espécies ou a organização por períodos geológicos?",
+          "thinking": "",
+          "modelId": "openai::lucille-real-gemma",
+          "timestamp": 1793785714244,
+          "lucilleFidelity": [
+            {
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Que projeto fascinante! Qual será o foco principal do seu catálogo, como a diversidade de espécies ou a organização por períodos geológicos?",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 3.100000023841858
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 809,
+                  "completionTokens": 29
+                }
+              ],
+              "refreshMs": 6.200000047683716,
+              "verificationMs": 3.100000023841858,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              }
+            }
+          ],
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 809,
+            "completionTokens": 29,
+            "totalTokens": 838
+          },
+          "requestUsage": {
+            "inputTokens": 809,
+            "outputTokens": 29,
+            "calls": 1
+          }
+        }
+      ],
+      "generation_ms": 2669,
+      "extraction_wait_ms": 4713,
+      "metrics": {
+        "current_vectors": 0,
+        "history_events": [
+          {
+            "count": 1,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 1,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 1,
+            "state": "candidate"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "grumixama",
+        "provenance_rows": 1,
+        "scope": "phase22b-final-v3",
+        "sqlite_main_page_bytes": 1437696,
+        "vector_json_bytes": 0
+      }
+    },
+    {
+      "paints": [
+        {
+          "at_ms": 111,
+          "id": "1c99995d-e5e9-4081-a3fc-74e6fe950105",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 3525,
+          "id": "1c99995d-e5e9-4081-a3fc-74e6fe950105",
+          "content": "Rust e SQLite são uma combinação excelente para um catálogo de fósseis devido à segurança de memória e à eficiência do banco de dados relacional. Você pretende usar algum ORM como o Diesel ou preferir a flexibilidade do SQL puro com a biblioteca `rusqlite`?",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 112,
+          "id": "1c99995d-e5e9-4081-a3fc-74e6fe950105",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 119,
+          "id": "1c99995d-e5e9-4081-a3fc-74e6fe950105",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 3543,
+          "id": "1c99995d-e5e9-4081-a3fc-74e6fe950105",
+          "text": "lucille-real-gemma\n\nRust e SQLite são uma combinação excelente para um catálogo de fósseis devido à segurança de memória e à eficiência do banco de dados relacional. Você pretende usar algum ORM como o Diesel ou preferir a flexibilidade do SQL puro com a biblioteca rusqlite?",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 3569,
+          "id": "1c99995d-e5e9-4081-a3fc-74e6fe950105",
+          "text": "lucille-real-gemma\n\nRust e SQLite são uma combinação excelente para um catálogo de fósseis devido à segurança de memória e à eficiência do banco de dados relacional. Você pretende usar algum ORM como o Diesel ou preferir a flexibilidade do SQL puro com a biblioteca rusqlite?\n\n857 in · 57 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "text": "Quero usar Rust e SQLite no meu projeto.",
+      "conversation_id": "adeec177-d49c-4520-94a3-e6e7113bd3fb",
+      "messages": [
+        {
+          "id": "5706734c-4d24-4276-816b-00a6926ea1ee",
+          "role": "user",
+          "content": "Quero usar Rust e SQLite no meu projeto.",
+          "timestamp": 1793785724164
+        },
+        {
+          "id": "1c99995d-e5e9-4081-a3fc-74e6fe950105",
+          "role": "assistant",
+          "content": "Rust e SQLite são uma combinação excelente para um catálogo de fósseis devido à segurança de memória e à eficiência do banco de dados relacional. Você pretende usar algum ORM como o Diesel ou preferir a flexibilidade do SQL puro com a biblioteca `rusqlite`?",
+          "thinking": "",
+          "modelId": "openai::lucille-real-gemma",
+          "timestamp": 1793785724164,
+          "lucilleFidelity": [
+            {
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Rust e SQLite são uma combinação excelente para um catálogo de fósseis devido à segurança de memória e à eficiência do banco de dados relacional. Você pretende usar algum ORM como o Diesel ou preferir a flexibilidade do SQL puro com a biblioteca `rusqlite`?",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "project.grumixama",
+                        "property": "language",
+                        "value": "rust",
+                        "span": "Rust e SQLite são uma combinação excelente para um catálogo de fósseis devido à segurança de memória e à eficiência do banco de dados relacional.",
+                        "supported": true,
+                        "references": [
+                          "current-turn-0"
+                        ]
+                      },
+                      {
+                        "entity": "project.grumixama",
+                        "property": "database",
+                        "value": "sqlite",
+                        "span": "Rust e SQLite são uma combinação excelente para um catálogo de fósseis devido à segurança de memória e à eficiência do banco de dados relacional.",
+                        "supported": true,
+                        "references": [
+                          "current-turn-1"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "uncertain": false,
+                    "supportedAssertions": 2,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 2.5
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 857,
+                  "completionTokens": 57
+                }
+              ],
+              "refreshMs": 7.5,
+              "verificationMs": 2.5,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              }
+            }
+          ],
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 857,
+            "completionTokens": 57,
+            "totalTokens": 914
+          },
+          "requestUsage": {
+            "inputTokens": 857,
+            "outputTokens": 57,
+            "calls": 1
+          }
+        }
+      ],
+      "generation_ms": 3668,
+      "extraction_wait_ms": 4229,
+      "metrics": {
+        "current_vectors": 1,
+        "history_events": [
+          {
+            "count": 1,
+            "state": "approve"
+          },
+          {
+            "count": 3,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 2,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 1,
+            "state": "active"
+          },
+          {
+            "count": 2,
+            "state": "candidate"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "grumixama",
+        "provenance_rows": 3,
+        "scope": "phase22b-final-v3",
+        "sqlite_main_page_bytes": 1445888,
+        "vector_json_bytes": 9509
+      }
+    },
+    {
+      "paints": [
+        {
+          "at_ms": 117,
+          "id": "13281faf-cfff-4aa5-aee1-e59cb0f4676c",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 2286,
+          "id": "13281faf-cfff-4aa5-aee1-e59cb0f4676c",
+          "content": "O uso de Rust no projeto Grumixama ainda é um plano. Você planeja utilizá-lo junto com SQLite.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 117,
+          "id": "13281faf-cfff-4aa5-aee1-e59cb0f4676c",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 124,
+          "id": "13281faf-cfff-4aa5-aee1-e59cb0f4676c",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 2298,
+          "id": "13281faf-cfff-4aa5-aee1-e59cb0f4676c",
+          "text": "lucille-real-gemma\n\nO uso de Rust no projeto Grumixama ainda é um plano. Você planeja utilizá-lo junto com SQLite.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 2335,
+          "id": "13281faf-cfff-4aa5-aee1-e59cb0f4676c",
+          "text": "lucille-real-gemma\n\nO uso de Rust no projeto Grumixama ainda é um plano. Você planeja utilizá-lo junto com SQLite.\n\n955 in · 26 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "text": "Meu projeto já está implementado em Rust ou isso ainda é um plano?",
+      "conversation_id": "b21f6423-216c-4d42-be2a-4ab89359bd27",
+      "messages": [
+        {
+          "id": "e0a24675-fde7-4dfd-9e2b-8e77d8234a01",
+          "role": "user",
+          "content": "Meu projeto já está implementado em Rust ou isso ainda é um plano?",
+          "timestamp": 1793785749560
+        },
+        {
+          "id": "13281faf-cfff-4aa5-aee1-e59cb0f4676c",
+          "role": "assistant",
+          "content": "O uso de Rust no projeto Grumixama ainda é um plano. Você planeja utilizá-lo junto com SQLite.",
+          "thinking": "",
+          "modelId": "openai::lucille-real-gemma",
+          "timestamp": 1793785749560,
+          "lucilleFidelity": [
+            {
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "O uso de Rust no projeto Grumixama ainda é um plano. Você planeja utilizá-lo junto com SQLite.",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "project.grumixama",
+                        "property": "language",
+                        "value": "rust",
+                        "span": "O uso de Rust no projeto Grumixama ainda é um plano.",
+                        "supported": true,
+                        "references": [
+                          "7919c6e7-4c2d-652e-0459-209ed127c9ca"
+                        ]
+                      },
+                      {
+                        "entity": "project.grumixama",
+                        "property": "database",
+                        "value": "sqlite",
+                        "span": "Você planeja utilizá-lo junto com SQLite.",
+                        "supported": true,
+                        "references": [
+                          "a32c9395-c760-f840-a6cf-53d613fe5d6d"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "uncertain": false,
+                    "supportedAssertions": 2,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.30000001192092896
+                  },
+                  "verificationReferences": [
+                    {
+                      "id": "a32c9395-c760-f840-a6cf-53d613fe5d6d",
+                      "version": 2
+                    }
+                  ],
+                  "promptTokens": 955,
+                  "completionTokens": 26
+                }
+              ],
+              "refreshMs": 17.19999998807907,
+              "verificationMs": 3.5,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              }
+            }
+          ],
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 955,
+            "completionTokens": 26,
+            "totalTokens": 981
+          },
+          "requestUsage": {
+            "inputTokens": 955,
+            "outputTokens": 26,
+            "calls": 1
+          }
+        }
+      ],
+      "generation_ms": 2418,
+      "extraction_wait_ms": 723,
+      "metrics": {
+        "current_vectors": 3,
+        "history_events": [
+          {
+            "count": 3,
+            "state": "approve"
+          },
+          {
+            "count": 3,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 2,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 3,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "grumixama",
+        "provenance_rows": 3,
+        "scope": "phase22b-final-v3",
+        "sqlite_main_page_bytes": 1470464,
+        "vector_json_bytes": 28509
+      }
+    },
+    {
+      "paints": [
+        {
+          "at_ms": 130,
+          "id": "e88e5618-c893-4f57-9c77-3f3629733ed3",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 4919,
+          "id": "e88e5618-c893-4f57-9c77-3f3629733ed3",
+          "content": "You plan to use SQLite as the database for the Grumixama project.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 136,
+          "id": "e88e5618-c893-4f57-9c77-3f3629733ed3",
+          "text": "",
+          "fidelity_status": null
+        }
+      ],
+      "text": "What database is in my plans for this project?",
+      "conversation_id": "f654d3dd-fd84-4dfd-8b2c-6267aef8deec",
+      "messages": [
+        {
+          "id": "e88e5618-c893-4f57-9c77-3f3629733ed3",
+          "role": "assistant",
+          "content": "You plan to use SQLite as the database for the Grumixama project.",
+          "thinking": "",
+          "timestamp": 1793785753354,
+          "agentBlocks": [
+            {
+              "id": "255771ec-0b7e-4b0a-adcb-123e33a61fc9",
+              "phase": "answer",
+              "content": "You plan to use SQLite as the database for the Grumixama project.",
+              "timestamp": 1793785758144
+            }
+          ],
+          "modelId": "openai::lucille-real-gemma",
+          "usage": {
+            "promptTokens": 3457,
+            "completionTokens": 16,
+            "totalTokens": 3473,
+            "estimated": false
+          },
+          "requestUsage": {
+            "inputTokens": 3457,
+            "outputTokens": 16,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "You plan to use SQLite as the database for the Grumixama project.",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "project.grumixama",
+                        "property": "database",
+                        "value": "sqlite",
+                        "span": "You plan to use SQLite as the database for the Grumixama project.",
+                        "supported": true,
+                        "references": [
+                          "a32c9395-c760-f840-a6cf-53d613fe5d6d"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "uncertain": false,
+                    "supportedAssertions": 1,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.899999976158142
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 3457,
+                  "completionTokens": 16
+                }
+              ],
+              "refreshMs": 6.5,
+              "verificationMs": 1.899999976158142,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              }
+            }
+          ]
+        }
+      ],
+      "generation_ms": 4938,
+      "extraction_wait_ms": 725,
+      "metrics": {
+        "current_vectors": 3,
+        "history_events": [
+          {
+            "count": 3,
+            "state": "approve"
+          },
+          {
+            "count": 3,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 2,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 3,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "grumixama",
+        "provenance_rows": 3,
+        "scope": "phase22b-final-v3",
+        "sqlite_main_page_bytes": 1470464,
+        "vector_json_bytes": 28509
+      }
+    },
+    {
+      "paints": [
+        {
+          "at_ms": 117,
+          "id": "477c9f85-4cc8-4f3e-9a07-4f06bbadfffd",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 3012,
+          "id": "477c9f85-4cc8-4f3e-9a07-4f06bbadfffd",
+          "content": "Você mencionou que está começando um projeto de catálogo de fósseis, chamado Grumixama. Você planeja desenvolvê-lo usando a linguagem Rust com um banco de dados SQLite.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 117,
+          "id": "477c9f85-4cc8-4f3e-9a07-4f06bbadfffd",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 127,
+          "id": "477c9f85-4cc8-4f3e-9a07-4f06bbadfffd",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 3023,
+          "id": "477c9f85-4cc8-4f3e-9a07-4f06bbadfffd",
+          "text": "lucille-real-gemma\n\nVocê mencionou que está começando um projeto de catálogo de fósseis, chamado Grumixama. Você planeja desenvolvê-lo usando a linguagem Rust com um banco de dados SQLite.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 3051,
+          "id": "477c9f85-4cc8-4f3e-9a07-4f06bbadfffd",
+          "text": "lucille-real-gemma\n\nVocê mencionou que está começando um projeto de catálogo de fósseis, chamado Grumixama. Você planeja desenvolvê-lo usando a linguagem Rust com um banco de dados SQLite.\n\n1,239 in · 39 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "text": "Pode me lembrar daquele projeto de que falei?",
+      "conversation_id": "a49d15d4-9fb1-414a-88de-d6d62983cbb9",
+      "messages": [
+        {
+          "id": "fba02516-48d9-48fd-96d7-c8223ff71f07",
+          "role": "user",
+          "content": "Pode me lembrar daquele projeto de que falei?",
+          "timestamp": 1793785759663
+        },
+        {
+          "id": "477c9f85-4cc8-4f3e-9a07-4f06bbadfffd",
+          "role": "assistant",
+          "content": "Você mencionou que está começando um projeto de catálogo de fósseis, chamado Grumixama. Você planeja desenvolvê-lo usando a linguagem Rust com um banco de dados SQLite.",
+          "thinking": "",
+          "modelId": "openai::lucille-real-gemma",
+          "timestamp": 1793785759663,
+          "lucilleFidelity": [
+            {
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Você mencionou que está começando um projeto de catálogo de fósseis, chamado Grumixama. Você planeja desenvolvê-lo usando a linguagem Rust com um banco de dados SQLite.",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "project.grumixama",
+                        "property": "language",
+                        "value": "rust",
+                        "span": "Você planeja desenvolvê-lo usando a linguagem Rust com um banco de dados SQLite.",
+                        "supported": true,
+                        "references": [
+                          "7919c6e7-4c2d-652e-0459-209ed127c9ca"
+                        ]
+                      },
+                      {
+                        "entity": "project.grumixama",
+                        "property": "database",
+                        "value": "sqlite",
+                        "span": "Você planeja desenvolvê-lo usando a linguagem Rust com um banco de dados SQLite.",
+                        "supported": true,
+                        "references": [
+                          "a32c9395-c760-f840-a6cf-53d613fe5d6d"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "uncertain": false,
+                    "supportedAssertions": 2,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.0999999642372131
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1239,
+                  "completionTokens": 39
+                }
+              ],
+              "refreshMs": 11.899999976158142,
+              "verificationMs": 1.0999999642372131,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              }
+            }
+          ],
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1239,
+            "completionTokens": 39,
+            "totalTokens": 1278
+          },
+          "requestUsage": {
+            "inputTokens": 1239,
+            "outputTokens": 39,
+            "calls": 1
+          }
+        }
+      ],
+      "generation_ms": 3154,
+      "extraction_wait_ms": 735,
+      "metrics": {
+        "current_vectors": 3,
+        "history_events": [
+          {
+            "count": 3,
+            "state": "approve"
+          },
+          {
+            "count": 3,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 2,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 3,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "grumixama",
+        "provenance_rows": 3,
+        "scope": "phase22b-final-v3",
+        "sqlite_main_page_bytes": 1470464,
+        "vector_json_bytes": 28509
+      }
+    }
+  ],
+  "probes": [
+    {
+      "item": {
+        "text": "Meu projeto já está implementado em Rust ou isso ainda é um plano?",
+        "scenario": "plan_vs_execution",
+        "mode": "chat",
+        "expected": [
+          {
+            "property": "language",
+            "value": "rust",
+            "temporal": "planned"
+          }
+        ]
+      },
+      "turn": {
+        "paints": [
+          {
+            "at_ms": 117,
+            "id": "13281faf-cfff-4aa5-aee1-e59cb0f4676c",
+            "content": "",
+            "fidelity_status": null,
+            "error": null
+          },
+          {
+            "at_ms": 2286,
+            "id": "13281faf-cfff-4aa5-aee1-e59cb0f4676c",
+            "content": "O uso de Rust no projeto Grumixama ainda é um plano. Você planeja utilizá-lo junto com SQLite.",
+            "fidelity_status": "checked",
+            "error": null
+          }
+        ],
+        "domPaints": [
+          {
+            "at_ms": 117,
+            "id": "13281faf-cfff-4aa5-aee1-e59cb0f4676c",
+            "text": "",
+            "fidelity_status": null
+          },
+          {
+            "at_ms": 124,
+            "id": "13281faf-cfff-4aa5-aee1-e59cb0f4676c",
+            "text": "lucille-real-gemma",
+            "fidelity_status": null
+          },
+          {
+            "at_ms": 2298,
+            "id": "13281faf-cfff-4aa5-aee1-e59cb0f4676c",
+            "text": "lucille-real-gemma\n\nO uso de Rust no projeto Grumixama ainda é um plano. Você planeja utilizá-lo junto com SQLite.",
+            "fidelity_status": "checked"
+          },
+          {
+            "at_ms": 2335,
+            "id": "13281faf-cfff-4aa5-aee1-e59cb0f4676c",
+            "text": "lucille-real-gemma\n\nO uso de Rust no projeto Grumixama ainda é um plano. Você planeja utilizá-lo junto com SQLite.\n\n955 in · 26 out",
+            "fidelity_status": "checked"
+          }
+        ],
+        "text": "Meu projeto já está implementado em Rust ou isso ainda é um plano?",
+        "conversation_id": "b21f6423-216c-4d42-be2a-4ab89359bd27",
+        "messages": [
+          {
+            "id": "e0a24675-fde7-4dfd-9e2b-8e77d8234a01",
+            "role": "user",
+            "content": "Meu projeto já está implementado em Rust ou isso ainda é um plano?",
+            "timestamp": 1793785749560
+          },
+          {
+            "id": "13281faf-cfff-4aa5-aee1-e59cb0f4676c",
+            "role": "assistant",
+            "content": "O uso de Rust no projeto Grumixama ainda é um plano. Você planeja utilizá-lo junto com SQLite.",
+            "thinking": "",
+            "modelId": "openai::lucille-real-gemma",
+            "timestamp": 1793785749560,
+            "lucilleFidelity": [
+              {
+                "status": "checked",
+                "attempts": [
+                  {
+                    "rawAnswer": "O uso de Rust no projeto Grumixama ainda é um plano. Você planeja utilizá-lo junto com SQLite.",
+                    "check": {
+                      "assertions": [
+                        {
+                          "entity": "project.grumixama",
+                          "property": "language",
+                          "value": "rust",
+                          "span": "O uso de Rust no projeto Grumixama ainda é um plano.",
+                          "supported": true,
+                          "references": [
+                            "7919c6e7-4c2d-652e-0459-209ed127c9ca"
+                          ]
+                        },
+                        {
+                          "entity": "project.grumixama",
+                          "property": "database",
+                          "value": "sqlite",
+                          "span": "Você planeja utilizá-lo junto com SQLite.",
+                          "supported": true,
+                          "references": [
+                            "a32c9395-c760-f840-a6cf-53d613fe5d6d"
+                          ]
+                        }
+                      ],
+                      "violations": [],
+                      "uncertain": false,
+                      "supportedAssertions": 2,
+                      "unsupportedAssertions": 0,
+                      "elapsedMs": 0.30000001192092896
+                    },
+                    "verificationReferences": [
+                      {
+                        "id": "a32c9395-c760-f840-a6cf-53d613fe5d6d",
+                        "version": 2
+                      }
+                    ],
+                    "promptTokens": 955,
+                    "completionTokens": 26
+                  }
+                ],
+                "refreshMs": 17.19999998807907,
+                "verificationMs": 3.5,
+                "extraGenerationMs": 0,
+                "additionalUsage": {
+                  "promptTokens": 0,
+                  "completionTokens": 0
+                }
+              }
+            ],
+            "finishReason": "stop",
+            "usage": {
+              "promptTokens": 955,
+              "completionTokens": 26,
+              "totalTokens": 981
+            },
+            "requestUsage": {
+              "inputTokens": 955,
+              "outputTokens": 26,
+              "calls": 1
+            }
+          }
+        ],
+        "generation_ms": 2418,
+        "extraction_wait_ms": 723,
+        "metrics": {
+          "current_vectors": 3,
+          "history_events": [
+            {
+              "count": 3,
+              "state": "approve"
+            },
+            {
+              "count": 3,
+              "state": "create"
+            }
+          ],
+          "jobs": [
+            {
+              "count": 2,
+              "state": "done"
+            }
+          ],
+          "memories": [
+            {
+              "count": 3,
+              "state": "active"
+            }
+          ],
+          "pending_vectors": 0,
+          "project": "grumixama",
+          "provenance_rows": 3,
+          "scope": "phase22b-final-v3",
+          "sqlite_main_page_bytes": 1470464,
+          "vector_json_bytes": 28509
+        }
+      }
+    },
+    {
+      "item": {
+        "text": "What database is in my plans for this project?",
+        "scenario": "multilingual_question",
+        "mode": "code",
+        "expected": [
+          {
+            "property": "database",
+            "value": "sqlite",
+            "temporal": "planned"
+          }
+        ]
+      },
+      "turn": {
+        "paints": [
+          {
+            "at_ms": 130,
+            "id": "e88e5618-c893-4f57-9c77-3f3629733ed3",
+            "content": "",
+            "fidelity_status": null,
+            "error": null
+          },
+          {
+            "at_ms": 4919,
+            "id": "e88e5618-c893-4f57-9c77-3f3629733ed3",
+            "content": "You plan to use SQLite as the database for the Grumixama project.",
+            "fidelity_status": "checked",
+            "error": null
+          }
+        ],
+        "domPaints": [
+          {
+            "at_ms": 136,
+            "id": "e88e5618-c893-4f57-9c77-3f3629733ed3",
+            "text": "",
+            "fidelity_status": null
+          }
+        ],
+        "text": "What database is in my plans for this project?",
+        "conversation_id": "f654d3dd-fd84-4dfd-8b2c-6267aef8deec",
+        "messages": [
+          {
+            "id": "e88e5618-c893-4f57-9c77-3f3629733ed3",
+            "role": "assistant",
+            "content": "You plan to use SQLite as the database for the Grumixama project.",
+            "thinking": "",
+            "timestamp": 1793785753354,
+            "agentBlocks": [
+              {
+                "id": "255771ec-0b7e-4b0a-adcb-123e33a61fc9",
+                "phase": "answer",
+                "content": "You plan to use SQLite as the database for the Grumixama project.",
+                "timestamp": 1793785758144
+              }
+            ],
+            "modelId": "openai::lucille-real-gemma",
+            "usage": {
+              "promptTokens": 3457,
+              "completionTokens": 16,
+              "totalTokens": 3473,
+              "estimated": false
+            },
+            "requestUsage": {
+              "inputTokens": 3457,
+              "outputTokens": 16,
+              "calls": 1
+            },
+            "lucilleFidelity": [
+              {
+                "status": "checked",
+                "attempts": [
+                  {
+                    "rawAnswer": "You plan to use SQLite as the database for the Grumixama project.",
+                    "check": {
+                      "assertions": [
+                        {
+                          "entity": "project.grumixama",
+                          "property": "database",
+                          "value": "sqlite",
+                          "span": "You plan to use SQLite as the database for the Grumixama project.",
+                          "supported": true,
+                          "references": [
+                            "a32c9395-c760-f840-a6cf-53d613fe5d6d"
+                          ]
+                        }
+                      ],
+                      "violations": [],
+                      "uncertain": false,
+                      "supportedAssertions": 1,
+                      "unsupportedAssertions": 0,
+                      "elapsedMs": 1.899999976158142
+                    },
+                    "verificationReferences": [],
+                    "promptTokens": 3457,
+                    "completionTokens": 16
+                  }
+                ],
+                "refreshMs": 6.5,
+                "verificationMs": 1.899999976158142,
+                "extraGenerationMs": 0,
+                "additionalUsage": {
+                  "promptTokens": 0,
+                  "completionTokens": 0
+                }
+              }
+            ]
+          }
+        ],
+        "generation_ms": 4938,
+        "extraction_wait_ms": 725,
+        "metrics": {
+          "current_vectors": 3,
+          "history_events": [
+            {
+              "count": 3,
+              "state": "approve"
+            },
+            {
+              "count": 3,
+              "state": "create"
+            }
+          ],
+          "jobs": [
+            {
+              "count": 2,
+              "state": "done"
+            }
+          ],
+          "memories": [
+            {
+              "count": 3,
+              "state": "active"
+            }
+          ],
+          "pending_vectors": 0,
+          "project": "grumixama",
+          "provenance_rows": 3,
+          "scope": "phase22b-final-v3",
+          "sqlite_main_page_bytes": 1470464,
+          "vector_json_bytes": 28509
+        }
+      }
+    },
+    {
+      "item": {
+        "text": "Pode me lembrar daquele projeto de que falei?",
+        "scenario": "indirect_question",
+        "mode": "chat",
+        "expected": [
+          {
+            "property": "language",
+            "value": "rust",
+            "temporal": "planned"
+          },
+          {
+            "property": "database",
+            "value": "sqlite",
+            "temporal": "planned"
+          }
+        ]
+      },
+      "turn": {
+        "paints": [
+          {
+            "at_ms": 117,
+            "id": "477c9f85-4cc8-4f3e-9a07-4f06bbadfffd",
+            "content": "",
+            "fidelity_status": null,
+            "error": null
+          },
+          {
+            "at_ms": 3012,
+            "id": "477c9f85-4cc8-4f3e-9a07-4f06bbadfffd",
+            "content": "Você mencionou que está começando um projeto de catálogo de fósseis, chamado Grumixama. Você planeja desenvolvê-lo usando a linguagem Rust com um banco de dados SQLite.",
+            "fidelity_status": "checked",
+            "error": null
+          }
+        ],
+        "domPaints": [
+          {
+            "at_ms": 117,
+            "id": "477c9f85-4cc8-4f3e-9a07-4f06bbadfffd",
+            "text": "",
+            "fidelity_status": null
+          },
+          {
+            "at_ms": 127,
+            "id": "477c9f85-4cc8-4f3e-9a07-4f06bbadfffd",
+            "text": "lucille-real-gemma",
+            "fidelity_status": null
+          },
+          {
+            "at_ms": 3023,
+            "id": "477c9f85-4cc8-4f3e-9a07-4f06bbadfffd",
+            "text": "lucille-real-gemma\n\nVocê mencionou que está começando um projeto de catálogo de fósseis, chamado Grumixama. Você planeja desenvolvê-lo usando a linguagem Rust com um banco de dados SQLite.",
+            "fidelity_status": "checked"
+          },
+          {
+            "at_ms": 3051,
+            "id": "477c9f85-4cc8-4f3e-9a07-4f06bbadfffd",
+            "text": "lucille-real-gemma\n\nVocê mencionou que está começando um projeto de catálogo de fósseis, chamado Grumixama. Você planeja desenvolvê-lo usando a linguagem Rust com um banco de dados SQLite.\n\n1,239 in · 39 out",
+            "fidelity_status": "checked"
+          }
+        ],
+        "text": "Pode me lembrar daquele projeto de que falei?",
+        "conversation_id": "a49d15d4-9fb1-414a-88de-d6d62983cbb9",
+        "messages": [
+          {
+            "id": "fba02516-48d9-48fd-96d7-c8223ff71f07",
+            "role": "user",
+            "content": "Pode me lembrar daquele projeto de que falei?",
+            "timestamp": 1793785759663
+          },
+          {
+            "id": "477c9f85-4cc8-4f3e-9a07-4f06bbadfffd",
+            "role": "assistant",
+            "content": "Você mencionou que está começando um projeto de catálogo de fósseis, chamado Grumixama. Você planeja desenvolvê-lo usando a linguagem Rust com um banco de dados SQLite.",
+            "thinking": "",
+            "modelId": "openai::lucille-real-gemma",
+            "timestamp": 1793785759663,
+            "lucilleFidelity": [
+              {
+                "status": "checked",
+                "attempts": [
+                  {
+                    "rawAnswer": "Você mencionou que está começando um projeto de catálogo de fósseis, chamado Grumixama. Você planeja desenvolvê-lo usando a linguagem Rust com um banco de dados SQLite.",
+                    "check": {
+                      "assertions": [
+                        {
+                          "entity": "project.grumixama",
+                          "property": "language",
+                          "value": "rust",
+                          "span": "Você planeja desenvolvê-lo usando a linguagem Rust com um banco de dados SQLite.",
+                          "supported": true,
+                          "references": [
+                            "7919c6e7-4c2d-652e-0459-209ed127c9ca"
+                          ]
+                        },
+                        {
+                          "entity": "project.grumixama",
+                          "property": "database",
+                          "value": "sqlite",
+                          "span": "Você planeja desenvolvê-lo usando a linguagem Rust com um banco de dados SQLite.",
+                          "supported": true,
+                          "references": [
+                            "a32c9395-c760-f840-a6cf-53d613fe5d6d"
+                          ]
+                        }
+                      ],
+                      "violations": [],
+                      "uncertain": false,
+                      "supportedAssertions": 2,
+                      "unsupportedAssertions": 0,
+                      "elapsedMs": 1.0999999642372131
+                    },
+                    "verificationReferences": [],
+                    "promptTokens": 1239,
+                    "completionTokens": 39
+                  }
+                ],
+                "refreshMs": 11.899999976158142,
+                "verificationMs": 1.0999999642372131,
+                "extraGenerationMs": 0,
+                "additionalUsage": {
+                  "promptTokens": 0,
+                  "completionTokens": 0
+                }
+              }
+            ],
+            "finishReason": "stop",
+            "usage": {
+              "promptTokens": 1239,
+              "completionTokens": 39,
+              "totalTokens": 1278
+            },
+            "requestUsage": {
+              "inputTokens": 1239,
+              "outputTokens": 39,
+              "calls": 1
+            }
+          }
+        ],
+        "generation_ms": 3154,
+        "extraction_wait_ms": 735,
+        "metrics": {
+          "current_vectors": 3,
+          "history_events": [
+            {
+              "count": 3,
+              "state": "approve"
+            },
+            {
+              "count": 3,
+              "state": "create"
+            }
+          ],
+          "jobs": [
+            {
+              "count": 2,
+              "state": "done"
+            }
+          ],
+          "memories": [
+            {
+              "count": 3,
+              "state": "active"
+            }
+          ],
+          "pending_vectors": 0,
+          "project": "grumixama",
+          "provenance_rows": 3,
+          "scope": "phase22b-final-v3",
+          "sqlite_main_page_bytes": 1470464,
+          "vector_json_bytes": 28509
+        }
+      }
+    }
+  ],
+  "conversations": [
+    "adeec177-d49c-4520-94a3-e6e7113bd3fb",
+    "b21f6423-216c-4d42-be2a-4ab89359bd27",
+    "f654d3dd-fd84-4dfd-8b2c-6267aef8deec",
+    "a49d15d4-9fb1-414a-88de-d6d62983cbb9"
+  ],
+  "existing_bindings": [],
+  "initial_identity": {
+    "created_at": 1793761942,
+    "profile": {
+      "description": "Fictional isolated QA identity",
+      "instructions": "Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. No tools are needed in these synthetic memory checks.",
+      "name": "Lucille Synthetic Phase22",
+      "personality": "Concise"
+    },
+    "updated_at": 1793768608,
+    "version": 3
+  },
+  "initial_index": {
+    "indexed": 91,
+    "space": {
+      "context_tokens": 2048,
+      "dimension": 768,
+      "document_prefix": "search_document: ",
+      "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "index_version": 5,
+      "model": "nomic-ai/nomic-embed-text-v1.5",
+      "normalization": "layer_norm_then_l2",
+      "pooling": "mean",
+      "query_prefix": "search_query: ",
+      "revision": "0188c9bf409793f810680a5a431e7b899c46104c"
+    },
+    "transport_verified": false
+  },
+  "initial_details": [],
+  "initial_deleted": [],
+  "policy": {
+    "auto_kinds": [
+      "preference"
+    ],
+    "automatic_indexing": true,
+    "autonomous_preferences": true,
+    "enabled": true,
+    "extraction_mode": "llm",
+    "lexical_weight": 0.5,
+    "max_pending": 64,
+    "minimum_confidence": 0.96,
+    "minimum_relevance": 0.8,
+    "minimum_similarity": 0.6,
+    "semantic_weight": 0.5
+  },
+  "initial_metrics": {
+    "current_vectors": 0,
+    "history_events": [],
+    "jobs": [],
+    "memories": [],
+    "pending_vectors": 0,
+    "project": "grumixama",
+    "provenance_rows": 0,
+    "scope": "phase22b-final-v3",
+    "sqlite_main_page_bytes": 1429504,
+    "vector_json_bytes": 0
+  },
+  "after_long": [
+    {
+      "memory": {
+        "created_at": 1793785721,
+        "input": {
+          "content": "Estou começando um projeto de catálogo de fósseis",
+          "fact_key": "project.grumixama.description",
+          "id": "16596c19-dcaa-7b3d-b212-4703d6ede124",
+          "kind": "project",
+          "project": "grumixama",
+          "scope": "phase22b-final-v3",
+          "source": "user",
+          "source_id": "7d8671ffa40a6f1b6514ab0f6499c24a3c2ee8fc941f2923e613eb22ba63eab0"
+        },
+        "state": "active",
+        "updated_at": 1793785723,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793785721,
+          "evidence": "Estou começando um projeto de catálogo de fósseis",
+          "interaction_id": "7d8671ffa40a6f1b6514ab0f6499c24a3c2ee8fc941f2923e613eb22ba63eab0"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "description",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.grumixama",
+        "temporal": "durable",
+        "value": "estou comecando um projeto de catalogo de fosseis"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793785731,
+        "input": {
+          "content": "Projeto grumixama: planeja usar linguagem rust.",
+          "fact_key": "project.grumixama.language",
+          "id": "7919c6e7-4c2d-652e-0459-209ed127c9ca",
+          "kind": "decision",
+          "project": "grumixama",
+          "scope": "phase22b-final-v3",
+          "source": "user",
+          "source_id": "a81b273981bbde0ca554e3563ed81bcb73dcef7eba2935ef27a4a7175f3579bc"
+        },
+        "state": "active",
+        "updated_at": 1793785734,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793785731,
+          "evidence": "Quero usar Rust e SQLite no meu projeto",
+          "interaction_id": "a81b273981bbde0ca554e3563ed81bcb73dcef7eba2935ef27a4a7175f3579bc"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "language",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.grumixama",
+        "temporal": "planned",
+        "value": "rust"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793785731,
+        "input": {
+          "content": "Projeto grumixama: planeja usar sqlite como banco de dados.",
+          "fact_key": "project.grumixama.database",
+          "id": "a32c9395-c760-f840-a6cf-53d613fe5d6d",
+          "kind": "decision",
+          "project": "grumixama",
+          "scope": "phase22b-final-v3",
+          "source": "user",
+          "source_id": "a81b273981bbde0ca554e3563ed81bcb73dcef7eba2935ef27a4a7175f3579bc"
+        },
+        "state": "active",
+        "updated_at": 1793785735,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793785731,
+          "evidence": "Quero usar Rust e SQLite no meu projeto",
+          "interaction_id": "a81b273981bbde0ca554e3563ed81bcb73dcef7eba2935ef27a4a7175f3579bc"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "database",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.grumixama",
+        "temporal": "planned",
+        "value": "sqlite"
+      },
+      "revisions": [
+        1
+      ]
+    }
+  ],
+  "final_details": [
+    {
+      "memory": {
+        "created_at": 1793785721,
+        "input": {
+          "content": "Estou começando um projeto de catálogo de fósseis",
+          "fact_key": "project.grumixama.description",
+          "id": "16596c19-dcaa-7b3d-b212-4703d6ede124",
+          "kind": "project",
+          "project": "grumixama",
+          "scope": "phase22b-final-v3",
+          "source": "user",
+          "source_id": "7d8671ffa40a6f1b6514ab0f6499c24a3c2ee8fc941f2923e613eb22ba63eab0"
+        },
+        "state": "active",
+        "updated_at": 1793785723,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793785721,
+          "evidence": "Estou começando um projeto de catálogo de fósseis",
+          "interaction_id": "7d8671ffa40a6f1b6514ab0f6499c24a3c2ee8fc941f2923e613eb22ba63eab0"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "description",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.grumixama",
+        "temporal": "durable",
+        "value": "estou comecando um projeto de catalogo de fosseis"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793785731,
+        "input": {
+          "content": "Projeto grumixama: planeja usar linguagem rust.",
+          "fact_key": "project.grumixama.language",
+          "id": "7919c6e7-4c2d-652e-0459-209ed127c9ca",
+          "kind": "decision",
+          "project": "grumixama",
+          "scope": "phase22b-final-v3",
+          "source": "user",
+          "source_id": "a81b273981bbde0ca554e3563ed81bcb73dcef7eba2935ef27a4a7175f3579bc"
+        },
+        "state": "active",
+        "updated_at": 1793785734,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793785731,
+          "evidence": "Quero usar Rust e SQLite no meu projeto",
+          "interaction_id": "a81b273981bbde0ca554e3563ed81bcb73dcef7eba2935ef27a4a7175f3579bc"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "language",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.grumixama",
+        "temporal": "planned",
+        "value": "rust"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793785731,
+        "input": {
+          "content": "Projeto grumixama: planeja usar sqlite como banco de dados.",
+          "fact_key": "project.grumixama.database",
+          "id": "a32c9395-c760-f840-a6cf-53d613fe5d6d",
+          "kind": "decision",
+          "project": "grumixama",
+          "scope": "phase22b-final-v3",
+          "source": "user",
+          "source_id": "a81b273981bbde0ca554e3563ed81bcb73dcef7eba2935ef27a4a7175f3579bc"
+        },
+        "state": "active",
+        "updated_at": 1793785735,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793785731,
+          "evidence": "Quero usar Rust e SQLite no meu projeto",
+          "interaction_id": "a81b273981bbde0ca554e3563ed81bcb73dcef7eba2935ef27a4a7175f3579bc"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "database",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.grumixama",
+        "temporal": "planned",
+        "value": "sqlite"
+      },
+      "revisions": [
+        1
+      ]
+    }
+  ],
+  "final_metrics": {
+    "current_vectors": 3,
+    "history_events": [
+      {
+        "count": 3,
+        "state": "approve"
+      },
+      {
+        "count": 3,
+        "state": "create"
+      }
+    ],
+    "jobs": [
+      {
+        "count": 2,
+        "state": "done"
+      }
+    ],
+    "memories": [
+      {
+        "count": 3,
+        "state": "active"
+      }
+    ],
+    "pending_vectors": 0,
+    "project": "grumixama",
+    "provenance_rows": 3,
+    "scope": "phase22b-final-v3",
+    "sqlite_main_page_bytes": 1470464,
+    "vector_json_bytes": 28509
+  },
+  "identity": {
+    "created_at": 1793761942,
+    "profile": {
+      "description": "Fictional isolated QA identity",
+      "instructions": "Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. No tools are needed in these synthetic memory checks.",
+      "name": "Lucille Synthetic Phase22",
+      "personality": "Concise"
+    },
+    "updated_at": 1793768608,
+    "version": 3
+  },
+  "index": {
+    "indexed": 94,
+    "space": {
+      "context_tokens": 2048,
+      "dimension": 768,
+      "document_prefix": "search_document: ",
+      "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "index_version": 5,
+      "model": "nomic-ai/nomic-embed-text-v1.5",
+      "normalization": "layer_norm_then_l2",
+      "pooling": "mean",
+      "query_prefix": "search_query: ",
+      "revision": "0188c9bf409793f810680a5a431e7b899c46104c"
+    },
+    "transport_verified": false
+  },
+  "deleted": [],
+  "finished": "2026-11-04T09:49:23.486Z",
+  "execution_complete": true,
+  "public_curation": {
+    "removed_system_messages": 2,
+    "original_private_sha256": "dd65e843e092d29fc7ac7e9fafd03349100579abe2f8b3015e36a2c7827c7415",
+    "reason": "Remove only SYSTEM messages containing private workspace context. Evaluated USER/assistant text, original turn text, raw attempts, IDs and answer hashes are unchanged."
+  }
+}

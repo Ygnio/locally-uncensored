@@ -1,0 +1,152 @@
+{
+  "evaluation": "Frozen v3 new corpus, actual models and full native GUI",
+  "window_utc": {
+    "start": "2026-11-04T09:48:31.934Z",
+    "finish": "2026-11-04T09:57:28.694Z"
+  },
+  "displayed_response_slots": 65,
+  "fidelity_raw_attempts": 71,
+  "broker_calls_in_gui_window": {
+    "gemma": {
+      "calls": 111,
+      "latency_seconds": {
+        "n": 111,
+        "min": 1.3410975000006147,
+        "p50": 2.3674360999721102,
+        "p95_nearest_rank": 4.562216499994975,
+        "max": 5.950440600048751,
+        "total": 291.1630869002547
+      },
+      "prompt_tokens": 122312,
+      "completion_tokens": 4214,
+      "max_prompt_tokens": 3828
+    },
+    "nomic": {
+      "calls": 102,
+      "latency_seconds": {
+        "n": 102,
+        "min": 0.05009119998430833,
+        "p50": 0.08284619997721165,
+        "p95_nearest_rank": 0.27619940001750365,
+        "max": 0.377212600025814,
+        "total": 10.608386499923654
+      },
+      "prompt_tokens": 2389,
+      "completion_tokens": 0,
+      "max_prompt_tokens": 45
+    }
+  },
+  "extraction": {
+    "actual_single_gemma_calls": 64,
+    "latency_seconds": {
+      "n": 64,
+      "min": 1.5993347999756224,
+      "p50": 3.521353199990699,
+      "p95_nearest_rank": 3.7742105000070296,
+      "max": 3.9494942000019364,
+      "total": 221.42877950001275
+    },
+    "prompt_tokens": 28037,
+    "completion_tokens": 5658
+  },
+  "ui_generation_ms": {
+    "n": 65,
+    "min": 1889,
+    "p50": 2923,
+    "p95_nearest_rank": 6238,
+    "max": 12486,
+    "total": 220441
+  },
+  "post_answer_extraction_wait_ms": {
+    "n": 65,
+    "min": 711,
+    "p50": 2598,
+    "p95_nearest_rank": 4713,
+    "max": 17278,
+    "total": 168069
+  },
+  "verification_ms": {
+    "n": 65,
+    "min": 0,
+    "p50": 0.8999999761581421,
+    "p95_nearest_rank": 2.199999988079071,
+    "max": 3.5,
+    "total": 56.99999988079071
+  },
+  "fresh_native_evidence_ms": {
+    "n": 65,
+    "min": 5.300000011920929,
+    "p50": 7.599999964237213,
+    "p95_nearest_rank": 19.5,
+    "max": 47.90000003576279,
+    "total": 625.6000002026558
+  },
+  "extra_generation_ms": {
+    "n": 65,
+    "min": 0,
+    "p50": 0,
+    "p95_nearest_rank": 2225.099999964237,
+    "max": 3143.699999988079,
+    "total": 14425.299999952316
+  },
+  "additional_prompt_tokens": 8566,
+  "additional_completion_tokens": 121,
+  "paint_observer": {
+    "store_violations": [
+      [
+        "ended",
+        3,
+        12290
+      ]
+    ],
+    "dom_violations": [],
+    "store_events": 131,
+    "dom_events": 252
+  },
+  "longitudinal": {
+    "source_turns": 32,
+    "probe_turns": 14,
+    "replays": [
+      {
+        "result": {
+          "attempts": 1,
+          "created_at": 1793785829,
+          "error_code": null,
+          "id": "08fbc32d651a798874f4b0084896093a96df9947618f1020622980830a610721",
+          "state": "done",
+          "updated_at": 1793785835
+        },
+        "canonical_unchanged": true
+      }
+    ],
+    "initial_global_indexed": 96,
+    "final_global_indexed": 111,
+    "final_scoped_active": 15,
+    "final_scoped_obsolete": 4,
+    "tombstones": 2
+  },
+  "instruction_compliance": {
+    "english_queries_answered_in_portuguese": [
+      {
+        "stage": "long32",
+        "turn": 38
+      },
+      {
+        "stage": "long32",
+        "turn": 40
+      }
+    ],
+    "unnecessary_file_list": {
+      "stage": "ended",
+      "turn": 3,
+      "calls": 1
+    }
+  },
+  "limitations": [
+    "Broker Gemma count includes atomic extraction and the unnecessary Agent tool-selection round; it is not the fidelity-attempt denominator.",
+    "Store/DOM observer checks withholding until a verdict, not semantic correctness of that verdict.",
+    "Global index counts include other synthetic project scopes, not only this conversation.",
+    "Native index transport_verified remains false in the QA snapshot; actual embeddings are evidenced independently by pinned broker/runtime calls, not that flag.",
+    "Gemma configured context remains 65536. Maximum observed prompt is reported; this is not a full 65536-token saturation benchmark."
+  ]
+}
