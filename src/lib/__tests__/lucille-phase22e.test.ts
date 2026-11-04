@@ -3,6 +3,13 @@ import {registerAnswerSnapshot,memoryAbsenceFields} from '../lucille-fidelity'
 import {validateLucilleCompletion} from '../lucille-answer'
 import type {ChatMessage} from '../../api/providers/types'
 import {verifyMemoryAnswer,type AnswerSnapshot,type MemoryLearningReceipt} from '../lucille-fidelity'
+it('does not promise durable keeping-in-mind in response to an explicit save request',()=>{
+ const s=base();s.query='Volte a guardar esta preferência: eu gosto de jogos em que posso escolher minha classe.';s.currentStatements=[]
+ expect(verifyMemoryAnswer('Perfeito, agora manterei em mente que você gosta de jogos em que pode escolher sua classe.',s).violations.map(v=>v.code)).toContain('unconfirmed_memory_promise')
+ s.query='Please remember this preference.'
+ expect(verifyMemoryAnswer("I'll keep that in mind.",s).violations.map(v=>v.code)).toContain('unconfirmed_memory_promise')
+ expect(verifyMemoryAnswer('I can keep that in mind after approval.',s).violations).toEqual([])
+})
 it('does not assign the historical generic game-feature reply to USER preferences',()=>{
  const s=base();s.query='Entre os jogos, os de estratégia por turnos são os meus favoritos.';s.currentStatements=[]
  for(const text of ['Estratégia por turnos permite uma análise cuidadosa de cada movimento. Você prefere jogos com grandes escalas épicas ou algo mais focado em pequenos grupos de personagens?','Os jogos de estratégia por turnos permitem um planejamento cuidadoso e profundo. Você prefere jogos com grandes mapas e muitos personagens ou algo mais focado em pequenos grupos e batalhas intensas?'])expect(verifyMemoryAnswer(text,s).violations,text).toEqual([])
@@ -32,6 +39,7 @@ it('recognizes the original false bank nonreceipt and keeps a bounded GPU uncert
  expect(memoryAbsenceFields(answer,s)).toEqual([{entity:'project.candeia',property:'database',value:''}])
  s.query='Qual é minha GPU?';s.facts=[{...s.currentStatements[0],id:'ram',version:1,entity:'device.primary_computer',property:'ram_capacity',value:'32_gb',validity:'current',modality:'current_fact'}]
  expect(verifyMemoryAnswer('Não há registro disponível sobre qual GPU você utiliza.',s).violations).toEqual([])
+ expect(verifyMemoryAnswer('Não há registro sobre qual é a sua GPU. Até agora, você informou apenas que seu café é a sua bebida favorita.',s).violations.map(v=>v.code)).toContain('global_absence_without_evidence')
 })
 it('performs a property-specific canonical read before a real retry, without treating no hit as proof of never provided',async()=>{
  const s=base();s.query='Qual banco planejei para meu projeto?';s.currentStatements=[]
@@ -78,6 +86,7 @@ it('preserves the correct negative capacity in the original localized repair exa
  s.facts=[{...base().currentStatements[0],id:'ram',version:2,entity:'device.primary_computer',property:'ram_capacity',value:'48_gb',modality:'current_fact',validity:'current'}]
  const text='Entendido, você está apenas corrigindo o valor atual para 48 GB. Isso deixa claro que o foco é o aumento recente, não uma capacidade total de 128 GB.'
  expect(verifyMemoryAnswer(text,s).violations).toEqual([])
+ expect(verifyMemoryAnswer('Entendido, você está apenas corrigindo o valor atual para 48 GB. Isso deixa claro que o foco é a memória disponível agora, não uma capacidade maior como 128 GB.',s).violations).toEqual([])
  expect(verifyMemoryAnswer('Seu computador possui uma capacidade total de 128 GB.',s).violations.some(v=>v.critical)).toBe(true)
  s.facts.push({...s.facts[0],id:'work',entity:'device.work_laptop',value:'128_gb'})
  expect(verifyMemoryAnswer('Não uma capacidade total de 128 GB.',s).violations.some(v=>v.critical)).toBe(true)
@@ -85,7 +94,7 @@ it('preserves the correct negative capacity in the original localized repair exa
 
 it('does not infer workload headroom from capacity alone, while preserving a denial of the guarantee',()=>{
  const s=base();s.query='Meu computador principal tem 26 GB de RAM.';s.currentStatements=[{...s.currentStatements[0],entity:'device.primary_computer',property:'ram_capacity',value:'26_gb',modality:'current_fact',evidence:[{role:'current_user_statement',text:s.query}]}]
- for(const text of ['26 GB de RAM oferecem uma excelente margem para multitarefa e projetos complexos.','26 GB de RAM é uma quantidade sólida para produtividade e desenvolvimento fluido.'])expect(verifyMemoryAnswer(text,s).violations.map(v=>v.code)).toContain('authority_workload_performance')
+ for(const text of ['26 GB de RAM oferecem uma excelente margem para multitarefa e projetos complexos.','26 GB de RAM é uma quantidade sólida para produtividade e desenvolvimento fluido.','Essa é uma quantidade excelente de memória, ideal para multitarefa pesada e edição de vídeo.','Com 26 GB, seu notebook oferece um equilíbrio sólido para produtividade e navegação fluida.'])expect(verifyMemoryAnswer(text,s).violations.map(v=>v.code)).toContain('authority_workload_performance')
  expect(verifyMemoryAnswer('26 GB de RAM não garantem desenvolvimento fluido.',s).violations).toEqual([])
  expect(verifyMemoryAnswer('26 GB de RAM podem oferecer uma excelente margem para multitarefa, dependendo da carga.',s).violations).toEqual([])
 })

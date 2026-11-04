@@ -346,6 +346,15 @@ fn composite_questions_preserve_own_relations_without_borrowing_third_party_or_p
         token_budget: 16384,
     };
     for q in [
+        "Qual é a RAM do meu computador principal?",
+        "Qual é a RAM do meu computador principal? Diga a quantidade numa frase e, separadamente, avalie se isso garante fluidez ao rodar meu ambiente e banco juntos.",
+    ] {
+        assert!(s.context(req(q)).unwrap().relations.is_empty(), "{q}");
+    }
+    let independent=s.context(req("Qual é a RAM do meu computador principal e qual banco planejei para meu projeto?")).unwrap();
+    assert_eq!(independent.relations.len(),2);
+    assert!(independent.relations.iter().all(|r|r.state=="retrieved"));
+    for q in [
         "Compare o banco que planejei para meu projeto com o banco do meu irmão.",
         "Compare o banco do meu irmão com o banco que planejei para meu projeto.",
         "Compare os bancos do projeto candeia e do projeto ipe.",
@@ -602,10 +611,13 @@ fn plain_coffee_preference_is_retrievable_but_never_sugar_or_favorite_and_is_act
         .unwrap()
         .facts
         .is_empty());
+    s.enqueue_learning(input("Entre as bebidas, minha favorita é café.")).unwrap();
+    if let Some(l)=s.claim_learning(now()+1).unwrap(){s.complete_learning(&l,&l.claims,now()+2).unwrap();}
+    assert_eq!(s.list("qa","candeia").unwrap().len(),2);
     s.enqueue_learning(input("Esqueça minha preferência por café."))
         .unwrap();
     assert!(s.list("qa", "candeia").unwrap().is_empty());
-    assert_eq!(s.deleted_memories("qa", "candeia").unwrap().len(), 1);
+    assert_eq!(s.deleted_memories("qa", "candeia").unwrap().len(), 2);
     drop(s);
     let mut s = Store::open(&d.path().join("synthetic.sqlite3")).unwrap();
     assert!(s
@@ -613,7 +625,12 @@ fn plain_coffee_preference_is_retrievable_but_never_sugar_or_favorite_and_is_act
         .unwrap()
         .facts
         .is_empty());
-    assert_eq!(s.deleted_memories("qa", "candeia").unwrap().len(), 1);
+    assert_eq!(s.deleted_memories("qa", "candeia").unwrap().len(), 2);
+    let (_other,mut tea)=learn("Minha bebida favorita é chá.",ExtractionMode::Rules);
+    tea.enqueue_learning(input("Esqueça minha preferência por café.")).unwrap();
+    let remaining=tea.memory_details("qa","candeia").unwrap();
+    assert_eq!(remaining.len(),1);
+    assert_eq!(remaining[0].quality.as_ref().unwrap().value,"tea");
 }
 
 #[test]

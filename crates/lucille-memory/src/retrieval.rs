@@ -75,7 +75,9 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
             Some((at, part.trim()))
         })
     {
-        if !["e", "and", "com", "with", "versus", "vs", "vs."].contains(&fold(word).as_str()) {
+        // Preserve the Portuguese copula: accent folding must not turn é into
+        // the coordinating conjunction e and manufacture a relation "Qual".
+        if !["e", "and", "com", "with", "versus", "vs", "vs."].contains(&word.to_lowercase().as_str()) {
             continue;
         }
         let tail = &query[index + word.len()..];
@@ -125,6 +127,14 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
             ]
             .contains(&w.as_str())
         });
+        // Arguments of a workload assessment share its predicate. Mentioning
+        // a database alongside an environment does not ask for its saved name.
+        // A new explicit question still starts an independently requested slot.
+        let preceding = fold(&query[start..index]);
+        let assessment = ["garant", "guarantee", "fluidez", "smooth", "desempenho", "performance"]
+            .iter().any(|p| preceding.contains(p));
+        let explicit_question = head.is_some_and(|w| ["qual", "quais", "what", "which", "quanto", "quantos"].contains(&w.as_str()));
+        if assessment && !explicit_question { continue; }
         if starts_relation && index > start && spans.len() < 7 {
             spans.push(query[start..index].trim().to_owned());
             start = index + word.len();

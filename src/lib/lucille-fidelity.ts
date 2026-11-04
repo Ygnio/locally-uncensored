@@ -151,6 +151,9 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     const promise=/\b(?:sera|serao|will be)\s+(?:incluid|registrad|salv|armazenad|atualizad|included|saved|stored|recorded)|\b(?:atualizara|vou (?:salvar|memorizar|registrar|guardar)|i will (?:save|store|remember|record))\b/.test(q)
     const conditionalReview=/\b(?:se|if)\b.{0,45}(?:aprovar|aprovad|confirmar|confirm|approve)|(?:apos|after).{0,25}(?:aprovacao|approval)|depende.{0,25}(?:revisao|aprovacao)/.test(q)
     if(promise && memoryDomain && !conditionalReview)add('unconfirmed_memory_promise',span)
+    const memoryRequest=/\b(?:guardar|memorizar|memorize|remember|registrar|record|armazenar|store)\b/.test(query)
+    const keepInMind=/\b(?:manterei|vou manter)\s+em mente\b|\bi(?: will|.ll) keep (?:that |this |it )?in mind\b/.test(q)
+    if(memoryRequest && keepInMind && !conditionalReview)add('unconfirmed_memory_promise',span)
     if(forgetQuestion && /\b(?:voce esqueceu|you forgot)\b/.test(q))add('wrong_forget_actor',span)
     if (mutation && memoryDomain && !/\b(?:nao|not|haven.t|didn.t|cannot|can.t)\b.{0,35}(?:remov|apag|exclu|esquec|memoriz|guard|salv|registr|reativ|saved|stored|deleted|removed)/.test(q)) {
       const deletion = /removi|apaguei|exclui|esqueci|removid|apagad|excluid|esquecid|removed|deleted|forgotten/.test(q)
@@ -171,7 +174,9 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       // remains a current preference. Independent coordinated claims still run.
       if(deletion && confirmed && !/(?:,?\s+e|\band)\s+(?:voce|seu|sua|you|your)\b/.test(q))continue
     }
-    const globalAbsence=/(?:nao ha|nao tenho|nao existem).{0,20}(?:registros? de memorias?|memorias? salv[ao]s?|registros? salvos?)|(?:there are no|i have no).{0,15}(?:saved memories|saved records)/.test(q)
+    const exclusiveHistory=/\bvoce (?:me )?(?:informou|forneceu|disse|contou) (?:apenas|somente|so)\b|\byou (?:have )?(?:only (?:told|provided|supplied)|(?:told|provided|supplied) (?:me )?only)\b/.test(q)
+      && !/contexto (?:atual|disponivel)|current context|available context/.test(q)
+    const globalAbsence=exclusiveHistory || /(?:nao ha|nao tenho|nao existem).{0,20}(?:registros? de memorias?|memorias? salv[ao]s?|registros? salvos?)|(?:there are no|i have no).{0,15}(?:saved memories|saved records)/.test(q)
     if(globalAbsence && snapshot.hasScopedRecords!==false)add('global_absence_without_evidence',span)
     if(projectQuestion && /^(?:(?:ainda\s+)?nao\s+(?:defini|decidi|escolhi)\b|eu\s+(?:defini|decidi|escolhi)\b|i\s+(?:(?:have not|haven.t|never)\s+)?(?:chose|chosen|decided|selected)\b)/.test(q.trim()) && /banco|database|linguagem|language|projeto|project/.test(q))add('wrong_decision_actor',span)
     if (span.trim().endsWith('?') && /^(?:qual|quais|como|quando|onde|por que|what|which|how|when|where|why|voce (?:pretende|quer|esta|vai|usa|usaria|usou|prefere)|do you|are you|have you|is your)\b/.test(q.trim()) && !/certo|\bne\b|\bright\b|correct|isn.t it/.test(q)) continue
@@ -266,9 +271,12 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
         if(!supported)add('unsupported_typed_value',span)
         continue
       }
-      const property = /livre|disponivel|available|free/.test(q) ? 'free_ram' : /\bram\b|memoria|memory/.test(q + ' ' + query) ? 'ram_capacity' : 'capacity_update'
+      // Bind availability to this quantity's clause. A preceding comment about
+      // available memory cannot turn a later denied total into free RAM.
+      const quantityClause=q.slice(q.lastIndexOf(',',match.index)+1, q.indexOf(',',match.index)<0 ? undefined : q.indexOf(',',match.index))
+      const property = /livre|disponivel|available|free/.test(quantityClause) ? 'free_ram' : /\bram\b|memoria|memory/.test(q + ' ' + query) ? 'ram_capacity' : 'capacity_update'
       const entity = entityIn(q.slice(0, match.index)) ?? entityIn(query)
-      record(span, property, match[1] + '_gb', entity, /nao (?:tem|possui|sao|e)|does not have|not \d|\bnao (?:uma |a |sua )?capacidade (?:total )?de\s*$|\bnot (?:a |your )?(?:total )?capacity of\s*$/.test(q.slice(0, match.index)))
+      record(span, property, match[1] + '_gb', entity, /nao (?:tem|possui|sao|e)|does not have|not \d|\bnao (?:uma |a |sua )?capacidade (?:[a-z]+\s+){0,3}(?:de|como)\s*$|\bnot (?:a |your )?(?:total )?capacity of\s*$/.test(q.slice(0, match.index)))
     }
     const plainPreference=/\b(?:prefere|prefiro|prefers|prefer|gosta de|like|likes|preferencia por|preference for|gosto por|liking for)\b/.test(q)
     const drinkLead=/^(?:(?:e|is|it is|it's)\s+)?(?:cha|tea|cafe|coffee)\b/.test(q.trim())

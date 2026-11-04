@@ -208,7 +208,7 @@ impl Store {
         }
         let at = crate::now();
         let memories = {
-            let mut q=tx.prepare(&format!("SELECT {} FROM memories WHERE scope=?1 AND project=?2 AND id IN (SELECT memory_id FROM memory_quality WHERE subject='user' AND (property=?3 OR (?3='coffee_sugar' AND property='beverage_preference')))",COLS)).map_err(db_error)?;
+            let mut q=tx.prepare(&format!("SELECT {} FROM memories WHERE scope=?1 AND project=?2 AND id IN (SELECT memory_id FROM memory_quality WHERE subject='user' AND (property=?3 OR (?3='coffee_sugar' AND property IN ('beverage_preference','favorite_beverage') AND value='coffee')))",COLS)).map_err(db_error)?;
             let rows = q
                 .query_map(params![input.scope, input.project, property], row)
                 .map_err(db_error)?
