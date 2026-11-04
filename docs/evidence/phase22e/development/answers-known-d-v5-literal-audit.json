@@ -1,0 +1,1677 @@
+{
+  "id": "phase22e-known-independent-answers-v5-literal-audit",
+  "status": "Known D corpus rerun during E development; not new frozen final assessment or phase approval.",
+  "reviewer": "Separate read-only agent in the same development team, not an external blind evaluator. No code, evaluator, corpus, Store, bridge or model execution during this audit.",
+  "reviewed_utc": "2026-11-04T23:13:00.438599+00:00",
+  "declared_production_code_completion_commit": "9fca27daf715ef5597e2536f6651583b48ec1f2b",
+  "original_private_filename": "development-known-d-v5-answers.json",
+  "original_private_sha256": "281d50102e4029bd3b3a26f8ff097eb2ef69d9dbb2623feba67c75b13d9454df",
+  "freeze_sha256": "360694555ca53bff920925c4ad6cb87b0eada87f857adf3b55a691b120fd5580",
+  "dataset_sha256": "2f786878a3448a4d875eaa1d0d9f72b3205652f4a4e7af819a8f9f538e591deb",
+  "scope_of_execution": "Actual native canonical context, shared production adapter/verifier and pinned real generations. Mode labels exercise the adapter contract; this reader does not itself dispatch tools, publish learning or prove the corresponding GUI renderer.",
+  "curation": {
+    "synthetic_queries_sources_raw_attempts_and_delivered_text_preserved": true,
+    "personal_paths_credentials_private_leases_full_requests_or_source_proofs_published": false
+  },
+  "denominators": {
+    "planned": 21,
+    "executed": 21,
+    "not_executed": 0,
+    "errors": 0,
+    "delivered": 20,
+    "blocked": 1,
+    "generation_attempts": 22,
+    "mode_cases": {
+      "chat": 7,
+      "agent": 7,
+      "code": 7
+    }
+  },
+  "availability": {
+    "delivered": 20,
+    "planned": 21,
+    "rate": 0.9523809523809523,
+    "blocked_case": "da-015",
+    "meaning": "One required answer was withheld after two unsafe generations. Correct safety blocking still counts as lost answer availability."
+  },
+  "posthoc_literal_claim_review": {
+    "method": "One atomic assertion per expressed entity/property/value with its modality and temporal qualifier; two-device/history comparisons split into separate assertions. Project description is one canonical relation. Bounded GPU/brother unavailability statements are two epistemic assertions, counted separately from typed memory facts. Generic conditional invitation to supply information and project namespace labels are not extra personal-memory assertions.",
+    "typed_canonical_assertions_delivered": 23,
+    "bounded_unavailability_assertions_delivered": 2,
+    "all_delivered_assertions": 25,
+    "supported_delivered_assertions": 25,
+    "unsupported_delivered_assertions_identified": 0,
+    "critical_delivered_assertions_identified": 0,
+    "supported_fraction": 1.0,
+    "warning": "This is a transparent posthoc literal audit of small known development material. 25/25 claims is not availability20/21, is not a final frozen-rubric fidelity gate, and is not whole-phase approval. Blocked generations are omitted only from the delivered-claim denominator and remain in all planned-case availability denominators."
+  },
+  "deleted_preference_case": {
+    "id": "da-015",
+    "classification": "correct_safety_block",
+    "native_context_facts": [],
+    "known_context": [],
+    "expected": "bounded_no_current_record",
+    "old_corpus_source_and_deletion": [
+      {
+        "action": "learn",
+        "label": "deleted-creation",
+        "text": "Eu gosto de criar personagens nos jogos.",
+        "scope": "phase22d-final-ret-main",
+        "project": "imbuia",
+        "approve": true
+      },
+      {
+        "action": "delete",
+        "target": "deleted-creation"
+      }
+    ],
+    "old_retrieval_corpus_sha256": "ecac1750acb9262f329c5dfb442ee6aa225df24b849d2e7b13fe406a68c20832",
+    "both_raws_incorrectly_assert_available": true,
+    "false_block_of_bounded_absence_observed_here": false,
+    "learning_or_canonical_resurrection_tested_by_this_reader": false
+  },
+  "historical_selector_case": {
+    "id": "da-017",
+    "underlying_line_state": "active",
+    "native_projection_validity": "historical",
+    "native_projection_modality": "in_progress",
+    "delivered_historical_implementation": "Rust before cancellation",
+    "current_execution_claim_delivered": false,
+    "note": "Cancellation is a temporal anchor in the answer; no separate current-status assertion counted in the25-claim denominator."
+  },
+  "prior_D_results": {
+    "original_case_execution": "16/21",
+    "unchanged": true,
+    "note": "This E known rerun executes21/21 and delivers20/21. It neither rewrites nor retroactively rescoring the original D run."
+  },
+  "remaining_limits": [
+    "No operational application or user data used.",
+    "No new final corpus was read or authored by this audit.",
+    "No extraction, learning, mutation receipts, restart, tool dispatch, streaming transport or GUI behavior is established by this independent answer reader.",
+    "No independent atomic completeness metric was predeclared for this known-corpus literal review; expected semantic concepts are retained per case without silently treating their count as the claim denominator."
+  ],
+  "phase_approved": false,
+  "rows": [
+    {
+      "id": "da-001",
+      "mode": "chat",
+      "query": "Quanto de RAM tem meu PC principal?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "scenario": "known_fact",
+      "known_context": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "64_gb"
+        }
+      ],
+      "expected_concepts": [
+        "64_gb"
+      ],
+      "native_facts": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "64_gb",
+          "modality": "current_fact",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Não tenho mais 40 GB, agora são 64 GB"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Meu computador principal tem 40 GB de RAM"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Seu computador principal tem 64 GB de RAM.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Seu computador principal tem 64 GB de RAM.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "64_gb",
+          "modality": "current_fact",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Não tenho mais 40 GB, agora são 64 GB"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Meu computador principal tem 40 GB de RAM"
+            }
+          ],
+          "native_version": 2
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "64GB atuais;40GB permanecem apenas como histórico e não foram usados como quantidade atual."
+      }
+    },
+    {
+      "id": "da-002",
+      "mode": "agent",
+      "query": "Qual é a capacidade de RAM do meu notebook de trabalho?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "scenario": "known_fact",
+      "known_context": [
+        {
+          "entity": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "20_gb"
+        }
+      ],
+      "expected_concepts": [
+        "20_gb"
+      ],
+      "native_facts": [
+        {
+          "entity": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "20_gb",
+          "modality": "current_fact",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Meu notebook de trabalho tem 20 GB de RAM"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Seu notebook de trabalho tem 20 GB de RAM.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Seu notebook de trabalho tem 20 GB de RAM.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "20_gb",
+          "modality": "current_fact",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Meu notebook de trabalho tem 20 GB de RAM"
+            }
+          ],
+          "native_version": 2
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "20GB do notebook de trabalho, sem empréstimo de capacidade do computador principal."
+      }
+    },
+    {
+      "id": "da-003",
+      "mode": "code",
+      "query": "Quanto de RAM tem meu principal e meu notebook de trabalho?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "scenario": "known_fact",
+      "known_context": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "64_gb"
+        },
+        {
+          "entity": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "20_gb"
+        }
+      ],
+      "expected_concepts": [
+        "64_gb",
+        "20_gb"
+      ],
+      "native_facts": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "64_gb",
+          "modality": "current_fact",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Não tenho mais 40 GB, agora são 64 GB"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Meu computador principal tem 40 GB de RAM"
+            }
+          ]
+        },
+        {
+          "entity": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "20_gb",
+          "modality": "current_fact",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Meu notebook de trabalho tem 20 GB de RAM"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Seu computador principal tem 64 GB de RAM e seu notebook de trabalho tem 20 GB.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Seu computador principal tem 64 GB de RAM e seu notebook de trabalho tem 20 GB.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "64_gb",
+          "modality": "current_fact",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Não tenho mais 40 GB, agora são 64 GB"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Meu computador principal tem 40 GB de RAM"
+            }
+          ],
+          "native_version": 2
+        },
+        {
+          "entity": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "20_gb",
+          "modality": "current_fact",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Meu notebook de trabalho tem 20 GB de RAM"
+            }
+          ],
+          "native_version": 2
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "Duas relações corretas: principal64GB e notebook20GB."
+      }
+    },
+    {
+      "id": "da-004",
+      "mode": "chat",
+      "query": "Qual linguagem eu havia decidido para meu projeto?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "scenario": "known_fact",
+      "known_context": [
+        {
+          "entity": "project.imbuia",
+          "property": "language",
+          "value": "python"
+        }
+      ],
+      "expected_concepts": [
+        "python_decision"
+      ],
+      "native_facts": [
+        {
+          "entity": "project.imbuia",
+          "property": "language",
+          "value": "python",
+          "modality": "decision",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Decidi usar Python no meu projeto"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Você decidiu usar a linguagem Python para o seu projeto Imbuia.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Você decidiu usar a linguagem Python para o seu projeto Imbuia.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "project.imbuia",
+          "property": "language",
+          "value": "python",
+          "modality": "decision",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Decidi usar Python no meu projeto"
+            }
+          ],
+          "native_version": 2
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "Python descrito como decisão, sem converter escolha em implementação."
+      }
+    },
+    {
+      "id": "da-005",
+      "mode": "agent",
+      "query": "Que banco está nos planos do meu projeto?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "scenario": "known_fact",
+      "known_context": [
+        {
+          "entity": "project.imbuia",
+          "property": "database",
+          "value": "postgresql"
+        }
+      ],
+      "expected_concepts": [
+        "postgresql_planned"
+      ],
+      "native_facts": [
+        {
+          "entity": "project.imbuia",
+          "property": "database",
+          "value": "postgresql",
+          "modality": "planned",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Pretendo usar PostgreSQL no meu projeto"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "O plano para o seu projeto Imbuia é utilizar o PostgreSQL como banco de dados.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "O plano para o seu projeto Imbuia é utilizar o PostgreSQL como banco de dados.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "project.imbuia",
+          "property": "database",
+          "value": "postgresql",
+          "modality": "planned",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Pretendo usar PostgreSQL no meu projeto"
+            }
+          ],
+          "native_version": 2
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "PostgreSQL permanece plano; não há afirmação de uso/implementação."
+      }
+    },
+    {
+      "id": "da-006",
+      "mode": "code",
+      "query": "Qual é a descrição do meu projeto?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "scenario": "known_fact",
+      "known_context": [
+        {
+          "entity": "project.imbuia",
+          "property": "description",
+          "value": "estou comecando um projeto de catalogo de cristais"
+        }
+      ],
+      "expected_concepts": [
+        "catalogo_de_cristais"
+      ],
+      "native_facts": [
+        {
+          "entity": "project.imbuia",
+          "property": "description",
+          "value": "estou comecando um projeto de catalogo de cristais",
+          "modality": "project_description",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Estou começando um projeto de catálogo de cristais"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Você está começando um projeto de catálogo de cristais.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Você está começando um projeto de catálogo de cristais.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "project.imbuia",
+          "property": "description",
+          "value": "estou comecando um projeto de catalogo de cristais",
+          "modality": "project_description",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Estou começando um projeto de catálogo de cristais"
+            }
+          ],
+          "native_version": 2
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "Descrição e início do catálogo de cristais correspondem literalmente à fonte."
+      }
+    },
+    {
+      "id": "da-007",
+      "mode": "chat",
+      "query": "Como está ficando aquele projeto?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "scenario": "purpose_not_execution",
+      "known_context": [
+        {
+          "entity": "project.imbuia",
+          "property": "description",
+          "value": "estou comecando um projeto de catalogo de cristais"
+        },
+        {
+          "entity": "project.imbuia",
+          "property": "language",
+          "value": "python"
+        },
+        {
+          "entity": "project.imbuia",
+          "property": "database",
+          "value": "postgresql"
+        }
+      ],
+      "expected_concepts": [
+        "catalogo_de_cristais",
+        "python_decision",
+        "postgresql_planned"
+      ],
+      "native_facts": [
+        {
+          "entity": "project.imbuia",
+          "property": "description",
+          "value": "estou comecando um projeto de catalogo de cristais",
+          "modality": "project_description",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Estou começando um projeto de catálogo de cristais"
+            }
+          ]
+        },
+        {
+          "entity": "project.imbuia",
+          "property": "language",
+          "value": "python",
+          "modality": "decision",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Decidi usar Python no meu projeto"
+            }
+          ]
+        },
+        {
+          "entity": "project.imbuia",
+          "property": "database",
+          "value": "postgresql",
+          "modality": "planned",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Pretendo usar PostgreSQL no meu projeto"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Você está começando um catálogo de cristais chamado projeto Imbuia. Você decidiu usar Python como linguagem e planeja utilizar PostgreSQL como banco de dados.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Você está começando um catálogo de cristais chamado projeto Imbuia. Você decidiu usar Python como linguagem e planeja utilizar PostgreSQL como banco de dados.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "project.imbuia",
+          "property": "description",
+          "value": "estou comecando um projeto de catalogo de cristais",
+          "modality": "project_description",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Estou começando um projeto de catálogo de cristais"
+            }
+          ],
+          "native_version": 2
+        },
+        {
+          "entity": "project.imbuia",
+          "property": "language",
+          "value": "python",
+          "modality": "decision",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Decidi usar Python no meu projeto"
+            }
+          ],
+          "native_version": 2
+        },
+        {
+          "entity": "project.imbuia",
+          "property": "database",
+          "value": "postgresql",
+          "modality": "planned",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Pretendo usar PostgreSQL no meu projeto"
+            }
+          ],
+          "native_version": 2
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "Catálogo de cristais, Python decidido e PostgreSQL planejado permanecem separados. O rótulo Imbuia deriva do projeto autorizado; não constitui prova independente de um nome pessoal escolhido pelo usuário."
+      }
+    },
+    {
+      "id": "da-008",
+      "mode": "agent",
+      "query": "Como eu prefiro meu café?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "scenario": "known_fact",
+      "known_context": [
+        {
+          "entity": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        }
+      ],
+      "expected_concepts": [
+        "without_sugar"
+      ],
+      "native_facts": [
+        {
+          "entity": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar",
+          "modality": "preference",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "independently_grounded_active",
+          "version": 1,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Na verdade, agora prefiro café sem açúcar"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Prefiro café com açúcar"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Você prefere o seu café sem açúcar.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Você prefere o seu café sem açúcar.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar",
+          "modality": "preference",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Na verdade, agora prefiro café sem açúcar"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Prefiro café com açúcar"
+            }
+          ],
+          "native_version": 1
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "Preferência atual sem açúcar; fonte anterior com açúcar não é promovida a atual."
+      }
+    },
+    {
+      "id": "da-009",
+      "mode": "code",
+      "query": "Qual é a minha bebida preferida?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "scenario": "known_fact",
+      "known_context": [
+        {
+          "entity": "user",
+          "property": "favorite_beverage",
+          "value": "tea"
+        }
+      ],
+      "expected_concepts": [
+        "tea"
+      ],
+      "native_facts": [
+        {
+          "entity": "user",
+          "property": "favorite_beverage",
+          "value": "tea",
+          "modality": "preference",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "independently_grounded_active",
+          "version": 1,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Minha bebida favorita é chá"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Sua bebida favorita é chá.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Sua bebida favorita é chá.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "user",
+          "property": "favorite_beverage",
+          "value": "tea",
+          "modality": "preference",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Minha bebida favorita é chá"
+            }
+          ],
+          "native_version": 1
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "Chá como bebida favorita é relação explícita da fonte USER, não inferência de preferência de outro falante."
+      }
+    },
+    {
+      "id": "da-010",
+      "mode": "chat",
+      "query": "O que eu gosto na escolha de classes nos jogos?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "scenario": "known_fact",
+      "known_context": [
+        {
+          "entity": "user",
+          "property": "games_class_selection",
+          "value": "positive"
+        }
+      ],
+      "expected_concepts": [
+        "class_selection_positive"
+      ],
+      "native_facts": [
+        {
+          "entity": "user",
+          "property": "games_class_selection",
+          "value": "positive",
+          "modality": "preference",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "independently_grounded_active",
+          "version": 1,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Nos jogos, eu gosto de poder escolher minha classe"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Você gosta de poder escolher sua classe nos jogos.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Você gosta de poder escolher sua classe nos jogos.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "user",
+          "property": "games_class_selection",
+          "value": "positive",
+          "modality": "preference",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Nos jogos, eu gosto de poder escolher minha classe"
+            }
+          ],
+          "native_version": 1
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "Escolha de classe é precisamente a preferência declarada."
+      }
+    },
+    {
+      "id": "da-011",
+      "mode": "agent",
+      "query": "Qual era a RAM antes e quanto tem agora meu computador principal?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "scenario": "known_fact",
+      "known_context": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "40_gb",
+          "state": "obsolete"
+        },
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "64_gb"
+        }
+      ],
+      "expected_concepts": [
+        "40_gb_historical",
+        "64_gb_current"
+      ],
+      "native_facts": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "40_gb",
+          "modality": "current_fact",
+          "validity": "historical",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "reviewed",
+          "version": 3,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Meu computador principal tem 40 GB de RAM"
+            }
+          ]
+        },
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "64_gb",
+          "modality": "current_fact",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Não tenho mais 40 GB, agora são 64 GB"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Meu computador principal tem 40 GB de RAM"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Antes, seu computador principal tinha 40 GB de RAM. Agora, ele possui 64 GB.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Antes, seu computador principal tinha 40 GB de RAM. Agora, ele possui 64 GB.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "40_gb",
+          "modality": "current_fact",
+          "validity": "historical",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Meu computador principal tem 40 GB de RAM"
+            }
+          ],
+          "native_version": 3
+        },
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "64_gb",
+          "modality": "current_fact",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Não tenho mais 40 GB, agora são 64 GB"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Meu computador principal tem 40 GB de RAM"
+            }
+          ],
+          "native_version": 2
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "Antes40GB/agora64GB; temporalidade e equipamento preservados."
+      }
+    },
+    {
+      "id": "da-012",
+      "mode": "code",
+      "query": "Compare minha preferência por café antes e agora.",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "scenario": "known_fact",
+      "known_context": [
+        {
+          "entity": "user",
+          "property": "coffee_sugar",
+          "value": "with_sugar",
+          "state": "obsolete"
+        },
+        {
+          "entity": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        }
+      ],
+      "expected_concepts": [
+        "with_sugar_historical",
+        "without_sugar_current"
+      ],
+      "native_facts": [
+        {
+          "entity": "user",
+          "property": "coffee_sugar",
+          "value": "with_sugar",
+          "modality": "preference",
+          "validity": "historical",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "independently_grounded_active",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Prefiro café com açúcar"
+            }
+          ]
+        },
+        {
+          "entity": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar",
+          "modality": "preference",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "independently_grounded_active",
+          "version": 1,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Na verdade, agora prefiro café sem açúcar"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Prefiro café com açúcar"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Antes você preferia café com açúcar, mas agora prefere café sem açúcar.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Antes você preferia café com açúcar, mas agora prefere café sem açúcar.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "user",
+          "property": "coffee_sugar",
+          "value": "with_sugar",
+          "modality": "preference",
+          "validity": "historical",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Prefiro café com açúcar"
+            }
+          ],
+          "native_version": 2
+        },
+        {
+          "entity": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar",
+          "modality": "preference",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Na verdade, agora prefiro café sem açúcar"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Prefiro café com açúcar"
+            }
+          ],
+          "native_version": 1
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "Antes com açúcar/agora sem açúcar; os dois estados e sua ordem estão preservados."
+      }
+    },
+    {
+      "id": "da-013",
+      "mode": "chat",
+      "query": "Qual GPU consta nas minhas informações?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "scenario": "unknown_property",
+      "known_context": [],
+      "expected_concepts": [
+        "bounded_unknown_gpu"
+      ],
+      "native_facts": [],
+      "status": "delivered",
+      "delivered": "Não há nenhuma informação específica sobre a sua GPU nos registros atuais. Se você quiser, pode me dizer qual modelo está usando para que eu possa memorizar.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Não há nenhuma informação específica sobre a sua GPU nos registros atuais. Se você quiser, pode me dizer qual modelo está usando para que eu possa memorizar.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "user",
+          "property": "gpu_model",
+          "value": "unknown_available_record",
+          "modality": "bounded_unavailability",
+          "validity": "current",
+          "supported": true,
+          "support": "Expected bounded unknown scenario plus empty native typed context; claim does not say never supplied and does not borrow a different actor/property."
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "Ausência de informação específica de GPU delimitada aos registros atuais; não afirma que o usuário nunca a informou. Oferta condicional de receber informação futura não é confirmação de armazenamento."
+      }
+    },
+    {
+      "id": "da-014",
+      "mode": "agent",
+      "query": "Qual banco meu irmão costuma usar?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "scenario": "foreign_actor",
+      "known_context": [],
+      "expected_concepts": [
+        "bounded_unknown_brother"
+      ],
+      "native_facts": [],
+      "status": "delivered",
+      "delivered": "Não há nenhum registro disponível sobre o banco que seu irmão costuma usar.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Não há nenhum registro disponível sobre o banco que seu irmão costuma usar.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "third_party.brother",
+          "property": "database",
+          "value": "unknown_available_record",
+          "modality": "bounded_unavailability",
+          "validity": "current",
+          "supported": true,
+          "support": "Expected bounded unknown scenario plus empty native typed context; claim does not say never supplied and does not borrow a different actor/property."
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "Ausência disponível de banco do irmão, sem usar PostgreSQL do projeto USER."
+      }
+    },
+    {
+      "id": "da-015",
+      "mode": "code",
+      "query": "Minha preferência por criação de personagens continua disponível?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "scenario": "deleted_value",
+      "known_context": [],
+      "expected_concepts": [
+        "bounded_no_current_record"
+      ],
+      "native_facts": [],
+      "status": "blocked",
+      "delivered": "",
+      "application_status": "blocked",
+      "attempts": [
+        {
+          "raw": "Sim, sua preferência por criação de personagens continua disponível. Como não há um registro específico de uma mudança recente, ela permanece como uma base para nossas interações.",
+          "application_violations": [
+            {
+              "code": "unsupported_typed_value",
+              "span": "Sim, sua preferência por criação de personagens continua disponível.",
+              "critical": true
+            }
+          ]
+        },
+        {
+          "raw": "Sim, sua preferência por criação de personagens continua disponível. Não há nenhum registro indicando que essa preferência tenha sido alterada ou removida.",
+          "application_violations": [
+            {
+              "code": "unsupported_typed_value",
+              "span": "Sim, sua preferência por criação de personagens continua disponível.",
+              "critical": true
+            }
+          ]
+        }
+      ],
+      "literal_claims": [],
+      "literal_decision": {
+        "class": "correct_safety_block_of_unavailable_deleted_preference",
+        "reason": "Bloqueio de segurança correto neste arquivo: AMBAS as tentativas afirmam Sim, preferência continua disponível. A segunda também afirma não haver registro de alteração/remoção. Isso não é ausência delimitada corretamente bloqueada por engano. O gold prevê ausência atual, contexto é vazio e corpus conhecido registra exclusão real de criação de personagens. Nenhuma dessas afirmações foi entregue."
+      }
+    },
+    {
+      "id": "da-016",
+      "mode": "chat",
+      "query": "Qual é o status atual do projeto Angico?",
+      "scope": "phase22d-final-ret-main",
+      "project": "angico",
+      "scenario": "known_fact",
+      "known_context": [
+        {
+          "entity": "project.angico",
+          "property": "lifecycle",
+          "value": "cancelled"
+        }
+      ],
+      "expected_concepts": [
+        "cancelled"
+      ],
+      "native_facts": [
+        {
+          "entity": "project.angico",
+          "property": "lifecycle",
+          "value": "cancelled",
+          "modality": "cancelled",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "angico",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Cancelei meu projeto"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "O projeto Angico está atualmente cancelado.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "O projeto Angico está atualmente cancelado.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "project.angico",
+          "property": "lifecycle",
+          "value": "cancelled",
+          "modality": "cancelled",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Cancelei meu projeto"
+            }
+          ],
+          "native_version": 2
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "Estado cancelado do projeto Angico corresponde à fonte Cancelei meu projeto."
+      }
+    },
+    {
+      "id": "da-017",
+      "mode": "agent",
+      "query": "Antes do cancelamento, que linguagem usava o projeto Angico?",
+      "scope": "phase22d-final-ret-main",
+      "project": "angico",
+      "scenario": "known_fact",
+      "known_context": [
+        {
+          "entity": "project.angico",
+          "property": "language",
+          "value": "rust",
+          "state": "active",
+          "validity": "historical",
+          "modality": "in_progress"
+        },
+        {
+          "entity": "project.angico",
+          "property": "lifecycle",
+          "value": "cancelled"
+        }
+      ],
+      "expected_concepts": [
+        "rust_historical",
+        "cancelled"
+      ],
+      "native_facts": [
+        {
+          "entity": "project.angico",
+          "property": "language",
+          "value": "rust",
+          "modality": "in_progress",
+          "validity": "historical",
+          "scope": "phase22d-final-ret-main",
+          "project": "angico",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Estou implementando meu projeto em Rust"
+            }
+          ]
+        },
+        {
+          "entity": "project.angico",
+          "property": "lifecycle",
+          "value": "cancelled",
+          "modality": "cancelled",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "angico",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Cancelei meu projeto"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Antes do cancelamento, o projeto Angico estava sendo implementado em Rust.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Antes do cancelamento, o projeto Angico estava sendo implementado em Rust.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "project.angico",
+          "property": "language",
+          "value": "rust",
+          "modality": "in_progress",
+          "validity": "historical",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Estou implementando meu projeto em Rust"
+            }
+          ],
+          "native_version": 2
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "Rust em implementação ANTES do cancelamento, não execução corrente. A expressão Antes do cancelamento estabelece o qualificador histórico; não acrescenta uma afirmação separada sobre o status atual. Seletor nativo active com projeção historical/in_progress foi alcançado. O estado active da linha não foi confundido com elegibilidade corrente."
+      }
+    },
+    {
+      "id": "da-018",
+      "mode": "code",
+      "query": "Que linguagem eu escolhi para o projeto Aroeira?",
+      "scope": "phase22d-final-ret-main",
+      "project": "aroeira",
+      "scenario": "known_fact",
+      "known_context": [
+        {
+          "entity": "project.aroeira",
+          "property": "language",
+          "value": "rust"
+        }
+      ],
+      "expected_concepts": [
+        "rust_decision"
+      ],
+      "native_facts": [
+        {
+          "entity": "project.aroeira",
+          "property": "language",
+          "value": "rust",
+          "modality": "decision",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "aroeira",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Decidi usar Rust no meu projeto"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Você escolheu a linguagem Rust para o projeto Aroeira.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Você escolheu a linguagem Rust para o projeto Aroeira.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "project.aroeira",
+          "property": "language",
+          "value": "rust",
+          "modality": "decision",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Decidi usar Rust no meu projeto"
+            }
+          ],
+          "native_version": 2
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "Rust como escolha do projeto Aroeira, sem atribuir Python de Imbuia ou execução de Murici."
+      }
+    },
+    {
+      "id": "da-019",
+      "mode": "chat",
+      "query": "Meu computador principal tem quanta RAM?",
+      "scope": "phase22d-final-ret-other",
+      "project": "imbuia",
+      "scenario": "known_fact",
+      "known_context": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "72_gb"
+        }
+      ],
+      "expected_concepts": [
+        "72_gb"
+      ],
+      "native_facts": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "72_gb",
+          "modality": "current_fact",
+          "validity": "current",
+          "scope": "phase22d-final-ret-other",
+          "project": "imbuia",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Meu computador principal tem 72 GB de RAM"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Seu computador principal tem 72 GB de RAM.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Seu computador principal tem 72 GB de RAM.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "72_gb",
+          "modality": "current_fact",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Meu computador principal tem 72 GB de RAM"
+            }
+          ],
+          "native_version": 2
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "72GB do outro escopo, sem misturar64GB do escopo principal."
+      }
+    },
+    {
+      "id": "da-020",
+      "mode": "agent",
+      "query": "Que linguagem estou comprovadamente implementando no projeto Murici?",
+      "scope": "phase22d-final-ret-main",
+      "project": "murici",
+      "scenario": "known_fact",
+      "known_context": [
+        {
+          "entity": "project.murici",
+          "property": "language",
+          "value": "javascript"
+        }
+      ],
+      "expected_concepts": [
+        "javascript_in_progress"
+      ],
+      "native_facts": [
+        {
+          "entity": "project.murici",
+          "property": "language",
+          "value": "javascript",
+          "modality": "in_progress",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "murici",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Estou implementando meu projeto em JavaScript"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Você está implementando o projeto Murici em JavaScript.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Você está implementando o projeto Murici em JavaScript.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "project.murici",
+          "property": "language",
+          "value": "javascript",
+          "modality": "in_progress",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Estou implementando meu projeto em JavaScript"
+            }
+          ],
+          "native_version": 2
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "JavaScript em implementação é sustentado por fonte explícita de execução, não apenas escolha."
+      }
+    },
+    {
+      "id": "da-021",
+      "mode": "code",
+      "query": "Qual objetivo de aprendizado eu já concluí?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "scenario": "completed_goal",
+      "known_context": [
+        {
+          "entity": "user",
+          "property": "goal.bc4b6c59a2ef",
+          "value": "completed:aprender frances"
+        }
+      ],
+      "expected_concepts": [
+        "learn_french_completed"
+      ],
+      "native_facts": [
+        {
+          "entity": "user",
+          "property": "goal.bc4b6c59a2ef",
+          "value": "completed:aprender frances",
+          "modality": "completed",
+          "validity": "current",
+          "scope": "phase22d-final-ret-main",
+          "project": "imbuia",
+          "review": "reviewed",
+          "version": 2,
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Concluí meu objetivo de aprender francês"
+            }
+          ]
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Você já concluiu o objetivo de aprender francês.",
+      "application_status": "checked",
+      "attempts": [
+        {
+          "raw": "Você já concluiu o objetivo de aprender francês.",
+          "application_violations": []
+        }
+      ],
+      "literal_claims": [
+        {
+          "entity": "user",
+          "property": "goal.bc4b6c59a2ef",
+          "value": "completed:aprender frances",
+          "modality": "completed",
+          "validity": "current",
+          "supported": true,
+          "source_evidence": [
+            {
+              "role": "current_source",
+              "text": "Concluí meu objetivo de aprender francês"
+            }
+          ],
+          "native_version": 2
+        }
+      ],
+      "literal_decision": {
+        "class": "supported_delivered_answer",
+        "reason": "Conclusão do objetivo aprender francês corresponde à fonte e modalidade completed; não extrapola fluência ou certificação."
+      }
+    }
+  ]
+}
