@@ -1,0 +1,165 @@
+{
+  "id": "phase22e-known-development-gui",
+  "project": "corticeira",
+  "purpose": "Known D sources and mandatory E regression sources, for development only; no unseen/final approval.",
+  "turns": [
+    {
+      "text": "Meu computador principal tem 36 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Meu notebook de trabalho tem 18 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Para o meu projeto, a linguagem que decidi usar é Rust.",
+      "review": true
+    },
+    {
+      "text": "Planejo usar MySQL no meu projeto.",
+      "review": true
+    },
+    {
+      "text": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita.",
+      "new_session": true,
+      "mode": "chat"
+    },
+    {
+      "text": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar."
+    },
+    {
+      "text": "Eu prefiro café, mas a personagem do jogo prefere chá."
+    },
+    {
+      "text": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita.",
+      "new_session": true,
+      "mode": "agent"
+    },
+    {
+      "text": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar."
+    },
+    {
+      "text": "Eu prefiro café, mas a personagem do jogo prefere chá."
+    },
+    {
+      "text": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita.",
+      "new_session": true,
+      "mode": "code"
+    },
+    {
+      "text": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar."
+    },
+    {
+      "text": "Eu prefiro café, mas a personagem do jogo prefere chá."
+    },
+    {
+      "text": "My own preference is coffee without sugar.",
+      "new_session": true,
+      "mode": "chat"
+    },
+    {
+      "text": "Entre as bebidas, minha favorita é café."
+    },
+    {
+      "text": "Esqueça minha preferência por café.",
+      "mode": "agent",
+      "new_session": true
+    },
+    {
+      "text": "Volte a memorizar minha preferência por café sem açúcar.",
+      "review_preferences": true
+    },
+    {
+      "text": "Eu gosto de jogos em que posso escolher minha classe.",
+      "mode": "code",
+      "new_session": true
+    },
+    {
+      "text": "Esqueça minha preferência por jogos em que escolho a classe."
+    },
+    {
+      "text": "Volte a guardar esta preferência: eu gosto de jogos em que posso escolher minha classe.",
+      "review_preferences": true
+    },
+    {
+      "text": "Estou começando um projeto de catálogo de conchas.",
+      "review": true,
+      "mode": "chat",
+      "new_session": true
+    },
+    {
+      "text": "Não tenho mais 36 GB, agora são 48 GB.",
+      "review": true
+    },
+    {
+      "text": "Não estou dizendo que meu computador tem 128 GB de RAM."
+    }
+  ],
+  "probes": [
+    {
+      "text": "Qual a memória RAM do meu computador principal?",
+      "mode": "chat",
+      "scenario": "short_correction"
+    },
+    {
+      "text": "Meu irmão usa qual banco de dados?",
+      "mode": "agent",
+      "scenario": "foreign_actor"
+    },
+    {
+      "text": "Você sabe qual é minha data de nascimento?",
+      "mode": "code",
+      "scenario": "unrelated_property"
+    },
+    {
+      "text": "Eu já informei qual é a minha GPU? Se não houver registro, limite a resposta ao que está disponível.",
+      "mode": "chat",
+      "scenario": "gpu_absence"
+    },
+    {
+      "text": "Que linguagem eu escolhi para o projeto e qual banco ainda está nos planos?",
+      "mode": "agent",
+      "scenario": "choice_vs_plan"
+    },
+    {
+      "text": "Qual era o assunto do catálogo que eu estava fazendo?",
+      "mode": "code",
+      "scenario": "indirect_description"
+    },
+    {
+      "text": "Como eu prefiro meu café?",
+      "mode": "chat",
+      "scenario": "renewed_preference"
+    },
+    {
+      "text": "Qual é minha preferência por escolher classes nos jogos?",
+      "mode": "code",
+      "scenario": "renewed_class"
+    },
+    {
+      "text": "Compare a RAM do meu computador principal e do meu notebook de trabalho.",
+      "mode": "agent",
+      "scenario": "device_comparison"
+    },
+    {
+      "text": "A escolha de Rust prova que a implementação já começou?",
+      "mode": "chat",
+      "scenario": "decision_not_execution"
+    },
+    {
+      "text": "Como está ficando aquele projeto?",
+      "mode": "chat",
+      "scenario": "historical_100_predicate"
+    },
+    {
+      "text": "Qual é a RAM do meu computador principal? Diga a quantidade numa frase e, separadamente, avalie se isso garante fluidez ao rodar meu ambiente e banco juntos.",
+      "mode": "chat",
+      "scenario": "real_localized_repair_opportunity"
+    },
+    {
+      "text": "Compare o banco que planejei para meu projeto com o banco do meu irmão.",
+      "mode": "agent",
+      "scenario": "known_own_brother_comparison"
+    }
+  ]
+}
