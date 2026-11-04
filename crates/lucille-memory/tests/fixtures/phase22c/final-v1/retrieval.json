@@ -1,0 +1,440 @@
+{
+  "id": "phase22c-independent-final-retrieval-v1",
+  "design": "New original synthetic queries and fresh values/scopes. Canonical seeds use the native rules protocol to isolate retrieval from extraction. Exact gold and thresholds are fixed before execution.",
+  "events": [
+    {
+      "action": "learn",
+      "label": "description",
+      "text": "Estou começando um projeto de catálogo de conchas.",
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "language",
+      "text": "Quero usar Rust no meu projeto.",
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "database",
+      "text": "Decidi usar SQLite no meu projeto.",
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "primary",
+      "text": "Meu computador principal tem 36 GB de RAM.",
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "work",
+      "text": "Meu notebook de trabalho tem 18 GB de RAM.",
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "coffee-old",
+      "text": "Prefiro café com açúcar.",
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "coffee-current",
+      "text": "Na verdade, agora prefiro café sem açúcar.",
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "theme-deleted",
+      "text": "Prefiro tema escuro.",
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "class",
+      "text": "Eu gosto de jogos em que posso escolher minha classe.",
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "objective",
+      "text": "Prefiro respostas objetivas.",
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "goal-completed",
+      "text": "Concluí meu objetivo de aprender italiano.",
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "approve": true
+    },
+    {
+      "action": "delete",
+      "target": "theme-deleted"
+    },
+    {
+      "action": "learn",
+      "label": "other-project-language",
+      "text": "Estou implementando meu projeto em TypeScript.",
+      "scope": "phase22c-final-ret-main",
+      "project": "piuva",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "other-scope-language",
+      "text": "Decidi usar Python no meu projeto.",
+      "scope": "phase22c-final-ret-foreign",
+      "project": "corticeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "ended-language",
+      "text": "Estou implementando meu projeto em Python.",
+      "scope": "phase22c-final-ret-main",
+      "project": "guabiroba",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "ended-state",
+      "text": "Cancelei meu projeto.",
+      "scope": "phase22c-final-ret-main",
+      "project": "guabiroba",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "pending",
+      "text": "Decidi usar PostgreSQL no meu projeto.",
+      "scope": "phase22c-final-ret-main",
+      "project": "pending-final",
+      "approve": false
+    }
+  ],
+  "queries": [
+    {
+      "id": "cq-001",
+      "query": "Que linguagem está nos meus planos para o projeto?",
+      "category": "language",
+      "expected": [
+        "language"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-002",
+      "query": "Which programming language do I plan to use for my project?",
+      "category": "language",
+      "expected": [
+        "language"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-003",
+      "query": "Me lembra a linguagem que pretendo adotar?",
+      "category": "language",
+      "expected": [
+        "language"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-004",
+      "query": "Qual foi minha decisão de banco para este projeto?",
+      "category": "database",
+      "expected": [
+        "database"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-005",
+      "query": "Which database did I choose for this project?",
+      "category": "database",
+      "expected": [
+        "database"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-006",
+      "query": "O que eu havia escolhido para armazenar os dados do projeto?",
+      "category": "database",
+      "expected": [
+        "database"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-007",
+      "query": "Qual é a RAM do meu computador principal?",
+      "category": "equipment",
+      "expected": [
+        "primary"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-008",
+      "query": "How much RAM does my work laptop have?",
+      "category": "equipment",
+      "expected": [
+        "work"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-009",
+      "query": "Compare as quantidades de RAM do meu computador principal e do notebook de trabalho.",
+      "category": "equipment_compound",
+      "expected": [
+        "primary",
+        "work"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-010",
+      "query": "De quantos GB de RAM eu disponho nos dois equipamentos mencionados?",
+      "category": "equipment_compound",
+      "expected": [
+        "primary",
+        "work"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-011",
+      "query": "Como eu prefiro tomar café atualmente?",
+      "category": "coffee",
+      "expected": [
+        "coffee-current"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-012",
+      "query": "Do I prefer my coffee with or without sugar now?",
+      "category": "coffee",
+      "expected": [
+        "coffee-current"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-013",
+      "query": "Qual era minha preferência de café antes e qual é a de agora?",
+      "category": "coffee_history",
+      "expected": [
+        "coffee-old",
+        "coffee-current"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-014",
+      "query": "Which interface theme do I currently prefer?",
+      "category": "deleted",
+      "expected": [],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": [
+        "theme-deleted"
+      ]
+    },
+    {
+      "id": "cq-015",
+      "query": "Você recorda minha preferência de tema?",
+      "category": "deleted",
+      "expected": [],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": [
+        "theme-deleted"
+      ]
+    },
+    {
+      "id": "cq-016",
+      "query": "O que eu gosto de escolher nos jogos?",
+      "category": "class",
+      "expected": [
+        "class"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-017",
+      "query": "Que tipo de respostas eu prefiro receber?",
+      "category": "communication",
+      "expected": [
+        "objective"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-018",
+      "query": "Which learning objective did I finish?",
+      "category": "completed_goal",
+      "expected": [
+        "goal-completed"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-019",
+      "query": "Você sabe qual é minha data de nascimento?",
+      "category": "absence",
+      "expected": [],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-020",
+      "query": "Meu irmão usa qual banco de dados?",
+      "category": "third_party",
+      "expected": [],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-021",
+      "query": "What is the capital of Italy?",
+      "category": "knowledge",
+      "expected": [],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-022",
+      "query": "A pasta de trabalho está vazia?",
+      "category": "tool_needed",
+      "expected": [],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-023",
+      "query": "Qual GPU existe no meu computador?",
+      "category": "unsupported_hardware",
+      "expected": [],
+      "scope": "phase22c-final-ret-main",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-024",
+      "query": "Qual era a linguagem antes do cancelamento e qual o estado atual do projeto?",
+      "category": "history_compound",
+      "expected": [
+        "ended-language",
+        "ended-state"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "guabiroba",
+      "forbidden": []
+    },
+    {
+      "id": "cq-025",
+      "query": "Como está meu projeto atualmente?",
+      "category": "cancelled",
+      "expected": [
+        "ended-state"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "guabiroba",
+      "forbidden": []
+    },
+    {
+      "id": "cq-026",
+      "query": "Que linguagem eu uso agora no projeto?",
+      "category": "distinct_project",
+      "expected": [
+        "other-project-language"
+      ],
+      "scope": "phase22c-final-ret-main",
+      "project": "piuva",
+      "forbidden": []
+    },
+    {
+      "id": "cq-027",
+      "query": "Qual linguagem eu decidi usar no projeto?",
+      "category": "distinct_scope",
+      "expected": [
+        "other-scope-language"
+      ],
+      "scope": "phase22c-final-ret-foreign",
+      "project": "corticeira",
+      "forbidden": []
+    },
+    {
+      "id": "cq-028",
+      "query": "Que banco eu decidi usar no projeto?",
+      "category": "pending_review",
+      "expected": [],
+      "scope": "phase22c-final-ret-main",
+      "project": "pending-final",
+      "forbidden": []
+    }
+  ]
+}

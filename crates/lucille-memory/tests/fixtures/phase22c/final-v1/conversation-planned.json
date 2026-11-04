@@ -1,0 +1,57 @@
+{
+  "id": "phase22c-independent-final-planned-v1",
+  "project": "piuva",
+  "turns": [
+    {
+      "text": "Decidi usar Python no meu projeto.",
+      "review": true
+    },
+    {
+      "text": "Planejo usar MySQL no meu projeto.",
+      "review": true
+    }
+  ],
+  "probes": [
+    {
+      "text": "Que linguagem eu escolhi para o projeto e qual banco ainda está nos planos?",
+      "scenario": "different_project_compound",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "python",
+          "temporal": "decision"
+        },
+        {
+          "property": "database",
+          "value": "mysql",
+          "temporal": "planned"
+        }
+      ]
+    },
+    {
+      "text": "A escolha de Python prova que a implementação já começou?",
+      "scenario": "decision_execution",
+      "mode": "agent",
+      "expected": [
+        {
+          "property": "language",
+          "value": "python",
+          "temporal": "decision"
+        }
+      ]
+    },
+    {
+      "text": "Which database do I plan to use in this project?",
+      "scenario": "english_plan_code",
+      "mode": "code",
+      "expected": [
+        {
+          "property": "database",
+          "value": "mysql",
+          "temporal": "planned"
+        }
+      ]
+    }
+  ]
+}
