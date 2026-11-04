@@ -284,3 +284,18 @@ fn original_relative_class_forgetting_creates_tombstone_before_explicit_reviewed
     assert_eq!(s.deleted_memories("qa","candeia").unwrap().len(),1);
     s.check_integrity().unwrap();
 }
+
+#[test]
+fn plain_coffee_preference_is_retrievable_but_never_sugar_or_favorite_and_is_actually_forgotten() {
+    let (d,mut s)=learn("Eu prefiro café, mas a personagem do jogo prefere chá.",ExtractionMode::Rules);
+    let request=|q:&str|TurnRequest{conversation_id:"new-session".into(),message_id:uuid::Uuid::new_v4().to_string(),scope:"qa".into(),project:"candeia".into(),mode:Mode::Chat,query:q.into(),token_budget:8192};
+    let c=s.context(request("Qual bebida eu prefiro?")).unwrap();
+    assert_eq!(c.facts.len(),1);assert_eq!(c.facts[0].property,"beverage_preference");assert_eq!(c.facts[0].value,"coffee");
+    assert!(s.context(request("Qual minha bebida favorita?")).unwrap().facts.is_empty());
+    assert!(s.context(request("Como prefiro meu café em relação ao açúcar?")).unwrap().facts.is_empty());
+    s.enqueue_learning(input("Esqueça minha preferência por café.")).unwrap();
+    assert!(s.list("qa","candeia").unwrap().is_empty());assert_eq!(s.deleted_memories("qa","candeia").unwrap().len(),1);
+    drop(s);let mut s=Store::open(&d.path().join("synthetic.sqlite3")).unwrap();
+    assert!(s.context(request("Qual bebida eu prefiro?")).unwrap().facts.is_empty());
+    assert_eq!(s.deleted_memories("qa","candeia").unwrap().len(),1);
+}

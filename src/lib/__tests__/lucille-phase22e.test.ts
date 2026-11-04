@@ -31,7 +31,7 @@ it('performs a property-specific canonical read before a real retry, without tre
  const s=base();s.query='Qual banco planejei para meu projeto?';s.currentStatements=[]
  const db={...base().currentStatements[0],id:'db',version:2,entity:'project.candeia',property:'database',value:'sqlite',validity:'current',modality:'planned'}
  const identity:ChatMessage={role:'system',content:'Native identity'};registerAnswerSnapshot(identity,s)
- const retry=vi.fn(async()=>({content:'Você planeja usar SQLite no seu projeto.'}))
+ const retry=vi.fn(async (messages:ChatMessage[])=>{expect(messages.some(m=>m.role==='user' && m.content.includes('Additional native verification context') && m.content.includes('sqlite'))).toBe(true);return {content:'Você planeja usar SQLite no seu projeto.'}})
  // Refresh on the retry must continue to return the native record, as the real context reload does.
  s.refresh=vi.fn(async()=>({facts:[db],current_statements:[]}))
  const result=await validateLucilleCompletion([identity,{role:'user',content:s.query}],{content:'Você ainda não me forneceu os detalhes do banco.'},retry)
@@ -59,4 +59,35 @@ it('keeps known own information useful in a brother comparison without granting 
  expect(verifyMemoryAnswer('Você planeja usar SQLite no seu projeto. Não há informação disponível sobre o banco do seu irmão.',s).violations).toEqual([])
  expect(verifyMemoryAnswer('Não tenho informação suficiente para comparar.',s).violations.map(v=>v.code)).toContain('known_relation_not_used')
  expect(verifyMemoryAnswer('Seu irmão usa SQLite.',s).violations.map(v=>v.code)).toContain('unsupported_statement_actor')
+})
+
+it('uses the original transition endpoints without claiming prior execution or accepting a reversed choice',()=>{
+ const s=base();s.query='Decidi trocar TypeScript por Rust.'
+ s.currentStatements=[{...s.currentStatements[0],entity:'project.candeia',property:'language',value:'rust',modality:'decision',evidence:[{role:'current_user_statement',text:s.query}]}]
+ expect(verifyMemoryAnswer('Entendido, você decidiu trocar TypeScript por Rust.',s).violations).toEqual([])
+ for(const text of ['Você trocou TypeScript por Rust.','Antes seu projeto usava TypeScript.','Você decidiu trocar Rust por TypeScript.','Você decidiu trocar JavaScript por Rust.'])expect(verifyMemoryAnswer(text,s).violations.some(v=>v.critical),text).toBe(true)
+})
+it('preserves the correct negative capacity in the original localized repair example',()=>{
+ const s=base();s.query='Não estou dizendo que meu computador tem 128 GB de RAM.';s.currentStatements=[]
+ s.facts=[{...base().currentStatements[0],id:'ram',version:2,entity:'device.primary_computer',property:'ram_capacity',value:'48_gb',modality:'current_fact',validity:'current'}]
+ const text='Entendido, você está apenas corrigindo o valor atual para 48 GB. Isso deixa claro que o foco é o aumento recente, não uma capacidade total de 128 GB.'
+ expect(verifyMemoryAnswer(text,s).violations).toEqual([])
+ expect(verifyMemoryAnswer('Seu computador possui uma capacidade total de 128 GB.',s).violations.some(v=>v.critical)).toBe(true)
+ s.facts.push({...s.facts[0],id:'work',entity:'device.work_laptop',value:'128_gb'})
+ expect(verifyMemoryAnswer('Não uma capacidade total de 128 GB.',s).violations.some(v=>v.critical)).toBe(true)
+})
+
+it('does not infer workload headroom from capacity alone, while preserving a denial of the guarantee',()=>{
+ const s=base();s.query='Meu computador principal tem 26 GB de RAM.';s.currentStatements=[{...s.currentStatements[0],entity:'device.primary_computer',property:'ram_capacity',value:'26_gb',modality:'current_fact',evidence:[{role:'current_user_statement',text:s.query}]}]
+ for(const text of ['26 GB de RAM oferecem uma excelente margem para multitarefa e projetos complexos.','26 GB de RAM é uma quantidade sólida para produtividade e desenvolvimento fluido.'])expect(verifyMemoryAnswer(text,s).violations.map(v=>v.code)).toContain('authority_workload_performance')
+ expect(verifyMemoryAnswer('26 GB de RAM não garantem desenvolvimento fluido.',s).violations).toEqual([])
+ expect(verifyMemoryAnswer('26 GB de RAM podem oferecer uma excelente margem para multitarefa, dependendo da carga.',s).violations).toEqual([])
+})
+
+it('a plain coffee preference does not prove sugar preparation or a favorite, and cannot support tea instead',()=>{
+ const s=base();s.query='Qual bebida eu prefiro?';s.currentStatements=[]
+ s.facts=[{...base().currentStatements[0],id:'coffee',version:1,property:'beverage_preference',value:'coffee',validity:'current'}]
+ expect(verifyMemoryAnswer('Você prefere café.',s).violations).toEqual([])
+ expect(verifyMemoryAnswer('Café.',s).violations).toEqual([])
+ for(const text of ['Você prefere chá.','Sua bebida favorita é café.','Você prefere café sem açúcar.'])expect(verifyMemoryAnswer(text,s).violations.some(v=>v.critical),text).toBe(true)
 })

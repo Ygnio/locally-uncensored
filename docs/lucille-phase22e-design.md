@@ -64,7 +64,7 @@ Dois problemas encontrados nos próprios testes de desenvolvimento foram corrigi
 
 ## Recuperação composta — desenvolvimento
 
-A consulta composta é dividida em relações com ator e intenção temporal próprios. Cada relação passa pelos filtros e limites existentes, no mesmo escopo/projeto autorizado; resultados são reunidos sem duplicatas, com teto de doze referências e orçamento total. Domínios elípticos podem herdar o nome da propriedade, nunca a autoria, o projeto nomeado ou a modalidade de outra relação. Nenhum limiar global foi reduzido. Um vetor da pergunta inteira não é tratado como embedding dos fragmentos: a decomposição usa o fallback lexical nativo por relação.
+A consulta composta é dividida em relações com ator e intenção temporal próprios. Cada relação passa pelos filtros e limites existentes, no mesmo escopo/projeto autorizado; resultados são reunidos sem duplicatas, com teto de doze referências e orçamento total. Domínios elípticos podem herdar o nome da propriedade, nunca a autoria, o projeto nomeado ou a modalidade de outra relação. Nenhum limiar global foi reduzido. A similaridade Nomic conserva o embedding real da pergunta inteira como prior global de ranking, com filtros locais por relação; não é apresentada como um novo embedding de cada fragmento. Com Nomic indisponível, cada relação usa o fallback lexical nativo.
 
 O contexto inclui, por relação, referências e estado retrieved/unavailable, que significa somente disponibilidade neste contexto. A instrução comum de Chat/Agent/Code pede resposta independente a cada relação. O verificador rejeita transferência de fatos pessoais ao irmão e detecta omissão da relação própria conhecida. O outro projeto continua fora do projeto autorizado: sua indisponibilidade não apaga o banco do projeto corrente.
 
@@ -79,3 +79,13 @@ O [novo replay nativo dos cinco outputs originais](evidence/phase22e/development
 O imperativo de esquecimento admite a descrição relativa própria jogos em que escolho a classe. O teste nativo comprova exclusão efetiva, tombstone persistido, recibo de forget com had_records=true, replay de conclusão antiga sem escrita, ausência após reinício, nova fonte explícita, candidata com nova proveniência, revisão e persistência ativa após outro reinício. O primeiro teste esperava incorretamente erro para uma conclusão já encerrada: o contrato real devolve false idempotente, agora validado explicitamente junto de ausência de ressurreição. Não foi confundido com voltar a gostar.
 
 Os 145 testes Rust passaram, incluindo todos os 135 anteriores; bridges recompilados. Novas inferências e GUI real da fase continuam pendentes.
+
+## Fidelidade e integração da preferência simples — desenvolvimento
+
+A decisão de trocar uma tecnologia agora pode comprovar os extremos da intenção a partir da própria declaração USER nativa, sem exigir que o extremo de origem seja uma implementação anterior recuperada. A troca efetivamente realizada, uma origem invertida ou um estado anterior inventado continuam sem suporte. A negativa correta não uma capacidade total de 128 GB preserva sua negação; uma capacidade positiva de 128 GB e uma negativa ambígua entre dois equipamentos não são autorizadas. Consequências qualitativas sobre margem de multitarefa e desenvolvimento fluido exigem evidência além de quantidade de RAM; hipóteses explícitas e negativas de garantia permanecem separadas.
+
+A preferência simples por café agora participa também de recuperação, resposta e esquecimento. Não prova açúcar nem bebida favorita. Esquecer o tópico café remove de fato a preferência simples e preserva tombstone; não deixa esse novo campo ativo por esquecimento restrito ao antigo coffee_sugar.
+
+Uma leitura canônica adicional encontrada durante a verificação é fornecida como dado não confiável à única regeneração real. Não basta consultar o banco e depois pedir ao modelo que responda novamente com o mesmo contexto inicial vazio. Cada tentativa guarda a evidência nativa de operação realmente usada antes da exposição, inclusive recibos ausentes, para auditoria temporal na GUI.
+
+Validação local desta etapa: 146 Rust (135 anteriores intactos), 721 TypeScript (711 anteriores intactos), três testes do esquema atômico. Os arquivos TypeScript dirigidos passaram com 117 testes. Testes do próprio avaliador confirmam contrato active mais validade histórica, rejeição explícita da antiga suposição obsolete e denominadores que conservam casos ausentes/bloqueados. Nenhuma destas aprovações técnicas substitui a avaliação real final.

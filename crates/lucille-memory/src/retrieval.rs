@@ -524,6 +524,10 @@ fn preference_slots(query: &str) -> Vec<&'static str> {
             "games_turn_strategy",
         ]);
     }
+    if ["cafe","coffee","bebida","beverage","drink"].iter().any(|w|q.contains(w))
+        && !["acucar","sugar","favorit","favourit"].iter().any(|w|q.contains(w)) {
+        slots.push("beverage_preference");
+    }
     slots
 }
 fn database_choice_intent(query: &str) -> bool {
@@ -1098,9 +1102,9 @@ pub(crate) fn select(
         let mut out=Vec::new(); let initial_used=used;
         for relation in relations.into_iter().filter(|r|r.actor=="user") {
             let sub=TurnRequest{query:relation.query.clone(),..req.clone()};
-            // The embedding belongs to the full original question. It is not
-            // reused as though it were a vector for a different subquery.
-            let (selected,_)=select(tx,&sub,lexical.clone(),initial_used,None,policy,at)?;
+            // Keep the real whole-question vector as a global ranking prior.
+            // Local actor/modality filters do not claim a new fragment embedding.
+            let (selected,_)=select(tx,&sub,lexical.clone(),initial_used,semantic,policy,at)?;
             for m in selected {if relation_matches(tx,&m,&relation)? && !out.iter().any(|old:&Memory|old.input.id==m.input.id){
                 let cost=serde_json::to_vec(&m).map_err(|_|"Invalid memory")?.len()+32;
                 if out.len()<12 && used+cost<=req.token_budget {used+=cost;out.push(m)}

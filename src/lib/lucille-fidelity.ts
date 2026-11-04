@@ -106,12 +106,14 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   if (/^\s*(?:nao|no)\s*[,!.](?:\s|$)/.test(fold(text)) && projectQuestion && execution(query) && !/significa|quer dizer|\bmeans?\b|implies/.test(query) && !current.some(f=>f.entity==='project.'+snapshot.project && f.property==='lifecycle' && ['cancelled','completed'].includes(f.modality)))add('denied_unproven_project_execution',text)
   const record = (span: string, property: string, value: string, entity?: string, negative = false, choiceOrigin = false) => {
     const historical = choiceOrigin || past(span) || (past(snapshot.query) && !/\b(?:agora|atualmente|now|currently|prefere|prefiro|gosta|gosto|tem|tenho|possui|usa|utiliza|is|are|have|has|prefer|prefers|like|likes|uses)\b/.test(fold(span)))
-    const candidates = all.filter(f => f.property === property && (!entity || f.entity === entity))
-    const matching = candidates.filter(f => negative ? f.value !== value && f.validity !== 'historical' : (f.value === value && (f.validity !== 'historical' || historical)) || (historical && property==='ram_capacity' && /^\d+_gb$/.test(value) && f.evidence.some(e=>{
+    const candidates = all.filter(f => (f.property === property || (property==='beverage_preference' && f.property==='favorite_beverage')) && (!entity || f.entity === entity))
+    const sourceOrigin=choiceOrigin && ['language','database'].includes(property) ? all.filter(f=>f.entity===entity && f.property===property && f.validity==='current_user_statement' && ['decision','planned'].includes(f.modality) && f.evidence.some(e=>['current_user_statement','current_source'].includes(e.role) && technologyRoles(e.text).some(r=>r.role==='origin' && r.value===value) && technologyRoles(e.text).some(r=>r.role==='destination' && r.value===f.value))) : []
+    const ambiguousNegative=negative && !entity && new Set(candidates.map(f=>f.entity)).size>1
+    const matching = [...sourceOrigin,...candidates.filter(f => !ambiguousNegative && (negative ? f.value !== value && f.validity !== 'historical' : (f.value === value && (f.validity !== 'historical' || historical)) || (historical && property==='ram_capacity' && /^\d+_gb$/.test(value) && f.evidence.some(e=>{
       if(e.role!=='previous_property_link_not_current_value')return false
       const amounts=[...fold(e.text).matchAll(/\b(\d+)\s*(?:gb|gib)\b/g)]
       return amounts.length===1 && amounts[0][1]+'_gb'===value
-    })))
+    }))))]
     const assertion = { entity: entity ?? matching[0]?.entity ?? 'unspecified', property, value, span, supported: matching.length > 0, references: matching.map(f => f.id) }
     assertions.push(assertion)
     if (!assertion.supported) { add('unsupported_typed_value', span); return }
@@ -263,7 +265,13 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       }
       const property = /livre|disponivel|available|free/.test(q) ? 'free_ram' : /\bram\b|memoria|memory/.test(q + ' ' + query) ? 'ram_capacity' : 'capacity_update'
       const entity = entityIn(q.slice(0, match.index)) ?? entityIn(query)
-      record(span, property, match[1] + '_gb', entity, /nao (?:tem|possui|sao|e)|does not have|not \d/.test(q.slice(0, match.index)))
+      record(span, property, match[1] + '_gb', entity, /nao (?:tem|possui|sao|e)|does not have|not \d|\bnao (?:uma |a |sua )?capacidade (?:total )?de\s*$|\bnot (?:a |your )?(?:total )?capacity of\s*$/.test(q.slice(0, match.index)))
+    }
+    const plainPreference=/\b(?:prefere|prefiro|prefers|prefer|gosta de|like|likes)\b/.test(q)
+    const drinkLead=/^(?:(?:e|is|it is|it's)\s+)?(?:cha|tea|cafe|coffee)\b/.test(q.trim())
+    const genericDrinkQuestion=/pref|gost|likes/.test(query) && /bebida|beverage|drink|cafe|coffee/.test(query) && !/favorit|favourit|acucar|sugar/.test(query)
+    if((subject && plainPreference || drinkLead && genericDrinkQuestion) && !/favorit|favourit|acucar|sugar/.test(q)) {
+      for(const value of ['coffee','tea'])if(mentions(span,value))record(span,'beverage_preference',value,'user')
     }
     const unboundFavoriteAnswer=!favoriteSlotBound && /favorit|favourit|bebida|beverage/.test(query) && /^(?:(?:e|is|it is|it's)\s+)?(?:cha|tea|cafe|coffee)\b/.test(q.trim())
     if (unboundFavoriteAnswer || (subject && /pref|gost|likes|favorit|adora|curt|toma|bebe|drink|idioma|lingua|tema|theme|comunica|communication/.test(q)) || (preferenceQuestion && span.length<160 && !/\b(?:pode|poderia|opcao|alternativa|could|might|option|recommend|sugiro|depende)\b/.test(q))) {
@@ -283,6 +291,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
         const negatedChoice=/nao (?:prefere|e)|not (?:your |the )?(?:preferred|favorite)|does not prefer|don.t prefer/.test(q)
         const values = property === 'coffee_sugar' ? ['with_sugar', 'without_sugar'] : property === 'interface_theme' ? ['light', 'dark'] : property === 'communication_style' ? ['concise', 'detailed'] : property === 'response_language' ? ['pt', 'en', 'es'] : property === 'favorite_beverage' ? ['tea', 'coffee'] : ['objective']
         if (property === 'favorite_beverage') {
+          if(genericDrinkQuestion && !/favorit|favourit/.test(q))continue
           const leadDrink=/^(?:(?:e|is|it is|it's)\s+)?(?:cha|tea|cafe|coffee)\b/.test(q.trim())
           const choiceVerb=/\b(?:prefere|prefiro|prefers|prefer)\b/.test(q)
           if (!/favorit|favourit/.test(q) && !(!favoriteSlotBound && (leadDrink || choiceVerb) && /favorit|favourit|bebida|beverage/.test(query))) continue
