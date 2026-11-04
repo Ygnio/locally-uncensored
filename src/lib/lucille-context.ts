@@ -2,7 +2,7 @@ import { verifiedEnvironment, VERIFIED_EXECUTION_POLICY, operationalCodePrompt, 
 import { invoke } from '@tauri-apps/api/core'
 import type { ChatMessage } from '../api/providers/types'
 import type { Conversation } from '../types/chat'
-import { registerAnswerSnapshot, type MemoryFact, type MemoryDirectiveReceipt, type MemoryLearningReceipt } from './lucille-fidelity'
+import { registerAnswerSnapshot, type MemoryFact, type MemoryDirectiveReceipt, type MemoryLearningReceipt, type MemoryQueryRelation } from './lucille-fidelity'
 import { answerLanguage, memoryQuestionNeedsNoTools } from './lucille-authority'
 
 export type { LucilleBinding } from '../types/chat'
@@ -24,6 +24,7 @@ export interface LucilleTurnContext {
   memories: LucilleMemory[]
   facts?: MemoryFact[]
   current_statements?: MemoryFact[]
+  relations?: MemoryQueryRelation[]
   references: { id: string; version: number }[]
   token_budget: number
   used_upper_bound: number
@@ -98,6 +99,7 @@ export async function withLucilleContext(
   if (directiveReceipt) identity.content += '\nNative memory operation receipt: ' + JSON.stringify({ action: directiveReceipt.action, property: directiveReceipt.property, state: directiveReceipt.state, had_records: directiveReceipt.had_records })
   identity.content += '\nOnly a completed native memory operation receipt authorizes confirming that this turn deleted memory. A request to remember or reactivate information is not proof of a completed save or review. Answer execution questions consistently from the first word: an affirmative requires evidence of actual execution, even if a later sentence describes a plan. Hardware capacity alone does not prove smooth performance, stability or absence of bottlenecks. Keep project purpose separate from personal learning goals.'
   identity.content += '\nAcknowledge the user content naturally, without saying Anotei/I saved/I registered and without promising it will be included in preferences, hardware or goals. The learning operation runs after this answer; important facts require review. A reserved source is not a completed memory write. Keep the decision actor clear: the user decides their project choices. Describe record meanings plainly rather than echoing internal IDs or enum labels.'
+  if(context.relations?.length)identity.content+='\nRequested memory relations (each bounded independently to the authorized scope/project): '+JSON.stringify(context.relations)+'. Answer every requested relation; use its own actor, entity, property and modality. An unavailable relation does not make the others unavailable, and never proves the user did not supply it. Never transfer an own fact to the third party or a different project.'
   const memoryOnly = memoryQuestionNeedsNoTools(query)
   identity.content += '\nEvidence authority: an approved memory supports what its source stated; history supports earlier states; a tool supports only its observed resource and coverage. A directory is not the entire remembered project without an explicit verified binding. A memory deletion or renewal never proves the user stopped or resumed liking something. Preserve each predicate’s modality independently. Current USER question language controls the answer and any repair; Portuguese memory does not require a Portuguese reply to an English question.'
   if (memoryOnly) identity.content += '\nThis turn requests remembered facts, not external inspection. Answer from scoped memory or bounded uncertainty. Do not call tools or narrate a plan to inspect files.'
@@ -115,7 +117,7 @@ export async function withLucilleContext(
   if(languageDirective)injected.add(languageDirective)
   const result = [identity, ...(environment ? [environment] : []), ...clean.slice(0, at), ...(languageDirective ? [languageDirective] : []), ...(memories.length ? [data] : []), ...clean.slice(at)]
   registerAnswerSnapshot(identity, {
-    scope: binding.scope, project: binding.project, query, facts, currentStatements, directiveReceipt, memoryOnly, sourceIdentity:source ? {conversation_id:source.proof.interaction.conversation_id,source_message_id:source.proof.interaction.message_id}:undefined,
+    scope: binding.scope, project: binding.project, query, facts, currentStatements, directiveReceipt, memoryOnly, relations:context.relations, sourceIdentity:source ? {conversation_id:source.proof.interaction.conversation_id,source_message_id:source.proof.interaction.message_id}:undefined,
     toolObservations: runtime?.receipts,
     refresh: async (claims = []) => {
       assertNotCancelled(signal)

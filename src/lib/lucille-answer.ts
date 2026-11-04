@@ -125,6 +125,8 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
       plan_or_decision_as_execution:'The source is only a plan or decision. State its actual modality; do not claim implementation or execution.',
       unproven_project_progress:'Current project work is not established by the sources. State that current execution is unconfirmed, without claiming it has not begun.',
       unproven_completion:'There is no supported completion claim. Preserve the actual known plan, decision or state and make uncertainty about completion explicit.',
+      known_relation_not_used:'Answer each requested relation independently, keeping the supported own information even when a third-party or another relation is unavailable.',
+      unsupported_statement_actor:'No personal USER fact can support this third-party claim. Keep the own information and bound uncertainty separately for the other actor.',
       absence_without_evidence:'No relevant retrieval does not mean the user never decided or supplied the fact. Limit uncertainty to what is not available.',
       unsupported_typed_value:'A claimed entity/property/value could not be confirmed by the fresh native read. Do not repeat the unsupported value; use only the supplied evidence or bounded uncertainty.',
       unsupported_historical_state:'Do not invent a previous state. Keep earlier speech about a plan distinct from a historical implementation or a prior concrete value.',

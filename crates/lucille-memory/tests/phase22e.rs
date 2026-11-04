@@ -199,3 +199,36 @@ fn canonical_absence_lookup_reads_only_the_requested_entity_and_property() {
     let gpu=s.answer_evidence_for_claims(&req,&[],&[f("device.primary_computer","gpu_model")]).unwrap();
     assert!(gpu.facts.is_empty());
 }
+
+#[test]
+fn composite_questions_preserve_own_relations_without_borrowing_third_party_or_project() {
+    let (_d,mut s)=learn("Pretendo usar SQLite como banco de dados no meu projeto.",ExtractionMode::Rules);
+    for text in ["Meu computador principal tem 32 GB de RAM.","Meu notebook de trabalho tem 12 GB de RAM.","Escolhi Rust como linguagem para meu projeto.","No meu projeto, eu uso Python.","Estou começando um projeto de catálogo de minerais."] {
+        s.enqueue_learning(input(text)).unwrap();
+        if let Some(l)=s.claim_learning(now()+1).unwrap(){s.complete_learning(&l,&l.claims,now()+2).unwrap();}
+    }
+    for m in s.list("qa","candeia").unwrap().into_iter().filter(|m|m.state==Status::Candidate){s.change(&m.input.id,"qa","candeia",m.version,Action::Approve).unwrap();}
+    let req=|q:&str|TurnRequest{conversation_id:"new-session".into(),message_id:uuid::Uuid::new_v4().to_string(),scope:"qa".into(),project:"candeia".into(),mode:Mode::Chat,query:q.into(),token_budget:16384};
+    for q in ["Compare o banco que planejei para meu projeto com o banco do meu irmão.","Compare o banco do meu irmão com o banco que planejei para meu projeto.","Compare os bancos do projeto candeia e do projeto ipe."] {
+        let c=s.context(req(q)).unwrap();
+        assert_eq!(c.facts.iter().filter(|f|f.property=="database" && f.value=="sqlite").count(),1,"{q}: {:?}",c.facts);
+        assert!(c.relations.iter().any(|r|r.state=="unavailable"),"{q}: {:?}",c.relations);
+        assert!(c.relations.iter().any(|r|r.state=="retrieved"),"{q}: {:?}",c.relations);
+        assert!(c.used_upper_bound<=c.token_budget);
+    }
+    assert!(s.context(req("Qual banco usa meu irmão?")).unwrap().facts.is_empty());
+    let c=s.context(req("Qual RAM do meu computador principal e do meu notebook de trabalho?")).unwrap();
+    assert_eq!(c.facts.iter().filter(|f|f.property=="ram_capacity").count(),2,"{:?}",c.facts);
+    let tracks=s.context(req("Qual linguagem escolhi para meu projeto e qual linguagem está implementada no meu projeto?" )).unwrap();
+    let choice=tracks.relations.iter().find(|r|r.intent=="choice").unwrap();
+    let implementation=tracks.relations.iter().find(|r|r.intent=="execution").unwrap();
+    assert!(choice.references.iter().all(|r|tracks.facts.iter().any(|f|f.id==r.id && f.value=="rust")),"{:?}",tracks);
+    assert!(implementation.references.iter().all(|r|tracks.facts.iter().any(|f|f.id==r.id && f.value=="python")),"{:?}",tracks);
+    assert!(!choice.references.is_empty() && !implementation.references.is_empty(),"{:?}",tracks);
+    let c=s.context(req("Qual banco planejei e qual linguagem escolhi para meu projeto?")).unwrap();
+    assert!(c.facts.iter().any(|f|f.property=="database" && f.value=="sqlite"),"{:?}",c.facts);
+    assert!(c.facts.iter().any(|f|f.property=="language" && f.value=="rust"),"{:?}",c.facts);
+    let c=s.context(req("Qual assunto do meu projeto e qual banco planejei e qual linguagem escolhi?" )).unwrap();
+    for property in ["description","database","language"]{assert!(c.facts.iter().any(|f|f.property==property),"{property}: {:?}",c.facts);}
+
+}

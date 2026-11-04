@@ -13,12 +13,16 @@ export interface AnswerSnapshot {
   scope: string; project: string; query: string; facts: MemoryFact[]; currentStatements: MemoryFact[]
   directiveReceipt?:MemoryDirectiveReceipt | null
   learningReceipt?:MemoryLearningReceipt | null
+  relations?:MemoryQueryRelation[]
   sourceIdentity?: { conversation_id:string;source_message_id:string }
   hasScopedRecords?:boolean
   refresh?: (claims?: { entity: string; property: string; value: string }[]) => Promise<{ facts: MemoryFact[]; current_statements: MemoryFact[];directive_receipt?:MemoryDirectiveReceipt | null;has_scoped_records?:boolean;learning_receipt?:MemoryLearningReceipt | null }>
   memoryOnly?: boolean
   toolObservations?: readonly import('./verified-environment').ToolEvidence[]
   reload?: () => Promise<ChatMessage[]>
+}
+export interface MemoryQueryRelation {
+  query:string;actor:string;intent?:string;state:string;references:{id:string;version:number}[]
 }
 export interface MemoryLearningReceipt {
   id:string;action:'learn';state:'done';scope:string;project:string;conversation_id:string;source_message_id:string
@@ -130,6 +134,8 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   let favoriteSlotBound=false
   for (const span of clauses) {
     const q = fold(span)
+    const thirdParty=/\b(?:irmao|irma|brother|sister|colega|colleague|amigo|friend)\b/.test(q)
+    if(thirdParty && !uncertain(span) && !span.trim().endsWith('?') && /\b(?:typescript|javascript|python|rust|sqlite|postgresql|mysql|\d+\s*(?:gb|gib)|prefere|prefers|gosta|likes)\b/.test(q))add('unsupported_statement_actor',span)
     // Elliptical completion predicates have the same operation authority as "I saved".
     const elliptical=/^\s*(?:registrad[ao]s?|anotad[ao]s?|salv[ao]s?|memorizad[ao]s?|guardad[ao]s?|recorded|registered|saved|stored|noted)(?:\s*[:.!,-]|\s*$)/.test(q)
       && (snapshot.currentStatements.length>0 || !!snapshot.sourceIdentity) && !/arquivo|\bfile\b|readme|\bpatch\b|\bcodigo\b|\bcode\b/.test(q)
@@ -330,12 +336,17 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   const foreignActor = /\b(?:irmao|irma|brother|sister|colega|colleague|amigo|friend)\b/.test(query)
   const askedEntity = entityIn(snapshot.query)
   const generalProjectStatus = projectQuestion && /como esta|como anda|how is|status of/.test(query) && !/linguagem|language|banco|database/.test(query)
-  const relevantKnown = !foreignActor && current.some(f =>
+  const relevantKnown = (!foreignActor || snapshot.relations?.some(r=>r.actor==='user')) && current.some(f =>
     (!askedEntity || f.entity === askedEntity) &&
     (generalProjectStatus ? f.entity === 'project.' + snapshot.project : askedProperties.length ? askedProperties.includes(f.property) :
       projectQuestion ? f.entity === 'project.' + snapshot.project :
       preferenceQuestion ? f.entity === 'user' && f.modality === 'preference' : false))
   if (personalQuestion && relevantKnown && uncertain(text) && assertions.length === 0) add('known_information_not_used', text, false)
+  for(const relation of snapshot.relations??[]) {
+    if(relation.actor!=='user')continue
+    const known=current.filter(f=>relation.references.some(r=>r.id===f.id && r.version===f.version))
+    if(known.length && !assertions.some(a=>a.supported && a.references.some(id=>known.some(f=>f.id===id))))add('known_relation_not_used',text,false)
+  }
   const authority=evaluateAuthority(text,snapshot)
   for (const claim of authority) if (!['supported','historical','hypothetical','non_memory'].includes(claim.verdict)) add('authority_'+claim.property,claim.span,claim.critical)
   return { assertions, violations, authority, uncertain: uncertain(text), supportedAssertions: assertions.filter(c => c.supported).length,

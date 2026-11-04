@@ -51,3 +51,12 @@ it('binds a RAM change amount to its own predicate and one native device, withou
  s.currentStatements=[ram,{...ram,id:'other',entity:'device.other_computer'}]
  expect(verifyMemoryAnswer('Você aumentou sua capacidade em 24 GB.',s).violations.some(v=>v.critical)).toBe(true)
 })
+
+it('keeps known own information useful in a brother comparison without granting it to the brother',()=>{
+ const s=base();s.query='Compare o banco que planejei com o banco do meu irmão.';s.currentStatements=[]
+ s.facts=[{...base().currentStatements[0],id:'db',version:2,entity:'project.candeia',property:'database',value:'sqlite',modality:'planned',validity:'current'}]
+ s.relations=[{query:'Compare o banco que planejei',actor:'user',state:'retrieved',references:[{id:'db',version:2}]},{query:'o banco do meu irmão',actor:'third_party',state:'unavailable',references:[]}]
+ expect(verifyMemoryAnswer('Você planeja usar SQLite no seu projeto. Não há informação disponível sobre o banco do seu irmão.',s).violations).toEqual([])
+ expect(verifyMemoryAnswer('Não tenho informação suficiente para comparar.',s).violations.map(v=>v.code)).toContain('known_relation_not_used')
+ expect(verifyMemoryAnswer('Seu irmão usa SQLite.',s).violations.map(v=>v.code)).toContain('unsupported_statement_actor')
+})
