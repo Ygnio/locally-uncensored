@@ -280,14 +280,28 @@ fn database_choice_intent(query: &str) -> bool {
 }
 fn description_intent(query: &str) -> bool {
     let q = fold(query);
-    ["description", "descricao", "sobre o projeto", "about the project", "assunto do", "assunto daquele", "subject of", "purpose of"]
-        .iter().any(|w| q.contains(w))
+    [
+        "description",
+        "descricao",
+        "sobre o projeto",
+        "about the project",
+        "assunto do",
+        "assunto daquele",
+        "subject of",
+        "purpose of",
+    ]
+    .iter()
+    .any(|w| q.contains(w))
 }
 fn identified_ram_intent(query: &str) -> bool {
     let q = fold(query);
     crate::coverage::device(&q).is_some()
-        && ["ram", "memoria", "memory", "gigabytes"].iter().any(|w| q.split(|c: char| !c.is_alphanumeric()).any(|t| t == *w))
-        && !["gpu", "vram", "ssd", "armazenamento", "storage"].iter().any(|w| q.contains(w))
+        && ["ram", "memoria", "memory", "gigabytes"]
+            .iter()
+            .any(|w| q.split(|c: char| !c.is_alphanumeric()).any(|t| t == *w))
+        && !["gpu", "vram", "ssd", "armazenamento", "storage"]
+            .iter()
+            .any(|w| q.contains(w))
 }
 fn completed_goal_intent(query: &str) -> bool {
     let q = crate::relevance::normalize_query(query);
@@ -413,7 +427,10 @@ fn eligible_source(
         return Ok(false);
     }
     if [
-        "meu irmao", "minha irma", "my brother", "my sister",
+        "meu irmao",
+        "minha irma",
+        "my brother",
+        "my sister",
         "meu amigo",
         "meu colega",
         "minha colega",
@@ -775,9 +792,14 @@ impl crate::Store {
                 .references
                 .iter()
                 .any(|r| r.id == m.input.id && r.version == m.version);
-            let canonical_lexical_match = meta.as_ref().is_some_and(|q|
-                (identified_ram_intent(&req.query) && q.property == "ram_capacity" && crate::coverage::device(&fold(&req.query)) == Some(q.subject.as_str()))
-                || (description_intent(&req.query) && q.property == "description" && q.subject == format!("project.{}",req.project)));
+            let canonical_lexical_match = meta.as_ref().is_some_and(|q| {
+                (identified_ram_intent(&req.query)
+                    && q.property == "ram_capacity"
+                    && crate::coverage::device(&fold(&req.query)) == Some(q.subject.as_str()))
+                    || (description_intent(&req.query)
+                        && q.property == "description"
+                        && q.subject == format!("project.{}", req.project))
+            });
             trace.push(serde_json::json!({"canonical_lexical_match":canonical_lexical_match,"id":m.input.id,"content":m.input.content,"version":m.version,"state":m.state,"quality":meta,"scope_project_pass":true,"state_temporal_entity_intent_pass":gate,"lexical_rank_bm25":lexical.get(&m.input.id),"lexical_coverage":coverage,"lexical_gate":coverage>=crate::relevance::LEXICAL_COVERAGE,"cosine":similarity,"semantic_threshold_pass":similarity.is_some_and(|s|s>=policy.minimum_similarity),"selected":selected,"reason":if selected{"selected_after_all_filters"}else if !active{"not_current"}else if !gate{"temporal_entity_intent_or_conflict_filter"}else{"threshold_margin_rank_diversity_or_budget"}}));
         }
         let mut raw = trace
@@ -817,8 +839,16 @@ pub(crate) fn select(
             .iter()
             .any(|w| fold(&req.query).contains(w));
     let completed_goal = completed_goal_intent(&req.query);
-    let general_expansion = recall(&req.query) || summary || communication || completed_goal
-        || coffee || history || current_field || lifecycle || database_choice || !slots.is_empty();
+    let general_expansion = recall(&req.query)
+        || summary
+        || communication
+        || completed_goal
+        || coffee
+        || history
+        || current_field
+        || lifecycle
+        || database_choice
+        || !slots.is_empty();
     if recall(&req.query)
         || summary
         || communication
@@ -836,7 +866,19 @@ pub(crate) fn select(
         // unrelated recent records must not crowd an older indexed property out.
         let mut q=tx.prepare(&format!("SELECT {COLS} FROM memories WHERE scope=?1 AND project=?2 AND (state='active' OR (state='obsolete' AND ?3)) AND (?4 OR id IN (SELECT memory_id FROM memory_quality WHERE (?5 AND subject=?6 AND property='ram_capacity') OR (?7 AND subject=?8 AND property='description'))) ORDER BY updated_at DESC,id LIMIT 100")).map_err(db_error)?;
         lexical = q
-            .query_map(params![req.scope, req.project, history, general_expansion, identified_ram, crate::coverage::device(&fold(&req.query)).unwrap_or(""), description, format!("project.{}",req.project)], row)
+            .query_map(
+                params![
+                    req.scope,
+                    req.project,
+                    history,
+                    general_expansion,
+                    identified_ram,
+                    crate::coverage::device(&fold(&req.query)).unwrap_or(""),
+                    description,
+                    format!("project.{}", req.project)
+                ],
+                row,
+            )
             .map_err(db_error)?
             .collect::<rusqlite::Result<Vec<_>>>()
             .map_err(db_error)?;
@@ -861,11 +903,15 @@ pub(crate) fn select(
         let coffee_match =
             coffee && quality(tx, &m.input.id)?.is_some_and(|q| q.property == "coffee_sugar");
         let slot_match = quality(tx, &m.input.id)?.is_some_and(|q| {
-            (identified_ram && q.property == "ram_capacity" && crate::coverage::device(&fold(&req.query)) == Some(q.subject.as_str()))
-                || (description && q.property == "description" && q.subject == format!("project.{}", req.project))
+            (identified_ram
+                && q.property == "ram_capacity"
+                && crate::coverage::device(&fold(&req.query)) == Some(q.subject.as_str()))
+                || (description
+                    && q.property == "description"
+                    && q.subject == format!("project.{}", req.project))
                 || (m.input.kind == Kind::Preference
-                && slots.contains(&q.property.as_str())
-                && (q.property != "coffee_sugar" || coffee))
+                    && slots.contains(&q.property.as_str())
+                    && (q.property != "coffee_sugar" || coffee))
                 || (database_choice
                     && q.property == "database"
                     && q.subject == format!("project.{}", req.project))

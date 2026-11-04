@@ -101,7 +101,9 @@ pub(crate) fn project(tx: &Transaction, memories: &[Memory]) -> Result<Vec<Conte
             "hypothesis" => "hypothesis",
             "temporary" => "temporary_observation",
             "preference" => "preference",
-            _ if q.property == "description" && q.subject.starts_with("project.") => "project_description",
+            _ if q.property == "description" && q.subject.starts_with("project.") => {
+                "project_description"
+            }
             _ if m.input.kind == Kind::Decision => "decision",
             _ if m.input.kind == Kind::Goal => "planned",
             _ if m.input.kind == Kind::Task => "task",
@@ -188,7 +190,9 @@ pub(crate) fn statements(req: &TurnRequest) -> Vec<ContextFact> {
                 "hypothesis" => "hypothesis",
                 "temporary" => "temporary_observation",
                 "preference" => "preference",
-                _ if c.property == "description" && c.subject.starts_with("project.") => "project_description",
+                _ if c.property == "description" && c.subject.starts_with("project.") => {
+                    "project_description"
+                }
                 _ if c.kind == Kind::Decision => "decision",
                 _ if c.kind == Kind::Goal => "planned",
                 _ if c.kind == Kind::Task => "task",
