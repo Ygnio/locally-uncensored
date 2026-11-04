@@ -1,0 +1,113 @@
+{
+  "method": "Offline preflight of all 21 known D answer cases against an isolated native SQLite backup. No embedding, model generation or retroactive rescoring of D. Original D database was opened query_only for backup; native operations use the new marked E copy only.",
+  "before": {
+    "planned": 21,
+    "total": 21,
+    "preflight_ready": 20,
+    "not_executed": 1,
+    "delivered": 0,
+    "blocked": 0,
+    "errors": 0
+  },
+  "before_failures": [
+    {
+      "id": "da-017",
+      "error": "Error: Selector must identify one actual canonical record: {\"selector\":{\"entity\":\"project.angico\",\"property\":\"language\",\"value\":\"rust\",\"state\":\"obsolete\"},\"matches\":0,\"available\":[{\"state\":\"active\",\"value\":\"rust\",\"temporal\":\"in_progress\"}]}"
+    }
+  ],
+  "after": {
+    "planned": 21,
+    "total": 21,
+    "preflight_ready": 21,
+    "not_executed": 0,
+    "delivered": 0,
+    "blocked": 0,
+    "errors": 0
+  },
+  "corrected_case": {
+    "id": "da-017",
+    "item": {
+      "id": "da-017",
+      "query": "Antes do cancelamento, que linguagem usava o projeto Angico?",
+      "scope": "phase22d-final-ret-main",
+      "project": "angico",
+      "mode": "agent",
+      "known_context": [
+        {
+          "entity": "project.angico",
+          "property": "language",
+          "value": "rust",
+          "state": "active",
+          "validity": "historical",
+          "modality": "in_progress"
+        },
+        {
+          "entity": "project.angico",
+          "property": "lifecycle",
+          "value": "cancelled"
+        }
+      ],
+      "expected": [
+        "rust_historical",
+        "cancelled"
+      ],
+      "scenario": "known_fact"
+    },
+    "status": "preflight_ready",
+    "references": [
+      {
+        "id": "d343c6d6-15ba-de18-f2d9-f51c42c14508",
+        "version": 2
+      },
+      {
+        "id": "1cca0458-39fc-4b4f-d7ef-9fafb7d561e5",
+        "version": 2
+      }
+    ],
+    "facts": [
+      {
+        "entity": "project.angico",
+        "evidence": [
+          {
+            "role": "current_source",
+            "text": "Estou implementando meu projeto em Rust"
+          }
+        ],
+        "facets": [],
+        "id": "d343c6d6-15ba-de18-f2d9-f51c42c14508",
+        "modality": "in_progress",
+        "project": "angico",
+        "property": "language",
+        "review": "reviewed",
+        "scope": "phase22d-final-ret-main",
+        "validity": "historical",
+        "value": "rust",
+        "version": 2
+      },
+      {
+        "entity": "project.angico",
+        "evidence": [
+          {
+            "role": "current_source",
+            "text": "Cancelei meu projeto"
+          }
+        ],
+        "facets": [],
+        "id": "1cca0458-39fc-4b4f-d7ef-9fafb7d561e5",
+        "modality": "cancelled",
+        "project": "angico",
+        "property": "lifecycle",
+        "review": "reviewed",
+        "scope": "phase22d-final-ret-main",
+        "validity": "current",
+        "value": "cancelled",
+        "version": 2
+      }
+    ]
+  },
+  "evaluator_unit_tests": {
+    "node_contract": 3,
+    "python_literal_origin": 1,
+    "passed": true
+  }
+}
