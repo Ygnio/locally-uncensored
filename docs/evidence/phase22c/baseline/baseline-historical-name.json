@@ -1,0 +1,77 @@
+{
+  "input": {
+    "id": "historical-cancelled",
+    "answer": "Você estava usando JavaScript para implementar o projeto Jatoba Azul.",
+    "snapshot": {
+      "scope": "baseline22c",
+      "project": "jatoba-azul",
+      "query": "Que linguagem era usada antes de eu cancelar esse projeto?",
+      "facts": [
+        {
+          "id": "34b6537cf123d937",
+          "version": 2,
+          "entity": "project.jatoba-azul",
+          "property": "language",
+          "value": "javascript",
+          "modality": "in_progress",
+          "validity": "historical",
+          "scope": "baseline22c",
+          "project": "jatoba-azul",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "id": "94f7fb434cd0cf32",
+          "version": 2,
+          "entity": "project.jatoba-azul",
+          "property": "lifecycle",
+          "value": "cancelled",
+          "modality": "cancelled",
+          "validity": "current",
+          "scope": "baseline22c",
+          "project": "jatoba-azul",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": ""
+            }
+          ]
+        }
+      ],
+      "currentStatements": []
+    }
+  },
+  "result": {
+    "assertions": [
+      {
+        "entity": "project.jatoba-azul",
+        "property": "language",
+        "value": "javascript",
+        "span": "Você estava usando JavaScript para implementar o projeto Jatoba Azul.",
+        "supported": true,
+        "references": [
+          "34b6537cf123d937"
+        ]
+      }
+    ],
+    "violations": [
+      {
+        "code": "unsupported_project_entity",
+        "span": "Você estava usando JavaScript para implementar o projeto Jatoba Azul.",
+        "critical": true
+      }
+    ],
+    "uncertain": false,
+    "supportedAssertions": 1,
+    "unsupportedAssertions": 0,
+    "elapsedMs": 8.071399999999983
+  }
+}
