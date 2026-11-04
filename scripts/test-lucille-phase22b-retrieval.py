@@ -18,6 +18,7 @@ def main(a):
     assert root==repo/'.lucille-qa-runtime/lucille-synthetic-real22b'
     assert re.fullmatch(r'[a-z0-9-]{1,60}',a.label)
     assert hashlib.sha256(Path(a.bridge).read_bytes()).hexdigest()==freeze['bridge_sha256']
+    assert json.loads((root/'reports/real-public-pin.json').read_text(encoding='utf-8'))==freeze['model_pin']
     assert (root/'.lucille-isolated').read_bytes()==b'synthetic-data-only\n'
     out=root/'reports'/(a.label+'-retrieval.json')
     if out.exists():raise RuntimeError('Final retrieval evaluation already exists; never overwrite')
@@ -78,6 +79,7 @@ def main(a):
         s['precision']=s['tp']/max(1,s['tp']+s['fp']);s['recall']=s['tp']/max(1,s['tp']+s['missed']);s['precision_at_3']=s['precision_at_3_sum']/max(1,s['ranking_queries']);s['recall_at_3']=s['recall_at_3_sum']/max(1,s['ranking_queries']);s['passed']=s['precision']>=.9 and s['recall']>=.8 and not s['negative_injections'] and not s['unsafe_current'] and not s['scope_errors']
     h.verify(repo,a.freeze)
     assert hashlib.sha256(Path(a.bridge).read_bytes()).hexdigest()==freeze['bridge_sha256']
+    assert json.loads((root/'reports/real-public-pin.json').read_text(encoding='utf-8'))==freeze['model_pin']
     out.write_text(json.dumps({'evaluation':'unseen frozen actual Nomic phase22b','freeze':freeze,'space':space,'modes':stats,'seed_evidence':seed_evidence,'samples':samples,'calls':calls,'note':'Native V3 rules + scoped QA review of B seed retrieval independently of Gemma; eligible A can promote by proof. Hybrid pre-gate ranking fields are Nomic diagnostics, not a claimed reconstruction of the final fused selector. All vectors actual. Logical expiry uses Store.context_at, never OS clock. JSON byte/context ceiling is a conservative token upper bound, not tokenizer measurements.'},indent=2,ensure_ascii=False),encoding='utf-8')
     print(json.dumps(stats,indent=2))
 if __name__=='__main__':

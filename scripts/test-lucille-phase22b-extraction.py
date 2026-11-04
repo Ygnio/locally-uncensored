@@ -7,6 +7,7 @@ h=importlib.util.module_from_spec(spec);spec.loader.exec_module(h)
 def verify_freeze(a,repo):
  if not a.freeze:return
  manifest=json.loads(Path(a.freeze).read_text(encoding="utf-8"))
+ assert json.loads((Path(a.root)/'reports/real-public-pin.json').read_text(encoding='utf-8'))==manifest['model_pin']
  for path,digest in manifest["source_sha256_lf"].items():assert hashlib.sha256((repo/path).read_bytes().replace(b"\r\n",b"\n")).hexdigest()==digest,path
  for path,digest in manifest["corpus_sha256"].items():assert hashlib.sha256((repo/path).read_bytes()).hexdigest()==digest,path
  assert hashlib.sha256(Path(a.bridge).read_bytes()).hexdigest()==manifest["bridge_sha256"]

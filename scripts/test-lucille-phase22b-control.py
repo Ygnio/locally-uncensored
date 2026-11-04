@@ -35,6 +35,10 @@ def main(a):
     plan = json.loads(Path(a.plan).read_text(encoding='utf-8'))
     assert str(Path(a.plan).resolve().relative_to(repo)).replace('\\', '/') in freeze['corpus_sha256']
     gui = json.loads((root / 'gui-processes.json').read_text(encoding='utf-8'))
+    native = Path(gui['gui']['executable']).resolve(strict=True)
+    assert native == (repo.parent / 'build/tauri/x86_64-pc-windows-msvc/debug/lucille-full-validation.exe').resolve(strict=True)
+    assert hashlib.sha256(native.read_bytes()).hexdigest() == freeze['native_gui_sha256']
+    assert json.loads((reports / 'real-public-pin.json').read_text(encoding='utf-8')) == freeze['model_pin']
     ready = json.loads((reports / 'driver-ready-progress.json').read_text(encoding='utf-8'))
     assert ready['native'] is True
     assert datetime.datetime.fromisoformat(ready['ready'].replace('Z', '+00:00')) >= datetime.datetime.fromisoformat(gui['gui']['created'])
@@ -72,6 +76,10 @@ def main(a):
         assert len(d['probes']) == len(plan.get('probes', []))
         assert len(d['turns']) == len(plan.get('turns', [])) + len(plan.get('probes', []))
         h.verify(repo, a.freeze)
+        assert hashlib.sha256(native.read_bytes()).hexdigest() == freeze['native_gui_sha256']
+        assert json.loads((reports / 'real-public-pin.json').read_text(encoding='utf-8')) == freeze['model_pin']
+        for relative, sha in freeze.get('frontend_sha256', {}).items():
+            assert hashlib.sha256((repo / 'qa-dist-22b' / relative).read_bytes()).hexdigest() == sha
         print(a.label, 'execution complete; quality requires independent adjudication', flush=True)
     finally:
         if lock.exists() and lock.read_text(encoding='utf-8') == nonce:
