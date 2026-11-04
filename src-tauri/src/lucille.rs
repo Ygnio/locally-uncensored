@@ -160,6 +160,12 @@ pub fn lucille_context(
 #[derive(Deserialize)]
 #[serde(tag = "operation", rename_all = "snake_case", deny_unknown_fields)]
 pub enum Request {
+    AnswerEvidence {
+        request: TurnRequest,
+        references: Vec<lucille_memory::Reference>,
+        #[serde(default)]
+        claims: Vec<lucille_memory::context_facts::ClaimedField>,
+    },
     ClaimLlm,
     CompleteLlm {
         lease: lucille_memory::intelligent::Lease,
@@ -267,6 +273,7 @@ pub fn lucille_manage(
     let readonly = matches!(
         &request,
         Request::Identity
+            | Request::AnswerEvidence { .. }
             | Request::List { .. }
             | Request::History { .. }
             | Request::Integrity
@@ -293,6 +300,11 @@ pub fn lucille_manage(
     }
     let store = guard.as_mut().unwrap();
     let value = match request {
+        Request::AnswerEvidence {
+            request,
+            references,
+            claims,
+        } => json!(store.answer_evidence_for_claims(&request, &references, &claims)?),
         Request::ClaimLlm => {
             if let Some(lease) = store.claim_llm_learning(epoch())? {
                 json!({"input":store.learning_input(&lease)?,"lease":lease})

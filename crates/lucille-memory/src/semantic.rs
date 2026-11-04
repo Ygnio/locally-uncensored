@@ -3,6 +3,22 @@ use crate::{db_error, extraction::digest, ConfigurationPermit, Result, Store};
 use rusqlite::{params, OptionalExtension, TransactionBehavior};
 use serde::{Deserialize, Serialize};
 
+pub(crate) fn prune_in_transaction(tx: &rusqlite::Transaction) -> Result<usize> {
+    tx.execute("DELETE FROM memory_vectors WHERE NOT EXISTS(SELECT 1 FROM memories m JOIN embedding_spaces s ON s.id=memory_vectors.space_id WHERE m.id=memory_vectors.memory_id AND m.state='active' AND m.version=memory_vectors.memory_version AND s.active=1)", []).map_err(db_error)
+}
+impl Store {
+    /// Derived data only. Canonical revisions, sources and tombstones remain untouched.
+    pub fn prune_obsolete_vectors(&mut self) -> Result<usize> {
+        let tx = self
+            .db
+            .transaction_with_behavior(TransactionBehavior::Immediate)
+            .map_err(db_error)?;
+        let removed = prune_in_transaction(&tx)?;
+        tx.commit().map_err(db_error)?;
+        Ok(removed)
+    }
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct EmbeddingSpace {

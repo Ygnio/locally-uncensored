@@ -185,6 +185,11 @@ fn put_quality(tx: &Transaction, id: &str, q: &Quality) -> Result<()> {
     Ok(())
 }
 pub(crate) fn snapshot(tx: &Transaction, m: &Memory) -> Result<()> {
+    tx.execute(
+        "DELETE FROM memory_vectors WHERE memory_id=?1",
+        [&m.input.id],
+    )
+    .map_err(db_error)?;
     let s = Snapshot {
         memory: m.clone(),
         quality: quality(tx, &m.input.id)?,
@@ -254,7 +259,7 @@ pub(crate) fn before_change(tx: &Transaction, m: &Memory, action: &Action) -> Re
             }
         }
         if let Some(q) = quality(tx, &m.input.id)? {
-            let unresolved:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_quality q JOIN memories n ON n.id=q.memory_id WHERE n.id!=?1 AND n.scope=?2 AND n.project=?3 AND n.state='active' AND q.subject=?4 AND q.property=?5 AND q.value!=?6)",params![m.input.id,m.input.scope,m.input.project,q.subject,q.property,q.value],|r|r.get(0)).map_err(db_error)?;
+            let unresolved:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_quality q JOIN memories n ON n.id=q.memory_id WHERE n.id!=?1 AND n.scope=?2 AND n.project=?3 AND n.state='active' AND q.subject=?4 AND q.property=?5 AND q.value!=?6 AND (?7=0 OR (q.temporal IN ('in_progress','current','completed','cancelled'))=?8))",params![m.input.id,m.input.scope,m.input.project,q.subject,q.property,q.value,q.subject.starts_with("project.") && ["language","database"].contains(&q.property.as_str()),crate::dialogue::execution_track(&q.subject,&q.property,&q.temporal)],|r|r.get(0)).map_err(db_error)?;
             if unresolved {
                 return Err("Review other current claims for this subject first".into());
             }
@@ -354,7 +359,7 @@ impl Store {
                 .is_none_or(|p| fold(p) == fold(&input.project))
         });
         let mut seen = std::collections::HashSet::new();
-        claims.retain(|c| seen.insert(c.fingerprint()));
+        claims.retain(|c| seen.insert((c.fingerprint(), c.temporal.clone(), c.facets.clone())));
         let use_llm = policy.extraction_mode != crate::llm::ExtractionMode::Rules
             && if policy.autonomous_preferences {
                 crate::dialogue::eligible_source(&input.user_text)
@@ -463,7 +468,19 @@ impl Store {
         self.db.query_row("SELECT i.user_text,i.extraction_mode FROM learning_inputs i JOIN extraction_jobs j ON j.id=i.job_id WHERE j.id=?1 AND j.lease_token=?2 AND j.state='running'",params![lease.id,lease.token],|r|Ok((r.get(0)?,r.get(1)?))).optional().map_err(db_error)
     }
     pub fn complete_llm_learning(&mut self, lease: &Lease, json: &str, at: i64) -> Result<bool> {
-        self.complete_learning_output(lease, &[], at, Some(json))
+        let owned: bool = self.db.query_row("SELECT EXISTS(SELECT 1 FROM extraction_jobs WHERE id=?1 AND state='running' AND lease_token=?2 AND scope=?3 AND project=?4 AND lease_until>?5)",params![lease.id,lease.token,lease.scope,lease.project,at],|r|r.get(0)).map_err(db_error)?;
+        let result = self.complete_learning_output(lease, &[], at, Some(json));
+        if owned
+            && result
+                .as_ref()
+                .err()
+                .is_some_and(|error| error != "Lucille database operation failed")
+        {
+            // The failed transaction cannot retain write authority until lease expiry.
+            // Bounded retry/failure also purges source input on the terminal attempt.
+            self.fail_learning(lease, at)?;
+        }
+        result
     }
     pub fn complete_learning(
         &mut self,
@@ -530,11 +547,15 @@ impl Store {
             .map_err(db_error)?;
         let mut grounded = vec![];
         if let Some(json) = llm {
-            let (text, mode) = input.ok_or("Missing LLM source")?;
+            let (text, mode) = input.as_ref().ok_or("Missing LLM source")?;
             grounded = crate::llm::validate(&text, &scope, &project, json)?;
             if mode == "hybrid" {
-                for c in verified {
-                    if !grounded.iter().any(|v| v.fingerprint() == c.fingerprint()) {
+                for c in verified.iter().cloned() {
+                    if !grounded.iter().any(|v| {
+                        v.fingerprint() == c.fingerprint()
+                            && v.temporal == c.temporal
+                            && v.facets == c.facets
+                    }) {
                         grounded.push(c)
                     }
                 }
@@ -550,8 +571,40 @@ impl Store {
         } else {
             proposals
         };
-        for claim in proposals {
-            ingest(&tx, lease, claim, &policy, at)?
+        let mut ordered = proposals.to_vec();
+        ordered.sort_by_key(|claim| {
+            input
+                .as_ref()
+                .and_then(|(text, _)| text.find(&claim.evidence))
+                .or_else(|| verified.iter().position(|c| c.evidence == claim.evidence))
+                .unwrap_or(usize::MAX)
+        });
+        for (index, claim) in ordered.iter().enumerate() {
+            let ambiguous = ordered.iter().enumerate().any(|(other, c)| {
+                other != index
+                    && c.subject == claim.subject
+                    && c.property == claim.property
+                    && c.value != claim.value
+                    && !crate::dialogue::separate_tracks(
+                        &claim.subject,
+                        &claim.property,
+                        &claim.temporal,
+                        &c.temporal,
+                    )
+            }) && !ordered.iter().enumerate().any(|(later, c)| {
+                later > 0
+                    && c.subject == claim.subject
+                    && c.property == claim.property
+                    && c.correction
+            });
+            if ambiguous {
+                let mut review_policy = policy.clone();
+                review_policy.autonomous_preferences = false;
+                review_policy.auto_kinds.clear();
+                ingest(&tx, lease, claim, &review_policy, at)?;
+            } else {
+                ingest(&tx, lease, claim, &policy, at)?
+            }
         }
         tx.execute("UPDATE extraction_jobs SET state='done',evidence_json='[]',lease_token=NULL,lease_until=NULL,error_code=NULL,updated_at=?2 WHERE id=?1",params![lease.id,at]).map_err(db_error)?;
         tx.commit().map_err(db_error)?;
@@ -628,7 +681,7 @@ impl Store {
         }
         if prior.memory.state == crate::Status::Active {
             if let Some(q) = &prior.quality {
-                let conflict:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_quality q JOIN memories n ON n.id=q.memory_id WHERE n.id!=?1 AND n.scope=?2 AND n.project=?3 AND n.state='active' AND q.subject=?4 AND q.property=?5 AND q.value!=?6)",params![id,scope,project,q.subject,q.property,q.value],|r|r.get(0)).map_err(db_error)?;
+                let conflict:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_quality q JOIN memories n ON n.id=q.memory_id WHERE n.id!=?1 AND n.scope=?2 AND n.project=?3 AND n.state='active' AND q.subject=?4 AND q.property=?5 AND q.value!=?6 AND (?7=0 OR (q.temporal IN ('in_progress','current','completed','cancelled'))=?8))",params![id,scope,project,q.subject,q.property,q.value,q.subject.starts_with("project.") && ["language","database"].contains(&q.property.as_str()),crate::dialogue::execution_track(&q.subject,&q.property,&q.temporal)],|r|r.get(0)).map_err(db_error)?;
                 if conflict {
                     return Err("Resolve current topic before restore".into());
                 }
@@ -780,13 +833,31 @@ fn ingest(
                 .find(|p| p.subject == c.subject && p.property == c.property)
                 .map(|p| Quality::from_claim(&p, memory.created_at)),
         };
-        if let Some(q) = q.filter(|q| q.subject == c.subject && q.property == c.property) {
+        if let Some(q) = q.filter(|q| {
+            q.subject == c.subject
+                && q.property == c.property
+                && !crate::dialogue::separate_tracks(
+                    &c.subject,
+                    &c.property,
+                    &c.temporal,
+                    &q.temporal,
+                )
+        }) {
             put_quality(tx, &memory.input.id, &q)?;
             related.push((memory, q));
         }
     }
-    if let Some((memory, mut q)) = related.iter().find(|(_, q)| q.value == c.value).cloned() {
-        if c.kind == Kind::Preference && c.property == "games_tactics" && policy.promotes(c) {
+    if let Some((memory, mut q)) = related
+        .iter()
+        .find(|(_, q)| q.value == c.value && q.temporal == c.temporal)
+        .cloned()
+    {
+        let same_interaction_without_raw:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_provenance WHERE memory_id=?1 AND interaction_id=?2) AND NOT EXISTS(SELECT 1 FROM learning_inputs WHERE job_id=?2)",params![memory.input.id,lease.id],|r|r.get(0)).map_err(db_error)?;
+        if c.kind == Kind::Preference
+            && c.property == "games_tactics"
+            && policy.promotes(c)
+            && !same_interaction_without_raw
+        {
             let before = q.facets.clone();
             q.facets.extend(c.facets.clone());
             q.facets.sort();
@@ -830,13 +901,21 @@ fn ingest(
         "candidate"
     };
     let id = uuid::Uuid::from_bytes(
-        sha2::Sha256::digest(format!("{}:{}", lease.id, c.key()).as_bytes())[..16]
+        sha2::Sha256::digest(
+            serde_json::to_vec(&(&lease.id, c.key(), &c.temporal, &c.value))
+                .map_err(|_| "Invalid claim identity")?,
+        )[..16]
             .try_into()
             .unwrap(),
     )
     .to_string();
     tx.execute("INSERT OR IGNORE INTO scopes VALUES(?1)", [&lease.scope])
         .map_err(db_error)?;
+    let fact_key = if crate::dialogue::execution_track(&c.subject, &c.property, &c.temporal) {
+        format!("{}.execution", c.key())
+    } else {
+        c.key()
+    };
     tx.execute(
         "INSERT INTO memories VALUES(?1,?2,?3,?4,?5,?6,?7,'user',?8,1,?9,?9)",
         params![
@@ -846,7 +925,7 @@ fn ingest(
             types::label(&c.kind),
             state,
             c.content,
-            c.key(),
+            fact_key,
             lease.id,
             at
         ],
@@ -877,6 +956,36 @@ fn ingest(
     Ok(())
 }
 fn provenance(tx: &Transaction, id: &str, lease: &Lease, c: &Claim, at: i64) -> Result<()> {
+    let previous: Option<String> = tx
+        .query_row(
+            "SELECT evidence FROM memory_provenance WHERE memory_id=?1 AND interaction_id=?2",
+            params![id, lease.id],
+            |r| r.get(0),
+        )
+        .optional()
+        .map_err(db_error)?;
+    if let Some(previous) = previous.filter(|old| !old.contains(&c.evidence)) {
+        let source: Option<String> = tx
+            .query_row(
+                "SELECT user_text FROM learning_inputs WHERE job_id=?1",
+                [&lease.id],
+                |r| r.get(0),
+            )
+            .optional()
+            .map_err(db_error)?;
+        if let Some(source) = source {
+            if let (Some(old_start), Some(new_start)) =
+                (source.find(&previous), source.find(&c.evidence))
+            {
+                let begin = old_start.min(new_start);
+                let end = (old_start + previous.len()).max(new_start + c.evidence.len());
+                // One exact contiguous source span preserves both clauses under
+                // the existing one-row-per-interaction provenance schema.
+                tx.execute("UPDATE memory_provenance SET evidence=?3 WHERE memory_id=?1 AND interaction_id=?2",params![id,lease.id,&source[begin..end]]).map_err(db_error)?;
+                return Ok(());
+            }
+        }
+    }
     tx.execute(
         "INSERT OR IGNORE INTO memory_provenance VALUES(?1,?2,?3,?4)",
         params![id, lease.id, c.evidence, at],

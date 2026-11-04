@@ -18,6 +18,15 @@ impl Store {
             | "forget my coffee preference" => "coffee_sugar",
             "esqueca meu idioma preferido" | "forget my preferred language" => "response_language",
             "esqueca minha preferencia de tema" | "forget my theme preference" => "interface_theme",
+            "esqueca minha bebida favorita" | "forget my favorite beverage" => "favorite_beverage",
+            "esqueca minha preferencia por respostas objetivas"
+            | "forget my objective answer preference" => "communication_focus",
+            "esqueca minha preferencia sobre interface poluida"
+            | "forget my interface clutter preference" => "interface_clutter",
+            "esqueca minha preferencia por criar personagens"
+            | "forget my character creation preference" => "games_character_creation",
+            "esqueca minha preferencia por escolher classes"
+            | "forget my class selection preference" => "games_class_selection",
             _ => return Ok(None),
         };
         if input.role != "user" || !self.learning_policy()?.autonomous_preferences {
@@ -79,8 +88,26 @@ impl Store {
                 text.contains("cafe") || text.contains("coffee")
             } else if property == "response_language" {
                 text.contains("portugues") || text.contains("language")
-            } else {
+            } else if property == "interface_theme" {
                 text.contains("tema") || text.contains("theme") || text.contains("interface")
+            } else {
+                crate::dialogue::extract(&text, &input.project)
+                    .iter()
+                    .any(|c| c.property == property)
+                    || match property {
+                        "favorite_beverage" => ["bebida", "beverage", "drink"]
+                            .iter()
+                            .any(|w| text.contains(w)),
+                        "communication_focus" => {
+                            text.contains("objetiv") || text.contains("objective")
+                        }
+                        "interface_clutter" => text.contains("poluid") || text.contains("clutter"),
+                        "games_character_creation" => {
+                            text.contains("personag") || text.contains("character creation")
+                        }
+                        "games_class_selection" => text.contains("classes"),
+                        _ => false,
+                    }
             };
             if relevant {
                 tx.execute("UPDATE extraction_jobs SET state='cancelled',evidence_json='[]',lease_token=NULL,lease_until=NULL,error_code='user_forgot_topic',updated_at=?2 WHERE id=?1",params![job,at]).map_err(db_error)?;

@@ -99,11 +99,10 @@ fn run() -> Result<Value> {
             } else if let Some(lease) = s.claim_llm_learning(at + 1)? {
                 if let Err(error) = s.complete_llm_learning(&lease, output, at + 2) {
                     rejected = Some(error);
-                    if mode == llm::ExtractionMode::Hybrid {
-                        s.complete_llm_learning(&lease, "{\"proposals\":[]}", at + 2)?;
-                    } else {
-                        s.cancel_learning(&lease.id, &permit)?;
-                    }
+                    // This one-shot diagnostic has no retry worker. Native validation
+                    // already revoked the failed lease; terminate the job observably.
+                    // Valid hybrid empty-output fallback is handled inside Store.
+                    s.cancel_learning(&lease.id, &permit)?;
                 }
             }
             Ok(
@@ -117,6 +116,16 @@ fn run() -> Result<Value> {
             Ok(json!(s.learning_policy()?))
         }
         "metrics" => s.learning_metrics(scope, project),
+        "answer_evidence" => {
+            let req: TurnRequest =
+                serde_json::from_value(v["request"].clone()).map_err(|_| "Invalid request")?;
+            let refs: Vec<Reference> = serde_json::from_value(v["references"].clone())
+                .map_err(|_| "Invalid references")?;
+            let claims: Vec<lucille_memory::context_facts::ClaimedField> =
+                serde_json::from_value(v.get("claims").cloned().unwrap_or(json!([])))
+                    .map_err(|_| "Invalid claimed fields")?;
+            Ok(json!(s.answer_evidence_for_claims(&req, &refs, &claims)?))
+        }
         "pending_embeddings" => {
             s.pending_embedding_records(scope, project, v["limit"].as_u64().unwrap_or(8) as usize)
         }

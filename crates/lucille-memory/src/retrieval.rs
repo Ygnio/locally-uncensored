@@ -10,7 +10,7 @@ use rusqlite::{params, OptionalExtension, Transaction};
 use std::collections::{HashMap, HashSet};
 
 pub(crate) fn terms(query: &str) -> Vec<String> {
-    let normalized = fold(query);
+    let normalized = crate::relevance::normalize_query(query);
     let mut result = normalized
         .split(|c: char| !c.is_alphanumeric())
         .filter(|s| s.len() > 1 && !STOP.contains(s))
@@ -48,7 +48,7 @@ const STOP: &[&str] = &[
     "am", "an", "it", "its", "would", "should", "much", "many",
 ];
 pub(crate) fn recall(query: &str) -> bool {
-    let q = fold(query);
+    let q = crate::relevance::normalize_query(query);
     [
         "o que voce lembra",
         "quais memorias",
@@ -65,8 +65,64 @@ pub(crate) fn fts_query(query: &str) -> String {
         .collect::<Vec<_>>()
         .join(" OR ")
 }
-fn communication_intent(query: &str) -> bool {
+pub(crate) fn implicit_device_comparison(query: &str) -> bool {
     let q = fold(query);
+    let primary = ["principal", "primary", "main computer", "main desktop"]
+        .iter()
+        .any(|w| q.contains(w));
+    let work = [
+        "notebook de trabalho",
+        "notebook do trabalho",
+        "work laptop",
+        "work notebook",
+        "office laptop",
+    ]
+    .iter()
+    .any(|w| q.contains(w));
+    let other = [
+        "outro computador",
+        "other computer",
+        "secondary computer",
+        "secundario",
+    ]
+    .iter()
+    .any(|w| q.contains(w));
+    [primary, work, other].iter().filter(|v| **v).count() >= 2
+}
+fn current_project_field(query: &str, property: &str) -> bool {
+    let q = fold(query);
+    ["language", "database"].contains(&property)
+        && !historical_intent(query)
+        && ![
+            "planej", "plan", "futuro", "future", "pretend", "escolhi", "decidi", "chosen", "chose",
+        ]
+        .iter()
+        .any(|w| q.contains(w))
+        && [
+            "agora",
+            "vigente",
+            "atualmente",
+            "current",
+            "now",
+            " usa",
+            "uses",
+            "utiliza",
+            "using",
+        ]
+        .iter()
+        .any(|w| q.contains(w))
+        && if property == "language" {
+            ["linguagem", "language", "stack"]
+                .iter()
+                .any(|w| q.contains(w))
+        } else {
+            ["banco", "database", "stack", "persist", "armazen"]
+                .iter()
+                .any(|w| q.contains(w))
+        }
+}
+fn communication_intent(query: &str) -> bool {
+    let q = crate::relevance::normalize_query(query);
     let words = q
         .chars()
         .map(|c| if c.is_alphanumeric() { c } else { ' ' })
@@ -86,29 +142,85 @@ fn communication_intent(query: &str) -> bool {
         .iter()
         .any(|w| q.contains(w))
 }
+fn coffee_preparation_intent(query: &str) -> bool {
+    let q = crate::relevance::normalize_query(query);
+    crate::relevance::personal(query)
+        && ["cafe", "coffee"].iter().any(|w| q.contains(w))
+        && [
+            "prefiro", "prefer", "como eu", "how do i", "acucar", "sugar",
+        ]
+        .iter()
+        .any(|w| q.contains(w))
+        && ![
+            "amigo",
+            "colega",
+            "friend",
+            "colleague",
+            "receita",
+            "recipe",
+        ]
+        .iter()
+        .any(|w| q.contains(w))
+}
 fn completed_goal_intent(query: &str) -> bool {
-    let q = fold(query);
+    let q = crate::relevance::normalize_query(query);
     any_completed_intent(&q)
         && ["goal", "objetiv", "meta", "milestone"]
             .iter()
             .any(|w| q.contains(w))
 }
-fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> {
+pub(crate) fn historical_intent(query: &str) -> bool {
+    let q = crate::relevance::normalize_query(query);
+    [
+        "antes",
+        "anteriormente",
+        "anterior",
+        "antigamente",
+        "historico",
+        "historical",
+        "previously",
+        "previous",
+        "formerly",
+        "used to",
+    ]
+    .iter()
+    .any(|term| {
+        q.split(|c: char| !c.is_alphanumeric()).any(|w| w == *term)
+            || (*term == "used to" && q.contains(term))
+    })
+}
+pub(crate) fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> {
     let blocked:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_quality q JOIN memories n ON n.id=q.memory_id WHERE q.replaces_id=?1 AND n.state IN ('candidate','conflict') AND (q.expires_at IS NULL OR q.expires_at>?2))",params![m.input.id,at],|r|r.get(0)).map_err(db_error)?;
-    if blocked {
+    let historical = m.state == crate::Status::Obsolete;
+    if historical && !historical_intent(query) {
+        return Ok(false);
+    }
+    if historical {
+        let previously_active: bool = tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_revisions WHERE memory_id=?1 AND version=?2 AND json_extract(snapshot,'$.memory.state')='active')",params![m.input.id,m.version-1],|r|r.get(0)).map_err(db_error)?;
+        if !previously_active {
+            return Ok(false);
+        }
+    }
+    if blocked && !historical {
         return Ok(false);
     }
     let meta = quality(tx, &m.input.id)?;
     // A clear correction in the current user message takes precedence even
     // before the asynchronous extractor has persisted its replacement.
-    if let Some(current) = &meta {
+    if let Some(current) = meta.as_ref().filter(|_| !historical) {
         let current_claims = extract(query)
             .into_iter()
             .chain(crate::dialogue::extract(query, &m.input.project));
         if current_claims.into_iter().any(|claim| {
             (claim.subject == current.subject
                 && claim.property == current.property
-                && claim.value != current.value)
+                && claim.value != current.value
+                && !crate::dialogue::separate_tracks(
+                    &current.subject,
+                    &current.property,
+                    &current.temporal,
+                    &claim.temporal,
+                ))
                 || (current.property == "ram_capacity"
                     && claim.subject == "device.unspecified"
                     && crate::coverage::old_capacity(&claim.evidence).as_ref()
@@ -120,8 +232,8 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
             return Ok(false);
         }
     }
-    if let Some(current) = &meta {
-        let pending:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_quality q JOIN memories n ON n.id=q.memory_id WHERE n.scope=?1 AND n.project=?2 AND n.state IN ('active','candidate','conflict') AND q.subject=?3 AND q.property=?4 AND q.value!=?5 AND (q.expires_at IS NULL OR q.expires_at>?6))",params![m.input.scope,m.input.project,current.subject,current.property,current.value,at],|r|r.get(0)).map_err(db_error)?;
+    if let Some(current) = meta.as_ref().filter(|_| !historical) {
+        let pending:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_quality q JOIN memories n ON n.id=q.memory_id WHERE n.scope=?1 AND n.project=?2 AND n.state IN ('active','candidate','conflict') AND q.subject=?3 AND q.property=?4 AND q.value!=?5 AND (q.expires_at IS NULL OR q.expires_at>?6) AND (?7=0 OR (q.temporal IN ('in_progress','current','completed','cancelled'))=?8))",params![m.input.scope,m.input.project,current.subject,current.property,current.value,at,current.subject.starts_with("project.") && ["language","database"].contains(&current.property.as_str()),crate::dialogue::execution_track(&current.subject,&current.property,&current.temporal)],|r|r.get(0)).map_err(db_error)?;
         if pending {
             return Ok(false);
         }
@@ -179,8 +291,24 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
     {
         return Ok(false);
     }
-    let q = fold(query);
+    let q = crate::relevance::normalize_query(query);
     let summary = crate::dialogue::project_summary(query);
+    if let Some(meta) = &meta {
+        if meta.subject.starts_with("project.")
+            && ["language", "database"].contains(&meta.property.as_str())
+            && current_project_field(query, &meta.property)
+        {
+            let pending_lifecycle:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memories n JOIN memory_quality q ON q.memory_id=n.id WHERE n.scope=?1 AND n.project=?2 AND q.subject=?3 AND q.property='lifecycle' AND n.state IN ('candidate','conflict'))",params![m.input.scope,m.input.project,meta.subject],|r|r.get(0)).map_err(db_error)?;
+            let terminal:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memories n JOIN memory_quality q ON q.memory_id=n.id WHERE n.scope=?1 AND n.project=?2 AND q.subject=?3 AND q.property='lifecycle' AND n.state='active' AND q.temporal IN ('cancelled','completed'))",params![m.input.scope,m.input.project,meta.subject],|r|r.get(0)).map_err(db_error)?;
+            let actual:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memories n JOIN memory_quality q ON q.memory_id=n.id WHERE n.scope=?1 AND n.project=?2 AND q.subject=?3 AND q.property=?4 AND n.state='active' AND q.temporal IN ('current','in_progress'))",params![m.input.scope,m.input.project,meta.subject,meta.property],|r|r.get(0)).map_err(db_error)?;
+            if pending_lifecycle
+                || terminal
+                || (actual && !["current", "in_progress"].contains(&meta.temporal.as_str()))
+            {
+                return Ok(false);
+            }
+        }
+    }
     if let Some(meta) = &meta {
         if meta.property == "communication_style" && !communication_intent(query) {
             return Ok(false);
@@ -232,38 +360,13 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
     {
         return Ok(false);
     }
+    if !crate::dialogue::project_scope_matches(query, &m.input.project) {
+        return Ok(false);
+    }
     let words = q
         .split_whitespace()
         .map(|s| s.trim_matches(|c: char| !c.is_alphanumeric()))
         .collect::<Vec<_>>();
-    if words.windows(2).any(|p| {
-        ["projeto", "project"].contains(&p[0])
-            && !p[1].is_empty()
-            && ![
-                "uses",
-                "usa",
-                "database",
-                "banco",
-                "dados",
-                "stores",
-                "should",
-                "has",
-                "tem",
-                "requer",
-                "requires",
-                "ficticio",
-                "configuration",
-                "de",
-                "do",
-                "da",
-                "going",
-                "doing",
-            ]
-            .contains(&p[1])
-            && p[1] != fold(&m.input.project)
-    }) {
-        return Ok(false);
-    }
     if let Some(meta) = &meta {
         if meta.property == "language"
             && !summary
@@ -364,9 +467,10 @@ fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Result<bool> 
         {
             return Ok(false);
         }
-        let compare = ["compare", "todos", "all ", "dois computadores"]
-            .iter()
-            .any(|word| q.contains(word));
+        let compare = implicit_device_comparison(query)
+            || ["compare", "todos", "all ", "dois computadores"]
+                .iter()
+                .any(|word| q.contains(word));
         if !compare && meta.subject.starts_with("device.") {
             let other = q.contains("outro")
                 || q.contains("other")
@@ -523,13 +627,31 @@ pub(crate) fn select(
     policy: &LearningPolicy,
     at: i64,
 ) -> Result<(Vec<Memory>, usize)> {
+    let current_field = current_project_field(&req.query, "language")
+        || current_project_field(&req.query, "database");
+    let history = historical_intent(&req.query);
     let summary = crate::dialogue::project_summary(&req.query);
     let communication = communication_intent(&req.query);
+    let coffee = coffee_preparation_intent(&req.query);
+    let lifecycle = ["status", "andamento", "conclu", "cancel", "progress"]
+        .iter()
+        .any(|w| fold(&req.query).contains(w))
+        && ["projeto", "project"]
+            .iter()
+            .any(|w| fold(&req.query).contains(w));
     let completed_goal = completed_goal_intent(&req.query);
-    if recall(&req.query) || summary || communication || completed_goal {
-        let mut q=tx.prepare(&format!("SELECT {COLS} FROM memories WHERE scope=?1 AND project=?2 AND state='active' ORDER BY updated_at DESC,id LIMIT 100")).map_err(db_error)?;
+    if recall(&req.query)
+        || summary
+        || communication
+        || completed_goal
+        || coffee
+        || history
+        || current_field
+        || lifecycle
+    {
+        let mut q=tx.prepare(&format!("SELECT {COLS} FROM memories WHERE scope=?1 AND project=?2 AND (state='active' OR (state='obsolete' AND ?3)) ORDER BY updated_at DESC,id LIMIT 100")).map_err(db_error)?;
         lexical = q
-            .query_map(params![req.scope, req.project], row)
+            .query_map(params![req.scope, req.project, history], row)
             .map_err(db_error)?
             .collect::<rusqlite::Result<Vec<_>>>()
             .map_err(db_error)?;
@@ -541,9 +663,18 @@ pub(crate) fn select(
         lexical.clear()
     }
     for (_rank, m) in lexical.into_iter().enumerate() {
+        let actual_match = quality(tx, &m.input.id)?.is_some_and(|q| {
+            q.subject == format!("project.{}", req.project)
+                && ["current", "in_progress"].contains(&q.temporal.as_str())
+                && current_project_field(&req.query, &q.property)
+        });
         let coverage = crate::relevance::lexical_coverage(&req.query, &m.input.content);
         let style_match = communication
             && quality(tx, &m.input.id)?.is_some_and(|q| q.property == "communication_style");
+        let lifecycle_match =
+            lifecycle && quality(tx, &m.input.id)?.is_some_and(|q| q.property == "lifecycle");
+        let coffee_match =
+            coffee && quality(tx, &m.input.id)?.is_some_and(|q| q.property == "coffee_sugar");
         let goal_match = completed_goal
             && m.input.kind == Kind::Goal
             && quality(tx, &m.input.id)?.is_some_and(|q| q.temporal == "completed");
@@ -551,6 +682,9 @@ pub(crate) fn select(
             && !summary
             && !style_match
             && !goal_match
+            && !coffee_match
+            && !lifecycle_match
+            && !actual_match
             && coverage < crate::relevance::LEXICAL_COVERAGE
         {
             continue;
@@ -559,7 +693,14 @@ pub(crate) fn select(
             m.input.id.clone(),
             (
                 m,
-                if recall(&req.query) || summary || style_match || goal_match {
+                if recall(&req.query)
+                    || summary
+                    || style_match
+                    || goal_match
+                    || coffee_match
+                    || lifecycle_match
+                    || actual_match
+                {
                     1.0
                 } else {
                     policy.lexical_weight * coverage
@@ -600,7 +741,9 @@ pub(crate) fn select(
             }
             semantic_ranked
                 .sort_by(|a, b| b.1.total_cmp(&a.1).then(a.0.input.id.cmp(&b.0.input.id)));
-            let multiple = recall(&req.query)
+            let multiple = implicit_device_comparison(&req.query)
+                || history
+                || recall(&req.query)
                 || summary
                 || ["compare", "todos", "all ", "dois computadores"]
                     .iter()
@@ -623,12 +766,20 @@ pub(crate) fn select(
     }
     let mut current_claims: HashMap<String, HashSet<String>> = HashMap::new();
     for (m, _) in candidates.values() {
+        if m.state == crate::Status::Obsolete {
+            continue;
+        }
         if !eligible(tx, m, &req.query, at)? {
             continue;
         }
         if let Some(q) = quality(tx, &m.input.id)? {
             current_claims
-                .entry(format!("{}.{}", q.subject, q.property))
+                .entry(format!(
+                    "{}.{}.{}",
+                    q.subject,
+                    q.property,
+                    crate::dialogue::execution_track(&q.subject, &q.property, &q.temporal)
+                ))
                 .or_default()
                 .insert(q.value);
         } else if let Some(c) = extract(&m.input.content).first() {
@@ -663,7 +814,18 @@ pub(crate) fn select(
         let meta = quality(tx, &m.input.id)?;
         let key = meta
             .as_ref()
-            .map(|q| format!("{}.{}", q.subject, q.property))
+            .map(|q| {
+                if m.state == crate::Status::Obsolete {
+                    format!("historical.{}", m.input.id)
+                } else {
+                    format!(
+                        "{}.{}.{}",
+                        q.subject,
+                        q.property,
+                        crate::dialogue::execution_track(&q.subject, &q.property, &q.temporal)
+                    )
+                }
+            })
             .or_else(|| extract(&m.input.content).first().map(|c| c.key()));
         if key.as_ref().is_some_and(|k| {
             current_claims.get(k).is_some_and(|v| v.len() > 1) || seen_property.contains(k)
@@ -673,7 +835,9 @@ pub(crate) fn select(
         if seen_content.contains(&fold(&m.input.content)) {
             continue;
         }
-        let multiple = recall(&req.query)
+        let multiple = implicit_device_comparison(&req.query)
+            || history
+            || recall(&req.query)
             || summary
             || ["compare", "todos", "all ", "dois computadores"]
                 .iter()

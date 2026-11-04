@@ -70,9 +70,13 @@ pub fn run() {
         "Root must be a direct checkout QA child"
     );
     assert!(
-        ["lucille-synthetic-full", "lucille-synthetic-full22"]
-            .iter()
-            .any(|n| root.file_name().is_some_and(|v| v == *n)),
+        [
+            "lucille-synthetic-full",
+            "lucille-synthetic-full22",
+            "lucille-synthetic-full22b"
+        ]
+        .iter()
+        .any(|n| root.file_name().is_some_and(|v| v == *n)),
         "Explicit full-profile allowlist"
     );
     lucille_memory::isolation::isolated_database_path(&root, &[]).expect("Synthetic marker");
@@ -141,9 +145,9 @@ pub fn run() {
                 tauri::WebviewUrl::External("http://127.0.0.1:15283".parse().unwrap()),
             )
             .title(
-                if root
-                    .file_name()
-                    .is_some_and(|v| v == "lucille-synthetic-full22")
+                if root.file_name().is_some_and(|v|v=="lucille-synthetic-full22b") {
+                    "Lucille Phase 2.2B - FULL application - synthetic ONLY"
+                } else if root.file_name().is_some_and(|v|v=="lucille-synthetic-full22")
                 {
                     "Lucille Phase 2.2 - FULL application - synthetic ONLY"
                 } else {
@@ -160,6 +164,7 @@ pub fn run() {
                     && url.host_str() == Some("127.0.0.1")
                     && url.port() == Some(15283)
             })
+            .focused(false)
             .inner_size(1320.0, 900.0)
             .build()?
             .show()?;
