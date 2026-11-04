@@ -319,3 +319,13 @@ it('2.2D accepts denial of a performance guarantee but checks a coordinated posi
   expect(verifyMemoryAnswer('Seu computador principal possui 48 GB de RAM. A quantidade de RAM por si só não garante fluidez ao rodar seu ambiente e banco juntos.',s).violations).toEqual([])
   expect(verifyMemoryAnswer('RAM não garante fluidez, mas oferece excelente capacidade para rodar seu ambiente.',s).violations.length).toBeGreaterThan(0)
 })
+
+it('2.2D distinguishes a proved existing stored state from a current reserved write',()=>{
+  const f=fact({entity:'user',property:'coffee_sugar',value:'without_sugar',modality:'preference'})
+  const s=snapshot([f],'Minha preferência por café sem açúcar já está salva?')
+  expect(verifyMemoryAnswer('Sua preferência por café sem açúcar está registrada.',s).violations).toEqual([])
+  for(const text of ['Sua preferência por café sem açúcar está registrada.','Your preference for coffee without sugar is saved.']) {
+    expect(verifyMemoryAnswer(text,{...s,facts:[],currentStatements:[{...f,id:'current-turn-0',version:0,validity:'current_user_statement'}]}).violations.map(v=>v.code)).toContain('unconfirmed_memory_mutation')
+  }
+  expect(verifyMemoryAnswer('Sua preferência por café com açúcar está registrada.',s).violations.some(v=>v.critical)).toBe(true)
+})

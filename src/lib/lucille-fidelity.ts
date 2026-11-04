@@ -115,7 +115,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   let favoriteSlotBound=false
   for (const span of clauses) {
     const q = fold(span)
-    const mutation = /\b(?:removi|apaguei|exclui|esqueci|memorizei|guardei|salvei|registrei|reativei|anotei)\b|\b(?:i have |i.ve |i )(?:removed|deleted|forgotten|saved|memorized|stored|reactivated|noted)\b|\b(?:foi|foram|has been|have been) (?:removid|apagad|excluid|esquecid|memorizad|guardad|anotad|armazenad|reativad|salv|registrad|removed|deleted|forgotten|memorized|memorised|reactivated|saved|stored)/.test(q)
+    const mutation = /\b(?:removi|apaguei|exclui|esqueci|memorizei|guardei|salvei|registrei|reativei|anotei)\b|\b(?:i have |i.ve |i )(?:removed|deleted|forgotten|saved|memorized|stored|reactivated|noted)\b|\b(?:foi|foram|esta|estao|has been|have been|is|are) (?:removid|apagad|excluid|esquecid|memorizad|guardad|anotad|armazenad|reativad|salv|registrad|removed|deleted|forgotten|memorized|memorised|reactivated|saved|stored)/.test(q)
     const forgetQuestion=/^\s*(?:por favor,?\s+|please\s+)?(?:esqueca|forget)\b/.test(query)
     const refersToSource = snapshot.currentStatements.length>0 && /^(?:isso|essa|esse|this|it)\b/.test(q.trim()) && !/arquivo|\bfile\b|readme|\bpatch\b|\bcodigo\b|\bcode\b/.test(q)
     const memoryDomain = /memori|preferencia|preference|remember|metas pessoais|personal goals|informacoes de hardware|preferencias de projeto|suas configuracoes|your settings/.test(q) || /\b(?:anotei|registrei|guardei|salvei|memorizei)\s+que\s+(?:voce|seu|sua)\b/.test(q) || forgetQuestion || refersToSource
@@ -128,11 +128,13 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       const receipt = snapshot.directiveReceipt
       const domains: [RegExp,string][] = [[/cafe|coffee/,'coffee_sugar'],[/tema|theme/,'interface_theme'],[/idioma|language/,'response_language'],[/bebida|beverage|drink/,'favorite_beverage'],[/objetiv|objective/,'communication_focus'],[/poluid|clutter|carregad/,'interface_clutter'],[/personag|character/,'games_character_creation'],[/classe|class/,'games_class_selection']]
       const claimed = domains.filter(([pattern])=>pattern.test(q)).map(([,property])=>property)
-      const confirmed=deletion && receipt?.action==='forget' && receipt.state==='done' && receipt.scope===snapshot.scope && receipt.project===snapshot.project && (receipt.had_records || (forgetQuestion && /\besqueci\b|\besquecid[ao]s?\b|\bforgotten\b/.test(q))) && claimed.every(property=>property===receipt.property)
+      const storedState=!deletion && /\b(?:esta|estao|is|are)\s+(?:salv|registrad|memorizad|guardad|armazenad|saved|stored|recorded|memorized|memorised)/.test(q)
+      const confirmedState=storedState && claimed.length===1 && snapshot.facts.some(f=>f.scope===snapshot.scope && f.project===snapshot.project && f.validity==='current' && f.version>0 && f.entity==='user' && f.property===claimed[0] && (mentions(span,f.value) || mentions(snapshot.query,f.value)))
+      const confirmed=confirmedState || (deletion && receipt?.action==='forget' && receipt.state==='done' && receipt.scope===snapshot.scope && receipt.project===snapshot.project && (receipt.had_records || (forgetQuestion && /\besqueci\b|\besquecid[ao]s?\b|\bforgotten\b/.test(q))) && claimed.every(property=>property===receipt.property))
       if(!confirmed)add('unconfirmed_memory_mutation',span)
       // A committed removal is an operation, not a claim that its deleted value
       // remains a current preference. Independent coordinated claims still run.
-      if(confirmed && !/(?:,?\s+e|\band)\s+(?:voce|seu|sua|you|your)\b/.test(q))continue
+      if(deletion && confirmed && !/(?:,?\s+e|\band)\s+(?:voce|seu|sua|you|your)\b/.test(q))continue
     }
     const globalAbsence=/(?:nao ha|nao tenho|nao existem).{0,20}(?:registros? de memorias?|memorias? salv[ao]s?|registros? salvos?)|(?:there are no|i have no).{0,15}(?:saved memories|saved records)/.test(q)
     if(globalAbsence && snapshot.hasScopedRecords!==false)add('global_absence_without_evidence',span)
