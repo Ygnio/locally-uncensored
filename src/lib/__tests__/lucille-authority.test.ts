@@ -70,6 +70,17 @@ describe('typed evidence authority, independent of wording recognition',()=>{
 })
 
 describe('bounded non-destructive intervention and language',()=>{
+  it('normalizes learning/learn for the same completed goal without accepting a different goal',()=>{
+    const s=snapshot([fact({entity:'user',property:'goal.learning',value:'aprender alemao',modality:'completed',evidence:[{role:'current_source',text:'Concluí meu objetivo de aprender alemão.'}]})],'Which learning goal have I already completed?')
+    expect(verifyMemoryAnswer('You have already completed the goal of learning German.',s).violations).toEqual([])
+    expect(verifyMemoryAnswer('You have already completed the goal of learning Japanese.',s).violations.map(v=>v.code)).toContain('unproven_goal_completion')
+  })
+  it('binds an empty current directory to its actual last successful observation',()=>{
+    const s={...snapshot(),toolObservations:[emptyFolder]}
+    expect(authorityClaims('A pasta atual está vazia.',s)[0].verdict).toBe('supported')
+    expect(authorityClaims('A pasta atual está vazia.',{...s,toolObservations:[{...emptyFolder,observation:{...emptyFolder.observation!,resource:'other'}}]})[0].verdict).toBe('tool_dependent')
+    expect(authorityClaims('A pasta consultada está vazia.',{...s,toolObservations:[emptyFolder,{...emptyFolder,call_id:'failed-later',result_confirmed:false,outcome:'failed'}]})[0].verdict).toBe('tool_dependent')
+  })
   it('retains a proved requested lifecycle while discarding an independent invented historical ordering',async()=>{
     const s=snapshot([fact({property:'lifecycle',value:'cancelled',modality:'cancelled'}),fact({property:'database',value:'sqlite'})],'Como está meu projeto neste momento?')
     const regenerate=vi.fn()

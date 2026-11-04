@@ -107,8 +107,11 @@ export function authorityClaims(text: string, snapshot: AnswerSnapshot): Authori
       add(span,'project.'+snapshot.project,'execution',negative?'not_in_progress':'in_progress','state',established,'A technology choice or project description is not proof of execution.')
       if (terminal && !negative) result[result.length-1].verdict='contradicted'
     }
-    if (/^(?:a pasta consultada|o diretorio consultado|the queried folder|the consulted directory|the folder)\b/.test(q) && /vazi|empty/.test(q) && !hypothetical(/vazi|empty/)) {
-      const observations=(snapshot.toolObservations??[]).filter(o=>o.tool==='file_list' && o.executed && o.result_confirmed && o.outcome==='completed' && o.observation?.resource && ['The folder is empty.','A pasta está vazia.'].includes(o.observation.result.trim()))
+    if (/^(?:a pasta (?:consultada|atual)|o diretorio (?:consultado|atual)|the queried folder|the consulted directory|the current (?:folder|directory)|the folder)\b/.test(q) && /vazi|empty/.test(q) && !hypothetical(/vazi|empty/)) {
+      const currentDirectory=/pasta atual|diretorio atual|current (?:folder|directory)/.test(q)
+      // A later failed read cannot borrow an earlier successful empty result;
+      // an observation of another path cannot prove the current directory.
+      const observations=(snapshot.toolObservations??[]).filter(o=>o.tool==='file_list').slice(-1).filter(o=>o.executed && o.result_confirmed && o.outcome==='completed' && o.observation?.resource && (!currentDirectory || ['.','./','.\\'].includes(o.observation.resource)) && ['The folder is empty.','A pasta está vazia.'].includes(o.observation.result.trim()))
       result.push({entity:observations.at(-1)?.observation?.resource??'unbound_directory',property:'directory_entries',value:'empty',relation:'observation',span,verdict:observations.length?'supported':'tool_dependent',references:observations.map(o=>o.call_id),origins:observations.length?['executor']:[],reason:'Only the requested directory was observed; no project-wide coverage follows.',critical:true})
     }
     if (/\b(?:voce|you)\b/.test(q) && /voltou a gostar|voltou a preferir|retomou (?:seu |o )?gosto|deixou de gostar|nao gosta mais|stopped liking|like.{0,100}again|again.{0,25}likes?|returned to liking|resumed liking|no longer likes/.test(q) && !epistemic && !hypothetical(/voltou|retomou|deixou|nao gosta|stopped|likes?|again|returned|resumed/)) {

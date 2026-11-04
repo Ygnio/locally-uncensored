@@ -1,0 +1,1083 @@
+{
+  "kind": "known_development_not_unseen",
+  "source_head": "1f12b25dfca79ac960a0483a94930ad243f72662",
+  "method": "Actual full native app; preserves all assistant/user/tool messages, all raw verifier reports and displayed notes. System instructions and private paths excluded.",
+  "fixtures": [
+    {
+      "fixture": "driver-development22c-v2-focused-final.json",
+      "private_fixture_sha256": "c8939df935872f815639e9075bedd5bb8fd893b0dd1d36ba4c895a2de165ff62",
+      "scope": "phase22c-development-v1",
+      "project": "sapucaia",
+      "turns": [
+        {
+          "question": "Esqueça minha preferência de escolher classes nos jogos.",
+          "messages": [
+            {
+              "id": "86e60392-e013-4c3e-8c35-f12d32fea001",
+              "role": "user",
+              "content": "Esqueça minha preferência de escolher classes nos jogos."
+            },
+            {
+              "id": "c17ee274-8f4a-45f9-82e2-9e8fb07e4505",
+              "role": "assistant",
+              "content": "Entendido, apaguei sua preferência de escolha de classes nos jogos.",
+              "lucilleFidelity": [
+                {
+                  "id": "1e7fb1c2-e822-41b2-a31f-9f7107a9df54",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Entendido, apaguei sua preferência de escolha de classes nos jogos.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.600000023841858
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 939,
+                      "completionTokens": 17
+                    }
+                  ],
+                  "refreshMs": 6.699999988079071,
+                  "verificationMs": 1.600000023841858,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Entendido, apaguei sua preferência de escolha de classes nos jogos."
+                }
+              ]
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 2659,
+          "extraction_wait_ms": 739
+        },
+        {
+          "question": "Pode voltar a memorizar: eu gosto de jogos em que posso escolher minha classe.",
+          "messages": [
+            {
+              "id": "e019db84-78ca-4921-8ddf-c7ac1f9dc495",
+              "role": "user",
+              "content": "Pode voltar a memorizar: eu gosto de jogos em que posso escolher minha classe."
+            },
+            {
+              "id": "627a36a0-3e55-4c5c-8fbd-0c3def683a5e",
+              "role": "assistant",
+              "content": "Com certeza, agora você gosta de jogos em que pode escolher sua classe.",
+              "lucilleFidelity": [
+                {
+                  "id": "98f2aa9c-6753-41fc-8e00-16ef5d559407",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Com certeza, agora você gosta de jogos em que pode escolher sua classe.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "games_class_selection",
+                            "value": "positive",
+                            "span": "Com certeza, agora você gosta de jogos em que pode escolher sua classe.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 3.299999952316284
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 954,
+                      "completionTokens": 16
+                    }
+                  ],
+                  "refreshMs": 7.5,
+                  "verificationMs": 3.299999952316284,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Com certeza, agora você gosta de jogos em que pode escolher sua classe."
+                }
+              ]
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 2642,
+          "extraction_wait_ms": 5615
+        },
+        {
+          "question": "Você recorda como está meu projeto e quais escolhas eu fiz?",
+          "messages": [
+            {
+              "id": "1e4f2d71-d05b-4e4d-bc32-918308de4234",
+              "role": "user",
+              "content": "Você recorda como está meu projeto e quais escolhas eu fiz?"
+            },
+            {
+              "id": "688a3463-ccf5-4211-a278-ec9bf19a8368",
+              "role": "assistant",
+              "content": "No seu projeto Sapucaia, você usa Python como linguagem e decidiu utilizar PostgreSQL como banco de dados. Além disso, você planeja usar JavaScript no projeto.",
+              "lucilleFidelity": [
+                {
+                  "id": "b6f75ac4-af01-4cc2-9e35-3d8776aa11f4",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "No seu projeto Sapucaia, você usa Python como linguagem e decidiu utilizar PostgreSQL como banco de dados. Além disso, você planeja usar JavaScript no projeto.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "language",
+                            "value": "python",
+                            "span": "No seu projeto Sapucaia, você usa Python como linguagem",
+                            "supported": true,
+                            "references": [
+                              "987e827c-61cf-f32b-01e9-7513d3642769"
+                            ]
+                          },
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "database",
+                            "value": "postgresql",
+                            "span": "e decidiu utilizar PostgreSQL como banco de dados.",
+                            "supported": true,
+                            "references": [
+                              "a814227b-863d-8f6c-2060-c24acdbc9188"
+                            ]
+                          },
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "language",
+                            "value": "javascript",
+                            "span": "Além disso, você planeja usar JavaScript no projeto.",
+                            "supported": true,
+                            "references": [
+                              "ae9ff5f8-d710-b931-53ce-2aa7e008c61f"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 3,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 5.699999988079071
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1414,
+                      "completionTokens": 33
+                    }
+                  ],
+                  "refreshMs": 18.399999976158142,
+                  "verificationMs": 5.699999988079071,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "No seu projeto Sapucaia, você usa Python como linguagem e decidiu utilizar PostgreSQL como banco de dados. Além disso, você planeja usar JavaScript no projeto."
+                }
+              ]
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 3664,
+          "extraction_wait_ms": 734
+        },
+        {
+          "question": "What kind of replies do I prefer?",
+          "messages": [
+            {
+              "id": "bb160b3e-6af1-475b-9f09-9811a5ec6f57",
+              "role": "user",
+              "content": "What kind of replies do I prefer?"
+            },
+            {
+              "id": "71ba4595-f6c5-44a8-b3aa-acbf17f7a128",
+              "role": "assistant",
+              "content": "You prefer objective replies.",
+              "lucilleFidelity": [
+                {
+                  "id": "f68d1a23-f184-40eb-9780-c7b39883a350",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "You prefer objective replies.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "communication_focus",
+                            "value": "objective",
+                            "span": "You prefer objective replies.",
+                            "supported": true,
+                            "references": [
+                              "e779626d-dde9-652f-cbec-ffb88bf59f6a"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 3.399999976158142
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1092,
+                      "completionTokens": 6
+                    }
+                  ],
+                  "refreshMs": 8.899999976158142,
+                  "verificationMs": 3.399999976158142,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "You prefer objective replies."
+                }
+              ]
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 2147,
+          "extraction_wait_ms": 723
+        },
+        {
+          "question": "Which learning goal have I already completed?",
+          "messages": [
+            {
+              "id": "16249ba8-cb29-4961-95be-7fea1a2d5220",
+              "role": "user",
+              "content": "Which learning goal have I already completed?"
+            },
+            {
+              "id": "63eee483-8244-4de6-841d-0ba830d067ec",
+              "role": "assistant",
+              "content": "\n\nAgent error: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+              "lucilleFidelity": [
+                {
+                  "id": "a24fec74-c0a8-49f5-a4e8-1a21c913290d",
+                  "status": "blocked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "You have already completed the goal of learning German.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "goal_target",
+                            "value": "learning_german",
+                            "span": "You have already completed the goal of learning German.",
+                            "supported": false,
+                            "references": []
+                          }
+                        ],
+                        "violations": [
+                          {
+                            "code": "unproven_goal_completion",
+                            "span": "You have already completed the goal of learning German.",
+                            "critical": true
+                          }
+                        ],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 1,
+                        "elapsedMs": 0.699999988079071
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 3670,
+                      "completionTokens": 11
+                    },
+                    {
+                      "rawAnswer": "You have already completed the goal of learning German.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "goal_target",
+                            "value": "learning_german",
+                            "span": "You have already completed the goal of learning German.",
+                            "supported": false,
+                            "references": []
+                          }
+                        ],
+                        "violations": [
+                          {
+                            "code": "unproven_goal_completion",
+                            "span": "You have already completed the goal of learning German.",
+                            "critical": true
+                          }
+                        ],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 1,
+                        "elapsedMs": 0.19999998807907104
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 2460,
+                      "completionTokens": 11
+                    }
+                  ],
+                  "refreshMs": 18.899999976158142,
+                  "verificationMs": 0.8999999761581421,
+                  "extraGenerationMs": 3415.100000023842,
+                  "additionalUsage": {
+                    "promptTokens": 2460,
+                    "completionTokens": 11
+                  }
+                }
+              ],
+              "agentBlocks": []
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 9195,
+          "extraction_wait_ms": 728
+        }
+      ],
+      "final_metrics": {
+        "current_vectors": 15,
+        "history_events": [
+          {
+            "count": 11,
+            "state": "approve"
+          },
+          {
+            "count": 1,
+            "state": "auto_correct"
+          },
+          {
+            "count": 7,
+            "state": "auto_promote"
+          },
+          {
+            "count": 1,
+            "state": "auto_superseded"
+          },
+          {
+            "count": 20,
+            "state": "create"
+          },
+          {
+            "count": 3,
+            "state": "obsolete"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 34,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 15,
+            "state": "active"
+          },
+          {
+            "count": 1,
+            "state": "conflict"
+          },
+          {
+            "count": 4,
+            "state": "obsolete"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "sapucaia",
+        "provenance_rows": 26,
+        "scope": "phase22c-development-v1",
+        "sqlite_main_page_bytes": 495616,
+        "vector_json_bytes": 142480
+      }
+    },
+    {
+      "fixture": "driver-development22c-v2-code-final.json",
+      "private_fixture_sha256": "a0f49e7a91356b8359cc475f55cfcc3ba399c6334c078887169b887b132e38ba",
+      "scope": "phase22c-development-v1",
+      "project": "grumixama",
+      "turns": [
+        {
+          "question": "What database is in my plans for this project?",
+          "messages": [
+            {
+              "id": "96ed8072-2bb1-459e-ba06-7b2665713f94",
+              "role": "user",
+              "content": "What database is in my plans for this project?"
+            },
+            {
+              "id": "692da18a-47a8-463d-81c2-14a860324d30",
+              "role": "assistant",
+              "content": "You plan to use SQLite as the database for the Grumixama project.",
+              "lucilleFidelity": [
+                {
+                  "id": "c62aa6b7-d950-4803-82bf-46edf31537b1",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "You plan to use SQLite as the database for the Grumixama project.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.grumixama",
+                            "property": "database",
+                            "value": "sqlite",
+                            "span": "You plan to use SQLite as the database for the Grumixama project.",
+                            "supported": true,
+                            "references": [
+                              "8888566f-36c9-4ac2-34ad-af2eabc5c6f5"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 2
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 3628,
+                      "completionTokens": 16
+                    }
+                  ],
+                  "refreshMs": 10.100000023841858,
+                  "verificationMs": 2,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "You plan to use SQLite as the database for the Grumixama project."
+                }
+              ],
+              "agentBlocks": [
+                {
+                  "id": "96ee7ec7-c456-4a00-b357-a7d4fe097dde",
+                  "phase": "answer",
+                  "content": "You plan to use SQLite as the database for the Grumixama project.",
+                  "timestamp": 1793796261227
+                }
+              ]
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 5957,
+          "extraction_wait_ms": 710
+        }
+      ],
+      "final_metrics": {
+        "current_vectors": 3,
+        "history_events": [
+          {
+            "count": 3,
+            "state": "approve"
+          },
+          {
+            "count": 3,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 2,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 3,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "grumixama",
+        "provenance_rows": 3,
+        "scope": "phase22c-development-v1",
+        "sqlite_main_page_bytes": 495616,
+        "vector_json_bytes": 28509
+      }
+    },
+    {
+      "fixture": "driver-development22c-v2-tools-final.json",
+      "private_fixture_sha256": "5f1e49dcd0696f6423589418f4e74711f27e30d99085b1fede1ec05f4f5bd329",
+      "scope": "phase22c-development-tools-v2",
+      "project": "jatoba-azul",
+      "turns": [
+        {
+          "question": "No meu projeto, eu uso JavaScript.",
+          "messages": [
+            {
+              "id": "ca7c57db-9c35-417d-888e-cf00481963e1",
+              "role": "user",
+              "content": "No meu projeto, eu uso JavaScript."
+            },
+            {
+              "id": "dcd04077-7c48-4fe9-8cf8-5839044f4396",
+              "role": "assistant",
+              "content": "Entendido. Qual parte do seu projeto em JavaScript você gostaria de explorar ou resolver agora?",
+              "lucilleFidelity": [
+                {
+                  "id": "dcf171bf-f78c-4210-b762-5708eae783c0",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Entendido. Qual parte do seu projeto em JavaScript você gostaria de explorar ou resolver agora?",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 906,
+                      "completionTokens": 19
+                    }
+                  ],
+                  "refreshMs": 5.300000011920929,
+                  "verificationMs": 1,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Entendido. Qual parte do seu projeto em JavaScript você gostaria de explorar ou resolver agora?"
+                }
+              ]
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 2376,
+          "extraction_wait_ms": 3919
+        },
+        {
+          "question": "Cancelei meu projeto.",
+          "messages": [
+            {
+              "id": "3d386697-5771-4356-b324-c39296f16c74",
+              "role": "user",
+              "content": "Cancelei meu projeto."
+            },
+            {
+              "id": "51113cdd-9a3b-42dc-9b64-d5e09823ed78",
+              "role": "assistant",
+              "content": "Você cancelou o projeto Jatoba Azul. Deseja iniciar um novo ou focar em algo diferente?",
+              "lucilleFidelity": [
+                {
+                  "id": "51a9e7ae-ed6f-4578-aa5d-76fd636b2372",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você cancelou o projeto Jatoba Azul. Deseja iniciar um novo ou focar em algo diferente?",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.jatoba-azul",
+                            "property": "lifecycle",
+                            "value": "cancelled",
+                            "span": "Você cancelou o projeto Jatoba Azul.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 2.400000035762787
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1082,
+                      "completionTokens": 24
+                    }
+                  ],
+                  "refreshMs": 8.699999988079071,
+                  "verificationMs": 2.400000035762787,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você cancelou o projeto Jatoba Azul. Deseja iniciar um novo ou focar em algo diferente?"
+                }
+              ]
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 3145,
+          "extraction_wait_ms": 4446
+        },
+        {
+          "question": "Liste os arquivos da pasta atual usando a ferramenta de arquivos. Diga apenas o que a pasta consultada permite observar.",
+          "messages": [
+            {
+              "id": "5e35f6cc-5233-4dd6-b876-891cec546ef0",
+              "role": "user",
+              "content": "Liste os arquivos da pasta atual usando a ferramenta de arquivos. Diga apenas o que a pasta consultada permite observar."
+            },
+            {
+              "id": "990bd0f8-f0cf-43bb-b70b-2789c6b14ada",
+              "role": "assistant",
+              "content": "",
+              "hidden": true
+            },
+            {
+              "id": "10f109ed-b15b-4c84-9acb-d8d607c775b6",
+              "role": "tool",
+              "content": "The folder is empty.",
+              "hidden": true
+            },
+            {
+              "id": "0cecbb6c-f7a9-4ca7-b529-7d143201f100",
+              "role": "assistant",
+              "content": "A pasta atual está vazia.",
+              "lucilleFidelity": [
+                {
+                  "id": "6b76710d-a5d1-42a8-b529-e65de43141af",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 3471,
+                      "completionTokens": 15
+                    }
+                  ],
+                  "refreshMs": 7.699999988079071,
+                  "verificationMs": 0,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": ""
+                },
+                {
+                  "id": "b407aeaf-9661-4f54-964a-72a6c9c6cc3c",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "A pasta atual está vazia.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.19999998807907104
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 3604,
+                      "completionTokens": 12
+                    }
+                  ],
+                  "refreshMs": 8.300000011920929,
+                  "verificationMs": 0.19999998807907104,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "A pasta atual está vazia."
+                }
+              ],
+              "agentBlocks": [
+                {
+                  "id": "485b44ae-9e39-401f-aae6-894465cc3fd6",
+                  "phase": "tool_call",
+                  "content": "Completed: file_list",
+                  "toolCall": {
+                    "id": "9f46efda-979a-473b-850c-4aef3d759ec3",
+                    "toolName": "file_list",
+                    "args": {
+                      "path": "."
+                    },
+                    "status": "completed",
+                    "timestamp": 1793796297802,
+                    "result": "The folder is empty.",
+                    "duration": 20,
+                    "startedAt": 1793796297802,
+                    "completedAt": 1793796297829,
+                    "cacheHit": false,
+                    "schemaValidated": true
+                  },
+                  "toolCalls": [
+                    {
+                      "id": "9f46efda-979a-473b-850c-4aef3d759ec3",
+                      "toolName": "file_list",
+                      "args": {
+                        "path": "."
+                      },
+                      "status": "completed",
+                      "timestamp": 1793796297802,
+                      "result": "The folder is empty.",
+                      "duration": 20,
+                      "startedAt": 1793796297802,
+                      "completedAt": 1793796297829,
+                      "cacheHit": false,
+                      "schemaValidated": true
+                    }
+                  ],
+                  "timestamp": 1793796297802
+                }
+              ]
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 11194,
+          "extraction_wait_ms": 3099
+        },
+        {
+          "question": "Liste os arquivos da pasta phase22c-pasta-inexistente. Se falhar, informe a falha sem concluir nada sobre meu projeto.",
+          "messages": [
+            {
+              "id": "1ca778ca-bba9-468e-b81a-1a4f6ebeba0a",
+              "role": "user",
+              "content": "Liste os arquivos da pasta phase22c-pasta-inexistente. Se falhar, informe a falha sem concluir nada sobre meu projeto."
+            },
+            {
+              "id": "cd65e515-ffa5-4352-b905-aaad1b18eff5",
+              "role": "assistant",
+              "content": "",
+              "hidden": true
+            },
+            {
+              "id": "7c63368f-d761-4fe5-8879-088c3e39b7e5",
+              "role": "tool",
+              "content": "Error: Not a directory: \\\\?\\[QA_PROFILE]\\home\\agent-workspace\\new-chat-56befb\\phase22c-pasta-inexistente",
+              "hidden": true
+            },
+            {
+              "id": "ec596627-20c3-4538-bfdc-828ab1baf20e",
+              "role": "assistant",
+              "content": "A listagem falhou porque a pasta `phase22c-pasta-inexistente` não foi encontrada ou não é um diretório.",
+              "lucilleFidelity": [
+                {
+                  "id": "22e8c9b6-9726-4d16-a3c4-8adf6833b88d",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.19999998807907104
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 3613,
+                      "completionTokens": 25
+                    }
+                  ],
+                  "refreshMs": 17.80000001192093,
+                  "verificationMs": 0.19999998807907104,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": ""
+                },
+                {
+                  "id": "c26e91cf-a2ab-4366-b466-917a8d34c520",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "A listagem falhou porque a pasta `phase22c-pasta-inexistente` não foi encontrada ou não é um diretório.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.30000001192092896
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 3843,
+                      "completionTokens": 36
+                    }
+                  ],
+                  "refreshMs": 11.600000023841858,
+                  "verificationMs": 0.30000001192092896,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "A listagem falhou porque a pasta `phase22c-pasta-inexistente` não foi encontrada ou não é um diretório."
+                }
+              ],
+              "agentBlocks": [
+                {
+                  "id": "446e8695-0b4a-4a32-b708-5e03647e2655",
+                  "phase": "tool_call",
+                  "content": "Completed: file_list",
+                  "toolCall": {
+                    "id": "29d9fa8c-fda5-4f6a-9f74-792bfcf7484a",
+                    "toolName": "file_list",
+                    "args": {
+                      "path": "phase22c-pasta-inexistente"
+                    },
+                    "status": "failed",
+                    "timestamp": 1793796312868,
+                    "result": "Error: Not a directory: \\\\?\\[QA_PROFILE]\\home\\agent-workspace\\new-chat-56befb\\phase22c-pasta-inexistente",
+                    "error": "Error: Not a directory: \\\\?\\[QA_PROFILE]\\home\\agent-workspace\\new-chat-56befb\\phase22c-pasta-inexistente",
+                    "duration": 16,
+                    "startedAt": 1793796312868,
+                    "completedAt": 1793796312892,
+                    "cacheHit": false,
+                    "schemaValidated": true
+                  },
+                  "toolCalls": [
+                    {
+                      "id": "29d9fa8c-fda5-4f6a-9f74-792bfcf7484a",
+                      "toolName": "file_list",
+                      "args": {
+                        "path": "phase22c-pasta-inexistente"
+                      },
+                      "status": "failed",
+                      "timestamp": 1793796312868,
+                      "result": "Error: Not a directory: \\\\?\\[QA_PROFILE]\\home\\agent-workspace\\new-chat-56befb\\phase22c-pasta-inexistente",
+                      "error": "Error: Not a directory: \\\\?\\[QA_PROFILE]\\home\\agent-workspace\\new-chat-56befb\\phase22c-pasta-inexistente",
+                      "duration": 16,
+                      "startedAt": 1793796312868,
+                      "completedAt": 1793796312892,
+                      "cacheHit": false,
+                      "schemaValidated": true
+                    }
+                  ],
+                  "timestamp": 1793796312868
+                }
+              ]
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 12511,
+          "extraction_wait_ms": 4181
+        },
+        {
+          "question": "Como está meu projeto neste momento?",
+          "messages": [
+            {
+              "id": "5fb67686-446d-4b2d-96df-a79eb6b36ac0",
+              "role": "user",
+              "content": "Como está meu projeto neste momento?"
+            },
+            {
+              "id": "0c238dcf-c370-4f74-a48a-8baf5e7713fa",
+              "role": "assistant",
+              "content": "Seu projeto \"jatoba-azul\" está atualmente cancelado.",
+              "lucilleFidelity": [
+                {
+                  "id": "c6fac8c4-0208-4555-a708-e3ac5c347fab",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Seu projeto \"jatoba-azul\" está atualmente cancelado.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.jatoba-azul",
+                            "property": "lifecycle",
+                            "value": "cancelled",
+                            "span": "Seu projeto \"jatoba-azul\" está atualmente cancelado.",
+                            "supported": true,
+                            "references": [
+                              "d30e1770-2d0f-5d54-18e7-dcd413efb0c6"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.4000000357627869
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 2215,
+                      "completionTokens": 15
+                    }
+                  ],
+                  "refreshMs": 18.100000023841858,
+                  "verificationMs": 1.4000000357627869,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Seu projeto \"jatoba-azul\" está atualmente cancelado."
+                }
+              ],
+              "agentBlocks": []
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 3637,
+          "extraction_wait_ms": 726
+        },
+        {
+          "question": "Que linguagem eu usava antes do cancelamento e qual é o estado atual do projeto?",
+          "messages": [
+            {
+              "id": "de3162be-cd5e-4a04-a2d8-32bcd5fa3298",
+              "role": "user",
+              "content": "Que linguagem eu usava antes do cancelamento e qual é o estado atual do projeto?"
+            },
+            {
+              "id": "78b72232-c820-4da9-9f02-62d747bffa07",
+              "role": "assistant",
+              "content": "Você usava JavaScript no seu projeto. O estado atual do projeto é cancelado.",
+              "lucilleFidelity": [
+                {
+                  "id": "49a3bb7c-4a1f-4e05-8b92-5664eff2a5be",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você usava JavaScript no seu projeto. O estado atual do projeto é cancelado.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.jatoba-azul",
+                            "property": "language",
+                            "value": "javascript",
+                            "span": "Você usava JavaScript no seu projeto.",
+                            "supported": true,
+                            "references": [
+                              "4f7a6959-6280-5600-648a-9b92d8298597"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.7000000476837158
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1185,
+                      "completionTokens": 18
+                    }
+                  ],
+                  "refreshMs": 8.300000011920929,
+                  "verificationMs": 0.7000000476837158,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você usava JavaScript no seu projeto. O estado atual do projeto é cancelado."
+                }
+              ]
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 2652,
+          "extraction_wait_ms": 727
+        }
+      ],
+      "final_metrics": {
+        "current_vectors": 2,
+        "history_events": [
+          {
+            "count": 2,
+            "state": "approve"
+          },
+          {
+            "count": 2,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 4,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 2,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "jatoba-azul",
+        "provenance_rows": 2,
+        "scope": "phase22c-development-tools-v2",
+        "sqlite_main_page_bytes": 524288,
+        "vector_json_bytes": 19030
+      }
+    }
+  ],
+  "redactions": [
+    {
+      "path": "$.fixtures[2].turns[3].messages[2].content",
+      "private_sha256": "adce855a115e2129c1597adbe28c260d3028e622bf765ac9cf89980cd934d15d",
+      "public_sha256": "078ec0559a00c9b8acced310b8ce3d16687f4ce722c2e830ea9c08caf0e045b5",
+      "reason": "Isolated Windows QA profile path redacted; source preserved privately."
+    },
+    {
+      "path": "$.fixtures[2].turns[3].messages[3].agentBlocks[0].toolCall.result",
+      "private_sha256": "adce855a115e2129c1597adbe28c260d3028e622bf765ac9cf89980cd934d15d",
+      "public_sha256": "078ec0559a00c9b8acced310b8ce3d16687f4ce722c2e830ea9c08caf0e045b5",
+      "reason": "Isolated Windows QA profile path redacted; source preserved privately."
+    },
+    {
+      "path": "$.fixtures[2].turns[3].messages[3].agentBlocks[0].toolCall.error",
+      "private_sha256": "adce855a115e2129c1597adbe28c260d3028e622bf765ac9cf89980cd934d15d",
+      "public_sha256": "078ec0559a00c9b8acced310b8ce3d16687f4ce722c2e830ea9c08caf0e045b5",
+      "reason": "Isolated Windows QA profile path redacted; source preserved privately."
+    },
+    {
+      "path": "$.fixtures[2].turns[3].messages[3].agentBlocks[0].toolCalls[0].result",
+      "private_sha256": "adce855a115e2129c1597adbe28c260d3028e622bf765ac9cf89980cd934d15d",
+      "public_sha256": "078ec0559a00c9b8acced310b8ce3d16687f4ce722c2e830ea9c08caf0e045b5",
+      "reason": "Isolated Windows QA profile path redacted; source preserved privately."
+    },
+    {
+      "path": "$.fixtures[2].turns[3].messages[3].agentBlocks[0].toolCalls[0].error",
+      "private_sha256": "adce855a115e2129c1597adbe28c260d3028e622bf765ac9cf89980cd934d15d",
+      "public_sha256": "078ec0559a00c9b8acced310b8ce3d16687f4ce722c2e830ea9c08caf0e045b5",
+      "reason": "Isolated Windows QA profile path redacted; source preserved privately."
+    }
+  ]
+}

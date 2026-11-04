@@ -161,6 +161,30 @@ async function run(control) {
   } catch (error) { fixture.last_conversation = p.useChatStore.getState().conversations.find(c => c.id === p.useChatStore.getState().activeConversationId); fixture.error = String(error); await record(`driver-${label}-failure-${Date.now()}.json`, fixture, true); throw error }
 }
 let busy = false
+// Fault probes use the same native RPC as the real settings/learning worker.
+// This is bundled only in the isolated QA host, with no general script runner.
+async function nativeFault(control) {
+  if(!/^[a-z0-9-]{1,50}$/.test(control.label))throw Error('Fault label')
+  const request=control.fault
+  const ownScope=value=>typeof value==='string' && /^phase22c-fault-[a-z0-9-]{1,50}$/.test(value)
+  const allowed=['learning_metrics','learning_jobs','details','index_status','cancel_learning','prepare_user_turn','cancel_user_turn','complete_llm','answer_evidence']
+  const publish=request.native_command==='lucille_learn'
+  if(publish) {
+    const {interaction,source}=request.args??{}
+    if(!ownScope(interaction?.scope) || interaction.role!=='user' || Object.keys(interaction).length!==Object.keys(source?.interaction??{}).length || Object.entries(interaction).some(([key,value])=>source?.interaction?.[key]!==value))throw Error('Bound original synthetic source required')
+  } else {
+    if(!allowed.includes(request.operation))throw Error('Fault operation')
+    if(request.scope && !ownScope(request.scope))throw Error('Fault scope')
+    for(const input of [request.input,request.source?.interaction,request.lease,request.request])if(input && !ownScope(input.scope))throw Error('Foreign nested scope')
+    if(request.id) {
+      if(!/^[a-f0-9]{64}$/.test(request.id) || !ownScope(request.scope))throw Error('Scoped fault ID required')
+      const jobs=await manage({operation:'learning_jobs',scope:request.scope,project:request.project})
+      if(!jobs.some(job=>job.id===request.id))throw Error('Foreign fault job')
+    }
+  }
+  const result=await globalThis.__TAURI_INTERNALS__.invoke(publish?'lucille_learn':'lucille_manage',publish?request.args:{request,confirmation:null})
+  await record(`driver-${control.label}-fault.json`,{native:true,observed:new Date().toISOString(),request,result},true)
+}
 const processed = new Set(JSON.parse(localStorage.getItem("lucille-phase22c-driver-consumed") ?? "[]"))
 setInterval(async () => {
   if (busy) return
@@ -168,7 +192,11 @@ setInterval(async () => {
     const control = await (await fetch('/__lucille_phase22', { cache: 'no-store' })).json()
     if (!control.id || processed.has(control.id)) return
     processed.add(control.id); localStorage.setItem("lucille-phase22c-driver-consumed", JSON.stringify([...processed].slice(-100))); busy = true
-    if (control.inspect === true) {
+    if (control.fault) {
+      try { await nativeFault(control) } catch(error) {
+        await record(`driver-${control.label}-fault.json`,{native:true,rejected:true,error:String(error)},true)
+      }
+    } else if (control.inspect === true) {
       if (!/^[a-z0-9-]{1,50}$/.test(control.label)) throw Error('Inspection label')
       await record(`driver-${control.label}-inspection.json`, {
         inspected: new Date().toISOString(),
