@@ -309,7 +309,7 @@ pub fn project_scope_matches(text: &str, project: &str) -> bool {
     !w.windows(2).enumerate().any(|(index, p)| {
         ["project", "projeto"].contains(&p[0])
             && !p[1].is_empty()
-            && !(original[index].ends_with(',') && ["a", "o", "the"].contains(&p[1]))
+            && !(original[index].ends_with(',') && ["a", "o", "the", "eu", "i", "we", "decidi", "escolhi", "pretendo", "planejo", "quero", "vou"].contains(&p[1]))
             && !(["neste", "nesse"].contains(&p[1])
                 && w.get(index + 2)
                     .is_some_and(|word| ["momento", "estado", "ponto", "contexto"].contains(word)))
@@ -688,6 +688,7 @@ pub fn preference(span: &str) -> Option<Claim> {
                 "escolh",
                 "choos",
                 "class selection",
+                "select",
                 "definir",
                 "selecionar",
             ],
@@ -850,7 +851,7 @@ fn additional_preferences(span: &str) -> Vec<Claim> {
     };
     let s = fold(span);
     if primary.property == "games_character_creation"
-        && any(&s, &["escolh", "choos", "class selection"])
+        && any(&s, &["escolh", "choos", "select", "class selection"])
         && any(&s, &["classe", "class"])
     {
         let mut secondary = primary;

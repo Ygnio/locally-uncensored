@@ -69,3 +69,13 @@ A consulta composta é dividida em relações com ator e intenção temporal pr�
 O contexto inclui, por relação, referências e estado retrieved/unavailable, que significa somente disponibilidade neste contexto. A instrução comum de Chat/Agent/Code pede resposta independente a cada relação. O verificador rejeita transferência de fatos pessoais ao irmão e detecta omissão da relação própria conhecida. O outro projeto continua fora do projeto autorizado: sua indisponibilidade não apaga o banco do projeto corrente.
 
 Regressões dirigidas recuperam o banco próprio em comparações com irmão em ambas as ordens; mantêm duas capacidades de RAM; separam escolha de Rust e implementação em Python; preservam assunto do catálogo, banco e linguagem em três relações. A suíte anterior identificou duas perdas de contexto da decomposição: o domínio projeto na pergunta histórica e a elipse principal na comparação de equipamentos. Foram corrigidas mantendo os testes antigos intactos. Os 143 testes Rust passaram na repetição completa; a suíte TypeScript dirigida passou com 113 testes. A validação real final continua pendente.
+
+## Paráfrases e esquecimento real — desenvolvimento
+
+A preferência nominal em inglês agora interpreta o complemento de preparação com um adjunto limitado de consumo em primeira pessoa. A seleção de classes reconhece select como predicado do usuário, com autoria comprovada na fonte. Na oração final anteposta sobre PostgreSQL, o problema restante era a classificação de decidi após projeto, como suposto nome de outro projeto; a fronteira de cláusula agora permite o início verbal pessoal, preservando nomes explícitos e citações.
+
+O [novo replay nativo dos cinco outputs originais](evidence/phase22e/development/paraphrases-replay.json) cria exatamente um registro canônico para dx-002, dx-010 e dx-016 em cada modo. dx-031/dx-032 continuam com zero candidatas. Mesmos textos, escopos, projetos e respostas reais antigas; sem nova inferência ou holdout.
+
+O imperativo de esquecimento admite a descrição relativa própria jogos em que escolho a classe. O teste nativo comprova exclusão efetiva, tombstone persistido, recibo de forget com had_records=true, replay de conclusão antiga sem escrita, ausência após reinício, nova fonte explícita, candidata com nova proveniência, revisão e persistência ativa após outro reinício. O primeiro teste esperava incorretamente erro para uma conclusão já encerrada: o contrato real devolve false idempotente, agora validado explicitamente junto de ausência de ressurreição. Não foi confundido com voltar a gostar.
+
+Os 145 testes Rust passaram, incluindo todos os 135 anteriores; bridges recompilados. Novas inferências e GUI real da fase continuam pendentes.

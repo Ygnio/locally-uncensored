@@ -1,0 +1,701 @@
+{
+  "method": "Development replay of five unchanged original real Gemma outputs after paraphrase fixes. No new inference and no final heldout approval. Native candidates, active records and rejected sources are retained.",
+  "bridge_sha256": "b5ee65b690e8c0459a3d84807a53640f999e930483fcac242c758d4cc9006325",
+  "rows": [
+    {
+      "id": "dx-002",
+      "original_user": "My own preference is coffee without sugar when I drink it.",
+      "scope": "phase22d-final-ext-002",
+      "project": "aroeira",
+      "actual_prior_gemma": "{\n  \"version\": 3,\n  \"scope\": \"phase22d-final-ext-002\",\n  \"project\": \"aroeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"My own preference is coffee without sugar when I drink it\",\n      \"category\": \"preference\"\n    }\n  ]\n}",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar",
+          "temporal": "preference"
+        }
+      ],
+      "native": {
+        "rules": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793819321,
+                "input": {
+                  "content": "My own preference is coffee without sugar when I drink it",
+                  "fact_key": "user.coffee_sugar",
+                  "id": "55298193-ac68-0260-a083-dbcc01a2eac2",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-002",
+                  "source": "user",
+                  "source_id": "cdcc29287341cc64a1bd0c62412ba6f4f50860d526c7776984e13c594d92490f"
+                },
+                "state": "active",
+                "updated_at": 1793819321,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793819321,
+                  "evidence": "My own preference is coffee without sugar when I drink it",
+                  "interaction_id": "cdcc29287341cc64a1bd0c62412ba6f4f50860d526c7776984e13c594d92490f"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "explicit_v3_relation_proof|native_source_authority_v1:{\"message_author\":\"user\",\"statement_author\":\"user\",\"subject\":\"user\",\"origin\":\"personal_declaration\",\"source_digest\":\"acad404b708587d19ce83b9767031508fc0d3c21e9adfdaf628a22248fb06c00\",\"evidence_digest\":\"0bd533b34d4f78716172ab1fba085dee645bc326ea96d9d33ad20410e31ead4a\",\"start\":0,\"end\":57,\"claim_digest\":\"077edcca407e1453cb245b4ec237fc4f7b5b6e7f469bce9a4671232ab73fc9eb\"}",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "coffee_sugar",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "without_sugar"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793819319,
+            "error_code": null,
+            "id": "cdcc29287341cc64a1bd0c62412ba6f4f50860d526c7776984e13c594d92490f",
+            "state": "queued",
+            "updated_at": 1793819319
+          },
+          "rejected": null,
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793819319,
+              "error_code": null,
+              "id": "cdcc29287341cc64a1bd0c62412ba6f4f50860d526c7776984e13c594d92490f",
+              "state": "done",
+              "updated_at": 1793819321
+            }
+          ]
+        },
+        "llm": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793819322,
+                "input": {
+                  "content": "My own preference is coffee without sugar when I drink it",
+                  "fact_key": "user.coffee_sugar",
+                  "id": "55298193-ac68-0260-a083-dbcc01a2eac2",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-002",
+                  "source": "user",
+                  "source_id": "cdcc29287341cc64a1bd0c62412ba6f4f50860d526c7776984e13c594d92490f"
+                },
+                "state": "active",
+                "updated_at": 1793819322,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793819322,
+                  "evidence": "My own preference is coffee without sugar when I drink it",
+                  "interaction_id": "cdcc29287341cc64a1bd0c62412ba6f4f50860d526c7776984e13c594d92490f"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_relation_proof|native_source_authority_v1:{\"message_author\":\"user\",\"statement_author\":\"user\",\"subject\":\"user\",\"origin\":\"personal_declaration\",\"source_digest\":\"acad404b708587d19ce83b9767031508fc0d3c21e9adfdaf628a22248fb06c00\",\"evidence_digest\":\"0bd533b34d4f78716172ab1fba085dee645bc326ea96d9d33ad20410e31ead4a\",\"start\":0,\"end\":57,\"claim_digest\":\"077edcca407e1453cb245b4ec237fc4f7b5b6e7f469bce9a4671232ab73fc9eb\"}",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "coffee_sugar",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "without_sugar"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793819320,
+            "error_code": null,
+            "id": "cdcc29287341cc64a1bd0c62412ba6f4f50860d526c7776984e13c594d92490f",
+            "state": "queued",
+            "updated_at": 1793819320
+          },
+          "rejected": null,
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793819320,
+              "error_code": null,
+              "id": "cdcc29287341cc64a1bd0c62412ba6f4f50860d526c7776984e13c594d92490f",
+              "state": "done",
+              "updated_at": 1793819322
+            }
+          ]
+        },
+        "hybrid": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793819322,
+                "input": {
+                  "content": "My own preference is coffee without sugar when I drink it",
+                  "fact_key": "user.coffee_sugar",
+                  "id": "55298193-ac68-0260-a083-dbcc01a2eac2",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-002",
+                  "source": "user",
+                  "source_id": "cdcc29287341cc64a1bd0c62412ba6f4f50860d526c7776984e13c594d92490f"
+                },
+                "state": "active",
+                "updated_at": 1793819322,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793819322,
+                  "evidence": "My own preference is coffee without sugar when I drink it",
+                  "interaction_id": "cdcc29287341cc64a1bd0c62412ba6f4f50860d526c7776984e13c594d92490f"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_relation_proof|native_source_authority_v1:{\"message_author\":\"user\",\"statement_author\":\"user\",\"subject\":\"user\",\"origin\":\"personal_declaration\",\"source_digest\":\"acad404b708587d19ce83b9767031508fc0d3c21e9adfdaf628a22248fb06c00\",\"evidence_digest\":\"0bd533b34d4f78716172ab1fba085dee645bc326ea96d9d33ad20410e31ead4a\",\"start\":0,\"end\":57,\"claim_digest\":\"077edcca407e1453cb245b4ec237fc4f7b5b6e7f469bce9a4671232ab73fc9eb\"}",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "coffee_sugar",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "without_sugar"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793819320,
+            "error_code": null,
+            "id": "cdcc29287341cc64a1bd0c62412ba6f4f50860d526c7776984e13c594d92490f",
+            "state": "queued",
+            "updated_at": 1793819320
+          },
+          "rejected": null,
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793819320,
+              "error_code": null,
+              "id": "cdcc29287341cc64a1bd0c62412ba6f4f50860d526c7776984e13c594d92490f",
+              "state": "done",
+              "updated_at": 1793819322
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-010",
+      "original_user": "I enjoy games that let me select a character class.",
+      "scope": "phase22d-final-ext-010",
+      "project": "aroeira",
+      "actual_prior_gemma": "{\n  \"version\": 3,\n  \"scope\": \"phase22d-final-ext-010\",\n  \"project\": \"aroeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"I enjoy games that let me select a character class\",\n      \"category\": \"preference\"\n    }\n  ]\n}",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "games_class_selection",
+          "value": "positive",
+          "temporal": "preference"
+        }
+      ],
+      "native": {
+        "rules": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793819322,
+                "input": {
+                  "content": "I enjoy games that let me select a character class",
+                  "fact_key": "user.games_class_selection",
+                  "id": "2a5db03d-fe2e-4ce7-7b7e-8b3fced87206",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-010",
+                  "source": "user",
+                  "source_id": "7fca2e9cfb29e41e3621b4fd4992dcb5bb09beef13f3d6bb0fff253c19b104be"
+                },
+                "state": "active",
+                "updated_at": 1793819322,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793819322,
+                  "evidence": "I enjoy games that let me select a character class",
+                  "interaction_id": "7fca2e9cfb29e41e3621b4fd4992dcb5bb09beef13f3d6bb0fff253c19b104be"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "explicit_v3_grounded|native_source_authority_v1:{\"message_author\":\"user\",\"statement_author\":\"user\",\"subject\":\"user\",\"origin\":\"personal_declaration\",\"source_digest\":\"b3861f0674c55363969075a233f3eb00e22be8efab97f8e99d70dd9afd2e98db\",\"evidence_digest\":\"6719820e40d94d2ba17444baf8b2b8d6c7387bdc05f910a56d260c6acb716470\",\"start\":0,\"end\":50,\"claim_digest\":\"051e5f02fd59b416d8cebef2327ebc28bb1165d59e060e9c23799ecbdde24594\"}",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "games_class_selection",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "positive"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793819320,
+            "error_code": null,
+            "id": "7fca2e9cfb29e41e3621b4fd4992dcb5bb09beef13f3d6bb0fff253c19b104be",
+            "state": "queued",
+            "updated_at": 1793819320
+          },
+          "rejected": null,
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793819320,
+              "error_code": null,
+              "id": "7fca2e9cfb29e41e3621b4fd4992dcb5bb09beef13f3d6bb0fff253c19b104be",
+              "state": "done",
+              "updated_at": 1793819322
+            }
+          ]
+        },
+        "llm": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793819322,
+                "input": {
+                  "content": "I enjoy games that let me select a character class",
+                  "fact_key": "user.games_class_selection",
+                  "id": "2a5db03d-fe2e-4ce7-7b7e-8b3fced87206",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-010",
+                  "source": "user",
+                  "source_id": "7fca2e9cfb29e41e3621b4fd4992dcb5bb09beef13f3d6bb0fff253c19b104be"
+                },
+                "state": "active",
+                "updated_at": 1793819322,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793819322,
+                  "evidence": "I enjoy games that let me select a character class",
+                  "interaction_id": "7fca2e9cfb29e41e3621b4fd4992dcb5bb09beef13f3d6bb0fff253c19b104be"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded|native_source_authority_v1:{\"message_author\":\"user\",\"statement_author\":\"user\",\"subject\":\"user\",\"origin\":\"personal_declaration\",\"source_digest\":\"b3861f0674c55363969075a233f3eb00e22be8efab97f8e99d70dd9afd2e98db\",\"evidence_digest\":\"6719820e40d94d2ba17444baf8b2b8d6c7387bdc05f910a56d260c6acb716470\",\"start\":0,\"end\":50,\"claim_digest\":\"051e5f02fd59b416d8cebef2327ebc28bb1165d59e060e9c23799ecbdde24594\"}",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "games_class_selection",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "positive"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793819320,
+            "error_code": null,
+            "id": "7fca2e9cfb29e41e3621b4fd4992dcb5bb09beef13f3d6bb0fff253c19b104be",
+            "state": "queued",
+            "updated_at": 1793819320
+          },
+          "rejected": null,
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793819320,
+              "error_code": null,
+              "id": "7fca2e9cfb29e41e3621b4fd4992dcb5bb09beef13f3d6bb0fff253c19b104be",
+              "state": "done",
+              "updated_at": 1793819322
+            }
+          ]
+        },
+        "hybrid": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793819322,
+                "input": {
+                  "content": "I enjoy games that let me select a character class",
+                  "fact_key": "user.games_class_selection",
+                  "id": "2a5db03d-fe2e-4ce7-7b7e-8b3fced87206",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-010",
+                  "source": "user",
+                  "source_id": "7fca2e9cfb29e41e3621b4fd4992dcb5bb09beef13f3d6bb0fff253c19b104be"
+                },
+                "state": "active",
+                "updated_at": 1793819322,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793819322,
+                  "evidence": "I enjoy games that let me select a character class",
+                  "interaction_id": "7fca2e9cfb29e41e3621b4fd4992dcb5bb09beef13f3d6bb0fff253c19b104be"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded|native_source_authority_v1:{\"message_author\":\"user\",\"statement_author\":\"user\",\"subject\":\"user\",\"origin\":\"personal_declaration\",\"source_digest\":\"b3861f0674c55363969075a233f3eb00e22be8efab97f8e99d70dd9afd2e98db\",\"evidence_digest\":\"6719820e40d94d2ba17444baf8b2b8d6c7387bdc05f910a56d260c6acb716470\",\"start\":0,\"end\":50,\"claim_digest\":\"051e5f02fd59b416d8cebef2327ebc28bb1165d59e060e9c23799ecbdde24594\"}",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "games_class_selection",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "positive"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793819320,
+            "error_code": null,
+            "id": "7fca2e9cfb29e41e3621b4fd4992dcb5bb09beef13f3d6bb0fff253c19b104be",
+            "state": "queued",
+            "updated_at": 1793819320
+          },
+          "rejected": null,
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793819320,
+              "error_code": null,
+              "id": "7fca2e9cfb29e41e3621b4fd4992dcb5bb09beef13f3d6bb0fff253c19b104be",
+              "state": "done",
+              "updated_at": 1793819322
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-016",
+      "original_user": "Para guardar os dados do meu projeto, decidi usar PostgreSQL.",
+      "scope": "phase22d-final-ext-016",
+      "project": "aroeira",
+      "actual_prior_gemma": "{\n  \"version\": 3,\n  \"scope\": \"phase22d-final-ext-016\",\n  \"project\": \"aroeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"Para guardar os dados do meu projeto, decidi usar PostgreSQL\",\n      \"category\": \"decision\"\n    }\n  ]\n}",
+      "expected": [
+        {
+          "kind": "decision",
+          "subject": "project.aroeira",
+          "property": "database",
+          "value": "postgresql",
+          "temporal": "durable"
+        }
+      ],
+      "native": {
+        "rules": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793819322,
+                "input": {
+                  "content": "Projeto aroeira: decidiu usar postgresql como banco de dados.",
+                  "fact_key": "project.aroeira.database",
+                  "id": "9bab200c-392e-fb92-00ad-f904fd9b5e78",
+                  "kind": "decision",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-016",
+                  "source": "user",
+                  "source_id": "fb5698dafd6df8d7e3a3a7d969487b599d42dd42f64e852ab10fbe23714fd5b0"
+                },
+                "state": "candidate",
+                "updated_at": 1793819322,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793819322,
+                  "evidence": "Para guardar os dados do meu projeto, decidi usar PostgreSQL",
+                  "interaction_id": "fb5698dafd6df8d7e3a3a7d969487b599d42dd42f64e852ab10fbe23714fd5b0"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "explicit_v3_grounded|native_source_authority_v1:{\"message_author\":\"user\",\"statement_author\":\"user\",\"subject\":\"project.aroeira\",\"origin\":\"personal_declaration\",\"source_digest\":\"ca55786df859a6b7f920aac5e46b5ae9d98b862ffd541abbc60c502cb9a82fa0\",\"evidence_digest\":\"61f3ac29ae57ca5a80a42cbfc9ce24c1b72b5ce0f4f1a365e740fbf64e1baca1\",\"start\":0,\"end\":60,\"claim_digest\":\"fbe6ec91e495df4206852f9787ddd1ac6733d2a6b4e5047a1122e3e7bb0db74b\"}",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "database",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "project.aroeira",
+                "temporal": "durable",
+                "value": "postgresql"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793819320,
+            "error_code": null,
+            "id": "fb5698dafd6df8d7e3a3a7d969487b599d42dd42f64e852ab10fbe23714fd5b0",
+            "state": "queued",
+            "updated_at": 1793819320
+          },
+          "rejected": null,
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793819320,
+              "error_code": null,
+              "id": "fb5698dafd6df8d7e3a3a7d969487b599d42dd42f64e852ab10fbe23714fd5b0",
+              "state": "done",
+              "updated_at": 1793819322
+            }
+          ]
+        },
+        "llm": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793819322,
+                "input": {
+                  "content": "Projeto aroeira: decidiu usar postgresql como banco de dados.",
+                  "fact_key": "project.aroeira.database",
+                  "id": "9bab200c-392e-fb92-00ad-f904fd9b5e78",
+                  "kind": "decision",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-016",
+                  "source": "user",
+                  "source_id": "fb5698dafd6df8d7e3a3a7d969487b599d42dd42f64e852ab10fbe23714fd5b0"
+                },
+                "state": "candidate",
+                "updated_at": 1793819322,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793819322,
+                  "evidence": "Para guardar os dados do meu projeto, decidi usar PostgreSQL",
+                  "interaction_id": "fb5698dafd6df8d7e3a3a7d969487b599d42dd42f64e852ab10fbe23714fd5b0"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded|native_source_authority_v1:{\"message_author\":\"user\",\"statement_author\":\"user\",\"subject\":\"project.aroeira\",\"origin\":\"personal_declaration\",\"source_digest\":\"ca55786df859a6b7f920aac5e46b5ae9d98b862ffd541abbc60c502cb9a82fa0\",\"evidence_digest\":\"61f3ac29ae57ca5a80a42cbfc9ce24c1b72b5ce0f4f1a365e740fbf64e1baca1\",\"start\":0,\"end\":60,\"claim_digest\":\"fbe6ec91e495df4206852f9787ddd1ac6733d2a6b4e5047a1122e3e7bb0db74b\"}",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "database",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "project.aroeira",
+                "temporal": "durable",
+                "value": "postgresql"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793819320,
+            "error_code": null,
+            "id": "fb5698dafd6df8d7e3a3a7d969487b599d42dd42f64e852ab10fbe23714fd5b0",
+            "state": "queued",
+            "updated_at": 1793819320
+          },
+          "rejected": null,
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793819320,
+              "error_code": null,
+              "id": "fb5698dafd6df8d7e3a3a7d969487b599d42dd42f64e852ab10fbe23714fd5b0",
+              "state": "done",
+              "updated_at": 1793819322
+            }
+          ]
+        },
+        "hybrid": {
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793819322,
+                "input": {
+                  "content": "Projeto aroeira: decidiu usar postgresql como banco de dados.",
+                  "fact_key": "project.aroeira.database",
+                  "id": "9bab200c-392e-fb92-00ad-f904fd9b5e78",
+                  "kind": "decision",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-016",
+                  "source": "user",
+                  "source_id": "fb5698dafd6df8d7e3a3a7d969487b599d42dd42f64e852ab10fbe23714fd5b0"
+                },
+                "state": "candidate",
+                "updated_at": 1793819322,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793819322,
+                  "evidence": "Para guardar os dados do meu projeto, decidi usar PostgreSQL",
+                  "interaction_id": "fb5698dafd6df8d7e3a3a7d969487b599d42dd42f64e852ab10fbe23714fd5b0"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded|native_source_authority_v1:{\"message_author\":\"user\",\"statement_author\":\"user\",\"subject\":\"project.aroeira\",\"origin\":\"personal_declaration\",\"source_digest\":\"ca55786df859a6b7f920aac5e46b5ae9d98b862ffd541abbc60c502cb9a82fa0\",\"evidence_digest\":\"61f3ac29ae57ca5a80a42cbfc9ce24c1b72b5ce0f4f1a365e740fbf64e1baca1\",\"start\":0,\"end\":60,\"claim_digest\":\"fbe6ec91e495df4206852f9787ddd1ac6733d2a6b4e5047a1122e3e7bb0db74b\"}",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "database",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "project.aroeira",
+                "temporal": "durable",
+                "value": "postgresql"
+              },
+              "revisions": []
+            }
+          ],
+          "enqueue": {
+            "attempts": 0,
+            "created_at": 1793819320,
+            "error_code": null,
+            "id": "fb5698dafd6df8d7e3a3a7d969487b599d42dd42f64e852ab10fbe23714fd5b0",
+            "state": "queued",
+            "updated_at": 1793819320
+          },
+          "rejected": null,
+          "jobs": [
+            {
+              "attempts": 1,
+              "created_at": 1793819320,
+              "error_code": null,
+              "id": "fb5698dafd6df8d7e3a3a7d969487b599d42dd42f64e852ab10fbe23714fd5b0",
+              "state": "done",
+              "updated_at": 1793819322
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-031",
+      "original_user": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita.",
+      "scope": "phase22d-final-ext-031",
+      "project": "aroeira",
+      "actual_prior_gemma": "{\"version\":3,\"scope\":\"phase22d-final-ext-031\",\"project\":\"aroeira\",\"claims\":[{\"evidence\":\"A mensagem de ferramenta informa: eu prefiro chá como bebida favorita\",\"category\":\"preference\"}]}",
+      "expected": [],
+      "native": {
+        "rules": {
+          "details": [],
+          "enqueue": {
+            "reason": "not_eligible",
+            "state": "ignored"
+          },
+          "rejected": null,
+          "jobs": []
+        },
+        "llm": {
+          "details": [],
+          "enqueue": {
+            "reason": "not_eligible",
+            "state": "ignored"
+          },
+          "rejected": null,
+          "jobs": []
+        },
+        "hybrid": {
+          "details": [],
+          "enqueue": {
+            "reason": "not_eligible",
+            "state": "ignored"
+          },
+          "rejected": null,
+          "jobs": []
+        }
+      }
+    },
+    {
+      "id": "dx-032",
+      "original_user": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar.",
+      "scope": "phase22d-final-ext-032",
+      "project": "aroeira",
+      "actual_prior_gemma": "{\n  \"version\": 3,\n  \"scope\": \"phase22d-final-ext-032\",\n  \"project\": \"aroeira\",\n  \"claims\": [\n    {\n      \"evidence\": \"No diálogo que inventei, a narradora diz eu gosto de café sem açúcar\",\n      \"category\": \"preference\"\n    }\n  ]\n}",
+      "expected": [],
+      "native": {
+        "rules": {
+          "details": [],
+          "enqueue": {
+            "reason": "not_eligible",
+            "state": "ignored"
+          },
+          "rejected": null,
+          "jobs": []
+        },
+        "llm": {
+          "details": [],
+          "enqueue": {
+            "reason": "not_eligible",
+            "state": "ignored"
+          },
+          "rejected": null,
+          "jobs": []
+        },
+        "hybrid": {
+          "details": [],
+          "enqueue": {
+            "reason": "not_eligible",
+            "state": "ignored"
+          },
+          "rejected": null,
+          "jobs": []
+        }
+      }
+    }
+  ]
+}

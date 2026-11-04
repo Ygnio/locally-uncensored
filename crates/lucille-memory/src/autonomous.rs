@@ -71,6 +71,13 @@ pub(crate) fn forget_property(text: &str) -> Option<&'static str> {
         "criacao",
         "personagens",
         "escolher",
+        "escolho",
+        "seleciono",
+        "que",
+        "eu",
+        "where",
+        "i",
+        "select",
         "selecao",
         "classe",
         "classes",
@@ -152,7 +159,7 @@ pub(crate) fn forget_property(text: &str) -> Option<&'static str> {
     {
         fields.push("games_character_creation")
     }
-    if has(&["classe", "classes", "class"]) && has(&["escolher", "selecao", "choose", "selection"])
+    if has(&["classe", "classes", "class"]) && has(&["escolher", "escolho", "seleciono", "selecao", "choose", "select", "selection"])
     {
         fields.push("games_class_selection")
     }

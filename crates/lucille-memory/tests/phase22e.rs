@@ -23,6 +23,9 @@ fn proposal(text: &str) -> String {
     serde_json::json!({"version":3,"scope":"qa","project":"candeia","claims":text.split(['.','!',';','\n']).map(str::trim).filter(|s|!s.is_empty()).map(|s|serde_json::json!({"evidence":s,"category":"preference"})).collect::<Vec<_>>()}).to_string()
 }
 fn learn(text: &str, mode: ExtractionMode) -> (tempfile::TempDir, Store) {
+    learn_category(text,mode,"preference")
+}
+fn learn_category(text: &str, mode: ExtractionMode, category:&str) -> (tempfile::TempDir, Store) {
     let d = tempfile::tempdir().unwrap();
     let mut s = Store::open(&d.path().join("synthetic.sqlite3")).unwrap();
     s.configure_identity(Profile::fixture(), 0, &permit())
@@ -42,7 +45,7 @@ fn learn(text: &str, mode: ExtractionMode) -> (tempfile::TempDir, Store) {
         s.complete_learning(&lease, &lease.claims, now() + 2)
             .unwrap();
     } else if let Some(lease) = s.claim_llm_learning(now() + 1).unwrap() {
-        s.complete_llm_learning(&lease, &proposal(text), now() + 2)
+        s.complete_llm_learning(&lease, &proposal(text).replace("\"category\":\"preference\"", &format!("\"category\":\"{category}\"")), now() + 2)
             .unwrap();
     }
     (d, s)
@@ -231,4 +234,53 @@ fn composite_questions_preserve_own_relations_without_borrowing_third_party_or_p
     let c=s.context(req("Qual assunto do meu projeto e qual banco planejei e qual linguagem escolhi?" )).unwrap();
     for property in ["description","database","language"]{assert!(c.facts.iter().any(|f|f.property==property),"{property}: {:?}",c.facts);}
 
+}
+
+#[test]
+fn remaining_original_paraphrases_keep_preparation_class_selection_and_fronted_purpose() {
+    for (text,category,property,value) in [
+        ("My own preference is coffee without sugar when I drink it.","preference","coffee_sugar","without_sugar"),
+        ("I enjoy games that let me select a character class.","preference","games_class_selection","positive"),
+        ("Para guardar os dados do meu projeto, decidi usar PostgreSQL.","decision","database","postgresql"),
+    ] {for mode in [ExtractionMode::Rules,ExtractionMode::Llm,ExtractionMode::Hybrid]{
+        let (_d,s)=learn_category(text,mode,category);
+        let rows=s.memory_details("qa","candeia").unwrap();
+        assert_eq!(rows.len(),1,"{text}: {rows:?}");let q=rows[0].quality.as_ref().unwrap();
+        assert_eq!((q.property.as_str(),q.value.as_str()),(property,value));
+    }}
+    for negative in ["My sister says: My own preference is coffee without sugar when I drink it.","A character states: I enjoy games that let me select a character class.","Para o projeto Ipe, decidi usar PostgreSQL."]{
+        assert!(dialogue::extract(negative,"candeia").is_empty(),"{negative}");
+    }
+}
+
+#[test]
+fn original_relative_class_forgetting_creates_tombstone_before_explicit_reviewed_renewal() {
+    let (d,mut s)=learn("This source declares nothing personal.",ExtractionMode::Rules);
+    let original=input("Eu gosto de jogos em que escolho a classe.");
+    s.enqueue_learning(original.clone()).unwrap(); let lease=s.claim_learning(now()+1).unwrap().unwrap();
+    s.complete_learning(&lease,&lease.claims,now()+2).unwrap();
+    let before=s.list("qa","candeia").unwrap();assert_eq!(before.len(),1);assert_eq!(before[0].state,Status::Active);
+    let forget=input("Esqueça minha preferência por jogos em que escolho a classe.");
+    let deleted=s.enqueue_learning(forget.clone()).unwrap();assert_eq!(deleted["state"],"done");
+    assert!(s.list("qa","candeia").unwrap().is_empty());assert_eq!(s.deleted_memories("qa","candeia").unwrap().len(),1);
+    let req=TurnRequest{conversation_id:forget.conversation_id.clone(),message_id:forget.message_id.clone(),scope:"qa".into(),project:"candeia".into(),mode:Mode::Chat,query:forget.user_text.clone(),token_budget:8192};
+    let proof=lucille_memory::turn_sources::SourceProof{interaction:forget.clone(),job_id:Some(deleted["id"].as_str().unwrap().into())};
+    let receipt=s.answer_evidence_for_source(&req,&[],&[],Some(&proof)).unwrap().directive_receipt.unwrap();
+    assert_eq!(receipt["had_records"],true);assert_eq!(receipt["property"],"games_class_selection");
+    assert!(!s.complete_learning(&lease,&lease.claims,now()+3).unwrap());
+    assert!(s.list("qa","candeia").unwrap().is_empty());
+    drop(s);let mut s=Store::open(&d.path().join("synthetic.sqlite3")).unwrap();
+    s.enqueue_learning(original.clone()).unwrap();
+    assert!(s.list("qa","candeia").unwrap().is_empty());
+    let fresh=input("Volte a guardar esta preferência: eu gosto de jogos em que escolho a classe.");
+    s.enqueue_learning(fresh.clone()).unwrap();let next=s.claim_learning(now()+1).unwrap().unwrap();
+    assert_ne!(lease.id,next.id);s.complete_learning(&next,&next.claims,now()+2).unwrap();
+    let rows=s.memory_details("qa","candeia").unwrap();assert_eq!(rows.len(),1);assert_eq!(rows[0].memory.state,Status::Candidate);
+    assert!(rows[0].provenance.iter().any(|p|p.interaction_id==next.id));
+    assert_eq!(s.deleted_memories("qa","candeia").unwrap().len(),1);
+    let m=&rows[0].memory;s.change(&m.input.id,"qa","candeia",m.version,Action::Approve).unwrap();
+    drop(s);let mut s=Store::open(&d.path().join("synthetic.sqlite3")).unwrap();
+    assert_eq!(s.list("qa","candeia").unwrap()[0].state,Status::Active);
+    assert_eq!(s.deleted_memories("qa","candeia").unwrap().len(),1);
+    s.check_integrity().unwrap();
 }

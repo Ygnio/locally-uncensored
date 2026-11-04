@@ -107,7 +107,15 @@ pub(crate) fn interpret<'a>(text: &'a str, project: &'a str) -> Option<Evidence<
     let copula = words.iter().position(|w| ["e", "is"].contains(w));
     if let Some(at) = copula {
         let head = &words[..at];
-        let tail = &words[at + 1..];
+        let raw_tail = &words[at + 1..];
+        // A consumption-time adjunct qualifies the same preparation preference;
+        // it does not nominate another speaker or a different drink.
+        let tail = if let Some(boundary)=raw_tail.iter().position(|w|["when","while","quando"].contains(w)) {
+            let adjunct=&raw_tail[boundary..];
+            if adjunct.len()==4 && ["i","eu"].contains(&adjunct[1])
+                && ["drink","tomo","bebo"].contains(&adjunct[2])
+                && ["it","coffee","cafe"].contains(&adjunct[3]) {&raw_tail[..boundary]}else{raw_tail}
+        }else{raw_tail};
         if has(
             head,
             &[
