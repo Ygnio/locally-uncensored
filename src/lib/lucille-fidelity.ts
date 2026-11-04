@@ -28,7 +28,7 @@ const fold = (text: string) => text.normalize('NFD').replace(/[\u0300-\u036f]/g,
 const uncertain = (text: string) => /nao (?:tenho|ha|encontrei|possuo|consigo)|nao sei|not (?:have|enough|available)|no (?:record|information)|don.t (?:have|know)|cannot determine|can.t determine|insufficient information|not recorded|informac(?:ao|oes).*insuficiente/.test(fold(text))
 const unsupportedAbsence = (text: string) => /(?:voce|you)\s+(?:(?:ainda|nunca|have|has|still)\s+)*(?:nao|not|never|haven.t)\s+(?:me\s+)?(?:decidiu|escolheu|definiu|disse|informou|decided|chosen|selected|told)|(?:nao foi|nao esta|ainda nao foi)\s+(?:definid|escolhid|decidid)|(?:has|have) not been (?:defined|chosen|decided)|(?:linguagem|banco|language|database|escolha|decisao).*ainda nao.*(?:definid|decidid|escolhid)/.test(fold(text))
 const execution = (text: string) => /\besta (?:sendo )?(?:desenvolvid|implementad|usando|utilizando|estudando)|\bja (?:usa|utiliza|implementou|iniciou|comecou|esta)\b|(?:is|are) (?:already |currently )?(?:being developed|developing|implemented|using|building|studying)|already (?:implemented|started|using)|em (?:execucao|andamento)|in progress|\bunderway\b|(?:foi |is )?(?:escrito em|written in|built with)|\b(?:usa|utiliza|runs on|roda em)\b|(?:projeto|project).*(?: e em | is in |foi feito em|based on)|(?:desenvolvido|implemented|developed) (?:em|in|with)/.test(fold(text))
-const completion = (text: string) => /\b(?:concluiu|conclui|terminei|finalizei|terminou|finalizou|concluido|concluida|completed|finished)\b|ja (?:concluido|pronto|finalizado)|(?:is|esta|foi|was) (?:already |ja )?(?:complete|finished|pronto|concluido)/.test(fold(text))
+const completion = (text: string) => /\b(?:concluiu|conclui|terminei|finalizei|terminou|finalizou|concluido|concluida|completed|finished)\b|ja (?:concluido|pronto|finalizado)|(?:is|esta|foi|was) (?:already |ja )?(?:complete|finished|pronto|concluido)|parabens.{0,40}(?:concluir|conclusao)|congratulations.{0,40}(?:completing|finishing)/.test(fold(text))
 const planned = (text: string) => /planej|pretend|\bplan\b|\bplans\b|intend|want to|quero |vai (?:usar|fazer|desenvolver)|will (?:use|develop)/.test(fold(text))
 const past = (text: string) => /\b(?:antes|anteriormente|antigamente|previously|formerly|historical|historico)\b|used to/.test(fold(text))
 function entityIn(text: string): string | undefined {
@@ -185,11 +185,12 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       }
     }
     const goalDomain=/\b(?:objetivos?|metas?|goals?)\b/
-    const goalQuestion=personalQuestion && goalDomain.test(query)
+    const goalQuestion=personalQuestion && goalDomain.test(query) && (/\?/.test(query) || /\b(?:qual|quais|what|which|lembra|recorda|recall|remember)\b/.test(query))
     if ((subject && goalDomain.test(q)) || (goalQuestion && span.length<200)) {
       const stop=new Set(['voce','seu','sua','seus','suas','your','you','the','was','foi','era','objetivo','goal','meta','concluiu','conclui','concluido','completed','finished','concluir','concluido','concluida','terminou','finalizou','apenas','seu','meu','minha','esta','seu','que','para','uma','um','de','do','da','em','of','to'])
       const tokens=(text:string)=>fold(text).split(/[^a-z0-9]+/).filter(t=>t.length>2 && !stop.has(t)).map(t=>({aprender:'learn',portugues:'portuguese',ingles:'english',espanhol:'spanish'} as Record<string,string>)[t] ?? t)
-      const target=tokens(span), requiredCompletion=completion(span) || (goalQuestion && completion(query))
+      const goalAnchor=fold(span).match(goalDomain)
+      const target=tokens(goalAnchor ? span.slice(goalAnchor.index!+goalAnchor[0].length) : span), requiredCompletion=completion(span) || (goalQuestion && completion(query))
       const matching=all.filter(f=>f.property.startsWith('goal.') && f.validity!=='historical' && (!requiredCompletion || f.modality==='completed')).filter(f=>{
         const source=tokens(f.value+' '+f.evidence.filter(e=>e.role!=='previous_property_link_not_current_value').map(e=>e.text).join(' '))
         return target.every(token=>source.includes(token))

@@ -112,6 +112,15 @@ describe('temporal and preference boundaries added in 2.2B', () => {
 })
 
 describe('literal failures observed in real development answers', () => {
+  it('separates advice from goal assertions and binds completion acknowledgements to typed evidence', () => {
+    const f=fact({entity:'user',property:'goal.spanish',value:'completed:aprender espanhol',modality:'completed',evidence:[{role:'current_source',text:'Concluí meu objetivo de aprender espanhol.'}]})
+    expect(verifyMemoryAnswer('Para aprender espanhol com eficiência, você pode começar com o vocabulário básico e a prática diária de audição.',snapshot([f],'Meu objetivo é aprender espanhol.')).violations).toEqual([])
+    for (const answer of ['Parabéns por concluir seu objetivo!', 'Parabéns por concluir seu objetivo de aprender espanhol!']) {
+      expect(verifyMemoryAnswer(answer,snapshot([f],'Concluí meu objetivo de aprender espanhol.')).violations).toEqual([])
+      expect(verifyMemoryAnswer(answer,snapshot([{...f,modality:'planned'}])).violations.some(v=>v.critical)).toBe(true)
+    }
+    expect(verifyMemoryAnswer('Você concluiu seu objetivo de aprender Rust.',snapshot([f])).violations.some(v=>v.critical)).toBe(true)
+  })
   it('does not interpret objective replies as a personal goal', () => {
     const f=fact({entity:'user',property:'communication_focus',value:'objective',modality:'preference'})
     for (const query of ['Prefiro respostas objetivas.', 'Como eu prefiro as respostas?']) {
