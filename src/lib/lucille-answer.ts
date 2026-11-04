@@ -1,6 +1,6 @@
 import type { ChatMessage, ChatStreamChunk, ToolCall } from '../api/providers/types'
 import { settleThinking } from './thinking-stripper'
-import { answerSnapshot, verifyMemoryAnswer, type AnswerSnapshot, type FidelityCheck } from './lucille-fidelity'
+import { answerSnapshot, verifyMemoryAnswer, memoryAbsenceFields, type AnswerSnapshot, type FidelityCheck } from './lucille-fidelity'
 import { answerLanguage, projectIndependentSentences, requestedMemoryProperties, violatesAnswerLanguage } from './lucille-authority'
 
 export interface MemoryCompletion {
@@ -52,21 +52,21 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
     let evidence: AnswerSnapshot = snapshot
     if (snapshot.refresh) {
       const fresh = await snapshot.refresh()
-      evidence = { ...snapshot, facts: fresh.facts, currentStatements: fresh.current_statements,directiveReceipt:fresh.directive_receipt,hasScopedRecords:fresh.has_scoped_records }
+      evidence = { ...snapshot, facts: fresh.facts, currentStatements: fresh.current_statements,directiveReceipt:fresh.directive_receipt,learningReceipt:fresh.learning_receipt,hasScopedRecords:fresh.has_scoped_records }
     }
     abortIfNeeded(signal); report.refreshMs += performance.now() - refreshStart
     const settled = settleThinking(completion.content, completion.thinking ?? '', true)
     let check = verifyMemoryAnswer(settled.content, evidence)
     const verificationReferences: { id: string; version: number }[] = []
-    if (snapshot.refresh && check.violations.some(v => v.code === 'unsupported_typed_value')) {
-      const fields = [...new Map(check.assertions.filter(a => !a.supported && a.entity !== 'unspecified' && !['ram_capacity_ratio','ram_capacity_delta','goal_target'].includes(a.property))
-        .map(a => [a.entity + '|' + a.property + '|' + a.value, { entity:a.entity, property:a.property, value:a.value }])).values()].slice(0,16)
+    if (snapshot.refresh && check.violations.some(v => ['unsupported_typed_value','absence_without_evidence'].includes(v.code))) {
+      const proposed=[...memoryAbsenceFields(settled.content,evidence),...check.assertions.filter(a=>!a.supported && a.entity!=='unspecified' && !['ram_capacity_ratio','ram_capacity_delta','goal_target'].includes(a.property)).map(a=>({entity:a.entity,property:a.property,value:a.value}))]
+      const fields=[...new Map(proposed.map(a=>[a.entity+'|'+a.property+'|'+a.value,a])).values()].slice(0,16)
       if (fields.length) {
         const began = performance.now(), confirmed = await snapshot.refresh(fields)
         abortIfNeeded(signal); report.refreshMs += performance.now()-began
         verificationReferences.push(...confirmed.facts.filter(f => !evidence.facts.some(old => old.id===f.id && old.version===f.version)).map(f => ({id:f.id,version:f.version})))
         // The second native read also fences deletion of the original references.
-        evidence = { ...snapshot, facts:confirmed.facts, currentStatements:confirmed.current_statements,directiveReceipt:confirmed.directive_receipt,hasScopedRecords:confirmed.has_scoped_records }
+        evidence = { ...snapshot, facts:confirmed.facts, currentStatements:confirmed.current_statements,directiveReceipt:confirmed.directive_receipt,learningReceipt:confirmed.learning_receipt,hasScopedRecords:confirmed.has_scoped_records }
         report.verificationMs += check.elapsedMs
         check = verifyMemoryAnswer(settled.content,evidence)
       }

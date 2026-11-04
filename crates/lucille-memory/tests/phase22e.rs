@@ -155,3 +155,47 @@ fn native_job_binding_rejects_transferred_or_missing_original_source_proof() {
     assert!(s.memory_details("qa", "candeia").unwrap().is_empty());
     s.cancel_learning(&lease.id, &permit()).unwrap();
 }
+
+#[test]
+fn learning_receipts_require_commit_and_remain_bound_to_original_source() {
+    for auto in [false,true] {
+        let d=tempfile::tempdir().unwrap(); let path=d.path().join("synthetic.sqlite3");
+        let mut s=Store::open(&path).unwrap();
+        s.configure_identity(Profile::fixture(),0,&permit()).unwrap();
+        s.set_learning_policy(LearningPolicy{enabled:true,autonomous_preferences:auto,auto_kinds:if auto {vec![Kind::Preference]}else{vec![]},..Default::default()},&permit()).unwrap();
+        let i=input("Eu prefiro café sem açúcar.");
+        let req=TurnRequest{conversation_id:i.conversation_id.clone(),message_id:i.message_id.clone(),scope:i.scope.clone(),project:i.project.clone(),mode:i.mode.clone(),query:i.user_text.clone(),token_budget:8192};
+        let prepared=s.begin_user_turn(i.clone()).unwrap();
+        let proof:lucille_memory::turn_sources::SourceProof=serde_json::from_value(prepared["proof"].clone()).unwrap();
+        assert!(s.answer_evidence_for_source(&req,&[],&[],Some(&proof)).unwrap().learning_receipt.is_none());
+        s.publish_user_turn(proof.clone()).unwrap();
+        let lease=s.claim_learning(now()+1).unwrap().unwrap();
+        assert!(s.answer_evidence_for_source(&req,&[],&[],Some(&proof)).unwrap().learning_receipt.is_none());
+        s.complete_learning(&lease,&lease.claims,now()+2).unwrap();
+        let receipt=s.answer_evidence_for_source(&req,&[],&[],Some(&proof)).unwrap().learning_receipt.unwrap();
+        assert_eq!(receipt["records"][0]["state"],if auto {"active"}else{"candidate"});
+        assert_eq!(receipt["source_message_id"],i.message_id);
+        let mut changed=proof.clone(); changed.interaction.message_id="different-source".into();
+        assert!(s.answer_evidence_for_source(&req,&[],&[],Some(&changed)).is_err());
+        drop(s); let mut s=Store::open(&path).unwrap();
+        assert_eq!(s.answer_evidence_for_source(&req,&[],&[],Some(&proof)).unwrap().learning_receipt.unwrap(),receipt);
+        let next=input("Eu prefiro café sem açúcar.");
+        let req2=TurnRequest{message_id:next.message_id.clone(),..req.clone()};
+        let p=s.begin_user_turn(next).unwrap(); let proof2=serde_json::from_value(p["proof"].clone()).unwrap();
+        assert!(s.answer_evidence_for_source(&req2,&[],&[],Some(&proof2)).unwrap().learning_receipt.is_none());
+        s.cancel_user_turn(proof2.clone()).unwrap();
+        assert!(s.answer_evidence_for_source(&req2,&[],&[],Some(&proof2)).unwrap().learning_receipt.is_none());
+    }
+}
+
+#[test]
+fn canonical_absence_lookup_reads_only_the_requested_entity_and_property() {
+    let (_d,mut s)=learn("Pretendo usar SQLite como banco de dados no meu projeto.",ExtractionMode::Rules);
+    for m in s.list("qa","candeia").unwrap(){s.change(&m.input.id,"qa","candeia",m.version,Action::Approve).unwrap();}
+    let req=TurnRequest{conversation_id:"new-session".into(),message_id:"query".into(),scope:"qa".into(),project:"candeia".into(),mode:Mode::Chat,query:"Qual banco planejei para meu projeto?".into(),token_budget:8192};
+    let f=|entity:&str,property:&str|lucille_memory::context_facts::ClaimedField{entity:entity.into(),property:property.into(),value:String::new()};
+    let result=s.answer_evidence_for_claims(&req,&[],&[f("project.candeia","database")]).unwrap();
+    assert_eq!(result.facts.len(),1);assert_eq!(result.facts[0].value,"sqlite");
+    let gpu=s.answer_evidence_for_claims(&req,&[],&[f("device.primary_computer","gpu_model")]).unwrap();
+    assert!(gpu.facts.is_empty());
+}

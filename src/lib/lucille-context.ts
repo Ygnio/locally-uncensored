@@ -2,7 +2,7 @@ import { verifiedEnvironment, VERIFIED_EXECUTION_POLICY, operationalCodePrompt, 
 import { invoke } from '@tauri-apps/api/core'
 import type { ChatMessage } from '../api/providers/types'
 import type { Conversation } from '../types/chat'
-import { registerAnswerSnapshot, type MemoryFact, type MemoryDirectiveReceipt } from './lucille-fidelity'
+import { registerAnswerSnapshot, type MemoryFact, type MemoryDirectiveReceipt, type MemoryLearningReceipt } from './lucille-fidelity'
 import { answerLanguage, memoryQuestionNeedsNoTools } from './lucille-authority'
 
 export type { LucilleBinding } from '../types/chat'
@@ -115,12 +115,12 @@ export async function withLucilleContext(
   if(languageDirective)injected.add(languageDirective)
   const result = [identity, ...(environment ? [environment] : []), ...clean.slice(0, at), ...(languageDirective ? [languageDirective] : []), ...(memories.length ? [data] : []), ...clean.slice(at)]
   registerAnswerSnapshot(identity, {
-    scope: binding.scope, project: binding.project, query, facts, currentStatements, directiveReceipt, memoryOnly,
+    scope: binding.scope, project: binding.project, query, facts, currentStatements, directiveReceipt, memoryOnly, sourceIdentity:source ? {conversation_id:source.proof.interaction.conversation_id,source_message_id:source.proof.interaction.message_id}:undefined,
     toolObservations: runtime?.receipts,
     refresh: async (claims = []) => {
       assertNotCancelled(signal)
       if (loader !== loadContext) return { facts, current_statements: currentStatements }
-      const refreshed = await lucilleManage<{ facts: MemoryFact[]; current_statements: MemoryFact[]; directive_receipt?: MemoryDirectiveReceipt | null; has_scoped_records?:boolean }>({ operation: 'answer_evidence',
+      const refreshed = await lucilleManage<{ facts: MemoryFact[]; current_statements: MemoryFact[]; directive_receipt?: MemoryDirectiveReceipt | null; has_scoped_records?:boolean; learning_receipt?:MemoryLearningReceipt | null }>({ operation: 'answer_evidence',
         request: { conversation_id: conversation!.id, message_id: messageId, scope: binding.scope, project: binding.project, mode, query, token_budget: retrievalBudget }, references: memories.map(m => ({ id: m.input.id, version: m.version })), claims, source: source?.proof })
       assertNotCancelled(signal); return refreshed
     },
