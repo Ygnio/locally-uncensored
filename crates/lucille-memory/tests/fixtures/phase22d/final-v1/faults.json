@@ -1,0 +1,58 @@
+{
+  "id": "phase22d-frozen-protocol-regressions-v1",
+  "authored_after_development": {
+    "production_code_commit": "470b640bf2caff19000d25410e9d5df8b75366f3",
+    "ended_utc": "2026-11-04T16:02:24.982890+00:00",
+    "authored_utc": "2026-11-04T16:13:32.011328+00:00",
+    "no_native_or_model_rehearsal": true,
+    "authoring": "Fresh synthetic utterances and semantic gold, authored after development. Same author as implementation; independent of development cases, not an externally blinded evaluation."
+  },
+  "kind": "Protocol regression on fresh scoped sources, not unseen language generalization",
+  "cases": [
+    {
+      "id": "final-cancel-chat",
+      "type": "prepared_cancel",
+      "mode": "chat",
+      "project": "sintetico",
+      "text": "Prefiro café sem açúcar."
+    },
+    {
+      "id": "final-cancel-agent",
+      "type": "prepared_cancel",
+      "mode": "agent",
+      "project": "sintetico",
+      "text": "Prefiro café sem açúcar."
+    },
+    {
+      "id": "final-cancel-code",
+      "type": "prepared_cancel",
+      "mode": "code",
+      "project": "sintetico",
+      "text": "Prefiro café sem açúcar."
+    },
+    {
+      "id": "final-source-order",
+      "type": "ordered_sources",
+      "mode": "chat",
+      "project": "sintetico",
+      "texts": [
+        "Prefiro café com açúcar.",
+        "Na verdade, agora prefiro café sem açúcar."
+      ],
+      "expected_value": "without_sugar"
+    },
+    {
+      "id": "final-cancel-lease",
+      "type": "leased_cancel",
+      "project": "sintetico",
+      "text": "Prefiro café sem açúcar. Meu idioma preferido é português. Eu gosto de jogos em que posso escolher minha classe. Prefiro modo escuro para a interface."
+    },
+    {
+      "id": "final-restart-lease",
+      "type": "restart",
+      "project": "sintetico",
+      "text": "Prefiro café sem açúcar. Meu idioma preferido é português. Eu gosto de jogos em que posso escolher minha classe. Prefiro modo escuro para a interface.",
+      "expected_records": 4
+    }
+  ]
+}

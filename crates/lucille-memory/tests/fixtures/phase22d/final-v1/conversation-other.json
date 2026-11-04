@@ -1,0 +1,53 @@
+{
+  "id": "phase22d-independent-final-other-v1",
+  "authored_after_development": {
+    "production_code_commit": "470b640bf2caff19000d25410e9d5df8b75366f3",
+    "ended_utc": "2026-11-04T16:02:24.982890+00:00",
+    "authored_utc": "2026-11-04T16:13:32.011328+00:00",
+    "no_native_or_model_rehearsal": true,
+    "authoring": "Fresh synthetic utterances and semantic gold, authored after development. Same author as implementation; independent of development cases, not an externally blinded evaluation."
+  },
+  "project": "peroba",
+  "turns": [
+    {
+      "text": "Para o desenvolvimento do projeto, eu decidi usar JavaScript.",
+      "review": true
+    },
+    {
+      "text": "Planejo usar PostgreSQL como banco no meu projeto.",
+      "review": true
+    },
+    {
+      "text": "Gosto de tomar meu café com açúcar.",
+      "new_session": true,
+      "mode": "agent"
+    }
+  ],
+  "probes": [
+    {
+      "text": "Qual linguagem escolhi para este projeto e qual banco está planejado?",
+      "mode": "chat",
+      "scenario": "other_project_compound",
+      "expected_atoms": [
+        "javascript_decision",
+        "postgresql_planned"
+      ]
+    },
+    {
+      "text": "Como prefiro meu café neste projeto?",
+      "mode": "code",
+      "scenario": "other_project_preference",
+      "expected_atoms": [
+        "with_sugar"
+      ]
+    },
+    {
+      "text": "Qual linguagem do projeto Embauba?",
+      "mode": "agent",
+      "scenario": "explicit_foreign_project",
+      "expected_atoms": [
+        "bounded_scope_mismatch"
+      ]
+    }
+  ]
+}

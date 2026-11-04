@@ -1,0 +1,657 @@
+{
+  "id": "phase22d-independent-final-retrieval-v1",
+  "authored_after_development": {
+    "production_code_commit": "470b640bf2caff19000d25410e9d5df8b75366f3",
+    "ended_utc": "2026-11-04T16:02:24.982890+00:00",
+    "authored_utc": "2026-11-04T16:13:32.011328+00:00",
+    "no_native_or_model_rehearsal": true,
+    "authoring": "Fresh synthetic utterances and semantic gold, authored after development. Same author as implementation; independent of development cases, not an externally blinded evaluation."
+  },
+  "events": [
+    {
+      "action": "learn",
+      "label": "purpose",
+      "text": "Estou começando um projeto de catálogo de cristais.",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "language-choice",
+      "text": "Decidi usar Python no meu projeto.",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "database-plan",
+      "text": "Pretendo usar PostgreSQL no meu projeto.",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "primary-before",
+      "text": "Meu computador principal tem 40 GB de RAM.",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "work-ram",
+      "text": "Meu notebook de trabalho tem 20 GB de RAM.",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "primary-now",
+      "text": "Não tenho mais 40 GB, agora são 64 GB.",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "coffee-before",
+      "text": "Prefiro café com açúcar.",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "coffee-now",
+      "text": "Na verdade, agora prefiro café sem açúcar.",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "favorite",
+      "text": "Minha bebida favorita é chá.",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "classes",
+      "text": "Nos jogos, eu gosto de poder escolher minha classe.",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "deleted-creation",
+      "text": "Eu gosto de criar personagens nos jogos.",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "approve": true
+    },
+    {
+      "action": "delete",
+      "target": "deleted-creation"
+    },
+    {
+      "action": "learn",
+      "label": "other-language",
+      "text": "Decidi usar Rust no meu projeto.",
+      "scope": "phase22d-final-ret-main",
+      "project": "aroeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "other-database",
+      "text": "Decidi usar MySQL no meu projeto.",
+      "scope": "phase22d-final-ret-main",
+      "project": "aroeira",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "other-scope-ram",
+      "text": "Meu computador principal tem 72 GB de RAM.",
+      "scope": "phase22d-final-ret-other",
+      "project": "imbuia",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "cancelled-language",
+      "text": "Estou implementando meu projeto em Rust.",
+      "scope": "phase22d-final-ret-main",
+      "project": "angico",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "cancelled-state",
+      "text": "Cancelei meu projeto.",
+      "scope": "phase22d-final-ret-main",
+      "project": "angico",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "actual-language",
+      "text": "Estou implementando meu projeto em JavaScript.",
+      "scope": "phase22d-final-ret-main",
+      "project": "murici",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "future-language",
+      "text": "Quero usar Rust no meu projeto.",
+      "scope": "phase22d-final-ret-main",
+      "project": "murici",
+      "approve": true
+    },
+    {
+      "action": "learn",
+      "label": "completed-goal",
+      "text": "Concluí meu objetivo de aprender francês.",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "approve": true
+    }
+  ],
+  "queries": [
+    {
+      "id": "dr-001",
+      "query": "Qual é a RAM instalada no meu computador principal?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "identified_ram",
+      "expected": [
+        "primary-now"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": []
+    },
+    {
+      "id": "dr-002",
+      "query": "Quantos gigabytes possui meu PC principal?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "identified_ram_alias",
+      "expected": [
+        "primary-now"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": []
+    },
+    {
+      "id": "dr-003",
+      "query": "Qual a capacidade de memória do computador principal?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "identified_memory",
+      "expected": [
+        "primary-now"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": []
+    },
+    {
+      "id": "dr-004",
+      "query": "Quanto de RAM tem meu notebook de trabalho?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "identified_work_ram",
+      "expected": [
+        "work-ram"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": []
+    },
+    {
+      "id": "dr-005",
+      "query": "Compare a RAM do meu principal e do notebook de trabalho.",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "two_devices",
+      "expected": [
+        "primary-now",
+        "work-ram"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": []
+    },
+    {
+      "id": "dr-006",
+      "query": "Qual era a RAM antes e quanto ficou agora no meu computador principal?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "capacity_history",
+      "expected": [
+        "primary-before",
+        "primary-now"
+      ],
+      "mandatory_lexical": false,
+      "forbidden": []
+    },
+    {
+      "id": "dr-007",
+      "query": "Sobre o que é o projeto de catálogo que comecei?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "indirect_description",
+      "expected": [
+        "purpose"
+      ],
+      "mandatory_lexical": false,
+      "forbidden": []
+    },
+    {
+      "id": "dr-008",
+      "query": "Qual era o assunto daquele catálogo que eu estava montando?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "indirect_description_alias",
+      "expected": [
+        "purpose"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": []
+    },
+    {
+      "id": "dr-009",
+      "query": "Qual linguagem eu decidi usar no meu projeto?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "chosen_language",
+      "expected": [
+        "language-choice"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": []
+    },
+    {
+      "id": "dr-010",
+      "query": "Qual banco está planejado para meu projeto?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "planned_database",
+      "expected": [
+        "database-plan"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": []
+    },
+    {
+      "id": "dr-011",
+      "query": "Como prefiro tomar meu café?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "coffee_preparation",
+      "expected": [
+        "coffee-now"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": []
+    },
+    {
+      "id": "dr-012",
+      "query": "Minha bebida favorita é qual?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "favorite_beverage",
+      "expected": [
+        "favorite"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": []
+    },
+    {
+      "id": "dr-013",
+      "query": "Qual a preferência que tenho por escolher classes nos jogos?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "class_preference",
+      "expected": [
+        "classes"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": []
+    },
+    {
+      "id": "dr-014",
+      "query": "Gosto de criar personagens? O que está registrado sobre isso?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "deleted_preference",
+      "expected": [],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "deleted-creation"
+      ]
+    },
+    {
+      "id": "dr-015",
+      "query": "Você sabe minha data de nascimento?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "unrelated_birth_property",
+      "expected": [],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "primary-before",
+        "work-ram",
+        "primary-now",
+        "coffee-before",
+        "coffee-now",
+        "favorite",
+        "classes",
+        "deleted-creation",
+        "other-language",
+        "other-database",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "actual-language",
+        "future-language",
+        "completed-goal"
+      ]
+    },
+    {
+      "id": "dr-016",
+      "query": "Qual banco meu irmão usa para o projeto dele?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "foreign_actor",
+      "expected": [],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "primary-before",
+        "work-ram",
+        "primary-now",
+        "coffee-before",
+        "coffee-now",
+        "favorite",
+        "classes",
+        "deleted-creation",
+        "other-language",
+        "other-database",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "actual-language",
+        "future-language",
+        "completed-goal"
+      ]
+    },
+    {
+      "id": "dr-017",
+      "query": "Que bebida minha colega prefere?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "foreign_actor",
+      "expected": [],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "primary-before",
+        "work-ram",
+        "primary-now",
+        "coffee-before",
+        "coffee-now",
+        "favorite",
+        "classes",
+        "deleted-creation",
+        "other-language",
+        "other-database",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "actual-language",
+        "future-language",
+        "completed-goal"
+      ]
+    },
+    {
+      "id": "dr-018",
+      "query": "Qual é a placa de vídeo do meu computador principal?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "unknown_gpu",
+      "expected": [],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "primary-now",
+        "primary-before",
+        "work-ram"
+      ]
+    },
+    {
+      "id": "dr-019",
+      "query": "Quanto de RAM consta para meu computador principal?",
+      "scope": "phase22d-final-ret-other",
+      "project": "imbuia",
+      "category": "other_namespace",
+      "expected": [
+        "other-scope-ram"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": []
+    },
+    {
+      "id": "dr-020",
+      "query": "Qual linguagem escolhi no projeto Aroeira?",
+      "scope": "phase22d-final-ret-main",
+      "project": "aroeira",
+      "category": "other_project",
+      "expected": [
+        "other-language"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": []
+    },
+    {
+      "id": "dr-021",
+      "query": "Que banco decidi usar no projeto Aroeira?",
+      "scope": "phase22d-final-ret-main",
+      "project": "aroeira",
+      "category": "other_project",
+      "expected": [
+        "other-database"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": []
+    },
+    {
+      "id": "dr-022",
+      "query": "Qual linguagem do projeto Imbuia?",
+      "scope": "phase22d-final-ret-main",
+      "project": "aroeira",
+      "category": "explicit_foreign_project",
+      "expected": [],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "primary-before",
+        "work-ram",
+        "primary-now",
+        "coffee-before",
+        "coffee-now",
+        "favorite",
+        "classes",
+        "deleted-creation",
+        "other-language",
+        "other-database",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "actual-language",
+        "future-language",
+        "completed-goal"
+      ]
+    },
+    {
+      "id": "dr-023",
+      "query": "Como está o projeto Angico?",
+      "scope": "phase22d-final-ret-main",
+      "project": "angico",
+      "category": "cancelled_project",
+      "expected": [
+        "cancelled-state"
+      ],
+      "mandatory_lexical": false,
+      "forbidden": []
+    },
+    {
+      "id": "dr-024",
+      "query": "Antes do cancelamento, qual linguagem era usada no projeto Angico?",
+      "scope": "phase22d-final-ret-main",
+      "project": "angico",
+      "category": "cancelled_history",
+      "expected": [
+        "cancelled-language",
+        "cancelled-state"
+      ],
+      "mandatory_lexical": false,
+      "forbidden": []
+    },
+    {
+      "id": "dr-025",
+      "query": "Que linguagem usa agora o projeto Angico?",
+      "scope": "phase22d-final-ret-main",
+      "project": "angico",
+      "category": "no_cancelled_current_execution",
+      "expected": [
+        "cancelled-state"
+      ],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "cancelled-language"
+      ]
+    },
+    {
+      "id": "dr-026",
+      "query": "Como prefiro meu café?",
+      "scope": "phase22d-final-ret-empty",
+      "project": "imbuia",
+      "category": "empty_namespace",
+      "expected": [],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "primary-before",
+        "work-ram",
+        "primary-now",
+        "coffee-before",
+        "coffee-now",
+        "favorite",
+        "classes",
+        "deleted-creation",
+        "other-language",
+        "other-database",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "actual-language",
+        "future-language",
+        "completed-goal"
+      ]
+    },
+    {
+      "id": "dr-027",
+      "query": "Compare o banco do meu projeto com o banco do meu irmão.",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "mixed_actor_comparison",
+      "expected": [
+        "database-plan"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": []
+    },
+    {
+      "id": "dr-028",
+      "query": "Como funciona um banco PostgreSQL?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "general_knowledge",
+      "expected": [],
+      "mandatory_lexical": false,
+      "forbidden": []
+    },
+    {
+      "id": "dr-029",
+      "query": "Como era meu café antes e como prefiro agora?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "preference_history",
+      "expected": [
+        "coffee-before",
+        "coffee-now"
+      ],
+      "mandatory_lexical": false,
+      "forbidden": []
+    },
+    {
+      "id": "dr-030",
+      "query": "Qual RAM tem o notebook do meu irmão?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "foreign_device",
+      "expected": [],
+      "mandatory_lexical": false,
+      "forbidden": [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "primary-before",
+        "work-ram",
+        "primary-now",
+        "coffee-before",
+        "coffee-now",
+        "favorite",
+        "classes",
+        "deleted-creation",
+        "other-language",
+        "other-database",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "actual-language",
+        "future-language",
+        "completed-goal"
+      ]
+    },
+    {
+      "id": "dr-031",
+      "query": "Qual foi o objetivo de aprendizado que eu concluí?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "category": "completed_goal",
+      "expected": [
+        "completed-goal"
+      ],
+      "mandatory_lexical": true,
+      "forbidden": []
+    }
+  ],
+  "scoring_note": "Exact injected reference gold, separate from raw ranking and later verification lookup. Forced lexical has no query vector. Mandatory lexical queries must recover every expected atom; foreign/temporal/tombstone gates remain strict."
+}
