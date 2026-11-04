@@ -3,6 +3,23 @@ import { verifyMemoryAnswer, answerSnapshot, registerAnswerSnapshot, type Answer
 const fact = (changes: Partial<MemoryFact> = {}): MemoryFact => ({ id: 'fact-1', version: 2, entity: 'project.atlas', property: 'language', value: 'rust', modality: 'planned', validity: 'current', scope: 'test', project: 'atlas', review: 'reviewed', facets: [], evidence: [{ role: 'current_source', text: 'Planejo usar Rust.' }], ...changes })
 const snapshot = (facts: MemoryFact[] = [fact()], query = 'Como está meu projeto?'): AnswerSnapshot => ({ scope: 'test', project: 'atlas', query, facts, currentStatements: [] })
 describe('independent typed memory answer checks', () => {
+  it('distinguishes earlier speech about a still-current plan from prior execution',()=>{
+    const s=snapshot([fact({value:'typescript',evidence:[{role:'current_source',text:'Quero usar TypeScript.'}]})],'No meu projeto, eu uso Rust.')
+    expect(verifyMemoryAnswer('Você mencionou anteriormente que usaria TypeScript.',s).violations).toEqual([])
+    expect(verifyMemoryAnswer('Você mencionou anteriormente que usava TypeScript.',s).violations.some(v=>v.critical)).toBe(true)
+    expect(verifyMemoryAnswer('Antes seu projeto usava TypeScript.',s).violations.some(v=>v.critical)).toBe(true)
+  })
+  it('does not turn a direct clarification question into an implementation assertion',()=>{
+    expect(verifyMemoryAnswer('Você está usando Rust em vez de TypeScript para o projeto?',snapshot()).violations).toEqual([])
+    expect(verifyMemoryAnswer('Seu projeto já usa TypeScript, certo?',snapshot()).violations.some(v=>v.critical)).toBe(true)
+  })
+  it('does not reclassify a coffee preparation acknowledgement as a favorite-drink choice',()=>{
+    const s=snapshot([fact({entity:'user',property:'coffee_sugar',value:'with_sugar',modality:'preference'}),fact({entity:'user',property:'favorite_beverage',value:'tea',modality:'preference'})],'Minha bebida preferida é chá.')
+    expect(verifyMemoryAnswer('Você prefere chá como sua bebida favorita. Isso complementa seu gosto por café com açúcar.',s).violations).toEqual([])
+    expect(verifyMemoryAnswer('Sua bebida favorita é café.',s).violations.some(v=>v.critical)).toBe(true)
+    expect(verifyMemoryAnswer('Café, embora chá também seja uma opção.',s).violations.some(v=>v.critical)).toBe(true)
+    expect(verifyMemoryAnswer('Chá. Café com açúcar é outra preferência sua.',s).violations).toEqual([])
+  })
   it('accepts inflected plans and ordinary project descriptions without inventing names',()=>{
     for(const text of ['PostgreSQL is planned for your project.','O plano do seu projeto é usar PostgreSQL.']) {
       expect(verifyMemoryAnswer(text,snapshot([fact({property:'database',value:'postgresql'})],'Qual banco está nos planos do meu projeto?')).violations).toEqual([])

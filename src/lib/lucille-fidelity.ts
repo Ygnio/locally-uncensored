@@ -34,7 +34,7 @@ const uncertain = (text: string) => /nao (?:tenho|ha|encontrei|possuo|consigo)|n
 const unsupportedAbsence = (text: string) => /(?:voce|you)\s+(?:(?:ainda|nunca|have|has|still)\s+)*(?:nao|not|never|haven.t)\s+(?:me\s+)?(?:decidiu|escolheu|definiu|disse|informou|decided|chosen|selected|told)|(?:nao foi|nao esta|ainda nao foi)\s+(?:definid|escolhid|decidid)|(?:has|have) not been (?:defined|chosen|decided)|(?:linguagem|banco|language|database|escolha|decisao).*ainda nao.*(?:definid|decidid|escolhid)/.test(fold(text))
 const execution = (text: string) => /\besta (?:sendo )?(?:desenvolvid|implementad|usando|utilizando|estudando)|\bja (?:usa|utiliza|implementou|iniciou|comecou|esta)\b|(?:is|are) (?:already |currently )?(?:being developed|developing|implemented|using|building|studying)|already (?:implemented|started|using)|em (?:execucao|andamento)|in progress|\bunderway\b|(?:foi |is )?(?:escrito em|written in|built with)|\b(?:usa|utiliza)(?!-)\b|\b(?:runs on|roda em)\b|(?:projeto|project).*(?: e em | is in |foi feito em|based on)|(?:desenvolvido|implemented|developed) (?:em|in|with)/.test(fold(text))
 const completion = (text: string) => /\b(?:concluiu|conclui|terminei|finalizei|terminou|finalizou|concluido|concluida|completed|finished)\b|ja (?:concluido|pronto|finalizado)|(?:is|esta|foi|was) (?:already |ja )?(?:complete|finished|pronto|concluido)|parabens.{0,40}(?:concluir|conclusao)|congratulations.{0,40}(?:completing|finishing)/.test(fold(text))
-const planned = (text: string) => /planej|pretend|\bplan(?:ned|ning|s)?\b|\bplanos?\b|intend|want to|quero |vai (?:usar|fazer|desenvolver)|will (?:use|develop)/.test(fold(text))
+const planned = (text: string) => /planej|pretend|\bplan(?:ned|ning|s)?\b|\bplanos?\b|\b(?:usaria|utilizaria)\b|intend|want to|quero |vai (?:usar|fazer|desenvolver)|will (?:use|develop)|would use/.test(fold(text))
 const past = (text: string) => /\b(?:antes|anteriores?|anteriormente|antigamente|previous|previously|formerly|historical|historico)\b|used to/.test(fold(text))
 function entityIn(text: string): string | undefined {
   const q = fold(text), found: { index: number; entity: string }[] = []
@@ -92,7 +92,8 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     const assertion = { entity: entity ?? matching[0]?.entity ?? 'unspecified', property, value, span, supported: matching.length > 0, references: matching.map(f => f.id) }
     assertions.push(assertion)
     if (!assertion.supported) { add('unsupported_typed_value', span); return }
-    if (historical && !matching.some(f => f.validity === 'historical')) {
+    const earlierMention=/\b(?:mencionou|disse|informou|mentioned|said|told)\b/.test(fold(span)) && !/antes de|before the/.test(fold(span)) && matching.some(f=>f.validity==='current' && f.evidence.some(e=>e.role==='current_source') && (planned(span) || !['planned','hypothesis'].includes(f.modality)))
+    if (historical && !earlierMention && !matching.some(f => f.validity === 'historical')) {
       // Only a linked previous property source can support an older value.
       if (!matching.some(f => f.evidence.some(e => e.role === 'previous_property_link_not_current_value' && mentions(e.text, value)))) add('unsupported_historical_state', span)
     }
@@ -105,6 +106,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     if (matching.every(f => f.modality === 'hypothesis') && !/talvez|pode ser|might|maybe|hipot|possib/.test(fold(span))) add('hypothesis_as_fact', span)
   }
   const clauses = text.split(/(?<=[.!?;\n])\s+|\b(?:mas|porem|however|but)\b/i).slice(0, 128)
+  let favoriteSlotBound=false
   for (const span of clauses) {
     const q = fold(span)
     const mutation = /\b(?:removi|apaguei|exclui|esqueci|memorizei|guardei|salvei|registrei|reativei|anotei)\b|\b(?:i have |i.ve |i )(?:removed|deleted|forgotten|saved|memorized|stored|reactivated|noted)\b|\b(?:foi|foram|has been|have been) (?:removid|apagad|excluid|salv|registrad|removed|deleted|saved|stored)/.test(q)
@@ -129,7 +131,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     const globalAbsence=/(?:nao ha|nao tenho|nao existem).{0,20}(?:registros? de memorias?|memorias? salv[ao]s?|registros? salvos?)|(?:there are no|i have no).{0,15}(?:saved memories|saved records)/.test(q)
     if(globalAbsence && snapshot.hasScopedRecords!==false)add('global_absence_without_evidence',span)
     if(projectQuestion && /^(?:(?:ainda\s+)?nao\s+(?:defini|decidi|escolhi)\b|eu\s+(?:defini|decidi|escolhi)\b|i\s+(?:(?:have not|haven.t|never)\s+)?(?:chose|chosen|decided|selected)\b)/.test(q.trim()) && /banco|database|linguagem|language|projeto|project/.test(q))add('wrong_decision_actor',span)
-    if (span.trim().endsWith('?') && /^(?:qual|quais|como|quando|onde|por que|what|which|how|when|where|why)\b/.test(q.trim())) continue
+    if (span.trim().endsWith('?') && /^(?:qual|quais|como|quando|onde|por que|what|which|how|when|where|why|voce (?:pretende|quer|esta|vai|usa|usaria|usou|prefere)|do you|are you|have you|is your)\b/.test(q.trim()) && !/certo|\bne\b|\bright\b|correct|isn.t it/.test(q)) continue
     if (unsupportedAbsence(span)) {
       const domain = q + ' ' + query
       const property = /banco|database/.test(domain) ? 'database' : /linguagem|language/.test(domain) ? 'language' : undefined
@@ -142,7 +144,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     if (epistemic && !/duvid|doubt|certeza|certain|,\s*(?:e |and |seu |your |o projeto|the project|voce |you )/.test(q)) continue
     if (uncertain(span) && !execution(span) && !completion(span)) continue
     const subject = /\b(?:voce|seus?|suas?|you|your)\b|projeto|project/.test(q)
-    if ((subject || (personalQuestion && /ram|computador|computer|notebook|laptop/.test(query))) && /fluidez|sem gargalos|sem travamentos|mais estavel|maior estabilidade|no bottlenecks|smooth performance|more stable|will run smoothly/.test(q) && !/\b(?:pode|poderia|talvez|depende|estimativa|might|could|may|depends|estimate)\b/.test(q)) {
+    if ((subject || personalQuestion) && /ram|memoria|memory|computador|computer|notebook|laptop/.test(fold(text)+' '+query) && /fluidez|(?:experiencia|desempenho).{0,25}\bfluid[ao]s?\b|sem (?:grandes )?gargalos|sem travamentos|mais estavel|maior estabilidade|no bottlenecks|smooth performance|more stable|will run smoothly/.test(q) && !/\b(?:pode|poderia|talvez|depende|estimativa|might|could|may|depends|estimate)\b/.test(q)) {
       const source=current.some(f=>f.evidence.some(e=>e.role!=='previous_property_link_not_current_value' && fold(e.text).includes(q.trim())))
       if(!source)add('unproven_personal_performance',span,false)
     }
@@ -195,7 +197,8 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       const entity = entityIn(q.slice(0, match.index)) ?? entityIn(query)
       record(span, property, match[1] + '_gb', entity, /nao (?:tem|possui|sao|e)|does not have|not \d/.test(q.slice(0, match.index)))
     }
-    if ((subject && /pref|gost|likes|favorit|adora|curt|toma|bebe|drink|idioma|lingua|tema|theme|comunica|communication/.test(q)) || (preferenceQuestion && span.length<160 && !/\b(?:pode|poderia|opcao|alternativa|could|might|option|recommend|sugiro|depende)\b/.test(q))) {
+    const unboundFavoriteAnswer=!favoriteSlotBound && /favorit|favourit|bebida|beverage/.test(query) && /^(?:(?:e|is|it is|it's)\s+)?(?:cha|tea|cafe|coffee)\b/.test(q.trim())
+    if (unboundFavoriteAnswer || (subject && /pref|gost|likes|favorit|adora|curt|toma|bebe|drink|idioma|lingua|tema|theme|comunica|communication/.test(q)) || (preferenceQuestion && span.length<160 && !/\b(?:pode|poderia|opcao|alternativa|could|might|option|recommend|sugiro|depende)\b/.test(q))) {
       for (const property of ['coffee_sugar', 'interface_theme', 'communication_style', 'response_language', 'favorite_beverage', 'communication_focus']) {
         const domain = q + ' ' + query
         if (property === 'coffee_sugar' && !/cafe|coffee|acucar|sugar/.test(domain)) continue
@@ -212,13 +215,16 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
         const negatedChoice=/nao (?:prefere|e)|not (?:your |the )?(?:preferred|favorite)|does not prefer|don.t prefer/.test(q)
         const values = property === 'coffee_sugar' ? ['with_sugar', 'without_sugar'] : property === 'interface_theme' ? ['light', 'dark'] : property === 'communication_style' ? ['concise', 'detailed'] : property === 'response_language' ? ['pt', 'en', 'es'] : property === 'favorite_beverage' ? ['tea', 'coffee'] : ['objective']
         if (property === 'favorite_beverage') {
-          if (!/favorit|prefere|prefer/.test(q) && !/favorit|bebida|beverage/.test(query)) continue
+          const leadDrink=/^(?:(?:e|is|it is|it's)\s+)?(?:cha|tea|cafe|coffee)\b/.test(q.trim())
+          const choiceVerb=/\b(?:prefere|prefiro|prefers|prefer)\b/.test(q)
+          if (!/favorit|favourit/.test(q) && !(!favoriteSlotBound && (leadDrink || choiceVerb) && /favorit|favourit|bebida|beverage/.test(query))) continue
           const positions=[...new Set(values)].flatMap(value=>aliases(value).flatMap(alias=>[...q.matchAll(new RegExp('\\b'+alias+'\\b','g'))].map(m=>({value,index:m.index}))))
             .filter(m=>!/\b(?:nao|not|never)\s+(?:o |a |the )?$/.test(q.slice(Math.max(0,m.index-16),m.index)))
             .sort((a,b)=>a.index-b.index)
           const binding=q.match(/(?:prefere|prefers|prefer)\s+|(?:favorit[ao]|favorite)\s+(?:e|is)\s+/)
           const bound=binding ? positions.find(m=>m.index>binding.index!+binding[0].length-1) : undefined
           const target=bound?.value ?? positions[0]?.value
+          if(target)favoriteSlotBound=true
           if (/favoritas|favorites|both|ambas/.test(q)) {
             for (const value of new Set(positions.map(m=>m.value))) record(span,property,value,'user',negatedChoice)
           } else if (target) record(span,property,target,'user',negatedChoice)

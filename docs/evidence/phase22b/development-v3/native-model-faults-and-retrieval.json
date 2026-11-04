@@ -1,0 +1,751 @@
+{
+  "method": "Development regressions on previously evaluated sources, not unseen acceptance.",
+  "source_commit": "2c38b65013017289b2d8b86e97437e01539b346d",
+  "source_manifest_sha256": "4a123e1ef2696753bc4faab7db0decf26991a727a08526ea4ea1dc7eef338b91",
+  "model_pin": {
+    "simulation": false,
+    "models": {
+      "gemma": {
+        "model": "HauhauCS/Gemma4-12B-QAT-Uncensored-HauhauCS-Balanced",
+        "revision": "ae8045ac2bd216293ca49a3065da2c942dde4b68",
+        "fingerprint": "59656d7494d6376ca97e9e20b64ea2e16cd97f12ec6d47bfccba91cb785b5134",
+        "context_tokens": 65536
+      },
+      "nomic": {
+        "model": "nomic-ai/nomic-embed-text-v1.5",
+        "revision": "0188c9bf409793f810680a5a431e7b899c46104c",
+        "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+        "dimension": 768,
+        "normalization": "layer_norm_then_l2",
+        "pooling": "mean",
+        "document_prefix": "search_document: ",
+        "query_prefix": "search_query: ",
+        "context_tokens": 2048,
+        "index_version": 5
+      }
+    },
+    "runtime_sha256": "d629481a5c60518afd6679b3fcb9e428a98523628470ed3b88d5261b0df712cb",
+    "memory_protocol": 3
+  },
+  "retrieval": {
+    "corpus": "retrieval-v2.json",
+    "modes": {
+      "fts5": {
+        "tp": 33,
+        "fp": 0,
+        "missed": 5,
+        "negative_injections": 0,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "precision_at_3_sum": 11.333333333333334,
+        "recall_at_3_sum": 25.5,
+        "ranking_queries": 29,
+        "by_category": {
+          "language_choice": [
+            3,
+            0,
+            1
+          ],
+          "indirect_database": [
+            2,
+            0,
+            1
+          ],
+          "project_summary": [
+            3,
+            0,
+            0
+          ],
+          "equipment": [
+            7,
+            0,
+            3
+          ],
+          "coffee": [
+            5,
+            0,
+            0
+          ],
+          "communication": [
+            1,
+            0,
+            0
+          ],
+          "theme": [
+            1,
+            0,
+            0
+          ],
+          "games": [
+            1,
+            0,
+            0
+          ],
+          "deleted": [
+            0,
+            0,
+            0
+          ],
+          "completed_goal": [
+            1,
+            0,
+            0
+          ],
+          "foreign_actor": [
+            0,
+            0,
+            0
+          ],
+          "knowledge": [
+            0,
+            0,
+            0
+          ],
+          "sensitive": [
+            0,
+            0,
+            0
+          ],
+          "foreign_project": [
+            0,
+            0,
+            0
+          ],
+          "distinct_project": [
+            1,
+            0,
+            0
+          ],
+          "distinct_scope": [
+            1,
+            0,
+            0
+          ],
+          "actual_vs_future": [
+            3,
+            0,
+            0
+          ],
+          "cancelled": [
+            1,
+            0,
+            0
+          ],
+          "historical_project": [
+            2,
+            0,
+            0
+          ],
+          "explicit_unknown": [
+            1,
+            0,
+            0
+          ],
+          "pending_review": [
+            0,
+            0,
+            0
+          ],
+          "unsupported_hardware": [
+            0,
+            0,
+            0
+          ],
+          "unrelated": [
+            0,
+            0,
+            0
+          ]
+        },
+        "precision": 1.0,
+        "recall": 0.868421052631579,
+        "precision_at_3": 0.39080459770114945,
+        "recall_at_3": 0.8793103448275862,
+        "passed": true
+      },
+      "nomic": {
+        "tp": 26,
+        "fp": 0,
+        "missed": 12,
+        "negative_injections": 0,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "precision_at_3_sum": 11.666666666666668,
+        "recall_at_3_sum": 27.166666666666668,
+        "ranking_queries": 29,
+        "by_category": {
+          "language_choice": [
+            3,
+            0,
+            1
+          ],
+          "indirect_database": [
+            2,
+            0,
+            1
+          ],
+          "project_summary": [
+            2,
+            0,
+            1
+          ],
+          "equipment": [
+            7,
+            0,
+            3
+          ],
+          "coffee": [
+            2,
+            0,
+            3
+          ],
+          "communication": [
+            1,
+            0,
+            0
+          ],
+          "theme": [
+            1,
+            0,
+            0
+          ],
+          "games": [
+            1,
+            0,
+            0
+          ],
+          "deleted": [
+            0,
+            0,
+            0
+          ],
+          "completed_goal": [
+            0,
+            0,
+            1
+          ],
+          "foreign_actor": [
+            0,
+            0,
+            0
+          ],
+          "knowledge": [
+            0,
+            0,
+            0
+          ],
+          "sensitive": [
+            0,
+            0,
+            0
+          ],
+          "foreign_project": [
+            0,
+            0,
+            0
+          ],
+          "distinct_project": [
+            1,
+            0,
+            0
+          ],
+          "distinct_scope": [
+            0,
+            0,
+            1
+          ],
+          "actual_vs_future": [
+            2,
+            0,
+            1
+          ],
+          "cancelled": [
+            1,
+            0,
+            0
+          ],
+          "historical_project": [
+            2,
+            0,
+            0
+          ],
+          "explicit_unknown": [
+            1,
+            0,
+            0
+          ],
+          "pending_review": [
+            0,
+            0,
+            0
+          ],
+          "unsupported_hardware": [
+            0,
+            0,
+            0
+          ],
+          "unrelated": [
+            0,
+            0,
+            0
+          ]
+        },
+        "precision": 1.0,
+        "recall": 0.6842105263157895,
+        "precision_at_3": 0.4022988505747127,
+        "recall_at_3": 0.9367816091954023,
+        "passed": false
+      },
+      "hybrid": {
+        "tp": 35,
+        "fp": 0,
+        "missed": 3,
+        "negative_injections": 0,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "precision_at_3_sum": 11.666666666666668,
+        "recall_at_3_sum": 27.166666666666668,
+        "ranking_queries": 29,
+        "by_category": {
+          "language_choice": [
+            4,
+            0,
+            0
+          ],
+          "indirect_database": [
+            3,
+            0,
+            0
+          ],
+          "project_summary": [
+            3,
+            0,
+            0
+          ],
+          "equipment": [
+            7,
+            0,
+            3
+          ],
+          "coffee": [
+            5,
+            0,
+            0
+          ],
+          "communication": [
+            1,
+            0,
+            0
+          ],
+          "theme": [
+            1,
+            0,
+            0
+          ],
+          "games": [
+            1,
+            0,
+            0
+          ],
+          "deleted": [
+            0,
+            0,
+            0
+          ],
+          "completed_goal": [
+            1,
+            0,
+            0
+          ],
+          "foreign_actor": [
+            0,
+            0,
+            0
+          ],
+          "knowledge": [
+            0,
+            0,
+            0
+          ],
+          "sensitive": [
+            0,
+            0,
+            0
+          ],
+          "foreign_project": [
+            0,
+            0,
+            0
+          ],
+          "distinct_project": [
+            1,
+            0,
+            0
+          ],
+          "distinct_scope": [
+            1,
+            0,
+            0
+          ],
+          "actual_vs_future": [
+            3,
+            0,
+            0
+          ],
+          "cancelled": [
+            1,
+            0,
+            0
+          ],
+          "historical_project": [
+            2,
+            0,
+            0
+          ],
+          "explicit_unknown": [
+            1,
+            0,
+            0
+          ],
+          "pending_review": [
+            0,
+            0,
+            0
+          ],
+          "unsupported_hardware": [
+            0,
+            0,
+            0
+          ],
+          "unrelated": [
+            0,
+            0,
+            0
+          ]
+        },
+        "precision": 1.0,
+        "recall": 0.9210526315789473,
+        "precision_at_3": 0.4022988505747127,
+        "recall_at_3": 0.9367816091954023,
+        "passed": true
+      }
+    },
+    "limitation": "Production hybrid and lexical fallback meet their gates on these regressions. Pure Nomic recall remains below 80%; it is not approved as a standalone configuration."
+  },
+  "offline_index": {
+    "passed": true,
+    "before_recovery": {
+      "current_vectors": 0,
+      "history_events": [
+        {
+          "count": 1,
+          "state": "auto_promote"
+        },
+        {
+          "count": 1,
+          "state": "create"
+        }
+      ],
+      "jobs": [
+        {
+          "count": 1,
+          "state": "done"
+        }
+      ],
+      "memories": [
+        {
+          "count": 1,
+          "state": "active"
+        }
+      ],
+      "pending_vectors": 1,
+      "project": "fault-index-v3",
+      "provenance_rows": 1,
+      "scope": "phase22b-fault-index-v3",
+      "sqlite_main_page_bytes": 1380352,
+      "vector_json_bytes": 0
+    },
+    "after_recovery": {
+      "current_vectors": 1,
+      "history_events": [
+        {
+          "count": 1,
+          "state": "auto_promote"
+        },
+        {
+          "count": 1,
+          "state": "create"
+        }
+      ],
+      "jobs": [
+        {
+          "count": 1,
+          "state": "done"
+        }
+      ],
+      "memories": [
+        {
+          "count": 1,
+          "state": "active"
+        }
+      ],
+      "pending_vectors": 0,
+      "project": "fault-index-v3",
+      "provenance_rows": 1,
+      "scope": "phase22b-fault-index-v3",
+      "sqlite_main_page_bytes": 1388544,
+      "vector_json_bytes": 9508
+    },
+    "actual_answers": [
+      {
+        "query": "Prefiro café com açúcar.",
+        "answers": [
+          "Eu também gosto de café com açúcar. É uma combinação clássica e reconfortante."
+        ]
+      },
+      {
+        "query": "Como eu prefiro café agora?",
+        "answers": [
+          "Você prefere café com açúcar."
+        ]
+      }
+    ]
+  },
+  "cancel_before_publication": {
+    "method": "Actual full Tauri native RPC and Store with a synthetic original USER input. Cancellation before publication intentionally performs no inference.",
+    "passed": true,
+    "before": {
+      "current_vectors": 0,
+      "history_events": [],
+      "jobs": [
+        {
+          "count": 1,
+          "state": "queued"
+        }
+      ],
+      "memories": [],
+      "pending_vectors": 0,
+      "project": "fault-source-v3",
+      "provenance_rows": 0,
+      "scope": "phase22b-fault-source-v3",
+      "sqlite_main_page_bytes": 1388544,
+      "vector_json_bytes": 0
+    },
+    "cancel": {
+      "cancelled": true
+    },
+    "late_publish": {
+      "attempts": 0,
+      "created_at": 1793782839,
+      "error_code": null,
+      "id": "be0a916b4d78a419f94e5bf4b6b48791578efd5edaeeeb81ee0c6d101c53bb9c",
+      "state": "cancelled",
+      "updated_at": 1793782842
+    },
+    "after": {
+      "current_vectors": 0,
+      "history_events": [],
+      "jobs": [
+        {
+          "count": 1,
+          "state": "cancelled"
+        }
+      ],
+      "memories": [],
+      "pending_vectors": 0,
+      "project": "fault-source-v3",
+      "provenance_rows": 0,
+      "scope": "phase22b-fault-source-v3",
+      "sqlite_main_page_bytes": 1388544,
+      "vector_json_bytes": 0
+    },
+    "fresh_evidence": {
+      "current_statements": [],
+      "facts": [],
+      "has_scoped_records": false
+    }
+  },
+  "cancel_actual_running_lease": {
+    "method": "Actual full GUI learning worker observed running, native cancellation during the real lease, then a new actual Gemma extraction replayed with that revoked lease. The original in-flight worker also remained unable to commit.",
+    "passed": true,
+    "source": {
+      "id": "20d3c5c79ef72a8a5bf7ee814b20cca1029fb12ee26f3b21eb780cac5c05bb22",
+      "message_id": "3d8083f4-deb3-437e-b2b2-da31889962fc",
+      "conversation_id": "71cd9604-d35b-40e7-8495-a7008af30ba3",
+      "text": "Prefiro café sem açúcar.",
+      "scope": "phase22b-fault-leased-cancel-v3",
+      "project": "fault-leased-cancel-v3"
+    },
+    "cancel": {
+      "cancelled": true
+    },
+    "before_late": {
+      "current_vectors": 0,
+      "history_events": [],
+      "jobs": [
+        {
+          "count": 1,
+          "state": "cancelled"
+        }
+      ],
+      "memories": [],
+      "pending_vectors": 0,
+      "project": "fault-leased-cancel-v3",
+      "provenance_rows": 0,
+      "scope": "phase22b-fault-leased-cancel-v3",
+      "sqlite_main_page_bytes": 1388544,
+      "vector_json_bytes": 0
+    },
+    "actual_model_reply": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"version\": 3,\n  \"scope\": \"phase22b-fault-leased-cancel-v3\",\n  \"project\": \"fault-leased-cancel-v3\",\n  \"claims\": [\n    {\n      \"evidence\": \"Prefiro café sem açúcar\",\n      \"category\": \"preference\"\n    }\n  ]\n}"
+          }
+        }
+      ],
+      "created": 1793782993,
+      "model": "lucille-real-gemma",
+      "system_fingerprint": "b11064-a894dae93",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 89,
+        "prompt_tokens": 438,
+        "total_tokens": 527,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "id": "chatcmpl-Ncr2y3TwNv0AfN3yx1F3D7tTDxOWXtSC",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 438,
+        "prompt_ms": 690.88,
+        "prompt_per_token_ms": 1.577351598173516,
+        "prompt_per_second": 633.9740620657711,
+        "predicted_n": 89,
+        "predicted_ms": 2900.431,
+        "predicted_per_token_ms": 32.95944318181818,
+        "predicted_per_second": 30.340318387163837
+      }
+    },
+    "late_completion": {
+      "completed": false
+    },
+    "after": {
+      "current_vectors": 0,
+      "history_events": [],
+      "jobs": [
+        {
+          "count": 1,
+          "state": "cancelled"
+        }
+      ],
+      "memories": [],
+      "pending_vectors": 0,
+      "project": "fault-leased-cancel-v3",
+      "provenance_rows": 0,
+      "scope": "phase22b-fault-leased-cancel-v3",
+      "sqlite_main_page_bytes": 1388544,
+      "vector_json_bytes": 0
+    },
+    "private_lease_sha256": "59e93e9a4340723f55c85898acff64479f2435b9f62c53a4449e7816bfa327cd"
+  },
+  "restart_during_actual_extraction": {
+    "method": "Actual GUI restart after the learning worker acquired its first real Gemma lease, before any memory commit. Not a claimed interruption inside a SQLite fsync/transaction.",
+    "passed": true,
+    "source": {
+      "id": "81dd49c0a573d05a9f0850704602b18c365bdf4fcca00681894411fe1142daef",
+      "message_id": "a16c1af5-935a-41a2-8e64-9c93fb07ceba",
+      "conversation_id": "358b9a09-edf7-4865-a17d-dfa7b799223b",
+      "text": "Prefiro café com açúcar. Eu gosto de criar personagens em jogos. Minha bebida favorita é chá. Prefiro respostas objetivas.",
+      "scope": "phase22b-fault-restart-v3",
+      "project": "fault-restart-v3"
+    },
+    "before": {
+      "job_state": "running",
+      "attempts": 1,
+      "memories": [],
+      "duplicates": 0,
+      "provenance_rows": 0
+    },
+    "after_close": {
+      "job_state": "running",
+      "attempts": 1,
+      "memories": [],
+      "duplicates": 0,
+      "provenance_rows": 0
+    },
+    "after_recovery": {
+      "job_state": "done",
+      "attempts": 2,
+      "memories": [
+        [
+          "36bba37a-99e5-8912-95d0-228594ca904a",
+          "active",
+          1
+        ],
+        [
+          "93e37473-fd25-9b08-e3ca-b178f0489b25",
+          "active",
+          1
+        ],
+        [
+          "7f89b101-3f86-1dcd-00c6-a19ad78d4c09",
+          "active",
+          1
+        ],
+        [
+          "ad000f93-4ddf-8233-97d4-b69f31b4b35b",
+          "active",
+          1
+        ]
+      ],
+      "duplicates": 0,
+      "provenance_rows": 4
+    },
+    "old_gui_pid": 29676,
+    "new_gui_pid": 2576,
+    "automatic_recovery": true,
+    "models_remained_running": true,
+    "after_index_recovery": {
+      "current_vectors": 4,
+      "history_events": [
+        {
+          "count": 4,
+          "state": "auto_promote"
+        },
+        {
+          "count": 4,
+          "state": "create"
+        }
+      ],
+      "jobs": [
+        {
+          "count": 1,
+          "state": "done"
+        }
+      ],
+      "memories": [
+        {
+          "count": 4,
+          "state": "active"
+        }
+      ],
+      "pending_vectors": 0,
+      "project": "fault-restart-v3",
+      "provenance_rows": 4,
+      "scope": "phase22b-fault-restart-v3",
+      "sqlite_main_page_bytes": 1429504,
+      "vector_json_bytes": 37981
+    }
+  },
+  "limitations": [
+    "Fault sources are synthetic inputs to the real native learning gateway/worker; no model output was replaced with a scripted response.",
+    "The restart interrupted extraction before memory commit; it does not claim interruption inside SQLite fsync.",
+    "Only the owned Nomic process and owned GUI/Vite were restarted; existing user applications were preserved."
+  ]
+}
