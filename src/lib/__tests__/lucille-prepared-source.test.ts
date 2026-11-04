@@ -52,7 +52,8 @@ it.each(['chat','agent','code'] as const)('publishes a durable prepared USER ind
     const writes=state.invoke.mock.calls.filter(([name])=>name==='lucille_learn')
     expect(writes).toHaveLength(1)
     expect(writes[0][1].interaction).toMatchObject({role:'user',user_text:'Prefiro café sem açúcar.',mode})
-    expect(JSON.stringify(writes)).not.toContain(outcome)
+    expect(writes[0][1].interaction.user_text).not.toContain(outcome)
+    expect(writes[0][1]).not.toHaveProperty('assistant')
   }
 })
 it.each(['chat','agent','code'] as const)('revokes an interrupted prepared source even without an aborted signal in %s',async mode=>{

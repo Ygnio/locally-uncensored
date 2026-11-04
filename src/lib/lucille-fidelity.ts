@@ -280,9 +280,10 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   const askedProperties = requestedMemoryProperties(snapshot.query)
   const foreignActor = /\b(?:irmao|irma|brother|sister|colega|colleague|amigo|friend)\b/.test(query)
   const askedEntity = entityIn(snapshot.query)
+  const generalProjectStatus = projectQuestion && /como esta|como anda|how is|status of/.test(query) && !/linguagem|language|banco|database/.test(query)
   const relevantKnown = !foreignActor && current.some(f =>
     (!askedEntity || f.entity === askedEntity) &&
-    (askedProperties.length ? askedProperties.includes(f.property) :
+    (generalProjectStatus ? f.entity === 'project.' + snapshot.project : askedProperties.length ? askedProperties.includes(f.property) :
       projectQuestion ? f.entity === 'project.' + snapshot.project :
       preferenceQuestion ? f.entity === 'user' && f.modality === 'preference' : false))
   if (personalQuestion && relevantKnown && uncertain(text) && assertions.length === 0) add('known_information_not_used', text, false)
