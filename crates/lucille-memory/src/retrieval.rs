@@ -296,7 +296,9 @@ pub(crate) fn eligible(tx: &Transaction, m: &Memory, query: &str, at: i64) -> Re
     if let Some(meta) = &meta {
         if meta.subject.starts_with("project.")
             && ["language", "database"].contains(&meta.property.as_str())
-            && current_project_field(query, &meta.property)
+            && !historical_intent(query)
+            && (current_project_field(query, &meta.property)
+                || crate::dialogue::execution_track(&meta.subject, &meta.property, &meta.temporal))
         {
             let pending_lifecycle:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memories n JOIN memory_quality q ON q.memory_id=n.id WHERE n.scope=?1 AND n.project=?2 AND q.subject=?3 AND q.property='lifecycle' AND n.state IN ('candidate','conflict'))",params![m.input.scope,m.input.project,meta.subject],|r|r.get(0)).map_err(db_error)?;
             let terminal:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memories n JOIN memory_quality q ON q.memory_id=n.id WHERE n.scope=?1 AND n.project=?2 AND q.subject=?3 AND q.property='lifecycle' AND n.state='active' AND q.temporal IN ('cancelled','completed'))",params![m.input.scope,m.input.project,meta.subject],|r|r.get(0)).map_err(db_error)?;

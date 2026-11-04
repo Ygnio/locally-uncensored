@@ -892,6 +892,16 @@ fn current_language_precedence_and_terminal_project_qualifier_survive_reopen() {
         .facts
         .iter()
         .any(|f| f.property == "lifecycle" && f.modality == "cancelled"));
+    assert!(!technical.facts.iter().any(|f| f.property == "language"));
+    let historical = s
+        .context(request(
+            "Qual linguagem meu projeto usa antes?",
+        ))
+        .unwrap();
+    assert!(historical
+        .facts
+        .iter()
+        .any(|f| f.value == "rust" && f.validity == "historical" && f.modality == "current_fact"));
     assert!(s
         .answer_evidence(&request("Como está meu projeto?"), &ctx.references)
         .unwrap()

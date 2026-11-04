@@ -132,6 +132,15 @@ pub(crate) fn project(tx: &Transaction, memories: &[Memory]) -> Result<Vec<Conte
                 }
             }
         }
+        let ended_after_field_recorded = if crate::dialogue::execution_track(
+            &q.subject,
+            &q.property,
+            &q.temporal,
+        ) {
+            tx.query_row("SELECT EXISTS(SELECT 1 FROM memories n JOIN memory_quality state ON state.memory_id=n.id WHERE n.scope=?1 AND n.project=?2 AND n.state='active' AND state.subject=?3 AND state.property='lifecycle' AND state.temporal IN ('cancelled','completed') AND n.updated_at>=?4)", params![m.input.scope,m.input.project,q.subject,m.updated_at], |r|r.get::<_,bool>(0)).map_err(db_error)?
+        } else {
+            false
+        };
         facts.push(ContextFact {
             id: m.input.id.clone(),
             version: m.version,
@@ -139,7 +148,7 @@ pub(crate) fn project(tx: &Transaction, memories: &[Memory]) -> Result<Vec<Conte
             property: q.property,
             value: q.value,
             modality,
-            validity: if m.state == crate::Status::Obsolete {
+            validity: if m.state == crate::Status::Obsolete || ended_after_field_recorded {
                 "historical"
             } else {
                 "current"
