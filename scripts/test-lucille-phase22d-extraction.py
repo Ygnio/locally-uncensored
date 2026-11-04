@@ -43,6 +43,9 @@ def main(a):
    c={'id':case['id'],'dataset_sha256':digest,'response':reply,'latency_seconds':time.monotonic()-start,'raw_claims':raw['claims'],'raw_parse_error':parse_error,'native_modes':{}}
    for mode in modes:
     store=root/a.label/('lucille-synthetic-'+mode+'-'+case['id'])
+    manifest=json.loads(Path(a.freeze).read_text(encoding='utf-8')) if a.freeze else {}
+    if not store.exists() and manifest.get('identity'):
+     h.bridge(Path(a.bridge).resolve(),store,{'operation':'configure_identity','expected_version':0,'profile':manifest['identity']['profile']})
     try:
      c['native_modes'][mode]=h.bridge(Path(a.bridge).resolve(),store,{'operation':'learn','mode':mode,'autonomy':True,'automatic_indexing':True,'text':case['text'],'scope':scope,'project':project,'message_id':case['id'],'output':output})
     except Exception as error:

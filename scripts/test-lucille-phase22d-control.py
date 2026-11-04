@@ -26,7 +26,7 @@ def main(a):
     assert root == repo / '.lucille-qa-runtime/lucille-synthetic-real22d'
     assert (root / '.lucille-isolated').read_bytes() == b'synthetic-data-only\n'
     assert re.fullmatch(r'[a-z0-9-]{1,50}', a.label)
-    assert re.fullmatch(r'phase22d-[a-z0-9-]{1,55}', a.scope)
+    assert re.fullmatch(r'phase22d-[a-z0-9-]{1,55}', a.scope) or a.scope == 'phase22c-final-historical-series'
     reports = root / 'reports'
     freeze = h.verify(repo, a.freeze)
     assert hashlib.sha256(Path(a.bridge).read_bytes()).hexdigest() == freeze['bridge_sha256']
