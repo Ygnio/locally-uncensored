@@ -118,6 +118,13 @@ describe('temporal and preference boundaries added in 2.2B', () => {
 })
 
 describe('literal failures observed in real development answers', () => {
+  it('does not interpret Portuguese infinitives with clitics as present usage', () => {
+    const s=snapshot([fact({value:'typescript'}),fact({id:'db',property:'database',value:'sqlite'}),fact({id:'state',property:'lifecycle',value:'cancelled',modality:'cancelled'})])
+    for (const verb of ['utilizá-lo','usá-lo']) {
+      expect(verifyMemoryAnswer(`Seu projeto está cancelado. Você havia planejado ${verb} com TypeScript e SQLite.`,s).violations).toEqual([])
+    }
+    expect(verifyMemoryAnswer('Seu projeto utiliza TypeScript.',s).violations.some(v=>v.critical)).toBe(true)
+  })
   it('does not turn scoped uncertainty into an embedded execution assertion', () => {
     const f=fact({property:'lifecycle',value:'cancelled',modality:'cancelled'})
     const s=snapshot([f],'Meu projeto está sendo desenvolvido em Rust agora?')
