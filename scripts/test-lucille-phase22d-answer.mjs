@@ -51,7 +51,26 @@ for(const item of dataset.cases){
   const embedded=await api('/v1/embeddings',{model:space.model,input:space.query_prefix+item.query,encoding_format:'float'})
   const vector={space,vector:embedded.data[0].embedding}, messageId=randomUUID(), conversationId='phase22d-independent-answer-'+item.id
   let context
-  const loader=async request=>{context=native({operation:'context',request,query_vector:vector});return context}
+  const loader=async request=>{
+    context=native({operation:'context',request,query_vector:vector})
+    if(item.known_context){
+      // Stage D can hold native facts fixed independently of stage C ranking.
+      // Selectors are frozen semantic gold, not replacement source/model text.
+      const details=native({operation:'details',scope,project})
+      const selected=item.known_context.map(selector=>{
+        const matches=details.filter(d=>d.quality && d.quality.subject===selector.entity && d.quality.property===selector.property && d.quality.value===selector.value && d.memory.state===(selector.state??'active'))
+        if(matches.length!==1)throw Error('Known context must identify exactly one canonical record')
+        return matches[0].memory
+      })
+      const references=selected.map(m=>({id:m.input.id,version:m.version}))
+      const evidence=native({operation:'answer_evidence',scope,project,request,references,claims:[]})
+      if(evidence.facts.length!==references.length)throw Error('Native reference/actor/temporal validation rejected known context')
+      context={...context,memories:selected,facts:evidence.facts,references,current_statements:[]}
+      context.used_upper_bound=Buffer.byteLength(JSON.stringify(context),'utf8')+32
+      if(context.used_upper_bound>request.token_budget)throw Error('Known context exceeds the unchanged budget')
+    }
+    return context
+  }
   const binding={profile:'lucille',scope,project,tokenBudget:8192}
   const reload=async()=>{
     const wire=await withLucilleContext({id:conversationId,lucille:binding},messageId,item.query,mode,[{role:'user',content:item.query}],undefined,loader)
