@@ -7,7 +7,8 @@ $real=(Resolve-Path (Join-Path $repo (".lucille-qa-runtime\lucille-synthetic-rea
 foreach($path in @($root,$real)){if([IO.File]::ReadAllText((Join-Path $path '.lucille-isolated')) -ne "synthetic-data-only`n"){throw 'Synthetic marker required'}}
 $exe=(Resolve-Path -LiteralPath $QaExe).Path
 if(-not $exe.StartsWith((Resolve-Path (Join-Path $repo '..\build\tauri')).Path+[IO.Path]::DirectorySeparatorChar) -or [IO.Path]::GetFileName($exe) -ne 'lucille-full-validation.exe'){throw 'Dedicated local host required'}
-foreach($port in @(15283,15287)){if(Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue){throw "Own GUI port $port occupied"}}
+function Test-OwnListener([int]$Port){return [bool]([System.Net.NetworkInformation.IPGlobalProperties]::GetIPGlobalProperties().GetActiveTcpListeners() | Where-Object Port -eq $Port)}
+foreach($port in @(15283,15287)){if(Test-OwnListener $port){throw "Own GUI port $port occupied"}}
 $pin=Invoke-RestMethod http://127.0.0.1:15284/lucille/embedding-manifest
 if($pin.simulation -ne $false){throw 'Real broker required'}
 $saved=@{};$names=@('LUCILLE_REAL_VALIDATION_CONTRACT','LUCILLE_PHASE1_ROOT','APPDATA','LOCALAPPDATA','USERPROFILE','TEMP','TMP','WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS')
@@ -26,7 +27,7 @@ try{
  $session=@{root=$root;real_root=$real;vite=(Record-Process $vite)}
  $session | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $real 'gui-processes.json')
  $deadline=[DateTime]::UtcNow.AddSeconds(30)
- while(-not(Get-NetTCPConnection -LocalPort 15283 -State Listen -ErrorAction SilentlyContinue)){if($vite.HasExited -or [DateTime]::UtcNow -gt $deadline){throw 'Dedicated Vite startup failed'};Start-Sleep -Milliseconds 200}
+ while(-not(Test-OwnListener 15283)){if($vite.HasExited -or [DateTime]::UtcNow -gt $deadline){throw 'Dedicated Vite startup failed'};Start-Sleep -Milliseconds 200}
  $env:LUCILLE_PHASE1_ROOT=$root;$env:APPDATA=Join-Path $root 'platform\roaming';$env:LOCALAPPDATA=Join-Path $root 'platform\local';$env:USERPROFILE=Join-Path $root 'home';$env:TEMP=Join-Path $root 'tmp';$env:TMP=$env:TEMP
  # CDP arguments are supplied by the dedicated native builder, not global policy.
  $env:WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS=''
@@ -35,7 +36,7 @@ try{
  $session | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $real 'gui-processes.json')
 }finally{foreach($name in $names){[Environment]::SetEnvironmentVariable($name,$saved[$name],'Process')}}
 $deadline=[DateTime]::UtcNow.AddSeconds(30)
-while(-not(Get-NetTCPConnection -LocalPort 15287 -State Listen -ErrorAction SilentlyContinue)){if($gui.HasExited){throw 'Own GUI host exited; manifest retained'}
+while(-not(Test-OwnListener 15287)){if($gui.HasExited){throw 'Own GUI host exited; manifest retained'}
  if([DateTime]::UtcNow -gt $deadline){
   if($Phase -notin @('22','22b')){throw 'Own WebView inspection startup failed; manifest retained'}
   $driver=Join-Path $real 'reports\driver-ready-progress.json'
