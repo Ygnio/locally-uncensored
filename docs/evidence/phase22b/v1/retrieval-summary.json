@@ -1,0 +1,3316 @@
+{
+  "evaluation": "frozen_v1_failed",
+  "source_sha256": "40c3ff46b8669b3f24e5a8eaa94d7efc1cf7b321a05fda3a9930c901c34aeb3f",
+  "embedding_space": {
+    "model": "nomic-ai/nomic-embed-text-v1.5",
+    "revision": "0188c9bf409793f810680a5a431e7b899c46104c",
+    "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+    "dimension": 768,
+    "normalization": "layer_norm_then_l2",
+    "pooling": "mean",
+    "document_prefix": "search_document: ",
+    "query_prefix": "search_query: ",
+    "context_tokens": 2048,
+    "index_version": 5
+  },
+  "modes": {
+    "fts5": {
+      "tp": 30,
+      "fp": 3,
+      "missed": 10,
+      "negative_injections": 0,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "precision_at_3_sum": 12.000000000000002,
+      "recall_at_3_sum": 29.5,
+      "ranking_queries": 33,
+      "by_category": {
+        "language_choice": [
+          1,
+          0,
+          0
+        ],
+        "restart_language": [
+          1,
+          0,
+          0
+        ],
+        "indirect_language": [
+          1,
+          0,
+          0
+        ],
+        "bounded_typo": [
+          2,
+          0,
+          0
+        ],
+        "multilingual": [
+          2,
+          0,
+          2
+        ],
+        "planned_database": [
+          1,
+          0,
+          0
+        ],
+        "indirect_database": [
+          0,
+          0,
+          1
+        ],
+        "primary_equipment": [
+          1,
+          0,
+          0
+        ],
+        "work_equipment": [
+          1,
+          0,
+          0
+        ],
+        "other_equipment": [
+          1,
+          0,
+          0
+        ],
+        "implicit_comparison": [
+          4,
+          1,
+          0
+        ],
+        "explicit_comparison": [
+          0,
+          0,
+          3
+        ],
+        "renewed_coffee": [
+          2,
+          1,
+          0
+        ],
+        "historical_preference": [
+          0,
+          0,
+          2
+        ],
+        "interface_theme": [
+          1,
+          0,
+          0
+        ],
+        "objective_replies": [
+          2,
+          1,
+          0
+        ],
+        "character_creation": [
+          2,
+          0,
+          0
+        ],
+        "deleted_information": [
+          0,
+          0,
+          0
+        ],
+        "completed_goal": [
+          1,
+          0,
+          0
+        ],
+        "current_vs_future": [
+          2,
+          0,
+          1
+        ],
+        "cancelled_project": [
+          2,
+          0,
+          0
+        ],
+        "historical_project": [
+          1,
+          0,
+          1
+        ],
+        "explicit_unknown": [
+          1,
+          0,
+          0
+        ],
+        "pending_review": [
+          0,
+          0,
+          0
+        ],
+        "no_memory": [
+          0,
+          0,
+          0
+        ],
+        "unrelated_property": [
+          0,
+          0,
+          0
+        ],
+        "other_person": [
+          0,
+          0,
+          0
+        ],
+        "exact_project_boundary": [
+          0,
+          0,
+          0
+        ],
+        "exact_scope_boundary": [
+          1,
+          0,
+          0
+        ],
+        "no_fuzzy_project_names": [
+          0,
+          0,
+          0
+        ]
+      },
+      "precision": 0.9090909090909091,
+      "recall": 0.75,
+      "precision_at_3": 0.3636363636363637,
+      "recall_at_3": 0.8939393939393939,
+      "passed": false
+    },
+    "nomic": {
+      "tp": 32,
+      "fp": 3,
+      "missed": 8,
+      "negative_injections": 1,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "precision_at_3_sum": 12.66666666666667,
+      "recall_at_3_sum": 31.5,
+      "ranking_queries": 33,
+      "by_category": {
+        "language_choice": [
+          1,
+          0,
+          0
+        ],
+        "restart_language": [
+          1,
+          0,
+          0
+        ],
+        "indirect_language": [
+          0,
+          0,
+          1
+        ],
+        "bounded_typo": [
+          2,
+          0,
+          0
+        ],
+        "multilingual": [
+          4,
+          0,
+          0
+        ],
+        "planned_database": [
+          1,
+          0,
+          0
+        ],
+        "indirect_database": [
+          0,
+          0,
+          1
+        ],
+        "primary_equipment": [
+          1,
+          0,
+          0
+        ],
+        "work_equipment": [
+          1,
+          0,
+          0
+        ],
+        "other_equipment": [
+          1,
+          0,
+          0
+        ],
+        "implicit_comparison": [
+          4,
+          2,
+          0
+        ],
+        "explicit_comparison": [
+          3,
+          0,
+          0
+        ],
+        "renewed_coffee": [
+          0,
+          0,
+          2
+        ],
+        "historical_preference": [
+          1,
+          0,
+          1
+        ],
+        "interface_theme": [
+          1,
+          0,
+          0
+        ],
+        "objective_replies": [
+          1,
+          0,
+          1
+        ],
+        "character_creation": [
+          2,
+          0,
+          0
+        ],
+        "deleted_information": [
+          0,
+          1,
+          0
+        ],
+        "completed_goal": [
+          1,
+          0,
+          0
+        ],
+        "current_vs_future": [
+          1,
+          0,
+          2
+        ],
+        "cancelled_project": [
+          2,
+          0,
+          0
+        ],
+        "historical_project": [
+          2,
+          0,
+          0
+        ],
+        "explicit_unknown": [
+          1,
+          0,
+          0
+        ],
+        "pending_review": [
+          0,
+          0,
+          0
+        ],
+        "no_memory": [
+          0,
+          0,
+          0
+        ],
+        "unrelated_property": [
+          0,
+          0,
+          0
+        ],
+        "other_person": [
+          0,
+          0,
+          0
+        ],
+        "exact_project_boundary": [
+          0,
+          0,
+          0
+        ],
+        "exact_scope_boundary": [
+          1,
+          0,
+          0
+        ],
+        "no_fuzzy_project_names": [
+          0,
+          0,
+          0
+        ]
+      },
+      "precision": 0.9142857142857143,
+      "recall": 0.8,
+      "precision_at_3": 0.3838383838383839,
+      "recall_at_3": 0.9545454545454546,
+      "passed": false
+    },
+    "hybrid": {
+      "tp": 37,
+      "fp": 5,
+      "missed": 3,
+      "negative_injections": 1,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "precision_at_3_sum": 12.66666666666667,
+      "recall_at_3_sum": 31.5,
+      "ranking_queries": 33,
+      "by_category": {
+        "language_choice": [
+          1,
+          0,
+          0
+        ],
+        "restart_language": [
+          1,
+          0,
+          0
+        ],
+        "indirect_language": [
+          1,
+          0,
+          0
+        ],
+        "bounded_typo": [
+          2,
+          0,
+          0
+        ],
+        "multilingual": [
+          4,
+          0,
+          0
+        ],
+        "planned_database": [
+          1,
+          0,
+          0
+        ],
+        "indirect_database": [
+          0,
+          0,
+          1
+        ],
+        "primary_equipment": [
+          1,
+          0,
+          0
+        ],
+        "work_equipment": [
+          1,
+          0,
+          0
+        ],
+        "other_equipment": [
+          1,
+          0,
+          0
+        ],
+        "implicit_comparison": [
+          4,
+          2,
+          0
+        ],
+        "explicit_comparison": [
+          3,
+          0,
+          0
+        ],
+        "renewed_coffee": [
+          2,
+          1,
+          0
+        ],
+        "historical_preference": [
+          1,
+          0,
+          1
+        ],
+        "interface_theme": [
+          1,
+          0,
+          0
+        ],
+        "objective_replies": [
+          2,
+          1,
+          0
+        ],
+        "character_creation": [
+          2,
+          0,
+          0
+        ],
+        "deleted_information": [
+          0,
+          1,
+          0
+        ],
+        "completed_goal": [
+          1,
+          0,
+          0
+        ],
+        "current_vs_future": [
+          2,
+          0,
+          1
+        ],
+        "cancelled_project": [
+          2,
+          0,
+          0
+        ],
+        "historical_project": [
+          2,
+          0,
+          0
+        ],
+        "explicit_unknown": [
+          1,
+          0,
+          0
+        ],
+        "pending_review": [
+          0,
+          0,
+          0
+        ],
+        "no_memory": [
+          0,
+          0,
+          0
+        ],
+        "unrelated_property": [
+          0,
+          0,
+          0
+        ],
+        "other_person": [
+          0,
+          0,
+          0
+        ],
+        "exact_project_boundary": [
+          0,
+          0,
+          0
+        ],
+        "exact_scope_boundary": [
+          1,
+          0,
+          0
+        ],
+        "no_fuzzy_project_names": [
+          0,
+          0,
+          0
+        ]
+      },
+      "precision": 0.8809523809523809,
+      "recall": 0.925,
+      "precision_at_3": 0.3838383838383839,
+      "recall_at_3": 0.9545454545454546,
+      "passed": false
+    }
+  },
+  "calls": 61,
+  "samples": [
+    {
+      "id": "br-001",
+      "query": {
+        "id": "br-001",
+        "query": "Que linguagem eu decidi usar no meu projeto?",
+        "expected": [
+          "language"
+        ],
+        "category": "language_choice",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.0928447000333108,
+          "rank_before_threshold": [
+            "language",
+            "database",
+            "description"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09049979998962954,
+          "rank_before_threshold": [
+            "language",
+            "description",
+            "database",
+            "goal-complete",
+            "objective",
+            "characters",
+            "work",
+            "theme",
+            "other",
+            "coffee-now",
+            "primary"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09334419999504462,
+          "rank_before_threshold": [
+            "language",
+            "description",
+            "database",
+            "goal-complete",
+            "objective",
+            "characters",
+            "work",
+            "theme",
+            "other",
+            "coffee-now",
+            "primary"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-002",
+      "query": {
+        "id": "br-002",
+        "query": "Qual linguagem está vigente no meu projeto agora?",
+        "expected": [
+          "language"
+        ],
+        "category": "restart_language",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09947229997487739,
+          "rank_before_threshold": [
+            "language",
+            "description",
+            "database"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09687399998074397,
+          "rank_before_threshold": [
+            "language",
+            "objective",
+            "description",
+            "database",
+            "goal-complete",
+            "characters",
+            "theme",
+            "work",
+            "other",
+            "coffee-now",
+            "primary"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09478399995714426,
+          "rank_before_threshold": [
+            "language",
+            "objective",
+            "description",
+            "database",
+            "goal-complete",
+            "characters",
+            "theme",
+            "work",
+            "other",
+            "coffee-now",
+            "primary"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-003",
+      "query": {
+        "id": "br-003",
+        "query": "Lembra qual linguagem escolhi para o projeto?",
+        "expected": [
+          "language"
+        ],
+        "category": "indirect_language",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.0918009000015445,
+          "rank_before_threshold": [
+            "language",
+            "description",
+            "database"
+          ]
+        },
+        "nomic": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 1,
+          "native_latency_seconds": 0.09272390004480258,
+          "rank_before_threshold": [
+            "language",
+            "description",
+            "objective",
+            "goal-complete",
+            "database",
+            "work",
+            "theme",
+            "characters",
+            "other",
+            "primary",
+            "coffee-now"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08988980000140145,
+          "rank_before_threshold": [
+            "language",
+            "description",
+            "objective",
+            "goal-complete",
+            "database",
+            "work",
+            "theme",
+            "characters",
+            "other",
+            "primary",
+            "coffee-now"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-004",
+      "query": {
+        "id": "br-004",
+        "query": "Que linguagm eu decidi usar no meu projeto?",
+        "expected": [
+          "language"
+        ],
+        "category": "bounded_typo",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08293399994727224,
+          "rank_before_threshold": [
+            "language",
+            "database",
+            "description"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09404579998226836,
+          "rank_before_threshold": [
+            "language",
+            "description",
+            "goal-complete",
+            "database",
+            "objective",
+            "characters",
+            "work",
+            "theme",
+            "other",
+            "primary",
+            "coffee-now"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09370300004957244,
+          "rank_before_threshold": [
+            "language",
+            "description",
+            "goal-complete",
+            "database",
+            "objective",
+            "characters",
+            "work",
+            "theme",
+            "other",
+            "primary",
+            "coffee-now"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-005",
+      "query": {
+        "id": "br-005",
+        "query": "Which language did I choose for my project?",
+        "expected": [
+          "language"
+        ],
+        "category": "multilingual",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 1,
+          "native_latency_seconds": 0.08275929995579645,
+          "rank_before_threshold": []
+        },
+        "nomic": {
+          "actual": [
+            "language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08882479998283088,
+          "rank_before_threshold": [
+            "language",
+            "database",
+            "characters",
+            "objective",
+            "theme",
+            "goal-complete",
+            "description",
+            "coffee-now",
+            "primary",
+            "other",
+            "work"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08911050000460818,
+          "rank_before_threshold": [
+            "language",
+            "database",
+            "characters",
+            "objective",
+            "theme",
+            "goal-complete",
+            "description",
+            "coffee-now",
+            "primary",
+            "other",
+            "work"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-006",
+      "query": {
+        "id": "br-006",
+        "query": "Qual banco de dados quero usar no meu projeto?",
+        "expected": [
+          "database"
+        ],
+        "category": "planned_database",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "database"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08982669998658821,
+          "rank_before_threshold": [
+            "database",
+            "language",
+            "description"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "database"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.10282030003145337,
+          "rank_before_threshold": [
+            "database",
+            "description",
+            "work",
+            "objective",
+            "language",
+            "other",
+            "theme",
+            "primary",
+            "characters",
+            "goal-complete",
+            "coffee-now"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "database"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.1008315000217408,
+          "rank_before_threshold": [
+            "database",
+            "description",
+            "work",
+            "objective",
+            "language",
+            "other",
+            "theme",
+            "primary",
+            "characters",
+            "goal-complete",
+            "coffee-now"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-007",
+      "query": {
+        "id": "br-007",
+        "query": "Lembra minha escolha de armazenamento para o projeto?",
+        "expected": [
+          "database"
+        ],
+        "category": "indirect_database",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 1,
+          "native_latency_seconds": 0.09135810000589117,
+          "rank_before_threshold": [
+            "language",
+            "description",
+            "database"
+          ]
+        },
+        "nomic": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 1,
+          "native_latency_seconds": 0.10013499995693564,
+          "rank_before_threshold": [
+            "description",
+            "objective",
+            "language",
+            "database",
+            "work",
+            "goal-complete",
+            "other",
+            "primary",
+            "theme",
+            "characters",
+            "coffee-now"
+          ]
+        },
+        "hybrid": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 1,
+          "native_latency_seconds": 0.10613159998320043,
+          "rank_before_threshold": [
+            "description",
+            "objective",
+            "language",
+            "database",
+            "work",
+            "goal-complete",
+            "other",
+            "primary",
+            "theme",
+            "characters",
+            "coffee-now"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-008",
+      "query": {
+        "id": "br-008",
+        "query": "Which database do I plan to use for my project?",
+        "expected": [
+          "database"
+        ],
+        "category": "multilingual",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 1,
+          "native_latency_seconds": 0.07475760002853349,
+          "rank_before_threshold": []
+        },
+        "nomic": {
+          "actual": [
+            "database"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08830669999588281,
+          "rank_before_threshold": [
+            "database",
+            "description",
+            "language",
+            "characters",
+            "objective",
+            "primary",
+            "theme",
+            "other",
+            "work",
+            "goal-complete",
+            "coffee-now"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "database"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.0873839000123553,
+          "rank_before_threshold": [
+            "database",
+            "description",
+            "language",
+            "characters",
+            "objective",
+            "primary",
+            "theme",
+            "other",
+            "work",
+            "goal-complete",
+            "coffee-now"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-009",
+      "query": {
+        "id": "br-009",
+        "query": "Qual é a capacidade de RAM do meu computador principal?",
+        "expected": [
+          "primary"
+        ],
+        "category": "primary_equipment",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "primary"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09303889999864623,
+          "rank_before_threshold": [
+            "primary",
+            "other",
+            "work"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "primary"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08878779999213293,
+          "rank_before_threshold": [
+            "primary",
+            "other",
+            "work",
+            "description",
+            "language",
+            "database",
+            "characters",
+            "theme",
+            "objective",
+            "goal-complete",
+            "coffee-now"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "primary"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09225980000337586,
+          "rank_before_threshold": [
+            "primary",
+            "other",
+            "work",
+            "description",
+            "language",
+            "database",
+            "characters",
+            "theme",
+            "objective",
+            "goal-complete",
+            "coffee-now"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-010",
+      "query": {
+        "id": "br-010",
+        "query": "Quanto de RAM tem meu notebook de trabalho?",
+        "expected": [
+          "work"
+        ],
+        "category": "work_equipment",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "work"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08524319995194674,
+          "rank_before_threshold": [
+            "work",
+            "other",
+            "primary"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "work"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08770190004725009,
+          "rank_before_threshold": [
+            "work",
+            "other",
+            "primary",
+            "description",
+            "database",
+            "language",
+            "theme",
+            "objective",
+            "characters",
+            "goal-complete",
+            "coffee-now"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "work"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09410600003320724,
+          "rank_before_threshold": [
+            "work",
+            "other",
+            "primary",
+            "description",
+            "database",
+            "language",
+            "theme",
+            "objective",
+            "characters",
+            "goal-complete",
+            "coffee-now"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-011",
+      "query": {
+        "id": "br-011",
+        "query": "Quanto de RAM tem meu outro computador?",
+        "expected": [
+          "other"
+        ],
+        "category": "other_equipment",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "other"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.07746300002327189,
+          "rank_before_threshold": [
+            "other",
+            "primary",
+            "work"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "other"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08845010004006326,
+          "rank_before_threshold": [
+            "other",
+            "primary",
+            "work",
+            "description",
+            "language",
+            "database",
+            "theme",
+            "characters",
+            "objective",
+            "goal-complete",
+            "coffee-now"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "other"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09247130004223436,
+          "rank_before_threshold": [
+            "other",
+            "primary",
+            "work",
+            "description",
+            "language",
+            "database",
+            "theme",
+            "characters",
+            "objective",
+            "goal-complete",
+            "coffee-now"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-012",
+      "query": {
+        "id": "br-012",
+        "query": "Qual é a RAM do meu comptador principal?",
+        "expected": [
+          "primary"
+        ],
+        "category": "bounded_typo",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "primary"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08549520000815392,
+          "rank_before_threshold": [
+            "primary",
+            "other",
+            "work"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "primary"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08863290003500879,
+          "rank_before_threshold": [
+            "primary",
+            "other",
+            "work",
+            "description",
+            "language",
+            "database",
+            "characters",
+            "objective",
+            "theme",
+            "goal-complete",
+            "coffee-now"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "primary"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08752909995382652,
+          "rank_before_threshold": [
+            "primary",
+            "other",
+            "work",
+            "description",
+            "language",
+            "database",
+            "characters",
+            "objective",
+            "theme",
+            "goal-complete",
+            "coffee-now"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-013",
+      "query": {
+        "id": "br-013",
+        "query": "Quanto de RAM têm meu principal e meu notebook de trabalho?",
+        "expected": [
+          "primary",
+          "work"
+        ],
+        "category": "implicit_comparison",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "work",
+            "primary"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09848860005149618,
+          "rank_before_threshold": [
+            "work",
+            "primary",
+            "other"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "work",
+            "primary",
+            "other"
+          ],
+          "tp": 2,
+          "fp": 1,
+          "missed": 0,
+          "native_latency_seconds": 0.09890680003445596,
+          "rank_before_threshold": [
+            "work",
+            "primary",
+            "other",
+            "description",
+            "database",
+            "language",
+            "objective",
+            "theme",
+            "characters",
+            "goal-complete",
+            "coffee-now"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "work",
+            "primary",
+            "other"
+          ],
+          "tp": 2,
+          "fp": 1,
+          "missed": 0,
+          "native_latency_seconds": 0.11300930002471432,
+          "rank_before_threshold": [
+            "work",
+            "primary",
+            "other",
+            "description",
+            "database",
+            "language",
+            "objective",
+            "theme",
+            "characters",
+            "goal-complete",
+            "coffee-now"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-014",
+      "query": {
+        "id": "br-014",
+        "query": "Qual a RAM do meu outro computador e do meu notebook de trabalho?",
+        "expected": [
+          "other",
+          "work"
+        ],
+        "category": "implicit_comparison",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "other",
+            "work",
+            "primary"
+          ],
+          "tp": 2,
+          "fp": 1,
+          "missed": 0,
+          "native_latency_seconds": 0.10178989998530596,
+          "rank_before_threshold": [
+            "work",
+            "other",
+            "primary"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "work",
+            "other",
+            "primary"
+          ],
+          "tp": 2,
+          "fp": 1,
+          "missed": 0,
+          "native_latency_seconds": 0.11804820003453642,
+          "rank_before_threshold": [
+            "work",
+            "other",
+            "primary",
+            "description",
+            "language",
+            "database",
+            "theme",
+            "objective",
+            "characters",
+            "goal-complete",
+            "coffee-now"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "work",
+            "other",
+            "primary"
+          ],
+          "tp": 2,
+          "fp": 1,
+          "missed": 0,
+          "native_latency_seconds": 0.11519869999028742,
+          "rank_before_threshold": [
+            "work",
+            "other",
+            "primary",
+            "description",
+            "language",
+            "database",
+            "theme",
+            "objective",
+            "characters",
+            "goal-complete",
+            "coffee-now"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-015",
+      "query": {
+        "id": "br-015",
+        "query": "Compare a RAM dos meus três computadores.",
+        "expected": [
+          "primary",
+          "work",
+          "other"
+        ],
+        "category": "explicit_comparison",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 3,
+          "native_latency_seconds": 0.094960100017488,
+          "rank_before_threshold": [
+            "other",
+            "primary",
+            "work"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "other",
+            "primary",
+            "work"
+          ],
+          "tp": 3,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.1227597999968566,
+          "rank_before_threshold": [
+            "other",
+            "primary",
+            "work",
+            "theme",
+            "language",
+            "database",
+            "objective",
+            "description",
+            "characters",
+            "coffee-now",
+            "goal-complete"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "other",
+            "primary",
+            "work"
+          ],
+          "tp": 3,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.10294049995718524,
+          "rank_before_threshold": [
+            "other",
+            "primary",
+            "work",
+            "theme",
+            "language",
+            "database",
+            "objective",
+            "description",
+            "characters",
+            "coffee-now",
+            "goal-complete"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-016",
+      "query": {
+        "id": "br-016",
+        "query": "Como eu prefiro tomar meu café?",
+        "expected": [
+          "coffee-now"
+        ],
+        "category": "renewed_coffee",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": [
+          "coffee-old"
+        ]
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "coffee-now"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08234630001243204,
+          "rank_before_threshold": [
+            "objective",
+            "theme",
+            "coffee-now"
+          ]
+        },
+        "nomic": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 1,
+          "native_latency_seconds": 0.08214409998618066,
+          "rank_before_threshold": [
+            "description",
+            "coffee-now",
+            "database",
+            "work",
+            "language",
+            "theme",
+            "characters",
+            "other",
+            "objective",
+            "primary",
+            "goal-complete"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "coffee-now"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08922309998888522,
+          "rank_before_threshold": [
+            "description",
+            "coffee-now",
+            "database",
+            "work",
+            "language",
+            "theme",
+            "characters",
+            "other",
+            "objective",
+            "primary",
+            "goal-complete"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-017",
+      "query": {
+        "id": "br-017",
+        "query": "Como gosto do meu café agora?",
+        "expected": [
+          "coffee-now"
+        ],
+        "category": "renewed_coffee",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": [
+          "coffee-old"
+        ]
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "coffee-now",
+            "characters"
+          ],
+          "tp": 1,
+          "fp": 1,
+          "missed": 0,
+          "native_latency_seconds": 0.08746940002311021,
+          "rank_before_threshold": [
+            "characters",
+            "coffee-now"
+          ]
+        },
+        "nomic": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 1,
+          "native_latency_seconds": 0.08224979997612536,
+          "rank_before_threshold": [
+            "coffee-now",
+            "description",
+            "characters",
+            "language",
+            "database",
+            "theme",
+            "work",
+            "objective",
+            "other",
+            "goal-complete",
+            "primary"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "coffee-now",
+            "characters"
+          ],
+          "tp": 1,
+          "fp": 1,
+          "missed": 0,
+          "native_latency_seconds": 0.09834540000883862,
+          "rank_before_threshold": [
+            "coffee-now",
+            "description",
+            "characters",
+            "language",
+            "database",
+            "theme",
+            "work",
+            "objective",
+            "other",
+            "goal-complete",
+            "primary"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-018",
+      "query": {
+        "id": "br-018",
+        "query": "Do I take my coffee with sugar or without it?",
+        "expected": [
+          "coffee-now"
+        ],
+        "category": "multilingual",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": [
+          "coffee-old"
+        ]
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "coffee-now"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08430590003263205,
+          "rank_before_threshold": [
+            "coffee-now"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "coffee-now"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09289410000201315,
+          "rank_before_threshold": [
+            "coffee-now",
+            "characters",
+            "theme",
+            "objective",
+            "database",
+            "goal-complete",
+            "language",
+            "description",
+            "other",
+            "primary",
+            "work"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "coffee-now"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09392279997700825,
+          "rank_before_threshold": [
+            "coffee-now",
+            "characters",
+            "theme",
+            "objective",
+            "database",
+            "goal-complete",
+            "language",
+            "description",
+            "other",
+            "primary",
+            "work"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-019",
+      "query": {
+        "id": "br-019",
+        "query": "Meu café era como antes e como é agora?",
+        "expected": [
+          "coffee-old",
+          "coffee-now"
+        ],
+        "category": "historical_preference",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 2,
+          "native_latency_seconds": 0.07582900003762916,
+          "rank_before_threshold": [
+            "coffee-now"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "coffee-now"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 1,
+          "native_latency_seconds": 0.09049800003413111,
+          "rank_before_threshold": [
+            "coffee-now",
+            "description",
+            "language",
+            "database",
+            "theme",
+            "characters",
+            "objective",
+            "goal-complete",
+            "work",
+            "other",
+            "primary"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "coffee-now"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 1,
+          "native_latency_seconds": 0.08778449997771531,
+          "rank_before_threshold": [
+            "coffee-now",
+            "description",
+            "language",
+            "database",
+            "theme",
+            "characters",
+            "objective",
+            "goal-complete",
+            "work",
+            "other",
+            "primary"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-020",
+      "query": {
+        "id": "br-020",
+        "query": "Que tema de interface eu prefiro?",
+        "expected": [
+          "theme"
+        ],
+        "category": "interface_theme",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "theme"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08542700001271442,
+          "rank_before_threshold": [
+            "theme",
+            "objective"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "theme"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08419600001070648,
+          "rank_before_threshold": [
+            "theme",
+            "description",
+            "database",
+            "objective",
+            "language",
+            "primary",
+            "characters",
+            "other",
+            "work",
+            "goal-complete",
+            "coffee-now"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "theme"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08733539999229833,
+          "rank_before_threshold": [
+            "theme",
+            "description",
+            "database",
+            "objective",
+            "language",
+            "primary",
+            "characters",
+            "other",
+            "work",
+            "goal-complete",
+            "coffee-now"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-021",
+      "query": {
+        "id": "br-021",
+        "query": "Como eu prefiro que você responda?",
+        "expected": [
+          "objective"
+        ],
+        "category": "objective_replies",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "objective"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08964339998783544,
+          "rank_before_threshold": [
+            "objective",
+            "theme"
+          ]
+        },
+        "nomic": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 1,
+          "native_latency_seconds": 0.08555750001687557,
+          "rank_before_threshold": [
+            "description",
+            "objective",
+            "theme",
+            "database",
+            "language",
+            "characters",
+            "goal-complete",
+            "coffee-now",
+            "other",
+            "primary",
+            "work"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "objective"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08702250005444512,
+          "rank_before_threshold": [
+            "description",
+            "objective",
+            "theme",
+            "database",
+            "language",
+            "characters",
+            "goal-complete",
+            "coffee-now",
+            "other",
+            "primary",
+            "work"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-022",
+      "query": {
+        "id": "br-022",
+        "query": "Como eu gosto das respostas?",
+        "expected": [
+          "objective"
+        ],
+        "category": "objective_replies",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "objective",
+            "characters"
+          ],
+          "tp": 1,
+          "fp": 1,
+          "missed": 0,
+          "native_latency_seconds": 0.08282429998507723,
+          "rank_before_threshold": [
+            "objective",
+            "characters"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "objective"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08429990004515275,
+          "rank_before_threshold": [
+            "objective",
+            "description",
+            "language",
+            "database",
+            "characters",
+            "work",
+            "theme",
+            "other",
+            "goal-complete",
+            "primary",
+            "coffee-now"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "objective",
+            "characters"
+          ],
+          "tp": 1,
+          "fp": 1,
+          "missed": 0,
+          "native_latency_seconds": 0.09249770001042634,
+          "rank_before_threshold": [
+            "objective",
+            "description",
+            "language",
+            "database",
+            "characters",
+            "work",
+            "theme",
+            "other",
+            "goal-complete",
+            "primary",
+            "coffee-now"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-023",
+      "query": {
+        "id": "br-023",
+        "query": "Do I enjoy creating characters in games?",
+        "expected": [
+          "characters"
+        ],
+        "category": "character_creation",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "characters"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.07768659997964278,
+          "rank_before_threshold": [
+            "characters"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "characters"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08941309998044744,
+          "rank_before_threshold": [
+            "characters",
+            "language",
+            "theme",
+            "database",
+            "objective",
+            "coffee-now",
+            "goal-complete",
+            "other",
+            "description",
+            "primary",
+            "work"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "characters"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.10196619998896495,
+          "rank_before_threshold": [
+            "characters",
+            "language",
+            "theme",
+            "database",
+            "objective",
+            "coffee-now",
+            "goal-complete",
+            "other",
+            "description",
+            "primary",
+            "work"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-024",
+      "query": {
+        "id": "br-024",
+        "query": "Qual é minha preferência sobre criação de personagens em jogos?",
+        "expected": [
+          "characters"
+        ],
+        "category": "character_creation",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "characters"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.07781620003515854,
+          "rank_before_threshold": [
+            "characters"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "characters"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09204710001358762,
+          "rank_before_threshold": [
+            "characters",
+            "objective",
+            "description",
+            "theme",
+            "coffee-now",
+            "database",
+            "language",
+            "goal-complete",
+            "work",
+            "other",
+            "primary"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "characters"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09458949998952448,
+          "rank_before_threshold": [
+            "characters",
+            "objective",
+            "description",
+            "theme",
+            "coffee-now",
+            "database",
+            "language",
+            "goal-complete",
+            "work",
+            "other",
+            "primary"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-025",
+      "query": {
+        "id": "br-025",
+        "query": "Minha preferência pela escolha de classes ainda está registrada?",
+        "expected": [],
+        "category": "deleted_information",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": [
+          "classes-deleted"
+        ]
+      },
+      "modes": {
+        "fts5": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.07390239997766912,
+          "rank_before_threshold": []
+        },
+        "nomic": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09459300001617521,
+          "rank_before_threshold": [
+            "theme",
+            "objective",
+            "description",
+            "coffee-now",
+            "characters",
+            "database",
+            "language",
+            "work",
+            "primary",
+            "other",
+            "goal-complete"
+          ]
+        },
+        "hybrid": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09331960004055873,
+          "rank_before_threshold": [
+            "theme",
+            "objective",
+            "description",
+            "coffee-now",
+            "characters",
+            "database",
+            "language",
+            "work",
+            "primary",
+            "other",
+            "goal-complete"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-026",
+      "query": {
+        "id": "br-026",
+        "query": "No histórico, qual era minha preferência pela escolha de classes?",
+        "expected": [],
+        "category": "deleted_information",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": [
+          "classes-deleted"
+        ]
+      },
+      "modes": {
+        "fts5": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.0907895999844186,
+          "rank_before_threshold": []
+        },
+        "nomic": {
+          "actual": [
+            "coffee-now"
+          ],
+          "tp": 0,
+          "fp": 1,
+          "missed": 0,
+          "native_latency_seconds": 0.09080160001758486,
+          "rank_before_threshold": [
+            "theme",
+            "description",
+            "coffee-now",
+            "objective",
+            "characters",
+            "language",
+            "database",
+            "goal-complete",
+            "work",
+            "primary",
+            "other"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "coffee-now"
+          ],
+          "tp": 0,
+          "fp": 1,
+          "missed": 0,
+          "native_latency_seconds": 0.10065520001808181,
+          "rank_before_threshold": [
+            "theme",
+            "description",
+            "coffee-now",
+            "objective",
+            "characters",
+            "language",
+            "database",
+            "goal-complete",
+            "work",
+            "primary",
+            "other"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-027",
+      "query": {
+        "id": "br-027",
+        "query": "Qual objetivo eu concluí?",
+        "expected": [
+          "goal-complete"
+        ],
+        "category": "completed_goal",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "goal-complete"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08012080000480637,
+          "rank_before_threshold": [
+            "goal-complete"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "goal-complete"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.086277499969583,
+          "rank_before_threshold": [
+            "goal-complete",
+            "description",
+            "objective",
+            "language",
+            "database",
+            "theme",
+            "characters",
+            "work",
+            "other",
+            "primary",
+            "coffee-now"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "goal-complete"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09161399997537956,
+          "rank_before_threshold": [
+            "goal-complete",
+            "description",
+            "objective",
+            "language",
+            "database",
+            "theme",
+            "characters",
+            "work",
+            "other",
+            "primary",
+            "coffee-now"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-028",
+      "query": {
+        "id": "br-028",
+        "query": "What goal did I complete?",
+        "expected": [
+          "goal-complete"
+        ],
+        "category": "multilingual",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "goal-complete"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08317830000305548,
+          "rank_before_threshold": []
+        },
+        "nomic": {
+          "actual": [
+            "goal-complete"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08301060000667349,
+          "rank_before_threshold": [
+            "goal-complete",
+            "objective",
+            "description",
+            "language",
+            "characters",
+            "database",
+            "work",
+            "coffee-now",
+            "other",
+            "primary",
+            "theme"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "goal-complete"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08658200001809746,
+          "rank_before_threshold": [
+            "goal-complete",
+            "objective",
+            "description",
+            "language",
+            "characters",
+            "database",
+            "work",
+            "coffee-now",
+            "other",
+            "primary",
+            "theme"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-029",
+      "query": {
+        "id": "br-029",
+        "query": "Que linguagem meu projeto usa agora?",
+        "expected": [
+          "actual-language"
+        ],
+        "category": "current_vs_future",
+        "project": "guatambu",
+        "scope": "phase22b-ret-a",
+        "forbidden": [
+          "future-choice"
+        ]
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "actual-language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.0701091000228189,
+          "rank_before_threshold": [
+            "actual-language",
+            "future-choice"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "actual-language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.06484409997938201,
+          "rank_before_threshold": [
+            "actual-language",
+            "future-choice"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "actual-language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.06737020000582561,
+          "rank_before_threshold": [
+            "actual-language",
+            "future-choice"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-030",
+      "query": {
+        "id": "br-030",
+        "query": "Quais são a linguagem que planejo usar e a que meu projeto usa agora?",
+        "expected": [
+          "future-choice",
+          "actual-language"
+        ],
+        "category": "current_vs_future",
+        "project": "guatambu",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "future-choice"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 1,
+          "native_latency_seconds": 0.06516400002874434,
+          "rank_before_threshold": [
+            "actual-language",
+            "future-choice"
+          ]
+        },
+        "nomic": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 2,
+          "native_latency_seconds": 0.06467319995863363,
+          "rank_before_threshold": [
+            "future-choice",
+            "actual-language"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "future-choice"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 1,
+          "native_latency_seconds": 0.06919800001196563,
+          "rank_before_threshold": [
+            "future-choice",
+            "actual-language"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-031",
+      "query": {
+        "id": "br-031",
+        "query": "Meu projeto está sendo desenvolvido em JavaScript agora?",
+        "expected": [
+          "ended-state"
+        ],
+        "category": "cancelled_project",
+        "project": "peroba",
+        "scope": "phase22b-ret-a",
+        "forbidden": [
+          "ended-language"
+        ]
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "ended-state"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08450729999458417,
+          "rank_before_threshold": [
+            "ended-language",
+            "ended-state"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "ended-state"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.06875129998661578,
+          "rank_before_threshold": [
+            "ended-language",
+            "ended-state"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "ended-state"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.06667289999313653,
+          "rank_before_threshold": [
+            "ended-language",
+            "ended-state"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-032",
+      "query": {
+        "id": "br-032",
+        "query": "Qual é o estado atual do meu projeto?",
+        "expected": [
+          "ended-state"
+        ],
+        "category": "cancelled_project",
+        "project": "peroba",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "ended-state"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.06695000000763685,
+          "rank_before_threshold": [
+            "ended-state",
+            "ended-language"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "ended-state"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.06577019998803735,
+          "rank_before_threshold": [
+            "ended-state",
+            "ended-language"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "ended-state"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.06309730000793934,
+          "rank_before_threshold": [
+            "ended-state",
+            "ended-language"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-033",
+      "query": {
+        "id": "br-033",
+        "query": "Que linguagem eu usava antes e qual é o estado atual deste projeto?",
+        "expected": [
+          "ended-language",
+          "ended-state"
+        ],
+        "category": "historical_project",
+        "project": "peroba",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "ended-state"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 1,
+          "native_latency_seconds": 0.06505390000529587,
+          "rank_before_threshold": [
+            "ended-state",
+            "ended-language"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "ended-state",
+            "ended-language"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.06636459997389466,
+          "rank_before_threshold": [
+            "ended-language",
+            "ended-state"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "ended-state",
+            "ended-language"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.06728939997265115,
+          "rank_before_threshold": [
+            "ended-language",
+            "ended-state"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-034",
+      "query": {
+        "id": "br-034",
+        "query": "Eu já decidi a linguagem do meu projeto?",
+        "expected": [
+          "unknown-language"
+        ],
+        "category": "explicit_unknown",
+        "project": "embauba",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "unknown-language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.06627479998860508,
+          "rank_before_threshold": [
+            "unknown-language"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "unknown-language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.06346120004309341,
+          "rank_before_threshold": [
+            "unknown-language"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "unknown-language"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.06147960002999753,
+          "rank_before_threshold": [
+            "unknown-language"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-035",
+      "query": {
+        "id": "br-035",
+        "query": "Que linguagem meu projeto usa? ",
+        "expected": [],
+        "category": "pending_review",
+        "project": "catuaba",
+        "scope": "phase22b-ret-a",
+        "forbidden": [
+          "pending-choice"
+        ]
+      },
+      "modes": {
+        "fts5": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.06920500000705943,
+          "rank_before_threshold": []
+        },
+        "nomic": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.060614800022449344,
+          "rank_before_threshold": []
+        },
+        "hybrid": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.056799499958287925,
+          "rank_before_threshold": []
+        }
+      }
+    },
+    {
+      "id": "br-036",
+      "query": {
+        "id": "br-036",
+        "query": "Qual é a minha data de aniversário?",
+        "expected": [],
+        "category": "no_memory",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.07117279997328296,
+          "rank_before_threshold": []
+        },
+        "nomic": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.09031090000644326,
+          "rank_before_threshold": [
+            "description",
+            "database",
+            "objective",
+            "work",
+            "characters",
+            "other",
+            "theme",
+            "primary",
+            "language",
+            "coffee-now",
+            "goal-complete"
+          ]
+        },
+        "hybrid": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08415120001882315,
+          "rank_before_threshold": [
+            "description",
+            "database",
+            "objective",
+            "work",
+            "characters",
+            "other",
+            "theme",
+            "primary",
+            "language",
+            "coffee-now",
+            "goal-complete"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-037",
+      "query": {
+        "id": "br-037",
+        "query": "Quanto de espaço meu SSD tem?",
+        "expected": [],
+        "category": "unrelated_property",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.07424560002982616,
+          "rank_before_threshold": [
+            "other",
+            "primary",
+            "work"
+          ]
+        },
+        "nomic": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08368729997891933,
+          "rank_before_threshold": [
+            "work",
+            "description",
+            "other",
+            "theme",
+            "primary",
+            "database",
+            "objective",
+            "language",
+            "characters",
+            "coffee-now",
+            "goal-complete"
+          ]
+        },
+        "hybrid": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.10543260001577437,
+          "rank_before_threshold": [
+            "work",
+            "description",
+            "other",
+            "theme",
+            "primary",
+            "database",
+            "objective",
+            "language",
+            "characters",
+            "coffee-now",
+            "goal-complete"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-038",
+      "query": {
+        "id": "br-038",
+        "query": "Qual a RAM do computador do meu colega?",
+        "expected": [],
+        "category": "other_person",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.0878907999722287,
+          "rank_before_threshold": [
+            "other",
+            "primary",
+            "work"
+          ]
+        },
+        "nomic": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.0937679999624379,
+          "rank_before_threshold": [
+            "other",
+            "primary",
+            "work",
+            "description",
+            "language",
+            "database",
+            "characters",
+            "theme",
+            "objective",
+            "coffee-now",
+            "goal-complete"
+          ]
+        },
+        "hybrid": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.1095177999814041,
+          "rank_before_threshold": [
+            "other",
+            "primary",
+            "work",
+            "description",
+            "language",
+            "database",
+            "characters",
+            "theme",
+            "objective",
+            "coffee-now",
+            "goal-complete"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-039",
+      "query": {
+        "id": "br-039",
+        "query": "Que linguagem escolhi para o projeto garapeira2?",
+        "expected": [],
+        "category": "exact_project_boundary",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": [
+          "foreign-language"
+        ]
+      },
+      "modes": {
+        "fts5": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.10022149997530505,
+          "rank_before_threshold": [
+            "language",
+            "description",
+            "database"
+          ]
+        },
+        "nomic": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.10407389997271821,
+          "rank_before_threshold": [
+            "language",
+            "database",
+            "description",
+            "goal-complete",
+            "objective",
+            "characters",
+            "theme",
+            "work",
+            "other",
+            "coffee-now",
+            "primary"
+          ]
+        },
+        "hybrid": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.1211777999997139,
+          "rank_before_threshold": [
+            "language",
+            "database",
+            "description",
+            "goal-complete",
+            "objective",
+            "characters",
+            "theme",
+            "work",
+            "other",
+            "coffee-now",
+            "primary"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-040",
+      "query": {
+        "id": "br-040",
+        "query": "Como eu prefiro meu café?",
+        "expected": [
+          "foreign-coffee"
+        ],
+        "category": "exact_scope_boundary",
+        "project": "garapeira",
+        "scope": "phase22b-ret-other",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [
+            "foreign-coffee"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.06314330000896007,
+          "rank_before_threshold": [
+            "foreign-coffee"
+          ]
+        },
+        "nomic": {
+          "actual": [
+            "foreign-coffee"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.05895049998071045,
+          "rank_before_threshold": [
+            "foreign-coffee"
+          ]
+        },
+        "hybrid": {
+          "actual": [
+            "foreign-coffee"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.05762999999569729,
+          "rank_before_threshold": [
+            "foreign-coffee"
+          ]
+        }
+      }
+    },
+    {
+      "id": "br-041",
+      "query": {
+        "id": "br-041",
+        "query": "Que linguagem escolhi para o projeto garapeira3?",
+        "expected": [],
+        "category": "no_fuzzy_project_names",
+        "project": "garapeira",
+        "scope": "phase22b-ret-a",
+        "forbidden": []
+      },
+      "modes": {
+        "fts5": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.07653610000852495,
+          "rank_before_threshold": [
+            "language",
+            "description",
+            "database"
+          ]
+        },
+        "nomic": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08668720000423491,
+          "rank_before_threshold": [
+            "language",
+            "database",
+            "description",
+            "goal-complete",
+            "objective",
+            "characters",
+            "theme",
+            "work",
+            "other",
+            "primary",
+            "coffee-now"
+          ]
+        },
+        "hybrid": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "native_latency_seconds": 0.08806300000287592,
+          "rank_before_threshold": [
+            "language",
+            "database",
+            "description",
+            "goal-complete",
+            "objective",
+            "characters",
+            "theme",
+            "work",
+            "other",
+            "primary",
+            "coffee-now"
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,840 @@
+{
+  "evaluation": "frozen_v1_failed",
+  "source_sha256": "967bcfdba218dde63eee11729e9af824e05a8100fded6e5cceb9e9128e5e7e09",
+  "result": {
+    "dataset_sha256": "daf18d8ad62dae6f0e1236ca1d9c10d210879bc7897ee7b59c7be5cf8bcd0b61",
+    "cases": 67,
+    "modes": {
+      "rules": {
+        "tp": 42,
+        "fp": 2,
+        "missed": 15,
+        "active_correct": 28,
+        "active_wrong": 1,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "by_category": {
+          "character_creation": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 4,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "class_selection": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 4,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "interface_clutter": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 4,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "favorite_beverage": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 3,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "objective_replies": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 4,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "novel_hobby": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "novel_books": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "novel_outings": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "novel_photo": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "novel_shelves": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "coffee": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "theme": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "reply_style": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "planned_choices": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 3,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "decided_choices": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "actual_implementation": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "project_lifecycle": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "explicitly_unknown": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "equipment": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 4
+          },
+          "goal": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "completed_goal": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "other_person": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "fiction": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "hypothesis": {
+            "tp": 0,
+            "fp": 1,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "question": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "authority": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "permissions": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "temporary": {
+            "tp": 0,
+            "fp": 1,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 1,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "uncertainty": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          }
+        },
+        "precision": 0.9545454545454546,
+        "recall": 0.7368421052631579,
+        "promotion_precision": 0.9655172413793104,
+        "passed": false
+      },
+      "llm": {
+        "tp": 42,
+        "fp": 1,
+        "missed": 15,
+        "active_correct": 28,
+        "active_wrong": 1,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "by_category": {
+          "character_creation": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 4,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "class_selection": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 4,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "interface_clutter": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 4,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "favorite_beverage": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 3,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "objective_replies": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 4,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "novel_hobby": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "novel_books": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "novel_outings": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "novel_photo": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "novel_shelves": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "coffee": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "theme": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "reply_style": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "planned_choices": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 3,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "decided_choices": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "actual_implementation": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "project_lifecycle": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "explicitly_unknown": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "equipment": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 4
+          },
+          "goal": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "completed_goal": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "other_person": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "fiction": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "hypothesis": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "question": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "authority": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "permissions": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "temporary": {
+            "tp": 0,
+            "fp": 1,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 1,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "uncertainty": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          }
+        },
+        "precision": 0.9767441860465116,
+        "recall": 0.7368421052631579,
+        "promotion_precision": 0.9655172413793104,
+        "passed": false
+      },
+      "hybrid": {
+        "tp": 42,
+        "fp": 2,
+        "missed": 15,
+        "active_correct": 28,
+        "active_wrong": 1,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "by_category": {
+          "character_creation": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 4,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "class_selection": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 4,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "interface_clutter": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 4,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "favorite_beverage": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 3,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "objective_replies": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 4,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "novel_hobby": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "novel_books": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "novel_outings": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "novel_photo": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "novel_shelves": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "coffee": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "theme": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "reply_style": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "planned_choices": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 3,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 5
+          },
+          "decided_choices": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "actual_implementation": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "project_lifecycle": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "explicitly_unknown": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "equipment": {
+            "tp": 4,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 4
+          },
+          "goal": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "completed_goal": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "other_person": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "fiction": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "hypothesis": {
+            "tp": 0,
+            "fp": 1,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "question": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "authority": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "permissions": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "temporary": {
+            "tp": 0,
+            "fp": 1,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 1,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "uncertainty": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          }
+        },
+        "precision": 0.9545454545454546,
+        "recall": 0.7368421052631579,
+        "promotion_precision": 0.9655172413793104,
+        "passed": false
+      }
+    },
+    "invalid_raw_outputs": 0,
+    "raw_proposals": 60
+  }
+}
