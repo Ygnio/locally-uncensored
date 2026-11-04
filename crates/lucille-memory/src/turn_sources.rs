@@ -89,11 +89,43 @@ pub(crate) fn statements(
                         && until.is_some_and(|t| t > crate::now())))
         }
     };
-    Ok(if allowed {
-        crate::context_facts::statements(req)
-    } else {
-        Vec::new()
-    })
+    if !allowed {
+        return Ok(Vec::new());
+    }
+    let mut facts = crate::context_facts::statements(req);
+    for fact in &mut facts {
+        if fact.entity != "device.unspecified"
+            || !["capacity_update", "ram_capacity"].contains(&fact.property.as_str())
+        {
+            continue;
+        }
+        let old = fact
+            .evidence
+            .iter()
+            .find_map(|e| crate::coverage::old_capacity(&e.text));
+        let Some(old) = old else { continue };
+        let mut q=db.prepare("SELECT DISTINCT q.subject FROM memories m JOIN memory_quality q ON q.memory_id=m.id WHERE m.scope=?1 AND m.project=?2 AND m.state='active' AND q.property='ram_capacity' AND q.value=?3 AND q.subject!='device.unspecified' AND (q.expires_at IS NULL OR q.expires_at>?4) LIMIT 2").map_err(db_error)?;
+        let entities = q
+            .query_map(params![req.scope, req.project, old, crate::now()], |r| {
+                r.get::<_, String>(0)
+            })
+            .map_err(db_error)?
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .map_err(db_error)?;
+        if entities.len() == 1 {
+            fact.entity = entities[0].clone();
+            fact.property = "ram_capacity".into();
+            fact.modality = "current_fact".into();
+        }
+    }
+    let mut current = Vec::new();
+    for fact in facts {
+        let newer:bool=db.query_row("SELECT EXISTS(SELECT 1 FROM memories m JOIN memory_quality q ON q.memory_id=m.id JOIN memory_provenance p ON p.memory_id=m.id JOIN extraction_jobs newer ON newer.id=p.interaction_id JOIN extraction_jobs incoming ON incoming.id=?1 WHERE m.scope=?2 AND m.project=?3 AND m.state IN ('active','candidate','conflict') AND q.subject=?4 AND q.property=?5 AND q.value!=?6 AND newer.rowid>incoming.rowid AND (?7=0 OR (q.temporal IN ('in_progress','current','completed','cancelled'))=?8))",params![id,req.scope,req.project,fact.entity,fact.property,fact.value,fact.entity.starts_with("project.") && ["language","database"].contains(&fact.property.as_str()),["in_progress","current_fact","completed","cancelled"].contains(&fact.modality.as_str())],|r|r.get(0)).map_err(db_error)?;
+        if !newer {
+            current.push(fact);
+        }
+    }
+    Ok(current)
 }
 impl Store {
     pub(crate) fn recover_pending_user_turns(&mut self, at: i64) -> Result<()> {

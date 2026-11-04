@@ -187,13 +187,56 @@ fn preference_slots(query: &str) -> Vec<&'static str> {
         ("games_character_creation", &["personag", "character"][..]),
         (
             "games_class_selection",
-            &["classe", "class selection", "choose a class"][..],
+            &[
+                "classe",
+                "class selection",
+                "choose a class",
+                "profissoes",
+                "professions",
+            ][..],
         ),
         ("interface_clutter", &["poluid", "clutter", "carregad"][..]),
+        ("photo_paper", &["foto", "photo"][..]),
+        (
+            "shelf_material",
+            &["estante", "prateleira", "shelf", "bookshelf"][..],
+        ),
+        (
+            "book_genre",
+            &["livro", "romance", "novel", "book genre"][..],
+        ),
+        ("outing", &["trilha", "trail"][..]),
+        ("hobby", &["violao", "guitar"][..]),
+        (
+            "music_instrument",
+            &["violao", "guitar", "instrumento", "instrument"][..],
+        ),
+        ("games_tactics", &["tatic", "tactic"][..]),
+        (
+            "games_turn_strategy",
+            &["estrategia por turnos", "turn-based strategy"][..],
+        ),
     ] {
         if nouns.iter().any(|n| q.contains(n)) {
             slots.push(property);
         }
+    }
+    if q.split(|c: char| !c.is_alphanumeric())
+        .any(|w| ["idioma", "lingua"].contains(&w))
+        || (q.contains("language")
+            && !["projeto", "project", "programming"]
+                .iter()
+                .any(|w| q.contains(w)))
+    {
+        slots.push("response_language");
+    }
+    if slots.contains(&"coffee_sugar")
+        && q.contains("drink")
+        && !["favorit", "favourit", "bebida", "beverage"]
+            .iter()
+            .any(|w| q.contains(w))
+    {
+        slots.retain(|property| *property != "favorite_beverage");
     }
     if slots.contains(&"favorite_beverage")
         && !["favorit", "favourit", "preferida", "preferido"]
@@ -203,9 +246,20 @@ fn preference_slots(query: &str) -> Vec<&'static str> {
         slots.push("coffee_sugar");
     }
     if ["jogos", "games", "rpg"].iter().any(|n| q.contains(n))
-        && !["personag", "character", "classe", "class selection"]
-            .iter()
-            .any(|n| q.contains(n))
+        && ![
+            "personag",
+            "character",
+            "classe",
+            "class selection",
+            "profissoes",
+            "professions",
+            "tatic",
+            "tactic",
+            "estrategia por turnos",
+            "turn-based strategy",
+        ]
+        .iter()
+        .any(|n| q.contains(n))
     {
         slots.extend([
             "games_character_creation",
@@ -875,6 +929,7 @@ pub(crate) fn select(
             semantic_ranked
                 .sort_by(|a, b| b.1.total_cmp(&a.1).then(a.0.input.id.cmp(&b.0.input.id)));
             let multiple = implicit_device_comparison(&req.query)
+                || preference_slots(&req.query).len() > 1
                 || history
                 || recall(&req.query)
                 || summary
@@ -969,6 +1024,7 @@ pub(crate) fn select(
             continue;
         }
         let multiple = implicit_device_comparison(&req.query)
+            || preference_slots(&req.query).len() > 1
             || history
             || recall(&req.query)
             || summary

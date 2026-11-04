@@ -276,6 +276,17 @@ pub fn project_scope_matches(text: &str, project: &str) -> bool {
         .split_whitespace()
         .map(|s| s.trim_matches(|c: char| !c.is_alphanumeric()))
         .collect::<Vec<_>>();
+    if w.len() > 1
+        && ["projeto", "project"].contains(&w[w.len() - 2])
+        && [
+            "em", "in", "que", "that", "which", "de", "do", "da", "com", "sem", "para", "with",
+            "without", "about", "sobre",
+        ]
+        .contains(&w[w.len() - 1])
+        && w[w.len() - 1] != fold(project)
+    {
+        return false;
+    }
     !w.windows(2).any(|p| {
         ["project", "projeto"].contains(&p[0])
             && !p[1].is_empty()
@@ -336,6 +347,8 @@ pub fn project_scope_matches(text: &str, project: &str) -> bool {
                 "that",
                 "which",
                 "about",
+                "em",
+                "in",
                 "pretendo",
                 "pretende",
                 "planejo",
@@ -1218,6 +1231,8 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
             );
             if s.starts_with("quero voltar a registrar minha preferencia: ")
                 || s.starts_with("i want to remember my preference again: ")
+                || s.starts_with("pode voltar a memorizar: ")
+                || s.starts_with("you can remember this again: ")
             {
                 c.rule = format!("explicit_v3_renewal:{}", c.rule);
                 c.confidence = 0.85
@@ -1366,6 +1381,10 @@ pub fn project_summary(query: &str) -> bool {
                 "how is",
                 "project going",
                 "project progress",
+                "lembra",
+                "recorda",
+                "remember",
+                "recall",
             ],
         )
 }

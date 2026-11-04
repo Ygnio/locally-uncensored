@@ -9,7 +9,7 @@ export function userSourceInteraction(conversation: Conversation | undefined, as
   const index=conversation.messages.findIndex(message=>message.id===assistantId)
   if(index<0 || conversation.messages[index].role!=='assistant' || conversation.messages[index].hidden)return null
   const user=conversation.messages.slice(0,index).findLast(message=>message.role==='user')
-  if(!user || user.hidden || user.notice || !user.content.trim() || user.content.length>16000)return null
+  if(!user || user.hidden || user.notice || (user.displayContent!==undefined && user.displayContent!==user.content) || !user.content.trim() || user.content.length>16000 || new TextEncoder().encode(user.content).length>32000)return null
   return {conversation_id:conversation.id,message_id:user.lucilleInteractionId ?? user.id,scope:conversation.lucille!.scope,project:conversation.lucille!.project,mode,role:'user',user_text:user.content}
 }
 export interface LucilleSourceProof { interaction: NonNullable<ReturnType<typeof userSourceInteraction>>; job_id: string | null }

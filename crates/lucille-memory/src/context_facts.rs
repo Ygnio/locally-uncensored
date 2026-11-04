@@ -219,6 +219,7 @@ pub struct AnswerEvidence {
     pub current_statements: Vec<ContextFact>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub directive_receipt: Option<serde_json::Value>,
+    pub has_scoped_records: bool,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -347,11 +348,19 @@ impl Store {
         } else {
             None
         };
+        let has_scoped_records = tx
+            .query_row(
+                "SELECT EXISTS(SELECT 1 FROM memories WHERE scope=?1 AND project=?2)",
+                rusqlite::params![req.scope, req.project],
+                |r| r.get(0),
+            )
+            .map_err(db_error)?;
         tx.commit().map_err(db_error)?;
         Ok(AnswerEvidence {
             facts,
             current_statements,
             directive_receipt,
+            has_scoped_records,
         })
     }
 }

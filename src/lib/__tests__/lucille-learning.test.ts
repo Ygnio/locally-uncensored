@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { readFileSync } from 'node:fs'
-import { learningInteraction } from '../lucille-learning'
+import { learningInteraction, userSourceInteraction } from '../lucille-learning'
 import type { Conversation } from '../../types/chat'
 vi.mock('@tauri-apps/api/core', () => ({ invoke: vi.fn() }))
 const fixture = () => ({ id: 'synthetic-conversation', mode: 'lu', lucille: { profile: 'lucille', scope: 'lucille', project: 'atlas' }, messages: [
@@ -8,6 +8,14 @@ const fixture = () => ({ id: 'synthetic-conversation', mode: 'lu', lucille: { pr
   { id: 'answer', role: 'assistant', content: 'Synthetic answer, not evidence.' },
 ] } as Conversation)
 describe('canonical Lucille learning boundary', () => {
+  it('never reserves file summaries or expanded commands as original user evidence',()=>{
+    const c=fixture();c.messages[0].displayContent='Please read the attachment'
+    expect(userSourceInteraction(c,'answer','code')).toBeNull()
+    c.messages[0].displayContent=c.messages[0].content
+    expect(userSourceInteraction(c,'answer','code')?.user_text).toBe(c.messages[0].content)
+    c.messages[0].content='語'.repeat(12000);delete c.messages[0].displayContent
+    expect(userSourceInteraction(c,'answer','code')).toBeNull()
+  })
   it.each(['chat', 'agent', 'code'] as const)('learns only the actual durable user message in %s', mode => {
     const input = learningInteraction(fixture(), 'answer', 'Prefiro café sem açúcar.', mode, false)
     expect(input).toMatchObject({ message_id: 'user', role: 'user', user_text: 'Prefiro café sem açúcar.', mode, project: 'atlas' })

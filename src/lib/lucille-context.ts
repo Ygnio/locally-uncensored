@@ -96,6 +96,7 @@ export async function withLucilleContext(
     })) }
   if (directiveReceipt) identity.content += '\nNative memory operation receipt: ' + JSON.stringify({ action: directiveReceipt.action, property: directiveReceipt.property, state: directiveReceipt.state, had_records: directiveReceipt.had_records })
   identity.content += '\nOnly a completed native memory operation receipt authorizes confirming that this turn deleted memory. A request to remember or reactivate information is not proof of a completed save or review. Answer execution questions consistently from the first word: an affirmative requires evidence of actual execution, even if a later sentence describes a plan. Hardware capacity alone does not prove smooth performance, stability or absence of bottlenecks. Keep project purpose separate from personal learning goals.'
+  identity.content += '\nAcknowledge the user content naturally, without saying Anotei/I saved/I registered and without promising it will be included in preferences, hardware or goals. The learning operation runs after this answer; important facts require review. A reserved source is not a completed memory write. Keep the decision actor clear: the user decides their project choices. Describe record meanings plainly rather than echoing internal IDs or enum labels.'
   injected.add(identity)
   injected.add(data)
   if (environment) injected.add(environment)
@@ -109,7 +110,7 @@ export async function withLucilleContext(
     refresh: async (claims = []) => {
       assertNotCancelled(signal)
       if (loader !== loadContext) return { facts, current_statements: currentStatements }
-      const refreshed = await lucilleManage<{ facts: MemoryFact[]; current_statements: MemoryFact[]; directive_receipt?: MemoryDirectiveReceipt | null }>({ operation: 'answer_evidence',
+      const refreshed = await lucilleManage<{ facts: MemoryFact[]; current_statements: MemoryFact[]; directive_receipt?: MemoryDirectiveReceipt | null; has_scoped_records?:boolean }>({ operation: 'answer_evidence',
         request: { conversation_id: conversation!.id, message_id: messageId, scope: binding.scope, project: binding.project, mode, query, token_budget: retrievalBudget }, references: memories.map(m => ({ id: m.input.id, version: m.version })), claims, source: source?.proof })
       assertNotCancelled(signal); return refreshed
     },

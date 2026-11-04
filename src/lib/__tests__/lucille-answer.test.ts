@@ -10,6 +10,18 @@ function prepared(changes: Partial<AnswerSnapshot> = {}) {
   return messages
 }
 describe('memory answer delivery boundary', () => {
+  it('places specific retry constraints immediately before the real current user message',async()=>{
+    const messages=prepared({query:'Meu projeto já usa Rust?'})
+    messages[messages.length-1].content='Meu projeto já usa Rust?'
+    const regenerate=vi.fn(async(received:ChatMessage[])=>{expect(received.at(-1)?.role).toBe('user');return {content:'Não tenho confirmação da implementação. Você planeja usar Rust.'}})
+    const result=await validateLucilleCompletion(messages,{content:'Sim, você planeja usar Rust.'},regenerate)
+    expect(result.report.status).toBe('regenerated')
+    const wire=regenerate.mock.calls[0][0] as ChatMessage[]
+    expect(wire.at(-1)).toEqual(messages.at(-1))
+    expect(wire.at(-2)?.content).toContain('Do not affirm or deny actual execution')
+    expect(wire.at(-2)?.role).toBe('system')
+    expect(regenerate).toHaveBeenCalledTimes(1)
+  })
   it('accepts a supported real-completion object without an extra generation', async () => {
     const regen = vi.fn()
     const r = await validateLucilleCompletion(prepared(), { content: 'Você planeja usar Rust no projeto Atlas.' }, regen)

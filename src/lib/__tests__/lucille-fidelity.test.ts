@@ -3,6 +3,40 @@ import { verifyMemoryAnswer, answerSnapshot, registerAnswerSnapshot, type Answer
 const fact = (changes: Partial<MemoryFact> = {}): MemoryFact => ({ id: 'fact-1', version: 2, entity: 'project.atlas', property: 'language', value: 'rust', modality: 'planned', validity: 'current', scope: 'test', project: 'atlas', review: 'reviewed', facets: [], evidence: [{ role: 'current_source', text: 'Planejo usar Rust.' }], ...changes })
 const snapshot = (facts: MemoryFact[] = [fact()], query = 'Como está meu projeto?'): AnswerSnapshot => ({ scope: 'test', project: 'atlas', query, facts, currentStatements: [] })
 describe('independent typed memory answer checks', () => {
+  it('accepts inflected plans and ordinary project descriptions without inventing names',()=>{
+    for(const text of ['PostgreSQL is planned for your project.','O plano do seu projeto é usar PostgreSQL.']) {
+      expect(verifyMemoryAnswer(text,snapshot([fact({property:'database',value:'postgresql'})],'Qual banco está nos planos do meu projeto?')).violations).toEqual([])
+    }
+    for(const text of ['Que projeto fascinante!','Seu projeto interessante pode crescer.','What an exciting project!'])expect(verifyMemoryAnswer(text,snapshot([])).violations).toEqual([])
+    for(const text of ['O projeto beta usa Rust.','O projeto "que" usa Rust.','O projeto chamado beta usa Rust.','Your project Boreal uses Rust.'])expect(verifyMemoryAnswer(text,snapshot()).violations.map(v=>v.code)).toContain('unsupported_project_entity')
+  })
+  it('does not confuse a confirmed removal with a current positive preference',()=>{
+    const s=snapshot([],'Esqueça minha preferência por criar personagens em jogos.')
+    s.directiveReceipt={id:'a'.repeat(64),action:'forget',state:'done',property:'games_character_creation',had_records:true,scope:s.scope,project:s.project,conversation_id:'c',source_message_id:'u'}
+    for(const text of ['Esqueci sua preferência por jogos com criação de personagens.','A preferência por jogos com criação de personagens foi removida das suas memórias.'])expect(verifyMemoryAnswer(text,s).violations).toEqual([])
+    expect(verifyMemoryAnswer('Removi sua preferência por criar personagens, e você prefere chá.',s).violations.length).toBeGreaterThan(0)
+    expect(verifyMemoryAnswer('Você esqueceu sua preferência de jogos.',s).violations.map(v=>v.code)).toContain('wrong_forget_actor')
+  })
+  it('blocks uncommitted notes and unqualified future memory promises',()=>{
+    const s=snapshot([],'Meu objetivo é aprender japonês.')
+    s.currentStatements=[fact({entity:'user',property:'goal.learning',value:'aprender japones',validity:'current_user_statement'})]
+    for(const text of ['Anotei que seu objetivo é aprender japonês.','Isso será registrado como uma conquista finalizada.','Isso será incluído em suas metas pessoais.'])expect(verifyMemoryAnswer(text,s).violations.some(v=>/unconfirmed_memory/.test(v.code))).toBe(true)
+    expect(verifyMemoryAnswer('Isso poderá ser incluído se você aprovar após a revisão.',s).violations).toEqual([])
+  })
+  it('requires native absence evidence for global claims and preserves the decision actor',()=>{
+    const s=snapshot([],'Você lembra meu projeto?')
+    const text='Como não há registros de memórias salvos até agora, não tenho detalhes sobre o projeto.'
+    expect(verifyMemoryAnswer(text,s).violations.map(v=>v.code)).toContain('global_absence_without_evidence')
+    expect(verifyMemoryAnswer(text,{...s,hasScopedRecords:false}).violations).toEqual([])
+    expect(verifyMemoryAnswer('Não há registro relevante disponível sobre a linguagem do seu projeto.',{...s,hasScopedRecords:true}).violations).toEqual([])
+    expect(verifyMemoryAnswer('Ainda não defini o banco do seu projeto.',s).violations.map(v=>v.code)).toContain('wrong_decision_actor')
+  })
+  it('supports an explicitly historical RAM value only through a linked predecessor source',()=>{
+    const f=fact({entity:'device.primary_computer',property:'ram_capacity',value:'40_gb',modality:'current_fact',evidence:[{role:'previous_property_link_not_current_value',text:'Meu computador principal tem 24 GB de RAM.'}]})
+    const s=snapshot([f],'Qual a RAM do meu computador principal?')
+    expect(verifyMemoryAnswer('Seu computador principal tem 40 GB de RAM. Antes eram 24 GB.',s).violations).toEqual([])
+    expect(verifyMemoryAnswer('Seu computador principal tem 24 GB de RAM.',s).violations.some(v=>v.critical)).toBe(true)
+  })
   it('checks a leading affirmative against execution, even when the explanation mentions a plan',()=>{
     const s=snapshot([fact()],'Meu projeto já está sendo desenvolvido em Rust?')
     expect(verifyMemoryAnswer('Sim, você planeja usar Rust; não é implementação concluída.',s).violations.map(v=>v.code)).toContain('affirmed_unproven_project_execution')

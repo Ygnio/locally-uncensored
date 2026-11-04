@@ -61,6 +61,117 @@ fn request(query: &str) -> TurnRequest {
 }
 
 #[test]
+fn source_acknowledgement_resolves_only_a_unique_scoped_previous_capacity() {
+    let (_d, mut s) = setup(true);
+    for text in [
+        "Meu computador principal tem 24 GB de RAM.",
+        "Meu notebook de trabalho tem 12 GB de RAM.",
+    ] {
+        learn(&mut s, text, "hardware");
+    }
+    for m in s.list("lucille", "demo").unwrap() {
+        s.change(&m.input.id, "lucille", "demo", m.version, Action::Approve)
+            .unwrap();
+    }
+    let pending = s
+        .begin_user_turn(input(
+            "Não tenho mais 24 GB, agora são 40 GB.",
+            "capacity-source",
+        ))
+        .unwrap();
+    let facts = pending["current_statements"].as_array().unwrap();
+    assert!(
+        facts
+            .iter()
+            .any(|f| f["entity"] == "device.primary_computer"
+                && f["property"] == "ram_capacity"
+                && f["value"] == "40_gb"),
+        "{pending}"
+    );
+    assert_eq!(s.list("lucille", "demo").unwrap().len(), 2);
+    assert!(s
+        .memory_details("lucille", "demo")
+        .unwrap()
+        .iter()
+        .all(|d| d.quality.as_ref().unwrap().value != "40_gb"));
+    let (_other, mut ambiguous) = setup(true);
+    for text in [
+        "Meu computador principal tem 24 GB de RAM.",
+        "Meu notebook de trabalho tem 24 GB de RAM.",
+    ] {
+        learn(&mut ambiguous, text, "hardware");
+    }
+    for m in ambiguous.list("lucille", "demo").unwrap() {
+        ambiguous
+            .change(&m.input.id, "lucille", "demo", m.version, Action::Approve)
+            .unwrap();
+    }
+    let pending = ambiguous
+        .begin_user_turn(input(
+            "Não tenho mais 24 GB, agora são 40 GB.",
+            "ambiguous-capacity",
+        ))
+        .unwrap();
+    assert!(pending["current_statements"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .all(|f| f["entity"] == "device.unspecified"));
+}
+
+#[test]
+fn fresh_availability_counts_canonical_records_instead_of_retrieval_hits() {
+    let (_d, mut s) = setup(true);
+    let req = request("Qual é minha data de nascimento?");
+    assert!(!s.answer_evidence(&req, &[]).unwrap().has_scoped_records);
+    learn(&mut s, "Prefiro café sem açúcar.", "preference");
+    let evidence = s.answer_evidence(&req, &[]).unwrap();
+    assert!(evidence.facts.is_empty());
+    assert!(evidence.has_scoped_records);
+    s.begin_user_turn(input("Esqueça minha preferência por café.", "forget-all"))
+        .unwrap();
+    assert!(!s.answer_evidence(&req, &[]).unwrap().has_scoped_records);
+}
+
+#[test]
+fn ordinary_project_prepositions_reminders_and_distinct_game_properties_survive_reopen() {
+    let (d, mut s) = setup(true);
+    learn(&mut s, "Estou desenvolvendo meu projeto em Python.", "fact");
+    for m in s.list("lucille", "demo").unwrap() {
+        s.change(&m.input.id, "lucille", "demo", m.version, Action::Approve)
+            .unwrap();
+    }
+    learn(
+        &mut s,
+        "Eu gosto de criar personagens em jogos.",
+        "preference",
+    );
+    learn(
+        &mut s,
+        "Eu gosto de jogos em que posso escolher uma classe.",
+        "preference",
+    );
+    drop(s);
+    let mut s = Store::open(&d.path().join("synthetic.sqlite3")).unwrap();
+    let ctx = s
+        .context(request(
+            "Você se lembra do meu projeto e das escolhas que fiz?",
+        ))
+        .unwrap();
+    assert_eq!(ctx.facts.len(), 1);
+    assert_eq!(ctx.facts[0].value, "python");
+    let ctx = s
+        .context(request("Quais recursos de jogos eu gosto?"))
+        .unwrap();
+    assert_eq!(ctx.facts.len(), 2, "{:?}", ctx.facts);
+    assert!(s
+        .context(request("Qual linguagem está no projeto Em?"))
+        .unwrap()
+        .facts
+        .is_empty());
+}
+
+#[test]
 fn prepared_sources_cannot_be_learned_before_publication_or_after_cancellation() {
     use lucille_memory::turn_sources::SourceProof;
     let (_d, mut s) = setup(true);

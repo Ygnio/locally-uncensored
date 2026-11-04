@@ -49,7 +49,7 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
     let evidence: AnswerSnapshot = snapshot
     if (snapshot.refresh) {
       const fresh = await snapshot.refresh()
-      evidence = { ...snapshot, facts: fresh.facts, currentStatements: fresh.current_statements,directiveReceipt:fresh.directive_receipt }
+      evidence = { ...snapshot, facts: fresh.facts, currentStatements: fresh.current_statements,directiveReceipt:fresh.directive_receipt,hasScopedRecords:fresh.has_scoped_records }
     }
     abortIfNeeded(signal); report.refreshMs += performance.now() - refreshStart
     const settled = settleThinking(completion.content, completion.thinking ?? '', true)
@@ -63,7 +63,7 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
         abortIfNeeded(signal); report.refreshMs += performance.now()-began
         verificationReferences.push(...confirmed.facts.filter(f => !evidence.facts.some(old => old.id===f.id && old.version===f.version)).map(f => ({id:f.id,version:f.version})))
         // The second native read also fences deletion of the original references.
-        evidence = { ...snapshot, facts:confirmed.facts, currentStatements:confirmed.current_statements,directiveReceipt:confirmed.directive_receipt }
+        evidence = { ...snapshot, facts:confirmed.facts, currentStatements:confirmed.current_statements,directiveReceipt:confirmed.directive_receipt,hasScopedRecords:confirmed.has_scoped_records }
         report.verificationMs += check.elapsedMs
         check = verifyMemoryAnswer(settled.content,evidence)
       }
@@ -84,10 +84,24 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
     snapshot = answerSnapshot(current)
     if (!snapshot) throw new Error('Lucille refreshed context snapshot unavailable')
     const codes = [...new Set(check.violations.map(v => v.code))].join(', ')
-    const correction: ChatMessage = { role: 'system', content: 'Memory answer fidelity retry (one attempt only). Previous attempt failed independent checks: ' + codes + '. Produce a new, direct answer to the same user question using the refreshed scoped data. Preserve plans, decisions, actual execution, history, uncertainty and negation. Missing retrieval is not proof of an unmade decision. Do not announce memory or this verification. Never invent a replacement fact.' }
+    const repairs:Record<string,string>={
+      affirmed_unproven_project_execution:'The question asks whether implementation is already occurring. The available evidence only supports a plan or choice. Do not affirm or deny actual execution; state that it is unconfirmed, then distinguish the supported future plan.',
+      denied_unproven_project_execution:'A plan also does not prove that implementation is absent. Do not give a categorical yes or no; distinguish unconfirmed current execution from the supported future plan.',
+      unproven_negative_execution:'There is no proof that current execution is absent. State uncertainty about execution instead of claiming it has not started.',
+      unconfirmed_memory_mutation:'No completed native operation supports the claimed save or reactivation. Acknowledge the content without saying you saved, noted, registered or reactivated it.',
+      unconfirmed_memory_promise:'Do not promise automatic inclusion, updates or recording. Review or persistence has not completed. Acknowledge the original content; describe pending review only if relevant.',
+      unproven_personal_performance:'Capacity alone cannot guarantee this person smooth performance or absence of bottlenecks. Acknowledge the stated capacity without a personal performance guarantee.',
+      global_absence_without_evidence:'An empty retrieval is not proof that no memories are saved. Limit uncertainty to the relevant information that is unavailable.',
+      wrong_forget_actor:'The user requested deletion from the assistant memory store; this does not mean the user mentally forgot their preference.',
+      wrong_decision_actor:'The decision or unknown status belongs to the user and their project. Do not claim in first person that you made or did not make the decision.',
+    }
+    const guidance=[...new Set(check.violations.map(v=>repairs[v.code]).filter(Boolean))].join(' ')
+    const correction: ChatMessage = { role: 'system', content: 'Memory answer fidelity retry (one attempt only). Previous attempt failed independent checks: ' + codes + '. ' + guidance + ' Produce a new, direct answer to the same current USER question in its language using the refreshed scoped data. Preserve plans, decisions, actual execution, history, uncertainty and negation. Missing retrieval is not proof of an unmade decision. Mention memory operations only when the user asks and a native receipt supports them. Do not announce this verification. Never invent a replacement fact or repeat the rejected error.' }
     const generationStart = performance.now()
     try {
-      completion = await regenerate([correction, ...current])
+      const lastUser=current.findLastIndex(message=>message.role==='user')
+      const at=lastUser<0 ? current.length : lastUser
+      completion = await regenerate([...current.slice(0,at),correction,...current.slice(at)])
     } catch {
       abortIfNeeded(signal)
       report.extraGenerationMs += performance.now()-generationStart
