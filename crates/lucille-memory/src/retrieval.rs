@@ -295,7 +295,7 @@ fn description_intent(query: &str) -> bool {
 }
 fn identified_ram_intent(query: &str) -> bool {
     let q = fold(query);
-    crate::coverage::device(&q).is_some()
+    (crate::coverage::device(&q).is_some() || implicit_device_comparison(query))
         && ["ram", "memoria", "memory", "gigabytes"]
             .iter()
             .any(|w| q.split(|c: char| !c.is_alphanumeric()).any(|t| t == *w))
@@ -795,7 +795,8 @@ impl crate::Store {
             let canonical_lexical_match = meta.as_ref().is_some_and(|q| {
                 (identified_ram_intent(&req.query)
                     && q.property == "ram_capacity"
-                    && crate::coverage::device(&fold(&req.query)) == Some(q.subject.as_str()))
+                    && (implicit_device_comparison(&req.query)
+                        || crate::coverage::device(&fold(&req.query)) == Some(q.subject.as_str())))
                     || (description_intent(&req.query)
                         && q.property == "description"
                         && q.subject == format!("project.{}", req.project))
@@ -864,7 +865,7 @@ pub(crate) fn select(
     {
         // Filter identified canonical slots before the existing 100-record cap:
         // unrelated recent records must not crowd an older indexed property out.
-        let mut q=tx.prepare(&format!("SELECT {COLS} FROM memories WHERE scope=?1 AND project=?2 AND (state='active' OR (state='obsolete' AND ?3)) AND (?4 OR id IN (SELECT memory_id FROM memory_quality WHERE (?5 AND subject=?6 AND property='ram_capacity') OR (?7 AND subject=?8 AND property='description'))) ORDER BY updated_at DESC,id LIMIT 100")).map_err(db_error)?;
+        let mut q=tx.prepare(&format!("SELECT {COLS} FROM memories WHERE scope=?1 AND project=?2 AND (state='active' OR (state='obsolete' AND ?3)) AND (?4 OR id IN (SELECT memory_id FROM memory_quality WHERE (?5 AND (?9 OR subject=?6) AND property='ram_capacity') OR (?7 AND subject=?8 AND property='description'))) ORDER BY updated_at DESC,id LIMIT 100")).map_err(db_error)?;
         lexical = q
             .query_map(
                 params![
@@ -875,7 +876,8 @@ pub(crate) fn select(
                     identified_ram,
                     crate::coverage::device(&fold(&req.query)).unwrap_or(""),
                     description,
-                    format!("project.{}", req.project)
+                    format!("project.{}", req.project),
+                    implicit_device_comparison(&req.query)
                 ],
                 row,
             )
@@ -905,7 +907,8 @@ pub(crate) fn select(
         let slot_match = quality(tx, &m.input.id)?.is_some_and(|q| {
             (identified_ram
                 && q.property == "ram_capacity"
-                && crate::coverage::device(&fold(&req.query)) == Some(q.subject.as_str()))
+                && (implicit_device_comparison(&req.query)
+                    || crate::coverage::device(&fold(&req.query)) == Some(q.subject.as_str())))
                 || (description
                     && q.property == "description"
                     && q.subject == format!("project.{}", req.project))

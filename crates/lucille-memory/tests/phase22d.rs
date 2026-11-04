@@ -286,6 +286,20 @@ fn typed_lexical_lookup_uses_canonical_links_after_short_correction_and_reopen()
         );
         assert!(!c.facts.iter().any(|f| f.entity == "device.work_laptop"));
     }
+    for query in [
+        "Quanto de RAM tem meu principal e meu notebook de trabalho?",
+        "Compare a RAM do meu computador principal e do meu notebook de trabalho.",
+    ] {
+        let c = s.context(request(query)).unwrap();
+        assert!(c
+            .facts
+            .iter()
+            .any(|f| f.entity == "device.primary_computer" && f.value == "48_gb"));
+        assert!(c
+            .facts
+            .iter()
+            .any(|f| f.entity == "device.work_laptop" && f.value == "12_gb"));
+    }
     assert!(s
         .context(request(
             "Qual era o assunto do catálogo que eu estava fazendo?"
