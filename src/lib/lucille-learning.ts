@@ -2,7 +2,7 @@ import { invoke } from '@tauri-apps/api/core'
 import type { Conversation } from '../types/chat'
 import type { LucilleMode } from './verified-environment'
 import { isLucille, lucilleManage } from './lucille-context'
-import type { MemoryFact, MemoryDirectiveReceipt } from './lucille-fidelity'
+import type { MemoryFact, MemoryDirectiveReceipt, SourceSpeakerSummary } from './lucille-fidelity'
 
 export function userSourceInteraction(conversation: Conversation | undefined, assistantId: string, mode: LucilleMode) {
   if (!isLucille(conversation) || !conversation || conversation.groupModels?.length || conversation.mode === 'remote') return null
@@ -30,7 +30,7 @@ export function durablePreparedInteraction(conversation: Conversation | undefine
   return original
 }
 interface PreparedSource {
-  proof:LucilleSourceProof; job:{state:string}; current_statements:MemoryFact[]; directive_receipt?:MemoryDirectiveReceipt | null
+  source_authority?:SourceSpeakerSummary | null; proof:LucilleSourceProof; job:{state:string}; current_statements:MemoryFact[]; directive_receipt?:MemoryDirectiveReceipt | null
 }
 const preparedSources=new Map<string,{source:PreparedSource|null;off:()=>void}>()
 export async function prepareLucilleSource(conversationId:string,assistantId:string,mode:LucilleMode,binding:{scope:string;project:string},signal?:AbortSignal):Promise<PreparedSource|null>{

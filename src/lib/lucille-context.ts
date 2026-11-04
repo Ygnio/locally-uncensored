@@ -58,11 +58,15 @@ export async function withLucilleContext(
   const binding = conversation!.lucille!
   const environment: ChatMessage | undefined = runtime ? { role: "system", content: VERIFIED_EXECUTION_POLICY + "\n" + JSON.stringify(verifiedEnvironment(mode, runtime)) } : undefined
   const envCost = environment ? new TextEncoder().encode(environment.content).length + 32 : 0
-  const retrievalBudget = binding.tokenBudget - envCost
+  let retrievalBudget = binding.tokenBudget - envCost
   if (retrievalBudget < 512) throw new Error("Verified environment exceeds Lucille context budget")
   try {
   const source = loader === loadContext ? await (await import('./lucille-learning')).prepareLucilleSource(conversation!.id, messageId, mode, binding, signal) : null
   if (source) query = source.proof.interaction.user_text
+  const sourceAuthority=source?.source_authority
+  const sourceFraming=sourceAuthority && (sourceAuthority.external>0 || sourceAuthority.quoted>0) ? '\nNative current-source speaker classification (transport author USER differs from statement author): '+JSON.stringify(sourceAuthority)+'. External and quoted first-person preferences belong to the named speaker, not to the USER. '+(sourceAuthority.personal===0?'No independent personal USER declaration was identified in this source. Acknowledge its reported content without assigning those preferences to the USER.':'Preserve the independently personal USER part while keeping external statements assigned to their own speaker.')+' Previous assistant wording is not evidence of a USER preference or a completed save.' : ''
+  retrievalBudget-=new TextEncoder().encode(sourceFraming).length
+  if(retrievalBudget<512)throw new Error('Source attribution exceeds Lucille context budget')
   const context = await loader({
     conversation_id: conversation!.id, message_id: messageId, scope: binding.scope,
     project: binding.project, mode, query, token_budget: retrievalBudget,
@@ -96,6 +100,7 @@ export async function withLucilleContext(
       return { id: memory.input.id, version: memory.version, kind: memory.input.kind, content: memory.input.content,
         ...(fact ? { entity: fact.entity, property: fact.property, value: fact.value, modality: fact.modality, validity: fact.validity, scope: fact.scope, project: fact.project, review: fact.review, facets: fact.facets, evidence: fact.evidence } : { canonical: 'untyped_legacy_record' }) }
     })) }
+  identity.content+=sourceFraming
   if (directiveReceipt) identity.content += '\nNative memory operation receipt: ' + JSON.stringify({ action: directiveReceipt.action, property: directiveReceipt.property, state: directiveReceipt.state, had_records: directiveReceipt.had_records })
   identity.content += '\nOnly a completed native memory operation receipt authorizes confirming that this turn deleted memory. A request to remember or reactivate information is not proof of a completed save or review. Answer execution questions consistently from the first word: an affirmative requires evidence of actual execution, even if a later sentence describes a plan. Hardware capacity alone does not prove smooth performance, stability or absence of bottlenecks. Keep project purpose separate from personal learning goals.'
   identity.content += '\nAcknowledge the user content naturally, without saying Anotei/I saved/I registered and without promising it will be included in preferences, hardware or goals. The learning operation runs after this answer; important facts require review. A reserved source is not a completed memory write. Keep the decision actor clear: the user decides their project choices. Describe record meanings plainly rather than echoing internal IDs or enum labels.'
@@ -117,7 +122,7 @@ export async function withLucilleContext(
   if(languageDirective)injected.add(languageDirective)
   const result = [identity, ...(environment ? [environment] : []), ...clean.slice(0, at), ...(languageDirective ? [languageDirective] : []), ...(memories.length ? [data] : []), ...clean.slice(at)]
   registerAnswerSnapshot(identity, {
-    scope: binding.scope, project: binding.project, query, facts, currentStatements, directiveReceipt, memoryOnly, relations:context.relations, sourceIdentity:source ? {conversation_id:source.proof.interaction.conversation_id,source_message_id:source.proof.interaction.message_id}:undefined,
+    scope: binding.scope, project: binding.project, query, facts, currentStatements, directiveReceipt, memoryOnly, sourceAuthority, relations:context.relations, sourceIdentity:source ? {conversation_id:source.proof.interaction.conversation_id,source_message_id:source.proof.interaction.message_id}:undefined,
     toolObservations: runtime?.receipts,
     refresh: async (claims = []) => {
       assertNotCancelled(signal)

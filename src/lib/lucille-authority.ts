@@ -15,6 +15,18 @@ export const normalizeEvidenceText = (text: string) => text.normalize('NFD').rep
 /** Denying an implication is not asserting poor (or good) actual performance.
  * A later independent positive predicate must still be checked.
  */
+/** Keep explicit contrasting subjects separate; relative game features are not
+ * new speakers. This is response attribution, never permission to learn. */
+export function answerRelationClauses(text:string):string[]{
+ return text.split(/(?<=[.!?;\n])\s+|\b(?:mas|por[eé]m|however|but)\b|,?\s+(?=(?:enquanto|whereas|while)\s+(?:(?:a|o|the)\s+)?(?:personage(?:m|ns)|characters?|narrador(?:a)?|narrators?|ferramenta|tool|voc[eê]|you)(?![\p{L}\p{N}_]))|\s+(?=(?:e|and)\s+(?:(?:a|o|the)\s+)?(?:personagem|character|narradora?|narrator|ferramenta|tool|(?:(?:voc[eê]|you)\s+)?(?:decidiu|escolheu|planeja|pretende|usa|utiliza|uses|plans|decided|chose|intends))\b)|\s+(?=(?:embora|although)\b)/iu).slice(0,128)
+}
+/** An explicitly named fictional/document/tool subject is not the USER.
+ * A later personal subject remains a personal claim and cannot borrow this exemption. */
+export function externalAssertion(span:string):boolean{
+ const q=normalizeEvidenceText(span).trim().replace(/^(?:e|and|enquanto|while|whereas)\s+/,'')
+ const anchor=q.match(/^(?:(?:a|o|the)\s+)?(?:narrador(?:a)?|narrator|personagem|character|ferramenta|tool|documento|document|log|texto|text)\b/)
+ return !!anchor && !/\b(?:voce|seu|sua|seus|suas|you|your|usuario|user)\b/.test(q.slice(anchor[0].length))
+}
 export function deniesCapacityGuarantee(text: string): boolean {
   const q=normalizeEvidenceText(text)
   const denial=q.match(/\b(?:nao (?:garante|garantem|assegura|asseguram|comprova|comprovam|implica|implicam)|(?:does not|doesn.t|cannot|can.t) (?:guarantee|ensure|prove|imply))\b/)
@@ -100,7 +112,8 @@ export function authorityClaims(text: string, snapshot: AnswerSnapshot): Authori
   const add = (span: string, entity: string, property: string, value: string, relation: AuthorityClaim['relation'], proof: MemoryFact[], reason: string, critical = true, tool = false) => {
     result.push({ span, entity, property, value, relation, verdict: proof.length ? 'supported' : tool ? 'tool_dependent' : 'insufficient', references: proof.map(f => f.id), origins: origins(proof), reason, critical })
   }
-  for (const span of text.split(/(?<=[.!?;])\s+|\n+/).filter(s => s.trim())) {
+  for (const span of answerRelationClauses(text).filter(s=>s.trim())) {
+    if(externalAssertion(span))continue
     const q = normalizeEvidenceText(span)
     if (span.trim().endsWith('?')) continue
     const epistemic = /nao (?:ha|tenho).{0,35}(?:confirmacao|evidencia)|no (?:confirmation|evidence)|(?:not|isn.t|nao).{0,18}(?:confirmed|confirmado)|cannot confirm|nao (?:implica|significa|comprova)|does not (?:mean|imply|prove)|doesn.t (?:mean|imply|prove)/.test(q)

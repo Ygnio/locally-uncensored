@@ -136,6 +136,7 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
     }
     const guidance=[...new Set(check.violations.map(v=>repairs[v.code]).filter(Boolean))].join(' ')
       + (language ? ' Required response language: '+(language==='en'?'English':'Portuguese')+'. Translate the formulation into that language; retain proper names and technical values.' : '')
+      + (evidence.sourceAuthority && (evidence.sourceAuthority.external>0 || evidence.sourceAuthority.quoted>0) ? ' The current USER transported external or quoted speech. Preserve that speaker; first-person wording inside a tool/document/fiction is not a personal USER preference. Only independently personal source parts or confirmed canonical facts support USER attributes. Native source classification: '+JSON.stringify(evidence.sourceAuthority) : '')
       + ' Rejected predicate relations (not authoritative facts): '
       + JSON.stringify((check.authority??[]).filter(c=>c.verdict!=='supported').map(c=>({entity:c.entity,property:c.property,relation:c.relation,value:c.value,reason:c.reason})))
       + ' Preserve these supported original assertions where relevant, without their rejected neighbouring inferences: '

@@ -160,7 +160,7 @@ impl Store {
             token_budget: 8192,
         };
         Ok(
-            serde_json::json!({"job":job,"proof":proof,"current_statements":statements(&self.db,&req,&proof)?,"directive_receipt":receipt(&self.db,&input)?}),
+            serde_json::json!({"job":job,"proof":proof,"current_statements":statements(&self.db,&req,&proof)?,"directive_receipt":receipt(&self.db,&input)?,"source_authority":crate::source_authority::speaker_summary(&input.user_text)}),
         )
     }
     pub fn publish_user_turn(&mut self, source: SourceProof) -> Result<serde_json::Value> {

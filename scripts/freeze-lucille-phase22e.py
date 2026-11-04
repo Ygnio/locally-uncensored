@@ -66,6 +66,7 @@ def main(a):
         bridge_sha256=digest(bridge),native_gui_sha256=digest(gui),
         frontend_sha256={p.relative_to(static).as_posix():digest(p) for p in sorted(static.rglob('*')) if p.is_file()},
         model_pin=pin,schema_version=5,representation_version=5,index_version=5,atomic_protocol=3,
+        source_authority_version=int(re.search(r'pub const SOURCE_AUTHORITY_VERSION: u32 = (\d+);',(repo/'crates/lucille-memory/src/source_authority.rs').read_text(encoding='utf-8')).group(1)),
         identity=fixture.get('identity') if fixture else None,policy=fixture.get('policy') if fixture else None,
         evaluation_contract='No source/prompt/policy/parameter/corpus/ranking changes during execution; actual raw generations, all fidelity reports, displayed text and usefulness are separate.')
     output.parent.mkdir(parents=True,exist_ok=True)

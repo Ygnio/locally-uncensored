@@ -13,9 +13,15 @@ pub enum Origin {
     Uncertain,
 }
 
+// Increment when attribution semantics change: pending rule jobs carry only a
+// bounded native attestation, never an unbounded duplicate of the original chat.
+pub const SOURCE_AUTHORITY_VERSION: u32 = 2;
+
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct SourceAuthority {
+    #[serde(default)]
+    pub version: u32,
     pub message_author: String,
     pub statement_author: String,
     pub subject: String,
@@ -43,7 +49,8 @@ fn binding(c: &Claim) -> String {
 }
 impl SourceAuthority {
     pub fn supports(&self, c: &Claim) -> bool {
-        self.message_author == "user"
+        self.version == SOURCE_AUTHORITY_VERSION
+            && self.message_author == "user"
             && self.statement_author == "user"
             && self.origin == Origin::PersonalDeclaration
             && self.subject == c.subject
@@ -134,6 +141,12 @@ fn foreign_noun(w: &str) -> bool {
             "log",
             "documento",
             "document",
+            "relatorio",
+            "report",
+            "arquivo",
+            "file",
+            "transcricao",
+            "transcript",
             "manual",
             "roteiro",
             "script",
@@ -234,6 +247,29 @@ fn external(s: &str) -> bool {
     if fictional_role(s) {
         return true;
     }
+    // A possessed noun that speaks is a reported speaker, even when the
+    // relation/name is not one of the small explicit third-party aliases.
+    if let Some(spoken) = ws.iter().position(|w| {
+        speech(&w.text)
+            && !member(
+                &w.text,
+                &[
+                    "contem", "contains", "retorna", "retornou", "returned", "outputs", "copiado",
+                    "copiada", "extraido", "extraida", "copied", "inventei", "invented",
+                ],
+            )
+    }) {
+        let prefix = &ws[..spoken];
+        if prefix
+            .iter()
+            .any(|w| member(&w.text, &["meu", "minha", "my"]))
+            && !prefix
+                .iter()
+                .any(|w| member(&w.text, &["eu", "i", "prefiro", "gosto"]))
+        {
+            return true;
+        }
+    }
     let first_self = ws
         .iter()
         .position(|w| {
@@ -279,6 +315,113 @@ fn fictional_role(s: &str) -> bool {
     ]
     .iter()
     .any(|v| prefix.contains(v))
+}
+/// A source label followed by a physical newline supplies a speech boundary
+/// even without a colon. Complete descriptive sentences are not source labels.
+fn external_header(s: &str) -> bool {
+    let ws = words(s);
+    if ws.is_empty() || ws.len() > 24 {
+        return false;
+    }
+    let label = ws.iter().all(|w| {
+        foreign_noun(&w.text)
+            || role_tag(&w.text)
+            || member(
+                &w.text,
+                &[
+                    "a",
+                    "o",
+                    "as",
+                    "os",
+                    "um",
+                    "uma",
+                    "de",
+                    "do",
+                    "da",
+                    "dos",
+                    "das",
+                    "no",
+                    "na",
+                    "em",
+                    "meu",
+                    "minha",
+                    "my",
+                    "the",
+                    "of",
+                    "from",
+                    "in",
+                    "an",
+                    "original",
+                    "externo",
+                    "externa",
+                    "external",
+                    "copiado",
+                    "copiada",
+                    "copied",
+                    "ficticio",
+                    "ficticia",
+                    "fictional",
+                    "seguinte",
+                    "following",
+                    "depoimento",
+                    "declaracao",
+                    "statement",
+                    "speech",
+                ],
+            )
+    }) && ws
+        .iter()
+        .any(|w| foreign_noun(&w.text) || role_tag(&w.text));
+    let introduced = external(s)
+        && ws
+            .last()
+            .is_some_and(|w| speech(&w.text) || member(&w.text, &["que", "seguinte", "following"]));
+    let first = ws.iter().find(|w| {
+        !member(
+            &w.text,
+            &[
+                "o", "a", "the", "um", "uma", "do", "da", "de", "from", "of", "my", "meu", "minha",
+            ],
+        )
+    });
+    let source_label = first.is_some_and(|w| {
+        member(
+            &w.text,
+            &[
+                "documento",
+                "document",
+                "relatorio",
+                "report",
+                "arquivo",
+                "file",
+                "transcricao",
+                "transcript",
+                "trecho",
+                "excerpt",
+                "output",
+                "saida",
+                "resultado",
+                "result",
+                "log",
+                "manual",
+                "texto",
+                "text",
+                "mensagem",
+                "message",
+            ],
+        )
+    }) && !ws.iter().any(|w| {
+        speech(&w.text)
+            || member(
+                &w.text,
+                &[
+                    "eu", "i", "prefiro", "gosto", "e", "eh", "is", "are", "was", "were", "parece",
+                    "parecem", "seems", "look", "looks", "tem", "has", "have", "gosta", "prefere",
+                    "likes", "prefers",
+                ],
+            )
+    });
+    label || introduced || source_label
 }
 fn declaration(s: &str) -> bool {
     let ws = words(s);
@@ -396,7 +539,29 @@ fn attributed<'a>(
             return;
         }
     }
-    let origin = if *reported || external(s) {
+    let external_source = external(s);
+    if external_source {
+        let ws = words(s);
+        let boundary = ws
+            .iter()
+            .position(|w| speech(&w.text))
+            .or_else(|| ws.iter().position(|w| foreign_noun(&w.text)));
+        if boundary.is_some_and(|at| {
+            ws[at + 1..].iter().any(|w| {
+                member(
+                    &w.text,
+                    &[
+                        "eu", "i", "prefiro", "gosto", "adoro", "curto", "my", "meu", "minha",
+                    ],
+                )
+            })
+        }) {
+            // Unclosed reported first-person speech keeps its author across
+            // later physical/sentence boundaries. A balanced quote still ends it.
+            *reported = true;
+        }
+    }
+    let origin = if *reported || external_source {
         Origin::ReportedSpeech
     } else if declaration(s) {
         Origin::PersonalDeclaration
@@ -487,7 +652,15 @@ pub fn clauses(text: &str) -> Vec<Clause<'_>> {
             continue;
         }
         if ['.', '!', ';', '\n'].contains(&ch) {
+            let first = out.len();
             coordinated(&mut out, text, begin..at, &mut reported);
+            if ch == '\n'
+                && out[first..]
+                    .last()
+                    .is_some_and(|part| external_header(part.text))
+            {
+                reported = true;
+            }
             begin = next;
         }
         at = next;
@@ -555,6 +728,7 @@ pub(crate) fn attest(source: &str, mut c: Claim) -> Option<Claim> {
             .map(|offset| part.span.start + offset)
     })?;
     c.authority = Some(SourceAuthority {
+        version: SOURCE_AUTHORITY_VERSION,
         message_author: "user".into(),
         statement_author: "user".into(),
         subject: c.subject.clone(),
@@ -651,4 +825,27 @@ mod tests {
             )
         }
     }
+}
+
+/// Native framing for response generation. Counters convey speaker separation,
+/// never grant a model or queued job permission to persist a personal claim.
+pub fn speaker_summary(source: &str) -> Option<serde_json::Value> {
+    if source.len() > 1600 {
+        return None;
+    }
+    let mut personal = 0;
+    let mut external = 0;
+    let mut quoted = 0;
+    let mut uncertain = 0;
+    for part in clauses(source) {
+        match part.origin {
+            Origin::PersonalDeclaration => personal += 1,
+            Origin::ReportedSpeech => external += 1,
+            Origin::QuotedText => quoted += 1,
+            Origin::Uncertain => uncertain += 1,
+        }
+    }
+    Some(
+        serde_json::json!({"message_author":"user","personal":personal,"external":external,"quoted":quoted,"uncertain":uncertain}),
+    )
 }

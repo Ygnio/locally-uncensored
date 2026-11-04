@@ -138,7 +138,7 @@ impl Quality {
             replaces_version: None,
             facets: c.facets.clone(),
             evidence_rule: c.authority.as_ref().map(|proof|
-                format!("{}|native_source_authority_v1:{}", c.rule, serde_json::to_string(proof).expect("bounded source proof")))
+                format!("{}|native_source_authority_v2:{}", c.rule, serde_json::to_string(proof).expect("bounded source proof")))
                 .unwrap_or_else(|| c.rule.clone()),
         }
     }
@@ -597,7 +597,7 @@ impl Store {
             grounded = crate::llm::validate(&text, &scope, &project, json)?
                 .into_iter().filter_map(|c|crate::source_authority::attest(text,c)).collect();
             if mode == "hybrid" {
-                for c in verified.iter().cloned() {
+                for c in verified.iter().cloned().filter(|c|crate::source_authority::independently_interpreted(c,&project)).filter_map(|c|crate::source_authority::attest(text,c)) {
                     if !grounded.iter().any(|v| {
                         v.fingerprint() == c.fingerprint()
                             && v.temporal == c.temporal

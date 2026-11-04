@@ -1,4 +1,4 @@
-import { authorityClaims as evaluateAuthority, type AuthorityClaim, technologyRoles, requestedMemoryProperties, deniesCapacityGuarantee } from './lucille-authority'
+import { authorityClaims as evaluateAuthority, type AuthorityClaim, technologyRoles, requestedMemoryProperties, deniesCapacityGuarantee, answerRelationClauses, externalAssertion } from './lucille-authority'
 /** Bounded independent checks for typed memory assertions, never a general truth oracle.
  * No model, persistence writer, tools or permissions are reachable in this module.
  */
@@ -14,6 +14,7 @@ export interface AnswerSnapshot {
   directiveReceipt?:MemoryDirectiveReceipt | null
   learningReceipt?:MemoryLearningReceipt | null
   relations?:MemoryQueryRelation[]
+  sourceAuthority?:SourceSpeakerSummary | null
   sourceIdentity?: { conversation_id:string;source_message_id:string }
   hasScopedRecords?:boolean
   refresh?: (claims?: { entity: string; property: string; value: string }[]) => Promise<{ facts: MemoryFact[]; current_statements: MemoryFact[];directive_receipt?:MemoryDirectiveReceipt | null;has_scoped_records?:boolean;learning_receipt?:MemoryLearningReceipt | null }>
@@ -21,6 +22,7 @@ export interface AnswerSnapshot {
   toolObservations?: readonly import('./verified-environment').ToolEvidence[]
   reload?: () => Promise<ChatMessage[]>
 }
+export interface SourceSpeakerSummary { message_author:'user';personal:number;external:number;quoted:number;uncertain:number }
 export interface MemoryQueryRelation {
   query:string;actor:string;intent?:string;state:string;references:{id:string;version:number}[]
 }
@@ -132,10 +134,11 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   }
   // A coordinated predicate owns its modality. A decision about PostgreSQL
   // cannot change the preceding current Python use (or the reverse).
-  const clauses = text.split(/(?<=[.!?;\n])\s+|\b(?:mas|porem|however|but)\b|\s+(?=(?:embora|although)\b)|\s+(?=(?:e|and)\s+(?:(?:voce|you)\s+)?(?:decidiu|escolheu|planeja|pretende|usa|utiliza|uses|plans|decided|chose|intends)\b)/i).slice(0, 128)
+  const clauses = answerRelationClauses(text)
   let favoriteSlotBound=false
   for (const span of clauses) {
     const q = fold(span)
+    if(externalAssertion(span))continue
     const thirdParty=/\b(?:irmao|irma|brother|sister|colega|colleague|amigo|friend)\b/.test(q)
     if(thirdParty && !uncertain(span) && !span.trim().endsWith('?') && /\b(?:typescript|javascript|python|rust|sqlite|postgresql|mysql|\d+\s*(?:gb|gib)|prefere|prefers|gosta|likes)\b/.test(q))add('unsupported_statement_actor',span)
     // Elliptical completion predicates have the same operation authority as "I saved".
@@ -267,14 +270,18 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       const entity = entityIn(q.slice(0, match.index)) ?? entityIn(query)
       record(span, property, match[1] + '_gb', entity, /nao (?:tem|possui|sao|e)|does not have|not \d|\bnao (?:uma |a |sua )?capacidade (?:total )?de\s*$|\bnot (?:a |your )?(?:total )?capacity of\s*$/.test(q.slice(0, match.index)))
     }
-    const plainPreference=/\b(?:prefere|prefiro|prefers|prefer|gosta de|like|likes)\b/.test(q)
+    const plainPreference=/\b(?:prefere|prefiro|prefers|prefer|gosta de|like|likes|preferencia por|preference for|gosto por|liking for)\b/.test(q)
     const drinkLead=/^(?:(?:e|is|it is|it's)\s+)?(?:cha|tea|cafe|coffee)\b/.test(q.trim())
     const genericDrinkQuestion=/pref|gost|likes/.test(query) && /bebida|beverage|drink|cafe|coffee/.test(query) && !/favorit|favourit|acucar|sugar/.test(query)
     if((subject && plainPreference || drinkLead && genericDrinkQuestion) && !/favorit|favourit|acucar|sugar/.test(q)) {
       for(const value of ['coffee','tea'])if(mentions(span,value))record(span,'beverage_preference',value,'user')
     }
     const unboundFavoriteAnswer=!favoriteSlotBound && /favorit|favourit|bebida|beverage/.test(query) && /^(?:(?:e|is|it is|it's)\s+)?(?:cha|tea|cafe|coffee)\b/.test(q.trim())
-    if (unboundFavoriteAnswer || (subject && /pref|gost|likes|favorit|adora|curt|toma|bebe|drink|idioma|lingua|tema|theme|comunica|communication/.test(q)) || (preferenceQuestion && span.length<160 && !/\b(?:pode|poderia|opcao|alternativa|could|might|option|recommend|sugiro|depende)\b/.test(q))) {
+    // A feature of the game is not a statement about its player's preferences.
+    // Keep short elliptical answers eligible, but do not borrow USER ownership
+    // from the question when a descriptive predicate has its own subject.
+    const impersonalFeature=!subject && /\b(?:permite|permitem|oferece|oferecem|possibilita|possibilitam|allows?|enables?|offers?|provides?)\b/.test(q)
+    if (unboundFavoriteAnswer || (subject && /pref|gost|likes|favorit|adora|curt|toma|bebe|drink|idioma|lingua|tema|theme|comunica|communication/.test(q)) || (preferenceQuestion && !impersonalFeature && span.length<160 && !/\b(?:pode|poderia|opcao|alternativa|could|might|option|recommend|sugiro|depende)\b/.test(q))) {
       for (const property of ['coffee_sugar', 'interface_theme', 'communication_style', 'response_language', 'favorite_beverage', 'communication_focus']) {
         const domain = q + ' ' + query
         if (property === 'coffee_sugar' && !/cafe|coffee|acucar|sugar/.test(domain)) continue

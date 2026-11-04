@@ -3,6 +3,12 @@ import {registerAnswerSnapshot,memoryAbsenceFields} from '../lucille-fidelity'
 import {validateLucilleCompletion} from '../lucille-answer'
 import type {ChatMessage} from '../../api/providers/types'
 import {verifyMemoryAnswer,type AnswerSnapshot,type MemoryLearningReceipt} from '../lucille-fidelity'
+it('does not assign the historical generic game-feature reply to USER preferences',()=>{
+ const s=base();s.query='Entre os jogos, os de estratégia por turnos são os meus favoritos.';s.currentStatements=[]
+ for(const text of ['Estratégia por turnos permite uma análise cuidadosa de cada movimento. Você prefere jogos com grandes escalas épicas ou algo mais focado em pequenos grupos de personagens?','Os jogos de estratégia por turnos permitem um planejamento cuidadoso e profundo. Você prefere jogos com grandes mapas e muitos personagens ou algo mais focado em pequenos grupos e batalhas intensas?'])expect(verifyMemoryAnswer(text,s).violations,text).toEqual([])
+ expect(verifyMemoryAnswer('Você prefere estratégia por turnos, que permite planejar cuidadosamente.',s).violations.some(v=>v.critical)).toBe(true)
+ expect(verifyMemoryAnswer('Estratégia por turnos.',s).violations.some(v=>v.critical)).toBe(true)
+})
 const base=():AnswerSnapshot=>({scope:'qa',project:'candeia',query:'Quero voltar a registrar minha preferência: eu prefiro café com açúcar.',facts:[],currentStatements:[{id:'current-turn-0',version:0,entity:'user',property:'coffee_sugar',value:'with_sugar',modality:'preference',validity:'current_user_statement',scope:'qa',project:'candeia',review:'original',facets:[],evidence:[{role:'current_user_statement',text:'Eu prefiro café com açúcar.'}]}],sourceIdentity:{conversation_id:'c',source_message_id:'u'}})
 const receipt=():MemoryLearningReceipt=>({id:'a'.repeat(64),action:'learn',state:'done',scope:'qa',project:'candeia',conversation_id:'c',source_message_id:'u',records:[{id:'m',version:1,state:'active',entity:'user',property:'coffee_sugar',value:'with_sugar'}]})
 it('rejects completion before commit, including elliptical historical Registrado, but allows natural acknowledgment',()=>{
@@ -90,4 +96,15 @@ it('a plain coffee preference does not prove sugar preparation or a favorite, an
  expect(verifyMemoryAnswer('Você prefere café.',s).violations).toEqual([])
  expect(verifyMemoryAnswer('Café.',s).violations).toEqual([])
  for(const text of ['Você prefere chá.','Sua bebida favorita é café.','Você prefere café sem açúcar.'])expect(verifyMemoryAnswer(text,s).violations.some(v=>v.critical),text).toBe(true)
+})
+
+it('keeps speakers local in the actual narrator and mixed-source GUI replies',()=>{
+ const s=base();s.query='Eu prefiro café, mas a personagem do jogo prefere chá.'
+ s.currentStatements=[{...s.currentStatements[0],property:'beverage_preference',value:'coffee'}]
+ for(const text of ['Entendido. Você prefere café, enquanto a personagem do jogo prefere chá.','A personagem do jogo prefere chá, enquanto você prefere café.','Você prefere café e a personagem prefere chá.'])expect(verifyMemoryAnswer(text,s).violations,text).toEqual([])
+ expect(verifyMemoryAnswer('Você prefere chá, enquanto a personagem prefere café.',s).violations.some(v=>v.critical)).toBe(true)
+ s.currentStatements=[];s.query='No diálogo que inventei, a narradora diz eu gosto de café sem açúcar.'
+ expect(verifyMemoryAnswer('A narradora afirma que gosta de café sem açúcar.',s).violations).toEqual([])
+ expect(verifyMemoryAnswer('A narradora afirma que prefere café sem açúcar. Isso contrasta com a sua preferência por chá mencionada anteriormente.',s).violations.some(v=>v.critical)).toBe(true)
+ expect(verifyMemoryAnswer('A ferramenta informa que você prefere chá como sua bebida favorita.',s).violations.some(v=>v.critical)).toBe(true)
 })

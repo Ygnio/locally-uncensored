@@ -2,9 +2,9 @@ name: Lucille identity and memory
 
 on:
   push:
-    branches: [feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality, feature/lucille-phase21c-real-inference, feature/lucille-phase21d-real-quality, feature/lucille-phase22-autonomous-memory, feature/lucille-phase22b-answer-fidelity, feature/lucille-phase22c-evidence-authority, feature/lucille-phase22d-learning-integrity]
+    branches: [feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality, feature/lucille-phase21c-real-inference, feature/lucille-phase21d-real-quality, feature/lucille-phase22-autonomous-memory, feature/lucille-phase22b-answer-fidelity, feature/lucille-phase22c-evidence-authority, feature/lucille-phase22d-learning-integrity, feature/lucille-phase22e-source-authority]
   pull_request:
-    branches: [master, feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality, feature/lucille-phase21c-real-inference, feature/lucille-phase21d-real-quality, feature/lucille-phase22-autonomous-memory, feature/lucille-phase22b-answer-fidelity, feature/lucille-phase22c-evidence-authority]
+    branches: [master, feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality, feature/lucille-phase21c-real-inference, feature/lucille-phase21d-real-quality, feature/lucille-phase22-autonomous-memory, feature/lucille-phase22b-answer-fidelity, feature/lucille-phase22c-evidence-authority, feature/lucille-phase22d-learning-integrity]
   workflow_dispatch:
 
 permissions:
@@ -28,6 +28,10 @@ jobs:
           cache: npm
       - name: Install dependencies without launching applications
         run: npm ci --ignore-scripts
+      - name: Evaluator contract and literal source attribution rubric
+        run: |
+          node --test qa/phase22e-evaluator-contract.test.mjs
+          python qa/phase22e-origin-rubric.py
       - name: Real Rust SQLite and FTS5 tests
         run: cargo test --locked --manifest-path crates/lucille-memory/Cargo.toml
       - name: Build real synthetic integration bridge
@@ -72,6 +76,7 @@ jobs:
             src/lib/__tests__/lucille-authority.test.ts \
             src/lib/__tests__/lucille-context.test.ts \
             src/lib/__tests__/lucille-fidelity.test.ts \
+            src/lib/__tests__/lucille-phase22e.test.ts \
             src/lib/__tests__/lucille-full-bootstrap.test.ts \
             src/lib/__tests__/lucille-index-worker.test.ts \
             src/lib/__tests__/lucille-learning.test.ts \

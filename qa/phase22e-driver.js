@@ -49,6 +49,11 @@ async function run(control) {
     const id = p.useChatStore.getState().createConversation('openai::lucille-real-gemma', '', mode === 'code' ? 'codex' : 'lu')
     p.useChatStore.getState().setConversationLucille(id, { profile: 'lucille', scope, project, tokenBudget: 8192 })
     if (mode === 'agent') p.useAgentModeStore.getState().setAgentModeActive(id, true)
+    for(const file of control.plan.fixture_files??[]){
+      if(!/^[a-z0-9-]{1,40}\.txt$/.test(file.name) || typeof file.text!=='string' || file.text.length>2000)throw Error('Bounded synthetic tool fixture required')
+      await globalThis.__TAURI_INTERNALS__.invoke('fs_write',{path:file.name,content:file.text,chatId:id,workingDirectory:null})
+      fixture.files??=[];fixture.files.push({conversation_id:id,name:file.name,synthetic_fixture:true})
+    }
     p.useUIStore.getState().setView('chat'); fixture.conversations.push(id); await sleep(400); return id
   }
   async function send(text) {
@@ -74,7 +79,7 @@ async function run(control) {
         }catch(error){operationSnapshots.push({event,observed_at_ms,read_started_ms,read_finished_ms:Date.now()-start,error:String(error)})}
       })
     }
-    const transportFailure=m=>m.role==='assistant' && (!!m.error && !m.lucilleFidelity?.some(r=>r.status==='blocked') || /^\s*(?:Agent error:|Error:\s*\[network\])/.test(m.content??''))
+    const transportFailure=m=>m.role==='assistant' && !m.lucilleFidelity?.some(r=>r.status==='blocked') && (!!m.error || /^\s*(?:Agent error:|Error:\s*\[network\])/.test(m.content??''))
     const observe = state => {
       for (const c of state.conversations.filter(c => c.id === chat().id)) for (const m of c.messages.filter(m => m.role === 'assistant' && !before.includes(m.id))) {
         for(const block of m.agentBlocks ?? []) {
@@ -193,6 +198,28 @@ async function run(control) {
 let busy = false
 // Fault probes use the same native RPC as the real settings/learning worker.
 // This is bundled only in the isolated QA host, with no general script runner.
+// Exercise the real copy handler and original browser API. A denied background
+// clipboard write stays a failed transport observation, never a simulated pass.
+async function copyVerifiedReply(control){
+ if(!/^[a-z0-9-]{1,50}$/.test(control.label))throw Error('Copy label')
+ const state=p.useChatStore.getState(),c=state.conversations.find(c=>c.id===state.activeConversationId)
+ if(!c || !(c.lucille?.scope?.startsWith('phase22e-') || c.lucille?.scope==='phase22c-final-historical-series'))throw Error('Own synthetic conversation required')
+ const m=c.messages.findLast(m=>m.role==='assistant' && m.content?.trim())
+ const verified=!!m?.lucilleFidelity?.some(r=>['checked','regenerated'].includes(r.status) && r.verifiedText?.trim()===m.content.trim())
+ if(!verified){await record(`driver-${control.label}-copy.json`,{status:'refused_unverified'},true);return}
+ const element=document.querySelector(`[data-message-id="${m.id}"]`),button=element?.querySelector('button[aria-label="Copy message"]')
+ if(!button || !navigator.clipboard?.writeText){await record(`driver-${control.label}-copy.json`,{status:'not_applicable',mode:c.mode,button:!!button},true);return}
+ const original=navigator.clipboard.writeText;let captured=null,outcome=null
+ try{
+  navigator.clipboard.writeText=async function(text){
+   captured=text
+   try{await original.call(navigator.clipboard,text);outcome={status:'system_write_resolved'}}catch(error){outcome={status:'system_write_rejected',error:String(error)}}
+  }
+  button.click();await until(()=>outcome!==null,'original clipboard write',10000)
+ }finally{navigator.clipboard.writeText=original}
+ await record(`driver-${control.label}-copy.json`,{...outcome,message_id:m.id,conversation_id:c.id,handler_payload_matches_verified:captured===m.content,verified_text:m.content,document_focused:document.hasFocus(),dom_text:element.innerText},true)
+}
+
 async function nativeFault(control) {
   if(!/^[a-z0-9-]{1,50}$/.test(control.label))throw Error('Fault label')
   const request=control.fault
@@ -229,6 +256,7 @@ setInterval(async () => {
       try { await nativeFault(control) } catch(error) {
         await record(`driver-${control.label}-fault.json`,{native:true,rejected:true,error:String(error)},true)
       }
+    } else if(control.copy===true){await copyVerifiedReply(control)
     } else if (control.inspect === true) {
       if (!/^[a-z0-9-]{1,50}$/.test(control.label)) throw Error('Inspection label')
       await record(`driver-${control.label}-inspection.json`, {
