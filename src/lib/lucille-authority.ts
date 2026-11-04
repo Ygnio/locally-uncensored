@@ -40,8 +40,13 @@ export function requestedMemoryProperties(query: string): string[] {
   const q=normalizeEvidenceText(query), properties:string[]=[]
   if (/\b(?:linguagem|language)\b/.test(q)) properties.push('language')
   if (/\b(?:banco|database)\b/.test(q)) properties.push('database')
-  if (/\bram\b/.test(q)) properties.push(/livre|free/.test(q)?'free_ram':'ram_capacity')
+  if (/\bram\b|\b(?:memoria|memory|gigabytes)\b/.test(q) && !/gpu|vram|storage|armazenamento/.test(q)) properties.push(/livre|free/.test(q)?'free_ram':'ram_capacity')
   if (/\b(?:projeto|project)\b/.test(q) && /como esta|how is|status|estado atual|current state/.test(q)) properties.push('lifecycle')
+  if (/\bgpu\b|placa de video|graphics card/.test(q)) properties.push('gpu_model')
+  if (/data de nascimento|birth ?date|birthday/.test(q)) properties.push('birth_date')
+  if (/cafe|coffee/.test(q)) properties.push('coffee_sugar')
+  if (/bebida|beverage|drink/.test(q)) properties.push('favorite_beverage')
+  if (/tema|theme|modo escuro|dark mode/.test(q)) properties.push('interface_theme')
   return properties
 }
 
@@ -99,7 +104,7 @@ export function authorityClaims(text: string, snapshot: AnswerSnapshot): Authori
         add(span,'project.'+snapshot.project,'stack_transition',target.value,'transition',proof,'A decision to replace technology is not an executed replacement.')
       }
     }
-    if (project && /em desenvolvimento|em andamento|em execucao|esta avancando|is progressing|in development|in progress|under development|underway|being developed|is (?:still |currently )?developing/.test(q) && !epistemic && !hypothetical(/em desenvolvimento|em andamento|em execucao|avancando|progress|development|developed|developing|underway/)) {
+    if (project && /em desenvolvimento|em andamento|em execucao|esta (?:desenvolvendo|implementando|avancando)|is progressing|in development|in progress|under development|underway|being developed|is (?:still |currently )?developing/.test(q) && !epistemic && !hypothetical(/em desenvolvimento|em andamento|em execucao|avancando|progress|development|developed|developing|underway/)) {
       const proof = current.filter(f => f.entity === 'project.' + snapshot.project && ['in_progress','current_fact'].includes(f.modality) && ['lifecycle','project_status','language'].includes(f.property))
       const terminal = current.some(f => f.entity === 'project.' + snapshot.project && f.property === 'lifecycle' && ['cancelled','completed'].includes(f.modality))
       const negative=/nao (?:esta|segue)|is not|isn.t|not in/.test(q)

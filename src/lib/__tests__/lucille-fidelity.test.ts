@@ -269,3 +269,22 @@ it('binds completed goals to their actual target, including short answers', () =
   expect(verifyMemoryAnswer('Você concluiu seu curso de Python.',s).violations.some(v=>v.critical)).toBe(true)
   expect(verifyMemoryAnswer('Aprender Python.',snapshot([{...goal,modality:'planned'}],s.query)).violations.some(v=>v.critical)).toBe(true)
 })
+
+it('2.2D binds absence checks to the asked property rather than namespace population',()=>{
+  const ram=fact({entity:'device.primary_computer',property:'ram_capacity',value:'48_gb',modality:'current_fact'})
+  expect(verifyMemoryAnswer('Não tenho informação sobre a GPU do seu computador.',snapshot([ram],'Qual é a GPU do meu computador principal?')).violations).toEqual([])
+  expect(verifyMemoryAnswer('Não tenho informação suficiente.',snapshot([ram],'Qual a RAM do meu computador principal?')).violations.map(v=>v.code)).toContain('known_information_not_used')
+  expect(verifyMemoryAnswer('Não tenho informação sobre seu irmão.',snapshot([fact({property:'database',value:'sqlite',modality:'decision'})],'Meu irmão usa qual banco de dados?')).violations).toEqual([])
+})
+it('2.2D does not assign project execution to a preference relative clause',()=>{
+  const theme=fact({entity:'user',property:'interface_theme',value:'dark',modality:'preference'})
+  expect(verifyMemoryAnswer('Você prefere o modo escuro na interface que utiliza.',snapshot([theme],'Qual tema de interface eu prefiro?')).violations).toEqual([])
+})
+it('2.2D rejects developing as an inference from a generic start and a technology choice',()=>{
+  const description=fact({property:'description',value:'catalogo',modality:'current_fact'})
+  const s=snapshot([fact({modality:'decision'}),description],'O que você sabe do meu projeto?')
+  for(const text of ['Você está desenvolvendo um catálogo em Rust.','Você está implementando seu projeto em Rust.']) {
+    expect(verifyMemoryAnswer(text,s).violations.some(v=>v.critical)).toBe(true)
+  }
+  expect(verifyMemoryAnswer('Você está desenvolvendo seu projeto em Rust.',snapshot([fact({modality:'in_progress'})])).violations).toEqual([])
+})
