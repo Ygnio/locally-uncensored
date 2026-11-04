@@ -1,0 +1,3008 @@
+{
+  "method": "Preserved 2.2C native executable replaying the exact frozen 2.2D input and identical actual 40 Gemma outputs; no new model inference. Old learn fixture identity differs; extraction does not consume identity. No changes to final evaluator or corpus.",
+  "exe_sha256": "a9a0dbbdd0bd84295cd1c02b56420c8d604481fcb7feb3ffbfd12c78fcbb85d3",
+  "modes": {
+    "rules": {
+      "tp": 13,
+      "fp": 2,
+      "missed": 12,
+      "critical_writes": 2,
+      "active_wrong": 2,
+      "precision": 0.8666666666666667,
+      "recall": 0.52
+    },
+    "llm": {
+      "tp": 12,
+      "fp": 2,
+      "missed": 13,
+      "critical_writes": 2,
+      "active_wrong": 2,
+      "precision": 0.8571428571428571,
+      "recall": 0.48
+    },
+    "hybrid": {
+      "tp": 13,
+      "fp": 2,
+      "missed": 12,
+      "critical_writes": 2,
+      "active_wrong": 2,
+      "precision": 0.8666666666666667,
+      "recall": 0.52
+    }
+  },
+  "rows": [
+    {
+      "id": "dx-001",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-002",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-003",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-004",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-005",
+      "modes": {
+        "rules": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809675,
+                "input": {
+                  "content": "No cotidiano, prefiro tema escuro na interface",
+                  "fact_key": "user.interface_theme",
+                  "id": "d099a878-884d-824e-9396-1f7e5f336633",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-005",
+                  "source": "user",
+                  "source_id": "27c4558b67d76596e5fcc91f21ec08bd875dd7ad349385ae13ebfcfcf4934b95"
+                },
+                "state": "active",
+                "updated_at": 1793809675,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809675,
+                  "evidence": "No cotidiano, prefiro tema escuro na interface",
+                  "interaction_id": "27c4558b67d76596e5fcc91f21ec08bd875dd7ad349385ae13ebfcfcf4934b95"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "interface_theme",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "dark"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "llm": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809675,
+                "input": {
+                  "content": "No cotidiano, prefiro tema escuro na interface",
+                  "fact_key": "user.interface_theme",
+                  "id": "d099a878-884d-824e-9396-1f7e5f336633",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-005",
+                  "source": "user",
+                  "source_id": "27c4558b67d76596e5fcc91f21ec08bd875dd7ad349385ae13ebfcfcf4934b95"
+                },
+                "state": "active",
+                "updated_at": 1793809675,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809675,
+                  "evidence": "No cotidiano, prefiro tema escuro na interface",
+                  "interaction_id": "27c4558b67d76596e5fcc91f21ec08bd875dd7ad349385ae13ebfcfcf4934b95"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "interface_theme",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "dark"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "hybrid": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809675,
+                "input": {
+                  "content": "No cotidiano, prefiro tema escuro na interface",
+                  "fact_key": "user.interface_theme",
+                  "id": "d099a878-884d-824e-9396-1f7e5f336633",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-005",
+                  "source": "user",
+                  "source_id": "27c4558b67d76596e5fcc91f21ec08bd875dd7ad349385ae13ebfcfcf4934b95"
+                },
+                "state": "active",
+                "updated_at": 1793809675,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809675,
+                  "evidence": "No cotidiano, prefiro tema escuro na interface",
+                  "interaction_id": "27c4558b67d76596e5fcc91f21ec08bd875dd7ad349385ae13ebfcfcf4934b95"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "interface_theme",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "dark"
+              },
+              "revisions": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-006",
+      "modes": {
+        "rules": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809675,
+                "input": {
+                  "content": "In my interface, I prefer the light theme",
+                  "fact_key": "user.interface_theme",
+                  "id": "2f93ac8f-d05c-ede5-11c4-330caf97365d",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-006",
+                  "source": "user",
+                  "source_id": "a2bfb42d6248000393ec25697d7f4573410f6b1ba693f73740dc0b9d57d44c60"
+                },
+                "state": "active",
+                "updated_at": 1793809675,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809675,
+                  "evidence": "In my interface, I prefer the light theme",
+                  "interaction_id": "a2bfb42d6248000393ec25697d7f4573410f6b1ba693f73740dc0b9d57d44c60"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "interface_theme",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "light"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "llm": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809675,
+                "input": {
+                  "content": "In my interface, I prefer the light theme",
+                  "fact_key": "user.interface_theme",
+                  "id": "2f93ac8f-d05c-ede5-11c4-330caf97365d",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-006",
+                  "source": "user",
+                  "source_id": "a2bfb42d6248000393ec25697d7f4573410f6b1ba693f73740dc0b9d57d44c60"
+                },
+                "state": "active",
+                "updated_at": 1793809675,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809675,
+                  "evidence": "In my interface, I prefer the light theme",
+                  "interaction_id": "a2bfb42d6248000393ec25697d7f4573410f6b1ba693f73740dc0b9d57d44c60"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "interface_theme",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "light"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "hybrid": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809675,
+                "input": {
+                  "content": "In my interface, I prefer the light theme",
+                  "fact_key": "user.interface_theme",
+                  "id": "2f93ac8f-d05c-ede5-11c4-330caf97365d",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-006",
+                  "source": "user",
+                  "source_id": "a2bfb42d6248000393ec25697d7f4573410f6b1ba693f73740dc0b9d57d44c60"
+                },
+                "state": "active",
+                "updated_at": 1793809675,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809675,
+                  "evidence": "In my interface, I prefer the light theme",
+                  "interaction_id": "a2bfb42d6248000393ec25697d7f4573410f6b1ba693f73740dc0b9d57d44c60"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "interface_theme",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "light"
+              },
+              "revisions": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-007",
+      "modes": {
+        "rules": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809676,
+                "input": {
+                  "content": "Prefere respostas em português.",
+                  "fact_key": "user.response_language",
+                  "id": "cd34f861-274b-ad7f-e971-9c1cf910ec2c",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-007",
+                  "source": "user",
+                  "source_id": "0f594c93a470ba6bc511a46012c35c2afce89c8266362a63b9d2014677b72104"
+                },
+                "state": "active",
+                "updated_at": 1793809676,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809676,
+                  "evidence": "Para conversar comigo, eu prefiro usar português",
+                  "interaction_id": "0f594c93a470ba6bc511a46012c35c2afce89c8266362a63b9d2014677b72104"
+                }
+              ],
+              "quality": {
+                "confidence": 0.98,
+                "evidence_rule": "explicit_language_preference",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "response_language",
+                "relevance": 0.9,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "pt"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "llm": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809676,
+                "input": {
+                  "content": "Prefere respostas em português.",
+                  "fact_key": "user.response_language",
+                  "id": "cd34f861-274b-ad7f-e971-9c1cf910ec2c",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-007",
+                  "source": "user",
+                  "source_id": "0f594c93a470ba6bc511a46012c35c2afce89c8266362a63b9d2014677b72104"
+                },
+                "state": "active",
+                "updated_at": 1793809676,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809676,
+                  "evidence": "Para conversar comigo, eu prefiro usar português",
+                  "interaction_id": "0f594c93a470ba6bc511a46012c35c2afce89c8266362a63b9d2014677b72104"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_language_preference",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "response_language",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "pt"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "hybrid": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809676,
+                "input": {
+                  "content": "Prefere respostas em português.",
+                  "fact_key": "user.response_language",
+                  "id": "cd34f861-274b-ad7f-e971-9c1cf910ec2c",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-007",
+                  "source": "user",
+                  "source_id": "0f594c93a470ba6bc511a46012c35c2afce89c8266362a63b9d2014677b72104"
+                },
+                "state": "active",
+                "updated_at": 1793809676,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809676,
+                  "evidence": "Para conversar comigo, eu prefiro usar português",
+                  "interaction_id": "0f594c93a470ba6bc511a46012c35c2afce89c8266362a63b9d2014677b72104"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_language_preference",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "response_language",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "pt"
+              },
+              "revisions": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-008",
+      "modes": {
+        "rules": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809676,
+                "input": {
+                  "content": "When you reply to me, my preferred language is Portuguese",
+                  "fact_key": "user.response_language",
+                  "id": "5e3746a1-13b8-661f-1703-f99d1ad56ce7",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-008",
+                  "source": "user",
+                  "source_id": "71299b883b7c40830064aca2a5ebfd52abc32c2b7d2d4034cdf75f021dbfdd11"
+                },
+                "state": "active",
+                "updated_at": 1793809676,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809676,
+                  "evidence": "When you reply to me, my preferred language is Portuguese",
+                  "interaction_id": "71299b883b7c40830064aca2a5ebfd52abc32c2b7d2d4034cdf75f021dbfdd11"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "response_language",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "pt"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "llm": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809676,
+                "input": {
+                  "content": "When you reply to me, my preferred language is Portuguese",
+                  "fact_key": "user.response_language",
+                  "id": "5e3746a1-13b8-661f-1703-f99d1ad56ce7",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-008",
+                  "source": "user",
+                  "source_id": "71299b883b7c40830064aca2a5ebfd52abc32c2b7d2d4034cdf75f021dbfdd11"
+                },
+                "state": "active",
+                "updated_at": 1793809676,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809676,
+                  "evidence": "When you reply to me, my preferred language is Portuguese",
+                  "interaction_id": "71299b883b7c40830064aca2a5ebfd52abc32c2b7d2d4034cdf75f021dbfdd11"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "response_language",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "pt"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "hybrid": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809676,
+                "input": {
+                  "content": "When you reply to me, my preferred language is Portuguese",
+                  "fact_key": "user.response_language",
+                  "id": "5e3746a1-13b8-661f-1703-f99d1ad56ce7",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-008",
+                  "source": "user",
+                  "source_id": "71299b883b7c40830064aca2a5ebfd52abc32c2b7d2d4034cdf75f021dbfdd11"
+                },
+                "state": "active",
+                "updated_at": 1793809676,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809676,
+                  "evidence": "When you reply to me, my preferred language is Portuguese",
+                  "interaction_id": "71299b883b7c40830064aca2a5ebfd52abc32c2b7d2d4034cdf75f021dbfdd11"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "response_language",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "pt"
+              },
+              "revisions": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-009",
+      "modes": {
+        "rules": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809676,
+                "input": {
+                  "content": "Nos jogos que escolho, gosto de poder definir a classe do personagem",
+                  "fact_key": "user.games_class_selection",
+                  "id": "56156dee-1655-568f-69be-238dad7069ab",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-009",
+                  "source": "user",
+                  "source_id": "74a88ceeccb9457a149e6d572ee4f8f9e2d040d9c5f41ca2bf39e1259ca2ff77"
+                },
+                "state": "active",
+                "updated_at": 1793809676,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809676,
+                  "evidence": "Nos jogos que escolho, gosto de poder definir a classe do personagem",
+                  "interaction_id": "74a88ceeccb9457a149e6d572ee4f8f9e2d040d9c5f41ca2bf39e1259ca2ff77"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "games_class_selection",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "positive"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "llm": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809676,
+                "input": {
+                  "content": "Nos jogos que escolho, gosto de poder definir a classe do personagem",
+                  "fact_key": "user.games_class_selection",
+                  "id": "56156dee-1655-568f-69be-238dad7069ab",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-009",
+                  "source": "user",
+                  "source_id": "74a88ceeccb9457a149e6d572ee4f8f9e2d040d9c5f41ca2bf39e1259ca2ff77"
+                },
+                "state": "active",
+                "updated_at": 1793809676,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809676,
+                  "evidence": "Nos jogos que escolho, gosto de poder definir a classe do personagem",
+                  "interaction_id": "74a88ceeccb9457a149e6d572ee4f8f9e2d040d9c5f41ca2bf39e1259ca2ff77"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "games_class_selection",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "positive"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "hybrid": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809676,
+                "input": {
+                  "content": "Nos jogos que escolho, gosto de poder definir a classe do personagem",
+                  "fact_key": "user.games_class_selection",
+                  "id": "56156dee-1655-568f-69be-238dad7069ab",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-009",
+                  "source": "user",
+                  "source_id": "74a88ceeccb9457a149e6d572ee4f8f9e2d040d9c5f41ca2bf39e1259ca2ff77"
+                },
+                "state": "active",
+                "updated_at": 1793809676,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809676,
+                  "evidence": "Nos jogos que escolho, gosto de poder definir a classe do personagem",
+                  "interaction_id": "74a88ceeccb9457a149e6d572ee4f8f9e2d040d9c5f41ca2bf39e1259ca2ff77"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "games_class_selection",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "positive"
+              },
+              "revisions": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-010",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-011",
+      "modes": {
+        "rules": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809677,
+                "input": {
+                  "content": "Poder criar personagens é o que mais gosto nos jogos",
+                  "fact_key": "user.games_character_creation",
+                  "id": "6d12eec5-e878-e371-b0ec-fee97ed2337b",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-011",
+                  "source": "user",
+                  "source_id": "b369f5ab5d088eb2322e28811ba255e832dd1198543b48e26bfb3db3b172c828"
+                },
+                "state": "active",
+                "updated_at": 1793809677,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809677,
+                  "evidence": "Poder criar personagens é o que mais gosto nos jogos",
+                  "interaction_id": "b369f5ab5d088eb2322e28811ba255e832dd1198543b48e26bfb3db3b172c828"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "games_character_creation",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "positive"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "llm": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809677,
+                "input": {
+                  "content": "Poder criar personagens é o que mais gosto nos jogos",
+                  "fact_key": "user.games_character_creation",
+                  "id": "6d12eec5-e878-e371-b0ec-fee97ed2337b",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-011",
+                  "source": "user",
+                  "source_id": "b369f5ab5d088eb2322e28811ba255e832dd1198543b48e26bfb3db3b172c828"
+                },
+                "state": "active",
+                "updated_at": 1793809677,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809677,
+                  "evidence": "Poder criar personagens é o que mais gosto nos jogos",
+                  "interaction_id": "b369f5ab5d088eb2322e28811ba255e832dd1198543b48e26bfb3db3b172c828"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "games_character_creation",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "positive"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "hybrid": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809677,
+                "input": {
+                  "content": "Poder criar personagens é o que mais gosto nos jogos",
+                  "fact_key": "user.games_character_creation",
+                  "id": "6d12eec5-e878-e371-b0ec-fee97ed2337b",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-011",
+                  "source": "user",
+                  "source_id": "b369f5ab5d088eb2322e28811ba255e832dd1198543b48e26bfb3db3b172c828"
+                },
+                "state": "active",
+                "updated_at": 1793809677,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809677,
+                  "evidence": "Poder criar personagens é o que mais gosto nos jogos",
+                  "interaction_id": "b369f5ab5d088eb2322e28811ba255e832dd1198543b48e26bfb3db3b172c828"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "games_character_creation",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "positive"
+              },
+              "revisions": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-012",
+      "modes": {
+        "rules": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809677,
+                "input": {
+                  "content": "My favourite games are tactical RPGs with classes",
+                  "fact_key": "user.games_tactics",
+                  "id": "94a26765-0c2c-d289-a778-38cc01644d0f",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-012",
+                  "source": "user",
+                  "source_id": "f1384701125f5032566aada003754b1bc324ee8bb3da456d390d512b4f4e3d4e"
+                },
+                "state": "active",
+                "updated_at": 1793809677,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809677,
+                  "evidence": "My favourite games are tactical RPGs with classes",
+                  "interaction_id": "f1384701125f5032566aada003754b1bc324ee8bb3da456d390d512b4f4e3d4e"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [
+                  "rpg",
+                  "classes"
+                ],
+                "priority": 1,
+                "property": "games_tactics",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "positive"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "llm": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809677,
+                "input": {
+                  "content": "My favourite games are tactical RPGs with classes",
+                  "fact_key": "user.games_tactics",
+                  "id": "94a26765-0c2c-d289-a778-38cc01644d0f",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-012",
+                  "source": "user",
+                  "source_id": "f1384701125f5032566aada003754b1bc324ee8bb3da456d390d512b4f4e3d4e"
+                },
+                "state": "active",
+                "updated_at": 1793809677,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809677,
+                  "evidence": "My favourite games are tactical RPGs with classes",
+                  "interaction_id": "f1384701125f5032566aada003754b1bc324ee8bb3da456d390d512b4f4e3d4e"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [
+                  "rpg",
+                  "classes"
+                ],
+                "priority": 1,
+                "property": "games_tactics",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "positive"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "hybrid": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809677,
+                "input": {
+                  "content": "My favourite games are tactical RPGs with classes",
+                  "fact_key": "user.games_tactics",
+                  "id": "94a26765-0c2c-d289-a778-38cc01644d0f",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-012",
+                  "source": "user",
+                  "source_id": "f1384701125f5032566aada003754b1bc324ee8bb3da456d390d512b4f4e3d4e"
+                },
+                "state": "active",
+                "updated_at": 1793809677,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809677,
+                  "evidence": "My favourite games are tactical RPGs with classes",
+                  "interaction_id": "f1384701125f5032566aada003754b1bc324ee8bb3da456d390d512b4f4e3d4e"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [
+                  "rpg",
+                  "classes"
+                ],
+                "priority": 1,
+                "property": "games_tactics",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "positive"
+              },
+              "revisions": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-013",
+      "modes": {
+        "rules": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809678,
+                "input": {
+                  "content": "Prefiro jogos de estratégia por turnos",
+                  "fact_key": "user.games_turn_strategy",
+                  "id": "ca4420f8-53d6-de5c-6bb8-9e1a16365607",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-013",
+                  "source": "user",
+                  "source_id": "3b37f5981643c87c5b5d4832b07ba28bf5d086a4ebf7f8b0dc43fd12e8ba7e17"
+                },
+                "state": "active",
+                "updated_at": 1793809678,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809678,
+                  "evidence": "Prefiro jogos de estratégia por turnos",
+                  "interaction_id": "3b37f5981643c87c5b5d4832b07ba28bf5d086a4ebf7f8b0dc43fd12e8ba7e17"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "games_turn_strategy",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "positive"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "llm": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809678,
+                "input": {
+                  "content": "Prefiro jogos de estratégia por turnos",
+                  "fact_key": "user.games_turn_strategy",
+                  "id": "ca4420f8-53d6-de5c-6bb8-9e1a16365607",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-013",
+                  "source": "user",
+                  "source_id": "3b37f5981643c87c5b5d4832b07ba28bf5d086a4ebf7f8b0dc43fd12e8ba7e17"
+                },
+                "state": "active",
+                "updated_at": 1793809678,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809678,
+                  "evidence": "Prefiro jogos de estratégia por turnos",
+                  "interaction_id": "3b37f5981643c87c5b5d4832b07ba28bf5d086a4ebf7f8b0dc43fd12e8ba7e17"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "games_turn_strategy",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "positive"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "hybrid": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809678,
+                "input": {
+                  "content": "Prefiro jogos de estratégia por turnos",
+                  "fact_key": "user.games_turn_strategy",
+                  "id": "ca4420f8-53d6-de5c-6bb8-9e1a16365607",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-013",
+                  "source": "user",
+                  "source_id": "3b37f5981643c87c5b5d4832b07ba28bf5d086a4ebf7f8b0dc43fd12e8ba7e17"
+                },
+                "state": "active",
+                "updated_at": 1793809678,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809678,
+                  "evidence": "Prefiro jogos de estratégia por turnos",
+                  "interaction_id": "3b37f5981643c87c5b5d4832b07ba28bf5d086a4ebf7f8b0dc43fd12e8ba7e17"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "games_turn_strategy",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "positive"
+              },
+              "revisions": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-014",
+      "modes": {
+        "rules": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809678,
+                "input": {
+                  "content": "Projeto aroeira: decidiu usar linguagem python.",
+                  "fact_key": "project.aroeira.language",
+                  "id": "10dd6147-cfe0-9d1c-5ab3-2f3fb1cec77d",
+                  "kind": "decision",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-014",
+                  "source": "user",
+                  "source_id": "ddf5e3cf8e0cef6687bf093ef81e562427cc996d02eb75c7ccc68ff7c0c33fae"
+                },
+                "state": "candidate",
+                "updated_at": 1793809678,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809678,
+                  "evidence": "A linguagem que escolhi para o meu projeto é Python",
+                  "interaction_id": "ddf5e3cf8e0cef6687bf093ef81e562427cc996d02eb75c7ccc68ff7c0c33fae"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "language",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "project.aroeira",
+                "temporal": "durable",
+                "value": "python"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "llm": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809678,
+                "input": {
+                  "content": "Projeto aroeira: decidiu usar linguagem python.",
+                  "fact_key": "project.aroeira.language",
+                  "id": "10dd6147-cfe0-9d1c-5ab3-2f3fb1cec77d",
+                  "kind": "decision",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-014",
+                  "source": "user",
+                  "source_id": "ddf5e3cf8e0cef6687bf093ef81e562427cc996d02eb75c7ccc68ff7c0c33fae"
+                },
+                "state": "candidate",
+                "updated_at": 1793809678,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809678,
+                  "evidence": "A linguagem que escolhi para o meu projeto é Python",
+                  "interaction_id": "ddf5e3cf8e0cef6687bf093ef81e562427cc996d02eb75c7ccc68ff7c0c33fae"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "language",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "project.aroeira",
+                "temporal": "durable",
+                "value": "python"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "hybrid": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809678,
+                "input": {
+                  "content": "Projeto aroeira: decidiu usar linguagem python.",
+                  "fact_key": "project.aroeira.language",
+                  "id": "10dd6147-cfe0-9d1c-5ab3-2f3fb1cec77d",
+                  "kind": "decision",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-014",
+                  "source": "user",
+                  "source_id": "ddf5e3cf8e0cef6687bf093ef81e562427cc996d02eb75c7ccc68ff7c0c33fae"
+                },
+                "state": "candidate",
+                "updated_at": 1793809678,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809678,
+                  "evidence": "A linguagem que escolhi para o meu projeto é Python",
+                  "interaction_id": "ddf5e3cf8e0cef6687bf093ef81e562427cc996d02eb75c7ccc68ff7c0c33fae"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "language",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "project.aroeira",
+                "temporal": "durable",
+                "value": "python"
+              },
+              "revisions": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-015",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-016",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-017",
+      "modes": {
+        "rules": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809679,
+                "input": {
+                  "content": "Projeto aroeira: planeja usar mysql como banco de dados.",
+                  "fact_key": "project.aroeira.database",
+                  "id": "3f6c73cc-ccc3-5f4b-39e1-43c29df20275",
+                  "kind": "decision",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-017",
+                  "source": "user",
+                  "source_id": "f7e8108a3674395ec530b3aab9131ac5150904d1c42c5db7c44b63a031020b34"
+                },
+                "state": "candidate",
+                "updated_at": 1793809679,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809679,
+                  "evidence": "No projeto, pretendo usar MySQL para persistência",
+                  "interaction_id": "f7e8108a3674395ec530b3aab9131ac5150904d1c42c5db7c44b63a031020b34"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "database",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "project.aroeira",
+                "temporal": "planned",
+                "value": "mysql"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "llm": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809679,
+                "input": {
+                  "content": "Projeto aroeira: planeja usar mysql como banco de dados.",
+                  "fact_key": "project.aroeira.database",
+                  "id": "3f6c73cc-ccc3-5f4b-39e1-43c29df20275",
+                  "kind": "decision",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-017",
+                  "source": "user",
+                  "source_id": "f7e8108a3674395ec530b3aab9131ac5150904d1c42c5db7c44b63a031020b34"
+                },
+                "state": "candidate",
+                "updated_at": 1793809679,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809679,
+                  "evidence": "No projeto, pretendo usar MySQL para persistência",
+                  "interaction_id": "f7e8108a3674395ec530b3aab9131ac5150904d1c42c5db7c44b63a031020b34"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "database",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "project.aroeira",
+                "temporal": "planned",
+                "value": "mysql"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "hybrid": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809679,
+                "input": {
+                  "content": "Projeto aroeira: planeja usar mysql como banco de dados.",
+                  "fact_key": "project.aroeira.database",
+                  "id": "3f6c73cc-ccc3-5f4b-39e1-43c29df20275",
+                  "kind": "decision",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-017",
+                  "source": "user",
+                  "source_id": "f7e8108a3674395ec530b3aab9131ac5150904d1c42c5db7c44b63a031020b34"
+                },
+                "state": "candidate",
+                "updated_at": 1793809679,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809679,
+                  "evidence": "No projeto, pretendo usar MySQL para persistência",
+                  "interaction_id": "f7e8108a3674395ec530b3aab9131ac5150904d1c42c5db7c44b63a031020b34"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "database",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "project.aroeira",
+                "temporal": "planned",
+                "value": "mysql"
+              },
+              "revisions": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-018",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-019",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-020",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-021",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-022",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-023",
+      "modes": {
+        "rules": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809681,
+                "input": {
+                  "content": "Estou começando um projeto de inventário de sementes",
+                  "fact_key": "project.aroeira.description",
+                  "id": "0c8b9e80-d032-fe34-4a7a-dd18029cbbba",
+                  "kind": "project",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-023",
+                  "source": "user",
+                  "source_id": "59a0d5e447a8a59fc5a18f0d7a41a4a19da757729f4e239f44ab6b19ae2a882d"
+                },
+                "state": "candidate",
+                "updated_at": 1793809681,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809681,
+                  "evidence": "Estou começando um projeto de inventário de sementes",
+                  "interaction_id": "59a0d5e447a8a59fc5a18f0d7a41a4a19da757729f4e239f44ab6b19ae2a882d"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "description",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "project.aroeira",
+                "temporal": "durable",
+                "value": "estou comecando um projeto de inventario de sementes"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "llm": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809681,
+                "input": {
+                  "content": "Estou começando um projeto de inventário de sementes",
+                  "fact_key": "project.aroeira.description",
+                  "id": "0c8b9e80-d032-fe34-4a7a-dd18029cbbba",
+                  "kind": "project",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-023",
+                  "source": "user",
+                  "source_id": "59a0d5e447a8a59fc5a18f0d7a41a4a19da757729f4e239f44ab6b19ae2a882d"
+                },
+                "state": "candidate",
+                "updated_at": 1793809681,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809681,
+                  "evidence": "Estou começando um projeto de inventário de sementes",
+                  "interaction_id": "59a0d5e447a8a59fc5a18f0d7a41a4a19da757729f4e239f44ab6b19ae2a882d"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "description",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "project.aroeira",
+                "temporal": "durable",
+                "value": "estou comecando um projeto de inventario de sementes"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "hybrid": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809681,
+                "input": {
+                  "content": "Estou começando um projeto de inventário de sementes",
+                  "fact_key": "project.aroeira.description",
+                  "id": "0c8b9e80-d032-fe34-4a7a-dd18029cbbba",
+                  "kind": "project",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-023",
+                  "source": "user",
+                  "source_id": "59a0d5e447a8a59fc5a18f0d7a41a4a19da757729f4e239f44ab6b19ae2a882d"
+                },
+                "state": "candidate",
+                "updated_at": 1793809681,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809681,
+                  "evidence": "Estou começando um projeto de inventário de sementes",
+                  "interaction_id": "59a0d5e447a8a59fc5a18f0d7a41a4a19da757729f4e239f44ab6b19ae2a882d"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "description",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "project.aroeira",
+                "temporal": "durable",
+                "value": "estou comecando um projeto de inventario de sementes"
+              },
+              "revisions": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-024",
+      "modes": {
+        "rules": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809681,
+                "input": {
+                  "content": "Agora estou implementando meu projeto em TypeScript",
+                  "fact_key": "project.aroeira.language.execution",
+                  "id": "a81d4fb5-ed41-f5dd-21c8-96b538146a72",
+                  "kind": "fact",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-024",
+                  "source": "user",
+                  "source_id": "955cf8fdfe8495a9d2a8f00dbe53e0a98df2229ad9c21fbb5806d7df3d632dcf"
+                },
+                "state": "candidate",
+                "updated_at": 1793809681,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809681,
+                  "evidence": "Agora estou implementando meu projeto em TypeScript",
+                  "interaction_id": "955cf8fdfe8495a9d2a8f00dbe53e0a98df2229ad9c21fbb5806d7df3d632dcf"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "language",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "project.aroeira",
+                "temporal": "in_progress",
+                "value": "typescript"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "llm": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809681,
+                "input": {
+                  "content": "Agora estou implementando meu projeto em TypeScript",
+                  "fact_key": "project.aroeira.language.execution",
+                  "id": "a81d4fb5-ed41-f5dd-21c8-96b538146a72",
+                  "kind": "fact",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-024",
+                  "source": "user",
+                  "source_id": "955cf8fdfe8495a9d2a8f00dbe53e0a98df2229ad9c21fbb5806d7df3d632dcf"
+                },
+                "state": "candidate",
+                "updated_at": 1793809681,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809681,
+                  "evidence": "Agora estou implementando meu projeto em TypeScript",
+                  "interaction_id": "955cf8fdfe8495a9d2a8f00dbe53e0a98df2229ad9c21fbb5806d7df3d632dcf"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "language",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "project.aroeira",
+                "temporal": "in_progress",
+                "value": "typescript"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "hybrid": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809681,
+                "input": {
+                  "content": "Agora estou implementando meu projeto em TypeScript",
+                  "fact_key": "project.aroeira.language.execution",
+                  "id": "a81d4fb5-ed41-f5dd-21c8-96b538146a72",
+                  "kind": "fact",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-024",
+                  "source": "user",
+                  "source_id": "955cf8fdfe8495a9d2a8f00dbe53e0a98df2229ad9c21fbb5806d7df3d632dcf"
+                },
+                "state": "candidate",
+                "updated_at": 1793809681,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809681,
+                  "evidence": "Agora estou implementando meu projeto em TypeScript",
+                  "interaction_id": "955cf8fdfe8495a9d2a8f00dbe53e0a98df2229ad9c21fbb5806d7df3d632dcf"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "language",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "project.aroeira",
+                "temporal": "in_progress",
+                "value": "typescript"
+              },
+              "revisions": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-025",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-026",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-027",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-028",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-029",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-030",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-031",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            1,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809683,
+                "input": {
+                  "content": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                  "fact_key": "user.favorite_beverage",
+                  "id": "8f62df0b-8dea-dd5b-509b-aef62f085e0b",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-031",
+                  "source": "user",
+                  "source_id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9"
+                },
+                "state": "active",
+                "updated_at": 1793809683,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809683,
+                  "evidence": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                  "interaction_id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "favorite_beverage",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "tea"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "llm": {
+          "score": [
+            0,
+            1,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809683,
+                "input": {
+                  "content": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                  "fact_key": "user.favorite_beverage",
+                  "id": "8f62df0b-8dea-dd5b-509b-aef62f085e0b",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-031",
+                  "source": "user",
+                  "source_id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9"
+                },
+                "state": "active",
+                "updated_at": 1793809683,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809683,
+                  "evidence": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                  "interaction_id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "favorite_beverage",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "tea"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "hybrid": {
+          "score": [
+            0,
+            1,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809684,
+                "input": {
+                  "content": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                  "fact_key": "user.favorite_beverage",
+                  "id": "8f62df0b-8dea-dd5b-509b-aef62f085e0b",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-031",
+                  "source": "user",
+                  "source_id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9"
+                },
+                "state": "active",
+                "updated_at": 1793809684,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809684,
+                  "evidence": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+                  "interaction_id": "5ad4c5752e34e97c1be854a6b0c008f52cc409502336291a91c4de662ba92ed9"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "favorite_beverage",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "tea"
+              },
+              "revisions": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-032",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            1,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809684,
+                "input": {
+                  "content": "Prefere café sem açúcar.",
+                  "fact_key": "user.coffee_sugar",
+                  "id": "72e3c7e3-66dd-2071-d076-e27899f96a7f",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-032",
+                  "source": "user",
+                  "source_id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44"
+                },
+                "state": "active",
+                "updated_at": 1793809684,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809684,
+                  "evidence": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar",
+                  "interaction_id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44"
+                }
+              ],
+              "quality": {
+                "confidence": 0.98,
+                "evidence_rule": "explicit_coffee_preference",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "coffee_sugar",
+                "relevance": 0.9,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "without_sugar"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "llm": {
+          "score": [
+            0,
+            1,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809684,
+                "input": {
+                  "content": "Prefere café sem açúcar.",
+                  "fact_key": "user.coffee_sugar",
+                  "id": "72e3c7e3-66dd-2071-d076-e27899f96a7f",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-032",
+                  "source": "user",
+                  "source_id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44"
+                },
+                "state": "active",
+                "updated_at": 1793809684,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809684,
+                  "evidence": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar",
+                  "interaction_id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_coffee_preference",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "coffee_sugar",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "without_sugar"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "hybrid": {
+          "score": [
+            0,
+            1,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809684,
+                "input": {
+                  "content": "Prefere café sem açúcar.",
+                  "fact_key": "user.coffee_sugar",
+                  "id": "72e3c7e3-66dd-2071-d076-e27899f96a7f",
+                  "kind": "preference",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-032",
+                  "source": "user",
+                  "source_id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44"
+                },
+                "state": "active",
+                "updated_at": 1793809684,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809684,
+                  "evidence": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar",
+                  "interaction_id": "04c4ebeb5771403de68d12657f7e7c31c6104e32f1fab4033d7eb14e67a5cd44"
+                }
+              ],
+              "quality": {
+                "confidence": 0.9,
+                "evidence_rule": "llm_v3_grounded:explicit_coffee_preference",
+                "expires_at": null,
+                "facets": [],
+                "priority": 1,
+                "property": "coffee_sugar",
+                "relevance": 0.8,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "preference",
+                "value": "without_sugar"
+              },
+              "revisions": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-033",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-034",
+      "modes": {
+        "rules": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809684,
+                "input": {
+                  "content": "Talvez eu compre um computador com 80 GB de RAM",
+                  "fact_key": "user.hardware_intention",
+                  "id": "098e06e6-2eaf-7ff4-38bc-733f7dcbca3c",
+                  "kind": "hypothesis",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-034",
+                  "source": "user",
+                  "source_id": "2c00e3d4e267d752ee676deebdb9634cd4c3043cbc787249fe0e6cd82b60922e"
+                },
+                "state": "candidate",
+                "updated_at": 1793809684,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809684,
+                  "evidence": "Talvez eu compre um computador com 80 GB de RAM",
+                  "interaction_id": "2c00e3d4e267d752ee676deebdb9634cd4c3043cbc787249fe0e6cd82b60922e"
+                }
+              ],
+              "quality": {
+                "confidence": 0.8,
+                "evidence_rule": "explicit_hypothesis",
+                "expires_at": 1794414484,
+                "facets": [],
+                "priority": 1,
+                "property": "hardware_intention",
+                "relevance": 0.65,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "hypothesis",
+                "value": "talvez eu compre um computador com 80 gb de ram"
+              },
+              "revisions": []
+            }
+          ]
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            1
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            1,
+            0,
+            0
+          ],
+          "details": [
+            {
+              "memory": {
+                "created_at": 1793809685,
+                "input": {
+                  "content": "Talvez eu compre um computador com 80 GB de RAM",
+                  "fact_key": "user.hardware_intention",
+                  "id": "098e06e6-2eaf-7ff4-38bc-733f7dcbca3c",
+                  "kind": "hypothesis",
+                  "project": "aroeira",
+                  "scope": "phase22d-final-ext-034",
+                  "source": "user",
+                  "source_id": "2c00e3d4e267d752ee676deebdb9634cd4c3043cbc787249fe0e6cd82b60922e"
+                },
+                "state": "candidate",
+                "updated_at": 1793809685,
+                "version": 1
+              },
+              "provenance": [
+                {
+                  "at": 1793809685,
+                  "evidence": "Talvez eu compre um computador com 80 GB de RAM",
+                  "interaction_id": "2c00e3d4e267d752ee676deebdb9634cd4c3043cbc787249fe0e6cd82b60922e"
+                }
+              ],
+              "quality": {
+                "confidence": 0.8,
+                "evidence_rule": "explicit_hypothesis",
+                "expires_at": 1794414485,
+                "facets": [],
+                "priority": 1,
+                "property": "hardware_intention",
+                "relevance": 0.65,
+                "replaces_id": null,
+                "replaces_version": null,
+                "subject": "user",
+                "temporal": "hypothesis",
+                "value": "talvez eu compre um computador com 80 gb de ram"
+              },
+              "revisions": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dx-035",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-036",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-037",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-038",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-039",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "dx-040",
+      "modes": {
+        "rules": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "llm": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        },
+        "hybrid": {
+          "score": [
+            0,
+            0,
+            0
+          ],
+          "details": []
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,5240 @@
+{
+  "label": "final-historical-20-v1",
+  "scope": "phase22c-final-historical-series",
+  "project": "candeia",
+  "plan_id": "phase22-long-20-v3",
+  "started": "2026-11-04T16:34:02.321Z",
+  "finished": "2026-11-04T16:37:30.013Z",
+  "execution_complete": true,
+  "initial_identity": {
+    "created_at": 1793803440,
+    "profile": {
+      "description": "Fictional isolated QA identity",
+      "instructions": "Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. Use tools only when the user asks for an external observation or action; remembered facts alone need no external inspection.",
+      "name": "Lucille Synthetic Phase22",
+      "personality": "Concise"
+    },
+    "updated_at": 1793803440,
+    "version": 1
+  },
+  "identity": {
+    "created_at": 1793803440,
+    "profile": {
+      "description": "Fictional isolated QA identity",
+      "instructions": "Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. Use tools only when the user asks for an external observation or action; remembered facts alone need no external inspection.",
+      "name": "Lucille Synthetic Phase22",
+      "personality": "Concise"
+    },
+    "updated_at": 1793803440,
+    "version": 1
+  },
+  "initial_index": {
+    "indexed": 39,
+    "space": {
+      "context_tokens": 2048,
+      "dimension": 768,
+      "document_prefix": "search_document: ",
+      "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "index_version": 5,
+      "model": "nomic-ai/nomic-embed-text-v1.5",
+      "normalization": "layer_norm_then_l2",
+      "pooling": "mean",
+      "query_prefix": "search_query: ",
+      "revision": "0188c9bf409793f810680a5a431e7b899c46104c"
+    },
+    "transport_verified": false
+  },
+  "index": {
+    "indexed": 49,
+    "space": {
+      "context_tokens": 2048,
+      "dimension": 768,
+      "document_prefix": "search_document: ",
+      "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "index_version": 5,
+      "model": "nomic-ai/nomic-embed-text-v1.5",
+      "normalization": "layer_norm_then_l2",
+      "pooling": "mean",
+      "query_prefix": "search_query: ",
+      "revision": "0188c9bf409793f810680a5a431e7b899c46104c"
+    },
+    "transport_verified": false
+  },
+  "initial_metrics": {
+    "current_vectors": 0,
+    "history_events": [],
+    "jobs": [],
+    "memories": [],
+    "pending_vectors": 0,
+    "project": "candeia",
+    "provenance_rows": 0,
+    "scope": "phase22c-final-historical-series",
+    "sqlite_main_page_bytes": 708608,
+    "vector_json_bytes": 0
+  },
+  "final_metrics": {
+    "current_vectors": 10,
+    "history_events": [
+      {
+        "count": 6,
+        "state": "approve"
+      },
+      {
+        "count": 4,
+        "state": "auto_promote"
+      },
+      {
+        "count": 10,
+        "state": "create"
+      },
+      {
+        "count": 1,
+        "state": "update"
+      }
+    ],
+    "jobs": [
+      {
+        "count": 10,
+        "state": "done"
+      }
+    ],
+    "memories": [
+      {
+        "count": 10,
+        "state": "active"
+      }
+    ],
+    "pending_vectors": 0,
+    "project": "candeia",
+    "provenance_rows": 11,
+    "scope": "phase22c-final-historical-series",
+    "sqlite_main_page_bytes": 847872,
+    "vector_json_bytes": 95055
+  },
+  "initial_details": [],
+  "final_details": [
+    {
+      "memory": {
+        "created_at": 1793810051,
+        "input": {
+          "content": "Prefere café com açúcar.",
+          "fact_key": "user.coffee_sugar",
+          "id": "7c32fd08-5399-b0be-eb1c-caffc1863ef4",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22c-final-historical-series",
+          "source": "user",
+          "source_id": "e821b771377a02f48288861e6d1012f8ca29d412741e98776debad8de3b23eb9"
+        },
+        "state": "active",
+        "updated_at": 1793810051,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1793810051,
+          "evidence": "Nos meus intervalos, eu prefiro café com açúcar",
+          "interaction_id": "e821b771377a02f48288861e6d1012f8ca29d412741e98776debad8de3b23eb9"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_coffee_preference",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "coffee_sugar",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "with_sugar"
+      },
+      "revisions": []
+    },
+    {
+      "memory": {
+        "created_at": 1793810058,
+        "input": {
+          "content": "Para a interface do meu dia a dia, eu prefiro modo claro",
+          "fact_key": "user.interface_theme",
+          "id": "c773ba54-5e36-e825-cee9-dc2ee5906d74",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22c-final-historical-series",
+          "source": "user",
+          "source_id": "c92ee11c65cda30f1c7ca479daae57c238bef27ee5788211714bdbc72ea17404"
+        },
+        "state": "active",
+        "updated_at": 1793810058,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1793810058,
+          "evidence": "Para a interface do meu dia a dia, eu prefiro modo claro",
+          "interaction_id": "c92ee11c65cda30f1c7ca479daae57c238bef27ee5788211714bdbc72ea17404"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "interface_theme",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "light"
+      },
+      "revisions": []
+    },
+    {
+      "memory": {
+        "created_at": 1793810067,
+        "input": {
+          "content": "No meu aprendizado, eu gosto de explicações detalhadas",
+          "fact_key": "user.communication_style",
+          "id": "7f0048ea-c63d-3bc0-0c66-c29e101981f3",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22c-final-historical-series",
+          "source": "user",
+          "source_id": "ca0de8c52645e1a7a8425ac81ec4549f1b474cb69db7c0e81c2ae9b8520430b1"
+        },
+        "state": "active",
+        "updated_at": 1793810067,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1793810067,
+          "evidence": "No meu aprendizado, eu gosto de explicações detalhadas",
+          "interaction_id": "ca0de8c52645e1a7a8425ac81ec4549f1b474cb69db7c0e81c2ae9b8520430b1"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "communication_style",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "detailed"
+      },
+      "revisions": []
+    },
+    {
+      "memory": {
+        "created_at": 1793810075,
+        "input": {
+          "content": "Gosta de jogos táticos por turnos (classes, RPG).",
+          "fact_key": "user.games_tactics",
+          "id": "325bef3b-de6e-315b-6be6-834297c86b26",
+          "kind": "preference",
+          "project": "candeia",
+          "scope": "phase22c-final-historical-series",
+          "source": "user",
+          "source_id": "52c01ec5c6cee17e062ea3641dc7795af6efec8bb5cba9d78889534b9225bd9b"
+        },
+        "state": "active",
+        "updated_at": 1793810145,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793810075,
+          "evidence": "Para jogar no tempo livre, eu curto RPG tático com classes",
+          "interaction_id": "52c01ec5c6cee17e062ea3641dc7795af6efec8bb5cba9d78889534b9225bd9b"
+        },
+        {
+          "at": 1793810145,
+          "evidence": "Nas minhas partidas eu prefiro RPGs com combate tático",
+          "interaction_id": "2ce030bb8efaa69d933268c7146e227aa32b88c5982be4ca4b12ad2793bb1ab5"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_tactical_preference",
+        "expires_at": null,
+        "facets": [
+          "classes",
+          "rpg"
+        ],
+        "priority": 1,
+        "property": "games_tactics",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "positive"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793810097,
+        "input": {
+          "content": "Estou começando um projeto de controle de luminosidade",
+          "fact_key": "project.candeia.description",
+          "id": "053bf54a-1e5f-cb42-69ea-07a2f65feff9",
+          "kind": "project",
+          "project": "candeia",
+          "scope": "phase22c-final-historical-series",
+          "source": "user",
+          "source_id": "fbf726f7ba95eab8972812b2a85519ae43ccc71197d6fdd9fc68271dabc0e88b"
+        },
+        "state": "active",
+        "updated_at": 1793810099,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793810097,
+          "evidence": "Estou começando um projeto de controle de luminosidade",
+          "interaction_id": "fbf726f7ba95eab8972812b2a85519ae43ccc71197d6fdd9fc68271dabc0e88b"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "description",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.candeia",
+        "temporal": "durable",
+        "value": "estou comecando um projeto de controle de luminosidade"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793810097,
+        "input": {
+          "content": "Projeto candeia: planeja usar postgresql como banco de dados.",
+          "fact_key": "project.candeia.database",
+          "id": "171c9ca0-a7f6-21c9-8819-61332bdcadf5",
+          "kind": "decision",
+          "project": "candeia",
+          "scope": "phase22c-final-historical-series",
+          "source": "user",
+          "source_id": "fbf726f7ba95eab8972812b2a85519ae43ccc71197d6fdd9fc68271dabc0e88b"
+        },
+        "state": "active",
+        "updated_at": 1793810101,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793810097,
+          "evidence": "Quero usar TypeScript e PostgreSQL",
+          "interaction_id": "fbf726f7ba95eab8972812b2a85519ae43ccc71197d6fdd9fc68271dabc0e88b"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "database",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.candeia",
+        "temporal": "planned",
+        "value": "postgresql"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793810097,
+        "input": {
+          "content": "Projeto candeia: planeja usar linguagem typescript.",
+          "fact_key": "project.candeia.language",
+          "id": "265f842f-8c48-da19-d2dc-2e326157ed62",
+          "kind": "decision",
+          "project": "candeia",
+          "scope": "phase22c-final-historical-series",
+          "source": "user",
+          "source_id": "fbf726f7ba95eab8972812b2a85519ae43ccc71197d6fdd9fc68271dabc0e88b"
+        },
+        "state": "active",
+        "updated_at": 1793810102,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793810097,
+          "evidence": "Quero usar TypeScript e PostgreSQL",
+          "interaction_id": "fbf726f7ba95eab8972812b2a85519ae43ccc71197d6fdd9fc68271dabc0e88b"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "language",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.candeia",
+        "temporal": "planned",
+        "value": "typescript"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793810109,
+        "input": {
+          "content": "Meu computador principal tem 26 GB de RAM",
+          "fact_key": "device.primary_computer.ram_capacity",
+          "id": "c78d1659-6664-349e-2f22-131335f51082",
+          "kind": "hardware",
+          "project": "candeia",
+          "scope": "phase22c-final-historical-series",
+          "source": "user",
+          "source_id": "361dab4573ce9eb9c7a788c9d6731e414e17321cf80b2085e9cbbd2e34477f07"
+        },
+        "state": "active",
+        "updated_at": 1793810112,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793810109,
+          "evidence": "Meu computador principal tem 26 GB de RAM",
+          "interaction_id": "361dab4573ce9eb9c7a788c9d6731e414e17321cf80b2085e9cbbd2e34477f07"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "ram_capacity",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "device.primary_computer",
+        "temporal": "durable",
+        "value": "26_gb"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793810121,
+        "input": {
+          "content": "Meu notebook de trabalho tem 18 GB de RAM",
+          "fact_key": "device.work_laptop.ram_capacity",
+          "id": "391c79a6-932f-35a6-31a3-1fc8aed0d466",
+          "kind": "hardware",
+          "project": "candeia",
+          "scope": "phase22c-final-historical-series",
+          "source": "user",
+          "source_id": "feb18499778d2dab872bca19bf54c16d944b13ea04afb7ad32ce73ffe024afc8"
+        },
+        "state": "active",
+        "updated_at": 1793810124,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793810121,
+          "evidence": "Meu notebook de trabalho tem 18 GB de RAM",
+          "interaction_id": "feb18499778d2dab872bca19bf54c16d944b13ea04afb7ad32ce73ffe024afc8"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "ram_capacity",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "device.work_laptop",
+        "temporal": "durable",
+        "value": "18_gb"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1793810133,
+        "input": {
+          "content": "Quero aprender circuitos elétricos básicos",
+          "fact_key": "user.goal.f47cc78cd5ce",
+          "id": "1280d01b-377d-45ae-844e-328f7de1bcba",
+          "kind": "goal",
+          "project": "candeia",
+          "scope": "phase22c-final-historical-series",
+          "source": "user",
+          "source_id": "4fc240fe1f3a3cffa65cae76395deef89f40f0657c522c6480a891d5456a0efd"
+        },
+        "state": "active",
+        "updated_at": 1793810135,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1793810133,
+          "evidence": "Quero aprender circuitos elétricos básicos",
+          "interaction_id": "4fc240fe1f3a3cffa65cae76395deef89f40f0657c522c6480a891d5456a0efd"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "goal.f47cc78cd5ce",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "durable",
+        "value": "quero aprender circuitos eletricos basicos"
+      },
+      "revisions": [
+        1
+      ]
+    }
+  ],
+  "initial_deleted": [],
+  "deleted": [],
+  "policy": {
+    "auto_kinds": [
+      "preference"
+    ],
+    "automatic_indexing": true,
+    "autonomous_preferences": true,
+    "enabled": true,
+    "extraction_mode": "llm",
+    "lexical_weight": 0.5,
+    "max_pending": 64,
+    "minimum_confidence": 0.96,
+    "minimum_relevance": 0.8,
+    "minimum_similarity": 0.6,
+    "semantic_weight": 0.5
+  },
+  "reviews": [
+    {
+      "id": "053bf54a-1e5f-cb42-69ea-07a2f65feff9",
+      "version": 1,
+      "scope": "phase22c-final-historical-series",
+      "project": "candeia",
+      "action": "approve"
+    },
+    {
+      "id": "171c9ca0-a7f6-21c9-8819-61332bdcadf5",
+      "version": 1,
+      "scope": "phase22c-final-historical-series",
+      "project": "candeia",
+      "action": "approve"
+    },
+    {
+      "id": "265f842f-8c48-da19-d2dc-2e326157ed62",
+      "version": 1,
+      "scope": "phase22c-final-historical-series",
+      "project": "candeia",
+      "action": "approve"
+    },
+    {
+      "id": "c78d1659-6664-349e-2f22-131335f51082",
+      "version": 1,
+      "scope": "phase22c-final-historical-series",
+      "project": "candeia",
+      "action": "approve"
+    },
+    {
+      "id": "391c79a6-932f-35a6-31a3-1fc8aed0d466",
+      "version": 1,
+      "scope": "phase22c-final-historical-series",
+      "project": "candeia",
+      "action": "approve"
+    },
+    {
+      "id": "1280d01b-377d-45ae-844e-328f7de1bcba",
+      "version": 1,
+      "scope": "phase22c-final-historical-series",
+      "project": "candeia",
+      "action": "approve"
+    }
+  ],
+  "method": "Actual isolated native GUI DOM composer and production hooks; no OS input or model substitutes. Application verifier verdict retained as observation, not semantic ground truth. No raw source proofs or leases exported.",
+  "private_artifact_sha256": "af45cd82d64385d9e4f85fcec236e717b3e702fefd3ca2df5b1836be5f0f24dc",
+  "turns": [
+    {
+      "text": "Nos meus intervalos, eu prefiro café com açúcar.",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 2655,
+      "extraction_wait_ms": 4163,
+      "paints": [
+        {
+          "at_ms": 112,
+          "id": "d7a0ee64-5fde-418e-be02-d754a03aa376",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 2625,
+          "id": "d7a0ee64-5fde-418e-be02-d754a03aa376",
+          "content": "É uma ótima escolha para manter o foco. Você prefere o café bem doce ou apenas um toque de açúcar?",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 113,
+          "id": "d7a0ee64-5fde-418e-be02-d754a03aa376",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 120,
+          "id": "d7a0ee64-5fde-418e-be02-d754a03aa376",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 2640,
+          "id": "d7a0ee64-5fde-418e-be02-d754a03aa376",
+          "text": "lucille-real-gemma\n\nÉ uma ótima escolha para manter o foco. Você prefere o café bem doce ou apenas um toque de açúcar?",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 2671,
+          "id": "d7a0ee64-5fde-418e-be02-d754a03aa376",
+          "text": "lucille-real-gemma\n\nÉ uma ótima escolha para manter o foco. Você prefere o café bem doce ou apenas um toque de açúcar?\n\n909 in · 24 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 0,
+        "history_events": [
+          {
+            "count": 1,
+            "state": "auto_promote"
+          },
+          {
+            "count": 1,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 1,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 1,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 1,
+        "project": "candeia",
+        "provenance_rows": 1,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 708608,
+        "vector_json_bytes": 0
+      },
+      "ordinal": 1,
+      "messages": [
+        {
+          "id": "4889e439-1b19-4caf-8af4-f697d819585c",
+          "role": "user",
+          "content": "Nos meus intervalos, eu prefiro café com açúcar."
+        },
+        {
+          "id": "d7a0ee64-5fde-418e-be02-d754a03aa376",
+          "role": "assistant",
+          "content": "É uma ótima escolha para manter o foco. Você prefere o café bem doce ou apenas um toque de açúcar?",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 909,
+            "completionTokens": 24,
+            "totalTokens": 933
+          },
+          "requestUsage": {
+            "inputTokens": 909,
+            "outputTokens": 24,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "566b31b1-9a85-4ffa-a17a-51380d434c99",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "É uma ótima escolha para manter o foco. Você prefere o café bem doce ou apenas um toque de açúcar?",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.30000001192092896
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 909,
+                  "completionTokens": 24
+                }
+              ],
+              "refreshMs": 7.599999964237213,
+              "verificationMs": 0.30000001192092896,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "É uma ótima escolha para manter o foco. Você prefere o café bem doce ou apenas um toque de açúcar?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Para a interface do meu dia a dia, eu prefiro modo claro.",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 2659,
+      "extraction_wait_ms": 4993,
+      "paints": [
+        {
+          "at_ms": 113,
+          "id": "21f3af43-444d-42cc-991d-5a5408cfbd38",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 2603,
+          "id": "21f3af43-444d-42cc-991d-5a5408cfbd38",
+          "content": "O modo claro é excelente para leitura e visibilidade. Você prefere uma interface com cores vibrantes ou algo mais suave e pastel?",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 113,
+          "id": "21f3af43-444d-42cc-991d-5a5408cfbd38",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 125,
+          "id": "21f3af43-444d-42cc-991d-5a5408cfbd38",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 2615,
+          "id": "21f3af43-444d-42cc-991d-5a5408cfbd38",
+          "text": "lucille-real-gemma\n\nO modo claro é excelente para leitura e visibilidade. Você prefere uma interface com cores vibrantes ou algo mais suave e pastel?",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 2650,
+          "id": "21f3af43-444d-42cc-991d-5a5408cfbd38",
+          "text": "lucille-real-gemma\n\nO modo claro é excelente para leitura e visibilidade. Você prefere uma interface com cores vibrantes ou algo mais suave e pastel?\n\n957 in · 28 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 1,
+        "history_events": [
+          {
+            "count": 2,
+            "state": "auto_promote"
+          },
+          {
+            "count": 2,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 2,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 2,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 1,
+        "project": "candeia",
+        "provenance_rows": 2,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 716800,
+        "vector_json_bytes": 9508
+      },
+      "ordinal": 2,
+      "messages": [
+        {
+          "id": "2ee9bfac-cb98-4255-b6a2-bd625d363b83",
+          "role": "user",
+          "content": "Para a interface do meu dia a dia, eu prefiro modo claro."
+        },
+        {
+          "id": "21f3af43-444d-42cc-991d-5a5408cfbd38",
+          "role": "assistant",
+          "content": "O modo claro é excelente para leitura e visibilidade. Você prefere uma interface com cores vibrantes ou algo mais suave e pastel?",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 957,
+            "completionTokens": 28,
+            "totalTokens": 985
+          },
+          "requestUsage": {
+            "inputTokens": 957,
+            "outputTokens": 28,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "46c69f56-25ef-4503-9016-0f9f8815c067",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "O modo claro é excelente para leitura e visibilidade. Você prefere uma interface com cores vibrantes ou algo mais suave e pastel?",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "user",
+                        "property": "interface_theme",
+                        "value": "light",
+                        "span": "O modo claro é excelente para leitura e visibilidade.",
+                        "supported": true,
+                        "references": [
+                          "current-turn-0"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 1,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.3999999761581421
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 957,
+                  "completionTokens": 28
+                }
+              ],
+              "refreshMs": 10.400000035762787,
+              "verificationMs": 0.3999999761581421,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "O modo claro é excelente para leitura e visibilidade. Você prefere uma interface com cores vibrantes ou algo mais suave e pastel?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "No meu aprendizado, eu gosto de explicações detalhadas.",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 3157,
+      "extraction_wait_ms": 5504,
+      "paints": [
+        {
+          "at_ms": 113,
+          "id": "b706d1cc-8d45-455b-8b18-0f849ad8dda4",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 3092,
+          "id": "b706d1cc-8d45-455b-8b18-0f849ad8dda4",
+          "content": "Explicações detalhadas ajudam a construir uma base sólida de compreensão. Você prefere que eu aprofunde em conceitos teóricos ou que foque em exemplos práticos e aplicações?",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 113,
+          "id": "b706d1cc-8d45-455b-8b18-0f849ad8dda4",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 121,
+          "id": "b706d1cc-8d45-455b-8b18-0f849ad8dda4",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 3103,
+          "id": "b706d1cc-8d45-455b-8b18-0f849ad8dda4",
+          "text": "lucille-real-gemma\n\nExplicações detalhadas ajudam a construir uma base sólida de compreensão. Você prefere que eu aprofunde em conceitos teóricos ou que foque em exemplos práticos e aplicações?",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 3131,
+          "id": "b706d1cc-8d45-455b-8b18-0f849ad8dda4",
+          "text": "lucille-real-gemma\n\nExplicações detalhadas ajudam a construir uma base sólida de compreensão. Você prefere que eu aprofunde em conceitos teóricos ou que foque em exemplos práticos e aplicações?\n\n1,007 in · 39 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 2,
+        "history_events": [
+          {
+            "count": 3,
+            "state": "auto_promote"
+          },
+          {
+            "count": 3,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 3,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 3,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 1,
+        "project": "candeia",
+        "provenance_rows": 3,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 733184,
+        "vector_json_bytes": 19006
+      },
+      "ordinal": 3,
+      "messages": [
+        {
+          "id": "a8184ee4-73e4-4580-990f-cf6a92f88067",
+          "role": "user",
+          "content": "No meu aprendizado, eu gosto de explicações detalhadas."
+        },
+        {
+          "id": "b706d1cc-8d45-455b-8b18-0f849ad8dda4",
+          "role": "assistant",
+          "content": "Explicações detalhadas ajudam a construir uma base sólida de compreensão. Você prefere que eu aprofunde em conceitos teóricos ou que foque em exemplos práticos e aplicações?",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1007,
+            "completionTokens": 39,
+            "totalTokens": 1046
+          },
+          "requestUsage": {
+            "inputTokens": 1007,
+            "outputTokens": 39,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "43796737-dab3-4147-813d-6e7742c0a315",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Explicações detalhadas ajudam a construir uma base sólida de compreensão. Você prefere que eu aprofunde em conceitos teóricos ou que foque em exemplos práticos e aplicações?",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "user",
+                        "property": "communication_style",
+                        "value": "detailed",
+                        "span": "Explicações detalhadas ajudam a construir uma base sólida de compreensão.",
+                        "supported": true,
+                        "references": [
+                          "current-turn-0"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 1,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.5
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1007,
+                  "completionTokens": 39
+                }
+              ],
+              "refreshMs": 7.800000011920929,
+              "verificationMs": 0.5,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Explicações detalhadas ajudam a construir uma base sólida de compreensão. Você prefere que eu aprofunde em conceitos teóricos ou que foque em exemplos práticos e aplicações?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Para jogar no tempo livre, eu curto RPG tático com classes.",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 3154,
+      "extraction_wait_ms": 4180,
+      "paints": [
+        {
+          "at_ms": 113,
+          "id": "2ffa270d-cafe-433f-bddb-b5d098242574",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 3124,
+          "id": "2ffa270d-cafe-433f-bddb-b5d098242574",
+          "content": "RPG tático com classes oferece uma profundidade estratégica excelente. Você prefere jogos com um foco maior em exploração de mapa ou em combates por turnos bem definidos?",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 114,
+          "id": "2ffa270d-cafe-433f-bddb-b5d098242574",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 128,
+          "id": "2ffa270d-cafe-433f-bddb-b5d098242574",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 3141,
+          "id": "2ffa270d-cafe-433f-bddb-b5d098242574",
+          "text": "lucille-real-gemma\n\nRPG tático com classes oferece uma profundidade estratégica excelente. Você prefere jogos com um foco maior em exploração de mapa ou em combates por turnos bem definidos?",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 3177,
+          "id": "2ffa270d-cafe-433f-bddb-b5d098242574",
+          "text": "lucille-real-gemma\n\nRPG tático com classes oferece uma profundidade estratégica excelente. Você prefere jogos com um foco maior em exploração de mapa ou em combates por turnos bem definidos?\n\n1,069 in · 37 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 3,
+        "history_events": [
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 4,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 4,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 4,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 1,
+        "project": "candeia",
+        "provenance_rows": 4,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 753664,
+        "vector_json_bytes": 28540
+      },
+      "ordinal": 4,
+      "messages": [
+        {
+          "id": "b4557082-0710-4d99-8316-1cb5413f3e97",
+          "role": "user",
+          "content": "Para jogar no tempo livre, eu curto RPG tático com classes."
+        },
+        {
+          "id": "2ffa270d-cafe-433f-bddb-b5d098242574",
+          "role": "assistant",
+          "content": "RPG tático com classes oferece uma profundidade estratégica excelente. Você prefere jogos com um foco maior em exploração de mapa ou em combates por turnos bem definidos?",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1069,
+            "completionTokens": 37,
+            "totalTokens": 1106
+          },
+          "requestUsage": {
+            "inputTokens": 1069,
+            "outputTokens": 37,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "4107b92b-63ad-4cdf-96e0-2f069dbdf46e",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "RPG tático com classes oferece uma profundidade estratégica excelente. Você prefere jogos com um foco maior em exploração de mapa ou em combates por turnos bem definidos?",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.30000001192092896
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1069,
+                  "completionTokens": 37
+                }
+              ],
+              "refreshMs": 10.800000011920929,
+              "verificationMs": 0.30000001192092896,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "RPG tático com classes oferece uma profundidade estratégica excelente. Você prefere jogos com um foco maior em exploração de mapa ou em combates por turnos bem definidos?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Entre os jogos, os de estratégia por turnos são os meus favoritos.",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 6465,
+      "extraction_wait_ms": 5535,
+      "paints": [
+        {
+          "at_ms": 114,
+          "id": "9cf3bc29-9acd-43bc-b330-53ba1824f891",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 6320,
+          "id": "9cf3bc29-9acd-43bc-b330-53ba1824f891",
+          "content": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+          "fidelity_status": "blocked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 114,
+          "id": "9cf3bc29-9acd-43bc-b330-53ba1824f891",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 127,
+          "id": "9cf3bc29-9acd-43bc-b330-53ba1824f891",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 6334,
+          "id": "9cf3bc29-9acd-43bc-b330-53ba1824f891",
+          "text": "lucille-real-gemma\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+          "fidelity_status": "blocked"
+        },
+        {
+          "at_ms": 6376,
+          "id": "9cf3bc29-9acd-43bc-b330-53ba1824f891",
+          "text": "lucille-real-gemma\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.\n\nResposta retida na verificação de memória\n1,287 in · 40 out",
+          "fidelity_status": "blocked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 4,
+        "history_events": [
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 4,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 5,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 4,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 4,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 765952,
+        "vector_json_bytes": 38079
+      },
+      "ordinal": 5,
+      "messages": [
+        {
+          "id": "79fb7ca0-e34c-46d9-9944-a1ffc878efa3",
+          "role": "user",
+          "content": "Entre os jogos, os de estratégia por turnos são os meus favoritos."
+        },
+        {
+          "id": "9cf3bc29-9acd-43bc-b330-53ba1824f891",
+          "role": "assistant",
+          "content": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+          "error": {
+            "kind": "generic",
+            "detail": "Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+            "at": 0
+          },
+          "requestUsage": {
+            "inputTokens": 1287,
+            "outputTokens": 40,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "d3955e11-652c-4ff6-b0d0-8f9d768bda73",
+              "status": "blocked",
+              "attempts": [
+                {
+                  "rawAnswer": "Estratégia por turnos permite uma análise cuidadosa de cada movimento. Você prefere jogos com grandes escalas épicas ou algo mais focado em pequenos grupos de personagens?",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "user",
+                        "property": "games_turn_strategy",
+                        "value": "positive",
+                        "span": "Estratégia por turnos permite uma análise cuidadosa de cada movimento.",
+                        "supported": false,
+                        "references": []
+                      }
+                    ],
+                    "violations": [
+                      {
+                        "code": "unsupported_typed_value",
+                        "span": "Estratégia por turnos permite uma análise cuidadosa de cada movimento.",
+                        "critical": true
+                      }
+                    ],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 1,
+                    "elapsedMs": 0.19999998807907104
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1130,
+                  "completionTokens": 37
+                },
+                {
+                  "rawAnswer": "Os jogos de estratégia por turnos permitem um planejamento cuidadoso e profundo. Você prefere jogos com grandes mapas e muitos personagens ou algo mais focado em pequenos grupos e batalhas intensas?",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "user",
+                        "property": "games_turn_strategy",
+                        "value": "positive",
+                        "span": "Os jogos de estratégia por turnos permitem um planejamento cuidadoso e profundo.",
+                        "supported": false,
+                        "references": []
+                      }
+                    ],
+                    "violations": [
+                      {
+                        "code": "unsupported_typed_value",
+                        "span": "Os jogos de estratégia por turnos permitem um planejamento cuidadoso e profundo.",
+                        "critical": true
+                      }
+                    ],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 1,
+                    "elapsedMs": 0.19999998807907104
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1287,
+                  "completionTokens": 40
+                }
+              ],
+              "refreshMs": 26.19999998807907,
+              "verificationMs": 1,
+              "extraGenerationMs": 3009.5,
+              "additionalUsage": {
+                "promptTokens": 1287,
+                "completionTokens": 40
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Estou começando um projeto de controle de luminosidade. Quero usar TypeScript e PostgreSQL.",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 3177,
+      "extraction_wait_ms": 6317,
+      "paints": [
+        {
+          "at_ms": 113,
+          "id": "a26527c0-0ede-4eee-82e5-a2450723ceb3",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 2997,
+          "id": "a26527c0-0ede-4eee-82e5-a2450723ceb3",
+          "content": "TypeScript e PostgreSQL são uma combinação robusta para gerenciar dados de forma tipada. Qual será a principal funcionalidade do seu controle de luminosidade?",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 113,
+          "id": "a26527c0-0ede-4eee-82e5-a2450723ceb3",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 123,
+          "id": "a26527c0-0ede-4eee-82e5-a2450723ceb3",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 3008,
+          "id": "a26527c0-0ede-4eee-82e5-a2450723ceb3",
+          "text": "lucille-real-gemma\n\nTypeScript e PostgreSQL são uma combinação robusta para gerenciar dados de forma tipada. Qual será a principal funcionalidade do seu controle de luminosidade?",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 3046,
+          "id": "a26527c0-0ede-4eee-82e5-a2450723ceb3",
+          "text": "lucille-real-gemma\n\nTypeScript e PostgreSQL são uma combinação robusta para gerenciar dados de forma tipada. Qual será a principal funcionalidade do seu controle de luminosidade?\n\n1,189 in · 31 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 4,
+        "history_events": [
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 7,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 6,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 4,
+            "state": "active"
+          },
+          {
+            "count": 3,
+            "state": "candidate"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 7,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 765952,
+        "vector_json_bytes": 38079
+      },
+      "ordinal": 6,
+      "messages": [
+        {
+          "id": "c5f76697-7871-4f1f-a415-7bde7d1399a4",
+          "role": "user",
+          "content": "Estou começando um projeto de controle de luminosidade. Quero usar TypeScript e PostgreSQL."
+        },
+        {
+          "id": "a26527c0-0ede-4eee-82e5-a2450723ceb3",
+          "role": "assistant",
+          "content": "TypeScript e PostgreSQL são uma combinação robusta para gerenciar dados de forma tipada. Qual será a principal funcionalidade do seu controle de luminosidade?",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1189,
+            "completionTokens": 31,
+            "totalTokens": 1220
+          },
+          "requestUsage": {
+            "inputTokens": 1189,
+            "outputTokens": 31,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "5d1f50ae-5741-45eb-b986-c289f5cb23f5",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "TypeScript e PostgreSQL são uma combinação robusta para gerenciar dados de forma tipada. Qual será a principal funcionalidade do seu controle de luminosidade?",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.40000003576278687
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1189,
+                  "completionTokens": 31
+                }
+              ],
+              "refreshMs": 10,
+              "verificationMs": 0.40000003576278687,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "TypeScript e PostgreSQL são uma combinação robusta para gerenciar dados de forma tipada. Qual será a principal funcionalidade do seu controle de luminosidade?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Meu computador principal tem 26 GB de RAM.",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 4171,
+      "extraction_wait_ms": 2588,
+      "paints": [
+        {
+          "at_ms": 110,
+          "id": "6b7c4936-ecf8-4905-9851-231a9026a90c",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 4019,
+          "id": "6b7c4936-ecf8-4905-9851-231a9026a90c",
+          "content": "26 GB de RAM oferecem uma excelente margem para multitarefa e projetos complexos. Você pretende usar essa memória principalmente para desenvolvimento, edição ou jogos?",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 111,
+          "id": "6b7c4936-ecf8-4905-9851-231a9026a90c",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 122,
+          "id": "6b7c4936-ecf8-4905-9851-231a9026a90c",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 4033,
+          "id": "6b7c4936-ecf8-4905-9851-231a9026a90c",
+          "text": "lucille-real-gemma\n\n26 GB de RAM oferecem uma excelente margem para multitarefa e projetos complexos. Você pretende usar essa memória principalmente para desenvolvimento, edição ou jogos?",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 4099,
+          "id": "6b7c4936-ecf8-4905-9851-231a9026a90c",
+          "text": "lucille-real-gemma\n\n26 GB de RAM oferecem uma excelente margem para multitarefa e projetos complexos. Você pretende usar essa memória principalmente para desenvolvimento, edição ou jogos?\n\n1,281 in · 34 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 7,
+        "history_events": [
+          {
+            "count": 3,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 8,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 7,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 7,
+            "state": "active"
+          },
+          {
+            "count": 1,
+            "state": "candidate"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 8,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 798720,
+        "vector_json_bytes": 66544
+      },
+      "ordinal": 7,
+      "messages": [
+        {
+          "id": "b139c71c-0d47-4092-9251-49f068bdc84b",
+          "role": "user",
+          "content": "Meu computador principal tem 26 GB de RAM."
+        },
+        {
+          "id": "6b7c4936-ecf8-4905-9851-231a9026a90c",
+          "role": "assistant",
+          "content": "26 GB de RAM oferecem uma excelente margem para multitarefa e projetos complexos. Você pretende usar essa memória principalmente para desenvolvimento, edição ou jogos?",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1281,
+            "completionTokens": 34,
+            "totalTokens": 1315
+          },
+          "requestUsage": {
+            "inputTokens": 1281,
+            "outputTokens": 34,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "6aa45492-d56c-4de2-a456-fc3b177b386e",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "26 GB de RAM oferecem uma excelente margem para multitarefa e projetos complexos. Você pretende usar essa memória principalmente para desenvolvimento, edição ou jogos?",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "device.primary_computer",
+                        "property": "ram_capacity",
+                        "value": "26_gb",
+                        "span": "26 GB de RAM oferecem uma excelente margem para multitarefa e projetos complexos.",
+                        "supported": true,
+                        "references": [
+                          "current-turn-0"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 1,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1281,
+                  "completionTokens": 34
+                }
+              ],
+              "refreshMs": 11.100000023841858,
+              "verificationMs": 1,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "26 GB de RAM oferecem uma excelente margem para multitarefa e projetos complexos. Você pretende usar essa memória principalmente para desenvolvimento, edição ou jogos?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Meu notebook de trabalho tem 18 GB de RAM.",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 3913,
+      "extraction_wait_ms": 5040,
+      "paints": [
+        {
+          "at_ms": 118,
+          "id": "79283e6b-776a-4081-9370-9024c7f6e48f",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 3781,
+          "id": "79283e6b-776a-4081-9370-9024c7f6e48f",
+          "content": "18 GB de RAM é uma quantidade sólida para produtividade e desenvolvimento fluido. Você costuma usar o notebook para tarefas pesadas ou para um fluxo de trabalho mais equilibrado?",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 118,
+          "id": "79283e6b-776a-4081-9370-9024c7f6e48f",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 127,
+          "id": "79283e6b-776a-4081-9370-9024c7f6e48f",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 3794,
+          "id": "79283e6b-776a-4081-9370-9024c7f6e48f",
+          "text": "lucille-real-gemma\n\n18 GB de RAM é uma quantidade sólida para produtividade e desenvolvimento fluido. Você costuma usar o notebook para tarefas pesadas ou para um fluxo de trabalho mais equilibrado?",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 3835,
+          "id": "79283e6b-776a-4081-9370-9024c7f6e48f",
+          "text": "lucille-real-gemma\n\n18 GB de RAM é uma quantidade sólida para produtividade e desenvolvimento fluido. Você costuma usar o notebook para tarefas pesadas ou para um fluxo de trabalho mais equilibrado?\n\n1,336 in · 37 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 8,
+        "history_events": [
+          {
+            "count": 4,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 9,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 8,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 8,
+            "state": "active"
+          },
+          {
+            "count": 1,
+            "state": "candidate"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 9,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 815104,
+        "vector_json_bytes": 76065
+      },
+      "ordinal": 8,
+      "messages": [
+        {
+          "id": "f918af1e-4f2f-41f8-9cea-a67e81b4dcd8",
+          "role": "user",
+          "content": "Meu notebook de trabalho tem 18 GB de RAM."
+        },
+        {
+          "id": "79283e6b-776a-4081-9370-9024c7f6e48f",
+          "role": "assistant",
+          "content": "18 GB de RAM é uma quantidade sólida para produtividade e desenvolvimento fluido. Você costuma usar o notebook para tarefas pesadas ou para um fluxo de trabalho mais equilibrado?",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1336,
+            "completionTokens": 37,
+            "totalTokens": 1373
+          },
+          "requestUsage": {
+            "inputTokens": 1336,
+            "outputTokens": 37,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "a29aae61-8a9b-4118-b9d0-159468a2de09",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "18 GB de RAM é uma quantidade sólida para produtividade e desenvolvimento fluido. Você costuma usar o notebook para tarefas pesadas ou para um fluxo de trabalho mais equilibrado?",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "device.work_laptop",
+                        "property": "ram_capacity",
+                        "value": "18_gb",
+                        "span": "18 GB de RAM é uma quantidade sólida para produtividade e desenvolvimento fluido.",
+                        "supported": true,
+                        "references": [
+                          "current-turn-0"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 1,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.0999999642372131
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1336,
+                  "completionTokens": 37
+                }
+              ],
+              "refreshMs": 6.199999988079071,
+              "verificationMs": 1.0999999642372131,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "18 GB de RAM é uma quantidade sólida para produtividade e desenvolvimento fluido. Você costuma usar o notebook para tarefas pesadas ou para um fluxo de trabalho mais equilibrado?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Quero aprender circuitos elétricos básicos.",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 4448,
+      "extraction_wait_ms": 4675,
+      "paints": [
+        {
+          "at_ms": 117,
+          "id": "892aa0fa-a264-418e-941e-800b9fded992",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 4378,
+          "id": "892aa0fa-a264-418e-941e-800b9fded992",
+          "content": "Aprender circuitos elétricos é a base fundamental para entender como a eletrônica funciona. Você gostaria de começar pelos conceitos teóricos, como tensão e corrente, ou prefere ir direto para a prática com componentes como resistores e LEDs?",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 117,
+          "id": "892aa0fa-a264-418e-941e-800b9fded992",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 127,
+          "id": "892aa0fa-a264-418e-941e-800b9fded992",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 4393,
+          "id": "892aa0fa-a264-418e-941e-800b9fded992",
+          "text": "lucille-real-gemma\n\nAprender circuitos elétricos é a base fundamental para entender como a eletrônica funciona. Você gostaria de começar pelos conceitos teóricos, como tensão e corrente, ou prefere ir direto para a prática com componentes como resistores e LEDs?",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 4444,
+          "id": "892aa0fa-a264-418e-941e-800b9fded992",
+          "text": "lucille-real-gemma\n\nAprender circuitos elétricos é a base fundamental para entender como a eletrônica funciona. Você gostaria de começar pelos conceitos teóricos, como tensão e corrente, ou prefere ir direto para a prática com componentes como resistores e LEDs?\n\n1,350 in · 50 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 9,
+        "history_events": [
+          {
+            "count": 5,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 9,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 9,
+            "state": "active"
+          },
+          {
+            "count": 1,
+            "state": "candidate"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 10,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 827392,
+        "vector_json_bytes": 85578
+      },
+      "ordinal": 9,
+      "messages": [
+        {
+          "id": "774f3912-bc64-4a9a-a331-d7fe5232d7a8",
+          "role": "user",
+          "content": "Quero aprender circuitos elétricos básicos."
+        },
+        {
+          "id": "892aa0fa-a264-418e-941e-800b9fded992",
+          "role": "assistant",
+          "content": "Aprender circuitos elétricos é a base fundamental para entender como a eletrônica funciona. Você gostaria de começar pelos conceitos teóricos, como tensão e corrente, ou prefere ir direto para a prática com componentes como resistores e LEDs?",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1350,
+            "completionTokens": 50,
+            "totalTokens": 1400
+          },
+          "requestUsage": {
+            "inputTokens": 1350,
+            "outputTokens": 50,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "4d41d526-ca83-4df4-a178-9818f0fd493d",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Aprender circuitos elétricos é a base fundamental para entender como a eletrônica funciona. Você gostaria de começar pelos conceitos teóricos, como tensão e corrente, ou prefere ir direto para a prática com componentes como resistores e LEDs?",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.100000023841858
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1350,
+                  "completionTokens": 50
+                }
+              ],
+              "refreshMs": 6.600000023841858,
+              "verificationMs": 1.100000023841858,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Aprender circuitos elétricos é a base fundamental para entender como a eletrônica funciona. Você gostaria de começar pelos conceitos teóricos, como tensão e corrente, ou prefere ir direto para a prática com componentes como resistores e LEDs?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Nas minhas partidas eu prefiro RPGs com combate tático.",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 4434,
+      "extraction_wait_ms": 4770,
+      "paints": [
+        {
+          "at_ms": 114,
+          "id": "356ebe3a-aa3a-4497-86a4-2ab8e1cee8f3",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 4298,
+          "id": "356ebe3a-aa3a-4497-86a4-2ab8e1cee8f3",
+          "content": "O combate tático permite decisões estratégicas muito mais ricas em cada turno. Você prefere um sistema de combate mais rígido e posicional ou algo com mais liberdade de movimento?",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 114,
+          "id": "356ebe3a-aa3a-4497-86a4-2ab8e1cee8f3",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 125,
+          "id": "356ebe3a-aa3a-4497-86a4-2ab8e1cee8f3",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 4311,
+          "id": "356ebe3a-aa3a-4497-86a4-2ab8e1cee8f3",
+          "text": "lucille-real-gemma\n\nO combate tático permite decisões estratégicas muito mais ricas em cada turno. Você prefere um sistema de combate mais rígido e posicional ou algo com mais liberdade de movimento?",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 4367,
+          "id": "356ebe3a-aa3a-4497-86a4-2ab8e1cee8f3",
+          "text": "lucille-real-gemma\n\nO combate tático permite decisões estratégicas muito mais ricas em cada turno. Você prefere um sistema de combate mais rígido e posicional ou algo com mais liberdade de movimento?\n\n1,578 in · 38 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 9,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 1,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 839680,
+        "vector_json_bytes": 85549
+      },
+      "ordinal": 10,
+      "messages": [
+        {
+          "id": "28122b72-38b8-4f2e-a7c5-75f2d642154a",
+          "role": "user",
+          "content": "Nas minhas partidas eu prefiro RPGs com combate tático."
+        },
+        {
+          "id": "356ebe3a-aa3a-4497-86a4-2ab8e1cee8f3",
+          "role": "assistant",
+          "content": "O combate tático permite decisões estratégicas muito mais ricas em cada turno. Você prefere um sistema de combate mais rígido e posicional ou algo com mais liberdade de movimento?",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1578,
+            "completionTokens": 38,
+            "totalTokens": 1616
+          },
+          "requestUsage": {
+            "inputTokens": 1578,
+            "outputTokens": 38,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "46f66ccd-689c-4838-9ef3-a708cc869391",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "O combate tático permite decisões estratégicas muito mais ricas em cada turno. Você prefere um sistema de combate mais rígido e posicional ou algo com mais liberdade de movimento?",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.5
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1578,
+                  "completionTokens": 38
+                }
+              ],
+              "refreshMs": 13.300000011920929,
+              "verificationMs": 0.5,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "O combate tático permite decisões estratégicas muito mais ricas em cada turno. Você prefere um sistema de combate mais rígido e posicional ou algo com mais liberdade de movimento?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Como funciona a rotação da Terra?",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 3962,
+      "extraction_wait_ms": 713,
+      "paints": [
+        {
+          "at_ms": 113,
+          "id": "7395a0fc-12ac-4a80-8aa5-fe2db65b77ac",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 3931,
+          "id": "7395a0fc-12ac-4a80-8aa5-fe2db65b77ac",
+          "content": "A Terra gira em torno de seu próprio eixo, criando o ciclo do dia e da noite. Esse movimento ocorre devido à conservação do momento angular, com a Terra completando uma rotação em aproximadamente 24 horas.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 113,
+          "id": "7395a0fc-12ac-4a80-8aa5-fe2db65b77ac",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 122,
+          "id": "7395a0fc-12ac-4a80-8aa5-fe2db65b77ac",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 3949,
+          "id": "7395a0fc-12ac-4a80-8aa5-fe2db65b77ac",
+          "text": "lucille-real-gemma\n\nA Terra gira em torno de seu próprio eixo, criando o ciclo do dia e da noite. Esse movimento ocorre devido à conservação do momento angular, com a Terra completando uma rotação em aproximadamente 24 horas.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 4017,
+          "id": "7395a0fc-12ac-4a80-8aa5-fe2db65b77ac",
+          "text": "lucille-real-gemma\n\nA Terra gira em torno de seu próprio eixo, criando o ciclo do dia e da noite. Esse movimento ocorre devido à conservação do momento angular, com a Terra completando uma rotação em aproximadamente 24 horas.\n\n1,518 in · 46 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 11,
+      "messages": [
+        {
+          "id": "2ed36821-4fb4-47ea-becd-d635223354f2",
+          "role": "user",
+          "content": "Como funciona a rotação da Terra?"
+        },
+        {
+          "id": "7395a0fc-12ac-4a80-8aa5-fe2db65b77ac",
+          "role": "assistant",
+          "content": "A Terra gira em torno de seu próprio eixo, criando o ciclo do dia e da noite. Esse movimento ocorre devido à conservação do momento angular, com a Terra completando uma rotação em aproximadamente 24 horas.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1518,
+            "completionTokens": 46,
+            "totalTokens": 1564
+          },
+          "requestUsage": {
+            "inputTokens": 1518,
+            "outputTokens": 46,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "20c6f12c-ff4e-4d3b-a38c-5b5ec1889fa0",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "A Terra gira em torno de seu próprio eixo, criando o ciclo do dia e da noite. Esse movimento ocorre devido à conservação do momento angular, com a Terra completando uma rotação em aproximadamente 24 horas.",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.2000000476837158
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1518,
+                  "completionTokens": 46
+                }
+              ],
+              "refreshMs": 6.799999952316284,
+              "verificationMs": 1.2000000476837158,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "A Terra gira em torno de seu próprio eixo, criando o ciclo do dia e da noite. Esse movimento ocorre devido à conservação do momento angular, com a Terra completando uma rotação em aproximadamente 24 horas."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Como eu represento o número 14 em uma variável?",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 4191,
+      "extraction_wait_ms": 720,
+      "paints": [
+        {
+          "at_ms": 116,
+          "id": "bebb2b04-6e5b-4eec-93af-797b504cce0d",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 4162,
+          "id": "bebb2b04-6e5b-4eec-93af-797b504cce0d",
+          "content": "Em TypeScript ou JavaScript, você pode representar o número 14 usando `let numero = 14;` ou `const numero = 14;`. Se estiver usando uma linguagem como Python, seria `numero = 14`.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 116,
+          "id": "bebb2b04-6e5b-4eec-93af-797b504cce0d",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 125,
+          "id": "bebb2b04-6e5b-4eec-93af-797b504cce0d",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 4179,
+          "id": "bebb2b04-6e5b-4eec-93af-797b504cce0d",
+          "text": "lucille-real-gemma\n\nEm TypeScript ou JavaScript, você pode representar o número 14 usando let numero = 14; ou const numero = 14;. Se estiver usando uma linguagem como Python, seria numero = 14.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 4241,
+          "id": "bebb2b04-6e5b-4eec-93af-797b504cce0d",
+          "text": "lucille-real-gemma\n\nEm TypeScript ou JavaScript, você pode representar o número 14 usando let numero = 14; ou const numero = 14;. Se estiver usando uma linguagem como Python, seria numero = 14.\n\n1,586 in · 50 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 12,
+      "messages": [
+        {
+          "id": "418350da-411c-410a-be13-082e6fd4eaab",
+          "role": "user",
+          "content": "Como eu represento o número 14 em uma variável?"
+        },
+        {
+          "id": "bebb2b04-6e5b-4eec-93af-797b504cce0d",
+          "role": "assistant",
+          "content": "Em TypeScript ou JavaScript, você pode representar o número 14 usando `let numero = 14;` ou `const numero = 14;`. Se estiver usando uma linguagem como Python, seria `numero = 14`.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1586,
+            "completionTokens": 50,
+            "totalTokens": 1636
+          },
+          "requestUsage": {
+            "inputTokens": 1586,
+            "outputTokens": 50,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "0960b9e6-20ec-4515-83f2-b4dd500a22e6",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Em TypeScript ou JavaScript, você pode representar o número 14 usando `let numero = 14;` ou `const numero = 14;`. Se estiver usando uma linguagem como Python, seria `numero = 14`.",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.4000000357627869
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1586,
+                  "completionTokens": 50
+                }
+              ],
+              "refreshMs": 5.300000011920929,
+              "verificationMs": 1.4000000357627869,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Em TypeScript ou JavaScript, você pode representar o número 14 usando `let numero = 14;` ou `const numero = 14;`. Se estiver usando uma linguagem como Python, seria `numero = 14`."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Quanto é 17 somado a 23?",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 3182,
+      "extraction_wait_ms": 713,
+      "paints": [
+        {
+          "at_ms": 113,
+          "id": "9c558f74-9a47-492f-951b-a1c75c9abc8b",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 3085,
+          "id": "9c558f74-9a47-492f-951b-a1c75c9abc8b",
+          "content": "A soma de 17 e 23 é 40.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 113,
+          "id": "9c558f74-9a47-492f-951b-a1c75c9abc8b",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 122,
+          "id": "9c558f74-9a47-492f-951b-a1c75c9abc8b",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 3096,
+          "id": "9c558f74-9a47-492f-951b-a1c75c9abc8b",
+          "text": "lucille-real-gemma\n\nA soma de 17 e 23 é 40.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 3153,
+          "id": "9c558f74-9a47-492f-951b-a1c75c9abc8b",
+          "text": "lucille-real-gemma\n\nA soma de 17 e 23 é 40.\n\n1,657 in · 16 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 13,
+      "messages": [
+        {
+          "id": "c62ae6e8-033e-4312-86f0-f11c4db87522",
+          "role": "user",
+          "content": "Quanto é 17 somado a 23?"
+        },
+        {
+          "id": "9c558f74-9a47-492f-951b-a1c75c9abc8b",
+          "role": "assistant",
+          "content": "A soma de 17 e 23 é 40.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1657,
+            "completionTokens": 16,
+            "totalTokens": 1673
+          },
+          "requestUsage": {
+            "inputTokens": 1657,
+            "outputTokens": 16,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "2277cb5e-d5aa-4e3f-b943-e49c290a3193",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "A soma de 17 e 23 é 40.",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.40000003576278687
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1657,
+                  "completionTokens": 16
+                }
+              ],
+              "refreshMs": 9.800000011920929,
+              "verificationMs": 0.40000003576278687,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "A soma de 17 e 23 é 40."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Como funciona a condução de calor?",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 4725,
+      "extraction_wait_ms": 718,
+      "paints": [
+        {
+          "at_ms": 115,
+          "id": "603a8950-5226-4cb2-9d8c-d726f750bbe5",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 4650,
+          "id": "603a8950-5226-4cb2-9d8c-d726f750bbe5",
+          "content": "A condução de calor é a transferência de energia térmica através de um material, onde as moléculas vibram e colidem, passando a energia para as vizinhas. Esse processo ocorre principalmente em sólidos, onde a energia se desloca de uma extremidade mais quente para uma mais fria.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 115,
+          "id": "603a8950-5226-4cb2-9d8c-d726f750bbe5",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 124,
+          "id": "603a8950-5226-4cb2-9d8c-d726f750bbe5",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 4666,
+          "id": "603a8950-5226-4cb2-9d8c-d726f750bbe5",
+          "text": "lucille-real-gemma\n\nA condução de calor é a transferência de energia térmica através de um material, onde as moléculas vibram e colidem, passando a energia para as vizinhas. Esse processo ocorre principalmente em sólidos, onde a energia se desloca de uma extremidade mais quente para uma mais fria.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 4720,
+          "id": "603a8950-5226-4cb2-9d8c-d726f750bbe5",
+          "text": "lucille-real-gemma\n\nA condução de calor é a transferência de energia térmica através de um material, onde as moléculas vibram e colidem, passando a energia para as vizinhas. Esse processo ocorre principalmente em sólidos, onde a energia se desloca de uma extremidade mais quente para uma mais fria.\n\n1,690 in · 59 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 14,
+      "messages": [
+        {
+          "id": "3ff5d8f1-2913-4e40-8aa3-4d3875716e52",
+          "role": "user",
+          "content": "Como funciona a condução de calor?"
+        },
+        {
+          "id": "603a8950-5226-4cb2-9d8c-d726f750bbe5",
+          "role": "assistant",
+          "content": "A condução de calor é a transferência de energia térmica através de um material, onde as moléculas vibram e colidem, passando a energia para as vizinhas. Esse processo ocorre principalmente em sólidos, onde a energia se desloca de uma extremidade mais quente para uma mais fria.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1690,
+            "completionTokens": 59,
+            "totalTokens": 1749
+          },
+          "requestUsage": {
+            "inputTokens": 1690,
+            "outputTokens": 59,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "20ca7dd1-90c8-4b07-bec0-4cdf882dddc6",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "A condução de calor é a transferência de energia térmica através de um material, onde as moléculas vibram e colidem, passando a energia para as vizinhas. Esse processo ocorre principalmente em sólidos, onde a energia se desloca de uma extremidade mais quente para uma mais fria.",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.5
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1690,
+                  "completionTokens": 59
+                }
+              ],
+              "refreshMs": 8.199999988079071,
+              "verificationMs": 0.5,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "A condução de calor é a transferência de energia térmica através de um material, onde as moléculas vibram e colidem, passando a energia para as vizinhas. Esse processo ocorre principalmente em sólidos, onde a energia se desloca de uma extremidade mais quente para uma mais fria."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Como eu represento o número 17 em uma variável?",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 4412,
+      "extraction_wait_ms": 734,
+      "paints": [
+        {
+          "at_ms": 106,
+          "id": "c0a2dde3-7bd5-4f6e-aecf-2a16f05884ba",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 4166,
+          "id": "c0a2dde3-7bd5-4f6e-aecf-2a16f05884ba",
+          "content": "Em TypeScript ou JavaScript, você pode usar `let numero = 17;` ou `const numero = 17;`. Em Python, a representação seria `numero = 17`.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 106,
+          "id": "c0a2dde3-7bd5-4f6e-aecf-2a16f05884ba",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 114,
+          "id": "c0a2dde3-7bd5-4f6e-aecf-2a16f05884ba",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 4182,
+          "id": "c0a2dde3-7bd5-4f6e-aecf-2a16f05884ba",
+          "text": "lucille-real-gemma\n\nEm TypeScript ou JavaScript, você pode usar let numero = 17; ou const numero = 17;. Em Python, a representação seria numero = 17.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 4238,
+          "id": "c0a2dde3-7bd5-4f6e-aecf-2a16f05884ba",
+          "text": "lucille-real-gemma\n\nEm TypeScript ou JavaScript, você pode usar let numero = 17; ou const numero = 17;. Em Python, a representação seria numero = 17.\n\n1,771 in · 42 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 15,
+      "messages": [
+        {
+          "id": "c6c261d5-fa00-4b81-a4cd-1fe749eacd3f",
+          "role": "user",
+          "content": "Como eu represento o número 17 em uma variável?"
+        },
+        {
+          "id": "c0a2dde3-7bd5-4f6e-aecf-2a16f05884ba",
+          "role": "assistant",
+          "content": "Em TypeScript ou JavaScript, você pode usar `let numero = 17;` ou `const numero = 17;`. Em Python, a representação seria `numero = 17`.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1771,
+            "completionTokens": 42,
+            "totalTokens": 1813
+          },
+          "requestUsage": {
+            "inputTokens": 1771,
+            "outputTokens": 42,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "0b32b2a6-0767-4112-ae98-1b164df232dd",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Em TypeScript ou JavaScript, você pode usar `let numero = 17;` ou `const numero = 17;`. Em Python, a representação seria `numero = 17`.",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.5
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1771,
+                  "completionTokens": 42
+                }
+              ],
+              "refreshMs": 9.899999976158142,
+              "verificationMs": 1.5,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Em TypeScript ou JavaScript, você pode usar `let numero = 17;` ou `const numero = 17;`. Em Python, a representação seria `numero = 17`."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Quanto é 20 somado a 26?",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 3455,
+      "extraction_wait_ms": 729,
+      "paints": [
+        {
+          "at_ms": 112,
+          "id": "88cab872-2325-4ba8-a144-562149c4f584",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 3353,
+          "id": "88cab872-2325-4ba8-a144-562149c4f584",
+          "content": "A soma de 20 e 26 é 46.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 113,
+          "id": "88cab872-2325-4ba8-a144-562149c4f584",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 121,
+          "id": "88cab872-2325-4ba8-a144-562149c4f584",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 3365,
+          "id": "88cab872-2325-4ba8-a144-562149c4f584",
+          "text": "lucille-real-gemma\n\nA soma de 20 e 26 é 46.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 3417,
+          "id": "88cab872-2325-4ba8-a144-562149c4f584",
+          "text": "lucille-real-gemma\n\nA soma de 20 e 26 é 46.\n\n1,834 in · 16 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 16,
+      "messages": [
+        {
+          "id": "edc52cff-c3d7-4003-b7e4-32a875cbed31",
+          "role": "user",
+          "content": "Quanto é 20 somado a 26?"
+        },
+        {
+          "id": "88cab872-2325-4ba8-a144-562149c4f584",
+          "role": "assistant",
+          "content": "A soma de 20 e 26 é 46.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1834,
+            "completionTokens": 16,
+            "totalTokens": 1850
+          },
+          "requestUsage": {
+            "inputTokens": 1834,
+            "outputTokens": 16,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "4e6ee3c0-ead7-48d2-84e8-7880719f320d",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "A soma de 20 e 26 é 46.",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.30000001192092896
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1834,
+                  "completionTokens": 16
+                }
+              ],
+              "refreshMs": 10.100000023841858,
+              "verificationMs": 0.30000001192092896,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "A soma de 20 e 26 é 46."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Como funciona um ímã?",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 4707,
+      "extraction_wait_ms": 731,
+      "paints": [
+        {
+          "at_ms": 109,
+          "id": "174bff9b-fa5f-454e-907c-1dc8bd255bb6",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 4552,
+          "id": "174bff9b-fa5f-454e-907c-1dc8bd255bb6",
+          "content": "Um ímã funciona através de campos magnéticos, que são regiões onde forças de atração ou repulsão atuam. Isso ocorre devido ao alinhamento dos spins dos elétrons nos átomos, criando polos norte e sul.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 110,
+          "id": "174bff9b-fa5f-454e-907c-1dc8bd255bb6",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 118,
+          "id": "174bff9b-fa5f-454e-907c-1dc8bd255bb6",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 4564,
+          "id": "174bff9b-fa5f-454e-907c-1dc8bd255bb6",
+          "text": "lucille-real-gemma\n\nUm ímã funciona através de campos magnéticos, que são regiões onde forças de atração ou repulsão atuam. Isso ocorre devido ao alinhamento dos spins dos elétrons nos átomos, criando polos norte e sul.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 4624,
+          "id": "174bff9b-fa5f-454e-907c-1dc8bd255bb6",
+          "text": "lucille-real-gemma\n\nUm ímã funciona através de campos magnéticos, que são regiões onde forças de atração ou repulsão atuam. Isso ocorre devido ao alinhamento dos spins dos elétrons nos átomos, criando polos norte e sul.\n\n1,866 in · 49 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 17,
+      "messages": [
+        {
+          "id": "4d52126c-e149-48c8-9716-f8fcb907d72c",
+          "role": "user",
+          "content": "Como funciona um ímã?"
+        },
+        {
+          "id": "174bff9b-fa5f-454e-907c-1dc8bd255bb6",
+          "role": "assistant",
+          "content": "Um ímã funciona através de campos magnéticos, que são regiões onde forças de atração ou repulsão atuam. Isso ocorre devido ao alinhamento dos spins dos elétrons nos átomos, criando polos norte e sul.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1866,
+            "completionTokens": 49,
+            "totalTokens": 1915
+          },
+          "requestUsage": {
+            "inputTokens": 1866,
+            "outputTokens": 49,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "8f72d3f6-bb7f-4386-95a7-743c5d3bba17",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Um ímã funciona através de campos magnéticos, que são regiões onde forças de atração ou repulsão atuam. Isso ocorre devido ao alinhamento dos spins dos elétrons nos átomos, criando polos norte e sul.",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.30000001192092896
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1866,
+                  "completionTokens": 49
+                }
+              ],
+              "refreshMs": 5.399999976158142,
+              "verificationMs": 0.30000001192092896,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Um ímã funciona através de campos magnéticos, que são regiões onde forças de atração ou repulsão atuam. Isso ocorre devido ao alinhamento dos spins dos elétrons nos átomos, criando polos norte e sul."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Como eu represento o número 20 em uma variável?",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 4716,
+      "extraction_wait_ms": 712,
+      "paints": [
+        {
+          "at_ms": 112,
+          "id": "f0c81bb3-c30b-4b0b-a3e5-35f0f412d616",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 4552,
+          "id": "f0c81bb3-c30b-4b0b-a3e5-35f0f412d616",
+          "content": "Em TypeScript ou JavaScript, você pode usar `let numero = 20;` ou `const numero = 20;`. Em Python, a representação seria `numero = 20`.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 112,
+          "id": "f0c81bb3-c30b-4b0b-a3e5-35f0f412d616",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 123,
+          "id": "f0c81bb3-c30b-4b0b-a3e5-35f0f412d616",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 4565,
+          "id": "f0c81bb3-c30b-4b0b-a3e5-35f0f412d616",
+          "text": "lucille-real-gemma\n\nEm TypeScript ou JavaScript, você pode usar let numero = 20; ou const numero = 20;. Em Python, a representação seria numero = 20.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 4629,
+          "id": "f0c81bb3-c30b-4b0b-a3e5-35f0f412d616",
+          "text": "lucille-real-gemma\n\nEm TypeScript ou JavaScript, você pode usar let numero = 20; ou const numero = 20;. Em Python, a representação seria numero = 20.\n\n1,937 in · 42 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 18,
+      "messages": [
+        {
+          "id": "c9c20c9c-3dd2-4fed-855b-de526cadc443",
+          "role": "user",
+          "content": "Como eu represento o número 20 em uma variável?"
+        },
+        {
+          "id": "f0c81bb3-c30b-4b0b-a3e5-35f0f412d616",
+          "role": "assistant",
+          "content": "Em TypeScript ou JavaScript, você pode usar `let numero = 20;` ou `const numero = 20;`. Em Python, a representação seria `numero = 20`.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1937,
+            "completionTokens": 42,
+            "totalTokens": 1979
+          },
+          "requestUsage": {
+            "inputTokens": 1937,
+            "outputTokens": 42,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "85ea6423-18ab-4a67-9240-05857abf12c1",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Em TypeScript ou JavaScript, você pode usar `let numero = 20;` ou `const numero = 20;`. Em Python, a representação seria `numero = 20`.",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.0999999642372131
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1937,
+                  "completionTokens": 42
+                }
+              ],
+              "refreshMs": 5.600000023841858,
+              "verificationMs": 1.0999999642372131,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Em TypeScript ou JavaScript, você pode usar `let numero = 20;` ou `const numero = 20;`. Em Python, a representação seria `numero = 20`."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Quanto é 23 somado a 29?",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 3711,
+      "extraction_wait_ms": 727,
+      "paints": [
+        {
+          "at_ms": 114,
+          "id": "45a13897-6371-486f-b7e9-deb198fc72a2",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 3631,
+          "id": "45a13897-6371-486f-b7e9-deb198fc72a2",
+          "content": "A soma de 23 e 29 é 52.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 115,
+          "id": "45a13897-6371-486f-b7e9-deb198fc72a2",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 123,
+          "id": "45a13897-6371-486f-b7e9-deb198fc72a2",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 3642,
+          "id": "45a13897-6371-486f-b7e9-deb198fc72a2",
+          "text": "lucille-real-gemma\n\nA soma de 23 e 29 é 52.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 3698,
+          "id": "45a13897-6371-486f-b7e9-deb198fc72a2",
+          "text": "lucille-real-gemma\n\nA soma de 23 e 29 é 52.\n\n2,000 in · 16 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 19,
+      "messages": [
+        {
+          "id": "471becc5-3f98-4299-b2d3-db7fd01ddb09",
+          "role": "user",
+          "content": "Quanto é 23 somado a 29?"
+        },
+        {
+          "id": "45a13897-6371-486f-b7e9-deb198fc72a2",
+          "role": "assistant",
+          "content": "A soma de 23 e 29 é 52.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 2000,
+            "completionTokens": 16,
+            "totalTokens": 2016
+          },
+          "requestUsage": {
+            "inputTokens": 2000,
+            "outputTokens": 16,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "39563939-68e6-45cb-94d1-31c7885abbfc",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "A soma de 23 e 29 é 52.",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.2999999523162842
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 2000,
+                  "completionTokens": 16
+                }
+              ],
+              "refreshMs": 5.700000047683716,
+              "verificationMs": 0.2999999523162842,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "A soma de 23 e 29 é 52."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Como funciona a difusão de um cheiro?",
+      "conversation_id": "bc5b31c6-576b-4b34-8b96-82e24b96c2d4",
+      "generation_ms": 5454,
+      "extraction_wait_ms": 729,
+      "paints": [
+        {
+          "at_ms": 113,
+          "id": "cc764fd2-bde7-45ad-99f3-f53ca2ca3f70",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 5243,
+          "id": "cc764fd2-bde7-45ad-99f3-f53ca2ca3f70",
+          "content": "A difusão de um cheiro ocorre quando as moléculas aromáticas se espalham de uma área de alta concentração para uma de baixa concentração. Esse movimento aleatório das moléculas permite que o odor preencha o espaço e chegue aos nossos receptores olfativos.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 113,
+          "id": "cc764fd2-bde7-45ad-99f3-f53ca2ca3f70",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 126,
+          "id": "cc764fd2-bde7-45ad-99f3-f53ca2ca3f70",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 5258,
+          "id": "cc764fd2-bde7-45ad-99f3-f53ca2ca3f70",
+          "text": "lucille-real-gemma\n\nA difusão de um cheiro ocorre quando as moléculas aromáticas se espalham de uma área de alta concentração para uma de baixa concentração. Esse movimento aleatório das moléculas permite que o odor preencha o espaço e chegue aos nossos receptores olfativos.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 5325,
+          "id": "cc764fd2-bde7-45ad-99f3-f53ca2ca3f70",
+          "text": "lucille-real-gemma\n\nA difusão de um cheiro ocorre quando as moléculas aromáticas se espalham de uma área de alta concentração para uma de baixa concentração. Esse movimento aleatório das moléculas permite que o odor preencha o espaço e chegue aos nossos receptores olfativos.\n\n2,036 in · 57 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 20,
+      "messages": [
+        {
+          "id": "b838f4ac-54ee-4663-8ae2-e5fab5b1b651",
+          "role": "user",
+          "content": "Como funciona a difusão de um cheiro?"
+        },
+        {
+          "id": "cc764fd2-bde7-45ad-99f3-f53ca2ca3f70",
+          "role": "assistant",
+          "content": "A difusão de um cheiro ocorre quando as moléculas aromáticas se espalham de uma área de alta concentração para uma de baixa concentração. Esse movimento aleatório das moléculas permite que o odor preencha o espaço e chegue aos nossos receptores olfativos.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 2036,
+            "completionTokens": 57,
+            "totalTokens": 2093
+          },
+          "requestUsage": {
+            "inputTokens": 2036,
+            "outputTokens": 57,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "b8d9665f-9f58-429a-a866-e478aa2edec8",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "A difusão de um cheiro ocorre quando as moléculas aromáticas se espalham de uma área de alta concentração para uma de baixa concentração. Esse movimento aleatório das moléculas permite que o odor preencha o espaço e chegue aos nossos receptores olfativos.",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.5999999642372131
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 2036,
+                  "completionTokens": 57
+                }
+              ],
+              "refreshMs": 8,
+              "verificationMs": 0.5999999642372131,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "A difusão de um cheiro ocorre quando as moléculas aromáticas se espalham de uma área de alta concentração para uma de baixa concentração. Esse movimento aleatório das moléculas permite que o odor preencha o espaço e chegue aos nossos receptores olfativos."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Como está ficando aquele projeto?",
+      "conversation_id": "189d82a2-a323-4841-8931-4b2c3614fd78",
+      "generation_ms": 6945,
+      "extraction_wait_ms": 733,
+      "paints": [
+        {
+          "at_ms": 112,
+          "id": "3ce92b2a-c30e-47e4-b31b-7f26a17ed875",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 6859,
+          "id": "3ce92b2a-c30e-47e4-b31b-7f26a17ed875",
+          "content": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+          "fidelity_status": "blocked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 112,
+          "id": "3ce92b2a-c30e-47e4-b31b-7f26a17ed875",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 119,
+          "id": "3ce92b2a-c30e-47e4-b31b-7f26a17ed875",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 6872,
+          "id": "3ce92b2a-c30e-47e4-b31b-7f26a17ed875",
+          "text": "lucille-real-gemma\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+          "fidelity_status": "blocked"
+        },
+        {
+          "at_ms": 6893,
+          "id": "3ce92b2a-c30e-47e4-b31b-7f26a17ed875",
+          "text": "lucille-real-gemma\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.\n\nResposta retida na verificação de memória\n1,632 in · 34 out",
+          "fidelity_status": "blocked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 21,
+      "messages": [
+        {
+          "id": "026ac83a-0c1a-46ce-9d40-864b7fce648a",
+          "role": "user",
+          "content": "Como está ficando aquele projeto?"
+        },
+        {
+          "id": "3ce92b2a-c30e-47e4-b31b-7f26a17ed875",
+          "role": "assistant",
+          "content": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+          "error": {
+            "kind": "generic",
+            "detail": "Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+            "at": 0
+          },
+          "requestUsage": {
+            "inputTokens": 1632,
+            "outputTokens": 34,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "7bd861a7-02a6-4308-95aa-303480cb1ceb",
+              "status": "blocked",
+              "attempts": [
+                {
+                  "rawAnswer": "O projeto Candeia está sendo desenvolvido como um sistema de controle de luminosidade. Você planeja utilizar TypeScript como linguagem de programação e PostgreSQL como banco de dados.",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "project.candeia",
+                        "property": "language",
+                        "value": "typescript",
+                        "span": "Você planeja utilizar TypeScript como linguagem de programação e PostgreSQL como banco de dados.",
+                        "supported": true,
+                        "references": [
+                          "265f842f-8c48-da19-d2dc-2e326157ed62"
+                        ]
+                      },
+                      {
+                        "entity": "project.candeia",
+                        "property": "database",
+                        "value": "postgresql",
+                        "span": "Você planeja utilizar TypeScript como linguagem de programação e PostgreSQL como banco de dados.",
+                        "supported": true,
+                        "references": [
+                          "171c9ca0-a7f6-21c9-8819-61332bdcadf5"
+                        ]
+                      }
+                    ],
+                    "violations": [
+                      {
+                        "code": "unproven_project_progress",
+                        "span": "O projeto Candeia está sendo desenvolvido como um sistema de controle de luminosidade.",
+                        "critical": true
+                      }
+                    ],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 2,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.699999988079071
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1391,
+                  "completionTokens": 34
+                },
+                {
+                  "rawAnswer": "O projeto Candeia está sendo desenvolvido como um sistema de controle de luminosidade. Você planeja utilizar TypeScript como linguagem de programação e PostgreSQL como banco de dados.",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "project.candeia",
+                        "property": "language",
+                        "value": "typescript",
+                        "span": "Você planeja utilizar TypeScript como linguagem de programação e PostgreSQL como banco de dados.",
+                        "supported": true,
+                        "references": [
+                          "265f842f-8c48-da19-d2dc-2e326157ed62"
+                        ]
+                      },
+                      {
+                        "entity": "project.candeia",
+                        "property": "database",
+                        "value": "postgresql",
+                        "span": "Você planeja utilizar TypeScript como linguagem de programação e PostgreSQL como banco de dados.",
+                        "supported": true,
+                        "references": [
+                          "171c9ca0-a7f6-21c9-8819-61332bdcadf5"
+                        ]
+                      }
+                    ],
+                    "violations": [
+                      {
+                        "code": "unproven_project_progress",
+                        "span": "O projeto Candeia está sendo desenvolvido como um sistema de controle de luminosidade.",
+                        "critical": true
+                      }
+                    ],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 2,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 2.399999976158142
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1632,
+                  "completionTokens": 34
+                }
+              ],
+              "refreshMs": 20.19999998807907,
+              "verificationMs": 4.099999964237213,
+              "extraGenerationMs": 3202.800000011921,
+              "additionalUsage": {
+                "promptTokens": 1632,
+                "completionTokens": 34
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Should I sweeten my morning coffee?",
+      "conversation_id": "ecb802f7-5d00-497c-879c-438de208711a",
+      "generation_ms": 6466,
+      "extraction_wait_ms": 736,
+      "paints": [
+        {
+          "at_ms": 127,
+          "id": "149bd095-b47c-4c1f-894a-a7a34837258b",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 6217,
+          "id": "149bd095-b47c-4c1f-894a-a7a34837258b",
+          "content": "Since you prefer coffee with sugar, you should definitely sweeten it to satisfy your taste.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 134,
+          "id": "149bd095-b47c-4c1f-894a-a7a34837258b",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 6228,
+          "id": "149bd095-b47c-4c1f-894a-a7a34837258b",
+          "text": "lucille-real-gemma\n\nSince you prefer coffee with sugar, you should definitely sweeten it to satisfy your taste.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 6252,
+          "id": "149bd095-b47c-4c1f-894a-a7a34837258b",
+          "text": "lucille-real-gemma\n\nSince you prefer coffee with sugar, you should definitely sweeten it to satisfy your taste.\n\n3,941 in · 19 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 22,
+      "messages": [
+        {
+          "id": "40be9185-71d0-4c90-887d-fef20fec3761",
+          "role": "user",
+          "content": "Should I sweeten my morning coffee?"
+        },
+        {
+          "id": "149bd095-b47c-4c1f-894a-a7a34837258b",
+          "role": "assistant",
+          "content": "Since you prefer coffee with sugar, you should definitely sweeten it to satisfy your taste.",
+          "usage": {
+            "promptTokens": 3941,
+            "completionTokens": 19,
+            "totalTokens": 3960,
+            "estimated": false
+          },
+          "requestUsage": {
+            "inputTokens": 3941,
+            "outputTokens": 19,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "67e558a4-97a9-4b50-a680-44e3a8a1e636",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Since you prefer coffee with sugar, you should definitely sweeten it to satisfy your taste.",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "user",
+                        "property": "coffee_sugar",
+                        "value": "with_sugar",
+                        "span": "Since you prefer coffee with sugar, you should definitely sweeten it to satisfy your taste.",
+                        "supported": true,
+                        "references": [
+                          "7c32fd08-5399-b0be-eb1c-caffc1863ef4"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 1,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.699999988079071
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 3941,
+                  "completionTokens": 19
+                }
+              ],
+              "refreshMs": 18.30000001192093,
+              "verificationMs": 0.699999988079071,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Since you prefer coffee with sugar, you should definitely sweeten it to satisfy your taste."
+            }
+          ],
+          "agentBlocks": []
+        }
+      ]
+    },
+    {
+      "text": "Que tipo de RPG combina com o meu gosto?",
+      "conversation_id": "19b61b8d-3366-4a21-ab14-1fc46f3ca2e1",
+      "generation_ms": 3655,
+      "extraction_wait_ms": 729,
+      "paints": [
+        {
+          "at_ms": 112,
+          "id": "669d38c5-7571-447d-ba0c-e5d4be280b90",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 3564,
+          "id": "669d38c5-7571-447d-ba0c-e5d4be280b90",
+          "content": "RPGs com sistemas de combate tático e classes bem definidas combinam perfeitamente com o seu gosto. Jogos como *Fire Emblem*, *Final Fantasy Tactics* ou *Baldur's Gate 3* são excelentes exemplos.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 112,
+          "id": "669d38c5-7571-447d-ba0c-e5d4be280b90",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 119,
+          "id": "669d38c5-7571-447d-ba0c-e5d4be280b90",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 3579,
+          "id": "669d38c5-7571-447d-ba0c-e5d4be280b90",
+          "text": "lucille-real-gemma\n\nRPGs com sistemas de combate tático e classes bem definidas combinam perfeitamente com o seu gosto. Jogos como Fire Emblem, Final Fantasy Tactics ou Baldur's Gate 3 são excelentes exemplos.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 3605,
+          "id": "669d38c5-7571-447d-ba0c-e5d4be280b90",
+          "text": "lucille-real-gemma\n\nRPGs com sistemas de combate tático e classes bem definidas combinam perfeitamente com o seu gosto. Jogos como Fire Emblem, Final Fantasy Tactics ou Baldur's Gate 3 são excelentes exemplos.\n\n1,085 in · 49 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 23,
+      "messages": [
+        {
+          "id": "9bd619e3-64c5-4d38-b94d-982d3679e747",
+          "role": "user",
+          "content": "Que tipo de RPG combina com o meu gosto?"
+        },
+        {
+          "id": "669d38c5-7571-447d-ba0c-e5d4be280b90",
+          "role": "assistant",
+          "content": "RPGs com sistemas de combate tático e classes bem definidas combinam perfeitamente com o seu gosto. Jogos como *Fire Emblem*, *Final Fantasy Tactics* ou *Baldur's Gate 3* são excelentes exemplos.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1085,
+            "completionTokens": 49,
+            "totalTokens": 1134
+          },
+          "requestUsage": {
+            "inputTokens": 1085,
+            "outputTokens": 49,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "71fa3a1d-570b-4669-a93d-2b78aa4b31b5",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "RPGs com sistemas de combate tático e classes bem definidas combinam perfeitamente com o seu gosto. Jogos como *Fire Emblem*, *Final Fantasy Tactics* ou *Baldur's Gate 3* são excelentes exemplos.",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "user",
+                        "property": "games_tactics",
+                        "value": "positive",
+                        "span": "RPGs com sistemas de combate tático e classes bem definidas combinam perfeitamente com o seu gosto.",
+                        "supported": true,
+                        "references": [
+                          "325bef3b-de6e-315b-6be6-834297c86b26"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 1,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.4000000357627869
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1085,
+                  "completionTokens": 49
+                }
+              ],
+              "refreshMs": 7.899999976158142,
+              "verificationMs": 1.4000000357627869,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "RPGs com sistemas de combate tático e classes bem definidas combinam perfeitamente com o seu gosto. Jogos como *Fire Emblem*, *Final Fantasy Tactics* ou *Baldur's Gate 3* são excelentes exemplos."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Como você deve explicar um conceito para mim?",
+      "conversation_id": "2d9ca9c0-bfeb-49c5-a941-d1b5dab5aeb0",
+      "generation_ms": 3649,
+      "extraction_wait_ms": 710,
+      "paints": [
+        {
+          "at_ms": 112,
+          "id": "9d355c04-08d0-4842-8d9c-3109b1462bef",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 3542,
+          "id": "9d355c04-08d0-4842-8d9c-3109b1462bef",
+          "content": "Como você prefere explicações detalhadas, devo fornecer descrições minuciosas que explorem as nuances e os fundamentos de cada conceito. Isso significa ir além do básico para garantir que você compreenda todos os detalhes importantes.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 112,
+          "id": "9d355c04-08d0-4842-8d9c-3109b1462bef",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 119,
+          "id": "9d355c04-08d0-4842-8d9c-3109b1462bef",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 3552,
+          "id": "9d355c04-08d0-4842-8d9c-3109b1462bef",
+          "text": "lucille-real-gemma\n\nComo você prefere explicações detalhadas, devo fornecer descrições minuciosas que explorem as nuances e os fundamentos de cada conceito. Isso significa ir além do básico para garantir que você compreenda todos os detalhes importantes.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 3579,
+          "id": "9d355c04-08d0-4842-8d9c-3109b1462bef",
+          "text": "lucille-real-gemma\n\nComo você prefere explicações detalhadas, devo fornecer descrições minuciosas que explorem as nuances e os fundamentos de cada conceito. Isso significa ir além do básico para garantir que você compreenda todos os detalhes importantes.\n\n1,098 in · 47 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 24,
+      "messages": [
+        {
+          "id": "93071072-9d3a-4858-b896-cae939aba5c3",
+          "role": "user",
+          "content": "Como você deve explicar um conceito para mim?"
+        },
+        {
+          "id": "9d355c04-08d0-4842-8d9c-3109b1462bef",
+          "role": "assistant",
+          "content": "Como você prefere explicações detalhadas, devo fornecer descrições minuciosas que explorem as nuances e os fundamentos de cada conceito. Isso significa ir além do básico para garantir que você compreenda todos os detalhes importantes.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1098,
+            "completionTokens": 47,
+            "totalTokens": 1145
+          },
+          "requestUsage": {
+            "inputTokens": 1098,
+            "outputTokens": 47,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "a11c1da2-8867-429e-8952-9ce611cff733",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Como você prefere explicações detalhadas, devo fornecer descrições minuciosas que explorem as nuances e os fundamentos de cada conceito. Isso significa ir além do básico para garantir que você compreenda todos os detalhes importantes.",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "user",
+                        "property": "communication_style",
+                        "value": "detailed",
+                        "span": "Como você prefere explicações detalhadas, devo fornecer descrições minuciosas que explorem as nuances e os fundamentos de cada conceito.",
+                        "supported": true,
+                        "references": [
+                          "7f0048ea-c63d-3bc0-0c66-c29e101981f3"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 1,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.699999988079071
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1098,
+                  "completionTokens": 47
+                }
+              ],
+              "refreshMs": 8.5,
+              "verificationMs": 1.699999988079071,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Como você prefere explicações detalhadas, devo fornecer descrições minuciosas que explorem as nuances e os fundamentos de cada conceito. Isso significa ir além do básico para garantir que você compreenda todos os detalhes importantes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Qual é minha preferência de tema de interface?",
+      "conversation_id": "73f2f8c6-11d3-43c1-8d62-3c9a05f8ef5c",
+      "generation_ms": 2405,
+      "extraction_wait_ms": 736,
+      "paints": [
+        {
+          "at_ms": 112,
+          "id": "da878bd0-829e-4d84-8562-440749b8b420",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 2321,
+          "id": "da878bd0-829e-4d84-8562-440749b8b420",
+          "content": "Sua preferência de tema de interface é o modo claro.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 112,
+          "id": "da878bd0-829e-4d84-8562-440749b8b420",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 119,
+          "id": "da878bd0-829e-4d84-8562-440749b8b420",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 2332,
+          "id": "da878bd0-829e-4d84-8562-440749b8b420",
+          "text": "lucille-real-gemma\n\nSua preferência de tema de interface é o modo claro.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 2357,
+          "id": "da878bd0-829e-4d84-8562-440749b8b420",
+          "text": "lucille-real-gemma\n\nSua preferência de tema de interface é o modo claro.\n\n1,132 in · 14 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 25,
+      "messages": [
+        {
+          "id": "a678c1b7-55c4-4e90-9d3f-eae1ff6c8eba",
+          "role": "user",
+          "content": "Qual é minha preferência de tema de interface?"
+        },
+        {
+          "id": "da878bd0-829e-4d84-8562-440749b8b420",
+          "role": "assistant",
+          "content": "Sua preferência de tema de interface é o modo claro.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1132,
+            "completionTokens": 14,
+            "totalTokens": 1146
+          },
+          "requestUsage": {
+            "inputTokens": 1132,
+            "outputTokens": 14,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "2b4dc420-d244-4475-8964-089598d2cbe8",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Sua preferência de tema de interface é o modo claro.",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "user",
+                        "property": "interface_theme",
+                        "value": "light",
+                        "span": "Sua preferência de tema de interface é o modo claro.",
+                        "supported": true,
+                        "references": [
+                          "c773ba54-5e36-e825-cee9-dc2ee5906d74"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 1,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.3999999761581421
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1132,
+                  "completionTokens": 14
+                }
+              ],
+              "refreshMs": 7.899999976158142,
+              "verificationMs": 0.3999999761581421,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Sua preferência de tema de interface é o modo claro."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "How much RAM does my work laptop have?",
+      "conversation_id": "f3406544-79b3-4657-adfb-5362ebdf9d5b",
+      "generation_ms": 5173,
+      "extraction_wait_ms": 725,
+      "paints": [
+        {
+          "at_ms": 115,
+          "id": "a02f2256-a44d-4e6a-8005-421a41f779a3",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 5115,
+          "id": "a02f2256-a44d-4e6a-8005-421a41f779a3",
+          "content": "Your work laptop has 18 GB of RAM.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 119,
+          "id": "a02f2256-a44d-4e6a-8005-421a41f779a3",
+          "text": "",
+          "fidelity_status": null
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 26,
+      "messages": [
+        {
+          "id": "6c577e55-bf1b-43ee-8627-1aa839cbf866",
+          "role": "user",
+          "content": "How much RAM does my work laptop have?"
+        },
+        {
+          "id": "b278cf7f-3526-489c-a198-f494db90a671",
+          "role": "system",
+          "content": "Operational mode: Code, autonomous programming in LU. You execute coding tasks end-to-end by reading files, writing code, and running shell commands. You MUST use tools, never guess file contents.\n\nAUTONOMY CONTRACT (read carefully):\n- You are expected to COMPLETE multi-step tasks without the user prompting between steps.\n- NEVER say \"Now I will create X\" or \"Next I'll write Y\" as plain text and then stop. That is a FAILURE.\n- When your plan has N steps, execute ALL N steps in one session, each step as a concrete tool call.\n- The ONLY reasons to finish without calling another tool are:\n    (a) the task is 100% complete AND verified, or\n    (b) you hit an error you cannot recover from after trying.\n- Narrative \"I'm about to do X\" text with no tool call after it = premature stop. Don't do it.\n\nWorkflow per task:\n1. Understand the task (optional brief sentence)\n2. Explore the codebase, file_list / file_read / file_search\n3. Implement ALL required changes, file_edit to change existing files, file_write for new ones\n4. Verify, shell_execute to run tests, lint, or build\n5. Only THEN write a short summary of what you did\n\nWork in batches. Every step resends the whole conversation, so each round trip costs the user real money:\n- Put independent tool calls into ONE response: read all the files you need at once, run several searches at once, make several edits at once.\n- Never spend a step on bookkeeping alone. If a todo_write tool is offered, send the updated list in the same response as your next real tool call, never on its own.\n- Do not re-read a file you already read unless it changed since.\n\nRules:\n- Always read a file before modifying it\n- To CHANGE part of an existing file, use file_edit (replace a UNIQUE old_string with new_string), it is far cheaper and safer than rewriting the whole file with file_write, and never truncates a large file. Use file_write only to CREATE a new file or fully replace one. Several changes to the same file go into ONE file_edit call as `edits`. If file_edit reports the old_string is missing or not unique, read the file and retry with more surrounding lines.\n- PATHS: use paths relative to the working directory shown below (e.g. `package.json`, `src/app.ts`, `.` for the current folder). Never start a path with `/` or a drive letter (`C:\\`), that escapes the workspace and fails.\n- Chain tool calls: after each tool result, if there is another step left, IMMEDIATELY call the next tool\n- If a command fails, diagnose and retry with a different approach, don't hand back to the user unless truly stuck\n- Be concise in text. All the work happens in tool calls.\n- FINISH with a short natural-language sentence summarising what you did or found. NEVER end your turn with only a raw JSON object or a bare code block, the user needs a human-readable answer, not a data dump.\n- If the task turns out to need an image or a short clip, call image_generate or video_generate by name. They are not in your tool list until you do, and the call still works.\n\nThis machine runs Windows and shell_execute runs PowerShell. Open a file or folder with `Invoke-Item <path>`, reveal it in Explorer with `explorer \"/select,<path>\"` (one argument, the comma matters), start an application with `Start-Process \"<App Name>\"`.\nWorking directory: your private sandbox folder. Use relative paths only (e.g. `package.json`, `.`); never a leading `/` or a drive letter like `C:\\`.\n\nAnswer the request that was actually made. Do not add disclaimers, warnings or moral commentary that the user did not ask for, and do not lecture. If a request is genuinely ambiguous, ask one short question instead of guessing. Every subject the user brings up is yours to answer in full. Do not hold back, water it down, or add warnings the user did not ask for.",
+          "hidden": true
+        },
+        {
+          "id": "a02f2256-a44d-4e6a-8005-421a41f779a3",
+          "role": "assistant",
+          "content": "Your work laptop has 18 GB of RAM.",
+          "usage": {
+            "promptTokens": 3329,
+            "completionTokens": 12,
+            "totalTokens": 3341,
+            "estimated": false
+          },
+          "requestUsage": {
+            "inputTokens": 3329,
+            "outputTokens": 12,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "fa406ae8-57ad-4a67-af00-7da9e44a15cc",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Your work laptop has 18 GB of RAM.",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "device.work_laptop",
+                        "property": "ram_capacity",
+                        "value": "18_gb",
+                        "span": "Your work laptop has 18 GB of RAM.",
+                        "supported": true,
+                        "references": [
+                          "391c79a6-932f-35a6-31a3-1fc8aed0d466"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 1,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.40000003576278687
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 3329,
+                  "completionTokens": 12
+                }
+              ],
+              "refreshMs": 6.800000011920929,
+              "verificationMs": 0.40000003576278687,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Your work laptop has 18 GB of RAM."
+            }
+          ],
+          "agentBlocks": [
+            {
+              "id": "f63e744e-096c-4ad4-bde1-005c0183be82",
+              "phase": "answer",
+              "content": "Your work laptop has 18 GB of RAM.",
+              "timestamp": 1793810233575
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Qual é a RAM do meu computador principal?",
+      "conversation_id": "55827b3d-fc2f-46da-ae70-2c63ff4147a7",
+      "generation_ms": 2644,
+      "extraction_wait_ms": 724,
+      "paints": [
+        {
+          "at_ms": 114,
+          "id": "0eac3491-ebc4-46dc-8db1-9bbf3c2888a5",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 2440,
+          "id": "0eac3491-ebc4-46dc-8db1-9bbf3c2888a5",
+          "content": "Seu computador principal tem 26 GB de RAM.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 114,
+          "id": "0eac3491-ebc4-46dc-8db1-9bbf3c2888a5",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 127,
+          "id": "0eac3491-ebc4-46dc-8db1-9bbf3c2888a5",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 2451,
+          "id": "0eac3491-ebc4-46dc-8db1-9bbf3c2888a5",
+          "text": "lucille-real-gemma\n\nSeu computador principal tem 26 GB de RAM.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 2487,
+          "id": "0eac3491-ebc4-46dc-8db1-9bbf3c2888a5",
+          "text": "lucille-real-gemma\n\nSeu computador principal tem 26 GB de RAM.\n\n1,130 in · 13 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 27,
+      "messages": [
+        {
+          "id": "b91627e5-2290-4561-b697-d7aa1722de16",
+          "role": "user",
+          "content": "Qual é a RAM do meu computador principal?"
+        },
+        {
+          "id": "0eac3491-ebc4-46dc-8db1-9bbf3c2888a5",
+          "role": "assistant",
+          "content": "Seu computador principal tem 26 GB de RAM.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1130,
+            "completionTokens": 13,
+            "totalTokens": 1143
+          },
+          "requestUsage": {
+            "inputTokens": 1130,
+            "outputTokens": 13,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "b0427e10-cedc-4bc0-bd68-738aef708411",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Seu computador principal tem 26 GB de RAM.",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "device.primary_computer",
+                        "property": "ram_capacity",
+                        "value": "26_gb",
+                        "span": "Seu computador principal tem 26 GB de RAM.",
+                        "supported": true,
+                        "references": [
+                          "c78d1659-6664-349e-2f22-131335f51082"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 1,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.300000011920929
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1130,
+                  "completionTokens": 13
+                }
+              ],
+              "refreshMs": 8.599999964237213,
+              "verificationMs": 1.300000011920929,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Seu computador principal tem 26 GB de RAM."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Qual é meu objetivo atual sobre circuitos elétricos básicos?",
+      "conversation_id": "48903d53-4ca7-468a-8a05-a7a3f6e3d0bb",
+      "generation_ms": 2664,
+      "extraction_wait_ms": 717,
+      "paints": [
+        {
+          "at_ms": 115,
+          "id": "6ed9165f-b586-415b-bf22-a3df9651fa79",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 2432,
+          "id": "6ed9165f-b586-415b-bf22-a3df9651fa79",
+          "content": "Seu objetivo atual é aprender circuitos elétricos básicos.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 115,
+          "id": "6ed9165f-b586-415b-bf22-a3df9651fa79",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 122,
+          "id": "6ed9165f-b586-415b-bf22-a3df9651fa79",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 2444,
+          "id": "6ed9165f-b586-415b-bf22-a3df9651fa79",
+          "text": "lucille-real-gemma\n\nSeu objetivo atual é aprender circuitos elétricos básicos.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 2472,
+          "id": "6ed9165f-b586-415b-bf22-a3df9651fa79",
+          "text": "lucille-real-gemma\n\nSeu objetivo atual é aprender circuitos elétricos básicos.\n\n1,130 in · 13 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 843776,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 28,
+      "messages": [
+        {
+          "id": "d743dfed-6f7d-40af-bffe-651e2e16b284",
+          "role": "user",
+          "content": "Qual é meu objetivo atual sobre circuitos elétricos básicos?"
+        },
+        {
+          "id": "6ed9165f-b586-415b-bf22-a3df9651fa79",
+          "role": "assistant",
+          "content": "Seu objetivo atual é aprender circuitos elétricos básicos.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 1130,
+            "completionTokens": 13,
+            "totalTokens": 1143
+          },
+          "requestUsage": {
+            "inputTokens": 1130,
+            "outputTokens": 13,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "bc1972bf-e232-407a-8456-9ece0c9c8e0a",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Seu objetivo atual é aprender circuitos elétricos básicos.",
+                  "check": {
+                    "assertions": [
+                      {
+                        "entity": "user",
+                        "property": "goal_target",
+                        "value": "learn_circuitos_eletricos_basicos",
+                        "span": "Seu objetivo atual é aprender circuitos elétricos básicos.",
+                        "supported": true,
+                        "references": [
+                          "1280d01b-377d-45ae-844e-328f7de1bcba"
+                        ]
+                      }
+                    ],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 1,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 1.399999976158142
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 1130,
+                  "completionTokens": 13
+                }
+              ],
+              "refreshMs": 7.600000023841858,
+              "verificationMs": 1.399999976158142,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Seu objetivo atual é aprender circuitos elétricos básicos."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Qual é a capital da Argentina?",
+      "conversation_id": "a4fc619f-99ee-4805-86b4-cd900474fe96",
+      "generation_ms": 2160,
+      "extraction_wait_ms": 718,
+      "paints": [
+        {
+          "at_ms": 114,
+          "id": "3377b163-4d48-42c3-ba6f-6d0d9963fbc7",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 1959,
+          "id": "3377b163-4d48-42c3-ba6f-6d0d9963fbc7",
+          "content": "A capital da Argentina é Buenos Aires.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 114,
+          "id": "3377b163-4d48-42c3-ba6f-6d0d9963fbc7",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 122,
+          "id": "3377b163-4d48-42c3-ba6f-6d0d9963fbc7",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 1973,
+          "id": "3377b163-4d48-42c3-ba6f-6d0d9963fbc7",
+          "text": "lucille-real-gemma\n\nA capital da Argentina é Buenos Aires.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 1999,
+          "id": "3377b163-4d48-42c3-ba6f-6d0d9963fbc7",
+          "text": "lucille-real-gemma\n\nA capital da Argentina é Buenos Aires.\n\n946 in · 9 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 847872,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 29,
+      "messages": [
+        {
+          "id": "a773488a-0851-4023-8902-48edfc2354fd",
+          "role": "user",
+          "content": "Qual é a capital da Argentina?"
+        },
+        {
+          "id": "3377b163-4d48-42c3-ba6f-6d0d9963fbc7",
+          "role": "assistant",
+          "content": "A capital da Argentina é Buenos Aires.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 946,
+            "completionTokens": 9,
+            "totalTokens": 955
+          },
+          "requestUsage": {
+            "inputTokens": 946,
+            "outputTokens": 9,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "e6ac3e12-8aa0-4e25-a6a0-65bf14fa2f50",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "A capital da Argentina é Buenos Aires.",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": false,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.30000001192092896
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 946,
+                  "completionTokens": 9
+                }
+              ],
+              "refreshMs": 6.100000023841858,
+              "verificationMs": 0.30000001192092896,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "A capital da Argentina é Buenos Aires."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Qual banco está planejado no projeto candeia2?",
+      "conversation_id": "9325d758-3069-4ca3-a609-dd8075a22d0c",
+      "generation_ms": 2647,
+      "extraction_wait_ms": 736,
+      "paints": [
+        {
+          "at_ms": 112,
+          "id": "4ccf9aba-907a-42ea-8f69-f98541f30c6b",
+          "content": "",
+          "fidelity_status": null,
+          "error": null
+        },
+        {
+          "at_ms": 2589,
+          "id": "4ccf9aba-907a-42ea-8f69-f98541f30c6b",
+          "content": "Não há registro específico sobre qual banco está planejado no projeto candeia2 no momento.",
+          "fidelity_status": "checked",
+          "error": null
+        }
+      ],
+      "domPaints": [
+        {
+          "at_ms": 112,
+          "id": "4ccf9aba-907a-42ea-8f69-f98541f30c6b",
+          "text": "",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 118,
+          "id": "4ccf9aba-907a-42ea-8f69-f98541f30c6b",
+          "text": "lucille-real-gemma",
+          "fidelity_status": null
+        },
+        {
+          "at_ms": 2602,
+          "id": "4ccf9aba-907a-42ea-8f69-f98541f30c6b",
+          "text": "lucille-real-gemma\n\nNão há registro específico sobre qual banco está planejado no projeto candeia2 no momento.",
+          "fidelity_status": "checked"
+        },
+        {
+          "at_ms": 2628,
+          "id": "4ccf9aba-907a-42ea-8f69-f98541f30c6b",
+          "text": "lucille-real-gemma\n\nNão há registro específico sobre qual banco está planejado no projeto candeia2 no momento.\n\n951 in · 20 out",
+          "fidelity_status": "checked"
+        }
+      ],
+      "notePaints": [],
+      "metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 847872,
+        "vector_json_bytes": 95055
+      },
+      "ordinal": 30,
+      "messages": [
+        {
+          "id": "5236392f-6445-4c4b-a8f0-b04056d2c2cc",
+          "role": "user",
+          "content": "Qual banco está planejado no projeto candeia2?"
+        },
+        {
+          "id": "4ccf9aba-907a-42ea-8f69-f98541f30c6b",
+          "role": "assistant",
+          "content": "Não há registro específico sobre qual banco está planejado no projeto candeia2 no momento.",
+          "finishReason": "stop",
+          "usage": {
+            "promptTokens": 951,
+            "completionTokens": 20,
+            "totalTokens": 971
+          },
+          "requestUsage": {
+            "inputTokens": 951,
+            "outputTokens": 20,
+            "calls": 1
+          },
+          "lucilleFidelity": [
+            {
+              "id": "9521e3a1-b147-4350-b82f-a067265f8b13",
+              "status": "checked",
+              "attempts": [
+                {
+                  "rawAnswer": "Não há registro específico sobre qual banco está planejado no projeto candeia2 no momento.",
+                  "check": {
+                    "assertions": [],
+                    "violations": [],
+                    "authority": [],
+                    "uncertain": true,
+                    "supportedAssertions": 0,
+                    "unsupportedAssertions": 0,
+                    "elapsedMs": 0.30000001192092896
+                  },
+                  "verificationReferences": [],
+                  "promptTokens": 951,
+                  "completionTokens": 20
+                }
+              ],
+              "refreshMs": 11.799999952316284,
+              "verificationMs": 0.30000001192092896,
+              "extraGenerationMs": 0,
+              "additionalUsage": {
+                "promptTokens": 0,
+                "completionTokens": 0
+              },
+              "verifiedText": "Não há registro específico sobre qual banco está planejado no projeto candeia2 no momento."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "probes": [
+    {
+      "item": {
+        "text": "Como está ficando aquele projeto?",
+        "expected": [
+          {
+            "property": "language",
+            "value": "typescript",
+            "temporal": "planned"
+          },
+          {
+            "property": "database",
+            "value": "postgresql",
+            "temporal": "planned"
+          },
+          {
+            "property": "description"
+          }
+        ],
+        "answer_pattern": "TypeScript",
+        "mode": "chat",
+        "answer_none": [],
+        "category": "language"
+      },
+      "turn_ordinal": 21
+    },
+    {
+      "item": {
+        "text": "Should I sweeten my morning coffee?",
+        "expected": [
+          {
+            "property": "coffee_sugar",
+            "value": "with_sugar"
+          }
+        ],
+        "answer_pattern": "with sugar|com açúcar|\\byes\\b|\\bsim\\b",
+        "mode": "agent",
+        "answer_none": [
+          "without sugar|sem açúcar|unsweetened|no sugar"
+        ],
+        "category": "coffee_sugar"
+      },
+      "turn_ordinal": 22
+    },
+    {
+      "item": {
+        "text": "Que tipo de RPG combina com o meu gosto?",
+        "expected": [
+          {
+            "property": "games_tactics",
+            "value": "positive"
+          }
+        ],
+        "answer_pattern": "táti|tacti",
+        "mode": "chat",
+        "answer_none": [],
+        "category": "games_tactics"
+      },
+      "turn_ordinal": 23
+    },
+    {
+      "item": {
+        "text": "Como você deve explicar um conceito para mim?",
+        "expected": [
+          {
+            "property": "communication_style",
+            "value": "detailed"
+          }
+        ],
+        "answer_pattern": "detalh|detail|explica",
+        "mode": "chat",
+        "answer_none": [],
+        "category": "communication_style"
+      },
+      "turn_ordinal": 24
+    },
+    {
+      "item": {
+        "text": "Qual é minha preferência de tema de interface?",
+        "expected": [
+          {
+            "property": "interface_theme",
+            "value": "light"
+          }
+        ],
+        "answer_pattern": "clar|light",
+        "mode": "chat",
+        "answer_none": [],
+        "category": "interface_theme"
+      },
+      "turn_ordinal": 25
+    },
+    {
+      "item": {
+        "text": "How much RAM does my work laptop have?",
+        "expected": [
+          {
+            "property": "ram_capacity",
+            "value": "18_gb",
+            "subject": "device.work_laptop"
+          }
+        ],
+        "answer_pattern": "18\\s*GB",
+        "mode": "code",
+        "answer_none": [],
+        "category": "ram_capacity"
+      },
+      "turn_ordinal": 26
+    },
+    {
+      "item": {
+        "text": "Qual é a RAM do meu computador principal?",
+        "expected": [
+          {
+            "property": "ram_capacity",
+            "value": "26_gb",
+            "subject": "device.primary_computer"
+          }
+        ],
+        "answer_pattern": "26\\s*GB",
+        "mode": "chat",
+        "answer_none": [],
+        "category": "ram_capacity"
+      },
+      "turn_ordinal": 27
+    },
+    {
+      "item": {
+        "text": "Qual é meu objetivo atual sobre circuitos elétricos básicos?",
+        "expected": [
+          {
+            "property": "goal.",
+            "subject": "user",
+            "temporal": "durable"
+          }
+        ],
+        "answer_pattern": "circuit|elétr|eletr",
+        "mode": "chat",
+        "answer_none": [],
+        "category": "goal"
+      },
+      "turn_ordinal": 28
+    },
+    {
+      "item": {
+        "text": "Qual é a capital da Argentina?",
+        "expected": [],
+        "answer_pattern": "Buenos Aires",
+        "mode": "chat",
+        "answer_none": [],
+        "category": "irrelevant"
+      },
+      "turn_ordinal": 29
+    },
+    {
+      "item": {
+        "text": "Qual banco está planejado no projeto candeia2?",
+        "expected": [],
+        "answer_pattern": "não|not|informa|context|defin|sei|know",
+        "mode": "chat",
+        "answer_none": [
+          "PostgreSQL"
+        ],
+        "category": "scope_fence"
+      },
+      "turn_ordinal": 30
+    }
+  ]
+}

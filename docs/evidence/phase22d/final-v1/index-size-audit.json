@@ -1,0 +1,50 @@
+{
+  "method": "Read-only DBSTAT/pages and WAL/SHM inventory; does not change FTS or canonical/index contents.",
+  "stores": [
+    {
+      "store": ".lucille-qa-runtime/lucille-synthetic-full22d/lucille-phase1.sqlite3",
+      "main_wal_shm_bytes": {
+        "lucille-phase1.sqlite3": 913408,
+        "lucille-phase1.sqlite3-shm": 32768,
+        "lucille-phase1.sqlite3-wal": 4140632
+      },
+      "logical_page_bytes": 1114112,
+      "table_index_physical_pages": {
+        "not_available": "no such table: dbstat"
+      },
+      "active_missing_current_vectors": [
+        [
+          "phase22d-fault-dev-source-order",
+          "cacto",
+          "fcf16b6c-cb44-02de-c053-7eefb87ea791",
+          "user",
+          "coffee_sugar",
+          "without_sugar"
+        ],
+        [
+          "phase22d-fault-final-source-order",
+          "sintetico",
+          "8de6d541-1b98-aef6-2ef2-71ee9341ac4f",
+          "user",
+          "coffee_sugar",
+          "without_sugar"
+        ]
+      ],
+      "note": "Direct native ordered-source fault fixtures have no GUI conversation binding for automatic index rotation. Report gaps; no post-freeze force-reindex or data adjustment."
+    },
+    {
+      "store": ".lucille-qa-runtime/lucille-synthetic-real22d/final22d-v1/lucille-synthetic-retrieval/synthetic.sqlite3",
+      "main_wal_shm_bytes": {
+        "synthetic.sqlite3": 360448,
+        "synthetic.sqlite3-shm": 32768,
+        "synthetic.sqlite3-wal": 0
+      },
+      "logical_page_bytes": 360448,
+      "table_index_physical_pages": {
+        "not_available": "no such table: dbstat"
+      },
+      "active_missing_current_vectors": [],
+      "note": "Direct native ordered-source fault fixtures have no GUI conversation binding for automatic index rotation. Report gaps; no post-freeze force-reindex or data adjustment."
+    }
+  ]
+}

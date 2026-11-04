@@ -1,0 +1,3578 @@
+{
+  "series": 50,
+  "scope": "phase22c-final-historical-series",
+  "project": "candeia2",
+  "kind": "Known original longitudinal regression, not unseen language generalization.",
+  "method": "Manual entire-answer literal review; initial injected native references audited by earliest retrieval_audit sequence, with exact stage version/revision. No later verifier read credited as initial retrieval. Old regex kept only as supplemental diagnostic.",
+  "retrieval_metrics": {
+    "tp": 8,
+    "fp": 0,
+    "missed": 0,
+    "precision": 1.0,
+    "recall": 1.0
+  },
+  "retrieval": [
+    {
+      "turn": 51,
+      "query": {
+        "text": "Como está ficando aquele projeto?",
+        "expected": [
+          {
+            "property": "language",
+            "value": "javascript",
+            "temporal": "planned"
+          },
+          {
+            "property": "database",
+            "value": "sqlite",
+            "temporal": "planned"
+          },
+          {
+            "property": "description"
+          }
+        ],
+        "answer_pattern": "JavaScript",
+        "mode": "chat",
+        "answer_none": [
+          "Python",
+          "PostgreSQL"
+        ],
+        "category": "language"
+      },
+      "initial_native_audit_sequence": 211,
+      "references": [
+        {
+          "id": "ad3bf38e-3f3a-1935-0e80-cd03fa226a54",
+          "version": 2
+        },
+        {
+          "id": "213b3efd-afcf-9a02-0bb6-74eea9b0c5f9",
+          "version": 2
+        },
+        {
+          "id": "f6e483b4-8f8a-f1c3-fa4f-e3b1383eaf70",
+          "version": 2
+        }
+      ],
+      "records": [
+        {
+          "memory": {
+            "created_at": 1793810265,
+            "input": {
+              "content": "Estou começando um projeto de painel de iluminação residencial",
+              "fact_key": "project.candeia2.description",
+              "id": "ad3bf38e-3f3a-1935-0e80-cd03fa226a54",
+              "kind": "project",
+              "project": "candeia2",
+              "scope": "phase22c-final-historical-series",
+              "source": "user",
+              "source_id": "9d97dafd36893ab10bb6a36a4bc93802e11b630cccd6194ed34b51d680ea47b2"
+            },
+            "state": "active",
+            "updated_at": 1793810268,
+            "version": 2
+          },
+          "provenance": [
+            {
+              "at": 1793810265,
+              "evidence": "Estou começando um projeto de painel de iluminação residencial",
+              "interaction_id": "9d97dafd36893ab10bb6a36a4bc93802e11b630cccd6194ed34b51d680ea47b2"
+            }
+          ],
+          "quality": {
+            "confidence": 0.9,
+            "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+            "expires_at": null,
+            "facets": [],
+            "priority": 1,
+            "property": "description",
+            "relevance": 0.8,
+            "replaces_id": null,
+            "replaces_version": null,
+            "subject": "project.candeia2",
+            "temporal": "durable",
+            "value": "estou comecando um projeto de painel de iluminacao residencial"
+          },
+          "revisions": [
+            1
+          ]
+        },
+        {
+          "memory": {
+            "created_at": 1793810265,
+            "input": {
+              "content": "Projeto candeia2: planeja usar sqlite como banco de dados.",
+              "fact_key": "project.candeia2.database",
+              "id": "213b3efd-afcf-9a02-0bb6-74eea9b0c5f9",
+              "kind": "decision",
+              "project": "candeia2",
+              "scope": "phase22c-final-historical-series",
+              "source": "user",
+              "source_id": "9d97dafd36893ab10bb6a36a4bc93802e11b630cccd6194ed34b51d680ea47b2"
+            },
+            "state": "active",
+            "updated_at": 1793810267,
+            "version": 2
+          },
+          "provenance": [
+            {
+              "at": 1793810265,
+              "evidence": "Quero usar JavaScript e SQLite",
+              "interaction_id": "9d97dafd36893ab10bb6a36a4bc93802e11b630cccd6194ed34b51d680ea47b2"
+            }
+          ],
+          "quality": {
+            "confidence": 0.9,
+            "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+            "expires_at": null,
+            "facets": [],
+            "priority": 1,
+            "property": "database",
+            "relevance": 0.8,
+            "replaces_id": null,
+            "replaces_version": null,
+            "subject": "project.candeia2",
+            "temporal": "planned",
+            "value": "sqlite"
+          },
+          "revisions": [
+            1
+          ]
+        },
+        {
+          "memory": {
+            "created_at": 1793810265,
+            "input": {
+              "content": "Projeto candeia2: planeja usar linguagem javascript.",
+              "fact_key": "project.candeia2.language",
+              "id": "f6e483b4-8f8a-f1c3-fa4f-e3b1383eaf70",
+              "kind": "decision",
+              "project": "candeia2",
+              "scope": "phase22c-final-historical-series",
+              "source": "user",
+              "source_id": "9d97dafd36893ab10bb6a36a4bc93802e11b630cccd6194ed34b51d680ea47b2"
+            },
+            "state": "active",
+            "updated_at": 1793810270,
+            "version": 2
+          },
+          "provenance": [
+            {
+              "at": 1793810265,
+              "evidence": "Quero usar JavaScript e SQLite",
+              "interaction_id": "9d97dafd36893ab10bb6a36a4bc93802e11b630cccd6194ed34b51d680ea47b2"
+            }
+          ],
+          "quality": {
+            "confidence": 0.9,
+            "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+            "expires_at": null,
+            "facets": [],
+            "priority": 1,
+            "property": "language",
+            "relevance": 0.8,
+            "replaces_id": null,
+            "replaces_version": null,
+            "subject": "project.candeia2",
+            "temporal": "planned",
+            "value": "javascript"
+          },
+          "revisions": [
+            1
+          ]
+        }
+      ],
+      "budget": 7380,
+      "used": 3359,
+      "mode": "chat",
+      "score": {
+        "tp": 3,
+        "fp": 0,
+        "missed": 0
+      },
+      "subsequent_audit_rows": 0
+    },
+    {
+      "turn": 52,
+      "query": {
+        "text": "Qual banco de dados eu planejo usar no meu projeto?",
+        "expected": [
+          {
+            "property": "database",
+            "value": "sqlite",
+            "temporal": "planned"
+          }
+        ],
+        "answer_pattern": "SQLite",
+        "mode": "chat",
+        "answer_none": [],
+        "category": "database"
+      },
+      "initial_native_audit_sequence": 212,
+      "references": [
+        {
+          "id": "213b3efd-afcf-9a02-0bb6-74eea9b0c5f9",
+          "version": 2
+        }
+      ],
+      "records": [
+        {
+          "memory": {
+            "created_at": 1793810265,
+            "input": {
+              "content": "Projeto candeia2: planeja usar sqlite como banco de dados.",
+              "fact_key": "project.candeia2.database",
+              "id": "213b3efd-afcf-9a02-0bb6-74eea9b0c5f9",
+              "kind": "decision",
+              "project": "candeia2",
+              "scope": "phase22c-final-historical-series",
+              "source": "user",
+              "source_id": "9d97dafd36893ab10bb6a36a4bc93802e11b630cccd6194ed34b51d680ea47b2"
+            },
+            "state": "active",
+            "updated_at": 1793810267,
+            "version": 2
+          },
+          "provenance": [
+            {
+              "at": 1793810265,
+              "evidence": "Quero usar JavaScript e SQLite",
+              "interaction_id": "9d97dafd36893ab10bb6a36a4bc93802e11b630cccd6194ed34b51d680ea47b2"
+            }
+          ],
+          "quality": {
+            "confidence": 0.9,
+            "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+            "expires_at": null,
+            "facets": [],
+            "priority": 1,
+            "property": "database",
+            "relevance": 0.8,
+            "replaces_id": null,
+            "replaces_version": null,
+            "subject": "project.candeia2",
+            "temporal": "planned",
+            "value": "sqlite"
+          },
+          "revisions": [
+            1
+          ]
+        }
+      ],
+      "budget": 7380,
+      "used": 1722,
+      "mode": "chat",
+      "score": {
+        "tp": 1,
+        "fp": 0,
+        "missed": 0
+      },
+      "subsequent_audit_rows": 0
+    },
+    {
+      "turn": 53,
+      "query": {
+        "text": "Should I put sugar in my coffee?",
+        "expected": [
+          {
+            "property": "coffee_sugar",
+            "value": "without_sugar"
+          }
+        ],
+        "answer_pattern": "without sugar|unsweetened|no sugar|sem açúcar|não.*açúcar|no.*sugar",
+        "mode": "agent",
+        "answer_none": [
+          "\\bwith sugar\\b|com açúcar"
+        ],
+        "category": "coffee_sugar"
+      },
+      "initial_native_audit_sequence": 213,
+      "references": [
+        {
+          "id": "47f9acc3-bd59-024c-7b52-c99cae9a562b",
+          "version": 1
+        }
+      ],
+      "records": [
+        {
+          "memory": {
+            "created_at": 1793810279,
+            "input": {
+              "content": "Prefere café sem açúcar.",
+              "fact_key": "user.coffee_sugar",
+              "id": "47f9acc3-bd59-024c-7b52-c99cae9a562b",
+              "kind": "preference",
+              "project": "candeia2",
+              "scope": "phase22c-final-historical-series",
+              "source": "user",
+              "source_id": "55235f2109340eb82f607814f333b8807662f0b53b6145b4c7a0f138f067a23c"
+            },
+            "state": "active",
+            "updated_at": 1793810279,
+            "version": 1
+          },
+          "provenance": [
+            {
+              "at": 1793810279,
+              "evidence": "No lanche da minha tarde, eu prefiro café sem açúcar",
+              "interaction_id": "55235f2109340eb82f607814f333b8807662f0b53b6145b4c7a0f138f067a23c"
+            }
+          ],
+          "quality": {
+            "confidence": 0.9,
+            "evidence_rule": "llm_v3_grounded:explicit_coffee_preference",
+            "expires_at": null,
+            "facets": [],
+            "priority": 1,
+            "property": "coffee_sugar",
+            "relevance": 0.8,
+            "replaces_id": null,
+            "replaces_version": null,
+            "subject": "user",
+            "temporal": "preference",
+            "value": "without_sugar"
+          },
+          "revisions": []
+        }
+      ],
+      "budget": 7301,
+      "used": 1733,
+      "mode": "agent",
+      "score": {
+        "tp": 1,
+        "fp": 0,
+        "missed": 0
+      },
+      "subsequent_audit_rows": 0
+    },
+    {
+      "turn": 54,
+      "query": {
+        "text": "Qual é minha preferência de tema visual?",
+        "expected": [
+          {
+            "property": "interface_theme",
+            "value": "dark"
+          }
+        ],
+        "answer_pattern": "escur|dark",
+        "mode": "chat",
+        "answer_none": [],
+        "category": "interface_theme"
+      },
+      "initial_native_audit_sequence": 214,
+      "references": [
+        {
+          "id": "cf6a17bc-9a1b-1739-11a8-f9a20c28f12b",
+          "version": 1
+        }
+      ],
+      "records": [
+        {
+          "memory": {
+            "created_at": 1793810286,
+            "input": {
+              "content": "Na interface que uso diariamente, eu prefiro modo escuro",
+              "fact_key": "user.interface_theme",
+              "id": "cf6a17bc-9a1b-1739-11a8-f9a20c28f12b",
+              "kind": "preference",
+              "project": "candeia2",
+              "scope": "phase22c-final-historical-series",
+              "source": "user",
+              "source_id": "e5c68c1c5488a66fceab93a59a69e57fc76a17cc069bfe015b6c5e5b84e7285e"
+            },
+            "state": "active",
+            "updated_at": 1793810286,
+            "version": 1
+          },
+          "provenance": [
+            {
+              "at": 1793810286,
+              "evidence": "Na interface que uso diariamente, eu prefiro modo escuro",
+              "interaction_id": "e5c68c1c5488a66fceab93a59a69e57fc76a17cc069bfe015b6c5e5b84e7285e"
+            }
+          ],
+          "quality": {
+            "confidence": 0.9,
+            "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+            "expires_at": null,
+            "facets": [],
+            "priority": 1,
+            "property": "interface_theme",
+            "relevance": 0.8,
+            "replaces_id": null,
+            "replaces_version": null,
+            "subject": "user",
+            "temporal": "preference",
+            "value": "dark"
+          },
+          "revisions": []
+        }
+      ],
+      "budget": 7380,
+      "used": 1760,
+      "mode": "chat",
+      "score": {
+        "tp": 1,
+        "fp": 0,
+        "missed": 0
+      },
+      "subsequent_audit_rows": 0
+    },
+    {
+      "turn": 55,
+      "query": {
+        "text": "How much RAM is installed in my main desktop?",
+        "expected": [
+          {
+            "property": "ram_capacity",
+            "value": "36_gb",
+            "subject": "device.primary_computer"
+          }
+        ],
+        "answer_pattern": "36\\s*GB",
+        "mode": "code",
+        "answer_none": [],
+        "category": "ram_capacity"
+      },
+      "initial_native_audit_sequence": 215,
+      "references": [
+        {
+          "id": "63bb331d-1036-080c-9b60-80b13ee398b8",
+          "version": 2
+        }
+      ],
+      "records": [
+        {
+          "memory": {
+            "created_at": 1793810293,
+            "input": {
+              "content": "Meu computador principal tem 36 GB de RAM",
+              "fact_key": "device.primary_computer.ram_capacity",
+              "id": "63bb331d-1036-080c-9b60-80b13ee398b8",
+              "kind": "hardware",
+              "project": "candeia2",
+              "scope": "phase22c-final-historical-series",
+              "source": "user",
+              "source_id": "341924f40695cefb9199dd6f42396d1eb45e84e60028525a186ab41330e51e75"
+            },
+            "state": "active",
+            "updated_at": 1793810296,
+            "version": 2
+          },
+          "provenance": [
+            {
+              "at": 1793810293,
+              "evidence": "Meu computador principal tem 36 GB de RAM",
+              "interaction_id": "341924f40695cefb9199dd6f42396d1eb45e84e60028525a186ab41330e51e75"
+            }
+          ],
+          "quality": {
+            "confidence": 0.9,
+            "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+            "expires_at": null,
+            "facets": [],
+            "priority": 1,
+            "property": "ram_capacity",
+            "relevance": 0.8,
+            "replaces_id": null,
+            "replaces_version": null,
+            "subject": "device.primary_computer",
+            "temporal": "durable",
+            "value": "36_gb"
+          },
+          "revisions": [
+            1
+          ]
+        }
+      ],
+      "budget": 7302,
+      "used": 1742,
+      "mode": "code",
+      "score": {
+        "tp": 1,
+        "fp": 0,
+        "missed": 0
+      },
+      "subsequent_audit_rows": 0
+    },
+    {
+      "turn": 56,
+      "query": {
+        "text": "Qual é a RAM do meu notebook de trabalho?",
+        "expected": [
+          {
+            "property": "ram_capacity",
+            "value": "10_gb",
+            "subject": "device.work_laptop"
+          }
+        ],
+        "answer_pattern": "10\\s*GB",
+        "mode": "chat",
+        "answer_none": [],
+        "category": "ram_capacity"
+      },
+      "initial_native_audit_sequence": 216,
+      "references": [
+        {
+          "id": "55d5921f-de13-a287-267b-e15caade4364",
+          "version": 2
+        }
+      ],
+      "records": [
+        {
+          "memory": {
+            "created_at": 1793810304,
+            "input": {
+              "content": "Meu notebook de trabalho tem 10 GB de RAM",
+              "fact_key": "device.work_laptop.ram_capacity",
+              "id": "55d5921f-de13-a287-267b-e15caade4364",
+              "kind": "hardware",
+              "project": "candeia2",
+              "scope": "phase22c-final-historical-series",
+              "source": "user",
+              "source_id": "dd1a9a4ae6952fdc037e01af8dc54403c5ce7455f55b9fa4d39c004b90c1196f"
+            },
+            "state": "active",
+            "updated_at": 1793810307,
+            "version": 2
+          },
+          "provenance": [
+            {
+              "at": 1793810304,
+              "evidence": "Meu notebook de trabalho tem 10 GB de RAM",
+              "interaction_id": "dd1a9a4ae6952fdc037e01af8dc54403c5ce7455f55b9fa4d39c004b90c1196f"
+            }
+          ],
+          "quality": {
+            "confidence": 0.9,
+            "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+            "expires_at": null,
+            "facets": [],
+            "priority": 1,
+            "property": "ram_capacity",
+            "relevance": 0.8,
+            "replaces_id": null,
+            "replaces_version": null,
+            "subject": "device.work_laptop",
+            "temporal": "durable",
+            "value": "10_gb"
+          },
+          "revisions": [
+            1
+          ]
+        }
+      ],
+      "budget": 7380,
+      "used": 1732,
+      "mode": "chat",
+      "score": {
+        "tp": 1,
+        "fp": 0,
+        "missed": 0
+      },
+      "subsequent_audit_rows": 0
+    },
+    {
+      "turn": 57,
+      "query": {
+        "text": "What database is planned for project candeia?",
+        "expected": [],
+        "answer_pattern": "not|não|informa|context|know|sei|defin",
+        "mode": "chat",
+        "answer_none": [
+          "PostgreSQL",
+          "SQLite"
+        ],
+        "category": "scope_fence"
+      },
+      "initial_native_audit_sequence": 217,
+      "references": [],
+      "records": [],
+      "budget": 7380,
+      "used": 894,
+      "mode": "chat",
+      "score": {
+        "tp": 0,
+        "fp": 0,
+        "missed": 0
+      },
+      "subsequent_audit_rows": 0
+    },
+    {
+      "turn": 58,
+      "query": {
+        "text": "Quanto é 17 mais 18?",
+        "expected": [],
+        "answer_pattern": "35",
+        "mode": "chat",
+        "answer_none": [],
+        "category": "irrelevant"
+      },
+      "initial_native_audit_sequence": 218,
+      "references": [],
+      "records": [],
+      "budget": 7380,
+      "used": 894,
+      "mode": "chat",
+      "score": {
+        "tp": 0,
+        "fp": 0,
+        "missed": 0
+      },
+      "subsequent_audit_rows": 0
+    }
+  ],
+  "metrics": {
+    "delivered_claims": 14,
+    "supported": 14,
+    "unsupported_critical": 0,
+    "blocked_turns": [],
+    "probe_delivered": 8,
+    "probe_total": 8,
+    "useful_responses": 58,
+    "planned_responses": 58,
+    "retained_atoms": 60,
+    "expected_atoms": 60,
+    "fidelity": 1.0,
+    "availability": 1.0,
+    "completeness": 1.0
+  },
+  "annotations": [
+    {
+      "turn": 1,
+      "question": "Estou começando um projeto de painel de iluminação residencial. Quero usar JavaScript e SQLite.",
+      "delivered": "Essa é uma excelente combinação para um projeto de iluminação, pois o SQLite é leve e o JavaScript oferece flexibilidade para a lógica. Você pretende usar algum framework específico ou uma biblioteca para a interface?",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 2,
+      "question": "No lanche da minha tarde, eu prefiro café sem açúcar.",
+      "delivered": "Você prefere café sem açúcar no lanche da tarde. Gostaria de registrar essa preferência para o seu perfil?",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [
+        {
+          "literal": "Você prefere café sem açúcar no lanche da tarde.",
+          "sha256": "38b70f8f4eed14c3fd1f2ab5421f9e566107030ed6fb0d237758f4e3dd6b5900",
+          "supported": true,
+          "critical": false,
+          "basis": "Original USER source/reviewed native exact scoped version."
+        }
+      ],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 3,
+      "question": "Na interface que uso diariamente, eu prefiro modo escuro.",
+      "delivered": "Você prefere o modo escuro na interface que usa diariamente. Deseja que eu registre essa preferência?",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [
+        {
+          "literal": "Você prefere o modo escuro na interface que usa diariamente.",
+          "sha256": "7ac2133f9cba6b6a1723676f8f3c54b249e1aa7cd50567d31a67ac7114b55686",
+          "supported": true,
+          "critical": false,
+          "basis": "Original USER source/reviewed native exact scoped version."
+        }
+      ],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 4,
+      "question": "Meu computador principal tem 36 GB de RAM.",
+      "delivered": "Seu computador principal possui 36 GB de RAM. Deseja que eu registre essa especificação?",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [
+        {
+          "literal": "Seu computador principal possui 36 GB de RAM.",
+          "sha256": "40f24f8ff302c49a5d7d34d1910cbc4bd115c9e071858703d789d3b0cc03d2a1",
+          "supported": true,
+          "critical": false,
+          "basis": "Original USER source/reviewed native exact scoped version."
+        }
+      ],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 5,
+      "question": "Meu notebook de trabalho tem 10 GB de RAM.",
+      "delivered": "Seu notebook de trabalho possui 10 GB de RAM. Deseja que eu registre essa especificação?",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [
+        {
+          "literal": "Seu notebook de trabalho possui 10 GB de RAM.",
+          "sha256": "427fb8eeb2590b2cd7a42cf1bb0893d4a2f53b645eca6ba0fa6db7d4ce032542",
+          "supported": true,
+          "critical": false,
+          "basis": "Original USER source/reviewed native exact scoped version."
+        }
+      ],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 6,
+      "question": "Meu objetivo é terminar o painel de iluminação.",
+      "delivered": "Seu objetivo é terminar o painel de iluminação. Deseja que eu registre esse objetivo?",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [
+        {
+          "literal": "Seu objetivo é terminar o painel de iluminação.",
+          "sha256": "6de453a99a495d9ad0c2c996a66d80feebb3e7cc921d09e47bc33920fd744b87",
+          "supported": true,
+          "critical": false,
+          "basis": "Original USER source/reviewed native exact scoped version."
+        }
+      ],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 7,
+      "question": "Quanto é 11 somado a 17?",
+      "delivered": "11 somado a 17 é igual a 28.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 8,
+      "question": "Como funciona a força de atrito?",
+      "delivered": "A força de atrito é a resistência ao movimento entre duas superfícies em contato, agindo em direção oposta à direção do deslocamento. Ela depende da natureza das superfícies, da força normal aplicada e da rugosidade entre elas.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 9,
+      "question": "Como eu represento o número 11 em uma variável?",
+      "delivered": "Em JavaScript, você pode representar o número 11 usando a declaração `let numero = 11;` ou `const numero = 11;`. Se estiver usando outra linguagem, a sintaxe pode variar levemente, mas o conceito de atribuir o valor a um nome de variável permanece o mesmo.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 10,
+      "question": "Quanto é 14 somado a 20?",
+      "delivered": "14 somado a 20 é igual a 34.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 11,
+      "question": "Como funciona a rotação da Terra?",
+      "delivered": "A Terra gira em torno de seu próprio eixo, um movimento chamado rotação, que leva aproximadamente 24 horas para completar uma volta. Esse movimento é o que gera a sucessão dos dias e das noites.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 12,
+      "question": "Como eu represento o número 14 em uma variável?",
+      "delivered": "Em JavaScript, você pode representar o número 14 usando `let numero = 14;` ou `const numero = 14;`.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 13,
+      "question": "Quanto é 17 somado a 23?",
+      "delivered": "17 somado a 23 é igual a 40.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 14,
+      "question": "Como funciona a condução de calor?",
+      "delivered": "A condução de calor é a transferência de energia térmica através de um material, onde as moléculas vibram e colidem, transmitindo calor para as vizinhas. Esse processo ocorre principalmente em sólidos, onde a energia se propaga de forma mais rápida em materiais com alta condutividade térmica.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 15,
+      "question": "Como eu represento o número 17 em uma variável?",
+      "delivered": "Em JavaScript, você pode representar o número 17 usando `let numero = 17;` ou `const numero = 17;`.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 16,
+      "question": "Quanto é 20 somado a 26?",
+      "delivered": "20 somado a 26 é igual a 46.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 17,
+      "question": "Como funciona um ímã?",
+      "delivered": "Um ímã funciona através de campos magnéticos gerados pelo alinhamento de pequenos dipolos magnéticos em seu interior. Esses campos exercem forças de atração ou repulsão sobre outros materiais magnéticos, como o ferro.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 18,
+      "question": "Como eu represento o número 20 em uma variável?",
+      "delivered": "Em JavaScript, você pode representar o número 20 usando `let numero = 20;` ou `const numero = 20;`.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 19,
+      "question": "Quanto é 23 somado a 29?",
+      "delivered": "23 somado a 29 é igual a 52.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 20,
+      "question": "Como funciona a difusão de um cheiro?",
+      "delivered": "A difusão de um cheiro ocorre quando as moléculas aromáticas se espalham de uma área de alta concentração para uma de baixa concentração. Esse processo é facilitado pelo movimento aleatório das moléculas no ar ou em um fluido, permitindo que o odor preencha o espaço.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 21,
+      "question": "Como eu represento o número 23 em uma variável?",
+      "delivered": "Em JavaScript, você pode representar o número 23 usando `let numero = 23;` ou `const numero = 23;`.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 22,
+      "question": "Quanto é 26 somado a 32?",
+      "delivered": "26 somado a 32 é igual a 58.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 23,
+      "question": "Como funciona uma bússola?",
+      "delivered": "Uma bússola funciona através de uma agulha magnetizada que se alinha com o campo magnético da Terra. Como o Polo Norte magnético da Terra atrai o polo sul da agulha, ela aponta consistentemente para o norte geográfico.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 24,
+      "question": "Como eu represento o número 26 em uma variável?",
+      "delivered": "Em JavaScript, você pode representar o número 26 usando `let numero = 26;` ou `const numero = 26;`.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 25,
+      "question": "Quanto é 29 somado a 35?",
+      "delivered": "29 somado a 35 é igual a 64.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 26,
+      "question": "Como funciona uma lente convexa?",
+      "delivered": "Uma lente convexa funciona convergindo os raios de luz para um único ponto, o que permite ampliar imagens ou focar a luz. Ela é mais espessa no centro do que nas bordas, sendo usada em óculos para hipermetropia, lupas e câmeras.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 27,
+      "question": "Como eu represento o número 29 em uma variável?",
+      "delivered": "Em JavaScript, você pode representar o número 29 usando `let numero = 29;` ou `const numero = 29;`.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 28,
+      "question": "Quanto é 32 somado a 38?",
+      "delivered": "32 somado a 38 é igual a 70.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 29,
+      "question": "Como funciona o crescimento de raízes?",
+      "delivered": "O crescimento das raízes ocorre através da divisão celular e alongamento das células na ponta da raiz, que busca água e nutrientes no solo. Esse processo é guiado por sinais químicos e físicos, permitindo que a raiz se ramifique e se estabilize na terra.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 30,
+      "question": "Como eu represento o número 32 em uma variável?",
+      "delivered": "Em JavaScript, você pode representar o número 32 usando `let numero = 32;` ou `const numero = 32;`.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 31,
+      "question": "Quanto é 35 somado a 41?",
+      "delivered": "35 somado a 41 é igual a 76.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 32,
+      "question": "Como funciona a sombra de um objeto?",
+      "delivered": "A sombra de um objeto é formada quando ele bloqueia a passagem da luz, impedindo que os raios luminosos atinjam a superfície atrás dele. A área onde a luz é obstruída cria a região mais escura, cuja forma e tamanho dependem da posição da fonte de luz e do formato do objeto.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 33,
+      "question": "Como eu represento o número 35 em uma variável?",
+      "delivered": "Em JavaScript, você pode representar o número 35 usando `let numero = 35;` ou `const numero = 35;`.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 34,
+      "question": "Quanto é 38 somado a 44?",
+      "delivered": "38 somado a 44 é igual a 82.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 35,
+      "question": "Como funciona uma engrenagem?",
+      "delivered": "Uma engrenagem funciona transmitindo movimento e força entre dois eixos através de dentes interconectados que rolam uns sobre os outros. Esse mecanismo permite alterar a velocidade, o torque e a direção do movimento em sistemas mecânicos.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 36,
+      "question": "Como eu represento o número 38 em uma variável?",
+      "delivered": "Em JavaScript, você pode representar o número 38 usando `let numero = 38;` ou `const numero = 38;`.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 37,
+      "question": "Quanto é 41 somado a 47?",
+      "delivered": "41 somado a 47 é igual a 88.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 38,
+      "question": "Como funciona o brilho de uma estrela?",
+      "delivered": "O brilho de uma estrela é determinado pela sua luminosidade total e pela distância até a Terra. Ele depende da temperatura da superfície, do tamanho da estrela e da quantidade de energia que ela emite por segundo.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 39,
+      "question": "Como eu represento o número 41 em uma variável?",
+      "delivered": "Em JavaScript, você pode representar o número 41 usando `let numero = 41;` ou `const numero = 41;`.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 40,
+      "question": "Quanto é 44 somado a 50?",
+      "delivered": "44 somado a 50 é igual a 94.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 41,
+      "question": "Como funciona refração da luz?",
+      "delivered": "A refração da luz ocorre quando a luz muda de direção e velocidade ao passar de um meio transparente para outro (como do ar para a água). Essa mudança de trajetória acontece porque a velocidade da luz varia dependendo da densidade do material que ela está atravessando.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 42,
+      "question": "Como eu represento o número 44 em uma variável?",
+      "delivered": "Em JavaScript, você pode representar o número 44 usando `let numero = 44;` ou `const numero = 44;`.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 43,
+      "question": "Quanto é 47 somado a 53?",
+      "delivered": "47 somado a 53 é igual a 100.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 44,
+      "question": "Como funciona um termômetro?",
+      "delivered": "Um termômetro funciona medindo a variação de uma propriedade física em resposta à temperatura, como a expansão térmica de um líquido (mercúrio ou álcool), a mudança na resistência elétrica de um fio ou a emissão de radiação infravermelha. Cada tipo de termômetro converte essa mudança física em uma escala numérica de temperatura.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 45,
+      "question": "Como eu represento o número 47 em uma variável?",
+      "delivered": "Em JavaScript, você pode representar o número 47 usando `let numero = 47;` ou `const numero = 47;`.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 46,
+      "question": "Quanto é 50 somado a 56?",
+      "delivered": "50 somado a 56 é igual a 106.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 47,
+      "question": "Como funciona o som no ar?",
+      "delivered": "O som no ar funciona através de ondas mecânicas que se propagam como vibrações. Quando um objeto vibra, ele empurra as moléculas de ar ao redor, criando zonas de compressão e rarefação que viajam pelo meio até atingirem nossos ouvidos.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 48,
+      "question": "Como eu represento o número 50 em uma variável?",
+      "delivered": "Em JavaScript, você pode representar o número 50 usando `let numero = 50;` ou `const numero = 50;`.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 49,
+      "question": "Quanto é 53 somado a 59?",
+      "delivered": "53 somado a 59 é igual a 112.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 50,
+      "question": "Como funciona a mudança de estado da água?",
+      "delivered": "A mudança de estado da água ocorre quando a energia térmica é adicionada ou removida, alterando a organização das moléculas. Isso faz com que a água transite entre sólido (gelo), líquido e gasoso (vapor) através de processos como fusão, vaporização e solidificação.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 51,
+      "question": "Como está ficando aquele projeto?",
+      "delivered": "O projeto Candeia2 está começando como um painel de iluminação residencial. Você planeja desenvolvê-lo utilizando a linguagem JavaScript com SQLite como banco de dados.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [
+        {
+          "literal": "O projeto Candeia2 está começando como um painel de iluminação residencial.",
+          "sha256": "ea8be53159a5e360a75c5f05bd62a1bb21d6788b8bdbf9fbdc90a2cd529e0c4f",
+          "supported": true,
+          "critical": false,
+          "basis": "Original USER source/reviewed native exact scoped version."
+        },
+        {
+          "literal": "Você planeja desenvolvê-lo utilizando a linguagem JavaScript",
+          "sha256": "7ac92aaa8de4d24f45cff73ebc2dca4902ab571e0102c32a6a62569913edddb4",
+          "supported": true,
+          "critical": false,
+          "basis": "Original USER source/reviewed native exact scoped version."
+        },
+        {
+          "literal": "SQLite como banco de dados.",
+          "sha256": "cb18e1de7e1c1e71c0699241bbbd67a773bb3faed9669a1345d1fb33c83b235e",
+          "supported": true,
+          "critical": false,
+          "basis": "Original USER source/reviewed native exact scoped version."
+        }
+      ],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 52,
+      "question": "Qual banco de dados eu planejo usar no meu projeto?",
+      "delivered": "Você planeja usar o SQLite como banco de dados no seu projeto candeia2.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [
+        {
+          "literal": "Você planeja usar o SQLite como banco de dados no seu projeto candeia2.",
+          "sha256": "30eba87e9545468e762a1f7912e0823323afda0d3aaf1817886b5550278841e7",
+          "supported": true,
+          "critical": false,
+          "basis": "Original USER source/reviewed native exact scoped version."
+        }
+      ],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 53,
+      "question": "Should I put sugar in my coffee?",
+      "delivered": "Since you prefer coffee without sugar, you should probably skip it to enjoy the natural flavor of the beans.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [
+        {
+          "literal": "you prefer coffee without sugar",
+          "sha256": "55163f72d9ff6dc584a3401e18d9e4a69fcae76fcf42ce830eb54acd0471ace9",
+          "supported": true,
+          "critical": false,
+          "basis": "Original USER source/reviewed native exact scoped version."
+        }
+      ],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 54,
+      "question": "Qual é minha preferência de tema visual?",
+      "delivered": "Você prefere o modo escuro na interface que usa diariamente.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [
+        {
+          "literal": "Você prefere o modo escuro na interface que usa diariamente.",
+          "sha256": "7ac2133f9cba6b6a1723676f8f3c54b249e1aa7cd50567d31a67ac7114b55686",
+          "supported": true,
+          "critical": false,
+          "basis": "Original USER source/reviewed native exact scoped version."
+        }
+      ],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 55,
+      "question": "How much RAM is installed in my main desktop?",
+      "delivered": "Your main computer has 36 GB of RAM.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [
+        {
+          "literal": "Your main computer has 36 GB of RAM.",
+          "sha256": "0780ebb78b170488101936746b893d463f1a53218d18e103715b06b385f21fe2",
+          "supported": true,
+          "critical": false,
+          "basis": "Original USER source/reviewed native exact scoped version."
+        }
+      ],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 56,
+      "question": "Qual é a RAM do meu notebook de trabalho?",
+      "delivered": "Seu notebook de trabalho tem 10 GB de RAM.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [
+        {
+          "literal": "Seu notebook de trabalho tem 10 GB de RAM.",
+          "sha256": "1ebbae37da587b7ea2ff1d017994c30d7fab2a24666b8b014164eb4c6d8ea4b0",
+          "supported": true,
+          "critical": false,
+          "basis": "Original USER source/reviewed native exact scoped version."
+        }
+      ],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 57,
+      "question": "What database is planned for project candeia?",
+      "delivered": "No relevant record is available regarding the specific database planned for project candeia.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [
+        {
+          "literal": "No relevant record is available regarding the specific database planned for project candeia.",
+          "sha256": "81de6d6d93db982654ac4db700482b484604835b09bcde262d23edb4ff2f902d",
+          "supported": true,
+          "critical": false,
+          "basis": "Original USER source/reviewed native exact scoped version."
+        }
+      ],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    },
+    {
+      "turn": 58,
+      "question": "Quanto é 17 mais 18?",
+      "delivered": "O resultado de 17 mais 18 é 35.",
+      "reviewed_entire_answer": true,
+      "blocked": false,
+      "claims": [],
+      "excluded": "All other text read: generic knowledge/advice/questions/future intent outside memory claim denominator."
+    }
+  ],
+  "utility": [
+    {
+      "turn": 1,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 2,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 3,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 4,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 5,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 6,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 7,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 8,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 9,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 10,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 11,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 12,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 13,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 14,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 15,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 16,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 17,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 18,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 19,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 20,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 21,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 22,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 23,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 24,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 25,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 26,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 27,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 28,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 29,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 30,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 31,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 32,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 33,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 34,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 35,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 36,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 37,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 38,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 39,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 40,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 41,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 42,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 43,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 44,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 45,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 46,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 47,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 48,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 49,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 50,
+      "probe": false,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 51,
+      "probe": true,
+      "expected": 3,
+      "retained": 3,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 52,
+      "probe": true,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 53,
+      "probe": true,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 54,
+      "probe": true,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 55,
+      "probe": true,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 56,
+      "probe": true,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 57,
+      "probe": true,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    },
+    {
+      "turn": 58,
+      "probe": true,
+      "expected": 1,
+      "retained": 1,
+      "useful": true,
+      "reason": "Manual literal probe atoms or useful source acknowledgement/general answer retained."
+    }
+  ],
+  "all_unique_reports": [
+    {
+      "id": "0b1d2a50-6efd-454f-80c2-a2ff9cfcbe69",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Essa é uma excelente combinação para um projeto de iluminação, pois o SQLite é leve e o JavaScript oferece flexibilidade para a lógica. Você pretende usar algum framework específico ou uma biblioteca para a interface?",
+          "check": {
+            "assertions": [
+              {
+                "entity": "project.candeia2",
+                "property": "language",
+                "value": "javascript",
+                "span": "Essa é uma excelente combinação para um projeto de iluminação, pois o SQLite é leve e o JavaScript oferece flexibilidade para a lógica.",
+                "supported": true,
+                "references": [
+                  "current-turn-1"
+                ]
+              },
+              {
+                "entity": "project.candeia2",
+                "property": "database",
+                "value": "sqlite",
+                "span": "Essa é uma excelente combinação para um projeto de iluminação, pois o SQLite é leve e o JavaScript oferece flexibilidade para a lógica.",
+                "supported": true,
+                "references": [
+                  "current-turn-2"
+                ]
+              }
+            ],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 2,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1.399999976158142
+          },
+          "verificationReferences": [],
+          "promptTokens": 918,
+          "completionTokens": 41
+        }
+      ],
+      "refreshMs": 7,
+      "verificationMs": 1.399999976158142,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Essa é uma excelente combinação para um projeto de iluminação, pois o SQLite é leve e o JavaScript oferece flexibilidade para a lógica. Você pretende usar algum framework específico ou uma biblioteca para a interface?"
+    },
+    {
+      "id": "33f87a6f-49a9-4f54-bb5f-9b1e15593c1e",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Você prefere café sem açúcar no lanche da tarde. Gostaria de registrar essa preferência para o seu perfil?",
+          "check": {
+            "assertions": [
+              {
+                "entity": "user",
+                "property": "coffee_sugar",
+                "value": "without_sugar",
+                "span": "Você prefere café sem açúcar no lanche da tarde.",
+                "supported": true,
+                "references": [
+                  "current-turn-0"
+                ]
+              }
+            ],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 1,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1.199999988079071
+          },
+          "verificationReferences": [],
+          "promptTokens": 982,
+          "completionTokens": 25
+        }
+      ],
+      "refreshMs": 8.199999988079071,
+      "verificationMs": 1.199999988079071,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Você prefere café sem açúcar no lanche da tarde. Gostaria de registrar essa preferência para o seu perfil?"
+    },
+    {
+      "id": "bc58d59d-9b91-4d1f-8114-7dbf5cf1cc4a",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Você prefere o modo escuro na interface que usa diariamente. Deseja que eu registre essa preferência?",
+          "check": {
+            "assertions": [
+              {
+                "entity": "user",
+                "property": "interface_theme",
+                "value": "dark",
+                "span": "Você prefere o modo escuro na interface que usa diariamente.",
+                "supported": true,
+                "references": [
+                  "current-turn-0"
+                ]
+              }
+            ],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 1,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1.899999976158142
+          },
+          "verificationReferences": [],
+          "promptTokens": 1029,
+          "completionTokens": 24
+        }
+      ],
+      "refreshMs": 8.900000035762787,
+      "verificationMs": 1.899999976158142,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Você prefere o modo escuro na interface que usa diariamente. Deseja que eu registre essa preferência?"
+    },
+    {
+      "id": "3cf68c53-4841-4ba3-9b5e-b1130a686043",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Seu computador principal possui 36 GB de RAM. Deseja que eu registre essa especificação?",
+          "check": {
+            "assertions": [
+              {
+                "entity": "device.primary_computer",
+                "property": "ram_capacity",
+                "value": "36_gb",
+                "span": "Seu computador principal possui 36 GB de RAM.",
+                "supported": true,
+                "references": [
+                  "current-turn-0"
+                ]
+              }
+            ],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 1,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1.199999988079071
+          },
+          "verificationReferences": [],
+          "promptTokens": 1114,
+          "completionTokens": 23
+        }
+      ],
+      "refreshMs": 5.200000047683716,
+      "verificationMs": 1.199999988079071,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Seu computador principal possui 36 GB de RAM. Deseja que eu registre essa especificação?"
+    },
+    {
+      "id": "4ede0eac-86b5-437f-814d-565d6450f3f6",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Seu notebook de trabalho possui 10 GB de RAM. Deseja que eu registre essa especificação?",
+          "check": {
+            "assertions": [
+              {
+                "entity": "device.work_laptop",
+                "property": "ram_capacity",
+                "value": "10_gb",
+                "span": "Seu notebook de trabalho possui 10 GB de RAM.",
+                "supported": true,
+                "references": [
+                  "current-turn-0"
+                ]
+              }
+            ],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 1,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1.0999999642372131
+          },
+          "verificationReferences": [],
+          "promptTokens": 1158,
+          "completionTokens": 24
+        }
+      ],
+      "refreshMs": 7,
+      "verificationMs": 1.0999999642372131,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Seu notebook de trabalho possui 10 GB de RAM. Deseja que eu registre essa especificação?"
+    },
+    {
+      "id": "782260f0-bc58-4f0e-9965-48f5655497d3",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Seu objetivo é terminar o painel de iluminação. Deseja que eu registre esse objetivo?",
+          "check": {
+            "assertions": [
+              {
+                "entity": "user",
+                "property": "goal_target",
+                "value": "terminar_painel_iluminacao",
+                "span": "Seu objetivo é terminar o painel de iluminação.",
+                "supported": true,
+                "references": [
+                  "current-turn-0"
+                ]
+              }
+            ],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 1,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1.600000023841858
+          },
+          "verificationReferences": [],
+          "promptTokens": 1202,
+          "completionTokens": 22
+        }
+      ],
+      "refreshMs": 8,
+      "verificationMs": 1.600000023841858,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Seu objetivo é terminar o painel de iluminação. Deseja que eu registre esse objetivo?"
+    },
+    {
+      "id": "39ed36a4-cc8b-4a86-96ae-fcbef87f0e58",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "11 somado a 17 é igual a 28.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.30000001192092896
+          },
+          "verificationReferences": [],
+          "promptTokens": 1245,
+          "completionTokens": 16
+        }
+      ],
+      "refreshMs": 9.5,
+      "verificationMs": 0.30000001192092896,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "11 somado a 17 é igual a 28."
+    },
+    {
+      "id": "034b2096-4331-413c-8ab9-51b02a58ad76",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "A força de atrito é a resistência ao movimento entre duas superfícies em contato, agindo em direção oposta à direção do deslocamento. Ela depende da natureza das superfícies, da força normal aplicada e da rugosidade entre elas.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.30000001192092896
+          },
+          "verificationReferences": [],
+          "promptTokens": 1278,
+          "completionTokens": 52
+        }
+      ],
+      "refreshMs": 6.699999988079071,
+      "verificationMs": 0.30000001192092896,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "A força de atrito é a resistência ao movimento entre duas superfícies em contato, agindo em direção oposta à direção do deslocamento. Ela depende da natureza das superfícies, da força normal aplicada e da rugosidade entre elas."
+    },
+    {
+      "id": "a83f239d-12e7-42de-94d9-41911a43b015",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Em JavaScript, você pode representar o número 11 usando a declaração `let numero = 11;` ou `const numero = 11;`. Se estiver usando outra linguagem, a sintaxe pode variar levemente, mas o conceito de atribuir o valor a um nome de variável permanece o mesmo.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1.199999988079071
+          },
+          "verificationReferences": [],
+          "promptTokens": 1352,
+          "completionTokens": 66
+        }
+      ],
+      "refreshMs": 12.199999988079071,
+      "verificationMs": 1.199999988079071,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Em JavaScript, você pode representar o número 11 usando a declaração `let numero = 11;` ou `const numero = 11;`. Se estiver usando outra linguagem, a sintaxe pode variar levemente, mas o conceito de atribuir o valor a um nome de variável permanece o mesmo."
+    },
+    {
+      "id": "8e3f858f-edd0-4fff-baf0-b3350a80eb16",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "14 somado a 20 é igual a 34.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.30000001192092896
+          },
+          "verificationReferences": [],
+          "promptTokens": 1439,
+          "completionTokens": 16
+        }
+      ],
+      "refreshMs": 6.300000011920929,
+      "verificationMs": 0.30000001192092896,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "14 somado a 20 é igual a 34."
+    },
+    {
+      "id": "6a96b522-9799-4dd2-8986-9ffb494ac79c",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "A Terra gira em torno de seu próprio eixo, um movimento chamado rotação, que leva aproximadamente 24 horas para completar uma volta. Esse movimento é o que gera a sucessão dos dias e das noites.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1.9000000357627869
+          },
+          "verificationReferences": [],
+          "promptTokens": 1472,
+          "completionTokens": 45
+        }
+      ],
+      "refreshMs": 9.199999988079071,
+      "verificationMs": 1.9000000357627869,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "A Terra gira em torno de seu próprio eixo, um movimento chamado rotação, que leva aproximadamente 24 horas para completar uma volta. Esse movimento é o que gera a sucessão dos dias e das noites."
+    },
+    {
+      "id": "b6272766-1851-43df-b57e-df8bf33017cf",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Em JavaScript, você pode representar o número 14 usando `let numero = 14;` ou `const numero = 14;`.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.19999998807907104
+          },
+          "verificationReferences": [],
+          "promptTokens": 1539,
+          "completionTokens": 32
+        }
+      ],
+      "refreshMs": 5.699999988079071,
+      "verificationMs": 0.19999998807907104,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Em JavaScript, você pode representar o número 14 usando `let numero = 14;` ou `const numero = 14;`."
+    },
+    {
+      "id": "e7243346-1b0b-4059-9253-496a41de78fe",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "17 somado a 23 é igual a 40.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.09999996423721313
+          },
+          "verificationReferences": [],
+          "promptTokens": 1592,
+          "completionTokens": 16
+        }
+      ],
+      "refreshMs": 29.5,
+      "verificationMs": 0.09999996423721313,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "17 somado a 23 é igual a 40."
+    },
+    {
+      "id": "96b09f85-fcfd-479b-b5cf-3a4e356bc143",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "A condução de calor é a transferência de energia térmica através de um material, onde as moléculas vibram e colidem, transmitindo calor para as vizinhas. Esse processo ocorre principalmente em sólidos, onde a energia se propaga de forma mais rápida em materiais com alta condutividade térmica.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.19999998807907104
+          },
+          "verificationReferences": [],
+          "promptTokens": 1625,
+          "completionTokens": 60
+        }
+      ],
+      "refreshMs": 5.899999976158142,
+      "verificationMs": 0.19999998807907104,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "A condução de calor é a transferência de energia térmica através de um material, onde as moléculas vibram e colidem, transmitindo calor para as vizinhas. Esse processo ocorre principalmente em sólidos, onde a energia se propaga de forma mais rápida em materiais com alta condutividade térmica."
+    },
+    {
+      "id": "f0f918c0-b5ed-47b2-b841-a6f133a7e36e",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Em JavaScript, você pode representar o número 17 usando `let numero = 17;` ou `const numero = 17;`.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1
+          },
+          "verificationReferences": [],
+          "promptTokens": 1707,
+          "completionTokens": 32
+        }
+      ],
+      "refreshMs": 6.900000035762787,
+      "verificationMs": 1,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Em JavaScript, você pode representar o número 17 usando `let numero = 17;` ou `const numero = 17;`."
+    },
+    {
+      "id": "1f7b3c48-0bb3-4552-8b75-65976a4bd7f8",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "20 somado a 26 é igual a 46.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.09999996423721313
+          },
+          "verificationReferences": [],
+          "promptTokens": 1760,
+          "completionTokens": 16
+        }
+      ],
+      "refreshMs": 5.900000035762787,
+      "verificationMs": 0.09999996423721313,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "20 somado a 26 é igual a 46."
+    },
+    {
+      "id": "2cc43a81-8296-4c04-a076-838ee4ae6d65",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Um ímã funciona através de campos magnéticos gerados pelo alinhamento de pequenos dipolos magnéticos em seu interior. Esses campos exercem forças de atração ou repulsão sobre outros materiais magnéticos, como o ferro.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.19999998807907104
+          },
+          "verificationReferences": [],
+          "promptTokens": 1792,
+          "completionTokens": 49
+        }
+      ],
+      "refreshMs": 10.399999976158142,
+      "verificationMs": 0.19999998807907104,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Um ímã funciona através de campos magnéticos gerados pelo alinhamento de pequenos dipolos magnéticos em seu interior. Esses campos exercem forças de atração ou repulsão sobre outros materiais magnéticos, como o ferro."
+    },
+    {
+      "id": "9935d32c-5daa-4eb7-b05c-42ab39fe9c8c",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Em JavaScript, você pode representar o número 20 usando `let numero = 20;` ou `const numero = 20;`.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.19999998807907104
+          },
+          "verificationReferences": [],
+          "promptTokens": 1863,
+          "completionTokens": 32
+        }
+      ],
+      "refreshMs": 8.5,
+      "verificationMs": 0.19999998807907104,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Em JavaScript, você pode representar o número 20 usando `let numero = 20;` ou `const numero = 20;`."
+    },
+    {
+      "id": "ae89ea22-0f84-4673-8fa8-ce7f281c0ec2",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "23 somado a 29 é igual a 52.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.20000004768371582
+          },
+          "verificationReferences": [],
+          "promptTokens": 1916,
+          "completionTokens": 16
+        }
+      ],
+      "refreshMs": 5.899999976158142,
+      "verificationMs": 0.20000004768371582,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "23 somado a 29 é igual a 52."
+    },
+    {
+      "id": "dcb373f2-eb23-4025-b0b2-c5b9b1582425",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "A difusão de um cheiro ocorre quando as moléculas aromáticas se espalham de uma área de alta concentração para uma de baixa concentração. Esse processo é facilitado pelo movimento aleatório das moléculas no ar ou em um fluido, permitindo que o odor preencha o espaço.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.19999998807907104
+          },
+          "verificationReferences": [],
+          "promptTokens": 1952,
+          "completionTokens": 60
+        }
+      ],
+      "refreshMs": 5.900000035762787,
+      "verificationMs": 0.19999998807907104,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "A difusão de um cheiro ocorre quando as moléculas aromáticas se espalham de uma área de alta concentração para uma de baixa concentração. Esse processo é facilitado pelo movimento aleatório das moléculas no ar ou em um fluido, permitindo que o odor preencha o espaço."
+    },
+    {
+      "id": "5c524952-3763-4944-a645-79efef4abfdb",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Em JavaScript, você pode representar o número 23 usando `let numero = 23;` ou `const numero = 23;`.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.19999998807907104
+          },
+          "verificationReferences": [],
+          "promptTokens": 2034,
+          "completionTokens": 32
+        }
+      ],
+      "refreshMs": 6.199999988079071,
+      "verificationMs": 0.19999998807907104,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Em JavaScript, você pode representar o número 23 usando `let numero = 23;` ou `const numero = 23;`."
+    },
+    {
+      "id": "4ada9559-300f-4773-98de-3193ce2e8b3a",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "26 somado a 32 é igual a 58.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.19999998807907104
+          },
+          "verificationReferences": [],
+          "promptTokens": 2087,
+          "completionTokens": 16
+        }
+      ],
+      "refreshMs": 10.199999988079071,
+      "verificationMs": 0.19999998807907104,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "26 somado a 32 é igual a 58."
+    },
+    {
+      "id": "82ac4778-7c36-431c-bf76-555025aeb10b",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Uma bússola funciona através de uma agulha magnetizada que se alinha com o campo magnético da Terra. Como o Polo Norte magnético da Terra atrai o polo sul da agulha, ela aponta consistentemente para o norte geográfico.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.30000001192092896
+          },
+          "verificationReferences": [],
+          "promptTokens": 2119,
+          "completionTokens": 55
+        }
+      ],
+      "refreshMs": 7.100000023841858,
+      "verificationMs": 0.30000001192092896,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Uma bússola funciona através de uma agulha magnetizada que se alinha com o campo magnético da Terra. Como o Polo Norte magnético da Terra atrai o polo sul da agulha, ela aponta consistentemente para o norte geográfico."
+    },
+    {
+      "id": "d74ed514-51f1-46ee-aa8e-13f1ceffa11f",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Em JavaScript, você pode representar o número 26 usando `let numero = 26;` ou `const numero = 26;`.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1
+          },
+          "verificationReferences": [],
+          "promptTokens": 2196,
+          "completionTokens": 32
+        }
+      ],
+      "refreshMs": 7.100000023841858,
+      "verificationMs": 1,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Em JavaScript, você pode representar o número 26 usando `let numero = 26;` ou `const numero = 26;`."
+    },
+    {
+      "id": "8701abdb-717d-4af3-b2c3-7382bd3a7601",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "29 somado a 35 é igual a 64.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.19999998807907104
+          },
+          "verificationReferences": [],
+          "promptTokens": 2249,
+          "completionTokens": 16
+        }
+      ],
+      "refreshMs": 11.599999964237213,
+      "verificationMs": 0.19999998807907104,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "29 somado a 35 é igual a 64."
+    },
+    {
+      "id": "1f206b6a-f852-4613-86e8-60027148b62a",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Uma lente convexa funciona convergindo os raios de luz para um único ponto, o que permite ampliar imagens ou focar a luz. Ela é mais espessa no centro do que nas bordas, sendo usada em óculos para hipermetropia, lupas e câmeras.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.20000004768371582
+          },
+          "verificationReferences": [],
+          "promptTokens": 2281,
+          "completionTokens": 59
+        }
+      ],
+      "refreshMs": 8.5,
+      "verificationMs": 0.20000004768371582,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Uma lente convexa funciona convergindo os raios de luz para um único ponto, o que permite ampliar imagens ou focar a luz. Ela é mais espessa no centro do que nas bordas, sendo usada em óculos para hipermetropia, lupas e câmeras."
+    },
+    {
+      "id": "9b6f1fb2-2fb6-4069-88ce-1a4a0ab14a75",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Em JavaScript, você pode representar o número 29 usando `let numero = 29;` ou `const numero = 29;`.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.10000002384185791
+          },
+          "verificationReferences": [],
+          "promptTokens": 2362,
+          "completionTokens": 32
+        }
+      ],
+      "refreshMs": 7.5,
+      "verificationMs": 0.10000002384185791,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Em JavaScript, você pode representar o número 29 usando `let numero = 29;` ou `const numero = 29;`."
+    },
+    {
+      "id": "80307c5e-b3e0-4449-a898-1b14e7a36f2d",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "32 somado a 38 é igual a 70.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.10000002384185791
+          },
+          "verificationReferences": [],
+          "promptTokens": 2415,
+          "completionTokens": 16
+        }
+      ],
+      "refreshMs": 6.600000023841858,
+      "verificationMs": 0.10000002384185791,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "32 somado a 38 é igual a 70."
+    },
+    {
+      "id": "585b6070-946c-4076-926b-627a41a53164",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "O crescimento das raízes ocorre através da divisão celular e alongamento das células na ponta da raiz, que busca água e nutrientes no solo. Esse processo é guiado por sinais químicos e físicos, permitindo que a raiz se ramifique e se estabilize na terra.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.19999998807907104
+          },
+          "verificationReferences": [],
+          "promptTokens": 2448,
+          "completionTokens": 56
+        }
+      ],
+      "refreshMs": 8.699999988079071,
+      "verificationMs": 0.19999998807907104,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "O crescimento das raízes ocorre através da divisão celular e alongamento das células na ponta da raiz, que busca água e nutrientes no solo. Esse processo é guiado por sinais químicos e físicos, permitindo que a raiz se ramifique e se estabilize na terra."
+    },
+    {
+      "id": "4d50b559-1684-49ce-a3a6-3dc30fc2628e",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Em JavaScript, você pode representar o número 32 usando `let numero = 32;` ou `const numero = 32;`.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1.100000023841858
+          },
+          "verificationReferences": [],
+          "promptTokens": 2526,
+          "completionTokens": 32
+        }
+      ],
+      "refreshMs": 8,
+      "verificationMs": 1.100000023841858,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Em JavaScript, você pode representar o número 32 usando `let numero = 32;` ou `const numero = 32;`."
+    },
+    {
+      "id": "36d7f460-faf6-407f-a5f9-84f53d0f3510",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "35 somado a 41 é igual a 76.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.19999998807907104
+          },
+          "verificationReferences": [],
+          "promptTokens": 2579,
+          "completionTokens": 16
+        }
+      ],
+      "refreshMs": 13.100000023841858,
+      "verificationMs": 0.19999998807907104,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "35 somado a 41 é igual a 76."
+    },
+    {
+      "id": "fc23513a-53bc-44e6-a660-e05d13293a73",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "A sombra de um objeto é formada quando ele bloqueia a passagem da luz, impedindo que os raios luminosos atinjam a superfície atrás dele. A área onde a luz é obstruída cria a região mais escura, cuja forma e tamanho dependem da posição da fonte de luz e do formato do objeto.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.19999998807907104
+          },
+          "verificationReferences": [],
+          "promptTokens": 2612,
+          "completionTokens": 66
+        }
+      ],
+      "refreshMs": 6.300000011920929,
+      "verificationMs": 0.19999998807907104,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "A sombra de um objeto é formada quando ele bloqueia a passagem da luz, impedindo que os raios luminosos atinjam a superfície atrás dele. A área onde a luz é obstruída cria a região mais escura, cuja forma e tamanho dependem da posição da fonte de luz e do formato do objeto."
+    },
+    {
+      "id": "edcbdee1-594f-4c91-ba3d-d0528b98deb5",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Em JavaScript, você pode representar o número 35 usando `let numero = 35;` ou `const numero = 35;`.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1.100000023841858
+          },
+          "verificationReferences": [],
+          "promptTokens": 2700,
+          "completionTokens": 32
+        }
+      ],
+      "refreshMs": 8.800000011920929,
+      "verificationMs": 1.100000023841858,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Em JavaScript, você pode representar o número 35 usando `let numero = 35;` ou `const numero = 35;`."
+    },
+    {
+      "id": "15c5b914-58be-4d58-91d1-09908911c0b7",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "38 somado a 44 é igual a 82.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.09999996423721313
+          },
+          "verificationReferences": [],
+          "promptTokens": 2753,
+          "completionTokens": 16
+        }
+      ],
+      "refreshMs": 9.800000011920929,
+      "verificationMs": 0.09999996423721313,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "38 somado a 44 é igual a 82."
+    },
+    {
+      "id": "ab49be7a-3380-4441-8a49-4f169f0eecc2",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Uma engrenagem funciona transmitindo movimento e força entre dois eixos através de dentes interconectados que rolam uns sobre os outros. Esse mecanismo permite alterar a velocidade, o torque e a direção do movimento em sistemas mecânicos.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.10000002384185791
+          },
+          "verificationReferences": [],
+          "promptTokens": 2785,
+          "completionTokens": 50
+        }
+      ],
+      "refreshMs": 6.5,
+      "verificationMs": 0.10000002384185791,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Uma engrenagem funciona transmitindo movimento e força entre dois eixos através de dentes interconectados que rolam uns sobre os outros. Esse mecanismo permite alterar a velocidade, o torque e a direção do movimento em sistemas mecânicos."
+    },
+    {
+      "id": "aa56caa9-2dfa-475b-82c4-c5bbdf1a19dc",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Em JavaScript, você pode representar o número 38 usando `let numero = 38;` ou `const numero = 38;`.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1
+          },
+          "verificationReferences": [],
+          "promptTokens": 2857,
+          "completionTokens": 32
+        }
+      ],
+      "refreshMs": 6.199999988079071,
+      "verificationMs": 1,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Em JavaScript, você pode representar o número 38 usando `let numero = 38;` ou `const numero = 38;`."
+    },
+    {
+      "id": "15f676d1-7ff2-4680-98a5-dd778efbfb6c",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "41 somado a 47 é igual a 88.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.10000002384185791
+          },
+          "verificationReferences": [],
+          "promptTokens": 2910,
+          "completionTokens": 16
+        }
+      ],
+      "refreshMs": 7.600000023841858,
+      "verificationMs": 0.10000002384185791,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "41 somado a 47 é igual a 88."
+    },
+    {
+      "id": "2f9b0584-8ba2-487c-8792-5d399f6e4ca8",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "O brilho de uma estrela é determinado pela sua luminosidade total e pela distância até a Terra. Ele depende da temperatura da superfície, do tamanho da estrela e da quantidade de energia que ela emite por segundo.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.19999998807907104
+          },
+          "verificationReferences": [],
+          "promptTokens": 2945,
+          "completionTokens": 46
+        }
+      ],
+      "refreshMs": 8.5,
+      "verificationMs": 0.19999998807907104,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "O brilho de uma estrela é determinado pela sua luminosidade total e pela distância até a Terra. Ele depende da temperatura da superfície, do tamanho da estrela e da quantidade de energia que ela emite por segundo."
+    },
+    {
+      "id": "73c56e9f-1370-40f6-b6da-db7d9fa76135",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Em JavaScript, você pode representar o número 41 usando `let numero = 41;` ou `const numero = 41;`.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.30000001192092896
+          },
+          "verificationReferences": [],
+          "promptTokens": 3013,
+          "completionTokens": 32
+        }
+      ],
+      "refreshMs": 7.199999988079071,
+      "verificationMs": 0.30000001192092896,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Em JavaScript, você pode representar o número 41 usando `let numero = 41;` ou `const numero = 41;`."
+    },
+    {
+      "id": "cedf23ce-de5b-4fb3-aa48-205f5ad17bd3",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "44 somado a 50 é igual a 94.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.10000002384185791
+          },
+          "verificationReferences": [],
+          "promptTokens": 3066,
+          "completionTokens": 16
+        }
+      ],
+      "refreshMs": 10.899999976158142,
+      "verificationMs": 0.10000002384185791,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "44 somado a 50 é igual a 94."
+    },
+    {
+      "id": "b41aca64-4e7f-4275-8f62-f9459d13d319",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "A refração da luz ocorre quando a luz muda de direção e velocidade ao passar de um meio transparente para outro (como do ar para a água). Essa mudança de trajetória acontece porque a velocidade da luz varia dependendo da densidade do material que ela está atravessando.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.30000001192092896
+          },
+          "verificationReferences": [],
+          "promptTokens": 3098,
+          "completionTokens": 56
+        }
+      ],
+      "refreshMs": 7.399999976158142,
+      "verificationMs": 0.30000001192092896,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "A refração da luz ocorre quando a luz muda de direção e velocidade ao passar de um meio transparente para outro (como do ar para a água). Essa mudança de trajetória acontece porque a velocidade da luz varia dependendo da densidade do material que ela está atravessando."
+    },
+    {
+      "id": "38efdf3b-b211-410b-872c-e00cfff0151f",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Em JavaScript, você pode representar o número 44 usando `let numero = 44;` ou `const numero = 44;`.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1.9000000357627869
+          },
+          "verificationReferences": [],
+          "promptTokens": 3176,
+          "completionTokens": 32
+        }
+      ],
+      "refreshMs": 11.899999976158142,
+      "verificationMs": 1.9000000357627869,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Em JavaScript, você pode representar o número 44 usando `let numero = 44;` ou `const numero = 44;`."
+    },
+    {
+      "id": "ab0b7703-fae1-4f89-8a61-505dc08e806c",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "47 somado a 53 é igual a 100.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0
+          },
+          "verificationReferences": [],
+          "promptTokens": 3229,
+          "completionTokens": 17
+        }
+      ],
+      "refreshMs": 5.799999952316284,
+      "verificationMs": 0,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "47 somado a 53 é igual a 100."
+    },
+    {
+      "id": "08607a08-d837-4590-a426-b997310f4ffa",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Um termômetro funciona medindo a variação de uma propriedade física em resposta à temperatura, como a expansão térmica de um líquido (mercúrio ou álcool), a mudança na resistência elétrica de um fio ou a emissão de radiação infravermelha. Cada tipo de termômetro converte essa mudança física em uma escala numérica de temperatura.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.19999998807907104
+          },
+          "verificationReferences": [],
+          "promptTokens": 3262,
+          "completionTokens": 74
+        }
+      ],
+      "refreshMs": 6.300000011920929,
+      "verificationMs": 0.19999998807907104,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Um termômetro funciona medindo a variação de uma propriedade física em resposta à temperatura, como a expansão térmica de um líquido (mercúrio ou álcool), a mudança na resistência elétrica de um fio ou a emissão de radiação infravermelha. Cada tipo de termômetro converte essa mudança física em uma escala numérica de temperatura."
+    },
+    {
+      "id": "1761acad-a3ad-4920-9fa6-40b3969627aa",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Em JavaScript, você pode representar o número 47 usando `let numero = 47;` ou `const numero = 47;`.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1.0999999642372131
+          },
+          "verificationReferences": [],
+          "promptTokens": 3358,
+          "completionTokens": 32
+        }
+      ],
+      "refreshMs": 8.599999964237213,
+      "verificationMs": 1.0999999642372131,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Em JavaScript, você pode representar o número 47 usando `let numero = 47;` ou `const numero = 47;`."
+    },
+    {
+      "id": "e616ac6d-d7da-4483-a30d-6becce2b2d13",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "50 somado a 56 é igual a 106.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.19999998807907104
+          },
+          "verificationReferences": [],
+          "promptTokens": 3411,
+          "completionTokens": 17
+        }
+      ],
+      "refreshMs": 11.300000011920929,
+      "verificationMs": 0.19999998807907104,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "50 somado a 56 é igual a 106."
+    },
+    {
+      "id": "0943ec81-e8cc-47e5-b4dc-c8938e391da0",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "O som no ar funciona através de ondas mecânicas que se propagam como vibrações. Quando um objeto vibra, ele empurra as moléculas de ar ao redor, criando zonas de compressão e rarefação que viajam pelo meio até atingirem nossos ouvidos.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.2999999523162842
+          },
+          "verificationReferences": [],
+          "promptTokens": 3444,
+          "completionTokens": 57
+        }
+      ],
+      "refreshMs": 7.200000047683716,
+      "verificationMs": 0.2999999523162842,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "O som no ar funciona através de ondas mecânicas que se propagam como vibrações. Quando um objeto vibra, ele empurra as moléculas de ar ao redor, criando zonas de compressão e rarefação que viajam pelo meio até atingirem nossos ouvidos."
+    },
+    {
+      "id": "719d2289-c569-449b-9576-9f59acc28f76",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Em JavaScript, você pode representar o número 50 usando `let numero = 50;` ou `const numero = 50;`.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1
+          },
+          "verificationReferences": [],
+          "promptTokens": 3523,
+          "completionTokens": 32
+        }
+      ],
+      "refreshMs": 7.699999988079071,
+      "verificationMs": 1,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Em JavaScript, você pode representar o número 50 usando `let numero = 50;` ou `const numero = 50;`."
+    },
+    {
+      "id": "989ecd04-d6d4-453d-bb5f-41fc0fd0e4d1",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "53 somado a 59 é igual a 112.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.19999998807907104
+          },
+          "verificationReferences": [],
+          "promptTokens": 3576,
+          "completionTokens": 17
+        }
+      ],
+      "refreshMs": 13.5,
+      "verificationMs": 0.19999998807907104,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "53 somado a 59 é igual a 112."
+    },
+    {
+      "id": "b240432a-1550-4ed2-a522-b45aebd0856f",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "A mudança de estado da água ocorre quando a energia térmica é adicionada ou removida, alterando a organização das moléculas. Isso faz com que a água transite entre sólido (gelo), líquido e gasoso (vapor) através de processos como fusão, vaporização e solidificação.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.10000002384185791
+          },
+          "verificationReferences": [],
+          "promptTokens": 3611,
+          "completionTokens": 60
+        }
+      ],
+      "refreshMs": 8.699999988079071,
+      "verificationMs": 0.10000002384185791,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "A mudança de estado da água ocorre quando a energia térmica é adicionada ou removida, alterando a organização das moléculas. Isso faz com que a água transite entre sólido (gelo), líquido e gasoso (vapor) através de processos como fusão, vaporização e solidificação."
+    },
+    {
+      "id": "cf70d011-ac32-4ec5-b646-acd9c9d91b79",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "O projeto Candeia2 está começando como um painel de iluminação residencial. Você planeja desenvolvê-lo utilizando a linguagem JavaScript com SQLite como banco de dados.",
+          "check": {
+            "assertions": [
+              {
+                "entity": "project.candeia2",
+                "property": "language",
+                "value": "javascript",
+                "span": "Você planeja desenvolvê-lo utilizando a linguagem JavaScript com SQLite como banco de dados.",
+                "supported": true,
+                "references": [
+                  "f6e483b4-8f8a-f1c3-fa4f-e3b1383eaf70"
+                ]
+              },
+              {
+                "entity": "project.candeia2",
+                "property": "database",
+                "value": "sqlite",
+                "span": "Você planeja desenvolvê-lo utilizando a linguagem JavaScript com SQLite como banco de dados.",
+                "supported": true,
+                "references": [
+                  "213b3efd-afcf-9a02-0bb6-74eea9b0c5f9"
+                ]
+              }
+            ],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 2,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1.5
+          },
+          "verificationReferences": [],
+          "promptTokens": 1404,
+          "completionTokens": 36
+        }
+      ],
+      "refreshMs": 14,
+      "verificationMs": 1.5,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "O projeto Candeia2 está começando como um painel de iluminação residencial. Você planeja desenvolvê-lo utilizando a linguagem JavaScript com SQLite como banco de dados."
+    },
+    {
+      "id": "1cc66644-3e27-4853-a437-c1bba1eba273",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Você planeja usar o SQLite como banco de dados no seu projeto candeia2.",
+          "check": {
+            "assertions": [
+              {
+                "entity": "project.candeia2",
+                "property": "database",
+                "value": "sqlite",
+                "span": "Você planeja usar o SQLite como banco de dados no seu projeto candeia2.",
+                "supported": true,
+                "references": [
+                  "213b3efd-afcf-9a02-0bb6-74eea9b0c5f9"
+                ]
+              }
+            ],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 1,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.3999999761581421
+          },
+          "verificationReferences": [],
+          "promptTokens": 1123,
+          "completionTokens": 19
+        }
+      ],
+      "refreshMs": 7.700000047683716,
+      "verificationMs": 0.3999999761581421,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Você planeja usar o SQLite como banco de dados no seu projeto candeia2."
+    },
+    {
+      "id": "258c2807-4f84-4f1d-a424-c2357bd7b84d",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Since you prefer coffee without sugar, you should probably skip it to enjoy the natural flavor of the beans.",
+          "check": {
+            "assertions": [
+              {
+                "entity": "user",
+                "property": "coffee_sugar",
+                "value": "without_sugar",
+                "span": "Since you prefer coffee without sugar, you should probably skip it to enjoy the natural flavor of the beans.",
+                "supported": true,
+                "references": [
+                  "47f9acc3-bd59-024c-7b52-c99cae9a562b"
+                ]
+              }
+            ],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 1,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.5999999642372131
+          },
+          "verificationReferences": [],
+          "promptTokens": 3642,
+          "completionTokens": 22
+        }
+      ],
+      "refreshMs": 8.100000023841858,
+      "verificationMs": 0.5999999642372131,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Since you prefer coffee without sugar, you should probably skip it to enjoy the natural flavor of the beans."
+    },
+    {
+      "id": "3ea79a77-7d77-4e39-b31b-37909e75b093",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Você prefere o modo escuro na interface que usa diariamente.",
+          "check": {
+            "assertions": [
+              {
+                "entity": "user",
+                "property": "interface_theme",
+                "value": "dark",
+                "span": "Você prefere o modo escuro na interface que usa diariamente.",
+                "supported": true,
+                "references": [
+                  "cf6a17bc-9a1b-1739-11a8-f9a20c28f12b"
+                ]
+              }
+            ],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 1,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 1.300000011920929
+          },
+          "verificationReferences": [],
+          "promptTokens": 1131,
+          "completionTokens": 14
+        }
+      ],
+      "refreshMs": 8.699999988079071,
+      "verificationMs": 1.300000011920929,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Você prefere o modo escuro na interface que usa diariamente."
+    },
+    {
+      "id": "bcc2dd24-b294-420f-89f8-ef723c3c5e19",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Your main computer has 36 GB of RAM.",
+          "check": {
+            "assertions": [
+              {
+                "entity": "device.primary_computer",
+                "property": "ram_capacity",
+                "value": "36_gb",
+                "span": "Your main computer has 36 GB of RAM.",
+                "supported": true,
+                "references": [
+                  "63bb331d-1036-080c-9b60-80b13ee398b8"
+                ]
+              }
+            ],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 1,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.6000000238418579
+          },
+          "verificationReferences": [],
+          "promptTokens": 3329,
+          "completionTokens": 12
+        }
+      ],
+      "refreshMs": 10.599999964237213,
+      "verificationMs": 0.6000000238418579,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Your main computer has 36 GB of RAM."
+    },
+    {
+      "id": "23eb77af-aa0c-4c59-affb-fb4a0b65543d",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "Seu notebook de trabalho tem 10 GB de RAM.",
+          "check": {
+            "assertions": [
+              {
+                "entity": "device.work_laptop",
+                "property": "ram_capacity",
+                "value": "10_gb",
+                "span": "Seu notebook de trabalho tem 10 GB de RAM.",
+                "supported": true,
+                "references": [
+                  "55d5921f-de13-a287-267b-e15caade4364"
+                ]
+              }
+            ],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 1,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.30000001192092896
+          },
+          "verificationReferences": [],
+          "promptTokens": 1130,
+          "completionTokens": 14
+        }
+      ],
+      "refreshMs": 9.399999976158142,
+      "verificationMs": 0.30000001192092896,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "Seu notebook de trabalho tem 10 GB de RAM."
+    },
+    {
+      "id": "ca0b49a7-7aa2-48d6-9478-48abf10ee2bc",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "No relevant record is available regarding the specific database planned for project candeia.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.09999996423721313
+          },
+          "verificationReferences": [],
+          "promptTokens": 981,
+          "completionTokens": 17
+        }
+      ],
+      "refreshMs": 6.899999976158142,
+      "verificationMs": 0.09999996423721313,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "No relevant record is available regarding the specific database planned for project candeia."
+    },
+    {
+      "id": "3808fa1a-4800-49fe-ac99-ffca8a90084b",
+      "status": "checked",
+      "attempts": [
+        {
+          "rawAnswer": "O resultado de 17 mais 18 é 35.",
+          "check": {
+            "assertions": [],
+            "violations": [],
+            "authority": [],
+            "uncertain": false,
+            "supportedAssertions": 0,
+            "unsupportedAssertions": 0,
+            "elapsedMs": 0.19999998807907104
+          },
+          "verificationReferences": [],
+          "promptTokens": 949,
+          "completionTokens": 16
+        }
+      ],
+      "refreshMs": 9.600000023841858,
+      "verificationMs": 0.19999998807907104,
+      "extraGenerationMs": 0,
+      "additionalUsage": {
+        "promptTokens": 0,
+        "completionTokens": 0
+      },
+      "verifiedText": "O resultado de 17 mais 18 é 35."
+    }
+  ],
+  "old_regex_pass": 7
+}

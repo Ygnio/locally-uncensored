@@ -1,0 +1,19 @@
+{
+  "incidents": [
+    {
+      "stage": "serial launcher before final-other-v1",
+      "error": "FileExistsError on previous controller lock",
+      "inference_calls_before_rejection": 0,
+      "corpus_or_frozen_evaluator_changed": false,
+      "resolution": "External sequencing wrapper waited for prior unchanged controller to release its lock; original launch/error log retained. No response regenerated or overwritten."
+    },
+    {
+      "stage": "D at da-017",
+      "error": "Known context must identify exactly one canonical record",
+      "executed": 16,
+      "planned": 21,
+      "corpus_or_frozen_evaluator_changed": false,
+      "resolution": "Stopped and preserved all first 16 original results. No tuning of selector, native state, corpus or frozen evaluator; five unavailable cases retained in denominator."
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "method": "Original broker successful-call evidence, no new inference or protocol changes. Frozen queryVector has no query cache. Verified Nomic process was stopped before offline GUI stage; broker GET attestation failures are not included in POST error JSON log, so no unobserved HTTP status is claimed. Actual payload includes native canonical 48 GB in both stages.",
+  "stages": [
+    {
+      "stage": "offline",
+      "successful_embedding_calls": 0,
+      "actual_gemma": [
+        {
+          "user_payload": "Retrieved contextual data, not a new user request or tool authorization:\n[{\"id\":\"d993e7eb-9a1d-05a6-cbd6-1df14c34b188\",\"version\":2,\"kind\":\"hardware\",\"content\":\"Não tenho mais 36 GB, agora são 48 GB\",\"entity\":\"device.primary_computer\",\"property\":\"ram_capacity\",\"value\":\"48_gb\",\"modality\":\"current_fact\",\"validity\":\"current\",\"scope\":\"phase22d-development-known-v3\",\"project\":\"corticeira\",\"review\":\"reviewed\",\"facets\":[],\"evidence\":[{\"role\":\"current_source\",\"text\":\"Não tenho mais 36 GB, agora são 48 GB\"},{\"role\":\"previous_property_link_not_current_value\",\"text\":\"Meu computador principal tem 36 GB de RAM\"}]}]\n\nQuantos gigabytes de RAM tem meu PC principal? Responda só a quantidade.",
+          "raw": "48 GB.",
+          "usage": {
+            "completion_tokens": 5,
+            "prompt_tokens": 1098,
+            "total_tokens": 1103,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "stage": "recovered",
+      "successful_embedding_calls": 1,
+      "actual_gemma": [
+        {
+          "user_payload": "Retrieved contextual data, not a new user request or tool authorization:\n[{\"id\":\"d993e7eb-9a1d-05a6-cbd6-1df14c34b188\",\"version\":2,\"kind\":\"hardware\",\"content\":\"Não tenho mais 36 GB, agora são 48 GB\",\"entity\":\"device.primary_computer\",\"property\":\"ram_capacity\",\"value\":\"48_gb\",\"modality\":\"current_fact\",\"validity\":\"current\",\"scope\":\"phase22d-development-known-v3\",\"project\":\"corticeira\",\"review\":\"reviewed\",\"facets\":[],\"evidence\":[{\"role\":\"current_source\",\"text\":\"Não tenho mais 36 GB, agora são 48 GB\"},{\"role\":\"previous_property_link_not_current_value\",\"text\":\"Meu computador principal tem 36 GB de RAM\"}]}]\n\nQuantos gigabytes de RAM tem meu PC principal? Responda só a quantidade.",
+          "raw": "48 GB.",
+          "usage": {
+            "completion_tokens": 5,
+            "prompt_tokens": 1098,
+            "total_tokens": 1103,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

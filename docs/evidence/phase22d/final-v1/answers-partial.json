@@ -1,0 +1,1822 @@
+{
+  "method": "Unchanged frozen D evaluator stopped before da-017: selector expected obsolete Rust record, but native C store retained it as active with historical eligibility constrained by cancelled lifecycle. Fixture/evaluator defect, not proof of a production write failure. No corpus or evaluator edit/retry. Remaining five slots/atoms count as unavailable, separate from the 16 actually executed.",
+  "planned": 21,
+  "executed": 16,
+  "not_executed": [
+    "da-017",
+    "da-018",
+    "da-019",
+    "da-020",
+    "da-021"
+  ],
+  "failure": "Known context must identify exactly one canonical record",
+  "rows": [
+    {
+      "id": "da-001",
+      "item": {
+        "id": "da-001",
+        "query": "Quanto de RAM tem meu PC principal?",
+        "scope": "phase22d-final-ret-main",
+        "project": "imbuia",
+        "mode": "chat",
+        "known_context": [
+          {
+            "entity": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "64_gb"
+          }
+        ],
+        "expected": [
+          "64_gb"
+        ],
+        "scenario": "known_fact"
+      },
+      "context_facts": [
+        {
+          "entity": "device.primary_computer",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Não tenho mais 40 GB, agora são 64 GB"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Meu computador principal tem 40 GB de RAM"
+            }
+          ],
+          "facets": [],
+          "id": "6bafed21-c7bb-f723-b799-bff3b7b11124",
+          "modality": "current_fact",
+          "project": "imbuia",
+          "property": "ram_capacity",
+          "review": "reviewed",
+          "scope": "phase22d-final-ret-main",
+          "validity": "current",
+          "value": "64_gb",
+          "version": 2
+        }
+      ],
+      "references": [
+        {
+          "id": "6bafed21-c7bb-f723-b799-bff3b7b11124",
+          "version": 2
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Seu computador principal tem 64 GB de RAM.",
+      "report": {
+        "id": "b01dbba4-127b-414a-98ae-918df9cc8b6d",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "Seu computador principal tem 64 GB de RAM.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "device.primary_computer",
+                  "property": "ram_capacity",
+                  "value": "64_gb",
+                  "span": "Seu computador principal tem 64 GB de RAM.",
+                  "supported": true,
+                  "references": [
+                    "6bafed21-c7bb-f723-b799-bff3b7b11124"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 12.717599999999948
+            },
+            "verificationReferences": [],
+            "promptTokens": 875,
+            "completionTokens": 13
+          }
+        ],
+        "refreshMs": 54.629399999999805,
+        "verificationMs": 12.717599999999948,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "Seu computador principal tem 64 GB de RAM."
+      },
+      "attempts": [
+        {
+          "raw": "Seu computador principal tem 64 GB de RAM.",
+          "usage": {
+            "completion_tokens": 13,
+            "prompt_tokens": 875,
+            "total_tokens": 888,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 1736.3754
+        }
+      ],
+      "latency_ms": 1809.0313999999998
+    },
+    {
+      "id": "da-002",
+      "item": {
+        "id": "da-002",
+        "query": "Qual é a capacidade de RAM do meu notebook de trabalho?",
+        "scope": "phase22d-final-ret-main",
+        "project": "imbuia",
+        "mode": "agent",
+        "known_context": [
+          {
+            "entity": "device.work_laptop",
+            "property": "ram_capacity",
+            "value": "20_gb"
+          }
+        ],
+        "expected": [
+          "20_gb"
+        ],
+        "scenario": "known_fact"
+      },
+      "context_facts": [
+        {
+          "entity": "device.work_laptop",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Meu notebook de trabalho tem 20 GB de RAM"
+            }
+          ],
+          "facets": [],
+          "id": "e106ead4-6775-f663-90a4-d1bc0a09d818",
+          "modality": "current_fact",
+          "project": "imbuia",
+          "property": "ram_capacity",
+          "review": "reviewed",
+          "scope": "phase22d-final-ret-main",
+          "validity": "current",
+          "value": "20_gb",
+          "version": 2
+        }
+      ],
+      "references": [
+        {
+          "id": "e106ead4-6775-f663-90a4-d1bc0a09d818",
+          "version": 2
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Seu notebook de trabalho tem 20 GB de RAM.",
+      "report": {
+        "id": "987504f6-1b98-4de9-a0d2-be439d402acf",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "Seu notebook de trabalho tem 20 GB de RAM.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "device.work_laptop",
+                  "property": "ram_capacity",
+                  "value": "20_gb",
+                  "span": "Seu notebook de trabalho tem 20 GB de RAM.",
+                  "supported": true,
+                  "references": [
+                    "e106ead4-6775-f663-90a4-d1bc0a09d818"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 4.9231999999992695
+            },
+            "verificationReferences": [],
+            "promptTokens": 848,
+            "completionTokens": 14
+          }
+        ],
+        "refreshMs": 56.05579999999918,
+        "verificationMs": 4.9231999999992695,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "Seu notebook de trabalho tem 20 GB de RAM."
+      },
+      "attempts": [
+        {
+          "raw": "Seu notebook de trabalho tem 20 GB de RAM.",
+          "usage": {
+            "completion_tokens": 14,
+            "prompt_tokens": 848,
+            "total_tokens": 862,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 1462.5604000000003
+        }
+      ],
+      "latency_ms": 1523.8171999999995
+    },
+    {
+      "id": "da-003",
+      "item": {
+        "id": "da-003",
+        "query": "Quanto de RAM tem meu principal e meu notebook de trabalho?",
+        "scope": "phase22d-final-ret-main",
+        "project": "imbuia",
+        "mode": "code",
+        "known_context": [
+          {
+            "entity": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "64_gb"
+          },
+          {
+            "entity": "device.work_laptop",
+            "property": "ram_capacity",
+            "value": "20_gb"
+          }
+        ],
+        "expected": [
+          "64_gb",
+          "20_gb"
+        ],
+        "scenario": "known_fact"
+      },
+      "context_facts": [
+        {
+          "entity": "device.primary_computer",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Não tenho mais 40 GB, agora são 64 GB"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Meu computador principal tem 40 GB de RAM"
+            }
+          ],
+          "facets": [],
+          "id": "6bafed21-c7bb-f723-b799-bff3b7b11124",
+          "modality": "current_fact",
+          "project": "imbuia",
+          "property": "ram_capacity",
+          "review": "reviewed",
+          "scope": "phase22d-final-ret-main",
+          "validity": "current",
+          "value": "64_gb",
+          "version": 2
+        },
+        {
+          "entity": "device.work_laptop",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Meu notebook de trabalho tem 20 GB de RAM"
+            }
+          ],
+          "facets": [],
+          "id": "e106ead4-6775-f663-90a4-d1bc0a09d818",
+          "modality": "current_fact",
+          "project": "imbuia",
+          "property": "ram_capacity",
+          "review": "reviewed",
+          "scope": "phase22d-final-ret-main",
+          "validity": "current",
+          "value": "20_gb",
+          "version": 2
+        }
+      ],
+      "references": [
+        {
+          "id": "6bafed21-c7bb-f723-b799-bff3b7b11124",
+          "version": 2
+        },
+        {
+          "id": "e106ead4-6775-f663-90a4-d1bc0a09d818",
+          "version": 2
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Seu computador principal tem 64 GB de RAM e seu notebook de trabalho tem 20 GB.",
+      "report": {
+        "id": "373a7a3f-d2ea-42e9-b3b7-029dd9edb93e",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "Seu computador principal tem 64 GB de RAM e seu notebook de trabalho tem 20 GB.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "device.primary_computer",
+                  "property": "ram_capacity",
+                  "value": "64_gb",
+                  "span": "Seu computador principal tem 64 GB de RAM e seu notebook de trabalho tem 20 GB.",
+                  "supported": true,
+                  "references": [
+                    "6bafed21-c7bb-f723-b799-bff3b7b11124"
+                  ]
+                },
+                {
+                  "entity": "device.work_laptop",
+                  "property": "ram_capacity",
+                  "value": "20_gb",
+                  "span": "Seu computador principal tem 64 GB de RAM e seu notebook de trabalho tem 20 GB.",
+                  "supported": true,
+                  "references": [
+                    "e106ead4-6775-f663-90a4-d1bc0a09d818"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 2,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 1.721399999998539
+            },
+            "verificationReferences": [],
+            "promptTokens": 1021,
+            "completionTokens": 23
+          }
+        ],
+        "refreshMs": 53.58679999999913,
+        "verificationMs": 1.721399999998539,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "Seu computador principal tem 64 GB de RAM e seu notebook de trabalho tem 20 GB."
+      },
+      "attempts": [
+        {
+          "raw": "Seu computador principal tem 64 GB de RAM e seu notebook de trabalho tem 20 GB.",
+          "usage": {
+            "completion_tokens": 23,
+            "prompt_tokens": 1021,
+            "total_tokens": 1044,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 1923.8761000000004
+        }
+      ],
+      "latency_ms": 1979.4404999999997
+    },
+    {
+      "id": "da-004",
+      "item": {
+        "id": "da-004",
+        "query": "Qual linguagem eu havia decidido para meu projeto?",
+        "scope": "phase22d-final-ret-main",
+        "project": "imbuia",
+        "mode": "chat",
+        "known_context": [
+          {
+            "entity": "project.imbuia",
+            "property": "language",
+            "value": "python"
+          }
+        ],
+        "expected": [
+          "python_decision"
+        ],
+        "scenario": "known_fact"
+      },
+      "context_facts": [
+        {
+          "entity": "project.imbuia",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Decidi usar Python no meu projeto"
+            }
+          ],
+          "facets": [],
+          "id": "69b2d681-a0ca-b5fb-4ad6-cc627acaf2ad",
+          "modality": "decision",
+          "project": "imbuia",
+          "property": "language",
+          "review": "reviewed",
+          "scope": "phase22d-final-ret-main",
+          "validity": "current",
+          "value": "python",
+          "version": 2
+        }
+      ],
+      "references": [
+        {
+          "id": "69b2d681-a0ca-b5fb-4ad6-cc627acaf2ad",
+          "version": 2
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Você decidiu usar a linguagem Python para o seu projeto Imbuia.",
+      "report": {
+        "id": "d1a71652-1512-437b-80bb-3947c898d974",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "Você decidiu usar a linguagem Python para o seu projeto Imbuia.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "project.imbuia",
+                  "property": "language",
+                  "value": "python",
+                  "span": "Você decidiu usar a linguagem Python para o seu projeto Imbuia.",
+                  "supported": true,
+                  "references": [
+                    "69b2d681-a0ca-b5fb-4ad6-cc627acaf2ad"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 7.391299999999319
+            },
+            "verificationReferences": [],
+            "promptTokens": 829,
+            "completionTokens": 15
+          }
+        ],
+        "refreshMs": 69.67190000000119,
+        "verificationMs": 7.391299999999319,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "Você decidiu usar a linguagem Python para o seu projeto Imbuia."
+      },
+      "attempts": [
+        {
+          "raw": "Você decidiu usar a linguagem Python para o seu projeto Imbuia.",
+          "usage": {
+            "completion_tokens": 15,
+            "prompt_tokens": 829,
+            "total_tokens": 844,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 1448.6859000000004
+        }
+      ],
+      "latency_ms": 1526.0942000000014
+    },
+    {
+      "id": "da-005",
+      "item": {
+        "id": "da-005",
+        "query": "Que banco está nos planos do meu projeto?",
+        "scope": "phase22d-final-ret-main",
+        "project": "imbuia",
+        "mode": "agent",
+        "known_context": [
+          {
+            "entity": "project.imbuia",
+            "property": "database",
+            "value": "postgresql"
+          }
+        ],
+        "expected": [
+          "postgresql_planned"
+        ],
+        "scenario": "known_fact"
+      },
+      "context_facts": [
+        {
+          "entity": "project.imbuia",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Pretendo usar PostgreSQL no meu projeto"
+            }
+          ],
+          "facets": [],
+          "id": "96b7c093-f7a4-ce03-e3fd-10afe6980965",
+          "modality": "planned",
+          "project": "imbuia",
+          "property": "database",
+          "review": "reviewed",
+          "scope": "phase22d-final-ret-main",
+          "validity": "current",
+          "value": "postgresql",
+          "version": 2
+        }
+      ],
+      "references": [
+        {
+          "id": "96b7c093-f7a4-ce03-e3fd-10afe6980965",
+          "version": 2
+        }
+      ],
+      "status": "delivered",
+      "delivered": "O plano para o seu projeto Imbuia é utilizar o PostgreSQL como banco de dados.",
+      "report": {
+        "id": "fdf2cc7c-4966-4464-8529-fea6529ccfa2",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "O plano para o seu projeto Imbuia é utilizar o PostgreSQL como banco de dados.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "project.imbuia",
+                  "property": "database",
+                  "value": "postgresql",
+                  "span": "O plano para o seu projeto Imbuia é utilizar o PostgreSQL como banco de dados.",
+                  "supported": true,
+                  "references": [
+                    "96b7c093-f7a4-ce03-e3fd-10afe6980965"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 9.10360000000037
+            },
+            "verificationReferences": [],
+            "promptTokens": 761,
+            "completionTokens": 19
+          }
+        ],
+        "refreshMs": 55.839499999998225,
+        "verificationMs": 9.10360000000037,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "O plano para o seu projeto Imbuia é utilizar o PostgreSQL como banco de dados."
+      },
+      "attempts": [
+        {
+          "raw": "O plano para o seu projeto Imbuia é utilizar o PostgreSQL como banco de dados.",
+          "usage": {
+            "completion_tokens": 19,
+            "prompt_tokens": 761,
+            "total_tokens": 780,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 1486.9742999999999
+        }
+      ],
+      "latency_ms": 1552.5658999999996
+    },
+    {
+      "id": "da-006",
+      "item": {
+        "id": "da-006",
+        "query": "Qual é a descrição do meu projeto?",
+        "scope": "phase22d-final-ret-main",
+        "project": "imbuia",
+        "mode": "code",
+        "known_context": [
+          {
+            "entity": "project.imbuia",
+            "property": "description",
+            "value": "estou comecando um projeto de catalogo de cristais"
+          }
+        ],
+        "expected": [
+          "catalogo_de_cristais"
+        ],
+        "scenario": "known_fact"
+      },
+      "context_facts": [
+        {
+          "entity": "project.imbuia",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Estou começando um projeto de catálogo de cristais"
+            }
+          ],
+          "facets": [],
+          "id": "c455ee8b-fd30-6eef-7c65-e8672fbcee7d",
+          "modality": "project_description",
+          "project": "imbuia",
+          "property": "description",
+          "review": "reviewed",
+          "scope": "phase22d-final-ret-main",
+          "validity": "current",
+          "value": "estou comecando um projeto de catalogo de cristais",
+          "version": 2
+        }
+      ],
+      "references": [
+        {
+          "id": "c455ee8b-fd30-6eef-7c65-e8672fbcee7d",
+          "version": 2
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Você está começando um projeto de catálogo de cristais.",
+      "report": {
+        "id": "650eb57d-9602-4bc9-bb56-25a0ac30e96d",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "Você está começando um projeto de catálogo de cristais.",
+            "check": {
+              "assertions": [],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 0,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 3.1547000000009575
+            },
+            "verificationReferences": [],
+            "promptTokens": 814,
+            "completionTokens": 12
+          }
+        ],
+        "refreshMs": 51.389900000000125,
+        "verificationMs": 3.1547000000009575,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "Você está começando um projeto de catálogo de cristais."
+      },
+      "attempts": [
+        {
+          "raw": "Você está começando um projeto de catálogo de cristais.",
+          "usage": {
+            "completion_tokens": 12,
+            "prompt_tokens": 814,
+            "total_tokens": 826,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 1336.6842000000015
+        }
+      ],
+      "latency_ms": 1391.482899999999
+    },
+    {
+      "id": "da-007",
+      "item": {
+        "id": "da-007",
+        "query": "Como está ficando aquele projeto?",
+        "scope": "phase22d-final-ret-main",
+        "project": "imbuia",
+        "mode": "chat",
+        "known_context": [
+          {
+            "entity": "project.imbuia",
+            "property": "description",
+            "value": "estou comecando um projeto de catalogo de cristais"
+          },
+          {
+            "entity": "project.imbuia",
+            "property": "language",
+            "value": "python"
+          },
+          {
+            "entity": "project.imbuia",
+            "property": "database",
+            "value": "postgresql"
+          }
+        ],
+        "expected": [
+          "catalogo_de_cristais",
+          "python_decision",
+          "postgresql_planned"
+        ],
+        "scenario": "purpose_not_execution"
+      },
+      "context_facts": [
+        {
+          "entity": "project.imbuia",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Estou começando um projeto de catálogo de cristais"
+            }
+          ],
+          "facets": [],
+          "id": "c455ee8b-fd30-6eef-7c65-e8672fbcee7d",
+          "modality": "project_description",
+          "project": "imbuia",
+          "property": "description",
+          "review": "reviewed",
+          "scope": "phase22d-final-ret-main",
+          "validity": "current",
+          "value": "estou comecando um projeto de catalogo de cristais",
+          "version": 2
+        },
+        {
+          "entity": "project.imbuia",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Decidi usar Python no meu projeto"
+            }
+          ],
+          "facets": [],
+          "id": "69b2d681-a0ca-b5fb-4ad6-cc627acaf2ad",
+          "modality": "decision",
+          "project": "imbuia",
+          "property": "language",
+          "review": "reviewed",
+          "scope": "phase22d-final-ret-main",
+          "validity": "current",
+          "value": "python",
+          "version": 2
+        },
+        {
+          "entity": "project.imbuia",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Pretendo usar PostgreSQL no meu projeto"
+            }
+          ],
+          "facets": [],
+          "id": "96b7c093-f7a4-ce03-e3fd-10afe6980965",
+          "modality": "planned",
+          "project": "imbuia",
+          "property": "database",
+          "review": "reviewed",
+          "scope": "phase22d-final-ret-main",
+          "validity": "current",
+          "value": "postgresql",
+          "version": 2
+        }
+      ],
+      "references": [
+        {
+          "id": "c455ee8b-fd30-6eef-7c65-e8672fbcee7d",
+          "version": 2
+        },
+        {
+          "id": "69b2d681-a0ca-b5fb-4ad6-cc627acaf2ad",
+          "version": 2
+        },
+        {
+          "id": "96b7c093-f7a4-ce03-e3fd-10afe6980965",
+          "version": 2
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Você está começando um catálogo de cristais chamado projeto Imbuia. Você decidiu usar Python como linguagem e planeja utilizar PostgreSQL como banco de dados.",
+      "report": {
+        "id": "e06e9527-dd5b-4e4a-8eff-2acf79d14129",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "Você está começando um catálogo de cristais chamado projeto Imbuia. Você decidiu usar Python como linguagem e planeja utilizar PostgreSQL como banco de dados.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "project.imbuia",
+                  "property": "language",
+                  "value": "python",
+                  "span": "Você decidiu usar Python como linguagem",
+                  "supported": true,
+                  "references": [
+                    "69b2d681-a0ca-b5fb-4ad6-cc627acaf2ad"
+                  ]
+                },
+                {
+                  "entity": "project.imbuia",
+                  "property": "database",
+                  "value": "postgresql",
+                  "span": "e planeja utilizar PostgreSQL como banco de dados.",
+                  "supported": true,
+                  "references": [
+                    "96b7c093-f7a4-ce03-e3fd-10afe6980965"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 2,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 4.225699999999051
+            },
+            "verificationReferences": [],
+            "promptTokens": 1105,
+            "completionTokens": 31
+          }
+        ],
+        "refreshMs": 52.4958000000006,
+        "verificationMs": 4.225699999999051,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "Você está começando um catálogo de cristais chamado projeto Imbuia. Você decidiu usar Python como linguagem e planeja utilizar PostgreSQL como banco de dados."
+      },
+      "attempts": [
+        {
+          "raw": "Você está começando um catálogo de cristais chamado projeto Imbuia. Você decidiu usar Python como linguagem e planeja utilizar PostgreSQL como banco de dados.",
+          "usage": {
+            "completion_tokens": 31,
+            "prompt_tokens": 1105,
+            "total_tokens": 1136,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 2301.055700000001
+        }
+      ],
+      "latency_ms": 2358.0259000000005
+    },
+    {
+      "id": "da-008",
+      "item": {
+        "id": "da-008",
+        "query": "Como eu prefiro meu café?",
+        "scope": "phase22d-final-ret-main",
+        "project": "imbuia",
+        "mode": "agent",
+        "known_context": [
+          {
+            "entity": "user",
+            "property": "coffee_sugar",
+            "value": "without_sugar"
+          }
+        ],
+        "expected": [
+          "without_sugar"
+        ],
+        "scenario": "known_fact"
+      },
+      "context_facts": [
+        {
+          "entity": "user",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Na verdade, agora prefiro café sem açúcar"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Prefiro café com açúcar"
+            }
+          ],
+          "facets": [],
+          "id": "a13a66eb-62e0-90a5-6c79-d0cf785e5622",
+          "modality": "preference",
+          "project": "imbuia",
+          "property": "coffee_sugar",
+          "review": "independently_grounded_active",
+          "scope": "phase22d-final-ret-main",
+          "validity": "current",
+          "value": "without_sugar",
+          "version": 1
+        }
+      ],
+      "references": [
+        {
+          "id": "a13a66eb-62e0-90a5-6c79-d0cf785e5622",
+          "version": 1
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Você prefere o seu café sem açúcar.",
+      "report": {
+        "id": "5999135f-d433-43f9-9bac-3b943e38eaac",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "Você prefere o seu café sem açúcar.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "user",
+                  "property": "coffee_sugar",
+                  "value": "without_sugar",
+                  "span": "Você prefere o seu café sem açúcar.",
+                  "supported": true,
+                  "references": [
+                    "a13a66eb-62e0-90a5-6c79-d0cf785e5622"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 1.0771999999997206
+            },
+            "verificationReferences": [],
+            "promptTokens": 827,
+            "completionTokens": 10
+          }
+        ],
+        "refreshMs": 52.70230000000083,
+        "verificationMs": 1.0771999999997206,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "Você prefere o seu café sem açúcar."
+      },
+      "attempts": [
+        {
+          "raw": "Você prefere o seu café sem açúcar.",
+          "usage": {
+            "completion_tokens": 10,
+            "prompt_tokens": 827,
+            "total_tokens": 837,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 1282.7159000000029
+        }
+      ],
+      "latency_ms": 1336.6924
+    },
+    {
+      "id": "da-009",
+      "item": {
+        "id": "da-009",
+        "query": "Qual é a minha bebida preferida?",
+        "scope": "phase22d-final-ret-main",
+        "project": "imbuia",
+        "mode": "code",
+        "known_context": [
+          {
+            "entity": "user",
+            "property": "favorite_beverage",
+            "value": "tea"
+          }
+        ],
+        "expected": [
+          "tea"
+        ],
+        "scenario": "known_fact"
+      },
+      "context_facts": [
+        {
+          "entity": "user",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Minha bebida favorita é chá"
+            }
+          ],
+          "facets": [],
+          "id": "56e3e16b-9ae4-9465-a637-891bd576de7b",
+          "modality": "preference",
+          "project": "imbuia",
+          "property": "favorite_beverage",
+          "review": "independently_grounded_active",
+          "scope": "phase22d-final-ret-main",
+          "validity": "current",
+          "value": "tea",
+          "version": 1
+        }
+      ],
+      "references": [
+        {
+          "id": "56e3e16b-9ae4-9465-a637-891bd576de7b",
+          "version": 1
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Sua bebida favorita é chá.",
+      "report": {
+        "id": "3111dfce-bff4-470c-9772-43e57907604a",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "Sua bebida favorita é chá.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "user",
+                  "property": "favorite_beverage",
+                  "value": "tea",
+                  "span": "Sua bebida favorita é chá.",
+                  "supported": true,
+                  "references": [
+                    "56e3e16b-9ae4-9465-a637-891bd576de7b"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 1.747799999997369
+            },
+            "verificationReferences": [],
+            "promptTokens": 833,
+            "completionTokens": 8
+          }
+        ],
+        "refreshMs": 49.25380000000223,
+        "verificationMs": 1.747799999997369,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "Sua bebida favorita é chá."
+      },
+      "attempts": [
+        {
+          "raw": "Sua bebida favorita é chá.",
+          "usage": {
+            "completion_tokens": 8,
+            "prompt_tokens": 833,
+            "total_tokens": 841,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 1240.6672999999973
+        }
+      ],
+      "latency_ms": 1291.9088999999985
+    },
+    {
+      "id": "da-010",
+      "item": {
+        "id": "da-010",
+        "query": "O que eu gosto na escolha de classes nos jogos?",
+        "scope": "phase22d-final-ret-main",
+        "project": "imbuia",
+        "mode": "chat",
+        "known_context": [
+          {
+            "entity": "user",
+            "property": "games_class_selection",
+            "value": "positive"
+          }
+        ],
+        "expected": [
+          "class_selection_positive"
+        ],
+        "scenario": "known_fact"
+      },
+      "context_facts": [
+        {
+          "entity": "user",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Nos jogos, eu gosto de poder escolher minha classe"
+            }
+          ],
+          "facets": [],
+          "id": "8eb60d8c-1d0a-f781-c80a-e4908676a106",
+          "modality": "preference",
+          "project": "imbuia",
+          "property": "games_class_selection",
+          "review": "independently_grounded_active",
+          "scope": "phase22d-final-ret-main",
+          "validity": "current",
+          "value": "positive",
+          "version": 1
+        }
+      ],
+      "references": [
+        {
+          "id": "8eb60d8c-1d0a-f781-c80a-e4908676a106",
+          "version": 1
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Você gosta de poder escolher sua classe nos jogos.",
+      "report": {
+        "id": "1922aee8-0666-43cc-90a8-5a4fcdbd2aca",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "Você gosta de poder escolher sua classe nos jogos.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "user",
+                  "property": "games_class_selection",
+                  "value": "positive",
+                  "span": "Você gosta de poder escolher sua classe nos jogos.",
+                  "supported": true,
+                  "references": [
+                    "8eb60d8c-1d0a-f781-c80a-e4908676a106"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 0.9812999999994645
+            },
+            "verificationReferences": [],
+            "promptTokens": 770,
+            "completionTokens": 11
+          }
+        ],
+        "refreshMs": 54.90660000000207,
+        "verificationMs": 0.9812999999994645,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "Você gosta de poder escolher sua classe nos jogos."
+      },
+      "attempts": [
+        {
+          "raw": "Você gosta de poder escolher sua classe nos jogos.",
+          "usage": {
+            "completion_tokens": 11,
+            "prompt_tokens": 770,
+            "total_tokens": 781,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 1261.9289000000026
+        }
+      ],
+      "latency_ms": 1318.0265
+    },
+    {
+      "id": "da-011",
+      "item": {
+        "id": "da-011",
+        "query": "Qual era a RAM antes e quanto tem agora meu computador principal?",
+        "scope": "phase22d-final-ret-main",
+        "project": "imbuia",
+        "mode": "agent",
+        "known_context": [
+          {
+            "entity": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "40_gb",
+            "state": "obsolete"
+          },
+          {
+            "entity": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "64_gb"
+          }
+        ],
+        "expected": [
+          "40_gb_historical",
+          "64_gb_current"
+        ],
+        "scenario": "known_fact"
+      },
+      "context_facts": [
+        {
+          "entity": "device.primary_computer",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Meu computador principal tem 40 GB de RAM"
+            }
+          ],
+          "facets": [],
+          "id": "b8478366-3a30-ab46-76e4-add20bff79e0",
+          "modality": "current_fact",
+          "project": "imbuia",
+          "property": "ram_capacity",
+          "review": "reviewed",
+          "scope": "phase22d-final-ret-main",
+          "validity": "historical",
+          "value": "40_gb",
+          "version": 3
+        },
+        {
+          "entity": "device.primary_computer",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Não tenho mais 40 GB, agora são 64 GB"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Meu computador principal tem 40 GB de RAM"
+            }
+          ],
+          "facets": [],
+          "id": "6bafed21-c7bb-f723-b799-bff3b7b11124",
+          "modality": "current_fact",
+          "project": "imbuia",
+          "property": "ram_capacity",
+          "review": "reviewed",
+          "scope": "phase22d-final-ret-main",
+          "validity": "current",
+          "value": "64_gb",
+          "version": 2
+        }
+      ],
+      "references": [
+        {
+          "id": "b8478366-3a30-ab46-76e4-add20bff79e0",
+          "version": 3
+        },
+        {
+          "id": "6bafed21-c7bb-f723-b799-bff3b7b11124",
+          "version": 2
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Antes, seu computador principal tinha 40 GB de RAM. Agora, ele possui 64 GB.",
+      "report": {
+        "id": "dca510cd-3f97-435b-b3e7-679f39fb5cda",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "Antes, seu computador principal tinha 40 GB de RAM. Agora, ele possui 64 GB.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "device.primary_computer",
+                  "property": "ram_capacity",
+                  "value": "40_gb",
+                  "span": "Antes, seu computador principal tinha 40 GB de RAM.",
+                  "supported": true,
+                  "references": [
+                    "b8478366-3a30-ab46-76e4-add20bff79e0",
+                    "6bafed21-c7bb-f723-b799-bff3b7b11124"
+                  ]
+                },
+                {
+                  "entity": "device.primary_computer",
+                  "property": "ram_capacity",
+                  "value": "64_gb",
+                  "span": "Agora, ele possui 64 GB.",
+                  "supported": true,
+                  "references": [
+                    "6bafed21-c7bb-f723-b799-bff3b7b11124"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 2,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 2.458600000001752
+            },
+            "verificationReferences": [],
+            "promptTokens": 1018,
+            "completionTokens": 23
+          }
+        ],
+        "refreshMs": 58.36069999999745,
+        "verificationMs": 2.458600000001752,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "Antes, seu computador principal tinha 40 GB de RAM. Agora, ele possui 64 GB."
+      },
+      "attempts": [
+        {
+          "raw": "Antes, seu computador principal tinha 40 GB de RAM. Agora, ele possui 64 GB.",
+          "usage": {
+            "completion_tokens": 23,
+            "prompt_tokens": 1018,
+            "total_tokens": 1041,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 2020.9799999999996
+        }
+      ],
+      "latency_ms": 2082.0321000000004
+    },
+    {
+      "id": "da-012",
+      "item": {
+        "id": "da-012",
+        "query": "Compare minha preferência por café antes e agora.",
+        "scope": "phase22d-final-ret-main",
+        "project": "imbuia",
+        "mode": "code",
+        "known_context": [
+          {
+            "entity": "user",
+            "property": "coffee_sugar",
+            "value": "with_sugar",
+            "state": "obsolete"
+          },
+          {
+            "entity": "user",
+            "property": "coffee_sugar",
+            "value": "without_sugar"
+          }
+        ],
+        "expected": [
+          "with_sugar_historical",
+          "without_sugar_current"
+        ],
+        "scenario": "known_fact"
+      },
+      "context_facts": [
+        {
+          "entity": "user",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Prefiro café com açúcar"
+            }
+          ],
+          "facets": [],
+          "id": "fdd1df4b-3e09-1455-64b6-4fb3dc9cf919",
+          "modality": "preference",
+          "project": "imbuia",
+          "property": "coffee_sugar",
+          "review": "independently_grounded_active",
+          "scope": "phase22d-final-ret-main",
+          "validity": "historical",
+          "value": "with_sugar",
+          "version": 2
+        },
+        {
+          "entity": "user",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Na verdade, agora prefiro café sem açúcar"
+            },
+            {
+              "role": "previous_property_link_not_current_value",
+              "text": "Prefiro café com açúcar"
+            }
+          ],
+          "facets": [],
+          "id": "a13a66eb-62e0-90a5-6c79-d0cf785e5622",
+          "modality": "preference",
+          "project": "imbuia",
+          "property": "coffee_sugar",
+          "review": "independently_grounded_active",
+          "scope": "phase22d-final-ret-main",
+          "validity": "current",
+          "value": "without_sugar",
+          "version": 1
+        }
+      ],
+      "references": [
+        {
+          "id": "fdd1df4b-3e09-1455-64b6-4fb3dc9cf919",
+          "version": 2
+        },
+        {
+          "id": "a13a66eb-62e0-90a5-6c79-d0cf785e5622",
+          "version": 1
+        }
+      ],
+      "status": "delivered",
+      "delivered": "Antes você preferia café com açúcar, mas agora prefere café sem açúcar.",
+      "report": {
+        "id": "950a1c44-f110-41ea-b30e-59f73dac8c9e",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "Antes você preferia café com açúcar, mas agora prefere café sem açúcar.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "user",
+                  "property": "coffee_sugar",
+                  "value": "with_sugar",
+                  "span": "Antes você preferia café com açúcar, ",
+                  "supported": true,
+                  "references": [
+                    "fdd1df4b-3e09-1455-64b6-4fb3dc9cf919"
+                  ]
+                },
+                {
+                  "entity": "user",
+                  "property": "coffee_sugar",
+                  "value": "without_sugar",
+                  "span": " agora prefere café sem açúcar.",
+                  "supported": true,
+                  "references": [
+                    "a13a66eb-62e0-90a5-6c79-d0cf785e5622"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 2,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 0.6815000000024156
+            },
+            "verificationReferences": [],
+            "promptTokens": 914,
+            "completionTokens": 17
+          }
+        ],
+        "refreshMs": 59.0031999999992,
+        "verificationMs": 0.6815000000024156,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "Antes você preferia café com açúcar, mas agora prefere café sem açúcar."
+      },
+      "attempts": [
+        {
+          "raw": "Antes você preferia café com açúcar, mas agora prefere café sem açúcar.",
+          "usage": {
+            "completion_tokens": 17,
+            "prompt_tokens": 914,
+            "total_tokens": 931,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 1638.1212000000014
+        }
+      ],
+      "latency_ms": 1697.9489999999969
+    },
+    {
+      "id": "da-013",
+      "item": {
+        "id": "da-013",
+        "query": "Qual GPU consta nas minhas informações?",
+        "scope": "phase22d-final-ret-main",
+        "project": "imbuia",
+        "mode": "chat",
+        "known_context": [],
+        "expected": [
+          "bounded_unknown_gpu"
+        ],
+        "scenario": "unknown_property"
+      },
+      "context_facts": [],
+      "references": [],
+      "status": "delivered",
+      "delivered": "Não há nenhuma informação específica sobre a sua GPU nos registros atuais. Se você quiser, pode me dizer qual modelo está usando para que eu possa memorizar.",
+      "report": {
+        "id": "7c6b4bcc-1c3d-4dea-9670-43a7b3b5d7f3",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "Não há nenhuma informação específica sobre a sua GPU nos registros atuais. Se você quiser, pode me dizer qual modelo está usando para que eu possa memorizar.",
+            "check": {
+              "assertions": [],
+              "violations": [],
+              "authority": [],
+              "uncertain": true,
+              "supportedAssertions": 0,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 0.3559000000022934
+            },
+            "verificationReferences": [],
+            "promptTokens": 658,
+            "completionTokens": 32
+          }
+        ],
+        "refreshMs": 57.88959999999861,
+        "verificationMs": 0.3559000000022934,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "Não há nenhuma informação específica sobre a sua GPU nos registros atuais. Se você quiser, pode me dizer qual modelo está usando para que eu possa memorizar."
+      },
+      "attempts": [
+        {
+          "raw": "Não há nenhuma informação específica sobre a sua GPU nos registros atuais. Se você quiser, pode me dizer qual modelo está usando para que eu possa memorizar.",
+          "usage": {
+            "completion_tokens": 32,
+            "prompt_tokens": 658,
+            "total_tokens": 690,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 1807.9285000000018
+        }
+      ],
+      "latency_ms": 1866.377800000002
+    },
+    {
+      "id": "da-014",
+      "item": {
+        "id": "da-014",
+        "query": "Qual banco meu irmão costuma usar?",
+        "scope": "phase22d-final-ret-main",
+        "project": "imbuia",
+        "mode": "agent",
+        "known_context": [],
+        "expected": [
+          "bounded_unknown_brother"
+        ],
+        "scenario": "foreign_actor"
+      },
+      "context_facts": [],
+      "references": [],
+      "status": "delivered",
+      "delivered": "Não há nenhum registro disponível sobre o banco que seu irmão costuma usar.",
+      "report": {
+        "id": "875a0b6e-078b-44e4-8ab2-174fecd19ab6",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "Não há nenhum registro disponível sobre o banco que seu irmão costuma usar.",
+            "check": {
+              "assertions": [],
+              "violations": [],
+              "authority": [],
+              "uncertain": true,
+              "supportedAssertions": 0,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 0.19280000000071595
+            },
+            "verificationReferences": [],
+            "promptTokens": 691,
+            "completionTokens": 16
+          }
+        ],
+        "refreshMs": 51.184400000001915,
+        "verificationMs": 0.19280000000071595,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "Não há nenhum registro disponível sobre o banco que seu irmão costuma usar."
+      },
+      "attempts": [
+        {
+          "raw": "Não há nenhum registro disponível sobre o banco que seu irmão costuma usar.",
+          "usage": {
+            "completion_tokens": 16,
+            "prompt_tokens": 691,
+            "total_tokens": 707,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 1324.9049999999988
+        }
+      ],
+      "latency_ms": 1376.4346000000005
+    },
+    {
+      "id": "da-015",
+      "item": {
+        "id": "da-015",
+        "query": "Minha preferência por criação de personagens continua disponível?",
+        "scope": "phase22d-final-ret-main",
+        "project": "imbuia",
+        "mode": "code",
+        "known_context": [],
+        "expected": [
+          "bounded_no_current_record"
+        ],
+        "scenario": "deleted_value"
+      },
+      "context_facts": [],
+      "references": [],
+      "status": "blocked",
+      "delivered": "",
+      "report": {
+        "id": "b8338bfd-9331-4917-a83d-780148041881",
+        "status": "blocked",
+        "attempts": [
+          {
+            "rawAnswer": "Sim, sua preferência por criação de personagens continua disponível. Como não há um registro específico de uma mudança recente, ela permanece como uma base para nossas interações.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "user",
+                  "property": "games_character_creation",
+                  "value": "positive",
+                  "span": "Sim, sua preferência por criação de personagens continua disponível.",
+                  "supported": false,
+                  "references": []
+                }
+              ],
+              "violations": [
+                {
+                  "code": "unsupported_typed_value",
+                  "span": "Sim, sua preferência por criação de personagens continua disponível.",
+                  "critical": true
+                }
+              ],
+              "authority": [],
+              "uncertain": true,
+              "supportedAssertions": 0,
+              "unsupportedAssertions": 1,
+              "elapsedMs": 0.341100000001461
+            },
+            "verificationReferences": [],
+            "promptTokens": 662,
+            "completionTokens": 34
+          },
+          {
+            "rawAnswer": "Sim, sua preferência por criação de personagens continua disponível. Não há nenhum registro indicando que essa preferência tenha sido alterada ou removida.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "user",
+                  "property": "games_character_creation",
+                  "value": "positive",
+                  "span": "Sim, sua preferência por criação de personagens continua disponível.",
+                  "supported": false,
+                  "references": []
+                }
+              ],
+              "violations": [
+                {
+                  "code": "unsupported_typed_value",
+                  "span": "Sim, sua preferência por criação de personagens continua disponível.",
+                  "critical": true
+                }
+              ],
+              "authority": [],
+              "uncertain": true,
+              "supportedAssertions": 0,
+              "unsupportedAssertions": 1,
+              "elapsedMs": 0.4098999999987427
+            },
+            "verificationReferences": [],
+            "promptTokens": 843,
+            "completionTokens": 31
+          }
+        ],
+        "refreshMs": 217.89439999999377,
+        "verificationMs": 1.6460000000042783,
+        "extraGenerationMs": 2039.0542999999998,
+        "additionalUsage": {
+          "promptTokens": 843,
+          "completionTokens": 31
+        }
+      },
+      "attempts": [
+        {
+          "raw": "Sim, sua preferência por criação de personagens continua disponível. Como não há um registro específico de uma mudança recente, ela permanece como uma base para nossas interações.",
+          "usage": {
+            "completion_tokens": 34,
+            "prompt_tokens": 662,
+            "total_tokens": 696,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 1867.5246999999981
+        },
+        {
+          "raw": "Sim, sua preferência por criação de personagens continua disponível. Não há nenhum registro indicando que essa preferência tenha sido alterada ou removida.",
+          "usage": {
+            "completion_tokens": 31,
+            "prompt_tokens": 843,
+            "total_tokens": 874,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 2038.9971000000005
+        }
+      ],
+      "latency_ms": 4305.981999999996
+    },
+    {
+      "id": "da-016",
+      "item": {
+        "id": "da-016",
+        "query": "Qual é o status atual do projeto Angico?",
+        "scope": "phase22d-final-ret-main",
+        "project": "angico",
+        "mode": "chat",
+        "known_context": [
+          {
+            "entity": "project.angico",
+            "property": "lifecycle",
+            "value": "cancelled"
+          }
+        ],
+        "expected": [
+          "cancelled"
+        ],
+        "scenario": "known_fact"
+      },
+      "context_facts": [
+        {
+          "entity": "project.angico",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Cancelei meu projeto"
+            }
+          ],
+          "facets": [],
+          "id": "1cca0458-39fc-4b4f-d7ef-9fafb7d561e5",
+          "modality": "cancelled",
+          "project": "angico",
+          "property": "lifecycle",
+          "review": "reviewed",
+          "scope": "phase22d-final-ret-main",
+          "validity": "current",
+          "value": "cancelled",
+          "version": 2
+        }
+      ],
+      "references": [
+        {
+          "id": "1cca0458-39fc-4b4f-d7ef-9fafb7d561e5",
+          "version": 2
+        }
+      ],
+      "status": "delivered",
+      "delivered": "O projeto Angico está atualmente cancelado.",
+      "report": {
+        "id": "cd722873-5ed8-450e-b775-07ee8ddf00d9",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "O projeto Angico está atualmente cancelado.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "project.angico",
+                  "property": "lifecycle",
+                  "value": "cancelled",
+                  "span": "O projeto Angico está atualmente cancelado.",
+                  "supported": true,
+                  "references": [
+                    "1cca0458-39fc-4b4f-d7ef-9fafb7d561e5"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 0.49900000000343425
+            },
+            "verificationReferences": [],
+            "promptTokens": 790,
+            "completionTokens": 10
+          }
+        ],
+        "refreshMs": 49.91659999999683,
+        "verificationMs": 0.49900000000343425,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "O projeto Angico está atualmente cancelado."
+      },
+      "attempts": [
+        {
+          "raw": "O projeto Angico está atualmente cancelado.",
+          "usage": {
+            "completion_tokens": 10,
+            "prompt_tokens": 790,
+            "total_tokens": 800,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "latency_ms": 1241.019100000005
+        }
+      ],
+      "latency_ms": 1291.6631999999954
+    }
+  ]
+}

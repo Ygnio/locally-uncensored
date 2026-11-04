@@ -1,0 +1,1541 @@
+{
+  "verdict": "partial_not_approved",
+  "frozen_contract": "crates/lucille-memory/tests/fixtures/phase22d/final-v1/answer-rubric.json",
+  "independent_stages": {
+    "A": {
+      "rules": {
+        "tp": 22,
+        "fp": 2,
+        "missed": 3,
+        "active_correct": 11,
+        "active_wrong": 2,
+        "critical_writes": 2,
+        "scope_errors": 0,
+        "by_category": {
+          "coffee_sugar": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "favorite_beverage": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "interface_theme": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "response_language": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "games_class_selection": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "games_character_creation": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "games_tactics": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "games_turn_strategy": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "language": {
+            "tp": 3,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 3
+          },
+          "database": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "ram_capacity": {
+            "tp": 3,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 3
+          },
+          "goal.": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "description": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "denied_assertion": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "negated_capacity": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "uncertainty": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "foreign_actor": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "foreign_preference": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "recommendation_not_ownership": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "reported_tool_text": {
+            "tp": 0,
+            "fp": 1,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 1,
+            "critical_writes": 1,
+            "n": 1
+          },
+          "fictional_speech": {
+            "tp": 0,
+            "fp": 1,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 1,
+            "critical_writes": 1,
+            "n": 1
+          },
+          "conditional_equipment": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "hypothesis_not_current_hardware": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "foreign_named_project": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "injection": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "question_not_declaration": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "reported_speech": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "denied_execution_source": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "foreign_authorship": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          }
+        },
+        "precision": 0.9166666666666666,
+        "recall": 0.88,
+        "promotion_precision": 0.8461538461538461,
+        "passed": false
+      },
+      "llm": {
+        "tp": 21,
+        "fp": 2,
+        "missed": 4,
+        "active_correct": 11,
+        "active_wrong": 2,
+        "critical_writes": 2,
+        "scope_errors": 0,
+        "by_category": {
+          "coffee_sugar": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "favorite_beverage": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "interface_theme": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "response_language": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "games_class_selection": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "games_character_creation": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "games_tactics": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "games_turn_strategy": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "language": {
+            "tp": 3,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 3
+          },
+          "database": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "ram_capacity": {
+            "tp": 3,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 3
+          },
+          "goal.": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "description": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "denied_assertion": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "negated_capacity": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "uncertainty": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "foreign_actor": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "foreign_preference": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "recommendation_not_ownership": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "reported_tool_text": {
+            "tp": 0,
+            "fp": 1,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 1,
+            "critical_writes": 1,
+            "n": 1
+          },
+          "fictional_speech": {
+            "tp": 0,
+            "fp": 1,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 1,
+            "critical_writes": 1,
+            "n": 1
+          },
+          "conditional_equipment": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "hypothesis_not_current_hardware": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "foreign_named_project": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "injection": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "question_not_declaration": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "reported_speech": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "denied_execution_source": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "foreign_authorship": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          }
+        },
+        "precision": 0.9130434782608695,
+        "recall": 0.84,
+        "promotion_precision": 0.8461538461538461,
+        "passed": false
+      },
+      "hybrid": {
+        "tp": 22,
+        "fp": 2,
+        "missed": 3,
+        "active_correct": 11,
+        "active_wrong": 2,
+        "critical_writes": 2,
+        "scope_errors": 0,
+        "by_category": {
+          "coffee_sugar": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "favorite_beverage": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "interface_theme": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "response_language": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "games_class_selection": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "games_character_creation": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "games_tactics": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "games_turn_strategy": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "language": {
+            "tp": 3,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 3
+          },
+          "database": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "ram_capacity": {
+            "tp": 3,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 3
+          },
+          "goal.": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "description": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "denied_assertion": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "negated_capacity": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "uncertainty": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "foreign_actor": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "foreign_preference": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "recommendation_not_ownership": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "reported_tool_text": {
+            "tp": 0,
+            "fp": 1,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 1,
+            "critical_writes": 1,
+            "n": 1
+          },
+          "fictional_speech": {
+            "tp": 0,
+            "fp": 1,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 1,
+            "critical_writes": 1,
+            "n": 1
+          },
+          "conditional_equipment": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "hypothesis_not_current_hardware": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "foreign_named_project": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "injection": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "question_not_declaration": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "reported_speech": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "denied_execution_source": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "foreign_authorship": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          }
+        },
+        "precision": 0.9166666666666666,
+        "recall": 0.88,
+        "promotion_precision": 0.8461538461538461,
+        "passed": false
+      }
+    },
+    "C": {
+      "modes": {
+        "fts5": {
+          "tp": 24,
+          "fp": 0,
+          "missed": 2,
+          "negative_injections": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "precision_at_3_sum": 6.666666666666665,
+          "recall_at_3_sum": 17.5,
+          "ranking_queries": 22,
+          "by_category": {
+            "identified_ram": [
+              1,
+              0,
+              0
+            ],
+            "identified_ram_alias": [
+              1,
+              0,
+              0
+            ],
+            "identified_memory": [
+              1,
+              0,
+              0
+            ],
+            "identified_work_ram": [
+              1,
+              0,
+              0
+            ],
+            "two_devices": [
+              2,
+              0,
+              0
+            ],
+            "capacity_history": [
+              2,
+              0,
+              0
+            ],
+            "indirect_description": [
+              0,
+              0,
+              1
+            ],
+            "indirect_description_alias": [
+              1,
+              0,
+              0
+            ],
+            "chosen_language": [
+              1,
+              0,
+              0
+            ],
+            "planned_database": [
+              1,
+              0,
+              0
+            ],
+            "coffee_preparation": [
+              1,
+              0,
+              0
+            ],
+            "favorite_beverage": [
+              1,
+              0,
+              0
+            ],
+            "class_preference": [
+              1,
+              0,
+              0
+            ],
+            "deleted_preference": [
+              0,
+              0,
+              0
+            ],
+            "unrelated_birth_property": [
+              0,
+              0,
+              0
+            ],
+            "foreign_actor": [
+              0,
+              0,
+              0
+            ],
+            "unknown_gpu": [
+              0,
+              0,
+              0
+            ],
+            "other_namespace": [
+              1,
+              0,
+              0
+            ],
+            "other_project": [
+              2,
+              0,
+              0
+            ],
+            "explicit_foreign_project": [
+              0,
+              0,
+              0
+            ],
+            "cancelled_project": [
+              1,
+              0,
+              0
+            ],
+            "cancelled_history": [
+              2,
+              0,
+              0
+            ],
+            "no_cancelled_current_execution": [
+              1,
+              0,
+              0
+            ],
+            "empty_namespace": [
+              0,
+              0,
+              0
+            ],
+            "mixed_actor_comparison": [
+              0,
+              0,
+              1
+            ],
+            "general_knowledge": [
+              0,
+              0,
+              0
+            ],
+            "preference_history": [
+              2,
+              0,
+              0
+            ],
+            "foreign_device": [
+              0,
+              0,
+              0
+            ],
+            "completed_goal": [
+              1,
+              0,
+              0
+            ]
+          },
+          "precision": 1.0,
+          "recall": 0.9230769230769231,
+          "precision_at_3": 0.303030303030303,
+          "recall_at_3": 0.7954545454545454,
+          "passed": true
+        },
+        "nomic": {
+          "tp": 20,
+          "fp": 1,
+          "missed": 6,
+          "negative_injections": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "precision_at_3_sum": 7.999999999999998,
+          "recall_at_3_sum": 21.0,
+          "ranking_queries": 22,
+          "by_category": {
+            "identified_ram": [
+              1,
+              0,
+              0
+            ],
+            "identified_ram_alias": [
+              1,
+              0,
+              0
+            ],
+            "identified_memory": [
+              1,
+              0,
+              0
+            ],
+            "identified_work_ram": [
+              1,
+              0,
+              0
+            ],
+            "two_devices": [
+              2,
+              0,
+              0
+            ],
+            "capacity_history": [
+              1,
+              0,
+              1
+            ],
+            "indirect_description": [
+              0,
+              1,
+              1
+            ],
+            "indirect_description_alias": [
+              1,
+              0,
+              0
+            ],
+            "chosen_language": [
+              1,
+              0,
+              0
+            ],
+            "planned_database": [
+              1,
+              0,
+              0
+            ],
+            "coffee_preparation": [
+              0,
+              0,
+              1
+            ],
+            "favorite_beverage": [
+              1,
+              0,
+              0
+            ],
+            "class_preference": [
+              1,
+              0,
+              0
+            ],
+            "deleted_preference": [
+              0,
+              0,
+              0
+            ],
+            "unrelated_birth_property": [
+              0,
+              0,
+              0
+            ],
+            "foreign_actor": [
+              0,
+              0,
+              0
+            ],
+            "unknown_gpu": [
+              0,
+              0,
+              0
+            ],
+            "other_namespace": [
+              1,
+              0,
+              0
+            ],
+            "other_project": [
+              2,
+              0,
+              0
+            ],
+            "explicit_foreign_project": [
+              0,
+              0,
+              0
+            ],
+            "cancelled_project": [
+              1,
+              0,
+              0
+            ],
+            "cancelled_history": [
+              2,
+              0,
+              0
+            ],
+            "no_cancelled_current_execution": [
+              1,
+              0,
+              0
+            ],
+            "empty_namespace": [
+              0,
+              0,
+              0
+            ],
+            "mixed_actor_comparison": [
+              0,
+              0,
+              1
+            ],
+            "general_knowledge": [
+              0,
+              0,
+              0
+            ],
+            "preference_history": [
+              0,
+              0,
+              2
+            ],
+            "foreign_device": [
+              0,
+              0,
+              0
+            ],
+            "completed_goal": [
+              1,
+              0,
+              0
+            ]
+          },
+          "precision": 0.9523809523809523,
+          "recall": 0.7692307692307693,
+          "precision_at_3": 0.36363636363636354,
+          "recall_at_3": 0.9545454545454546,
+          "passed": false
+        },
+        "hybrid": {
+          "tp": 24,
+          "fp": 1,
+          "missed": 2,
+          "negative_injections": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "precision_at_3_sum": 7.999999999999998,
+          "recall_at_3_sum": 21.0,
+          "ranking_queries": 22,
+          "by_category": {
+            "identified_ram": [
+              1,
+              0,
+              0
+            ],
+            "identified_ram_alias": [
+              1,
+              0,
+              0
+            ],
+            "identified_memory": [
+              1,
+              0,
+              0
+            ],
+            "identified_work_ram": [
+              1,
+              0,
+              0
+            ],
+            "two_devices": [
+              2,
+              0,
+              0
+            ],
+            "capacity_history": [
+              2,
+              0,
+              0
+            ],
+            "indirect_description": [
+              0,
+              1,
+              1
+            ],
+            "indirect_description_alias": [
+              1,
+              0,
+              0
+            ],
+            "chosen_language": [
+              1,
+              0,
+              0
+            ],
+            "planned_database": [
+              1,
+              0,
+              0
+            ],
+            "coffee_preparation": [
+              1,
+              0,
+              0
+            ],
+            "favorite_beverage": [
+              1,
+              0,
+              0
+            ],
+            "class_preference": [
+              1,
+              0,
+              0
+            ],
+            "deleted_preference": [
+              0,
+              0,
+              0
+            ],
+            "unrelated_birth_property": [
+              0,
+              0,
+              0
+            ],
+            "foreign_actor": [
+              0,
+              0,
+              0
+            ],
+            "unknown_gpu": [
+              0,
+              0,
+              0
+            ],
+            "other_namespace": [
+              1,
+              0,
+              0
+            ],
+            "other_project": [
+              2,
+              0,
+              0
+            ],
+            "explicit_foreign_project": [
+              0,
+              0,
+              0
+            ],
+            "cancelled_project": [
+              1,
+              0,
+              0
+            ],
+            "cancelled_history": [
+              2,
+              0,
+              0
+            ],
+            "no_cancelled_current_execution": [
+              1,
+              0,
+              0
+            ],
+            "empty_namespace": [
+              0,
+              0,
+              0
+            ],
+            "mixed_actor_comparison": [
+              0,
+              0,
+              1
+            ],
+            "general_knowledge": [
+              0,
+              0,
+              0
+            ],
+            "preference_history": [
+              2,
+              0,
+              0
+            ],
+            "foreign_device": [
+              0,
+              0,
+              0
+            ],
+            "completed_goal": [
+              1,
+              0,
+              0
+            ]
+          },
+          "precision": 0.96,
+          "recall": 0.9230769230769231,
+          "precision_at_3": 0.36363636363636354,
+          "recall_at_3": 0.9545454545454546,
+          "passed": true
+        }
+      },
+      "mandatory_lexical": {
+        "queries": 16,
+        "missed": 1,
+        "all_recovered": false,
+        "cases": [
+          {
+            "id": "dr-001",
+            "expected": [
+              "primary-now"
+            ],
+            "actual": [
+              "primary-now"
+            ],
+            "missed": 0
+          },
+          {
+            "id": "dr-002",
+            "expected": [
+              "primary-now"
+            ],
+            "actual": [
+              "primary-now"
+            ],
+            "missed": 0
+          },
+          {
+            "id": "dr-003",
+            "expected": [
+              "primary-now"
+            ],
+            "actual": [
+              "primary-now"
+            ],
+            "missed": 0
+          },
+          {
+            "id": "dr-004",
+            "expected": [
+              "work-ram"
+            ],
+            "actual": [
+              "work-ram"
+            ],
+            "missed": 0
+          },
+          {
+            "id": "dr-005",
+            "expected": [
+              "primary-now",
+              "work-ram"
+            ],
+            "actual": [
+              "primary-now",
+              "work-ram"
+            ],
+            "missed": 0
+          },
+          {
+            "id": "dr-008",
+            "expected": [
+              "purpose"
+            ],
+            "actual": [
+              "purpose"
+            ],
+            "missed": 0
+          },
+          {
+            "id": "dr-009",
+            "expected": [
+              "language-choice"
+            ],
+            "actual": [
+              "language-choice"
+            ],
+            "missed": 0
+          },
+          {
+            "id": "dr-010",
+            "expected": [
+              "database-plan"
+            ],
+            "actual": [
+              "database-plan"
+            ],
+            "missed": 0
+          },
+          {
+            "id": "dr-011",
+            "expected": [
+              "coffee-now"
+            ],
+            "actual": [
+              "coffee-now"
+            ],
+            "missed": 0
+          },
+          {
+            "id": "dr-012",
+            "expected": [
+              "favorite"
+            ],
+            "actual": [
+              "favorite"
+            ],
+            "missed": 0
+          },
+          {
+            "id": "dr-013",
+            "expected": [
+              "classes"
+            ],
+            "actual": [
+              "classes"
+            ],
+            "missed": 0
+          },
+          {
+            "id": "dr-019",
+            "expected": [
+              "other-scope-ram"
+            ],
+            "actual": [
+              "other-scope-ram"
+            ],
+            "missed": 0
+          },
+          {
+            "id": "dr-020",
+            "expected": [
+              "other-language"
+            ],
+            "actual": [
+              "other-language"
+            ],
+            "missed": 0
+          },
+          {
+            "id": "dr-021",
+            "expected": [
+              "other-database"
+            ],
+            "actual": [
+              "other-database"
+            ],
+            "missed": 0
+          },
+          {
+            "id": "dr-027",
+            "expected": [
+              "database-plan"
+            ],
+            "actual": [],
+            "missed": 1
+          },
+          {
+            "id": "dr-031",
+            "expected": [
+              "completed-goal"
+            ],
+            "actual": [
+              "completed-goal"
+            ],
+            "missed": 0
+          }
+        ]
+      }
+    },
+    "D": {
+      "method": "Post-generation manual literal adjudication, independent of application verdict. General future offer to memorize in da-013 excluded from completed-write claims and noted as gratuitous narration. Raw unsupported da-015 entries each cover the complete two-sentence unsupported passage; no fabricated per-clause count.",
+      "delivered_supported_claims": 20,
+      "delivered_claims": 20,
+      "delivered_fidelity": 1.0,
+      "delivered_responses": 15,
+      "executed_responses": 16,
+      "planned_responses": 21,
+      "planned_availability": 0.7142857142857143,
+      "executed_availability": 0.9375,
+      "retained_atoms": 20,
+      "executed_expected_atoms": 21,
+      "planned_expected_atoms": 27,
+      "planned_completeness": 0.7407407407407407,
+      "executed_completeness": 0.9523809523809523,
+      "critical_raw_attempts_blocked": 2,
+      "critical_delivered": 0,
+      "not_approved": true
+    },
+    "E": {
+      "delivered_claims": 37,
+      "supported_claims": 35,
+      "critical_delivered": 1,
+      "planned_responses": 44,
+      "useful_responses": 37,
+      "expected_atoms": 53,
+      "retained_atoms": 41,
+      "blocked": 2,
+      "fidelity": 0.9459459459459459,
+      "availability": 0.8409090909090909,
+      "completeness": 0.7735849056603774
+    }
+  },
+  "failed_requirements": [
+    "Extraction precision below 95%; two critical writes and automatic promotions per mode.",
+    "One of sixteen mandatory lexical queries missed.",
+    "Independent D incomplete: 16/21 executed; five unavailable cases retained in denominator.",
+    "Independent E fidelity 35/37 below 95%, one critical USER-history denial delivered.",
+    "Independent E availability and completeness below 95%.",
+    "New class-forget command did not delete; renewal scenario cannot prove tombstone recovery.",
+    "Historical 20 has two unsupported RAM-performance claims and blocked useful response.",
+    "Historical 100 premature Registrado delivered before candidate creation.",
+    "No actual remote CI run attested."
+  ],
+  "no_tuning_after_final_results": true,
+  "interpretation": "Passed unit/integration checks, safe protocol faults and selected improvements cannot compensate for failed final semantic gates."
+}

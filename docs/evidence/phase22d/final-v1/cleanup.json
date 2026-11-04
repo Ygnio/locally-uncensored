@@ -1,0 +1,46 @@
+{
+  "utc": "2026-11-04T17:15:39.084092+00:00",
+  "method": "Existing GUI tree stop checks recorded PID/path/creation; model supervisors retain native owned handles and recheck image/creation before terminating. Broker/sampler stop by their own isolated markers. Final PID liveness and socket checks. No user app or operational listener stopped.",
+  "own_ports_closed": true,
+  "ports_closed": {
+    "15283": true,
+    "15284": true,
+    "15287": true,
+    "15288": true,
+    "15289": true
+  },
+  "processes": {
+    "gemma": {
+      "pid": 33732,
+      "running_after_stop": false,
+      "stop_identity_verified": true,
+      "stop_reason": "requested test shutdown",
+      "exit_code": 1
+    },
+    "nomic": {
+      "pid": 33156,
+      "running_after_stop": false,
+      "stop_identity_verified": true,
+      "stop_reason": "requested test shutdown",
+      "exit_code": 1
+    },
+    "broker": {
+      "pid": 16368,
+      "running_after_stop": false
+    },
+    "gui": {
+      "pid": 28792,
+      "running_after_stop": false
+    },
+    "vite": {
+      "pid": 17384,
+      "running_after_stop": false
+    },
+    "sampler": {
+      "pid": 17392,
+      "running_after_stop": false
+    }
+  },
+  "model_stop_code_1": "Requested test shutdown on Windows, not memory pressure or model quality failure.",
+  "webview_limit": "Port/tree shutdown verified by the existing owned-tree script; not enumeration of unrelated WebViews."
+}
