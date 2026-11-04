@@ -3,7 +3,7 @@ import { invoke } from '@tauri-apps/api/core'
 import type { ChatMessage } from '../api/providers/types'
 import type { Conversation } from '../types/chat'
 import { registerAnswerSnapshot, type MemoryFact, type MemoryDirectiveReceipt } from './lucille-fidelity'
-import { memoryQuestionNeedsNoTools } from './lucille-authority'
+import { answerLanguage, memoryQuestionNeedsNoTools } from './lucille-authority'
 
 export type { LucilleBinding } from '../types/chat'
 export interface LucilleProfile { name: string; description: string; personality: string; instructions: string }
@@ -108,7 +108,12 @@ export async function withLucilleContext(
   // The current user message remains after retrieved data; tool call/result pairs stay adjacent.
   const lastUser = clean.findLastIndex(message => message.role === 'user')
   const at = lastUser < 0 ? clean.length : lastUser
-  const result = [identity, ...(environment ? [environment] : []), ...clean.slice(0, at), ...(memories.length ? [data] : []), ...clean.slice(at)]
+  // Resolve from the original question, before adjacent Portuguese retrieval is
+  // flattened with that USER turn by strict model templates.
+  const language=answerLanguage(query,[...currentStatements,...facts])
+  const languageDirective:ChatMessage|undefined=language ? {role:'system',content:'Required response language for the current original USER question: '+(language==='en'?'English':'Portuguese')+'. Use this language for the answer, including any revision. Retrieved source wording does not select the response language; preserve proper names and technical values.'} : undefined
+  if(languageDirective)injected.add(languageDirective)
+  const result = [identity, ...(environment ? [environment] : []), ...clean.slice(0, at), ...(languageDirective ? [languageDirective] : []), ...(memories.length ? [data] : []), ...clean.slice(at)]
   registerAnswerSnapshot(identity, {
     scope: binding.scope, project: binding.project, query, facts, currentStatements, directiveReceipt, memoryOnly,
     toolObservations: runtime?.receipts,
@@ -122,7 +127,7 @@ export async function withLucilleContext(
     reload: () => withLucilleContext(conversation, messageId, query, mode, clean, signal, loader, runtime),
   })
   // Serialized UTF-8 length bounds tokens conservatively, including escaping and framing.
-  const actual = new TextEncoder().encode(identity.content + (memories.length ? data.content : '')).length + 32 + envCost
+  const actual = new TextEncoder().encode(identity.content + (languageDirective?.content??'') + (memories.length ? data.content : '')).length + 32 + (languageDirective ? 32 : 0) + envCost
   if (actual > binding.tokenBudget) throw new Error('Lucille context exceeds configured budget')
   return result
   } catch (error) {

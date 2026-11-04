@@ -41,6 +41,7 @@ export function requestedMemoryProperties(query: string): string[] {
   if (/\b(?:linguagem|language)\b/.test(q)) properties.push('language')
   if (/\b(?:banco|database)\b/.test(q)) properties.push('database')
   if (/\bram\b/.test(q)) properties.push(/livre|free/.test(q)?'free_ram':'ram_capacity')
+  if (/\b(?:projeto|project)\b/.test(q) && /como esta|how is|status|estado atual|current state/.test(q)) properties.push('lifecycle')
   return properties
 }
 

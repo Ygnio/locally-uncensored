@@ -1,0 +1,4131 @@
+{
+  "kind": "development_known_cases_not_unseen_approval",
+  "source_head": "e5e5451c318928b3570d13526b30b0f43b8e765d",
+  "method": "Actual native full application + Gemma/Nomic; all displayed assistant text, raw attempts and report copies preserved. App checks label interventions only, independent quality adjudication is still required. System prompts and private paths omitted.",
+  "fixtures": [
+    {
+      "file": "driver-development22c-v1-decision-final.json",
+      "private_fixture_sha256": "8c35066f3bd186580d3a6d7414c5b52145880e8e0c9b0d67a87dd50981e79765",
+      "scope": "phase22c-development-v1",
+      "project": "ingazeiro",
+      "turns": [
+        {
+          "turn": 0,
+          "question": "Decidi usar TypeScript para meu projeto.",
+          "answers": [
+            {
+              "id": "05b263bd-a186-411d-b3d3-ac34c5b1b9d9",
+              "content": "Excelente escolha, pois o tipagem estática ajuda a evitar muitos erros em tempo de execução. Como você pretende estruturar os tipos principais do seu projeto?",
+              "lucilleFidelity": [
+                {
+                  "id": "3d4ec485-200b-4544-9e9c-0b8ae7bfa326",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Excelente escolha, pois o tipagem estática ajuda a evitar muitos erros em tempo de execução. Como você pretende estruturar os tipos principais do seu projeto?",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 894,
+                      "completionTokens": 32
+                    }
+                  ],
+                  "refreshMs": 5.699999988079071,
+                  "verificationMs": 1,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Excelente escolha, pois o tipagem estática ajuda a evitar muitos erros em tempo de execução. Como você pretende estruturar os tipos principais do seu projeto?"
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2905,
+          "extraction_wait_ms": 4691,
+          "notePaints": []
+        },
+        {
+          "turn": 1,
+          "question": "Escolhi PostgreSQL para o banco do meu projeto.",
+          "answers": [
+            {
+              "id": "14a0c93a-c62d-49ef-9163-e58903acac27",
+              "content": "O PostgreSQL é uma escolha sólida e robusta para lidar com dados relacionais. Você já pensou em qual ORM ou Query Builder pretende utilizar para conectar o TypeScript ao banco?",
+              "lucilleFidelity": [
+                {
+                  "id": "77a914a6-2ea9-4985-be99-4f4471825ae0",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "O PostgreSQL é uma escolha sólida e robusta para lidar com dados relacionais. Você já pensou em qual ORM ou Query Builder pretende utilizar para conectar o TypeScript ao banco?",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.ingazeiro",
+                            "property": "database",
+                            "value": "postgresql",
+                            "span": "O PostgreSQL é uma escolha sólida e robusta para lidar com dados relacionais.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          },
+                          {
+                            "entity": "project.ingazeiro",
+                            "property": "language",
+                            "value": "typescript",
+                            "span": "Você já pensou em qual ORM ou Query Builder pretende utilizar para conectar o TypeScript ao banco?",
+                            "supported": true,
+                            "references": [
+                              "ee71cc8d-f615-2c2c-c41c-f58875360f11"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 2,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.199999988079071
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1082,
+                      "completionTokens": 37
+                    }
+                  ],
+                  "refreshMs": 13.100000023841858,
+                  "verificationMs": 1.199999988079071,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "O PostgreSQL é uma escolha sólida e robusta para lidar com dados relacionais. Você já pensou em qual ORM ou Query Builder pretende utilizar para conectar o TypeScript ao banco?"
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3396,
+          "extraction_wait_ms": 4465,
+          "notePaints": []
+        },
+        {
+          "turn": 2,
+          "question": "Você lembra qual linguagem eu escolhi para este projeto?",
+          "answers": [
+            {
+              "id": "0772f204-b610-4db6-9afb-03f6a17e8a25",
+              "content": "Você escolheu TypeScript para o projeto Ingazeiro.",
+              "lucilleFidelity": [
+                {
+                  "id": "36707526-6005-4d9c-932f-ed3004975d4d",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você escolheu TypeScript para o projeto Ingazeiro.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.ingazeiro",
+                            "property": "language",
+                            "value": "typescript",
+                            "span": "Você escolheu TypeScript para o projeto Ingazeiro.",
+                            "supported": true,
+                            "references": [
+                              "ee71cc8d-f615-2c2c-c41c-f58875360f11"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.199999988079071
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1066,
+                      "completionTokens": 12
+                    }
+                  ],
+                  "refreshMs": 9.300000011920929,
+                  "verificationMs": 1.199999988079071,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você escolheu TypeScript para o projeto Ingazeiro."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2381,
+          "extraction_wait_ms": 721,
+          "notePaints": []
+        },
+        {
+          "turn": 3,
+          "question": "Ter decidido usar TypeScript comprova que o projeto já foi concluído?",
+          "answers": [
+            {
+              "id": "20ed8338-2fa2-497f-a809-d3d174411da1",
+              "content": "Não, decidir usar TypeScript comprova apenas uma escolha de tecnologia, não a conclusão do projeto. Como você decidiu usar TypeScript para o projeto ingazeiro, o próximo passo é a implementação real do código.",
+              "lucilleFidelity": [
+                {
+                  "id": "6d6a507d-b0f4-4b9d-bcbe-7124985d9212",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Não, decidir usar TypeScript comprova apenas uma escolha de tecnologia, não a conclusão do projeto. Como você decidiu usar TypeScript para o projeto ingazeiro, o próximo passo é a implementação real do código.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.ingazeiro",
+                            "property": "language",
+                            "value": "typescript",
+                            "span": "Não, decidir usar TypeScript comprova apenas uma escolha de tecnologia, não a conclusão do projeto.",
+                            "supported": true,
+                            "references": [
+                              "ee71cc8d-f615-2c2c-c41c-f58875360f11"
+                            ]
+                          },
+                          {
+                            "entity": "project.ingazeiro",
+                            "property": "language",
+                            "value": "typescript",
+                            "span": "Como você decidiu usar TypeScript para o projeto ingazeiro, o próximo passo é a implementação real do código.",
+                            "supported": true,
+                            "references": [
+                              "ee71cc8d-f615-2c2c-c41c-f58875360f11"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 2,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.6000000238418579
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 3891,
+                      "completionTokens": 42
+                    }
+                  ],
+                  "refreshMs": 11,
+                  "verificationMs": 0.6000000238418579,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Não, decidir usar TypeScript comprova apenas uma escolha de tecnologia, não a conclusão do projeto. Como você decidiu usar TypeScript para o projeto ingazeiro, o próximo passo é a implementação real do código."
+                }
+              ],
+              "agentBlocks": []
+            }
+          ],
+          "generation_ms": 6958,
+          "extraction_wait_ms": 731,
+          "notePaints": []
+        },
+        {
+          "turn": 4,
+          "question": "Qual foi a minha escolha de armazenamento para este projeto?",
+          "answers": [
+            {
+              "id": "33ef0740-b9c8-490f-a7f4-62b4d3bba193",
+              "content": "Você escolheu o PostgreSQL como banco de dados para o projeto ingazeiro.",
+              "lucilleFidelity": [
+                {
+                  "id": "f3c355c3-c365-40f9-b742-d5acb3a2bd30",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você escolheu o PostgreSQL como banco de dados para o projeto ingazeiro.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.ingazeiro",
+                            "property": "database",
+                            "value": "postgresql",
+                            "span": "Você escolheu o PostgreSQL como banco de dados para o projeto ingazeiro.",
+                            "supported": true,
+                            "references": [
+                              "fcafd946-839b-23fd-5ca1-e31cd32c93a8"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.19999998807907104
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 3540,
+                      "completionTokens": 17
+                    }
+                  ],
+                  "refreshMs": 9,
+                  "verificationMs": 0.19999998807907104,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você escolheu o PostgreSQL como banco de dados para o projeto ingazeiro."
+                }
+              ],
+              "agentBlocks": [
+                {
+                  "id": "05b6b581-ca89-4455-8b82-df74c4f3b9db",
+                  "phase": "answer",
+                  "content": "Você escolheu o PostgreSQL como banco de dados para o projeto ingazeiro.",
+                  "timestamp": 1793795247920
+                }
+              ]
+            }
+          ],
+          "generation_ms": 5699,
+          "extraction_wait_ms": 720,
+          "notePaints": []
+        }
+      ],
+      "final_metrics": {
+        "current_vectors": 2,
+        "history_events": [
+          {
+            "count": 2,
+            "state": "approve"
+          },
+          {
+            "count": 2,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 2,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 2,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "ingazeiro",
+        "provenance_rows": 2,
+        "scope": "phase22c-development-v1",
+        "sqlite_main_page_bytes": 204800,
+        "vector_json_bytes": 19020
+      }
+    },
+    {
+      "file": "driver-development22c-v1-empty-final.json",
+      "private_fixture_sha256": "d89f12aa39b333f9a00ef2a7e88f389ab572e7c4cb69df0d4c702121e1306246",
+      "scope": "phase22c-development-v1",
+      "project": "guapuruvu",
+      "turns": [
+        {
+          "turn": 0,
+          "question": "Qual decisão de linguagem eu tomei para meu projeto?",
+          "answers": [
+            {
+              "id": "0a9e9f4b-184f-47d2-89e5-2f8245fb0f6a",
+              "content": "Não há nenhum registro específico sobre uma decisão de linguagem para o seu projeto na memória atual. Se você já definiu uma, por favor, me informe para que eu possa registrar.",
+              "lucilleFidelity": [
+                {
+                  "id": "31e7a663-d684-48a8-8a1e-ddb0d4aa20e2",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Não há nenhum registro específico sobre uma decisão de linguagem para o seu projeto na memória atual. Se você já definiu uma, por favor, me informe para que eu possa registrar.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": true,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 929,
+                      "completionTokens": 37
+                    }
+                  ],
+                  "refreshMs": 9.5,
+                  "verificationMs": 1,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Não há nenhum registro específico sobre uma decisão de linguagem para o seu projeto na memória atual. Se você já definiu uma, por favor, me informe para que eu possa registrar."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3143,
+          "extraction_wait_ms": 710,
+          "notePaints": []
+        },
+        {
+          "turn": 1,
+          "question": "Quando é meu aniversário?",
+          "answers": [
+            {
+              "id": "9bc8d0cd-786d-4e71-a5fc-3a33e67a652f",
+              "content": "Não há nenhum registro disponível sobre a data do seu aniversário no momento.",
+              "lucilleFidelity": [
+                {
+                  "id": "15beb7e0-41ec-46bf-a933-ff3e9d4750c5",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Não há nenhum registro disponível sobre a data do seu aniversário no momento.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": true,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.10000002384185791
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 891,
+                      "completionTokens": 15
+                    }
+                  ],
+                  "refreshMs": 6.399999976158142,
+                  "verificationMs": 0.10000002384185791,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Não há nenhum registro disponível sobre a data do seu aniversário no momento."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2148,
+          "extraction_wait_ms": 725,
+          "notePaints": []
+        }
+      ],
+      "final_metrics": {
+        "current_vectors": 0,
+        "history_events": [],
+        "jobs": [],
+        "memories": [],
+        "pending_vectors": 0,
+        "project": "guapuruvu",
+        "provenance_rows": 0,
+        "scope": "phase22c-development-v1",
+        "sqlite_main_page_bytes": 491520,
+        "vector_json_bytes": 0
+      }
+    },
+    {
+      "file": "driver-development22c-v1-ended-final.json",
+      "private_fixture_sha256": "17937caf38110e3d74d65e4d9329ecee6b30c95a713d13601cadf651ac5a3f7c",
+      "scope": "phase22c-development-v1",
+      "project": "jatoba-azul",
+      "turns": [
+        {
+          "turn": 0,
+          "question": "Estou implementando meu projeto em JavaScript.",
+          "answers": [
+            {
+              "id": "e01ff8ef-911c-4708-b343-53b9605ae38a",
+              "content": "Que excelente escolha de linguagem. Qual parte do projeto você está desenvolvendo agora?",
+              "lucilleFidelity": [
+                {
+                  "id": "b8af543d-5dbd-457b-a37b-bf6201a4fe0f",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Que excelente escolha de linguagem. Qual parte do projeto você está desenvolvendo agora?",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.5
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 895,
+                      "completionTokens": 17
+                    }
+                  ],
+                  "refreshMs": 18.900000035762787,
+                  "verificationMs": 0.5,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Que excelente escolha de linguagem. Qual parte do projeto você está desenvolvendo agora?"
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2394,
+          "extraction_wait_ms": 4162,
+          "notePaints": []
+        },
+        {
+          "turn": 1,
+          "question": "Cancelei meu projeto.",
+          "answers": [
+            {
+              "id": "76f7b080-8bbb-48fc-ba48-417b0bf3a716",
+              "content": "Entendido, você cancelou o projeto Jatoba-Azul. Deseja começar algo novo ou apenas pausar por enquanto?",
+              "lucilleFidelity": [
+                {
+                  "id": "e37c58e6-ae2c-4905-ba3b-f23acdef3e64",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Entendido, você cancelou o projeto Jatoba-Azul. Deseja começar algo novo ou apenas pausar por enquanto?",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.jatoba-azul",
+                            "property": "lifecycle",
+                            "value": "cancelled",
+                            "span": "Entendido, você cancelou o projeto Jatoba-Azul.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.100000023841858
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1062,
+                      "completionTokens": 29
+                    }
+                  ],
+                  "refreshMs": 11.600000023841858,
+                  "verificationMs": 1.100000023841858,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Entendido, você cancelou o projeto Jatoba-Azul. Deseja começar algo novo ou apenas pausar por enquanto?"
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2905,
+          "extraction_wait_ms": 4712,
+          "notePaints": []
+        },
+        {
+          "turn": 2,
+          "question": "Decidi usar SQLite no meu projeto.",
+          "answers": [
+            {
+              "id": "ffbf4b24-d44f-4825-9260-f5f2584115c6",
+              "content": "O SQLite é uma excelente escolha pela sua simplicidade e eficiência. Como você pretende estruturar os dados nele?",
+              "lucilleFidelity": [
+                {
+                  "id": "bb463e12-75fb-491e-a01d-6030e7caeba4",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "O SQLite é uma excelente escolha pela sua simplicidade e eficiência. Como você pretende estruturar os dados nele?",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.jatoba-azul",
+                            "property": "database",
+                            "value": "sqlite",
+                            "span": "O SQLite é uma excelente escolha pela sua simplicidade e eficiência.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.100000023841858
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1105,
+                      "completionTokens": 23
+                    }
+                  ],
+                  "refreshMs": 8.300000011920929,
+                  "verificationMs": 1.100000023841858,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "O SQLite é uma excelente escolha pela sua simplicidade e eficiência. Como você pretende estruturar os dados nele?"
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3164,
+          "extraction_wait_ms": 4691,
+          "notePaints": []
+        },
+        {
+          "turn": 3,
+          "question": "Como está meu projeto neste momento?",
+          "answers": [
+            {
+              "id": "03a8b526-fba1-41fc-b802-1635c38004d3",
+              "content": "\n\nAgent error: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+              "lucilleFidelity": [
+                {
+                  "id": "0bd11ea7-b521-4465-985c-c885b6190e56",
+                  "status": "blocked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Seu projeto jatoba-azul está atualmente cancelado. Antes do cancelamento, você havia decidido utilizar SQLite como banco de dados.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.jatoba-azul",
+                            "property": "database",
+                            "value": "sqlite",
+                            "span": "Antes do cancelamento, você havia decidido utilizar SQLite como banco de dados.",
+                            "supported": true,
+                            "references": [
+                              "0e84fc65-6b4b-df64-5c09-82ad98822802"
+                            ]
+                          }
+                        ],
+                        "violations": [
+                          {
+                            "code": "unsupported_historical_state",
+                            "span": "Antes do cancelamento, você havia decidido utilizar SQLite como banco de dados.",
+                            "critical": true
+                          }
+                        ],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.30000001192092896
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 2296,
+                      "completionTokens": 28
+                    },
+                    {
+                      "rawAnswer": "Seu projeto jatoba-azul está atualmente cancelado. Antes do cancelamento, você havia decidido utilizar SQLite como banco de dados.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.jatoba-azul",
+                            "property": "database",
+                            "value": "sqlite",
+                            "span": "Antes do cancelamento, você havia decidido utilizar SQLite como banco de dados.",
+                            "supported": true,
+                            "references": [
+                              "0e84fc65-6b4b-df64-5c09-82ad98822802"
+                            ]
+                          }
+                        ],
+                        "violations": [
+                          {
+                            "code": "unsupported_historical_state",
+                            "span": "Antes do cancelamento, você havia decidido utilizar SQLite como banco de dados.",
+                            "critical": true
+                          }
+                        ],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.2999999523162842
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 2435,
+                      "completionTokens": 28
+                    }
+                  ],
+                  "refreshMs": 28,
+                  "verificationMs": 0.5999999642372131,
+                  "extraGenerationMs": 3998.5,
+                  "additionalUsage": {
+                    "promptTokens": 2435,
+                    "completionTokens": 28
+                  }
+                }
+              ],
+              "agentBlocks": []
+            }
+          ],
+          "generation_ms": 8744,
+          "extraction_wait_ms": 723,
+          "notePaints": []
+        },
+        {
+          "turn": 4,
+          "question": "Que linguagem era usada antes de eu cancelar esse projeto?",
+          "answers": [
+            {
+              "id": "aec50e6c-03cb-4ea5-ada1-5a637c57ce1a",
+              "content": "Você estava usando JavaScript para implementar o projeto Jatoba Azul.",
+              "lucilleFidelity": [
+                {
+                  "id": "607137cd-b7e9-4674-8e64-ba1ed64fb76f",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você estava usando JavaScript para implementar o projeto Jatoba Azul.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.jatoba-azul",
+                            "property": "language",
+                            "value": "javascript",
+                            "span": "Você estava usando JavaScript para implementar o projeto Jatoba Azul.",
+                            "supported": true,
+                            "references": [
+                              "9fedb047-07b8-87e5-3528-a8eedfda8eb4"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.3999999761581421
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1158,
+                      "completionTokens": 13
+                    }
+                  ],
+                  "refreshMs": 8.5,
+                  "verificationMs": 0.3999999761581421,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você estava usando JavaScript para implementar o projeto Jatoba Azul."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2659,
+          "extraction_wait_ms": 719,
+          "notePaints": []
+        }
+      ],
+      "final_metrics": {
+        "current_vectors": 3,
+        "history_events": [
+          {
+            "count": 3,
+            "state": "approve"
+          },
+          {
+            "count": 3,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 3,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 3,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "jatoba-azul",
+        "provenance_rows": 3,
+        "scope": "phase22c-development-v1",
+        "sqlite_main_page_bytes": 479232,
+        "vector_json_bytes": 28544
+      }
+    },
+    {
+      "file": "driver-development22c-v1-long-final.json",
+      "private_fixture_sha256": "574a9dbbddab1f73e53b6f1b45a56f64478ccad7b7387f04d05a58d1ef81afaf",
+      "scope": "phase22c-development-v1",
+      "project": "sapucaia",
+      "turns": [
+        {
+          "turn": 0,
+          "question": "Estou começando um projeto de catálogo de minerais.",
+          "answers": [
+            {
+              "id": "3e95d3cc-9507-4ae1-9a18-eb3c7106d09a",
+              "content": "Que projeto fascinante! Você pretende focar em algum tipo específico de mineral ou quer cobrir uma variedade ampla?",
+              "lucilleFidelity": [
+                {
+                  "id": "d7ba7b92-0a26-413d-b8fb-44139ccfa558",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Que projeto fascinante! Você pretende focar em algum tipo específico de mineral ou quer cobrir uma variedade ampla?",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 2.199999988079071
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 897,
+                      "completionTokens": 24
+                    }
+                  ],
+                  "refreshMs": 7.5,
+                  "verificationMs": 2.199999988079071,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Que projeto fascinante! Você pretende focar em algum tipo específico de mineral ou quer cobrir uma variedade ampla?"
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2647,
+          "extraction_wait_ms": 4445,
+          "notePaints": []
+        },
+        {
+          "turn": 1,
+          "question": "Quero usar JavaScript e MySQL no meu projeto.",
+          "answers": [
+            {
+              "id": "7a37e48c-2dfa-48ea-bfa1-4712c9f4d01a",
+              "content": "Essa é uma combinação clássica e muito eficiente para gerenciar dados estruturados. Você pretende usar algum framework como Node.js para conectar o JavaScript ao MySQL?",
+              "lucilleFidelity": [
+                {
+                  "id": "cc3b4022-bb0c-413d-814e-9835cbb15592",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Essa é uma combinação clássica e muito eficiente para gerenciar dados estruturados. Você pretende usar algum framework como Node.js para conectar o JavaScript ao MySQL?",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.5
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 940,
+                      "completionTokens": 33
+                    }
+                  ],
+                  "refreshMs": 8,
+                  "verificationMs": 0.5,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Essa é uma combinação clássica e muito eficiente para gerenciar dados estruturados. Você pretende usar algum framework como Node.js para conectar o JavaScript ao MySQL?"
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3155,
+          "extraction_wait_ms": 4694,
+          "notePaints": []
+        },
+        {
+          "turn": 2,
+          "question": "Meu computador principal tem 28 GB de RAM.",
+          "answers": [
+            {
+              "id": "25783f5f-263a-4435-a208-a96e07751a18",
+              "content": "Seu computador principal tem 28 GB de RAM.",
+              "lucilleFidelity": [
+                {
+                  "id": "a0bfdde5-46b2-4608-9abe-55498698778e",
+                  "status": "regenerated",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Com 28 GB de RAM, você terá uma excelente folga para rodar o ambiente de desenvolvimento, o banco de dados MySQL e o editor de código simultaneamente. Essa quantidade é ideal para garantir que o projeto rode de forma fluida sem gargalos de memória.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "database",
+                            "value": "mysql",
+                            "span": "Com 28 GB de RAM, você terá uma excelente folga para rodar o ambiente de desenvolvimento, o banco de dados MySQL e o editor de código simultaneamente.",
+                            "supported": true,
+                            "references": [
+                              "f0b816fa-dc92-c8a4-f097-becff44c4da5"
+                            ]
+                          },
+                          {
+                            "entity": "device.primary_computer",
+                            "property": "ram_capacity",
+                            "value": "28_gb",
+                            "span": "Com 28 GB de RAM, você terá uma excelente folga para rodar o ambiente de desenvolvimento, o banco de dados MySQL e o editor de código simultaneamente.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [
+                          {
+                            "code": "modality_omitted",
+                            "span": "Com 28 GB de RAM, você terá uma excelente folga para rodar o ambiente de desenvolvimento, o banco de dados MySQL e o editor de código simultaneamente.",
+                            "critical": false
+                          },
+                          {
+                            "code": "unproven_personal_performance",
+                            "span": "Essa quantidade é ideal para garantir que o projeto rode de forma fluida sem gargalos de memória.",
+                            "critical": false
+                          },
+                          {
+                            "code": "authority_workload_performance",
+                            "span": "Com 28 GB de RAM, você terá uma excelente folga para rodar o ambiente de desenvolvimento, o banco de dados MySQL e o editor de código simultaneamente.",
+                            "critical": false
+                          }
+                        ],
+                        "authority": [
+                          {
+                            "span": "Com 28 GB de RAM, você terá uma excelente folga para rodar o ambiente de desenvolvimento, o banco de dados MySQL e o editor de código simultaneamente.",
+                            "entity": "user",
+                            "property": "workload_performance",
+                            "value": "adequate",
+                            "relation": "consequence",
+                            "verdict": "insufficient",
+                            "references": [],
+                            "origins": [],
+                            "reason": "RAM quantity alone cannot attest workload suitability or performance.",
+                            "critical": false
+                          }
+                        ],
+                        "uncertain": false,
+                        "supportedAssertions": 2,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.699999988079071
+                      },
+                      "verificationReferences": [
+                        {
+                          "id": "f0b816fa-dc92-c8a4-f097-becff44c4da5",
+                          "version": 2
+                        }
+                      ],
+                      "promptTokens": 993,
+                      "completionTokens": 56
+                    },
+                    {
+                      "rawAnswer": "Seu computador principal tem 28 GB de RAM.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "device.primary_computer",
+                            "property": "ram_capacity",
+                            "value": "28_gb",
+                            "span": "Seu computador principal tem 28 GB de RAM.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.8999999761581421
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1223,
+                      "completionTokens": 13
+                    }
+                  ],
+                  "refreshMs": 24.599999964237213,
+                  "verificationMs": 3.899999976158142,
+                  "extraGenerationMs": 1985.5,
+                  "additionalUsage": {
+                    "promptTokens": 1223,
+                    "completionTokens": 13
+                  },
+                  "verifiedText": "Seu computador principal tem 28 GB de RAM."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 6194,
+          "extraction_wait_ms": 4442,
+          "notePaints": []
+        },
+        {
+          "turn": 3,
+          "question": "Meu notebook de trabalho tem 14 GB de RAM.",
+          "answers": [
+            {
+              "id": "588e0f9a-f25a-42d4-8083-15ef0aa3ce94",
+              "content": "Seu notebook de trabalho tem 14 GB de RAM.",
+              "lucilleFidelity": [
+                {
+                  "id": "17771c85-6cac-4f83-858f-5ff33c378c4c",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Seu notebook de trabalho tem 14 GB de RAM.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "device.work_laptop",
+                            "property": "ram_capacity",
+                            "value": "14_gb",
+                            "span": "Seu notebook de trabalho tem 14 GB de RAM.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.8999999761581421
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1027,
+                      "completionTokens": 14
+                    }
+                  ],
+                  "refreshMs": 8,
+                  "verificationMs": 0.8999999761581421,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Seu notebook de trabalho tem 14 GB de RAM."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2377,
+          "extraction_wait_ms": 3924,
+          "notePaints": []
+        },
+        {
+          "turn": 4,
+          "question": "Prefiro café sem açúcar.",
+          "answers": [
+            {
+              "id": "8f8cb654-0b8c-4c2e-84cb-0a81b606ffb9",
+              "content": "Você prefere café sem açúcar.",
+              "lucilleFidelity": [
+                {
+                  "id": "405aec9e-e18f-4d31-805d-60fc9ec40942",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você prefere café sem açúcar.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "coffee_sugar",
+                            "value": "without_sugar",
+                            "span": "Você prefere café sem açúcar.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.199999988079071
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1056,
+                      "completionTokens": 8
+                    }
+                  ],
+                  "refreshMs": 6.899999976158142,
+                  "verificationMs": 1.199999988079071,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você prefere café sem açúcar."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2380,
+          "extraction_wait_ms": 3653,
+          "notePaints": []
+        },
+        {
+          "turn": 5,
+          "question": "Eu gosto de jogos em que posso escolher minha classe.",
+          "answers": [
+            {
+              "id": "0c109a1c-d05e-4c1f-91a7-1dc048c81fa7",
+              "content": "Você gosta de jogos que permitem escolher sua classe. Qual tipo de jogo você costuma jogar mais?",
+              "lucilleFidelity": [
+                {
+                  "id": "a297ecd4-6b94-4678-bb5d-6618befd0558",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você gosta de jogos que permitem escolher sua classe. Qual tipo de jogo você costuma jogar mais?",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "games_class_selection",
+                            "value": "positive",
+                            "span": "Você gosta de jogos que permitem escolher sua classe.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1084,
+                      "completionTokens": 21
+                    }
+                  ],
+                  "refreshMs": 7.5,
+                  "verificationMs": 1,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você gosta de jogos que permitem escolher sua classe. Qual tipo de jogo você costuma jogar mais?"
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2632,
+          "extraction_wait_ms": 4968,
+          "notePaints": []
+        },
+        {
+          "turn": 6,
+          "question": "Eu adoro jogos com criação de personagens.",
+          "answers": [
+            {
+              "id": "2adfede2-5ba0-4b71-924b-39735a2ed30d",
+              "content": "Você adora jogos com criação de personagens. Isso combina muito bem com sua preferência por escolher classes diferentes.",
+              "lucilleFidelity": [
+                {
+                  "id": "537f3159-0ab1-49c0-aaba-6f80145519f4",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você adora jogos com criação de personagens. Isso combina muito bem com sua preferência por escolher classes diferentes.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "games_character_creation",
+                            "value": "positive",
+                            "span": "Você adora jogos com criação de personagens.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          },
+                          {
+                            "entity": "user",
+                            "property": "games_class_selection",
+                            "value": "positive",
+                            "span": "Isso combina muito bem com sua preferência por escolher classes diferentes.",
+                            "supported": true,
+                            "references": [
+                              "3a458503-b8f9-e8d2-26bd-57a469db7b9c"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 2,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.19999998807907104
+                      },
+                      "verificationReferences": [
+                        {
+                          "id": "3a458503-b8f9-e8d2-26bd-57a469db7b9c",
+                          "version": 1
+                        }
+                      ],
+                      "promptTokens": 1123,
+                      "completionTokens": 23
+                    }
+                  ],
+                  "refreshMs": 14.899999976158142,
+                  "verificationMs": 1.199999988079071,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você adora jogos com criação de personagens. Isso combina muito bem com sua preferência por escolher classes diferentes."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2895,
+          "extraction_wait_ms": 4156,
+          "notePaints": []
+        },
+        {
+          "turn": 7,
+          "question": "Não curto interfaces carregadas.",
+          "answers": [
+            {
+              "id": "f31185c3-5c85-49c7-b9bf-e26e37e26491",
+              "content": "Você não gosta de interfaces carregadas. Isso sugere que você prefere um design mais limpo e minimalista para o seu catálogo de minerais.",
+              "lucilleFidelity": [
+                {
+                  "id": "b7524c5f-ce41-4566-9937-51f0c4da3a54",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você não gosta de interfaces carregadas. Isso sugere que você prefere um design mais limpo e minimalista para o seu catálogo de minerais.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "interface_clutter",
+                            "value": "negative",
+                            "span": "Você não gosta de interfaces carregadas.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.30000001192092896
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1161,
+                      "completionTokens": 32
+                    }
+                  ],
+                  "refreshMs": 6.199999988079071,
+                  "verificationMs": 0.30000001192092896,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você não gosta de interfaces carregadas. Isso sugere que você prefere um design mais limpo e minimalista para o seu catálogo de minerais."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3160,
+          "extraction_wait_ms": 4189,
+          "notePaints": []
+        },
+        {
+          "turn": 8,
+          "question": "Minha bebida favorita é chá.",
+          "answers": [
+            {
+              "id": "d65749cd-1fb7-461b-b623-6435c0b88886",
+              "content": "Sua bebida favorita é o chá. Como você prefere café sem açúcar, o chá é uma excelente alternativa para variar o paladar.",
+              "lucilleFidelity": [
+                {
+                  "id": "80f5cc91-e2b2-44d3-a0cd-9e9148e6de61",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Sua bebida favorita é o chá. Como você prefere café sem açúcar, o chá é uma excelente alternativa para variar o paladar.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "favorite_beverage",
+                            "value": "tea",
+                            "span": "Sua bebida favorita é o chá.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          },
+                          {
+                            "entity": "user",
+                            "property": "coffee_sugar",
+                            "value": "without_sugar",
+                            "span": "Como você prefere café sem açúcar, o chá é uma excelente alternativa para variar o paladar.",
+                            "supported": true,
+                            "references": [
+                              "4a763ec9-04f0-0201-6456-69f5fdb86748"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 2,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.3999999761581421
+                      },
+                      "verificationReferences": [
+                        {
+                          "id": "4a763ec9-04f0-0201-6456-69f5fdb86748",
+                          "version": 1
+                        }
+                      ],
+                      "promptTokens": 1209,
+                      "completionTokens": 29
+                    }
+                  ],
+                  "refreshMs": 17.899999976158142,
+                  "verificationMs": 1.800000011920929,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Sua bebida favorita é o chá. Como você prefere café sem açúcar, o chá é uma excelente alternativa para variar o paladar."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3164,
+          "extraction_wait_ms": 3919,
+          "notePaints": []
+        },
+        {
+          "turn": 9,
+          "question": "Prefiro respostas objetivas.",
+          "answers": [
+            {
+              "id": "2caf0219-06b1-4765-b4a3-16ba7f78f1cc",
+              "content": "Entendido. Serei o mais direto possível nas próximas respostas.",
+              "lucilleFidelity": [
+                {
+                  "id": "a2991ace-54f3-4648-a96c-a0534ab7eb5e",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Entendido. Serei o mais direto possível nas próximas respostas.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.699999988079071
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1253,
+                      "completionTokens": 14
+                    }
+                  ],
+                  "refreshMs": 7.300000011920929,
+                  "verificationMs": 0.699999988079071,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Entendido. Serei o mais direto possível nas próximas respostas."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2636,
+          "extraction_wait_ms": 4691,
+          "notePaints": []
+        },
+        {
+          "turn": 10,
+          "question": "No meu projeto, eu uso Python.",
+          "answers": [
+            {
+              "id": "920b27ad-06c4-426a-8b93-2e2501348a3a",
+              "content": "Você está usando Python no seu projeto. Como você planeja integrar o Python com o MySQL e o JavaScript?",
+              "lucilleFidelity": [
+                {
+                  "id": "dc7f4947-be87-40da-b27c-3f1e0a95f09d",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você está usando Python no seu projeto. Como você planeja integrar o Python com o MySQL e o JavaScript?",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "language",
+                            "value": "python",
+                            "span": "Você está usando Python no seu projeto.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.0999999642372131
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1284,
+                      "completionTokens": 23
+                    }
+                  ],
+                  "refreshMs": 8.300000011920929,
+                  "verificationMs": 1.0999999642372131,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você está usando Python no seu projeto. Como você planeja integrar o Python com o MySQL e o JavaScript?"
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2925,
+          "extraction_wait_ms": 4457,
+          "notePaints": []
+        },
+        {
+          "turn": 11,
+          "question": "Não tenho mais 28 GB, agora são 44 GB.",
+          "answers": [
+            {
+              "id": "83c1d570-ac3d-417e-92a0-8cb6aec886ef",
+              "content": "Agora seu computador principal tem 44 GB de RAM.",
+              "lucilleFidelity": [
+                {
+                  "id": "06b27d1d-5c20-4100-8c5d-1fcd96b442b0",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Agora seu computador principal tem 44 GB de RAM.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "device.primary_computer",
+                            "property": "ram_capacity",
+                            "value": "44_gb",
+                            "span": "Agora seu computador principal tem 44 GB de RAM.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1331,
+                      "completionTokens": 13
+                    }
+                  ],
+                  "refreshMs": 8,
+                  "verificationMs": 1,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Agora seu computador principal tem 44 GB de RAM."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2909,
+          "extraction_wait_ms": 4946,
+          "notePaints": []
+        },
+        {
+          "turn": 12,
+          "question": "Na verdade, agora prefiro café com açúcar.",
+          "answers": [
+            {
+              "id": "86e81bea-33af-45f1-914e-870bcf19c2ff",
+              "content": "Agora você prefere café com açúcar.",
+              "lucilleFidelity": [
+                {
+                  "id": "e95cae2c-721a-410a-8a03-7cb99920aba4",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Agora você prefere café com açúcar.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "coffee_sugar",
+                            "value": "with_sugar",
+                            "span": "Agora você prefere café com açúcar.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.5
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1363,
+                      "completionTokens": 9
+                    }
+                  ],
+                  "refreshMs": 13.100000023841858,
+                  "verificationMs": 1.5,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Agora você prefere café com açúcar."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3166,
+          "extraction_wait_ms": 3403,
+          "notePaints": []
+        },
+        {
+          "turn": 13,
+          "question": "Meu objetivo é aprender alemão.",
+          "answers": [
+            {
+              "id": "f5b665fd-67a9-460d-8d3d-69ee567d2f7b",
+              "content": "Seu objetivo é aprender alemão. Como você pretende estruturar seus estudos?",
+              "lucilleFidelity": [
+                {
+                  "id": "e83d5ca5-27ed-4996-8717-bb199e9bb6bf",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Seu objetivo é aprender alemão. Como você pretende estruturar seus estudos?",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "goal_target",
+                            "value": "learn_german",
+                            "span": "Seu objetivo é aprender alemão.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.6000000238418579
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1518,
+                      "completionTokens": 16
+                    }
+                  ],
+                  "refreshMs": 9.399999976158142,
+                  "verificationMs": 0.6000000238418579,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Seu objetivo é aprender alemão. Como você pretende estruturar seus estudos?"
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3178,
+          "extraction_wait_ms": 3653,
+          "notePaints": []
+        },
+        {
+          "turn": 14,
+          "question": "Concluí meu objetivo de aprender alemão.",
+          "answers": [
+            {
+              "id": "5f6ec3b3-c711-4dd7-a3da-8126e7c253f4",
+              "content": "Você concluiu seu objetivo de aprender alemão.",
+              "lucilleFidelity": [
+                {
+                  "id": "09f1ca40-4611-4603-92e8-2ae22197e6f8",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você concluiu seu objetivo de aprender alemão.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "goal_target",
+                            "value": "learn_german",
+                            "span": "Você concluiu seu objetivo de aprender alemão.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.19999998807907104
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1421,
+                      "completionTokens": 10
+                    }
+                  ],
+                  "refreshMs": 7,
+                  "verificationMs": 0.19999998807907104,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você concluiu seu objetivo de aprender alemão."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2897,
+          "extraction_wait_ms": 4997,
+          "notePaints": []
+        },
+        {
+          "turn": 15,
+          "question": "Esqueça minha preferência de escolher classes nos jogos.",
+          "answers": [
+            {
+              "id": "c74e9292-c6c2-4b22-a5a2-93c5803e08c0",
+              "content": "Esqueci sua preferência de escolher classes nos jogos.",
+              "lucilleFidelity": [
+                {
+                  "id": "60a8f244-4df8-4eda-bf84-b2ca87044338",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Esqueci sua preferência de escolher classes nos jogos.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.5
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1481,
+                      "completionTokens": 13
+                    }
+                  ],
+                  "refreshMs": 5.599999964237213,
+                  "verificationMs": 0.5,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Esqueci sua preferência de escolher classes nos jogos."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3452,
+          "extraction_wait_ms": 710,
+          "notePaints": []
+        },
+        {
+          "turn": 16,
+          "question": "Pode voltar a memorizar: eu gosto de jogos em que posso escolher minha classe.",
+          "answers": [
+            {
+              "id": "5a52686a-4ae5-4f52-9633-7ee906a1dc89",
+              "content": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+              "lucilleFidelity": [
+                {
+                  "id": "80905f2c-9e6b-4083-ac05-7d2ee25ab795",
+                  "status": "blocked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Agora você voltou a gostar de jogos em que pode escolher sua classe.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "games_class_selection",
+                            "value": "positive",
+                            "span": "Agora você voltou a gostar de jogos em que pode escolher sua classe.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [
+                          {
+                            "code": "authority_preference_transition",
+                            "span": "Agora você voltou a gostar de jogos em que pode escolher sua classe.",
+                            "critical": true
+                          }
+                        ],
+                        "authority": [
+                          {
+                            "span": "Agora você voltou a gostar de jogos em que pode escolher sua classe.",
+                            "entity": "user",
+                            "property": "preference_transition",
+                            "value": "resumed",
+                            "relation": "transition",
+                            "verdict": "insufficient",
+                            "references": [],
+                            "origins": [],
+                            "reason": "A memory-store operation establishes no transition in the user’s personal liking.",
+                            "critical": true
+                          }
+                        ],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.300000011920929
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1492,
+                      "completionTokens": 15
+                    },
+                    {
+                      "rawAnswer": "Agora você voltou a gostar de jogos em que pode escolher sua classe.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "games_class_selection",
+                            "value": "positive",
+                            "span": "Agora você voltou a gostar de jogos em que pode escolher sua classe.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [
+                          {
+                            "code": "authority_preference_transition",
+                            "span": "Agora você voltou a gostar de jogos em que pode escolher sua classe.",
+                            "critical": true
+                          }
+                        ],
+                        "authority": [
+                          {
+                            "span": "Agora você voltou a gostar de jogos em que pode escolher sua classe.",
+                            "entity": "user",
+                            "property": "preference_transition",
+                            "value": "resumed",
+                            "relation": "transition",
+                            "verdict": "insufficient",
+                            "references": [],
+                            "origins": [],
+                            "reason": "A memory-store operation establishes no transition in the user’s personal liking.",
+                            "critical": true
+                          }
+                        ],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.3999999761581421
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1633,
+                      "completionTokens": 15
+                    }
+                  ],
+                  "refreshMs": 17.500000059604645,
+                  "verificationMs": 1.699999988079071,
+                  "extraGenerationMs": 2641.199999988079,
+                  "additionalUsage": {
+                    "promptTokens": 1633,
+                    "completionTokens": 15
+                  }
+                }
+              ]
+            }
+          ],
+          "generation_ms": 6183,
+          "extraction_wait_ms": 4999,
+          "notePaints": []
+        },
+        {
+          "turn": 17,
+          "question": "Agora tenho 4 GB de RAM livre no computador principal.",
+          "answers": [
+            {
+              "id": "732cc941-b152-42ef-b5cc-7fcc0b840c85",
+              "content": "Agora você tem 4 GB de RAM livre no computador principal.",
+              "lucilleFidelity": [
+                {
+                  "id": "db8fa000-d4f5-4862-ad10-e252fff72020",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Agora você tem 4 GB de RAM livre no computador principal.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "device.primary_computer",
+                            "property": "free_ram",
+                            "value": "4_gb",
+                            "span": "Agora você tem 4 GB de RAM livre no computador principal.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.0999999642372131
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1545,
+                      "completionTokens": 14
+                    }
+                  ],
+                  "refreshMs": 7.300000011920929,
+                  "verificationMs": 1.0999999642372131,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Agora você tem 4 GB de RAM livre no computador principal."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3662,
+          "extraction_wait_ms": 3915,
+          "notePaints": []
+        },
+        {
+          "turn": 18,
+          "question": "Prefiro tema escuro.",
+          "answers": [
+            {
+              "id": "67ce0e19-2ca0-4265-8ae9-67fccafa15ed",
+              "content": "Você prefere o tema escuro.",
+              "lucilleFidelity": [
+                {
+                  "id": "6c963f6e-2738-4559-a5d7-b09d231f5253",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você prefere o tema escuro.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "interface_theme",
+                            "value": "dark",
+                            "span": "Você prefere o tema escuro.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.8999999761581421
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1574,
+                      "completionTokens": 9
+                    }
+                  ],
+                  "refreshMs": 6.800000011920929,
+                  "verificationMs": 0.8999999761581421,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você prefere o tema escuro."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3147,
+          "extraction_wait_ms": 3925,
+          "notePaints": []
+        },
+        {
+          "turn": 19,
+          "question": "Esqueça minha preferência de tema de interface.",
+          "answers": [
+            {
+              "id": "c14674df-323b-4f49-995b-f22f52f2a90e",
+              "content": "Esqueci sua preferência de tema de interface.",
+              "lucilleFidelity": [
+                {
+                  "id": "f627f876-b46f-4e77-a9fe-389cc8b355b2",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Esqueci sua preferência de tema de interface.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.5
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1630,
+                      "completionTokens": 12
+                    }
+                  ],
+                  "refreshMs": 7.100000023841858,
+                  "verificationMs": 0.5,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Esqueci sua preferência de tema de interface."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3399,
+          "extraction_wait_ms": 711,
+          "notePaints": []
+        },
+        {
+          "turn": 20,
+          "question": "Decidi trocar o banco de dados por PostgreSQL.",
+          "answers": [
+            {
+              "id": "a61767ef-e7b0-4507-89a7-7b0b8e0f223f",
+              "content": "Você decidiu trocar o banco de dados por PostgreSQL.",
+              "lucilleFidelity": [
+                {
+                  "id": "16551b71-1f87-4f39-b614-2291edd9d034",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você decidiu trocar o banco de dados por PostgreSQL.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "database",
+                            "value": "postgresql",
+                            "span": "Você decidiu trocar o banco de dados por PostgreSQL.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.399999976158142
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1634,
+                      "completionTokens": 11
+                    }
+                  ],
+                  "refreshMs": 9,
+                  "verificationMs": 1.399999976158142,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você decidiu trocar o banco de dados por PostgreSQL."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3418,
+          "extraction_wait_ms": 3936,
+          "notePaints": []
+        },
+        {
+          "turn": 21,
+          "question": "Prefiro romances de aventura.",
+          "answers": [
+            {
+              "id": "726f505e-95ea-4dea-9d72-5636d168ed20",
+              "content": "Você prefere romances de aventura.",
+              "lucilleFidelity": [
+                {
+                  "id": "6a1b4cc1-aa61-452f-88b8-5a1ec586818a",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você prefere romances de aventura.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "book_genre",
+                            "value": "adventure",
+                            "span": "Você prefere romances de aventura.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1660,
+                      "completionTokens": 8
+                    }
+                  ],
+                  "refreshMs": 6.699999988079071,
+                  "verificationMs": 1,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você prefere romances de aventura."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3189,
+          "extraction_wait_ms": 4458,
+          "notePaints": []
+        },
+        {
+          "turn": 22,
+          "question": "Eu gosto de trilhas curtas.",
+          "answers": [
+            {
+              "id": "40a79021-66b5-48e7-a60b-c022a13732d7",
+              "content": "Você gosta de trilhas curtas.",
+              "lucilleFidelity": [
+                {
+                  "id": "2d3b77ba-2532-4d74-9a0b-2f2ed023ab9d",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você gosta de trilhas curtas.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "outing",
+                            "value": "short_trails",
+                            "span": "Você gosta de trilhas curtas.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1685,
+                      "completionTokens": 9
+                    }
+                  ],
+                  "refreshMs": 8.199999988079071,
+                  "verificationMs": 1,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você gosta de trilhas curtas."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3161,
+          "extraction_wait_ms": 3153,
+          "notePaints": []
+        },
+        {
+          "turn": 23,
+          "question": "Minha bebida preferida é chá.",
+          "answers": [
+            {
+              "id": "a67930f5-7e22-4ea2-8021-1010bae65a56",
+              "content": "Sim, sua bebida favorita é o chá.",
+              "lucilleFidelity": [
+                {
+                  "id": "bbbf1ab9-e3c6-4a71-9ff4-a73551d87a48",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Sim, sua bebida favorita é o chá.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "favorite_beverage",
+                            "value": "tea",
+                            "span": "Sim, sua bebida favorita é o chá.",
+                            "supported": true,
+                            "references": [
+                              "9bd21c5e-db6a-94fd-aea2-4961073db2c6",
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.2999999523162842
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1845,
+                      "completionTokens": 10
+                    }
+                  ],
+                  "refreshMs": 10.899999976158142,
+                  "verificationMs": 1.2999999523162842,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Sim, sua bebida favorita é o chá."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3410,
+          "extraction_wait_ms": 3896,
+          "notePaints": []
+        },
+        {
+          "turn": 24,
+          "question": "Prefiro respostas objetivas.",
+          "answers": [
+            {
+              "id": "c6567447-de65-45d3-852e-93f20e80d10a",
+              "content": "Você prefere respostas objetivas.",
+              "lucilleFidelity": [
+                {
+                  "id": "72a536d2-1730-4051-9fd9-e4624d919af3",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você prefere respostas objetivas.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "communication_focus",
+                            "value": "objective",
+                            "span": "Você prefere respostas objetivas.",
+                            "supported": true,
+                            "references": [
+                              "e779626d-dde9-652f-cbec-ffb88bf59f6a",
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.19999998807907104
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1867,
+                      "completionTokens": 8
+                    }
+                  ],
+                  "refreshMs": 13,
+                  "verificationMs": 0.19999998807907104,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você prefere respostas objetivas."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3418,
+          "extraction_wait_ms": 4999,
+          "notePaints": []
+        },
+        {
+          "turn": 25,
+          "question": "Eu adoro jogos com criação de personagens.",
+          "answers": [
+            {
+              "id": "2562dded-4366-491c-af52-b31f04aa9f93",
+              "content": "Você adora jogos com criação de personagens.",
+              "lucilleFidelity": [
+                {
+                  "id": "8b47e740-7c44-4088-b1ff-b0448e3db591",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você adora jogos com criação de personagens.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "games_character_creation",
+                            "value": "positive",
+                            "span": "Você adora jogos com criação de personagens.",
+                            "supported": true,
+                            "references": [
+                              "cb9af6d4-7529-8c29-1cf2-4bb6725c23ef",
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.19999998807907104
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1902,
+                      "completionTokens": 10
+                    }
+                  ],
+                  "refreshMs": 13.900000035762787,
+                  "verificationMs": 0.19999998807907104,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você adora jogos com criação de personagens."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3659,
+          "extraction_wait_ms": 3655,
+          "notePaints": []
+        },
+        {
+          "turn": 26,
+          "question": "Não curto interfaces carregadas.",
+          "answers": [
+            {
+              "id": "0d0e62dd-cf78-4bd5-84ea-981161ab6b98",
+              "content": "Você não gosta de interfaces carregadas.",
+              "lucilleFidelity": [
+                {
+                  "id": "fa5246b0-ef8e-49b9-8000-a592924b165b",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você não gosta de interfaces carregadas.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "interface_clutter",
+                            "value": "negative",
+                            "span": "Você não gosta de interfaces carregadas.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.30000001192092896
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1787,
+                      "completionTokens": 9
+                    }
+                  ],
+                  "refreshMs": 7.800000011920929,
+                  "verificationMs": 0.30000001192092896,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você não gosta de interfaces carregadas."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3409,
+          "extraction_wait_ms": 3714,
+          "notePaints": []
+        },
+        {
+          "turn": 27,
+          "question": "Eu gosto de jogos em que posso escolher minha classe.",
+          "answers": [
+            {
+              "id": "24bec1e0-4d50-4d30-85b3-627561198eb6",
+              "content": "Você gosta de jogos em que pode escolher sua classe.",
+              "lucilleFidelity": [
+                {
+                  "id": "5fb72c9b-e0b6-4766-9b25-3b1394e9cd11",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você gosta de jogos em que pode escolher sua classe.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "games_class_selection",
+                            "value": "positive",
+                            "span": "Você gosta de jogos em que pode escolher sua classe.",
+                            "supported": true,
+                            "references": [
+                              "216e0ea7-2ea9-a240-5968-7858385411b0",
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.3999999761581421
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1970,
+                      "completionTokens": 12
+                    }
+                  ],
+                  "refreshMs": 16.80000001192093,
+                  "verificationMs": 0.3999999761581421,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você gosta de jogos em que pode escolher sua classe."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3714,
+          "extraction_wait_ms": 5576,
+          "notePaints": []
+        },
+        {
+          "turn": 28,
+          "question": "Prefiro café com açúcar.",
+          "answers": [
+            {
+              "id": "a8c4958f-4642-4fa3-b815-ca90c4706cd9",
+              "content": "Você prefere café com açúcar.",
+              "lucilleFidelity": [
+                {
+                  "id": "17b894f9-3e25-49df-94a4-8dc4fabac273",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você prefere café com açúcar.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "coffee_sugar",
+                            "value": "with_sugar",
+                            "span": "Você prefere café com açúcar.",
+                            "supported": true,
+                            "references": [
+                              "be201a43-0c21-7f0f-26f6-c494bc0cbcfb",
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.19999998807907104
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 2005,
+                      "completionTokens": 8
+                    }
+                  ],
+                  "refreshMs": 10.099999964237213,
+                  "verificationMs": 0.19999998807907104,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você prefere café com açúcar."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3678,
+          "extraction_wait_ms": 4513,
+          "notePaints": []
+        },
+        {
+          "turn": 29,
+          "question": "O projeto continua sendo um catálogo de minerais.",
+          "answers": [
+            {
+              "id": "a818fae3-7982-4267-8fb0-d9fc7df4d1b7",
+              "content": "O projeto continua sendo um catálogo de minerais.",
+              "lucilleFidelity": [
+                {
+                  "id": "75a2f023-07a3-42ea-b5b7-7ecde742d44c",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "O projeto continua sendo um catálogo de minerais.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.19999998807907104
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1870,
+                      "completionTokens": 11
+                    }
+                  ],
+                  "refreshMs": 13.700000047683716,
+                  "verificationMs": 0.19999998807907104,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "O projeto continua sendo um catálogo de minerais."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3689,
+          "extraction_wait_ms": 3950,
+          "notePaints": []
+        },
+        {
+          "turn": 30,
+          "question": "Esqueça minha preferência de tema de interface.",
+          "answers": [
+            {
+              "id": "0605e3b8-b319-4026-8ce5-13fce509f37b",
+              "content": "Esqueci sua preferência de tema de interface.",
+              "lucilleFidelity": [
+                {
+                  "id": "fb5063fb-5193-4ae1-9ae3-94e26aa6ac24",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Esqueci sua preferência de tema de interface.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.19999998807907104
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1928,
+                      "completionTokens": 12
+                    }
+                  ],
+                  "refreshMs": 12.800000011920929,
+                  "verificationMs": 0.19999998807907104,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Esqueci sua preferência de tema de interface."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3718,
+          "extraction_wait_ms": 736,
+          "notePaints": []
+        },
+        {
+          "turn": 31,
+          "question": "Prefiro respostas objetivas.",
+          "answers": [
+            {
+              "id": "8d2048d8-86a8-4908-8147-367c2a570dd5",
+              "content": "Você prefere respostas objetivas.",
+              "lucilleFidelity": [
+                {
+                  "id": "d2c0e9cf-ad0b-4272-af5b-3a193c3f142b",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você prefere respostas objetivas.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "communication_focus",
+                            "value": "objective",
+                            "span": "Você prefere respostas objetivas.",
+                            "supported": true,
+                            "references": [
+                              "e779626d-dde9-652f-cbec-ffb88bf59f6a",
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.19999998807907104
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 2073,
+                      "completionTokens": 8
+                    }
+                  ],
+                  "refreshMs": 10.800000011920929,
+                  "verificationMs": 0.19999998807907104,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você prefere respostas objetivas."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3947,
+          "extraction_wait_ms": 4215,
+          "notePaints": []
+        },
+        {
+          "turn": 32,
+          "question": "Quanto de RAM tem meu computador principal atualmente?",
+          "answers": [
+            {
+              "id": "5309b429-dc85-461e-9761-29cc4df2f466",
+              "content": "Seu computador principal tem atualmente 44 GB de RAM.",
+              "lucilleFidelity": [
+                {
+                  "id": "02d88af8-28ca-454a-89c4-af30126eb4f0",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Seu computador principal tem atualmente 44 GB de RAM.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "device.primary_computer",
+                            "property": "ram_capacity",
+                            "value": "44_gb",
+                            "span": "Seu computador principal tem atualmente 44 GB de RAM.",
+                            "supported": true,
+                            "references": [
+                              "12f76b30-5794-9e7c-88f9-4f2026285d43"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.699999988079071
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1111,
+                      "completionTokens": 14
+                    }
+                  ],
+                  "refreshMs": 9.100000023841858,
+                  "verificationMs": 0.699999988079071,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Seu computador principal tem atualmente 44 GB de RAM."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2393,
+          "extraction_wait_ms": 732,
+          "notePaints": []
+        },
+        {
+          "turn": 33,
+          "question": "E a RAM do meu computador principal e do notebook de trabalho?",
+          "answers": [
+            {
+              "id": "b3cf8f87-802b-4a19-9dcf-c82009c0f4c9",
+              "content": "Seu computador principal tem 44 GB de RAM e seu notebook de trabalho tem 14 GB.",
+              "lucilleFidelity": [
+                {
+                  "id": "7fa497c1-98cb-47cc-b633-e7a88cf7bb90",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Seu computador principal tem 44 GB de RAM e seu notebook de trabalho tem 14 GB.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "device.primary_computer",
+                            "property": "ram_capacity",
+                            "value": "44_gb",
+                            "span": "Seu computador principal tem 44 GB de RAM e seu notebook de trabalho tem 14 GB.",
+                            "supported": true,
+                            "references": [
+                              "12f76b30-5794-9e7c-88f9-4f2026285d43"
+                            ]
+                          },
+                          {
+                            "entity": "device.work_laptop",
+                            "property": "ram_capacity",
+                            "value": "14_gb",
+                            "span": "Seu computador principal tem 44 GB de RAM e seu notebook de trabalho tem 14 GB.",
+                            "supported": true,
+                            "references": [
+                              "d54d082e-bc8e-c10c-1f4f-d3b15e64bf4d"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 2,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.19999998807907104
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1225,
+                      "completionTokens": 23
+                    }
+                  ],
+                  "refreshMs": 8.600000023841858,
+                  "verificationMs": 0.19999998807907104,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Seu computador principal tem 44 GB de RAM e seu notebook de trabalho tem 14 GB."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2901,
+          "extraction_wait_ms": 724,
+          "notePaints": []
+        },
+        {
+          "turn": 34,
+          "question": "Qual era minha preferência de café antes e qual é a atual?",
+          "answers": [
+            {
+              "id": "be01e2c5-2798-4813-a3c5-f549c16f7c09",
+              "content": "Antes, você preferia café sem açúcar, mas agora prefere café com açúcar.",
+              "lucilleFidelity": [
+                {
+                  "id": "53f92c56-b418-424e-a9e1-8e0e605de568",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Antes, você preferia café sem açúcar, mas agora prefere café com açúcar.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "coffee_sugar",
+                            "value": "without_sugar",
+                            "span": "Antes, você preferia café sem açúcar, ",
+                            "supported": true,
+                            "references": [
+                              "4a763ec9-04f0-0201-6456-69f5fdb86748"
+                            ]
+                          },
+                          {
+                            "entity": "user",
+                            "property": "coffee_sugar",
+                            "value": "with_sugar",
+                            "span": " agora prefere café com açúcar.",
+                            "supported": true,
+                            "references": [
+                              "be201a43-0c21-7f0f-26f6-c494bc0cbcfb"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 2,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.5
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1239,
+                      "completionTokens": 18
+                    }
+                  ],
+                  "refreshMs": 9.300000011920929,
+                  "verificationMs": 0.5,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Antes, você preferia café sem açúcar, mas agora prefere café com açúcar."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2643,
+          "extraction_wait_ms": 735,
+          "notePaints": []
+        },
+        {
+          "turn": 35,
+          "question": "Que linguagem eu uso no meu projeto agora?",
+          "answers": [
+            {
+              "id": "63c3f835-ab4c-46e2-8287-c12dfd4bbc51",
+              "content": "Você usa Python no seu projeto.",
+              "lucilleFidelity": [
+                {
+                  "id": "ffb65ea8-bf30-48e2-8208-a964c46adec2",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você usa Python no seu projeto.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "language",
+                            "value": "python",
+                            "span": "Você usa Python no seu projeto.",
+                            "supported": true,
+                            "references": [
+                              "987e827c-61cf-f32b-01e9-7513d3642769"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.19999998807907104
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1032,
+                      "completionTokens": 8
+                    }
+                  ],
+                  "refreshMs": 7,
+                  "verificationMs": 0.19999998807907104,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você usa Python no seu projeto."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2156,
+          "extraction_wait_ms": 724,
+          "notePaints": []
+        },
+        {
+          "turn": 36,
+          "question": "Você recorda como está meu projeto e quais escolhas eu fiz?",
+          "answers": [
+            {
+              "id": "9819993d-f55a-4842-8b62-e766ec8bd250",
+              "content": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+              "lucilleFidelity": [
+                {
+                  "id": "cff5dcd4-c580-443f-95b3-98a71595ed93",
+                  "status": "blocked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "No seu projeto Sapucaia, você usa Python como linguagem e decidiu utilizar PostgreSQL como banco de dados. Além disso, você planeja usar JavaScript no projeto.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "language",
+                            "value": "python",
+                            "span": "No seu projeto Sapucaia, você usa Python como linguagem e decidiu utilizar PostgreSQL como banco de dados.",
+                            "supported": true,
+                            "references": [
+                              "987e827c-61cf-f32b-01e9-7513d3642769"
+                            ]
+                          },
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "database",
+                            "value": "postgresql",
+                            "span": "No seu projeto Sapucaia, você usa Python como linguagem e decidiu utilizar PostgreSQL como banco de dados.",
+                            "supported": true,
+                            "references": [
+                              "a814227b-863d-8f6c-2060-c24acdbc9188"
+                            ]
+                          },
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "language",
+                            "value": "javascript",
+                            "span": "Além disso, você planeja usar JavaScript no projeto.",
+                            "supported": true,
+                            "references": [
+                              "ae9ff5f8-d710-b931-53ce-2aa7e008c61f"
+                            ]
+                          }
+                        ],
+                        "violations": [
+                          {
+                            "code": "unproven_decision",
+                            "span": "No seu projeto Sapucaia, você usa Python como linguagem e decidiu utilizar PostgreSQL como banco de dados.",
+                            "critical": true
+                          },
+                          {
+                            "code": "plan_or_decision_as_execution",
+                            "span": "No seu projeto Sapucaia, você usa Python como linguagem e decidiu utilizar PostgreSQL como banco de dados.",
+                            "critical": true
+                          }
+                        ],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 3,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.9000000357627869
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1361,
+                      "completionTokens": 33
+                    },
+                    {
+                      "rawAnswer": "No seu projeto Sapucaia, você usa Python e planeja utilizar JavaScript. Além disso, você decidiu usar PostgreSQL como banco de dados.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "language",
+                            "value": "javascript",
+                            "span": "No seu projeto Sapucaia, você usa Python e planeja utilizar JavaScript.",
+                            "supported": true,
+                            "references": [
+                              "ae9ff5f8-d710-b931-53ce-2aa7e008c61f"
+                            ]
+                          },
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "language",
+                            "value": "python",
+                            "span": "No seu projeto Sapucaia, você usa Python e planeja utilizar JavaScript.",
+                            "supported": true,
+                            "references": [
+                              "987e827c-61cf-f32b-01e9-7513d3642769"
+                            ]
+                          },
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "database",
+                            "value": "postgresql",
+                            "span": "Além disso, você decidiu usar PostgreSQL como banco de dados.",
+                            "supported": true,
+                            "references": [
+                              "a814227b-863d-8f6c-2060-c24acdbc9188"
+                            ]
+                          }
+                        ],
+                        "violations": [
+                          {
+                            "code": "plan_or_decision_as_execution",
+                            "span": "No seu projeto Sapucaia, você usa Python e planeja utilizar JavaScript.",
+                            "critical": true
+                          }
+                        ],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 3,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.19999998807907104
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1537,
+                      "completionTokens": 29
+                    }
+                  ],
+                  "refreshMs": 29.799999952316284,
+                  "verificationMs": 1.100000023841858,
+                  "extraGenerationMs": 2910.5,
+                  "additionalUsage": {
+                    "promptTokens": 1537,
+                    "completionTokens": 29
+                  }
+                }
+              ]
+            }
+          ],
+          "generation_ms": 6685,
+          "extraction_wait_ms": 729,
+          "notePaints": []
+        },
+        {
+          "turn": 37,
+          "question": "O que gosto de fazer nos jogos?",
+          "answers": [
+            {
+              "id": "e743ea83-fd18-42be-aa0f-e4cacbc0985c",
+              "content": "Você gosta de jogos que permitem a escolha de classes e que possuam criação de personagens.",
+              "lucilleFidelity": [
+                {
+                  "id": "7476a18f-f478-466e-8abc-5741135ef3fd",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você gosta de jogos que permitem a escolha de classes e que possuam criação de personagens.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "games_character_creation",
+                            "value": "positive",
+                            "span": "Você gosta de jogos que permitem a escolha de classes e que possuam criação de personagens.",
+                            "supported": true,
+                            "references": [
+                              "cb9af6d4-7529-8c29-1cf2-4bb6725c23ef"
+                            ]
+                          },
+                          {
+                            "entity": "user",
+                            "property": "games_class_selection",
+                            "value": "positive",
+                            "span": "Você gosta de jogos que permitem a escolha de classes e que possuam criação de personagens.",
+                            "supported": true,
+                            "references": [
+                              "216e0ea7-2ea9-a240-5968-7858385411b0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 2,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.20000004768371582
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1217,
+                      "completionTokens": 20
+                    }
+                  ],
+                  "refreshMs": 10.199999988079071,
+                  "verificationMs": 0.20000004768371582,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você gosta de jogos que permitem a escolha de classes e que possuam criação de personagens."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2885,
+          "extraction_wait_ms": 724,
+          "notePaints": []
+        },
+        {
+          "turn": 38,
+          "question": "What kind of replies do I prefer?",
+          "answers": [
+            {
+              "id": "5e4a02dd-b4db-4339-8aa4-061a692817b0",
+              "content": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+              "lucilleFidelity": [
+                {
+                  "id": "d20b44ab-9baf-4d61-ac4b-6e96266a8e6a",
+                  "status": "blocked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você prefere respostas objetivas.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "communication_focus",
+                            "value": "objective",
+                            "span": "Você prefere respostas objetivas.",
+                            "supported": true,
+                            "references": [
+                              "e779626d-dde9-652f-cbec-ffb88bf59f6a"
+                            ]
+                          }
+                        ],
+                        "violations": [
+                          {
+                            "code": "question_language_mismatch",
+                            "span": "Você prefere respostas objetivas.",
+                            "critical": false
+                          }
+                        ],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.30000001192092896
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 3543,
+                      "completionTokens": 8
+                    },
+                    {
+                      "rawAnswer": "Você prefere respostas objetivas.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "communication_focus",
+                            "value": "objective",
+                            "span": "Você prefere respostas objetivas.",
+                            "supported": true,
+                            "references": [
+                              "e779626d-dde9-652f-cbec-ffb88bf59f6a"
+                            ]
+                          }
+                        ],
+                        "violations": [
+                          {
+                            "code": "question_language_mismatch",
+                            "span": "Você prefere respostas objetivas.",
+                            "critical": false
+                          }
+                        ],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.3999999761581421
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 2031,
+                      "completionTokens": 8
+                    }
+                  ],
+                  "refreshMs": 16.69999998807907,
+                  "verificationMs": 0.699999988079071,
+                  "extraGenerationMs": 2794.300000011921,
+                  "additionalUsage": {
+                    "promptTokens": 2031,
+                    "completionTokens": 8
+                  }
+                }
+              ],
+              "agentBlocks": []
+            }
+          ],
+          "generation_ms": 8461,
+          "extraction_wait_ms": 739,
+          "notePaints": []
+        },
+        {
+          "turn": 39,
+          "question": "Eu gosto ou não de interfaces carregadas?",
+          "answers": [
+            {
+              "id": "fa3742bb-420a-49d5-80ff-23928231279c",
+              "content": "Você não gosta de interfaces carregadas.",
+              "lucilleFidelity": [
+                {
+                  "id": "1429d6dd-6da5-4790-8b52-6f69641c6f25",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você não gosta de interfaces carregadas.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "interface_clutter",
+                            "value": "negative",
+                            "span": "Você não gosta de interfaces carregadas.",
+                            "supported": true,
+                            "references": [
+                              "f479d619-7c3c-7fd9-03c4-28b858863ad1"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.100000023841858
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1045,
+                      "completionTokens": 9
+                    }
+                  ],
+                  "refreshMs": 9,
+                  "verificationMs": 1.100000023841858,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você não gosta de interfaces carregadas."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2379,
+          "extraction_wait_ms": 735,
+          "notePaints": []
+        },
+        {
+          "turn": 40,
+          "question": "Which learning goal have I already completed?",
+          "answers": [
+            {
+              "id": "06764bcf-f7aa-4616-a9c1-4db4bd40822f",
+              "content": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+              "lucilleFidelity": [
+                {
+                  "id": "213a1b90-e85e-422f-84db-7e2f5dadcb7a",
+                  "status": "blocked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você já concluiu o objetivo de aprender alemão.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "goal_target",
+                            "value": "learn_german",
+                            "span": "Você já concluiu o objetivo de aprender alemão.",
+                            "supported": true,
+                            "references": [
+                              "1595f92c-6a91-0673-e95d-e23e304739b8"
+                            ]
+                          }
+                        ],
+                        "violations": [
+                          {
+                            "code": "question_language_mismatch",
+                            "span": "Você já concluiu o objetivo de aprender alemão.",
+                            "critical": false
+                          }
+                        ],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.30000001192092896
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1068,
+                      "completionTokens": 11
+                    },
+                    {
+                      "rawAnswer": "Você já concluiu o objetivo de aprender alemão.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "goal_target",
+                            "value": "learn_german",
+                            "span": "Você já concluiu o objetivo de aprender alemão.",
+                            "supported": true,
+                            "references": [
+                              "1595f92c-6a91-0673-e95d-e23e304739b8"
+                            ]
+                          }
+                        ],
+                        "violations": [
+                          {
+                            "code": "question_language_mismatch",
+                            "span": "Você já concluiu o objetivo de aprender alemão.",
+                            "critical": false
+                          }
+                        ],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.30000001192092896
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1209,
+                      "completionTokens": 11
+                    }
+                  ],
+                  "refreshMs": 14.900000035762787,
+                  "verificationMs": 0.6000000238418579,
+                  "extraGenerationMs": 1834.199999988079,
+                  "additionalUsage": {
+                    "promptTokens": 1209,
+                    "completionTokens": 11
+                  }
+                }
+              ]
+            }
+          ],
+          "generation_ms": 4417,
+          "extraction_wait_ms": 735,
+          "notePaints": []
+        },
+        {
+          "turn": 41,
+          "question": "Qual tema está registrado como meu preferido?",
+          "answers": [
+            {
+              "id": "5dfdb16d-9047-4086-8313-035d9f7d7c86",
+              "content": "Não há nenhum registro de um tema preferido na sua memória até o momento.",
+              "lucilleFidelity": [
+                {
+                  "id": "74f3f7f6-f9a3-4ab6-808e-71d62723d019",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Não há nenhum registro de um tema preferido na sua memória até o momento.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": true,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.10000002384185791
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 927,
+                      "completionTokens": 17
+                    }
+                  ],
+                  "refreshMs": 6.5,
+                  "verificationMs": 0.10000002384185791,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Não há nenhum registro de um tema preferido na sua memória até o momento."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2398,
+          "extraction_wait_ms": 736,
+          "notePaints": []
+        },
+        {
+          "turn": 42,
+          "question": "De qual bebida eu mais gosto?",
+          "answers": [
+            {
+              "id": "1eca1f12-9fe3-47e3-95a6-9c221e9edfd1",
+              "content": "Você mais gosta de chá.",
+              "lucilleFidelity": [
+                {
+                  "id": "f8a88910-54b6-4ea0-9d14-977427f6b5a6",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você mais gosta de chá.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.9000000357627869
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1043,
+                      "completionTokens": 7
+                    }
+                  ],
+                  "refreshMs": 8.300000011920929,
+                  "verificationMs": 0.9000000357627869,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você mais gosta de chá."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2144,
+          "extraction_wait_ms": 734,
+          "notePaints": []
+        },
+        {
+          "turn": 43,
+          "question": "Você sabe o dia do meu nascimento?",
+          "answers": [
+            {
+              "id": "57b8a358-9eee-44b4-b355-e5f33d2962fc",
+              "content": "Não há nenhum registro disponível sobre o dia do seu nascimento em minha memória atual.",
+              "lucilleFidelity": [
+                {
+                  "id": "37a3cd79-ba9d-4ba0-94fa-899d150ba161",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Não há nenhum registro disponível sobre o dia do seu nascimento em minha memória atual.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": true,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.10000002384185791
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 894,
+                      "completionTokens": 17
+                    }
+                  ],
+                  "refreshMs": 5.899999976158142,
+                  "verificationMs": 0.10000002384185791,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Não há nenhum registro disponível sobre o dia do seu nascimento em minha memória atual."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2409,
+          "extraction_wait_ms": 732,
+          "notePaints": []
+        },
+        {
+          "turn": 44,
+          "question": "Qual banco eu decidi usar após trocar o anterior?",
+          "answers": [
+            {
+              "id": "9dae716e-ed26-452c-8b2a-7a04a6685878",
+              "content": "Você decidiu usar o PostgreSQL como banco de dados para o projeto Sapucaia.",
+              "lucilleFidelity": [
+                {
+                  "id": "8aef82cc-7d61-4eae-8c1f-40b0a33b12d3",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você decidiu usar o PostgreSQL como banco de dados para o projeto Sapucaia.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "database",
+                            "value": "postgresql",
+                            "span": "Você decidiu usar o PostgreSQL como banco de dados para o projeto Sapucaia.",
+                            "supported": true,
+                            "references": [
+                              "a814227b-863d-8f6c-2060-c24acdbc9188"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.30000001192092896
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 2200,
+                      "completionTokens": 17
+                    }
+                  ],
+                  "refreshMs": 12.599999964237213,
+                  "verificationMs": 0.30000001192092896,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você decidiu usar o PostgreSQL como banco de dados para o projeto Sapucaia."
+                }
+              ],
+              "agentBlocks": []
+            }
+          ],
+          "generation_ms": 3895,
+          "extraction_wait_ms": 732,
+          "notePaints": []
+        },
+        {
+          "turn": 45,
+          "question": "Que gênero de livros eu prefiro?",
+          "answers": [
+            {
+              "id": "8024f338-daa1-4634-95eb-3fb3c21b23e3",
+              "content": "Você prefere romances de aventura.",
+              "lucilleFidelity": [
+                {
+                  "id": "17cebe21-1b9e-46d8-afda-5cf534a8acf9",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você prefere romances de aventura.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "book_genre",
+                            "value": "adventure",
+                            "span": "Você prefere romances de aventura.",
+                            "supported": true,
+                            "references": [
+                              "0dd247c5-41aa-39af-d11c-88cf66a059c9"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.20000004768371582
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1027,
+                      "completionTokens": 8
+                    }
+                  ],
+                  "refreshMs": 7,
+                  "verificationMs": 0.20000004768371582,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você prefere romances de aventura."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2159,
+          "extraction_wait_ms": 736,
+          "notePaints": []
+        }
+      ],
+      "final_metrics": {
+        "current_vectors": 15,
+        "history_events": [
+          {
+            "count": 11,
+            "state": "approve"
+          },
+          {
+            "count": 1,
+            "state": "auto_correct"
+          },
+          {
+            "count": 7,
+            "state": "auto_promote"
+          },
+          {
+            "count": 1,
+            "state": "auto_superseded"
+          },
+          {
+            "count": 20,
+            "state": "create"
+          },
+          {
+            "count": 3,
+            "state": "obsolete"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 32,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 15,
+            "state": "active"
+          },
+          {
+            "count": 1,
+            "state": "conflict"
+          },
+          {
+            "count": 4,
+            "state": "obsolete"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "sapucaia",
+        "provenance_rows": 27,
+        "scope": "phase22c-development-v1",
+        "sqlite_main_page_bytes": 442368,
+        "vector_json_bytes": 142480
+      }
+    },
+    {
+      "file": "driver-development22c-v1-plan-final.json",
+      "private_fixture_sha256": "6900d58d6241975b02ce6babf8b35a92f5c4f3060c232543a71bc9a1dbb50a95",
+      "scope": "phase22c-development-v1",
+      "project": "grumixama",
+      "turns": [
+        {
+          "turn": 0,
+          "question": "Estou começando um projeto de catálogo de fósseis.",
+          "answers": [
+            {
+              "id": "e92fc75e-9494-4379-a724-5d44781a8c70",
+              "content": "Que projeto fascinante! Qual será o foco principal do seu catálogo, como a diversidade de espécies ou a organização por períodos geológicos?",
+              "lucilleFidelity": [
+                {
+                  "id": "4ae2c51a-8dcb-45b5-8e23-fae45eaabc0b",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Que projeto fascinante! Qual será o foco principal do seu catálogo, como a diversidade de espécies ou a organização por períodos geológicos?",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 3.600000023841858
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 898,
+                      "completionTokens": 29
+                    }
+                  ],
+                  "refreshMs": 8.5,
+                  "verificationMs": 3.600000023841858,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Que projeto fascinante! Qual será o foco principal do seu catálogo, como a diversidade de espécies ou a organização por períodos geológicos?"
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3162,
+          "extraction_wait_ms": 4671,
+          "notePaints": []
+        },
+        {
+          "turn": 1,
+          "question": "Quero usar Rust e SQLite no meu projeto.",
+          "answers": [
+            {
+              "id": "378d2818-460d-43c6-b97d-8c93211032d8",
+              "content": "Essa é uma excelente combinação, pois a performance do Rust se integra perfeitamente com a robustez do SQLite. Você pretende usar algum ORM como o Diesel ou preferir a flexibilidade do SQL puro com o `rusqlite`?",
+              "lucilleFidelity": [
+                {
+                  "id": "e0e1e94a-5bc2-4059-9fd9-d36454be0d85",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Essa é uma excelente combinação, pois a performance do Rust se integra perfeitamente com a robustez do SQLite. Você pretende usar algum ORM como o Diesel ou preferir a flexibilidade do SQL puro com o `rusqlite`?",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.grumixama",
+                            "property": "language",
+                            "value": "rust",
+                            "span": "Essa é uma excelente combinação, pois a performance do Rust se integra perfeitamente com a robustez do SQLite.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          },
+                          {
+                            "entity": "project.grumixama",
+                            "property": "database",
+                            "value": "sqlite",
+                            "span": "Essa é uma excelente combinação, pois a performance do Rust se integra perfeitamente com a robustez do SQLite.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-1"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 2,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 3.899999976158142
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 946,
+                      "completionTokens": 50
+                    }
+                  ],
+                  "refreshMs": 7.599999964237213,
+                  "verificationMs": 3.899999976158142,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Essa é uma excelente combinação, pois a performance do Rust se integra perfeitamente com a robustez do SQLite. Você pretende usar algum ORM como o Diesel ou preferir a flexibilidade do SQL puro com o `rusqlite`?"
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3663,
+          "extraction_wait_ms": 4187,
+          "notePaints": []
+        },
+        {
+          "turn": 2,
+          "question": "Meu projeto já está implementado em Rust ou isso ainda é um plano?",
+          "answers": [
+            {
+              "id": "e3cd880e-34d4-49c1-8e61-ab2eac774571",
+              "content": "O uso de Rust no projeto Grumixama ainda é um plano. Você planeja utilizá-lo junto com SQLite.",
+              "lucilleFidelity": [
+                {
+                  "id": "454b6f36-f123-4bc2-9904-f2dae0e3b17f",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "O uso de Rust no projeto Grumixama ainda é um plano. Você planeja utilizá-lo junto com SQLite.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.grumixama",
+                            "property": "language",
+                            "value": "rust",
+                            "span": "O uso de Rust no projeto Grumixama ainda é um plano.",
+                            "supported": true,
+                            "references": [
+                              "2fbff49d-3b93-ac03-3ffb-ecfa611ffa2f"
+                            ]
+                          },
+                          {
+                            "entity": "project.grumixama",
+                            "property": "database",
+                            "value": "sqlite",
+                            "span": "Você planeja utilizá-lo junto com SQLite.",
+                            "supported": true,
+                            "references": [
+                              "8888566f-36c9-4ac2-34ad-af2eabc5c6f5"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 2,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.8999999761581421
+                      },
+                      "verificationReferences": [
+                        {
+                          "id": "8888566f-36c9-4ac2-34ad-af2eabc5c6f5",
+                          "version": 2
+                        }
+                      ],
+                      "promptTokens": 1038,
+                      "completionTokens": 26
+                    }
+                  ],
+                  "refreshMs": 19.899999976158142,
+                  "verificationMs": 4.300000011920929,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "O uso de Rust no projeto Grumixama ainda é um plano. Você planeja utilizá-lo junto com SQLite."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2913,
+          "extraction_wait_ms": 719,
+          "notePaints": []
+        },
+        {
+          "turn": 3,
+          "question": "What database is in my plans for this project?",
+          "answers": [
+            {
+              "id": "04321c4c-ec5e-4ab7-a710-046f470f426c",
+              "content": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+              "lucilleFidelity": [
+                {
+                  "id": "519ae367-f930-459b-aa00-3a6e0f58112f",
+                  "status": "blocked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você planeja usar SQLite como banco de dados para o projeto grumixama.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.grumixama",
+                            "property": "database",
+                            "value": "sqlite",
+                            "span": "Você planeja usar SQLite como banco de dados para o projeto grumixama.",
+                            "supported": true,
+                            "references": [
+                              "8888566f-36c9-4ac2-34ad-af2eabc5c6f5"
+                            ]
+                          }
+                        ],
+                        "violations": [
+                          {
+                            "code": "question_language_mismatch",
+                            "span": "Você planeja usar SQLite como banco de dados para o projeto grumixama.",
+                            "critical": false
+                          }
+                        ],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.7000000476837158
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 3575,
+                      "completionTokens": 18
+                    },
+                    {
+                      "rawAnswer": "Você planeja usar SQLite como banco de dados para o projeto grumixama.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.grumixama",
+                            "property": "database",
+                            "value": "sqlite",
+                            "span": "Você planeja usar SQLite como banco de dados para o projeto grumixama.",
+                            "supported": true,
+                            "references": [
+                              "8888566f-36c9-4ac2-34ad-af2eabc5c6f5"
+                            ]
+                          }
+                        ],
+                        "violations": [
+                          {
+                            "code": "question_language_mismatch",
+                            "span": "Você planeja usar SQLite como banco de dados para o projeto grumixama.",
+                            "critical": false
+                          }
+                        ],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.399999976158142
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 2063,
+                      "completionTokens": 18
+                    }
+                  ],
+                  "refreshMs": 17.399999976158142,
+                  "verificationMs": 2.100000023841858,
+                  "extraGenerationMs": 3154.899999976158,
+                  "additionalUsage": {
+                    "promptTokens": 2063,
+                    "completionTokens": 18
+                  }
+                }
+              ],
+              "agentBlocks": []
+            }
+          ],
+          "generation_ms": 8953,
+          "extraction_wait_ms": 711,
+          "notePaints": []
+        },
+        {
+          "turn": 4,
+          "question": "Pode me lembrar daquele projeto de que falei?",
+          "answers": [
+            {
+              "id": "fe689c03-1381-4c3a-9213-87f3ce94e16c",
+              "content": "Você está começando o projeto \"grumixama\", que é um catálogo de fósseis. Você planeja desenvolvê-lo usando a linguagem Rust com o banco de dados SQLite.",
+              "lucilleFidelity": [
+                {
+                  "id": "0c0c56dd-f39c-4d59-9fd0-de93e48ffdd5",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você está começando o projeto \"grumixama\", que é um catálogo de fósseis. Você planeja desenvolvê-lo usando a linguagem Rust com o banco de dados SQLite.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.grumixama",
+                            "property": "language",
+                            "value": "rust",
+                            "span": "Você planeja desenvolvê-lo usando a linguagem Rust com o banco de dados SQLite.",
+                            "supported": true,
+                            "references": [
+                              "2fbff49d-3b93-ac03-3ffb-ecfa611ffa2f"
+                            ]
+                          },
+                          {
+                            "entity": "project.grumixama",
+                            "property": "database",
+                            "value": "sqlite",
+                            "span": "Você planeja desenvolvê-lo usando a linguagem Rust com o banco de dados SQLite.",
+                            "supported": true,
+                            "references": [
+                              "8888566f-36c9-4ac2-34ad-af2eabc5c6f5"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 2,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 2.300000011920929
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1318,
+                      "completionTokens": 39
+                    }
+                  ],
+                  "refreshMs": 11.5,
+                  "verificationMs": 2.300000011920929,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você está começando o projeto \"grumixama\", que é um catálogo de fósseis. Você planeja desenvolvê-lo usando a linguagem Rust com o banco de dados SQLite."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3401,
+          "extraction_wait_ms": 737,
+          "notePaints": []
+        }
+      ],
+      "final_metrics": {
+        "current_vectors": 3,
+        "history_events": [
+          {
+            "count": 3,
+            "state": "approve"
+          },
+          {
+            "count": 3,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 2,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 3,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "grumixama",
+        "provenance_rows": 3,
+        "scope": "phase22c-development-v1",
+        "sqlite_main_page_bytes": 184320,
+        "vector_json_bytes": 28509
+      }
+    },
+    {
+      "file": "driver-development22c-v1-unknown-final.json",
+      "private_fixture_sha256": "0596e7a83c865caedfadf65be428a25c4b7d27574ded7813ad819d35e99e17e4",
+      "scope": "phase22c-development-v1",
+      "project": "araucaria",
+      "turns": [
+        {
+          "turn": 0,
+          "question": "I have not chosen a database for my project.",
+          "answers": [
+            {
+              "id": "de7034d7-5bc5-4b79-8666-93b74dc79991",
+              "content": "What type of data will your project primarily handle? Knowing this will help narrow down the best database for your needs.",
+              "lucilleFidelity": [
+                {
+                  "id": "bb38c1ee-79bc-4278-b3ec-ad2fca155930",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "What type of data will your project primarily handle? Knowing this will help narrow down the best database for your needs.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.0999999642372131
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 896,
+                      "completionTokens": 24
+                    }
+                  ],
+                  "refreshMs": 6.900000035762787,
+                  "verificationMs": 1.0999999642372131,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "What type of data will your project primarily handle? Knowing this will help narrow down the best database for your needs."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2645,
+          "extraction_wait_ms": 4713,
+          "notePaints": []
+        },
+        {
+          "turn": 1,
+          "question": "Eu já defini qual banco de dados usar nesse projeto?",
+          "answers": [
+            {
+              "id": "8119224b-5cec-446c-94a1-312503a9db39",
+              "content": "Ainda não há um registro de qual banco de dados você definiu para este projeto.",
+              "lucilleFidelity": [
+                {
+                  "id": "cd625bfe-832c-43cc-9580-6903d18c5205",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Ainda não há um registro de qual banco de dados você definiu para este projeto.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": true,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 897,
+                      "completionTokens": 19
+                    }
+                  ],
+                  "refreshMs": 6,
+                  "verificationMs": 0,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Ainda não há um registro de qual banco de dados você definiu para este projeto."
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2390,
+          "extraction_wait_ms": 721,
+          "notePaints": []
+        }
+      ],
+      "final_metrics": {
+        "current_vectors": 1,
+        "history_events": [
+          {
+            "count": 1,
+            "state": "approve"
+          },
+          {
+            "count": 1,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 1,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 1,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "araucaria",
+        "provenance_rows": 1,
+        "scope": "phase22c-development-v1",
+        "sqlite_main_page_bytes": 491520,
+        "vector_json_bytes": 9512
+      }
+    }
+  ]
+}

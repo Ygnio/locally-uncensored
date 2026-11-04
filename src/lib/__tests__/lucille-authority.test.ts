@@ -49,6 +49,9 @@ describe('typed evidence authority, independent of wording recognition',()=>{
   it('keeps independent modalities in a project summary',()=>{
     const s=snapshot([fact({value:'python',modality:'in_progress'}),fact({property:'database',value:'postgresql'}),fact({value:'javascript',modality:'planned'})],'Você recorda meu projeto?')
     expect(verifyMemoryAnswer('Seu projeto Atlas é desenvolvido em Python. Você decidiu utilizar PostgreSQL, embora também tenha planejado o uso de JavaScript.',s).violations).toEqual([])
+    expect(verifyMemoryAnswer('No seu projeto Atlas, você usa Python como linguagem e decidiu utilizar PostgreSQL como banco de dados. Além disso, você planeja usar JavaScript no projeto.',s).violations).toEqual([])
+    expect(verifyMemoryAnswer('No seu projeto Atlas, você usa Python e planeja utilizar JavaScript. Além disso, você decidiu usar PostgreSQL como banco de dados.',s).violations).toEqual([])
+    expect(verifyMemoryAnswer('Você decidiu usar PostgreSQL e usa JavaScript no projeto.',s).violations.map(v=>v.code)).toContain('plan_or_decision_as_execution')
   })
   it('accepts exact hyphen/space name equivalence without fuzzy matching foreign projects',()=>{
     const s={...snapshot([fact({entity:'project.jatoba-azul',project:'jatoba-azul',value:'javascript',modality:'in_progress',validity:'historical'})],'Que linguagem era usada antes do cancelamento?'),project:'jatoba-azul'}
@@ -67,6 +70,16 @@ describe('typed evidence authority, independent of wording recognition',()=>{
 })
 
 describe('bounded non-destructive intervention and language',()=>{
+  it('retains a proved requested lifecycle while discarding an independent invented historical ordering',async()=>{
+    const s=snapshot([fact({property:'lifecycle',value:'cancelled',modality:'cancelled'}),fact({property:'database',value:'sqlite'})],'Como está meu projeto neste momento?')
+    const regenerate=vi.fn()
+    const text='Seu projeto Atlas está atualmente cancelado. Antes do cancelamento, você havia decidido utilizar SQLite como banco de dados.'
+    const r=await validateLucilleCompletion(wire(s),{content:text,finishReason:'stop'},regenerate)
+    expect(r.completion.content).toBe('Seu projeto Atlas está atualmente cancelado.')
+    expect(r.report.localizedRepair?.removed).toEqual(['Antes do cancelamento, você havia decidido utilizar SQLite como banco de dados.'])
+    expect(regenerate).not.toHaveBeenCalled()
+    expect(verifyMemoryAnswer('Seu projeto Atlas está cancelado.',snapshot([],s.query)).violations.map(v=>v.code)).toContain('unproven_project_cancellation')
+  })
   it('projects independent sentences verbatim while retaining every requested supported field',async()=>{
     const regenerate=vi.fn(),text='Você decidiu usar Rust. Seu projeto ainda está em desenvolvimento.'
     const r=await validateLucilleCompletion(wire(snapshot()),{content:text,finishReason:'stop'},regenerate)

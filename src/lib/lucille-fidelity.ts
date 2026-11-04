@@ -109,7 +109,9 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     if (!choiceOrigin && !historical && !planned(span) && !execution(span) && matching.every(f => ['planned', 'hypothesis'].includes(f.modality)) && !planned(snapshot.query)) add('modality_omitted', span, false)
     if (matching.every(f => f.modality === 'hypothesis') && !/talvez|pode ser|might|maybe|hipot|possib/.test(fold(span))) add('hypothesis_as_fact', span)
   }
-  const clauses = text.split(/(?<=[.!?;\n])\s+|\b(?:mas|porem|however|but)\b|\s+(?=(?:embora|although)\b)/i).slice(0, 128)
+  // A coordinated predicate owns its modality. A decision about PostgreSQL
+  // cannot change the preceding current Python use (or the reverse).
+  const clauses = text.split(/(?<=[.!?;\n])\s+|\b(?:mas|porem|however|but)\b|\s+(?=(?:embora|although)\b)|\s+(?=(?:e|and)\s+(?:(?:voce|you)\s+)?(?:decidiu|escolheu|planeja|pretende|usa|utiliza|uses|plans|decided|chose|intends)\b)/i).slice(0, 128)
   let favoriteSlotBound=false
   for (const span of clauses) {
     const q = fold(span)
@@ -157,7 +159,11 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       if(/nao (?:esta (?:sendo )?(?:desenvolvid|implementad|usando)|usa\b|comecou\b)|(?:is not|isn.t|has not|hasn.t).{0,12}(?:being developed|implemented|using|started)/.test(q) && !projectFacts.some(f=>f.property==='lifecycle' && ['cancelled','completed'].includes(f.modality)))add('unproven_negative_execution',span)
       if (/(?:cancelou|cancelei|cancelled|canceled)\s+(?:(?:o|seu|meu|the|your|my)\s+)*(?:projeto|project)\b/.test(q) && !/nao.{0,20}cancel|not.{0,20}cancel/.test(q)) record(span,'lifecycle','cancelled','project.'+snapshot.project)
       if (/em execucao|em andamento|in progress|underway|sendo desenvolvido|being developed/.test(q) && !projectFacts.some(f => f.modality === 'in_progress')) add('unproven_project_progress', span)
-      if (/(?:projeto|project).{0,70}(?:esta|foi|is|was) (?:cancelad|cancelled|canceled)/.test(q) && !/nao.*cancel|not.*cancel/.test(q) && !projectFacts.some(f => f.property === 'lifecycle' && f.modality === 'cancelled')) add('unproven_project_cancellation', span)
+      if (/(?:projeto|project).{0,70}(?:esta|foi|is|was) (?:atualmente |currently )?(?:cancelad|cancelled|canceled)/.test(q) && !/nao.*cancel|not.*cancel/.test(q)) {
+        const proof=projectFacts.filter(f=>f.property==='lifecycle' && f.modality==='cancelled')
+        assertions.push({entity:'project.'+snapshot.project,property:'lifecycle',value:'cancelled',span,supported:proof.length>0,references:proof.map(f=>f.id)})
+        if(!proof.length)add('unproven_project_cancellation',span)
+      }
       if (completion(span) && !projectFacts.some(f => ['lifecycle', 'project_status'].includes(f.property) && f.modality === 'completed')) add('unproven_project_completion', span)
     }
     if (subject) {

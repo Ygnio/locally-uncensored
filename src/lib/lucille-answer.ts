@@ -109,7 +109,7 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
     const codes = [...new Set(check.violations.map(v => v.code))].join(', ')
     const repairs:Record<string,string>={
       authority_execution:'A project choice or description does not attest execution or progress. Keep the known choice and state what execution evidence is unavailable.',
-      authority_preference_transition:'Renewed storage does not mean the user stopped or resumed liking anything. Acknowledge the current preference without inventing a personal transition.',
+      authority_preference_transition:'Renewed storage does not mean the user stopped or resumed liking anything. The supported relation is a present preference; the unsupported relation is a personal transition. Formulate the present preference directly. Do not use resumed, again, voltou a gostar, retomou or deixou de gostar without an original source attesting that personal transition.',
       authority_file_inventory:'The tool only observed its requested directory. It has no verified exhaustive binding to the remembered project. State the scoped project lifecycle from memory; do not infer project file absence.',
       authority_stack_transition:'A choice to change technology does not prove an executed replacement. Preserve the decision, with the origin and target in their proper roles.',
       authority_workload_performance:'Capacity does not attest workload suitability. Keep the verified RAM quantity without an assurance about running applications.',
@@ -133,6 +133,9 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
       wrong_decision_actor:'The decision or unknown status belongs to the user and their project. Do not claim in first person that you made or did not make the decision.',
     }
     const guidance=[...new Set(check.violations.map(v=>repairs[v.code]).filter(Boolean))].join(' ')
+      + (language ? ' Required response language: '+(language==='en'?'English':'Portuguese')+'. Translate the formulation into that language; retain proper names and technical values.' : '')
+      + ' Rejected predicate relations (not authoritative facts): '
+      + JSON.stringify((check.authority??[]).filter(c=>c.verdict!=='supported').map(c=>({entity:c.entity,property:c.property,relation:c.relation,value:c.value,reason:c.reason})))
       + ' Preserve these supported original assertions where relevant, without their rejected neighbouring inferences: '
       + JSON.stringify(check.assertions.filter(a=>a.supported && !check.violations.some(v=>v.span===a.span)).map(a=>({text:a.span,entity:a.entity,property:a.property,value:a.value})))
     const correction: ChatMessage = { role: 'system', content: 'Memory answer fidelity retry (one attempt only). Previous attempt failed independent checks: ' + codes + '. ' + guidance + ' Produce a new, direct answer to the same current USER question in its language using the refreshed scoped data. Preserve plans, decisions, actual execution, history, uncertainty and negation. Missing retrieval is not proof of an unmade decision. Mention memory operations only when the user asks and a native receipt supports them. Do not announce this verification. Never invent a replacement fact or repeat the rejected error.' }

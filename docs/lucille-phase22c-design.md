@@ -27,3 +27,16 @@ Mensagem USER elegível sustenta o que foi dito agora, sem comprovar gravação.
 A avaliação de afirmações usará relações tipadas e vereditos separados (sustentada, contradita, insuficiente, fora do escopo, histórica, hipotética, dependente de ferramenta, não relacionada à memória). Reconhecimento linguístico continua limitado e testável; mais expressões regulares não equivalem a prova geral. Investigar reparo localizado com preservação literal das partes confirmadas e uma regeneração real limitada, medindo também disponibilidade e completude. Nenhum aviso genérico será contabilizado como resposta útil.
 
 O desenvolvimento usa regressões conhecidas. A avaliação inédita só começará após novo congelamento e novos conjuntos. A série histórica manterá o mesmo escopo e ordem 20 → 50 → 100, com isolamento por projeto. Builds pesados com modelos desligados; Gemma 65.536 e Nomic CPU/768/2.048; nenhuma alteração administrativa ou instalação operacional.
+
+
+## Desenvolvimento real v1 e correções seguintes
+
+As seis conversas conhecidas de 2.2B foram reexecutadas com Gemma/Nomic, GUI nativa e perfil 22C: 65 turnos, 65 relatórios únicos, 72 gerações reais. Seis respostas foram retidas, uma regenerada e nenhuma projeção localizada foi aplicada nessa variante. Esses números medem intervenção/entrega; não substituem revisão independente de todas as afirmações. A disponibilidade bruta 59/65 fica abaixo de 95%. Não há aprovação da fase.
+
+A extração da fonte “O projeto continua sendo um catálogo de minerais.” concluiu e a fila dos seis cenários drenou. O híbrido recuperou 38/38 fatos do corpus conhecido, sem falsos positivos, violação de escopo ou exclusões como atuais. Incluiu os dois fatos da pergunta histórica composta, mantendo o limiar 0,6. FTS recuperou 33/38; Nomic isolado 27/38 e permanece reprovado isoladamente. As saídas negativas foram preservadas em `docs/evidence/phase22c/development/`.
+
+A rodada mostrou três bloqueios por idioma, dois por conteúdo indevido (retomada de gosto e ordem histórica SQLite/cancelamento) e um falso bloqueio de predicados coordenados. O resumo correto combinava uso atual de Python, decisão PostgreSQL e plano JavaScript; o verificador aplicava cada verbo a todos os valores na frase. A segmentação agora reconhece coordenação com um novo predicado explícito. Testes positivos e negativos mantêm a rejeição de JavaScript planejado como uso atual.
+
+A diretiva de idioma agora resolve a pergunta USER original antes de sua concatenação com dados portugueses pelos templates estritos. A regeneração inclui o idioma resolvido e relações rejeitadas com seus motivos, sem construir uma resposta substituta. A projeção localizada pode preservar um estado cancelado comprovado solicitado, removendo uma frase independente de ordem histórica não demonstrada; preserva original/remoção/reverificação. A identidade sintética de desenvolvimento também permite ferramentas quando o USER pede observação externa, para que o ensaio positivo não seja desabilitado por sua configuração.
+
+Passaram 126 Rust na implementação nativa, 685 TypeScript após as novas regressões (incluindo os 666 originais), três testes de esquema, typecheck, lint alterado e build estático. Os ajustes seguintes ainda precisam de geração real; nenhum conjunto final inédito foi criado ou executado.
