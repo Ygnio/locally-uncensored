@@ -182,7 +182,10 @@ async function nativeFault(control) {
       if(!jobs.some(job=>job.id===request.id))throw Error('Foreign fault job')
     }
   }
-  const result=await globalThis.__TAURI_INTERNALS__.invoke(publish?'lucille_learn':'lucille_manage',publish?request.args:{request,confirmation:null})
+  // Scope/project fence the harness request; CancelLearning's strict native
+  // schema accepts only the ID after that ownership check.
+  const nativeRequest=request.operation==='cancel_learning' ? {operation:'cancel_learning',id:request.id} : request
+  const result=await globalThis.__TAURI_INTERNALS__.invoke(publish?'lucille_learn':'lucille_manage',publish?request.args:{request:nativeRequest,confirmation:null})
   await record(`driver-${control.label}-fault.json`,{native:true,observed:new Date().toISOString(),request,result},true)
 }
 const processed = new Set(JSON.parse(localStorage.getItem("lucille-phase22c-driver-consumed") ?? "[]"))
