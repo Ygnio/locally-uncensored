@@ -512,7 +512,15 @@ impl Store {
         {
             // The failed transaction cannot retain write authority until lease expiry.
             // Bounded retry/failure also purges source input on the terminal attempt.
-            self.fail_learning(lease, at)?;
+            let source_rejected = result
+                .as_ref()
+                .err()
+                .is_some_and(|e| e == "Ineligible V3 source")
+                && self.learning_input(lease)?.is_some_and(|(text, _)| {
+                    !crate::dialogue::eligible_source(&text)
+                        || !crate::dialogue::project_scope_matches(&text, &lease.project)
+                });
+            self.fail_learning_classified(lease, at, source_rejected)?;
         }
         result
     }
@@ -645,12 +653,22 @@ impl Store {
         Ok(true)
     }
     pub fn fail_learning(&mut self, lease: &Lease, at: i64) -> Result<()> {
+        self.fail_learning_classified(lease, at, false)
+    }
+    fn fail_learning_classified(
+        &mut self,
+        lease: &Lease,
+        at: i64,
+        source_rejected: bool,
+    ) -> Result<()> {
         let attempts:Option<i64>=self.db.query_row("SELECT attempts FROM extraction_jobs WHERE id=?1 AND state='running' AND lease_token=?2 AND lease_until>?3",params![lease.id,lease.token,at],|r|r.get(0)).optional().map_err(db_error)?;
         let Some(attempts) = attempts else {
             return Ok(());
         };
-        let terminal = attempts >= 3;
-        self.db.execute("UPDATE extraction_jobs SET state=?3,error_code='extractor_failed',next_at=?4,updated_at=?5,lease_token=NULL,lease_until=NULL,evidence_json=CASE WHEN ?6 THEN '[]' ELSE evidence_json END WHERE id=?1 AND state='running' AND lease_token=?2",params![lease.id,lease.token,if terminal{"failed"}else{"retry"},at+(1<<attempts),at,terminal]).map_err(db_error)?;
+        // Repeating a deterministic rejection of the original source cannot
+        // establish authority. Transport/model-output failures keep the old cap.
+        let terminal = source_rejected || attempts >= 3;
+        self.db.execute("UPDATE extraction_jobs SET state=?3,error_code=?7,next_at=?4,updated_at=?5,lease_token=NULL,lease_until=NULL,evidence_json=CASE WHEN ?6 THEN '[]' ELSE evidence_json END WHERE id=?1 AND state='running' AND lease_token=?2",params![lease.id,lease.token,if terminal{"failed"}else{"retry"},at+(1<<attempts),at,terminal,if source_rejected{"source_ineligible"}else{"extractor_failed"}]).map_err(db_error)?;
         Ok(())
     }
     pub fn cancel_learning(&mut self, id: &str, _permit: &ConfigurationPermit) -> Result<bool> {

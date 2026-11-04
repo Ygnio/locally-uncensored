@@ -1,0 +1,68 @@
+{
+  "source_file": "resources-final.json",
+  "source_private_sha256": "3369670927cc45ffe2711a53977a33567167df2f821643b65798d2ed1db4ce3e",
+  "data": {
+    "window": {
+      "start_utc": "2026-11-04T13:02:53.470198+00:00",
+      "end_utc": "2026-11-04T13:40:17.214000+00:00",
+      "excludes_post_quality_fault_stop_cleanup": true
+    },
+    "A_measured": {
+      "sample_count": 206,
+      "available_physical_min_mib": 1389,
+      "available_physical_max_mib": 2474,
+      "peak_commit_mib": 21920.89453125,
+      "commit_limit_mib": 32723.3671875,
+      "minimum_commit_headroom_mib": 10802.47265625,
+      "pagefile_current_min_mib": 1009,
+      "pagefile_current_max_mib": 1042,
+      "pagefile_historical_peak_mib": 8007,
+      "cpu_total_peak_percent": 87,
+      "cpu_total_mean_percent": 38.98543689320388,
+      "gpu_device_peak_used_mib": 9500,
+      "gpu_device_peak_util_percent": 100
+    },
+    "B_projected": {
+      "type": "projection only; never measured by closing ChatGPT",
+      "additional_available_physical_mib": 2048,
+      "projected_min_available_physical_mib": 3437,
+      "commit_limit_unchanged": true,
+      "no_user_app_closed": true,
+      "no_latency_or_throughput_gain_claimed": true
+    },
+    "owned_models": {
+      "gemma": {
+        "samples": 1056,
+        "peak_working_set_mib": 7548.91796875,
+        "peak_private_commit_mib": 9339.6875,
+        "cpu_total_seconds_delta_approx": 1569.625
+      },
+      "nomic": {
+        "samples": 1056,
+        "peak_working_set_mib": 790.14453125,
+        "peak_private_commit_mib": 932.52734375,
+        "cpu_total_seconds_delta_approx": 261.671875
+      }
+    },
+    "actual_broker": {
+      "gemma_calls": 343,
+      "nomic_calls": 344,
+      "gemma_prompt_tokens": 718572,
+      "gemma_completion_tokens": 15046,
+      "maximum_observed_prompt_tokens": 6716,
+      "configured_context_tokens": 65536,
+      "gemma_latency_p50_seconds": 3.7152050000149757,
+      "gemma_latency_p95_seconds": 11.600879200035706,
+      "includes_extraction_and_answer_generations": true,
+      "native_modes_replay_same_40_actual_extraction_responses_not_120_inferences": true
+    },
+    "limits": [
+      "Global system CPU/commit/physical memory include existing user apps.",
+      "GPU device usage includes all apps; not per-model attribution.",
+      "Historical pagefile peak predated this quality window and is not QA peak usage.",
+      "Owned GUI sampler host WS excludes full WebView process tree.",
+      "Model sample UTC is approximated from actual process creation FILETIME plus monotonic elapsed; system metrics have UTC timestamps.",
+      "B adds 2 GiB physical headroom only, not measured performance or changed commit."
+    ]
+  }
+}

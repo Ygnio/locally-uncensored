@@ -1,0 +1,52 @@
+{
+  "id": "phase22c-known-repair-development-v2",
+  "project": "sapucaia",
+  "turns": [
+    {
+      "text": "Esqueça minha preferência de escolher classes nos jogos."
+    },
+    {
+      "text": "Pode voltar a memorizar: eu gosto de jogos em que posso escolher minha classe.",
+      "review_preferences": true
+    }
+  ],
+  "probes": [
+    {
+      "text": "Você recorda como está meu projeto e quais escolhas eu fiz?",
+      "scenario": "indirect_predicate_modalities",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "python"
+        },
+        {
+          "property": "database",
+          "value": "postgresql"
+        }
+      ]
+    },
+    {
+      "text": "What kind of replies do I prefer?",
+      "scenario": "language_english_preference",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "communication_focus",
+          "value": "objective"
+        }
+      ]
+    },
+    {
+      "text": "Which learning goal have I already completed?",
+      "scenario": "language_english_goal",
+      "mode": "agent",
+      "expected": [
+        {
+          "property": "goal.learning",
+          "value": "aprender alemao"
+        }
+      ]
+    }
+  ]
+}

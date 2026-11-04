@@ -1,0 +1,82 @@
+"""Seal code/artifacts and explicit corpora. Never edit a completed manifest.
+
+Development manifests label known regression material; final data must be authored
+and committed only after production development ends. No paths/secrets from the
+private contract are copied into the published pin.
+"""
+import argparse
+import datetime
+import hashlib
+import json
+import re
+from pathlib import Path
+import subprocess
+
+
+def digest(path, lf=False):
+    data=path.read_bytes()
+    return hashlib.sha256(data.replace(b'\r\n',b'\n') if lf else data).hexdigest()
+
+
+def main(a):
+    repo=Path(__file__).resolve().parents[1]
+    root=Path(a.root).resolve(strict=True)
+    assert root==repo/'.lucille-qa-runtime/lucille-synthetic-real22c'
+    assert (root/'.lucille-isolated').read_bytes()==b'synthetic-data-only\n'
+    output=Path(a.output).resolve()
+    allowed=repo/'crates/lucille-memory/tests/fixtures/phase22c'
+    assert output.is_relative_to(root/'reports') if a.kind=='development' else output.is_relative_to(allowed)
+    assert not output.exists(),'Never overwrite a freeze'
+    corpora={}
+    for name in a.corpus:
+        p=(repo/name).resolve(strict=True)
+        assert p.is_relative_to(repo/'crates/lucille-memory/tests/fixtures') and p.suffix=='.json'
+        corpora[p.relative_to(repo).as_posix()]=digest(p)
+    assert a.extraction in corpora and a.retrieval in corpora
+    tracked=subprocess.check_output(['git','ls-files','-z'],cwd=repo).decode().split('\0')
+    extensions={'.ts','.tsx','.rs','.py','.ps1','.mjs','.cjs','.js','.json','.toml','.sql','.yaml','.yml','.html','.css','.lock'}
+    sources={}
+    for name in tracked:
+        if not name or name.startswith(('docs/','crates/lucille-memory/tests/fixtures/')):continue
+        p=repo/name
+        if p.is_file() and (p.suffix in extensions or name in ['.gitignore','.nvmrc']):sources[name]=digest(p,True)
+    assert 'src/lib/lucille-authority.ts' in sources
+    assert 'qa/phase22c-driver.js' in sources
+    assert re.fullmatch(r'[0-9a-f]{40}',a.production_commit)
+    subprocess.run(['git','merge-base','--is-ancestor',a.production_commit,'HEAD'],cwd=repo,check=True)
+    if a.kind=='final':
+        dirty=subprocess.check_output(['git','diff','--name-only','HEAD'],cwd=repo,text=True).splitlines()
+        assert not set(dirty).intersection(sources),'Commit final production source before freezing'
+        changed_since_end=subprocess.check_output(['git','diff','--name-only',a.production_commit,'HEAD'],cwd=repo,text=True).splitlines()
+        assert not set(changed_since_end).intersection(sources),'Production changed after declared completion'
+        assert a.identity,'Final requires an actual completed native GUI identity/policy fixture'
+    pin=json.loads((root/'reports/real-public-pin.json').read_text(encoding='utf-8'))
+    assert pin['simulation'] is False and pin['memory_protocol']==3
+    static=repo/'qa-dist-22c'
+    assert (static/'.lucille-static-build').read_bytes()==b'synthetic-data-only\n'
+    gui=repo.parent/'build/tauri/x86_64-pc-windows-msvc/debug/lucille-full-validation.exe'
+    bridge=repo.parent/'build/memory/debug/examples/real_validation_bridge.exe'
+    fixture=json.loads(Path(a.identity).read_text(encoding='utf-8')) if a.identity else None
+    data=dict(id='phase22c-'+a.kind+'-'+a.label,kind=a.kind,
+        created_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        base='97d610e7b508dbf5de9d964be56c41254f739ec7',
+        source_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip(),
+        production_code_commit=a.production_commit,source_sha256_lf=sources,
+        corpus_sha256=corpora,extraction_corpus=a.extraction,retrieval_corpus=a.retrieval,
+        bridge_sha256=digest(bridge),native_gui_sha256=digest(gui),
+        frontend_sha256={p.relative_to(static).as_posix():digest(p) for p in sorted(static.rglob('*')) if p.is_file()},
+        model_pin=pin,schema_version=5,representation_version=5,index_version=5,atomic_protocol=3,
+        identity=fixture.get('identity') if fixture else None,policy=fixture.get('policy') if fixture else None,
+        evaluation_contract='No source/prompt/policy/parameter/corpus/ranking changes during execution; actual raw generations, all fidelity reports, displayed text and usefulness are separate.')
+    output.parent.mkdir(parents=True,exist_ok=True)
+    output.write_bytes((json.dumps(data,ensure_ascii=False,indent=2)+'\n').encode('utf-8'))
+    print(json.dumps(dict(kind=a.kind,source_files=len(sources),corpora=len(corpora),sha256=digest(output))))
+
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser()
+    for name in ['root','output','label','extraction','retrieval','production-commit']:p.add_argument('--'+name,required=True)
+    p.add_argument('--corpus',action='append',required=True)
+    p.add_argument('--kind',choices=['development','final'],required=True)
+    p.add_argument('--identity')
+    main(p.parse_args())

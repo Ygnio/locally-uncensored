@@ -1,0 +1,349 @@
+[
+  {
+    "id": "decision-execution",
+    "answer": "Não, a decisão de usar TypeScript indica uma escolha de tecnologia, não a conclusão do projeto. Como você mesmo decidiu, o projeto ainda está em desenvolvimento.",
+    "snapshot": {
+      "scope": "baseline22c",
+      "project": "ingazeiro",
+      "query": "Ter decidido usar TypeScript comprova que o projeto já foi concluído?",
+      "facts": [
+        {
+          "id": "3f39bf1442bb91d8",
+          "version": 2,
+          "entity": "project.ingazeiro",
+          "property": "language",
+          "value": "typescript",
+          "modality": "decision",
+          "validity": "current",
+          "scope": "baseline22c",
+          "project": "ingazeiro",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": ""
+            }
+          ]
+        }
+      ],
+      "currentStatements": []
+    }
+  },
+  {
+    "id": "relearn-liking",
+    "answer": "Agora você voltou a gostar de jogos em que pode escolher sua classe.",
+    "snapshot": {
+      "scope": "baseline22c",
+      "project": "ingazeiro",
+      "query": "Pode voltar a memorizar: eu gosto de jogos em que posso escolher minha classe.",
+      "facts": [],
+      "currentStatements": [
+        {
+          "id": "4915fdc767d07029",
+          "version": 2,
+          "entity": "user",
+          "property": "games_class_selection",
+          "value": "positive",
+          "modality": "preference",
+          "validity": "current_user_statement",
+          "scope": "baseline22c",
+          "project": "ingazeiro",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": ""
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "unlinked-empty-folder",
+    "answer": "Como a pasta atual está vazia, seu projeto ainda não tem arquivos definidos.",
+    "snapshot": {
+      "scope": "baseline22c",
+      "project": "ingazeiro",
+      "query": "Como está meu projeto neste momento?",
+      "facts": [
+        {
+          "id": "94f7fb434cd0cf32",
+          "version": 2,
+          "entity": "project.ingazeiro",
+          "property": "lifecycle",
+          "value": "cancelled",
+          "modality": "cancelled",
+          "validity": "current",
+          "scope": "baseline22c",
+          "project": "ingazeiro",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": ""
+            }
+          ]
+        }
+      ],
+      "currentStatements": []
+    }
+  },
+  {
+    "id": "ram-performance",
+    "answer": "Com 28 GB de RAM, você tem uma excelente capacidade para rodar o ambiente de desenvolvimento e o banco de dados simultaneamente.",
+    "snapshot": {
+      "scope": "baseline22c",
+      "project": "ingazeiro",
+      "query": "Meu computador principal tem 28 GB de RAM.",
+      "facts": [],
+      "currentStatements": [
+        {
+          "id": "4c8388a4e5172a1f",
+          "version": 2,
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "28_gb",
+          "modality": "current_fact",
+          "validity": "current_user_statement",
+          "scope": "baseline22c",
+          "project": "ingazeiro",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": ""
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "decision-replacement",
+    "answer": "Você decidiu trocar o MySQL pelo PostgreSQL no seu projeto de catálogo de minerais.",
+    "snapshot": {
+      "scope": "baseline22c",
+      "project": "ingazeiro",
+      "query": "Decidi trocar o banco de dados por PostgreSQL.",
+      "facts": [
+        {
+          "id": "e999944a335ff3a5",
+          "version": 2,
+          "entity": "project.ingazeiro",
+          "property": "database",
+          "value": "mysql",
+          "modality": "planned",
+          "validity": "historical",
+          "scope": "baseline22c",
+          "project": "ingazeiro",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": ""
+            }
+          ]
+        }
+      ],
+      "currentStatements": [
+        {
+          "id": "a0cb8c81cf5fe61f",
+          "version": 2,
+          "entity": "project.ingazeiro",
+          "property": "database",
+          "value": "postgresql",
+          "modality": "decision",
+          "validity": "current_user_statement",
+          "scope": "baseline22c",
+          "project": "ingazeiro",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": ""
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "historical-plan",
+    "answer": "Seu projeto Ingazeiro é um catálogo de minerais desenvolvido em Python. Você decidiu utilizar PostgreSQL como banco de dados, embora também tenha planejado o uso de JavaScript.",
+    "snapshot": {
+      "scope": "baseline22c",
+      "project": "ingazeiro",
+      "query": "Você recorda como está meu projeto e quais escolhas eu fiz?",
+      "facts": [
+        {
+          "id": "ac6d3e21a8eb5e5f",
+          "version": 2,
+          "entity": "project.ingazeiro",
+          "property": "language",
+          "value": "python",
+          "modality": "in_progress",
+          "validity": "current",
+          "scope": "baseline22c",
+          "project": "ingazeiro",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "id": "a0cb8c81cf5fe61f",
+          "version": 2,
+          "entity": "project.ingazeiro",
+          "property": "database",
+          "value": "postgresql",
+          "modality": "decision",
+          "validity": "current",
+          "scope": "baseline22c",
+          "project": "ingazeiro",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "id": "f1077a1eb857a257",
+          "version": 2,
+          "entity": "project.ingazeiro",
+          "property": "language",
+          "value": "javascript",
+          "modality": "planned",
+          "validity": "current",
+          "scope": "baseline22c",
+          "project": "ingazeiro",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": ""
+            }
+          ]
+        }
+      ],
+      "currentStatements": []
+    }
+  },
+  {
+    "id": "historical-cancelled",
+    "answer": "Você estava usando JavaScript para implementar o projeto Ingazeiro.",
+    "snapshot": {
+      "scope": "baseline22c",
+      "project": "ingazeiro",
+      "query": "Que linguagem era usada antes de eu cancelar esse projeto?",
+      "facts": [
+        {
+          "id": "34b6537cf123d937",
+          "version": 2,
+          "entity": "project.ingazeiro",
+          "property": "language",
+          "value": "javascript",
+          "modality": "in_progress",
+          "validity": "historical",
+          "scope": "baseline22c",
+          "project": "ingazeiro",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "id": "94f7fb434cd0cf32",
+          "version": 2,
+          "entity": "project.ingazeiro",
+          "property": "lifecycle",
+          "value": "cancelled",
+          "modality": "cancelled",
+          "validity": "current",
+          "scope": "baseline22c",
+          "project": "ingazeiro",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": ""
+            }
+          ]
+        }
+      ],
+      "currentStatements": []
+    }
+  },
+  {
+    "id": "current-goal",
+    "answer": "Seu objetivo atual é aprender circuitos elétricos básicos.",
+    "snapshot": {
+      "scope": "baseline22c",
+      "project": "ingazeiro",
+      "query": "Qual é meu objetivo atual sobre circuitos elétricos básicos?",
+      "facts": [
+        {
+          "id": "29b1fccb432e847d",
+          "version": 2,
+          "entity": "user",
+          "property": "goal.learning",
+          "value": "aprender circuitos eletricos basicos",
+          "modality": "current_fact",
+          "validity": "current",
+          "scope": "baseline22c",
+          "project": "ingazeiro",
+          "review": "reviewed",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": ""
+            }
+          ]
+        }
+      ],
+      "currentStatements": []
+    }
+  },
+  {
+    "id": "empty-forget",
+    "answer": "Esqueci sua preferência de tema de interface.",
+    "snapshot": {
+      "scope": "baseline22c",
+      "project": "ingazeiro",
+      "query": "Esqueça minha preferência de tema de interface.",
+      "facts": [],
+      "currentStatements": [],
+      "directiveReceipt": {
+        "id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "action": "forget",
+        "property": "interface_theme",
+        "state": "done",
+        "had_records": false,
+        "scope": "baseline22c",
+        "project": "ingazeiro",
+        "conversation_id": "c",
+        "source_message_id": "u"
+      }
+    }
+  }
+]

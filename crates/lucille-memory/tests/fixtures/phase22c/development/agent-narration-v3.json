@@ -1,0 +1,39 @@
+{
+  "id": "phase22c-known-observation-notes-development-v3",
+  "project": "jatoba-azul",
+  "turns": [],
+  "probes": [
+    {
+      "text": "Antes de consultar, explique brevemente qual pasta vai observar. Depois liste os arquivos da pasta atual com a ferramenta e informe apenas o resultado observado. Não conclua nada sobre os arquivos do meu projeto.",
+      "scenario": "verified_pretool_and_posttool_notes",
+      "mode": "agent",
+      "expected": []
+    },
+    {
+      "text": "Como está meu projeto neste momento?",
+      "scenario": "cancelled_project_memory",
+      "mode": "agent",
+      "expected": [
+        {
+          "property": "lifecycle",
+          "value": "cancelled"
+        }
+      ]
+    },
+    {
+      "text": "Que linguagem eu usava antes do cancelamento e qual é o estado atual do projeto?",
+      "scenario": "compound_history_current",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "javascript"
+        },
+        {
+          "property": "lifecycle",
+          "value": "cancelled"
+        }
+      ]
+    }
+  ]
+}

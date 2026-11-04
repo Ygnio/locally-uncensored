@@ -1,0 +1,1287 @@
+{
+  "kind": "known_development_not_unseen",
+  "source_head": "b110641b8b0ee97fd3a951bf933a712a2ca3a8cb",
+  "method": "Actual native full app, Gemma/Nomic, source/lease cancellation and owned GUI restart. All raw fidelity reports, all non-system messages, intermediate store/DOM observations and copied metadata retained. CDP became available at the v3 restart; earlier in-page fallback remains distinct from global OS screenshots.",
+  "fixtures": [
+    {
+      "fixture": "driver-development22c-v3-focused-final.json",
+      "private_fixture_sha256": "dc5de2dd5913750173bbb4b789d1eeec528f70952ef18fabb63eb57096eb917a",
+      "scope": "phase22c-development-v1",
+      "project": "sapucaia",
+      "turns": [
+        {
+          "question": "Esqueça minha preferência de escolher classes nos jogos.",
+          "messages": [
+            {
+              "id": "ad191fbf-b578-4a0a-ba68-389569ed42f3",
+              "role": "user",
+              "content": "Esqueça minha preferência de escolher classes nos jogos."
+            },
+            {
+              "id": "289a4eb4-c0ee-4a8a-ab68-0d7f855c9018",
+              "role": "assistant",
+              "content": "Entendido, esqueci sua preferência de escolha de classes nos jogos. O registro foi removido com sucesso.",
+              "lucilleFidelity": [
+                {
+                  "id": "1762554b-2e2d-4b6c-9557-5ea87306e8d9",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Entendido, esqueci sua preferência de escolha de classes nos jogos. O registro foi removido com sucesso.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 2.300000011920929
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 939,
+                      "completionTokens": 24
+                    }
+                  ],
+                  "refreshMs": 8.200000047683716,
+                  "verificationMs": 2.300000011920929,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Entendido, esqueci sua preferência de escolha de classes nos jogos. O registro foi removido com sucesso."
+                }
+              ]
+            }
+          ],
+          "paints": [
+            {
+              "at_ms": 114,
+              "id": "289a4eb4-c0ee-4a8a-ab68-0d7f855c9018",
+              "content": "",
+              "fidelity_status": null,
+              "error": null
+            },
+            {
+              "at_ms": 2874,
+              "id": "289a4eb4-c0ee-4a8a-ab68-0d7f855c9018",
+              "content": "Entendido, esqueci sua preferência de escolha de classes nos jogos. O registro foi removido com sucesso.",
+              "fidelity_status": "checked",
+              "error": null
+            }
+          ],
+          "domPaints": [
+            {
+              "at_ms": 114,
+              "id": "289a4eb4-c0ee-4a8a-ab68-0d7f855c9018",
+              "text": "",
+              "fidelity_status": null
+            },
+            {
+              "at_ms": 124,
+              "id": "289a4eb4-c0ee-4a8a-ab68-0d7f855c9018",
+              "text": "lucille-real-gemma",
+              "fidelity_status": null
+            },
+            {
+              "at_ms": 2892,
+              "id": "289a4eb4-c0ee-4a8a-ab68-0d7f855c9018",
+              "text": "lucille-real-gemma\n\nEntendido, esqueci sua preferência de escolha de classes nos jogos. O registro foi removido com sucesso.",
+              "fidelity_status": "checked"
+            },
+            {
+              "at_ms": 2921,
+              "id": "289a4eb4-c0ee-4a8a-ab68-0d7f855c9018",
+              "text": "lucille-real-gemma\n\nEntendido, esqueci sua preferência de escolha de classes nos jogos. O registro foi removido com sucesso.\n\n939 in · 24 out",
+              "fidelity_status": "checked"
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 2927,
+          "extraction_wait_ms": 722
+        },
+        {
+          "question": "Pode voltar a memorizar: eu gosto de jogos em que posso escolher minha classe.",
+          "messages": [
+            {
+              "id": "7f14a437-c949-4876-b785-b1896f6ba45b",
+              "role": "user",
+              "content": "Pode voltar a memorizar: eu gosto de jogos em que posso escolher minha classe."
+            },
+            {
+              "id": "297783e7-dacd-49b8-9ea2-5de44f5106c2",
+              "role": "assistant",
+              "content": "Com certeza, agora guardarei que você gosta de jogos onde pode escolher sua classe.",
+              "lucilleFidelity": [
+                {
+                  "id": "1d3a3038-da4c-4014-938d-b4e281931f5e",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Com certeza, agora guardarei que você gosta de jogos onde pode escolher sua classe.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "games_class_selection",
+                            "value": "positive",
+                            "span": "Com certeza, agora guardarei que você gosta de jogos onde pode escolher sua classe.",
+                            "supported": true,
+                            "references": [
+                              "current-turn-0"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 3.299999952316284
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 961,
+                      "completionTokens": 18
+                    }
+                  ],
+                  "refreshMs": 7.100000023841858,
+                  "verificationMs": 3.299999952316284,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Com certeza, agora guardarei que você gosta de jogos onde pode escolher sua classe."
+                }
+              ]
+            }
+          ],
+          "paints": [
+            {
+              "at_ms": 116,
+              "id": "297783e7-dacd-49b8-9ea2-5de44f5106c2",
+              "content": "",
+              "fidelity_status": null,
+              "error": null
+            },
+            {
+              "at_ms": 2488,
+              "id": "297783e7-dacd-49b8-9ea2-5de44f5106c2",
+              "content": "Com certeza, agora guardarei que você gosta de jogos onde pode escolher sua classe.",
+              "fidelity_status": "checked",
+              "error": null
+            }
+          ],
+          "domPaints": [
+            {
+              "at_ms": 116,
+              "id": "297783e7-dacd-49b8-9ea2-5de44f5106c2",
+              "text": "",
+              "fidelity_status": null
+            },
+            {
+              "at_ms": 125,
+              "id": "297783e7-dacd-49b8-9ea2-5de44f5106c2",
+              "text": "lucille-real-gemma",
+              "fidelity_status": null
+            },
+            {
+              "at_ms": 2501,
+              "id": "297783e7-dacd-49b8-9ea2-5de44f5106c2",
+              "text": "lucille-real-gemma\n\nCom certeza, agora guardarei que você gosta de jogos onde pode escolher sua classe.",
+              "fidelity_status": "checked"
+            },
+            {
+              "at_ms": 2531,
+              "id": "297783e7-dacd-49b8-9ea2-5de44f5106c2",
+              "text": "lucille-real-gemma\n\nCom certeza, agora guardarei que você gosta de jogos onde pode escolher sua classe.\n\n961 in · 18 out",
+              "fidelity_status": "checked"
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 2662,
+          "extraction_wait_ms": 5318
+        },
+        {
+          "question": "Você recorda como está meu projeto e quais escolhas eu fiz?",
+          "messages": [
+            {
+              "id": "4d9fdb7a-fe86-4eb5-b43c-8a01c1db6468",
+              "role": "user",
+              "content": "Você recorda como está meu projeto e quais escolhas eu fiz?"
+            },
+            {
+              "id": "ec445ecc-4c61-4378-85b9-05b5373a4d35",
+              "role": "assistant",
+              "content": "No seu projeto Sapucaia, você usa Python como linguagem e decidiu utilizar PostgreSQL como banco de dados. Além disso, você planeja usar JavaScript no projeto.",
+              "lucilleFidelity": [
+                {
+                  "id": "79a0e1e9-fee6-4a8f-9e56-592b831c85a1",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "No seu projeto Sapucaia, você usa Python como linguagem e decidiu utilizar PostgreSQL como banco de dados. Além disso, você planeja usar JavaScript no projeto.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "language",
+                            "value": "python",
+                            "span": "No seu projeto Sapucaia, você usa Python como linguagem",
+                            "supported": true,
+                            "references": [
+                              "987e827c-61cf-f32b-01e9-7513d3642769"
+                            ]
+                          },
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "database",
+                            "value": "postgresql",
+                            "span": "e decidiu utilizar PostgreSQL como banco de dados.",
+                            "supported": true,
+                            "references": [
+                              "a814227b-863d-8f6c-2060-c24acdbc9188"
+                            ]
+                          },
+                          {
+                            "entity": "project.sapucaia",
+                            "property": "language",
+                            "value": "javascript",
+                            "span": "Além disso, você planeja usar JavaScript no projeto.",
+                            "supported": true,
+                            "references": [
+                              "ae9ff5f8-d710-b931-53ce-2aa7e008c61f"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 3,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 9.199999988079071
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1414,
+                      "completionTokens": 33
+                    }
+                  ],
+                  "refreshMs": 13.300000011920929,
+                  "verificationMs": 9.199999988079071,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "No seu projeto Sapucaia, você usa Python como linguagem e decidiu utilizar PostgreSQL como banco de dados. Além disso, você planeja usar JavaScript no projeto."
+                }
+              ]
+            }
+          ],
+          "paints": [
+            {
+              "at_ms": 113,
+              "id": "ec445ecc-4c61-4378-85b9-05b5373a4d35",
+              "content": "",
+              "fidelity_status": null,
+              "error": null
+            },
+            {
+              "at_ms": 3608,
+              "id": "ec445ecc-4c61-4378-85b9-05b5373a4d35",
+              "content": "No seu projeto Sapucaia, você usa Python como linguagem e decidiu utilizar PostgreSQL como banco de dados. Além disso, você planeja usar JavaScript no projeto.",
+              "fidelity_status": "checked",
+              "error": null
+            }
+          ],
+          "domPaints": [
+            {
+              "at_ms": 113,
+              "id": "ec445ecc-4c61-4378-85b9-05b5373a4d35",
+              "text": "",
+              "fidelity_status": null
+            },
+            {
+              "at_ms": 120,
+              "id": "ec445ecc-4c61-4378-85b9-05b5373a4d35",
+              "text": "lucille-real-gemma",
+              "fidelity_status": null
+            },
+            {
+              "at_ms": 3621,
+              "id": "ec445ecc-4c61-4378-85b9-05b5373a4d35",
+              "text": "lucille-real-gemma\n\nNo seu projeto Sapucaia, você usa Python como linguagem e decidiu utilizar PostgreSQL como banco de dados. Além disso, você planeja usar JavaScript no projeto.",
+              "fidelity_status": "checked"
+            },
+            {
+              "at_ms": 3666,
+              "id": "ec445ecc-4c61-4378-85b9-05b5373a4d35",
+              "text": "lucille-real-gemma\n\nNo seu projeto Sapucaia, você usa Python como linguagem e decidiu utilizar PostgreSQL como banco de dados. Além disso, você planeja usar JavaScript no projeto.\n\n1,414 in · 33 out",
+              "fidelity_status": "checked"
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 3668,
+          "extraction_wait_ms": 731
+        },
+        {
+          "question": "What kind of replies do I prefer?",
+          "messages": [
+            {
+              "id": "2294a530-a5d5-4004-92d4-775c2dfc30dd",
+              "role": "user",
+              "content": "What kind of replies do I prefer?"
+            },
+            {
+              "id": "68aaae4c-664d-4e45-a123-f93c46998708",
+              "role": "assistant",
+              "content": "You prefer objective replies.",
+              "lucilleFidelity": [
+                {
+                  "id": "18c75508-805a-45d2-914f-fc85018fa7d5",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "You prefer objective replies.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "communication_focus",
+                            "value": "objective",
+                            "span": "You prefer objective replies.",
+                            "supported": true,
+                            "references": [
+                              "e779626d-dde9-652f-cbec-ffb88bf59f6a"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.5999999642372131
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1092,
+                      "completionTokens": 6
+                    }
+                  ],
+                  "refreshMs": 8,
+                  "verificationMs": 1.5999999642372131,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "You prefer objective replies."
+                }
+              ]
+            }
+          ],
+          "paints": [
+            {
+              "at_ms": 111,
+              "id": "68aaae4c-664d-4e45-a123-f93c46998708",
+              "content": "",
+              "fidelity_status": null,
+              "error": null
+            },
+            {
+              "at_ms": 1981,
+              "id": "68aaae4c-664d-4e45-a123-f93c46998708",
+              "content": "You prefer objective replies.",
+              "fidelity_status": "checked",
+              "error": null
+            }
+          ],
+          "domPaints": [
+            {
+              "at_ms": 111,
+              "id": "68aaae4c-664d-4e45-a123-f93c46998708",
+              "text": "",
+              "fidelity_status": null
+            },
+            {
+              "at_ms": 117,
+              "id": "68aaae4c-664d-4e45-a123-f93c46998708",
+              "text": "lucille-real-gemma",
+              "fidelity_status": null
+            },
+            {
+              "at_ms": 1993,
+              "id": "68aaae4c-664d-4e45-a123-f93c46998708",
+              "text": "lucille-real-gemma\n\nYou prefer objective replies.",
+              "fidelity_status": "checked"
+            },
+            {
+              "at_ms": 2027,
+              "id": "68aaae4c-664d-4e45-a123-f93c46998708",
+              "text": "lucille-real-gemma\n\nYou prefer objective replies.\n\n1,092 in · 6 out",
+              "fidelity_status": "checked"
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 2143,
+          "extraction_wait_ms": 741
+        },
+        {
+          "question": "Which learning goal have I already completed?",
+          "messages": [
+            {
+              "id": "8ee2b6be-16f8-47f4-9562-22e083463048",
+              "role": "user",
+              "content": "Which learning goal have I already completed?"
+            },
+            {
+              "id": "bc254691-ecfe-4c39-970a-a25d32b7991f",
+              "role": "assistant",
+              "content": "You have already completed the goal of learning German.",
+              "lucilleFidelity": [
+                {
+                  "id": "8ea88ecc-2f7c-4fa6-b9f6-405d43df556c",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "You have already completed the goal of learning German.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "user",
+                            "property": "goal_target",
+                            "value": "learn_german",
+                            "span": "You have already completed the goal of learning German.",
+                            "supported": true,
+                            "references": [
+                              "1595f92c-6a91-0673-e95d-e23e304739b8"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 0.800000011920929
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 3670,
+                      "completionTokens": 11
+                    }
+                  ],
+                  "refreshMs": 11.600000023841858,
+                  "verificationMs": 0.800000011920929,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "You have already completed the goal of learning German."
+                }
+              ],
+              "agentBlocks": []
+            }
+          ],
+          "paints": [
+            {
+              "at_ms": 124,
+              "id": "bc254691-ecfe-4c39-970a-a25d32b7991f",
+              "content": "",
+              "fidelity_status": null,
+              "error": null
+            },
+            {
+              "at_ms": 5559,
+              "id": "bc254691-ecfe-4c39-970a-a25d32b7991f",
+              "content": "You have already completed the goal of learning German.",
+              "fidelity_status": "checked",
+              "error": null
+            }
+          ],
+          "domPaints": [
+            {
+              "at_ms": 136,
+              "id": "bc254691-ecfe-4c39-970a-a25d32b7991f",
+              "text": "lucille-real-gemma",
+              "fidelity_status": null
+            },
+            {
+              "at_ms": 5566,
+              "id": "bc254691-ecfe-4c39-970a-a25d32b7991f",
+              "text": "lucille-real-gemma\n\nYou have already completed the goal of learning German.",
+              "fidelity_status": "checked"
+            },
+            {
+              "at_ms": 5592,
+              "id": "bc254691-ecfe-4c39-970a-a25d32b7991f",
+              "text": "lucille-real-gemma\n\nYou have already completed the goal of learning German.\n\n3,670 in · 11 out",
+              "fidelity_status": "checked"
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 5684,
+          "extraction_wait_ms": 725
+        }
+      ],
+      "final_metrics": {
+        "current_vectors": 15,
+        "history_events": [
+          {
+            "count": 11,
+            "state": "approve"
+          },
+          {
+            "count": 1,
+            "state": "auto_correct"
+          },
+          {
+            "count": 7,
+            "state": "auto_promote"
+          },
+          {
+            "count": 1,
+            "state": "auto_superseded"
+          },
+          {
+            "count": 20,
+            "state": "create"
+          },
+          {
+            "count": 3,
+            "state": "obsolete"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 36,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 15,
+            "state": "active"
+          },
+          {
+            "count": 1,
+            "state": "conflict"
+          },
+          {
+            "count": 4,
+            "state": "obsolete"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "sapucaia",
+        "provenance_rows": 26,
+        "scope": "phase22c-development-v1",
+        "sqlite_main_page_bytes": 528384,
+        "vector_json_bytes": 142480
+      }
+    },
+    {
+      "fixture": "driver-development22c-v3-notes-final.json",
+      "private_fixture_sha256": "21d9d1d4836e1b7ad790b0b236180c7e0539b26182b405b8e991920e282510ed",
+      "scope": "phase22c-development-tools-v2",
+      "project": "jatoba-azul",
+      "turns": [
+        {
+          "question": "Antes de consultar, explique brevemente qual pasta vai observar. Depois liste os arquivos da pasta atual com a ferramenta e informe apenas o resultado observado. Não conclua nada sobre os arquivos do meu projeto.",
+          "messages": [
+            {
+              "id": "b8131ed9-55ac-43b7-84b9-162a005a0968",
+              "role": "user",
+              "content": "Antes de consultar, explique brevemente qual pasta vai observar. Depois liste os arquivos da pasta atual com a ferramenta e informe apenas o resultado observado. Não conclua nada sobre os arquivos do meu projeto."
+            },
+            {
+              "id": "6f742bc4-2dca-4dd1-ac0e-33ff2773d09a",
+              "role": "assistant",
+              "content": "Vou observar a pasta atual (diretório de trabalho).",
+              "hidden": true,
+              "lucilleFidelity": [
+                {
+                  "id": "ca09cdf7-a124-475d-ba24-a8ad8e136215",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Vou observar a pasta atual (diretório de trabalho).\n\n",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.300000011920929
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 3621,
+                      "completionTokens": 33
+                    }
+                  ],
+                  "refreshMs": 22.30000001192093,
+                  "verificationMs": 1.300000011920929,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Vou observar a pasta atual (diretório de trabalho)."
+                }
+              ]
+            },
+            {
+              "id": "fa58c57d-bf01-40f8-b451-5c4e4a06aacc",
+              "role": "tool",
+              "content": "The folder is empty.",
+              "hidden": true
+            },
+            {
+              "id": "b6a0f170-49b9-45fd-ad5a-d9c6d276a8a3",
+              "role": "assistant",
+              "content": "A pasta está vazia.",
+              "lucilleFidelity": [
+                {
+                  "id": "ca09cdf7-a124-475d-ba24-a8ad8e136215",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Vou observar a pasta atual (diretório de trabalho).\n\n",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.300000011920929
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 3621,
+                      "completionTokens": 33
+                    }
+                  ],
+                  "refreshMs": 22.30000001192093,
+                  "verificationMs": 1.300000011920929,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Vou observar a pasta atual (diretório de trabalho)."
+                },
+                {
+                  "id": "31111d67-1d8c-4fa6-a5a7-39f21d79ee09",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "A pasta está vazia.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.100000023841858
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 3775,
+                      "completionTokens": 11
+                    }
+                  ],
+                  "refreshMs": 15.800000011920929,
+                  "verificationMs": 1.100000023841858,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "A pasta está vazia."
+                }
+              ],
+              "agentBlocks": [
+                {
+                  "id": "524350ec-1450-41fb-9030-01f0c51e7041",
+                  "phase": "reflection",
+                  "fidelityReportId": "ca09cdf7-a124-475d-ba24-a8ad8e136215",
+                  "content": "Vou observar a pasta atual (diretório de trabalho).",
+                  "timestamp": 1793796779913
+                },
+                {
+                  "id": "97e26fc4-4c89-4280-9e2d-26c69d4f4ead",
+                  "phase": "tool_call",
+                  "content": "Completed: file_list",
+                  "toolCall": {
+                    "id": "d6f687b0-b6ab-4135-97a5-c2917a2d0569",
+                    "toolName": "file_list",
+                    "args": {
+                      "path": "."
+                    },
+                    "status": "completed",
+                    "timestamp": 1793796779915,
+                    "result": "The folder is empty.",
+                    "duration": 21,
+                    "startedAt": 1793796779916,
+                    "completedAt": 1793796779949,
+                    "cacheHit": false,
+                    "schemaValidated": true
+                  },
+                  "toolCalls": [
+                    {
+                      "id": "d6f687b0-b6ab-4135-97a5-c2917a2d0569",
+                      "toolName": "file_list",
+                      "args": {
+                        "path": "."
+                      },
+                      "status": "completed",
+                      "timestamp": 1793796779915,
+                      "result": "The folder is empty.",
+                      "duration": 21,
+                      "startedAt": 1793796779916,
+                      "completedAt": 1793796779949,
+                      "cacheHit": false,
+                      "schemaValidated": true
+                    }
+                  ],
+                  "timestamp": 1793796779915
+                }
+              ]
+            }
+          ],
+          "paints": [
+            {
+              "at_ms": 115,
+              "id": "b6a0f170-49b9-45fd-ad5a-d9c6d276a8a3",
+              "content": "",
+              "fidelity_status": null,
+              "error": null
+            },
+            {
+              "at_ms": 11995,
+              "id": "b6a0f170-49b9-45fd-ad5a-d9c6d276a8a3",
+              "content": "A pasta está vazia.",
+              "fidelity_status": "checked",
+              "error": null
+            },
+            {
+              "at_ms": 11996,
+              "id": "6f742bc4-2dca-4dd1-ac0e-33ff2773d09a",
+              "content": "Vou observar a pasta atual (diretório de trabalho).",
+              "fidelity_status": "checked",
+              "error": null
+            }
+          ],
+          "domPaints": [
+            {
+              "at_ms": 121,
+              "id": "b6a0f170-49b9-45fd-ad5a-d9c6d276a8a3",
+              "text": "lucille-real-gemma",
+              "fidelity_status": null
+            },
+            {
+              "at_ms": 6569,
+              "id": "b6a0f170-49b9-45fd-ad5a-d9c6d276a8a3",
+              "text": "lucille-real-gemma\nnotes\nVou observar a pasta atual (diretório de trabalho).\nfile_list",
+              "fidelity_status": "checked"
+            },
+            {
+              "at_ms": 6593,
+              "id": "b6a0f170-49b9-45fd-ad5a-d9c6d276a8a3",
+              "text": "lucille-real-gemma\nnotes\nVou observar a pasta atual (diretório de trabalho).\nfile_list\n21ms",
+              "fidelity_status": "checked"
+            },
+            {
+              "at_ms": 12005,
+              "id": "6f742bc4-2dca-4dd1-ac0e-33ff2773d09a",
+              "text": "",
+              "fidelity_status": "checked"
+            },
+            {
+              "at_ms": 12005,
+              "id": "b6a0f170-49b9-45fd-ad5a-d9c6d276a8a3",
+              "text": "lucille-real-gemma\nnotes\nVou observar a pasta atual (diretório de trabalho).\nfile_list\n21ms\n\nA pasta está vazia.",
+              "fidelity_status": "checked"
+            },
+            {
+              "at_ms": 12030,
+              "id": "6f742bc4-2dca-4dd1-ac0e-33ff2773d09a",
+              "text": "",
+              "fidelity_status": "checked"
+            },
+            {
+              "at_ms": 12032,
+              "id": "b6a0f170-49b9-45fd-ad5a-d9c6d276a8a3",
+              "text": "lucille-real-gemma\nnotes\nVou observar a pasta atual (diretório de trabalho).\nfile_list\n21ms\n\nA pasta está vazia.\n\n7,396 in · 44 out",
+              "fidelity_status": "checked"
+            }
+          ],
+          "notePaints": [
+            {
+              "at_ms": 6546,
+              "message_id": "b6a0f170-49b9-45fd-ad5a-d9c6d276a8a3",
+              "block_id": "524350ec-1450-41fb-9030-01f0c51e7041",
+              "content": "Vou observar a pasta atual (diretório de trabalho).",
+              "report_id": "ca09cdf7-a124-475d-ba24-a8ad8e136215",
+              "verified_text_matches": true
+            }
+          ],
+          "generation_ms": 12209,
+          "extraction_wait_ms": 4724
+        },
+        {
+          "question": "Como está meu projeto neste momento?",
+          "messages": [
+            {
+              "id": "c991bf52-5a47-4eb8-b744-14e84aeaa651",
+              "role": "user",
+              "content": "Como está meu projeto neste momento?"
+            },
+            {
+              "id": "eac6b445-a6e7-4aa8-8d2f-5d8c65206df2",
+              "role": "assistant",
+              "content": "Seu projeto \"jatoba-azul\" está atualmente cancelado.",
+              "lucilleFidelity": [
+                {
+                  "id": "7eea1d16-78a7-4be6-bb7c-cd51cc9177b4",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Seu projeto \"jatoba-azul\" está atualmente cancelado.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.jatoba-azul",
+                            "property": "lifecycle",
+                            "value": "cancelled",
+                            "span": "Seu projeto \"jatoba-azul\" está atualmente cancelado.",
+                            "supported": true,
+                            "references": [
+                              "d30e1770-2d0f-5d54-18e7-dcd413efb0c6"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 2.600000023841858
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 2215,
+                      "completionTokens": 15
+                    }
+                  ],
+                  "refreshMs": 17.30000001192093,
+                  "verificationMs": 2.600000023841858,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Seu projeto \"jatoba-azul\" está atualmente cancelado."
+                }
+              ],
+              "agentBlocks": []
+            }
+          ],
+          "paints": [
+            {
+              "at_ms": 121,
+              "id": "eac6b445-a6e7-4aa8-8d2f-5d8c65206df2",
+              "content": "",
+              "fidelity_status": null,
+              "error": null
+            },
+            {
+              "at_ms": 3602,
+              "id": "eac6b445-a6e7-4aa8-8d2f-5d8c65206df2",
+              "content": "Seu projeto \"jatoba-azul\" está atualmente cancelado.",
+              "fidelity_status": "checked",
+              "error": null
+            }
+          ],
+          "domPaints": [
+            {
+              "at_ms": 129,
+              "id": "eac6b445-a6e7-4aa8-8d2f-5d8c65206df2",
+              "text": "lucille-real-gemma",
+              "fidelity_status": null
+            },
+            {
+              "at_ms": 3614,
+              "id": "eac6b445-a6e7-4aa8-8d2f-5d8c65206df2",
+              "text": "lucille-real-gemma\n\nSeu projeto \"jatoba-azul\" está atualmente cancelado.",
+              "fidelity_status": "checked"
+            },
+            {
+              "at_ms": 3640,
+              "id": "eac6b445-a6e7-4aa8-8d2f-5d8c65206df2",
+              "text": "lucille-real-gemma\n\nSeu projeto \"jatoba-azul\" está atualmente cancelado.\n\n2,215 in · 15 out",
+              "fidelity_status": "checked"
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 3643,
+          "extraction_wait_ms": 726
+        },
+        {
+          "question": "Que linguagem eu usava antes do cancelamento e qual é o estado atual do projeto?",
+          "messages": [
+            {
+              "id": "4307d39b-a4f0-4a5f-8202-46a9886e9fa6",
+              "role": "user",
+              "content": "Que linguagem eu usava antes do cancelamento e qual é o estado atual do projeto?"
+            },
+            {
+              "id": "3b8120dc-8b0b-4fb3-8295-626a4e0dab6e",
+              "role": "assistant",
+              "content": "Você usava JavaScript no seu projeto. O estado atual do projeto é cancelado.",
+              "lucilleFidelity": [
+                {
+                  "id": "ba55aabf-a1e8-46bf-b2ad-e04edb4af3a8",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Você usava JavaScript no seu projeto. O estado atual do projeto é cancelado.",
+                      "check": {
+                        "assertions": [
+                          {
+                            "entity": "project.jatoba-azul",
+                            "property": "language",
+                            "value": "javascript",
+                            "span": "Você usava JavaScript no seu projeto.",
+                            "supported": true,
+                            "references": [
+                              "4f7a6959-6280-5600-648a-9b92d8298597"
+                            ]
+                          }
+                        ],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": false,
+                        "supportedAssertions": 1,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1.0999999642372131
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 1185,
+                      "completionTokens": 18
+                    }
+                  ],
+                  "refreshMs": 8.5,
+                  "verificationMs": 1.0999999642372131,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Você usava JavaScript no seu projeto. O estado atual do projeto é cancelado."
+                }
+              ]
+            }
+          ],
+          "paints": [
+            {
+              "at_ms": 115,
+              "id": "3b8120dc-8b0b-4fb3-8295-626a4e0dab6e",
+              "content": "",
+              "fidelity_status": null,
+              "error": null
+            },
+            {
+              "at_ms": 2594,
+              "id": "3b8120dc-8b0b-4fb3-8295-626a4e0dab6e",
+              "content": "Você usava JavaScript no seu projeto. O estado atual do projeto é cancelado.",
+              "fidelity_status": "checked",
+              "error": null
+            }
+          ],
+          "domPaints": [
+            {
+              "at_ms": 116,
+              "id": "3b8120dc-8b0b-4fb3-8295-626a4e0dab6e",
+              "text": "",
+              "fidelity_status": null
+            },
+            {
+              "at_ms": 127,
+              "id": "3b8120dc-8b0b-4fb3-8295-626a4e0dab6e",
+              "text": "lucille-real-gemma",
+              "fidelity_status": null
+            },
+            {
+              "at_ms": 2609,
+              "id": "3b8120dc-8b0b-4fb3-8295-626a4e0dab6e",
+              "text": "lucille-real-gemma\n\nVocê usava JavaScript no seu projeto. O estado atual do projeto é cancelado.",
+              "fidelity_status": "checked"
+            },
+            {
+              "at_ms": 2634,
+              "id": "3b8120dc-8b0b-4fb3-8295-626a4e0dab6e",
+              "text": "lucille-real-gemma\n\nVocê usava JavaScript no seu projeto. O estado atual do projeto é cancelado.\n\n1,185 in · 18 out",
+              "fidelity_status": "checked"
+            }
+          ],
+          "notePaints": [],
+          "generation_ms": 2647,
+          "extraction_wait_ms": 722
+        }
+      ],
+      "final_metrics": {
+        "current_vectors": 2,
+        "history_events": [
+          {
+            "count": 2,
+            "state": "approve"
+          },
+          {
+            "count": 2,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 5,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 2,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "jatoba-azul",
+        "provenance_rows": 2,
+        "scope": "phase22c-development-tools-v2",
+        "sqlite_main_page_bytes": 528384,
+        "vector_json_bytes": 19030
+      }
+    }
+  ],
+  "faults": {
+    "fault-source-authority-final.json": {
+      "private_sha256": "89bb2ec7f3350d2d13cf88fbe4e85c507bec6d924b7e057a75be5422e967bec8",
+      "report": {
+        "method": "Actual full Tauri native RPC and Store with a synthetic original USER input. Cancellation before publication intentionally performs no inference.",
+        "passed": true,
+        "before": {
+          "current_vectors": 0,
+          "history_events": [],
+          "jobs": [
+            {
+              "count": 1,
+              "state": "queued"
+            }
+          ],
+          "memories": [],
+          "pending_vectors": 0,
+          "project": "fault-source-v3",
+          "provenance_rows": 0,
+          "scope": "phase22c-fault-source-v3",
+          "sqlite_main_page_bytes": 528384,
+          "vector_json_bytes": 0
+        },
+        "cancel": {
+          "cancelled": true
+        },
+        "late_publish": {
+          "attempts": 0,
+          "created_at": 1793796802,
+          "error_code": null,
+          "id": "89a4d0a7e3dd9fd42a6180c11f87baf14f008b57ebd9d85a7d8f55659b363b5f",
+          "state": "cancelled",
+          "updated_at": 1793796808
+        },
+        "after": {
+          "current_vectors": 0,
+          "history_events": [],
+          "jobs": [
+            {
+              "count": 1,
+              "state": "cancelled"
+            }
+          ],
+          "memories": [],
+          "pending_vectors": 0,
+          "project": "fault-source-v3",
+          "provenance_rows": 0,
+          "scope": "phase22c-fault-source-v3",
+          "sqlite_main_page_bytes": 528384,
+          "vector_json_bytes": 0
+        },
+        "fresh_evidence": {
+          "current_statements": [],
+          "facts": [],
+          "has_scoped_records": false
+        }
+      }
+    },
+    "fault-leased-cancel-v4-final.json": {
+      "private_sha256": "ff4d4bca1e5da2e06a740a3bdbdf5c950ae56b9ac712308470a41f311844b8e7",
+      "report": {
+        "method": "Actual full GUI learning worker observed running, native cancellation during the real lease, then a new actual Gemma extraction replayed with that revoked lease. The original in-flight worker also remained unable to commit.",
+        "passed": true,
+        "source": {
+          "id": "72935d0e67dfcfab8144870b3fcd0fa3951206138f9d68f487128cc4890f5e32",
+          "message_id": "62a161a3-62ec-4968-aadb-f128acfa8d33",
+          "conversation_id": "3bb3e020-b0e3-46c4-9566-f4f381f6fdcb",
+          "text": "Prefiro café sem açúcar.",
+          "scope": "phase22c-fault-leased-cancel-v4",
+          "project": "fault-leased-cancel-v4-v4"
+        },
+        "cancel": {
+          "cancelled": true
+        },
+        "before_late": {
+          "current_vectors": 0,
+          "history_events": [],
+          "jobs": [
+            {
+              "count": 1,
+              "state": "cancelled"
+            }
+          ],
+          "memories": [],
+          "pending_vectors": 0,
+          "project": "fault-leased-cancel-v4-v4",
+          "provenance_rows": 0,
+          "scope": "phase22c-fault-leased-cancel-v4",
+          "sqlite_main_page_bytes": 552960,
+          "vector_json_bytes": 0
+        },
+        "actual_model_reply": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"version\": 3,\n  \"scope\": \"phase22c-fault-leased-cancel-v4\",\n  \"project\": \"fault-leased-cancel-v4-v4\",\n  \"claims\": [\n    {\n      \"evidence\": \"Prefiro café sem açúcar\",\n      \"category\": \"preference\"\n    }\n  ]\n}"
+              }
+            }
+          ],
+          "created": 1793796883,
+          "model": "lucille-real-gemma",
+          "system_fingerprint": "b11064-a894dae93",
+          "object": "chat.completion",
+          "usage": {
+            "completion_tokens": 92,
+            "prompt_tokens": 441,
+            "total_tokens": 533,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "id": "chatcmpl-fxvee7zrXXD9cDYd099H6MFu3oigkM4i",
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 441,
+            "prompt_ms": 763.07,
+            "prompt_per_token_ms": 1.7303174603174605,
+            "prompt_per_second": 577.9286304008807,
+            "predicted_n": 92,
+            "predicted_ms": 3211.545,
+            "predicted_per_token_ms": 35.2917032967033,
+            "predicted_per_second": 28.33527165274035
+          }
+        },
+        "late_completion": {
+          "completed": false
+        },
+        "after": {
+          "current_vectors": 0,
+          "history_events": [],
+          "jobs": [
+            {
+              "count": 1,
+              "state": "cancelled"
+            }
+          ],
+          "memories": [],
+          "pending_vectors": 0,
+          "project": "fault-leased-cancel-v4-v4",
+          "provenance_rows": 0,
+          "scope": "phase22c-fault-leased-cancel-v4",
+          "sqlite_main_page_bytes": 552960,
+          "vector_json_bytes": 0
+        },
+        "private_lease_sha256": "aa6f73142bb1de2bfba2ab8d5e14c19e620fd34ee18bd6d89ff04645b7bc0754"
+      }
+    },
+    "fault-restart-final.json": {
+      "private_sha256": "157944460d5d2236419b3a4ad00128cc5ed2b074b299056a58cf1a85d1ca558b",
+      "report": {
+        "method": "Actual GUI restart after the learning worker acquired its first real Gemma lease, before any memory commit. Not a claimed interruption inside a SQLite fsync/transaction.",
+        "passed": true,
+        "source": {
+          "id": "6ba6f0ebfb251e2e6b26b5bbb055112790b1b297a677fe8664c85801ab1a255a",
+          "message_id": "ca14de73-9b55-4181-9e91-8ea27187cab1",
+          "conversation_id": "21291a9d-8333-4429-af1e-a3282b06e92c",
+          "text": "Prefiro café com açúcar. Eu gosto de criar personagens em jogos. Minha bebida favorita é chá. Prefiro respostas objetivas.",
+          "scope": "phase22c-fault-restart-v3",
+          "project": "fault-restart-v3"
+        },
+        "before": {
+          "job_state": "running",
+          "attempts": 1,
+          "memories": [],
+          "duplicates": 0,
+          "provenance_rows": 0
+        },
+        "after_close": {
+          "job_state": "running",
+          "attempts": 1,
+          "memories": [],
+          "duplicates": 0,
+          "provenance_rows": 0
+        },
+        "after_recovery": {
+          "job_state": "done",
+          "attempts": 2,
+          "memories": [
+            [
+              "a4acbe2c-8d98-22ff-3b21-4cf38edacc5f",
+              "active",
+              1
+            ],
+            [
+              "4028e2b5-abbb-93d9-4832-3776d015244d",
+              "active",
+              1
+            ],
+            [
+              "93aecf09-d08b-c296-3fdf-09ab6322fb82",
+              "active",
+              1
+            ],
+            [
+              "af355579-390b-cf12-cc1b-24ce4ff0905e",
+              "active",
+              1
+            ]
+          ],
+          "duplicates": 0,
+          "provenance_rows": 4
+        },
+        "old_gui_pid": 32412,
+        "new_gui_pid": 5240,
+        "automatic_recovery": true,
+        "models_remained_running": true
+      }
+    }
+  },
+  "harness_failure": {
+    "stage": "leased cancellation v3",
+    "reason": "Harness namespace ownership fields were erroneously passed to strict native CancelLearning schema; RPC rejected extra project. The valid original test source then completed normally. No cancellation was claimed. v4 repeats with a new scope and correct schema.",
+    "original_attempt_retained_privately": true
+  },
+  "known_limits": [
+    "v3 renewal used a future storage formulation guardarei, not a false completed-save claim; certainty/naturalness remains a bounded review concern.",
+    "No universal natural-language truth proof or native streaming claim."
+  ]
+}

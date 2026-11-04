@@ -1,4 +1,5 @@
-import { collectMemoryCompletion, validateLucilleCompletion, MemoryAnswerBlocked } from '../lib/lucille-answer'
+import { memoryQuestionNeedsNoTools } from '../lib/lucille-authority'
+import { collectMemoryCompletion, validateLucilleCompletion, MemoryAnswerBlocked, type AnswerFidelityReport } from '../lib/lucille-answer'
 import { executorEvidence, type ToolEvidence } from '../lib/verified-environment'
 import { queueLucilleLearning } from '../lib/lucille-learning'
 import { isLucille, withLucilleContext, lucilleToolAllowed } from "../lib/lucille-context"
@@ -903,6 +904,7 @@ export function useAgentChat() {
     } catch { /* run with whatever the engine has */ }
 
     const toolEvidence: ToolEvidence[] = []
+    const fidelityHistory = new WeakMap<ChatMessage, AnswerFidelityReport>()
     const memoryScope = store.conversations.find(c => c.id === convId)?.memoryScope
 
     // Publish a HUMAN-READABLE slug ("create-an-index-7f2c3d") so
@@ -1185,6 +1187,7 @@ export function useAgentChat() {
     // The settings pair rides only on a turn about settings (A11).
     const toolMatchesCurated = (name: string) =>
       lucilleToolAllowed(name, isLucille(conv)) &&
+      (!isLucille(conv) || !memoryQuestionNeedsNoTools(userContent)) &&
       (!curated || curated.includes(name)) && !(opts?.readOnly && !allowedInReadOnlyTurn(name)) && !(screenByTaskOnly && name === COMPUTER_USE_TOOL_NAME)
       && !(localMediaOff && isMediaTool(name))
       && (opts?.settingsTools === true || !isSettingsToolName(name))
@@ -1723,6 +1726,7 @@ export function useAgentChat() {
         // dort genauso aus wie ein fertiges Modell (Fehler D, Symptom 2, im
         // Code Reiter am 11.09.2026 geschlossen, hier stand es noch offen).
         let turnFinishReason: string | undefined
+        let acceptedTurnFidelity: AnswerFidelityReport | undefined
         let fidelityUsage: { promptEvalCount?: number; evalCount?: number } = {}
 
         // Plain-text-planner escape: Gemma 3/4 with think=false drops
@@ -2373,6 +2377,7 @@ export function useAgentChat() {
             const accepted = await validateLucilleCompletion(answerWire,
               { ...fidelityUsage, content: turnContent, thinking: turnThinking, toolCalls, finishReason: turnFinishReason },
               wire => collectMemoryCompletion(provider.chatStream(modelToUse, wire, chatOptions)), abort.signal)
+            acceptedTurnFidelity = accepted.report
             turnContent = accepted.completion.content
             turnThinking = accepted.completion.thinking ?? ''
             toolCalls = accepted.completion.toolCalls ?? []
@@ -2514,7 +2519,7 @@ export function useAgentChat() {
               mediaSteered = true
               if (turnContent.trim()) {
                 addBlock(runState, convId!, assistantMessage.id, {
-                  id: uuid(), phase: 'reflection', content: turnContent, timestamp: Date.now(),
+                  id: uuid(), phase: 'reflection', fidelityReportId: acceptedTurnFidelity?.id, content: turnContent, timestamp: Date.now(),
                 })
               }
               // Tool-aware wording: telling a coding model "the media is
@@ -2680,6 +2685,7 @@ export function useAgentChat() {
                 addBlock(runState, convId!, assistantMessage.id, {
                   id: uuid(),
                   phase: 'reflection',
+                  fidelityReportId: acceptedTurnFidelity?.id,
                   content: turnContent,
                   timestamp: Date.now(),
                 })
@@ -2760,6 +2766,7 @@ export function useAgentChat() {
                 addBlock(runState, convId!, assistantMessage.id, {
                   id: noteId,
                   phase: 'reflection',
+                  fidelityReportId: acceptedTurnFidelity?.id,
                   content: turnContent,
                   timestamp: Date.now(),
                 })
@@ -2839,6 +2846,7 @@ export function useAgentChat() {
           addBlock(runState, convId!, assistantMessage.id, {
             id: uuid(),
             phase: 'reflection',
+            fidelityReportId: acceptedTurnFidelity?.id,
             content: turnContent,
             timestamp: Date.now(),
           })
@@ -3381,6 +3389,11 @@ export function useAgentChat() {
             }, tc))
           }
         }
+        if (acceptedTurnFidelity) {
+          for (const message of agentMessages.slice(kettenStart)) {
+            if (message.role === 'assistant' && message.content.trim() === turnContent.trim() && turnContent.trim()) fidelityHistory.set(message, acceptedTurnFidelity)
+          }
+        }
         werkzeugKette.push(...agentMessages.slice(kettenStart))
 
         // Loop-detector, result side: a round where every call failed changed
@@ -3681,7 +3694,7 @@ export function useAgentChat() {
       // Anbieter mit 422 antworten). Ohne das hier sah die naechste Runde nur
       // noch den Antworttext und holte dieselbe Seite ein zweites Mal.
       if (werkzeugKette.length > 0 && convId) {
-        const kette = capHiddenToolHistory(werkzeugKette)
+        const kette = capHiddenToolHistory(werkzeugKette, undefined, !isLucille(conv))
         const store = useChatStore.getState()
         const convNow = store.conversations.find((c) => c.id === convId)
         const idx = convNow?.messages.findIndex((m) => m.id === assistantMessage.id) ?? -1
@@ -3692,6 +3705,7 @@ export function useAgentChat() {
             content: tm.content || '',
             timestamp: Date.now(),
             hidden: true,
+            ...(fidelityHistory.has(tm) ? { lucilleFidelity: [fidelityHistory.get(tm)!] } : {}),
             ...(tm.tool_calls ? { tool_calls: tm.tool_calls as import('../types/chat').Message['tool_calls'] } : {}),
             ...(tm.tool_call_id ? { tool_call_id: tm.tool_call_id } : {}),
           })))

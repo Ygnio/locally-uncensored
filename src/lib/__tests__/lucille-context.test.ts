@@ -12,6 +12,20 @@ function fixture(): LucilleTurnContext {
 }
 
 describe('Lucille shared Chat/Agent adapter', () => {
+  it('resolves an English original question independently of Portuguese retrieval and refreshes its directive',async()=>{
+    const ctx=fixture()
+    ctx.memories[0].input.content='Projeto: planeja usar SQLite como banco de dados.'
+    const question='What database is in my plans for this project?'
+    const original:ChatMessage[]=[messages[0],{role:'user',content:question}]
+    const first=await withLucilleContext(conversation,'synthetic-message',question,'chat',original,undefined,async()=>ctx)
+    expect(first.filter(m=>m.content.includes('Required response language'))).toHaveLength(1)
+    expect(first.find(m=>m.content.includes('Required response language'))?.content).toContain('English')
+    expect(first.at(-1)?.content).toBe(question)
+    const next=await withLucilleContext(conversation,'synthetic-message','Qual banco eu planejo usar?','chat',first,undefined,async()=>ctx)
+    expect(next.filter(m=>m.content.includes('Required response language'))).toHaveLength(1)
+    expect(next.find(m=>m.content.includes('Required response language'))?.content).toContain('Portuguese')
+    expect(next.filter(m=>m.role==='system').every(m=>!m.content.includes('Projeto: planeja usar'))).toBe(true)
+  })
   it('keeps native conversations unchanged without reading SQLite', async () => {
     const loader = vi.fn()
     expect(await withLucilleContext({ id: 'native' }, 'm', 'q', 'chat', messages, undefined, loader)).toBe(messages)

@@ -1,0 +1,62 @@
+{
+  "source_file": "fault-restart-final.json",
+  "source_private_sha256": "157944460d5d2236419b3a4ad00128cc5ed2b074b299056a58cf1a85d1ca558b",
+  "data": {
+    "method": "Actual GUI restart after the learning worker acquired its first real Gemma lease, before any memory commit. Not a claimed interruption inside a SQLite fsync/transaction.",
+    "passed": true,
+    "source": {
+      "id": "6ba6f0ebfb251e2e6b26b5bbb055112790b1b297a677fe8664c85801ab1a255a",
+      "message_id": "ca14de73-9b55-4181-9e91-8ea27187cab1",
+      "conversation_id": "21291a9d-8333-4429-af1e-a3282b06e92c",
+      "text": "Prefiro café com açúcar. Eu gosto de criar personagens em jogos. Minha bebida favorita é chá. Prefiro respostas objetivas.",
+      "scope": "phase22c-fault-restart-v3",
+      "project": "fault-restart-v3"
+    },
+    "before": {
+      "job_state": "running",
+      "attempts": 1,
+      "memories": [],
+      "duplicates": 0,
+      "provenance_rows": 0
+    },
+    "after_close": {
+      "job_state": "running",
+      "attempts": 1,
+      "memories": [],
+      "duplicates": 0,
+      "provenance_rows": 0
+    },
+    "after_recovery": {
+      "job_state": "done",
+      "attempts": 2,
+      "memories": [
+        [
+          "a4acbe2c-8d98-22ff-3b21-4cf38edacc5f",
+          "active",
+          1
+        ],
+        [
+          "4028e2b5-abbb-93d9-4832-3776d015244d",
+          "active",
+          1
+        ],
+        [
+          "93aecf09-d08b-c296-3fdf-09ab6322fb82",
+          "active",
+          1
+        ],
+        [
+          "af355579-390b-cf12-cc1b-24ce4ff0905e",
+          "active",
+          1
+        ]
+      ],
+      "duplicates": 0,
+      "provenance_rows": 4
+    },
+    "old_gui_pid": 32412,
+    "new_gui_pid": 5240,
+    "automatic_recovery": true,
+    "models_remained_running": true
+  }
+}

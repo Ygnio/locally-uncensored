@@ -141,6 +141,8 @@ export type AgentPhase = 'thinking' | 'planning' | 'tool_call' | 'reflection' | 
 //   New code MUST write to `toolCalls` (plural). Use `getBlockToolCalls(block)`
 //   from src/api/agents/block-helpers.ts to read both shapes uniformly.
 export interface AgentBlock {
+  /** Exact parent report that verified this model narration before display. */
+  fidelityReportId?: string
   id: string
   phase: AgentPhase
   content: string

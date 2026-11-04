@@ -1,6 +1,7 @@
 import type { ChatMessage, ChatStreamChunk, ToolCall } from '../api/providers/types'
 import { settleThinking } from './thinking-stripper'
 import { answerSnapshot, verifyMemoryAnswer, type AnswerSnapshot, type FidelityCheck } from './lucille-fidelity'
+import { answerLanguage, projectIndependentSentences, requestedMemoryProperties, violatesAnswerLanguage } from './lucille-authority'
 
 export interface MemoryCompletion {
   content: string; thinking?: string; toolCalls?: ToolCall[]; promptEvalCount?: number; evalCount?: number; finishReason?: string
@@ -9,9 +10,11 @@ export interface FidelityAttempt {
   rawAnswer: string; check: FidelityCheck; verificationReferences?: { id: string; version: number }[]; promptTokens?: number; completionTokens?: number
 }
 export interface AnswerFidelityReport {
+  id?: string; verifiedText?: string
   status: 'checked' | 'regenerated' | 'blocked'; attempts: FidelityAttempt[]; refreshMs: number
   verificationMs: number; extraGenerationMs: number
   additionalUsage: { promptTokens?: number; completionTokens?: number }
+  localizedRepair?: { method: 'independent_sentence_projection'; original: string; delivered: string; removed: string[]; verification: FidelityCheck; elapsedMs: number }
 }
 export class MemoryAnswerBlocked extends Error {
   readonly report: AnswerFidelityReport
@@ -41,7 +44,7 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
 ): Promise<{ completion: T; report: AnswerFidelityReport }> {
   let snapshot = answerSnapshot(messages)
   if (!snapshot) throw new Error('Lucille answer has no trusted context snapshot')
-  const report: AnswerFidelityReport = { status: 'checked', attempts: [], refreshMs: 0, verificationMs: 0, extraGenerationMs: 0, additionalUsage: { promptTokens: 0, completionTokens: 0 } }
+  const report: AnswerFidelityReport = { id: crypto.randomUUID(), status: 'checked', attempts: [], refreshMs: 0, verificationMs: 0, extraGenerationMs: 0, additionalUsage: { promptTokens: 0, completionTokens: 0 } }
   let completion = initial
   for (let attempt = 0; attempt < 2; attempt++) {
     abortIfNeeded(signal)
@@ -70,12 +73,32 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
     }
     if (!settled.content.trim() && !completion.toolCalls?.length) check.violations.push({ code: 'empty_answer', span: '', critical: false })
     if (completion.finishReason && completion.finishReason !== 'stop' && !completion.toolCalls?.length) check.violations.push({ code: 'incomplete_answer', span: '', critical: false })
+    if (snapshot.memoryOnly && completion.toolCalls?.length) check.violations.push({code:'unnecessary_memory_tool',span:settled.content,critical:false})
+    const language=answerLanguage(snapshot.query,[...evidence.currentStatements,...evidence.facts])
+    if (violatesAnswerLanguage(settled.content,language)) check.violations.push({code:'question_language_mismatch',span:settled.content,critical:false})
     report.verificationMs += check.elapsedMs
     report.attempts.push({ rawAnswer: completion.content, check, verificationReferences, promptTokens: completion.promptEvalCount, completionTokens: completion.evalCount })
     if (attempt > 0) report.additionalUsage = { promptTokens: completion.promptEvalCount, completionTokens: completion.evalCount }
     if (check.violations.length === 0) {
+      report.verifiedText=settled.content
       report.status = attempt ? 'regenerated' : 'checked'
       return { completion: { ...completion, content: settled.content, thinking: settled.thinking }, report }
+    }
+    // Projection is a verbatim subset, not a scripted replacement answer. Only
+    // independent sentences and explicitly requested typed fields qualify.
+    const projectionStart=performance.now()
+    const required=requestedMemoryProperties(snapshot.query)
+    const projection=!completion.toolCalls?.length && required.length && !check.violations.some(v=>['incomplete_answer','empty_answer','question_language_mismatch'].includes(v.code))
+      ? projectIndependentSentences(settled.content,check.violations.map(v=>v.span),evidence) : undefined
+    if (projection) {
+      const verification=verifyMemoryAnswer(projection.text,evidence)
+      if (!verification.violations.length && required.every(property=>verification.assertions.some(a=>a.supported && a.property===property))) {
+        abortIfNeeded(signal)
+        report.localizedRepair={method:'independent_sentence_projection',original:settled.content,delivered:projection.text,removed:projection.removed,verification,elapsedMs:performance.now()-projectionStart}
+        report.verifiedText=projection.text
+        report.status=attempt ? 'regenerated':'checked'
+        return {completion:{...completion,content:projection.text,thinking:''},report}
+      }
     }
     if (attempt === 1) break
     // Refresh the actual canonical context, not just the old output. A deleted
@@ -85,6 +108,13 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
     if (!snapshot) throw new Error('Lucille refreshed context snapshot unavailable')
     const codes = [...new Set(check.violations.map(v => v.code))].join(', ')
     const repairs:Record<string,string>={
+      authority_execution:'A project choice or description does not attest execution or progress. Keep the known choice and state what execution evidence is unavailable.',
+      authority_preference_transition:'Renewed storage does not mean the user stopped or resumed liking anything. The supported relation is a present preference; the unsupported relation is a personal transition. Formulate the present preference directly. Do not use resumed, again, voltou a gostar, retomou or deixou de gostar without an original source attesting that personal transition.',
+      authority_file_inventory:'The tool only observed its requested directory. It has no verified exhaustive binding to the remembered project. State the scoped project lifecycle from memory; do not infer project file absence.',
+      authority_stack_transition:'A choice to change technology does not prove an executed replacement. Preserve the decision, with the origin and target in their proper roles.',
+      authority_workload_performance:'Capacity does not attest workload suitability. Keep the verified RAM quantity without an assurance about running applications.',
+      unnecessary_memory_tool:'This question requests remembered facts only. Answer using the supplied scoped memory or bounded uncertainty; do not call or narrate tools.',
+      question_language_mismatch:'Use the language of the current question unless an explicit valid user language preference overrides it. Preserve factual contents when changing the language.',
       affirmed_unproven_project_execution:'The question asks whether implementation is already occurring. The available evidence only supports a plan or choice. Do not affirm or deny actual execution; state that it is unconfirmed, then distinguish the supported future plan.',
       denied_unproven_project_execution:'A plan also does not prove that implementation is absent. Do not give a categorical yes or no; distinguish unconfirmed current execution from the supported future plan.',
       unproven_negative_execution:'There is no proof that current execution is absent. State uncertainty about execution instead of claiming it has not started.',
@@ -103,6 +133,11 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
       wrong_decision_actor:'The decision or unknown status belongs to the user and their project. Do not claim in first person that you made or did not make the decision.',
     }
     const guidance=[...new Set(check.violations.map(v=>repairs[v.code]).filter(Boolean))].join(' ')
+      + (language ? ' Required response language: '+(language==='en'?'English':'Portuguese')+'. Translate the formulation into that language; retain proper names and technical values.' : '')
+      + ' Rejected predicate relations (not authoritative facts): '
+      + JSON.stringify((check.authority??[]).filter(c=>c.verdict!=='supported').map(c=>({entity:c.entity,property:c.property,relation:c.relation,value:c.value,reason:c.reason})))
+      + ' Preserve these supported original assertions where relevant, without their rejected neighbouring inferences: '
+      + JSON.stringify(check.assertions.filter(a=>a.supported && !check.violations.some(v=>v.span===a.span)).map(a=>({text:a.span,entity:a.entity,property:a.property,value:a.value})))
     const correction: ChatMessage = { role: 'system', content: 'Memory answer fidelity retry (one attempt only). Previous attempt failed independent checks: ' + codes + '. ' + guidance + ' Produce a new, direct answer to the same current USER question in its language using the refreshed scoped data. Preserve plans, decisions, actual execution, history, uncertainty and negation. Missing retrieval is not proof of an unmade decision. Mention memory operations only when the user asks and a native receipt supports them. Do not announce this verification. Never invent a replacement fact or repeat the rejected error.' }
     const generationStart = performance.now()
     try {

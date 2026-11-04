@@ -1,0 +1,58 @@
+{
+  "source_file": "fault-source-authority-final.json",
+  "source_private_sha256": "89bb2ec7f3350d2d13cf88fbe4e85c507bec6d924b7e057a75be5422e967bec8",
+  "data": {
+    "method": "Actual full Tauri native RPC and Store with a synthetic original USER input. Cancellation before publication intentionally performs no inference.",
+    "passed": true,
+    "before": {
+      "current_vectors": 0,
+      "history_events": [],
+      "jobs": [
+        {
+          "count": 1,
+          "state": "queued"
+        }
+      ],
+      "memories": [],
+      "pending_vectors": 0,
+      "project": "fault-source-v3",
+      "provenance_rows": 0,
+      "scope": "phase22c-fault-source-v3",
+      "sqlite_main_page_bytes": 528384,
+      "vector_json_bytes": 0
+    },
+    "cancel": {
+      "cancelled": true
+    },
+    "late_publish": {
+      "attempts": 0,
+      "created_at": 1793796802,
+      "error_code": null,
+      "id": "89a4d0a7e3dd9fd42a6180c11f87baf14f008b57ebd9d85a7d8f55659b363b5f",
+      "state": "cancelled",
+      "updated_at": 1793796808
+    },
+    "after": {
+      "current_vectors": 0,
+      "history_events": [],
+      "jobs": [
+        {
+          "count": 1,
+          "state": "cancelled"
+        }
+      ],
+      "memories": [],
+      "pending_vectors": 0,
+      "project": "fault-source-v3",
+      "provenance_rows": 0,
+      "scope": "phase22c-fault-source-v3",
+      "sqlite_main_page_bytes": 528384,
+      "vector_json_bytes": 0
+    },
+    "fresh_evidence": {
+      "current_statements": [],
+      "facts": [],
+      "has_scoped_records": false
+    }
+  }
+}

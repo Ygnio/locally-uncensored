@@ -1,0 +1,26 @@
+{
+  "rust": {
+    "passed": 126,
+    "failed": 0,
+    "baseline_preserved": 122,
+    "evidence_log": "phase22c-rust-full-second.log"
+  },
+  "typescript": {
+    "passed": 687,
+    "failed": 0,
+    "skipped": 0,
+    "baseline_preserved": 666,
+    "evidence_log": "phase22c-typescript-full-fifth.json"
+  },
+  "atomic_schema": {
+    "passed": 3,
+    "failed": 0
+  },
+  "typecheck": "passed; phase22c-typecheck-sixth.log",
+  "eslint": "passed for changed files; final QA driver phase22c-driver-eslint-seventh.log",
+  "native_gui_and_bridges": "dedicated debug executables built; native code unchanged after passing full Rust checks",
+  "static_gui": "final QA driver build passed phase22c-static-seventh.log",
+  "unseen_production_code_commit": "0e9106f0c2bf061c66fb32cbfb8fce420c4bc67b",
+  "data_freeze_commit": "847b9dae1d3a7e3b192b896e775e8848cbc2e7a5",
+  "tests_are_memory_suite_not_entire_unrelated_repository": true
+}

@@ -221,3 +221,12 @@ service-account*.json
 
 # Dedicated synthetic full-application static validation build
 qa-dist-22b/
+
+qa-dist-22c/
+
+!scripts/run-lucille-phase22c-owned.py
+!scripts/test-lucille-phase22c-control.py
+!scripts/test-lucille-phase22c-extraction.py
+!scripts/test-lucille-phase22c-retrieval.py
+
+!scripts/freeze-lucille-phase22c.py

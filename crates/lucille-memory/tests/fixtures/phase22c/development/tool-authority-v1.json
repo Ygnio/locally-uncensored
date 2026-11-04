@@ -1,0 +1,57 @@
+{
+  "id": "phase22c-known-tool-authority-development",
+  "project": "jatoba-azul",
+  "turns": [
+    {
+      "text": "No meu projeto, eu uso JavaScript.",
+      "review": true
+    },
+    {
+      "text": "Cancelei meu projeto.",
+      "review": true
+    }
+  ],
+  "probes": [
+    {
+      "text": "Liste os arquivos da pasta atual usando a ferramenta de arquivos. Diga apenas o que a pasta consultada permite observar.",
+      "scenario": "legitimate_tool_directory",
+      "mode": "agent",
+      "expected": []
+    },
+    {
+      "text": "Liste os arquivos da pasta phase22c-pasta-inexistente. Se falhar, informe a falha sem concluir nada sobre meu projeto.",
+      "scenario": "failed_tool_no_project_inference",
+      "mode": "agent",
+      "expected": []
+    },
+    {
+      "text": "Como está meu projeto neste momento?",
+      "scenario": "cancelled_memory_without_tool",
+      "mode": "agent",
+      "expected": [
+        {
+          "property": "lifecycle",
+          "value": "cancelled",
+          "temporal": "current"
+        }
+      ]
+    },
+    {
+      "text": "Que linguagem eu usava antes do cancelamento e qual é o estado atual do projeto?",
+      "scenario": "compound_history_and_current",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "javascript",
+          "temporal": "historical"
+        },
+        {
+          "property": "lifecycle",
+          "value": "cancelled",
+          "temporal": "current"
+        }
+      ]
+    }
+  ]
+}

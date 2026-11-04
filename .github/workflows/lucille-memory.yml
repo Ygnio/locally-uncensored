@@ -2,9 +2,9 @@ name: Lucille identity and memory
 
 on:
   push:
-    branches: [feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality, feature/lucille-phase21c-real-inference, feature/lucille-phase21d-real-quality, feature/lucille-phase22-autonomous-memory, feature/lucille-phase22b-answer-fidelity]
+    branches: [feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality, feature/lucille-phase21c-real-inference, feature/lucille-phase21d-real-quality, feature/lucille-phase22-autonomous-memory, feature/lucille-phase22b-answer-fidelity, feature/lucille-phase22c-evidence-authority]
   pull_request:
-    branches: [master, feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality, feature/lucille-phase21c-real-inference, feature/lucille-phase21d-real-quality, feature/lucille-phase22-autonomous-memory]
+    branches: [master, feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality, feature/lucille-phase21c-real-inference, feature/lucille-phase21d-real-quality, feature/lucille-phase22-autonomous-memory, feature/lucille-phase22b-answer-fidelity]
   workflow_dispatch:
 
 permissions:
@@ -50,6 +50,7 @@ jobs:
             src/lib/__tests__/lucille-unified.test.ts \
             src/lib/__tests__/lucille-context.test.ts \
             src/lib/__tests__/lucille-fidelity.test.ts \
+            src/lib/__tests__/lucille-authority.test.ts \
             src/lib/__tests__/lucille-answer.test.ts \
             src/lib/__tests__/lucille-real-sqlite.test.ts \
             src/hooks/__tests__/memory-silent-call-gate.test.ts \

@@ -310,7 +310,7 @@ impl Store {
             {
                 return Err("Unsupported claimed field".into());
             }
-            let mut stmt=tx.prepare(&format!("SELECT {} FROM memories WHERE id IN (SELECT memory_id FROM memory_quality WHERE subject=?3 AND property=?4 AND value=?5) AND scope=?1 AND project=?2 AND state='active' ORDER BY updated_at DESC,id LIMIT 2",crate::COLS)).map_err(db_error)?;
+            let mut stmt=tx.prepare(&format!("SELECT {} FROM memories WHERE id IN (SELECT memory_id FROM memory_quality WHERE subject=?3 AND property=?4 AND value=?5) AND scope=?1 AND project=?2 AND state IN ('active','obsolete') ORDER BY updated_at DESC,id LIMIT 2",crate::COLS)).map_err(db_error)?;
             let records = stmt
                 .query_map(
                     params![
@@ -330,7 +330,8 @@ impl Store {
                     // An exact generated field is a separate canonical lookup,
                     // not another initial query-relevance injection. Preserve
                     // current-source conflicts, expiry, review and deletion gates.
-                    && crate::retrieval::eligible_claim(&tx, &m, &req.query, crate::now())?
+                    && crate::retrieval::eligible_claim(&tx, &m,
+                        &if m.state==crate::Status::Obsolete { format!("{} historical",req.query) } else { req.query.clone() }, crate::now())?
                 {
                     memories.push(m)
                 }

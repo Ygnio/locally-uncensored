@@ -1,0 +1,237 @@
+[
+  {
+    "id": "decision-execution",
+    "answer": "Não, a decisão de usar TypeScript indica uma escolha de tecnologia, não a conclusão do projeto. Como você mesmo decidiu, o projeto ainda está em desenvolvimento.",
+    "result": {
+      "assertions": [
+        {
+          "entity": "project.ingazeiro",
+          "property": "language",
+          "value": "typescript",
+          "span": "Não, a decisão de usar TypeScript indica uma escolha de tecnologia, não a conclusão do projeto.",
+          "supported": true,
+          "references": [
+            "3f39bf1442bb91d8"
+          ]
+        }
+      ],
+      "violations": [],
+      "uncertain": false,
+      "supportedAssertions": 1,
+      "unsupportedAssertions": 0,
+      "elapsedMs": 10.510599999999982
+    }
+  },
+  {
+    "id": "relearn-liking",
+    "answer": "Agora você voltou a gostar de jogos em que pode escolher sua classe.",
+    "result": {
+      "assertions": [
+        {
+          "entity": "user",
+          "property": "games_class_selection",
+          "value": "positive",
+          "span": "Agora você voltou a gostar de jogos em que pode escolher sua classe.",
+          "supported": true,
+          "references": [
+            "4915fdc767d07029"
+          ]
+        }
+      ],
+      "violations": [],
+      "uncertain": false,
+      "supportedAssertions": 1,
+      "unsupportedAssertions": 0,
+      "elapsedMs": 1.6477999999999895
+    }
+  },
+  {
+    "id": "unlinked-empty-folder",
+    "answer": "Como a pasta atual está vazia, seu projeto ainda não tem arquivos definidos.",
+    "result": {
+      "assertions": [],
+      "violations": [],
+      "uncertain": false,
+      "supportedAssertions": 0,
+      "unsupportedAssertions": 0,
+      "elapsedMs": 0.8130999999999915
+    }
+  },
+  {
+    "id": "ram-performance",
+    "answer": "Com 28 GB de RAM, você tem uma excelente capacidade para rodar o ambiente de desenvolvimento e o banco de dados simultaneamente.",
+    "result": {
+      "assertions": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "28_gb",
+          "span": "Com 28 GB de RAM, você tem uma excelente capacidade para rodar o ambiente de desenvolvimento e o banco de dados simultaneamente.",
+          "supported": true,
+          "references": [
+            "4c8388a4e5172a1f"
+          ]
+        }
+      ],
+      "violations": [],
+      "uncertain": false,
+      "supportedAssertions": 1,
+      "unsupportedAssertions": 0,
+      "elapsedMs": 1.1718999999999937
+    }
+  },
+  {
+    "id": "decision-replacement",
+    "answer": "Você decidiu trocar o MySQL pelo PostgreSQL no seu projeto de catálogo de minerais.",
+    "result": {
+      "assertions": [
+        {
+          "entity": "project.ingazeiro",
+          "property": "database",
+          "value": "postgresql",
+          "span": "Você decidiu trocar o MySQL pelo PostgreSQL no seu projeto de catálogo de minerais.",
+          "supported": true,
+          "references": [
+            "a0cb8c81cf5fe61f"
+          ]
+        },
+        {
+          "entity": "project.ingazeiro",
+          "property": "database",
+          "value": "mysql",
+          "span": "Você decidiu trocar o MySQL pelo PostgreSQL no seu projeto de catálogo de minerais.",
+          "supported": false,
+          "references": []
+        }
+      ],
+      "violations": [
+        {
+          "code": "unsupported_typed_value",
+          "span": "Você decidiu trocar o MySQL pelo PostgreSQL no seu projeto de catálogo de minerais.",
+          "critical": true
+        }
+      ],
+      "uncertain": false,
+      "supportedAssertions": 1,
+      "unsupportedAssertions": 1,
+      "elapsedMs": 0.5230999999999995
+    }
+  },
+  {
+    "id": "historical-plan",
+    "answer": "Seu projeto Ingazeiro é um catálogo de minerais desenvolvido em Python. Você decidiu utilizar PostgreSQL como banco de dados, embora também tenha planejado o uso de JavaScript.",
+    "result": {
+      "assertions": [
+        {
+          "entity": "project.ingazeiro",
+          "property": "language",
+          "value": "python",
+          "span": "Seu projeto Ingazeiro é um catálogo de minerais desenvolvido em Python.",
+          "supported": true,
+          "references": [
+            "ac6d3e21a8eb5e5f"
+          ]
+        },
+        {
+          "entity": "project.ingazeiro",
+          "property": "language",
+          "value": "javascript",
+          "span": "Você decidiu utilizar PostgreSQL como banco de dados, embora também tenha planejado o uso de JavaScript.",
+          "supported": true,
+          "references": [
+            "f1077a1eb857a257"
+          ]
+        },
+        {
+          "entity": "project.ingazeiro",
+          "property": "database",
+          "value": "postgresql",
+          "span": "Você decidiu utilizar PostgreSQL como banco de dados, embora também tenha planejado o uso de JavaScript.",
+          "supported": true,
+          "references": [
+            "a0cb8c81cf5fe61f"
+          ]
+        }
+      ],
+      "violations": [
+        {
+          "code": "unproven_decision",
+          "span": "Você decidiu utilizar PostgreSQL como banco de dados, embora também tenha planejado o uso de JavaScript.",
+          "critical": true
+        }
+      ],
+      "uncertain": false,
+      "supportedAssertions": 3,
+      "unsupportedAssertions": 0,
+      "elapsedMs": 2.4091999999999985
+    }
+  },
+  {
+    "id": "historical-cancelled",
+    "answer": "Você estava usando JavaScript para implementar o projeto Ingazeiro.",
+    "result": {
+      "assertions": [
+        {
+          "entity": "project.ingazeiro",
+          "property": "language",
+          "value": "javascript",
+          "span": "Você estava usando JavaScript para implementar o projeto Ingazeiro.",
+          "supported": true,
+          "references": [
+            "34b6537cf123d937"
+          ]
+        }
+      ],
+      "violations": [],
+      "uncertain": false,
+      "supportedAssertions": 1,
+      "unsupportedAssertions": 0,
+      "elapsedMs": 0.6046000000000049
+    }
+  },
+  {
+    "id": "current-goal",
+    "answer": "Seu objetivo atual é aprender circuitos elétricos básicos.",
+    "result": {
+      "assertions": [
+        {
+          "entity": "user",
+          "property": "goal_target",
+          "value": "atual_learn_circuitos_eletricos_basicos",
+          "span": "Seu objetivo atual é aprender circuitos elétricos básicos.",
+          "supported": false,
+          "references": []
+        }
+      ],
+      "violations": [
+        {
+          "code": "unsupported_goal_target",
+          "span": "Seu objetivo atual é aprender circuitos elétricos básicos.",
+          "critical": true
+        }
+      ],
+      "uncertain": false,
+      "supportedAssertions": 0,
+      "unsupportedAssertions": 1,
+      "elapsedMs": 0.6881000000000199
+    }
+  },
+  {
+    "id": "empty-forget",
+    "answer": "Esqueci sua preferência de tema de interface.",
+    "result": {
+      "assertions": [],
+      "violations": [
+        {
+          "code": "unconfirmed_memory_mutation",
+          "span": "Esqueci sua preferência de tema de interface.",
+          "critical": true
+        }
+      ],
+      "uncertain": false,
+      "supportedAssertions": 0,
+      "unsupportedAssertions": 0,
+      "elapsedMs": 1.276600000000002
+    }
+  }
+]

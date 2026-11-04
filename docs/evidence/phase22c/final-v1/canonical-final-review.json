@@ -1,0 +1,445 @@
+{
+  "source_file": "canonical-final-review.json",
+  "source_private_sha256": "66e59f6af1d4a59d3a7d9860368866615b0f7184fc0252498ab88e1e15f51792",
+  "data": {
+    "utc": "2026-11-04T13:43:11.973016+00:00",
+    "database": "isolated lucille-synthetic-full22c/lucille-phase1.sqlite3",
+    "access": "SQLite URI mode=ro; no external writes",
+    "integrity": [
+      {
+        "integrity_check": "ok"
+      }
+    ],
+    "foreign_key_violations": [],
+    "stale_current_vectors": [
+      {
+        "count": 0
+      }
+    ],
+    "orphan_vectors": [
+      {
+        "count": 0
+      }
+    ],
+    "duplicate_active_fingerprints": [],
+    "scope_snapshots": {
+      "candeia": {
+        "memories": [
+          {
+            "id": "489e7d00-851d-fc7d-dcc5-2a45f874e589",
+            "state": "active",
+            "version": 2,
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "50_gb",
+            "temporal": "durable",
+            "facets_json": "[]",
+            "replaces_id": "8b6f4e2f-7640-6c9d-1e18-7245e423cdca",
+            "replaces_version": 2,
+            "provenance_count": 1,
+            "revision_count": 1
+          },
+          {
+            "id": "8b6f4e2f-7640-6c9d-1e18-7245e423cdca",
+            "state": "obsolete",
+            "version": 3,
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "26_gb",
+            "temporal": "durable",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 2
+          },
+          {
+            "id": "28060868-c4e4-1859-e2eb-13852197130b",
+            "state": "active",
+            "version": 2,
+            "kind": "hardware",
+            "subject": "device.work_laptop",
+            "property": "ram_capacity",
+            "value": "18_gb",
+            "temporal": "durable",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 1
+          },
+          {
+            "id": "792d7b88-b1d4-213a-c37a-3e4b20f64a36",
+            "state": "active",
+            "version": 2,
+            "kind": "decision",
+            "subject": "project.candeia",
+            "property": "database",
+            "value": "postgresql",
+            "temporal": "planned",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 1
+          },
+          {
+            "id": "12ef827f-7e19-69c6-f9e5-24103878b2fc",
+            "state": "active",
+            "version": 2,
+            "kind": "project",
+            "subject": "project.candeia",
+            "property": "description",
+            "value": "estou comecando um projeto de controle de luminosidade",
+            "temporal": "durable",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 1
+          },
+          {
+            "id": "200d8a43-0706-233b-88d4-29042401fb1a",
+            "state": "active",
+            "version": 2,
+            "kind": "decision",
+            "subject": "project.candeia",
+            "property": "language",
+            "value": "rust",
+            "temporal": "durable",
+            "facets_json": "[]",
+            "replaces_id": "b95f4bfd-0c6d-6bdd-5d9f-eca00be33709",
+            "replaces_version": 2,
+            "provenance_count": 1,
+            "revision_count": 1
+          },
+          {
+            "id": "b95f4bfd-0c6d-6bdd-5d9f-eca00be33709",
+            "state": "obsolete",
+            "version": 3,
+            "kind": "decision",
+            "subject": "project.candeia",
+            "property": "language",
+            "value": "typescript",
+            "temporal": "planned",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 2
+          },
+          {
+            "id": "87841464-1cb9-c93b-19dc-3ec3a587424e",
+            "state": "active",
+            "version": 2,
+            "kind": "preference",
+            "subject": "user",
+            "property": "coffee_sugar",
+            "value": "with_sugar",
+            "temporal": "preference",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 1
+          },
+          {
+            "id": "6775124f-d81f-510c-8fd8-f851daf5589d",
+            "state": "active",
+            "version": 1,
+            "kind": "preference",
+            "subject": "user",
+            "property": "communication_style",
+            "value": "detailed",
+            "temporal": "preference",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 0
+          },
+          {
+            "id": "b5217f66-19b7-0738-c0ac-257ae57a2a4c",
+            "state": "active",
+            "version": 3,
+            "kind": "preference",
+            "subject": "user",
+            "property": "games_tactics",
+            "value": "positive",
+            "temporal": "preference",
+            "facets_json": "[\"classes\",\"progression\",\"rpg\"]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 3,
+            "revision_count": 2
+          },
+          {
+            "id": "759106f9-bf9e-d0ec-f498-68049382d3cc",
+            "state": "active",
+            "version": 1,
+            "kind": "preference",
+            "subject": "user",
+            "property": "games_turn_strategy",
+            "value": "positive",
+            "temporal": "preference",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 0
+          },
+          {
+            "id": "27bd9275-22ee-8e73-0e36-f3726f551f36",
+            "state": "active",
+            "version": 2,
+            "kind": "goal",
+            "subject": "user",
+            "property": "goal.f47cc78cd5ce",
+            "value": "completed:aprender circuitos eletricos basicos",
+            "temporal": "completed",
+            "facets_json": "[]",
+            "replaces_id": "172e6218-400a-1426-0837-d9274cef86d7",
+            "replaces_version": 2,
+            "provenance_count": 1,
+            "revision_count": 1
+          },
+          {
+            "id": "172e6218-400a-1426-0837-d9274cef86d7",
+            "state": "obsolete",
+            "version": 3,
+            "kind": "goal",
+            "subject": "user",
+            "property": "goal.f47cc78cd5ce",
+            "value": "quero aprender circuitos eletricos basicos",
+            "temporal": "durable",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 2
+          },
+          {
+            "id": "857d60a0-7bf8-44be-12c7-18a2dd979324",
+            "state": "active",
+            "version": 1,
+            "kind": "preference",
+            "subject": "user",
+            "property": "interface_theme",
+            "value": "light",
+            "temporal": "preference",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 0
+          }
+        ],
+        "tombstones": [
+          {
+            "id": "9bcede35-c666-9ae0-2c4f-37cab87d6dbe",
+            "kind": "preference",
+            "claim_digest": "3ae14a50ccf938841c890c71aae56f233ce405d27a8d9ed0741ffc686e3076f0",
+            "deleted_at": 1793799325
+          },
+          {
+            "id": "400e4007-6f0e-cedd-032a-a88aa8b68b68",
+            "kind": "preference",
+            "claim_digest": "0266c430773ccb6391895ebf884200b36c1b8f6fb29dbc1bb4c270683a2b4fb7",
+            "deleted_at": 1793799325
+          }
+        ],
+        "queue": [
+          {
+            "state": "done",
+            "count": 20
+          }
+        ]
+      },
+      "candeia2": {
+        "memories": [
+          {
+            "id": "65e1d63b-0468-0943-a1f3-4a38044875c7",
+            "state": "active",
+            "version": 2,
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "36_gb",
+            "temporal": "durable",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 1
+          },
+          {
+            "id": "084e6bda-39bd-c6b8-f386-6b574e6e94f7",
+            "state": "active",
+            "version": 2,
+            "kind": "hardware",
+            "subject": "device.work_laptop",
+            "property": "ram_capacity",
+            "value": "10_gb",
+            "temporal": "durable",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 1
+          },
+          {
+            "id": "7efdd301-2fd9-f445-2ff4-541e322c16b8",
+            "state": "active",
+            "version": 2,
+            "kind": "decision",
+            "subject": "project.candeia2",
+            "property": "database",
+            "value": "sqlite",
+            "temporal": "planned",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 1
+          },
+          {
+            "id": "d817ce63-d868-d5eb-b18b-be699a44b190",
+            "state": "active",
+            "version": 2,
+            "kind": "project",
+            "subject": "project.candeia2",
+            "property": "description",
+            "value": "estou comecando um projeto de painel de iluminacao residencial",
+            "temporal": "durable",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 1
+          },
+          {
+            "id": "75c9d63d-3076-c388-160c-1416e8d4eb32",
+            "state": "active",
+            "version": 2,
+            "kind": "decision",
+            "subject": "project.candeia2",
+            "property": "language",
+            "value": "javascript",
+            "temporal": "planned",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 1
+          },
+          {
+            "id": "57346f9b-070c-2a8a-3027-269914e1c986",
+            "state": "active",
+            "version": 1,
+            "kind": "preference",
+            "subject": "user",
+            "property": "coffee_sugar",
+            "value": "without_sugar",
+            "temporal": "preference",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 0
+          },
+          {
+            "id": "cfe266ed-e0b5-13dc-f488-dedb8563bcf9",
+            "state": "active",
+            "version": 2,
+            "kind": "goal",
+            "subject": "user",
+            "property": "goal.656c51ba08fa",
+            "value": "meu objetivo e terminar o painel de iluminacao",
+            "temporal": "durable",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 1
+          },
+          {
+            "id": "02d83830-73d5-974d-5d02-49035456a28b",
+            "state": "active",
+            "version": 1,
+            "kind": "preference",
+            "subject": "user",
+            "property": "interface_theme",
+            "value": "dark",
+            "temporal": "preference",
+            "facets_json": "[]",
+            "replaces_id": null,
+            "replaces_version": null,
+            "provenance_count": 1,
+            "revision_count": 0
+          }
+        ],
+        "tombstones": [],
+        "queue": [
+          {
+            "state": "done",
+            "count": 6
+          }
+        ]
+      }
+    },
+    "fault_jobs": [
+      {
+        "scope": "phase22c-fault-bridge-offline",
+        "id": "8c20af3acd15df374492062a1666175de2a6bc01dc5778535724afeaf0896afd",
+        "state": "cancelled",
+        "attempts": 0,
+        "lease_revoked": 1,
+        "lease_expiry_cleared": 1,
+        "remaining_input_rows": 0
+      },
+      {
+        "scope": "phase22c-fault-leased-cancel-v3",
+        "id": "36457709acdcad0c3b496a9c46f8f0dd721e149a69dd3e1f5d6e95a563355e73",
+        "state": "done",
+        "attempts": 1,
+        "lease_revoked": 1,
+        "lease_expiry_cleared": 1,
+        "remaining_input_rows": 0
+      },
+      {
+        "scope": "phase22c-fault-leased-cancel-v4",
+        "id": "72935d0e67dfcfab8144870b3fcd0fa3951206138f9d68f487128cc4890f5e32",
+        "state": "cancelled",
+        "attempts": 1,
+        "lease_revoked": 1,
+        "lease_expiry_cleared": 1,
+        "remaining_input_rows": 0
+      },
+      {
+        "scope": "phase22c-fault-restart-v3",
+        "id": "6ba6f0ebfb251e2e6b26b5bbb055112790b1b297a677fe8664c85801ab1a255a",
+        "state": "done",
+        "attempts": 2,
+        "lease_revoked": 1,
+        "lease_expiry_cleared": 1,
+        "remaining_input_rows": 0
+      },
+      {
+        "scope": "phase22c-fault-source-v3",
+        "id": "89a4d0a7e3dd9fd42a6180c11f87baf14f008b57ebd9d85a7d8f55659b363b5f",
+        "state": "cancelled",
+        "attempts": 0,
+        "lease_revoked": 1,
+        "lease_expiry_cleared": 1,
+        "remaining_input_rows": 0
+      }
+    ],
+    "file_sizes": {
+      "lucille-phase1.sqlite3": 1085440,
+      "lucille-phase1.sqlite3-shm": 32768,
+      "lucille-phase1.sqlite3-wal": 4136512
+    }
+  }
+}

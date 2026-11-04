@@ -1,0 +1,251 @@
+{
+  "id": "phase22c-independent-final-main-v1",
+  "project": "corticeira",
+  "turns": [
+    {
+      "text": "Estou começando um projeto de catálogo de conchas.",
+      "review": true
+    },
+    {
+      "text": "Pretendo usar Rust e SQLite no meu projeto.",
+      "review": true
+    },
+    {
+      "text": "Meu computador principal tem 36 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Meu notebook de trabalho tem 18 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Prefiro café com açúcar."
+    },
+    {
+      "text": "Prefiro respostas objetivas."
+    },
+    {
+      "text": "Meu objetivo é aprender italiano.",
+      "review": true
+    },
+    {
+      "text": "Prefiro tema escuro."
+    },
+    {
+      "text": "Eu gosto de jogos em que posso escolher minha classe."
+    },
+    {
+      "text": "Agora estou implementando meu projeto em TypeScript.",
+      "review": true
+    },
+    {
+      "text": "Decidi usar PostgreSQL no meu projeto.",
+      "review": true
+    },
+    {
+      "text": "Não tenho mais 36 GB, agora são 48 GB.",
+      "review": true
+    },
+    {
+      "text": "Na verdade, agora prefiro café sem açúcar."
+    },
+    {
+      "text": "Concluí meu objetivo de aprender italiano.",
+      "review": true
+    },
+    {
+      "text": "Esqueça minha preferência de tema de interface."
+    },
+    {
+      "text": "Esqueça minha preferência de escolher classes nos jogos."
+    },
+    {
+      "text": "Volte a guardar esta preferência: eu gosto de jogos em que posso escolher minha classe.",
+      "review_preferences": true
+    },
+    {
+      "text": "Prefiro respostas curtas."
+    },
+    {
+      "text": "O projeto continua sendo um catálogo de conchas.",
+      "review": true
+    },
+    {
+      "text": "Em uma história fictícia, outra pessoa diz: \"meu computador principal tem 96 GB de RAM\". Não é informação minha."
+    },
+    {
+      "text": "Meu outro computador tem 12 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Cancelei meu projeto.",
+      "review": true
+    }
+  ],
+  "probes": [
+    {
+      "text": "Qual é a RAM atual do meu computador principal e do notebook de trabalho?",
+      "scenario": "equipment_compound",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "ram_capacity",
+          "value": "48_gb",
+          "temporal": "current"
+        },
+        {
+          "property": "ram_capacity",
+          "value": "18_gb",
+          "temporal": "current"
+        }
+      ]
+    },
+    {
+      "text": "How much RAM does my other computer have?",
+      "scenario": "equipment_other_english",
+      "mode": "code",
+      "expected": [
+        {
+          "property": "ram_capacity",
+          "value": "12_gb",
+          "temporal": "current"
+        }
+      ]
+    },
+    {
+      "text": "Como eu tomava café antes e como prefiro agora?",
+      "scenario": "preference_history",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "coffee_sugar",
+          "value": "with_sugar",
+          "temporal": "historical"
+        },
+        {
+          "property": "coffee_sugar",
+          "value": "without_sugar",
+          "temporal": "current"
+        }
+      ]
+    },
+    {
+      "text": "Which learning goal have I finished?",
+      "scenario": "completed_goal_english",
+      "mode": "agent",
+      "expected": [
+        {
+          "property": "goal.learning",
+          "value": "aprender italiano",
+          "temporal": "completed"
+        }
+      ]
+    },
+    {
+      "text": "Qual preferência sobre escolha de classes nos jogos eu informei?",
+      "scenario": "relearned_preference",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "games_class_selection",
+          "value": "positive",
+          "temporal": "current"
+        }
+      ]
+    },
+    {
+      "text": "Qual é minha preferência de tema da interface hoje?",
+      "scenario": "forgotten_theme",
+      "mode": "chat",
+      "expected": []
+    },
+    {
+      "text": "What sort of answers do I prefer?",
+      "scenario": "language_english_preferences",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "communication_focus",
+          "value": "objective",
+          "temporal": "current"
+        },
+        {
+          "property": "communication_style",
+          "value": "concise",
+          "temporal": "current"
+        }
+      ]
+    },
+    {
+      "text": "Que linguagem eu usava antes de cancelar o projeto e qual é o estado dele agora?",
+      "scenario": "historical_compound",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "typescript",
+          "temporal": "historical"
+        },
+        {
+          "property": "lifecycle",
+          "value": "cancelled",
+          "temporal": "cancelled"
+        }
+      ]
+    },
+    {
+      "text": "Você recorda como ficou meu projeto?",
+      "scenario": "cancelled_indirect",
+      "mode": "agent",
+      "expected": [
+        {
+          "property": "lifecycle",
+          "value": "cancelled",
+          "temporal": "cancelled"
+        }
+      ]
+    },
+    {
+      "text": "Qual era o assunto do catálogo que eu estava fazendo?",
+      "scenario": "project_description_indirect",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "description",
+          "value": "catalogo de conchas",
+          "temporal": "current"
+        }
+      ]
+    },
+    {
+      "text": "Eu já informei qual é a minha GPU? Se não houver registro, limite a resposta ao que está disponível.",
+      "scenario": "bounded_absence",
+      "mode": "code",
+      "expected": []
+    },
+    {
+      "text": "Liste os arquivos da pasta atual. Antes, diga brevemente qual pasta vai observar; depois informe somente o resultado dessa consulta.",
+      "scenario": "legitimate_tool_and_note",
+      "mode": "agent",
+      "expected": []
+    },
+    {
+      "text": "Liste a pasta phase22c-diretorio-ausente-final. Se ela não existir, relate essa falha sem concluir nada sobre o catálogo.",
+      "scenario": "tool_failure",
+      "mode": "agent",
+      "expected": []
+    },
+    {
+      "text": "What is the current status of my project?",
+      "scenario": "cancelled_english_agent",
+      "mode": "agent",
+      "expected": [
+        {
+          "property": "lifecycle",
+          "value": "cancelled",
+          "temporal": "cancelled"
+        }
+      ]
+    }
+  ]
+}

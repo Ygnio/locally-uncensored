@@ -73,7 +73,8 @@ pub fn run() {
         [
             "lucille-synthetic-full",
             "lucille-synthetic-full22",
-            "lucille-synthetic-full22b"
+            "lucille-synthetic-full22b",
+            "lucille-synthetic-full22c"
         ]
         .iter()
         .any(|n| root.file_name().is_some_and(|v| v == *n)),
@@ -145,7 +146,9 @@ pub fn run() {
                 tauri::WebviewUrl::External("http://127.0.0.1:15283".parse().unwrap()),
             )
             .title(
-                if root.file_name().is_some_and(|v|v=="lucille-synthetic-full22b") {
+                if root.file_name().is_some_and(|v|v=="lucille-synthetic-full22c") {
+                    "Lucille Phase 2.2C - FULL application - synthetic ONLY"
+                } else if root.file_name().is_some_and(|v|v=="lucille-synthetic-full22b") {
                     "Lucille Phase 2.2B - FULL application - synthetic ONLY"
                 } else if root.file_name().is_some_and(|v|v=="lucille-synthetic-full22")
                 {
