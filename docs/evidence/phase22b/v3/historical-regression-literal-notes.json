@@ -1,0 +1,148 @@
+{
+  "method": "Supplemental literal/provenance notes; original regression gold and regex scores remain unchanged",
+  "known_goal_false_block": {
+    "fixture": "driver-regression22b-v3-long20-final.json",
+    "probe_index": 7,
+    "raw_attempts": [
+      "Seu objetivo atual é aprender circuitos elétricos básicos.",
+      "Seu objetivo atual é aprender circuitos elétricos básicos."
+    ],
+    "independent_observation": "The original USER goal and retrieved canonical goal support the requested target. The verifier includes the modifier atual in the parsed target atual_learn_circuitos_eletricos_basicos and rejects the otherwise correct goal answer. The blocked response remains unavailable, not a successful answer."
+  },
+  "strict_extra_reference": {
+    "fixture": "driver-regression22b-v3-series100-final.json",
+    "question": "Qual tipo de RPG combina com minhas preferências?",
+    "original_gold": [
+      {
+        "property": "games_tactics",
+        "value": "positive"
+      }
+    ],
+    "actual_references": [
+      {
+        "reference": {
+          "id": "5af2b9cd-75ea-4f68-9f29-4b7e1b6264c7",
+          "version": 3,
+          "kind": "preference",
+          "content": "Gosta de jogos táticos por turnos (classes, evolução de personagem, RPG).",
+          "entity": "user",
+          "property": "games_tactics",
+          "value": "positive",
+          "modality": "preference",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia",
+          "review": "independently_grounded_active",
+          "facets": [
+            "classes",
+            "progression",
+            "rpg"
+          ],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Eu gosto de RPG tático com evolução de personagem"
+            },
+            {
+              "role": "current_source",
+              "text": "Nas minhas partidas eu prefiro RPGs com combate tático"
+            }
+          ]
+        },
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_tactical_preference",
+          "expires_at": null,
+          "facets": [
+            "classes",
+            "progression",
+            "rpg"
+          ],
+          "priority": 1,
+          "property": "games_tactics",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "user",
+          "temporal": "preference",
+          "value": "positive"
+        }
+      },
+      {
+        "reference": {
+          "id": "2abbea2e-f185-4360-2509-04c62e8f9bf9",
+          "version": 1,
+          "kind": "preference",
+          "content": "Jogos de estratégia por turnos são meus favoritos mesmo depois de experimentar outros gêneros",
+          "entity": "user",
+          "property": "games_turn_strategy",
+          "value": "positive",
+          "modality": "preference",
+          "validity": "current",
+          "scope": "phase22b-regression-v3-20",
+          "project": "candeia",
+          "review": "independently_grounded_active",
+          "facets": [],
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Jogos de estratégia por turnos são meus favoritos mesmo depois de experimentar outros gêneros"
+            }
+          ]
+        },
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "games_turn_strategy",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "user",
+          "temporal": "preference",
+          "value": "positive"
+        }
+      }
+    ],
+    "independent_observation": "Original gold lists only games_tactics. The extra games_turn_strategy is a real active same-scope preference, semantically related to the RPG question. The original strict count remains 10 TP / 1 FP / 0 missed; do not silently remove it from the denominator or relabel the frozen gold."
+  },
+  "scope_absence_regex_note": {
+    "fixture": "driver-regression22b-v3-series50-final.json",
+    "probe_index": 6,
+    "answer": "No relevant record is available regarding the specific database planned for project candeia.",
+    "independent_observation": "Correct bounded foreign-project availability statement, but the original regex rejects this English wording. Original 6/8 pattern count retained."
+  },
+  "progress_wording_caution": {
+    "fixture": "driver-regression22b-v3-series50-final.json",
+    "probe_index": 0,
+    "literal": "está avançando",
+    "independent_observation": "The literal USER description attests starting the planned project, not a measured later progress update. This wording is a quality concern beyond the unchanged legacy regex; do not present regex passage as proof of full fidelity."
+  },
+  "replays": [
+    {
+      "result": {
+        "attempts": 1,
+        "created_at": 1793787800,
+        "error_code": null,
+        "id": "05039f41f7d224a505bddd63e37ffde685a3ef8b2ebb19a6ad10d3737f9ad873",
+        "state": "done",
+        "updated_at": 1793787806
+      },
+      "canonical_unchanged": true
+    },
+    {
+      "result": {
+        "id": "680ce3b08024e58a1037da1cc6a941bf18d141da5b1bcf6e88e66fd6a12fdb91",
+        "reason": "directive_already_processed",
+        "state": "done"
+      },
+      "canonical_unchanged": true
+    }
+  ],
+  "limitations": [
+    "These known regression notes are not an additional unseen-fidelity estimate. The new v3 corpus remains the independently scored 55/59 failed quality evaluation.",
+    "General game recommendations are not treated as new stored preferences; original sources and canonical facets are preserved for review."
+  ]
+}

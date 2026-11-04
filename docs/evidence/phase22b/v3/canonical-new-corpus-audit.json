@@ -1,0 +1,157 @@
+{
+  "method": "Read-only SQLite audit of synthetic completed new-corpus scope, separate from app verifier verdict.",
+  "scope": "phase22b-final-v3",
+  "project": "sapucaia",
+  "active_facts": [
+    {
+      "subject": "device.primary_computer",
+      "property": "ram_capacity",
+      "value": "44_gb",
+      "temporal": "durable",
+      "version": 2
+    },
+    {
+      "subject": "device.work_laptop",
+      "property": "ram_capacity",
+      "value": "14_gb",
+      "temporal": "durable",
+      "version": 2
+    },
+    {
+      "subject": "project.sapucaia",
+      "property": "database",
+      "value": "postgresql",
+      "temporal": "durable",
+      "version": 2
+    },
+    {
+      "subject": "project.sapucaia",
+      "property": "description",
+      "value": "estou comecando um projeto de catalogo de minerais",
+      "temporal": "durable",
+      "version": 2
+    },
+    {
+      "subject": "project.sapucaia",
+      "property": "language",
+      "value": "python",
+      "temporal": "current",
+      "version": 2
+    },
+    {
+      "subject": "project.sapucaia",
+      "property": "language",
+      "value": "javascript",
+      "temporal": "planned",
+      "version": 2
+    },
+    {
+      "subject": "user",
+      "property": "book_genre",
+      "value": "adventure",
+      "temporal": "preference",
+      "version": 1
+    },
+    {
+      "subject": "user",
+      "property": "coffee_sugar",
+      "value": "with_sugar",
+      "temporal": "preference",
+      "version": 1
+    },
+    {
+      "subject": "user",
+      "property": "communication_focus",
+      "value": "objective",
+      "temporal": "preference",
+      "version": 1
+    },
+    {
+      "subject": "user",
+      "property": "favorite_beverage",
+      "value": "tea",
+      "temporal": "preference",
+      "version": 1
+    },
+    {
+      "subject": "user",
+      "property": "games_character_creation",
+      "value": "positive",
+      "temporal": "preference",
+      "version": 1
+    },
+    {
+      "subject": "user",
+      "property": "games_class_selection",
+      "value": "positive",
+      "temporal": "preference",
+      "version": 2
+    },
+    {
+      "subject": "user",
+      "property": "goal.3bdf1d6e487c",
+      "value": "completed:aprender alemao",
+      "temporal": "completed",
+      "version": 2
+    },
+    {
+      "subject": "user",
+      "property": "interface_clutter",
+      "value": "negative",
+      "temporal": "preference",
+      "version": 1
+    },
+    {
+      "subject": "user",
+      "property": "outing",
+      "value": "short_trails",
+      "temporal": "preference",
+      "version": 1
+    }
+  ],
+  "active_preference_duplicate_groups": [],
+  "forget_receipts": [
+    {
+      "source_turn": 15,
+      "job_id": "dc9f833c1630df02718c281b369828e85d1a274449cfea1b5603fa7741e2ccce",
+      "job_state": "done",
+      "operation": "forget_applied",
+      "operation_at_unix": 1793785944,
+      "completed_before_answer_delivery": true
+    },
+    {
+      "source_turn": 19,
+      "job_id": "1bb3a5229798a127400898417b3a157886fb581df4bd98ab82bdb02be8b89365",
+      "job_state": "done",
+      "operation": "forget_applied",
+      "operation_at_unix": 1793785973,
+      "completed_before_answer_delivery": true
+    },
+    {
+      "source_turn": 30,
+      "job_id": "3acf1f661fd23746ef6bcdff92aea0a12b4e3e57b82a5bbcb46bf2952180024c",
+      "job_state": "done",
+      "operation": "forget_empty",
+      "operation_at_unix": 1793786064,
+      "completed_before_answer_delivery": true
+    }
+  ],
+  "replay": [
+    {
+      "result": {
+        "attempts": 1,
+        "created_at": 1793785829,
+        "error_code": null,
+        "id": "08fbc32d651a798874f4b0084896093a96df9947618f1020622980830a610721",
+        "state": "done",
+        "updated_at": 1793785835
+      },
+      "canonical_unchanged": true
+    }
+  ],
+  "identity_version_unchanged": true,
+  "limitations": [
+    "Audit reads current rows after the six new scenarios. Earlier source evidence and obsolete values remain in immutable GUI fixtures.",
+    "Receipt completion timing uses native event seconds and observed answer-delivery upper bound; it is not an fsync interruption test."
+  ]
+}

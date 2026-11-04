@@ -29,9 +29,9 @@ Sete requisições históricas foram repetidas com Gemma real e produziram novam
 6. Ampliar preferências por mapeamentos/extratos literais em domínios seguros, mantendo distinções entre preferências relacionadas. Não transformar “objetiva” automaticamente em “curta”, nem gosto por classes em preferência por RPG tático. Domínios sensíveis e autoridade continuam fora da promoção automática.
 7. Limpar vetores de estados/versões inelegíveis em transação, com idempotência e cercas contra escrita tardia; conservar revisões, proveniência e tombstones. Corrigir explicitamente terminação/retry dos caminhos Hybrid recusados.
 
-## Avaliação prevista
+## Contrato de avaliação e limite da implementação
 
-Estado intermediário: implementação em desenvolvimento, ainda sem aprovação da avaliação inédita congelada. A aprovação dos testes locais não equivale ao fechamento da fase nem ao sucesso do CI remoto.
+A avaliação inédita final permanece reprovada: 55 de 59 afirmações finais sustentadas (93,22%), com três violações críticas e quatro respostas retidas entre 65 pedidos. O contexto tipado e a leitura canônica não tornam completa a gramática finita do verificador. Os resultados e as limitações estão no [relatório da fase](lucille-phase22b.md). A aprovação dos testes locais não equivale ao fechamento da fase nem ao sucesso do CI remoto.
 
 O contexto agora deriva fatos tipados do SQLite, com revisão e proveniência, e distingue trilhas de escolha futura e implementação. A leitura de confirmação da resposta revalida versões, exclusões, conflitos e escopo em uma transação; confirmações adicionais limitadas são registradas separadamente dos acertos de recuperação inicial. O verificador tem gramática finita e não constitui prova geral de verdade. Há no máximo uma regeneração real; a segunda falha retém a resposta, contabiliza o custo e representa perda de utilidade.
 
