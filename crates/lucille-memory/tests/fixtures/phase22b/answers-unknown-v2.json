@@ -1,0 +1,24 @@
+{
+  "id": "phase22b-unseen-answers-unknown-v2",
+  "project": "araticum",
+  "turns": [
+    {
+      "text": "Ainda não defini o banco de dados do meu projeto.",
+      "review": true
+    }
+  ],
+  "probes": [
+    {
+      "text": "Eu já tenho uma decisão sobre o banco deste projeto?",
+      "scenario": "absence_vs_negative_decision",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "database",
+          "value": "undecided",
+          "temporal": "unknown"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "id": "phase22b-unseen-long-28-v2",
+  "project": "mangabeira",
+  "turns": [
+    {
+      "text": "Estou começando um projeto de catálogo de fontes termais.",
+      "review": true
+    },
+    {
+      "text": "Quero usar TypeScript e SQLite no meu projeto.",
+      "review": true
+    },
+    {
+      "text": "Meu computador principal tem 24 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Meu notebook de trabalho tem 12 GB de RAM.",
+      "review": true
+    },
+    {
+      "text": "Prefiro café com açúcar."
+    },
+    {
+      "text": "Eu adoro jogos com criação de personagens."
+    },
+    {
+      "text": "Eu gosto de jogos em que posso escolher uma classe."
+    },
+    {
+      "text": "Eu detesto interfaces carregadas."
+    },
+    {
+      "text": "Minha bebida preferida é chá."
+    },
+    {
+      "text": "Eu prefiro respostas objetivas."
+    },
+    {
+      "text": "No meu projeto, eu uso Rust.",
+      "review": true
+    },
+    {
+      "text": "Não tenho mais 24 GB, agora são 40 GB.",
+      "review": true
+    },
+    {
+      "text": "Na verdade, agora prefiro café sem açúcar."
+    },
+    {
+      "text": "Meu objetivo é aprender japonês.",
+      "review": true
+    },
+    {
+      "text": "Concluí meu objetivo de aprender japonês.",
+      "review": true
+    },
+    {
+      "text": "Esqueça minha preferência por criar personagens em jogos."
+    },
+    {
+      "text": "Pode voltar a memorizar: eu gosto de criar personagens em jogos.",
+      "review_preferences": true
+    },
+    {
+      "text": "Quero voltar a registrar minha preferência: eu gosto de criar personagens em jogos.",
+      "review_preferences": true
+    },
+    {
+      "text": "Agora tenho 5 GB de RAM livre no computador principal.",
+      "review": true
+    },
+    {
+      "text": "Prefiro tema claro."
+    },
+    {
+      "text": "Esqueça minha preferência de tema de interface."
+    },
+    {
+      "text": "Minha bebida favorita é chá."
+    },
+    {
+      "text": "Prefiro respostas objetivas."
+    },
+    {
+      "text": "Eu detesto interfaces carregadas."
+    },
+    {
+      "text": "Eu gosto de criar personagens em jogos."
+    },
+    {
+      "text": "Eu gosto de jogos em que posso escolher uma classe."
+    },
+    {
+      "text": "Prefiro café sem açúcar."
+    },
+    {
+      "text": "O projeto continua sendo o mesmo catálogo de fontes termais.",
+      "replay_turn_index": 19
+    }
+  ],
+  "probes": [
+    {
+      "text": "Qual é a capacidade de RAM do meu computador principal agora?",
+      "scenario": "ram_correction",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "ram_capacity",
+          "value": "40_gb"
+        }
+      ]
+    },
+    {
+      "text": "Quanto de RAM têm meu computador principal e meu notebook de trabalho?",
+      "scenario": "different_equipment",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "ram_capacity",
+          "value": "40_gb"
+        },
+        {
+          "property": "ram_capacity",
+          "value": "12_gb"
+        }
+      ]
+    },
+    {
+      "text": "Como eu tomava café antes e como prefiro agora?",
+      "scenario": "current_vs_historical",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "coffee_sugar",
+          "value": "with_sugar"
+        },
+        {
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        }
+      ]
+    },
+    {
+      "text": "Qual linguagem meu projeto usa atualmente?",
+      "scenario": "current_vs_historical",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "rust",
+          "temporal": "current"
+        }
+      ]
+    },
+    {
+      "text": "Você se lembra do meu projeto e das escolhas que fiz?",
+      "scenario": "indirect_question",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "language",
+          "value": "rust",
+          "temporal": "current"
+        },
+        {
+          "property": "database",
+          "value": "sqlite",
+          "temporal": "planned"
+        }
+      ]
+    },
+    {
+      "text": "Quais recursos de jogos eu gosto?",
+      "scenario": "corrected_preference",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "games_character_creation",
+          "value": "positive"
+        },
+        {
+          "property": "games_class_selection",
+          "value": "positive"
+        }
+      ]
+    },
+    {
+      "text": "How do I prefer your replies?",
+      "scenario": "multilingual_question",
+      "mode": "code",
+      "expected": [
+        {
+          "property": "communication_focus",
+          "value": "objective"
+        }
+      ]
+    },
+    {
+      "text": "Como eu me sinto em relação a interfaces carregadas?",
+      "scenario": "corrected_preference",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "interface_clutter",
+          "value": "negative"
+        }
+      ]
+    },
+    {
+      "text": "Que objetivo pessoal eu já concluí?",
+      "scenario": "completed_goal",
+      "mode": "chat",
+      "expected": [
+        {
+          "property_prefix": "goal.",
+          "value": "completed:aprender japones",
+          "temporal": "completed"
+        }
+      ]
+    },
+    {
+      "text": "Você consegue lembrar qual tema de interface eu prefiro?",
+      "scenario": "deleted_information",
+      "mode": "chat",
+      "expected": []
+    },
+    {
+      "text": "Qual é a minha bebida favorita?",
+      "scenario": "corrected_preference",
+      "mode": "chat",
+      "expected": [
+        {
+          "property": "favorite_beverage",
+          "value": "tea"
+        }
+      ]
+    },
+    {
+      "text": "Em qual dia e mês eu nasci?",
+      "scenario": "no_memory",
+      "mode": "chat",
+      "expected": []
+    },
+    {
+      "text": "Qual banco está nos planos para aquele projeto?",
+      "scenario": "plan_vs_execution",
+      "mode": "agent",
+      "expected": [
+        {
+          "property": "database",
+          "value": "sqlite",
+          "temporal": "planned"
+        }
+      ]
+    }
+  ]
+}
