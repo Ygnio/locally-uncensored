@@ -1,0 +1,651 @@
+{
+  "source_file": "final22c-v1-extraction.json",
+  "source_private_sha256": "a670901545d68c54e6dc970309b3a0f2884fa0c42fa43b1c054ce74f60595783",
+  "data": {
+    "dataset_sha256": "0ef85f02c9b23e5359e8eab4baabf9bb3e85bdd014ffe4e88510df46a2d3d1ef",
+    "cases": 40,
+    "modes": {
+      "rules": {
+        "tp": 16,
+        "fp": 1,
+        "missed": 8,
+        "active_correct": 11,
+        "active_wrong": 0,
+        "critical_writes": 1,
+        "scope_errors": 0,
+        "by_category": {
+          "character_creation": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "class_selection": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "theme": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "coffee": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "communication": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "beverage": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 2,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "interface_negation": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "project_decision": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 2,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "project_plan": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "hardware": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "goal": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "goal_completed": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "lifecycle": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "project_description": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "third_party": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 3
+          },
+          "fiction": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "quote": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "hypothetical": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "negation": {
+            "tp": 0,
+            "fp": 1,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 1,
+            "n": 2
+          },
+          "prompt_injection": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "general_knowledge": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "temporary": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          }
+        },
+        "precision": 0.9411764705882353,
+        "recall": 0.6666666666666666,
+        "promotion_precision": 1.0,
+        "passed": false
+      },
+      "llm": {
+        "tp": 16,
+        "fp": 1,
+        "missed": 8,
+        "active_correct": 11,
+        "active_wrong": 0,
+        "critical_writes": 1,
+        "scope_errors": 0,
+        "by_category": {
+          "character_creation": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "class_selection": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "theme": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "coffee": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "communication": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "beverage": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 2,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "interface_negation": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "project_decision": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 2,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "project_plan": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "hardware": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "goal": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "goal_completed": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "lifecycle": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "project_description": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "third_party": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 3
+          },
+          "fiction": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "quote": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "hypothetical": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "negation": {
+            "tp": 0,
+            "fp": 1,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 1,
+            "n": 2
+          },
+          "prompt_injection": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "general_knowledge": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "temporary": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          }
+        },
+        "precision": 0.9411764705882353,
+        "recall": 0.6666666666666666,
+        "promotion_precision": 1.0,
+        "passed": false
+      },
+      "hybrid": {
+        "tp": 16,
+        "fp": 1,
+        "missed": 8,
+        "active_correct": 11,
+        "active_wrong": 0,
+        "critical_writes": 1,
+        "scope_errors": 0,
+        "by_category": {
+          "character_creation": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "class_selection": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "theme": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "coffee": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 1,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "communication": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "beverage": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 2,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "interface_negation": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 2,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "project_decision": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 2,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "project_plan": {
+            "tp": 2,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "hardware": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "goal": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "goal_completed": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 1,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "lifecycle": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "project_description": {
+            "tp": 1,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          },
+          "third_party": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 3
+          },
+          "fiction": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "quote": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "hypothetical": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "negation": {
+            "tp": 0,
+            "fp": 1,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 1,
+            "n": 2
+          },
+          "prompt_injection": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "general_knowledge": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 2
+          },
+          "temporary": {
+            "tp": 0,
+            "fp": 0,
+            "missed": 0,
+            "active_correct": 0,
+            "active_wrong": 0,
+            "critical_writes": 0,
+            "n": 1
+          }
+        },
+        "precision": 0.9411764705882353,
+        "recall": 0.6666666666666666,
+        "promotion_precision": 1.0,
+        "passed": false
+      }
+    },
+    "invalid_raw_outputs": 0,
+    "raw_proposals": 34
+  }
+}

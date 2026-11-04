@@ -1,0 +1,2864 @@
+{
+  "source_file": "driver-fault22c-nomic-offline-final.json",
+  "source_private_sha256": "608bc9cc6a30dce0f2c5b6ddb352bb572bffb6c531ef9b20e2913e657238a0d2",
+  "data": {
+    "label": "fault22c-nomic-offline",
+    "scope": "phase22c-final-conversations-v1",
+    "project": "corticeira",
+    "plan_id": "known-property-fault-only-not-unseen-score",
+    "started": "2026-11-04T13:41:11.359Z",
+    "turns": [
+      {
+        "paints": [
+          {
+            "at_ms": 113,
+            "id": "e6abce62-583b-4fc6-8685-b809ee231b7e",
+            "content": "",
+            "fidelity_status": null,
+            "error": null
+          },
+          {
+            "at_ms": 3128,
+            "id": "e6abce62-583b-4fc6-8685-b809ee231b7e",
+            "content": "Como não tenho acesso direto ao hardware do seu computador físico agora, não consigo informar a quantidade exata de RAM. Se você me disser o modelo ou as especificações, posso ajudar a interpretá-las.",
+            "fidelity_status": "checked",
+            "error": null
+          }
+        ],
+        "domPaints": [
+          {
+            "at_ms": 113,
+            "id": "e6abce62-583b-4fc6-8685-b809ee231b7e",
+            "text": "",
+            "fidelity_status": null
+          },
+          {
+            "at_ms": 121,
+            "id": "e6abce62-583b-4fc6-8685-b809ee231b7e",
+            "text": "lucille-real-gemma",
+            "fidelity_status": null
+          },
+          {
+            "at_ms": 3143,
+            "id": "e6abce62-583b-4fc6-8685-b809ee231b7e",
+            "text": "lucille-real-gemma\n\nComo não tenho acesso direto ao hardware do seu computador físico agora, não consigo informar a quantidade exata de RAM. Se você me disser o modelo ou as especificações, posso ajudar a interpretá-las.",
+            "fidelity_status": "checked"
+          },
+          {
+            "at_ms": 3176,
+            "id": "e6abce62-583b-4fc6-8685-b809ee231b7e",
+            "text": "lucille-real-gemma\n\nComo não tenho acesso direto ao hardware do seu computador físico agora, não consigo informar a quantidade exata de RAM. Se você me disser o modelo ou as especificações, posso ajudar a interpretá-las.\n\n980 in · 44 out",
+            "fidelity_status": "checked"
+          }
+        ],
+        "notePaints": [],
+        "text": "Qual a memória RAM do meu computador principal?",
+        "conversation_id": "3bd9fa8a-26c6-48d3-bf1e-66a360453c5d",
+        "messages": [
+          {
+            "id": "860da58c-f5c8-4cb2-a891-6814ac224661",
+            "role": "user",
+            "content": "Qual a memória RAM do meu computador principal?",
+            "timestamp": 1793799674101
+          },
+          {
+            "id": "e6abce62-583b-4fc6-8685-b809ee231b7e",
+            "role": "assistant",
+            "content": "Como não tenho acesso direto ao hardware do seu computador físico agora, não consigo informar a quantidade exata de RAM. Se você me disser o modelo ou as especificações, posso ajudar a interpretá-las.",
+            "thinking": "",
+            "modelId": "openai::lucille-real-gemma",
+            "timestamp": 1793799674101,
+            "lucilleFidelity": [
+              {
+                "id": "509787be-34a5-4ad4-8860-8a00b8faf397",
+                "status": "checked",
+                "attempts": [
+                  {
+                    "rawAnswer": "Como não tenho acesso direto ao hardware do seu computador físico agora, não consigo informar a quantidade exata de RAM. Se você me disser o modelo ou as especificações, posso ajudar a interpretá-las.",
+                    "check": {
+                      "assertions": [],
+                      "violations": [],
+                      "authority": [],
+                      "uncertain": true,
+                      "supportedAssertions": 0,
+                      "unsupportedAssertions": 0,
+                      "elapsedMs": 1
+                    },
+                    "verificationReferences": [],
+                    "promptTokens": 980,
+                    "completionTokens": 44
+                  }
+                ],
+                "refreshMs": 10.600000023841858,
+                "verificationMs": 1,
+                "extraGenerationMs": 0,
+                "additionalUsage": {
+                  "promptTokens": 0,
+                  "completionTokens": 0
+                },
+                "verifiedText": "Como não tenho acesso direto ao hardware do seu computador físico agora, não consigo informar a quantidade exata de RAM. Se você me disser o modelo ou as especificações, posso ajudar a interpretá-las."
+              }
+            ],
+            "finishReason": "stop",
+            "usage": {
+              "promptTokens": 980,
+              "completionTokens": 44,
+              "totalTokens": 1024
+            },
+            "requestUsage": {
+              "inputTokens": 980,
+              "outputTokens": 44,
+              "calls": 1
+            }
+          }
+        ],
+        "generation_ms": 3179,
+        "extraction_wait_ms": 725,
+        "metrics": {
+          "current_vectors": 12,
+          "history_events": [
+            {
+              "count": 13,
+              "state": "approve"
+            },
+            {
+              "count": 1,
+              "state": "auto_correct"
+            },
+            {
+              "count": 3,
+              "state": "auto_promote"
+            },
+            {
+              "count": 1,
+              "state": "auto_superseded"
+            },
+            {
+              "count": 17,
+              "state": "create"
+            },
+            {
+              "count": 4,
+              "state": "obsolete"
+            }
+          ],
+          "jobs": [
+            {
+              "count": 23,
+              "state": "done"
+            }
+          ],
+          "memories": [
+            {
+              "count": 12,
+              "state": "active"
+            },
+            {
+              "count": 5,
+              "state": "obsolete"
+            }
+          ],
+          "pending_vectors": 0,
+          "project": "corticeira",
+          "provenance_rows": 17,
+          "scope": "phase22c-final-conversations-v1",
+          "sqlite_main_page_bytes": 1101824,
+          "vector_json_bytes": 114139
+        }
+      }
+    ],
+    "probes": [
+      {
+        "item": {
+          "text": "Qual a memória RAM do meu computador principal?",
+          "mode": "chat",
+          "scenario": "nomic_fault",
+          "expected": [
+            {
+              "property": "ram_capacity",
+              "value": "48_gb"
+            }
+          ]
+        },
+        "turn": {
+          "paints": [
+            {
+              "at_ms": 113,
+              "id": "e6abce62-583b-4fc6-8685-b809ee231b7e",
+              "content": "",
+              "fidelity_status": null,
+              "error": null
+            },
+            {
+              "at_ms": 3128,
+              "id": "e6abce62-583b-4fc6-8685-b809ee231b7e",
+              "content": "Como não tenho acesso direto ao hardware do seu computador físico agora, não consigo informar a quantidade exata de RAM. Se você me disser o modelo ou as especificações, posso ajudar a interpretá-las.",
+              "fidelity_status": "checked",
+              "error": null
+            }
+          ],
+          "domPaints": [
+            {
+              "at_ms": 113,
+              "id": "e6abce62-583b-4fc6-8685-b809ee231b7e",
+              "text": "",
+              "fidelity_status": null
+            },
+            {
+              "at_ms": 121,
+              "id": "e6abce62-583b-4fc6-8685-b809ee231b7e",
+              "text": "lucille-real-gemma",
+              "fidelity_status": null
+            },
+            {
+              "at_ms": 3143,
+              "id": "e6abce62-583b-4fc6-8685-b809ee231b7e",
+              "text": "lucille-real-gemma\n\nComo não tenho acesso direto ao hardware do seu computador físico agora, não consigo informar a quantidade exata de RAM. Se você me disser o modelo ou as especificações, posso ajudar a interpretá-las.",
+              "fidelity_status": "checked"
+            },
+            {
+              "at_ms": 3176,
+              "id": "e6abce62-583b-4fc6-8685-b809ee231b7e",
+              "text": "lucille-real-gemma\n\nComo não tenho acesso direto ao hardware do seu computador físico agora, não consigo informar a quantidade exata de RAM. Se você me disser o modelo ou as especificações, posso ajudar a interpretá-las.\n\n980 in · 44 out",
+              "fidelity_status": "checked"
+            }
+          ],
+          "notePaints": [],
+          "text": "Qual a memória RAM do meu computador principal?",
+          "conversation_id": "3bd9fa8a-26c6-48d3-bf1e-66a360453c5d",
+          "messages": [
+            {
+              "id": "860da58c-f5c8-4cb2-a891-6814ac224661",
+              "role": "user",
+              "content": "Qual a memória RAM do meu computador principal?",
+              "timestamp": 1793799674101
+            },
+            {
+              "id": "e6abce62-583b-4fc6-8685-b809ee231b7e",
+              "role": "assistant",
+              "content": "Como não tenho acesso direto ao hardware do seu computador físico agora, não consigo informar a quantidade exata de RAM. Se você me disser o modelo ou as especificações, posso ajudar a interpretá-las.",
+              "thinking": "",
+              "modelId": "openai::lucille-real-gemma",
+              "timestamp": 1793799674101,
+              "lucilleFidelity": [
+                {
+                  "id": "509787be-34a5-4ad4-8860-8a00b8faf397",
+                  "status": "checked",
+                  "attempts": [
+                    {
+                      "rawAnswer": "Como não tenho acesso direto ao hardware do seu computador físico agora, não consigo informar a quantidade exata de RAM. Se você me disser o modelo ou as especificações, posso ajudar a interpretá-las.",
+                      "check": {
+                        "assertions": [],
+                        "violations": [],
+                        "authority": [],
+                        "uncertain": true,
+                        "supportedAssertions": 0,
+                        "unsupportedAssertions": 0,
+                        "elapsedMs": 1
+                      },
+                      "verificationReferences": [],
+                      "promptTokens": 980,
+                      "completionTokens": 44
+                    }
+                  ],
+                  "refreshMs": 10.600000023841858,
+                  "verificationMs": 1,
+                  "extraGenerationMs": 0,
+                  "additionalUsage": {
+                    "promptTokens": 0,
+                    "completionTokens": 0
+                  },
+                  "verifiedText": "Como não tenho acesso direto ao hardware do seu computador físico agora, não consigo informar a quantidade exata de RAM. Se você me disser o modelo ou as especificações, posso ajudar a interpretá-las."
+                }
+              ],
+              "finishReason": "stop",
+              "usage": {
+                "promptTokens": 980,
+                "completionTokens": 44,
+                "totalTokens": 1024
+              },
+              "requestUsage": {
+                "inputTokens": 980,
+                "outputTokens": 44,
+                "calls": 1
+              }
+            }
+          ],
+          "generation_ms": 3179,
+          "extraction_wait_ms": 725,
+          "metrics": {
+            "current_vectors": 12,
+            "history_events": [
+              {
+                "count": 13,
+                "state": "approve"
+              },
+              {
+                "count": 1,
+                "state": "auto_correct"
+              },
+              {
+                "count": 3,
+                "state": "auto_promote"
+              },
+              {
+                "count": 1,
+                "state": "auto_superseded"
+              },
+              {
+                "count": 17,
+                "state": "create"
+              },
+              {
+                "count": 4,
+                "state": "obsolete"
+              }
+            ],
+            "jobs": [
+              {
+                "count": 23,
+                "state": "done"
+              }
+            ],
+            "memories": [
+              {
+                "count": 12,
+                "state": "active"
+              },
+              {
+                "count": 5,
+                "state": "obsolete"
+              }
+            ],
+            "pending_vectors": 0,
+            "project": "corticeira",
+            "provenance_rows": 17,
+            "scope": "phase22c-final-conversations-v1",
+            "sqlite_main_page_bytes": 1101824,
+            "vector_json_bytes": 114139
+          }
+        }
+      }
+    ],
+    "conversations": [
+      "1691c53a-1ec0-4e7a-8290-6a9840f4022f",
+      "3bd9fa8a-26c6-48d3-bf1e-66a360453c5d"
+    ],
+    "existing_bindings": [
+      {
+        "id": "dcef2d40-ad63-487b-9a56-29051f64af9b",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "piuva",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "5ca17f99-49f0-4610-a181-2134aabd03d3",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "piuva",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "1a194c90-c0b7-478a-9d95-65a90c3961dd",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "piuva",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "d60f44aa-8aad-4c36-96a8-f5d7445d1f57",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "piuva",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "ce64850b-0dee-4f40-b8a9-79d18efed284",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "corticeira",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "e0d0fbec-d754-4a49-a307-0935768cc395",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "corticeira",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "c04d9f2c-e153-4485-873d-3469c744bb0e",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "corticeira",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "d689720f-0220-4454-9caa-de8c23e7c16a",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "corticeira",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "ee392f4c-062b-40db-8ecd-24c42fb638e9",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "corticeira",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "d51125e2-c6fb-4664-8808-839a4e679ffb",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "corticeira",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "5862d68d-cc70-4e19-bcbb-f2d7ea0c8379",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "corticeira",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "dc21aacf-be82-4718-be1e-46bd4d63c2a8",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "corticeira",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "c735a7eb-4f67-447b-9062-d1a18d0c07f8",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "corticeira",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "905719bf-ce4e-43b2-8ae5-8b538f796b33",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "corticeira",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "15854efb-b7a3-4f9e-b093-63eba6bf3123",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "corticeira",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "910fef24-27a0-4580-bec6-5395c8bb0fc0",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "corticeira",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "0932d8c3-5cfc-415b-a655-5779a308d95f",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "corticeira",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "e1efad27-8d9e-438e-b5cc-6ac98a1edc27",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "corticeira",
+          "tokenBudget": 8192
+        }
+      },
+      {
+        "id": "88a7b451-60db-4546-a41f-358f34d062a7",
+        "binding": {
+          "profile": "lucille",
+          "scope": "phase22c-final-conversations-v1",
+          "project": "corticeira",
+          "tokenBudget": 8192
+        }
+      }
+    ],
+    "initial_identity": {
+      "created_at": 1793795137,
+      "profile": {
+        "description": "Fictional isolated QA identity",
+        "instructions": "Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. Use tools only when the user asks for an external observation or action; remembered facts alone need no external inspection.",
+        "name": "Lucille Synthetic Phase22",
+        "personality": "Concise"
+      },
+      "updated_at": 1793796210,
+      "version": 2
+    },
+    "initial_index": {
+      "indexed": 63,
+      "space": {
+        "context_tokens": 2048,
+        "dimension": 768,
+        "document_prefix": "search_document: ",
+        "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+        "index_version": 5,
+        "model": "nomic-ai/nomic-embed-text-v1.5",
+        "normalization": "layer_norm_then_l2",
+        "pooling": "mean",
+        "query_prefix": "search_query: ",
+        "revision": "0188c9bf409793f810680a5a431e7b899c46104c"
+      },
+      "transport_verified": false
+    },
+    "initial_details": [
+      {
+        "memory": {
+          "created_at": 1793797597,
+          "input": {
+            "content": "Estou começando um projeto de catálogo de conchas",
+            "fact_key": "project.corticeira.description",
+            "id": "154efd1c-0ecb-5338-3d26-c827ce5158ac",
+            "kind": "project",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "583e7b0f03cae6641421a25766e95adf87380e5cc20334c0cf9f3ce1171251fa"
+          },
+          "state": "obsolete",
+          "updated_at": 1793797753,
+          "version": 3
+        },
+        "provenance": [
+          {
+            "at": 1793797597,
+            "evidence": "Estou começando um projeto de catálogo de conchas",
+            "interaction_id": "583e7b0f03cae6641421a25766e95adf87380e5cc20334c0cf9f3ce1171251fa"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "description",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "project.corticeira",
+          "temporal": "durable",
+          "value": "estou comecando um projeto de catalogo de conchas"
+        },
+        "revisions": [
+          2,
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797608,
+          "input": {
+            "content": "Projeto corticeira: planeja usar sqlite como banco de dados.",
+            "fact_key": "project.corticeira.database",
+            "id": "0baf703f-3e82-cf99-b4de-6f4ace5b6e20",
+            "kind": "decision",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "f20d9eae6548fc244033ae7d11aa37954f5793a9eb869855bb10745f5ec13c93"
+          },
+          "state": "obsolete",
+          "updated_at": 1793797691,
+          "version": 3
+        },
+        "provenance": [
+          {
+            "at": 1793797608,
+            "evidence": "Pretendo usar Rust e SQLite no meu projeto",
+            "interaction_id": "f20d9eae6548fc244033ae7d11aa37954f5793a9eb869855bb10745f5ec13c93"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "database",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "project.corticeira",
+          "temporal": "planned",
+          "value": "sqlite"
+        },
+        "revisions": [
+          2,
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797608,
+          "input": {
+            "content": "Projeto corticeira: planeja usar linguagem rust.",
+            "fact_key": "project.corticeira.language",
+            "id": "2f760b5f-cb82-9b80-f75d-b315e7996165",
+            "kind": "decision",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "f20d9eae6548fc244033ae7d11aa37954f5793a9eb869855bb10745f5ec13c93"
+          },
+          "state": "active",
+          "updated_at": 1793797612,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797608,
+            "evidence": "Pretendo usar Rust e SQLite no meu projeto",
+            "interaction_id": "f20d9eae6548fc244033ae7d11aa37954f5793a9eb869855bb10745f5ec13c93"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "language",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "project.corticeira",
+          "temporal": "planned",
+          "value": "rust"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797622,
+          "input": {
+            "content": "Meu computador principal tem 36 GB de RAM",
+            "fact_key": "device.primary_computer.ram_capacity",
+            "id": "4733a4b6-317e-ba6f-51d4-95b17c78eacf",
+            "kind": "hardware",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "b1c4c2d4d029576af651e9f1b62a004720e115c2ac4d1982d93361799883302e"
+          },
+          "state": "obsolete",
+          "updated_at": 1793797702,
+          "version": 3
+        },
+        "provenance": [
+          {
+            "at": 1793797622,
+            "evidence": "Meu computador principal tem 36 GB de RAM",
+            "interaction_id": "b1c4c2d4d029576af651e9f1b62a004720e115c2ac4d1982d93361799883302e"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "ram_capacity",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "device.primary_computer",
+          "temporal": "durable",
+          "value": "36_gb"
+        },
+        "revisions": [
+          2,
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797632,
+          "input": {
+            "content": "Meu notebook de trabalho tem 18 GB de RAM",
+            "fact_key": "device.work_laptop.ram_capacity",
+            "id": "3f3817c9-acde-41bb-30b3-a9ea957859cd",
+            "kind": "hardware",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "5e118e23caecc2d7f3e61c38673282d02e96f547860f03cd95e86226cd2fdf17"
+          },
+          "state": "active",
+          "updated_at": 1793797634,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797632,
+            "evidence": "Meu notebook de trabalho tem 18 GB de RAM",
+            "interaction_id": "5e118e23caecc2d7f3e61c38673282d02e96f547860f03cd95e86226cd2fdf17"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "ram_capacity",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "device.work_laptop",
+          "temporal": "durable",
+          "value": "18_gb"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797641,
+          "input": {
+            "content": "Prefere café com açúcar.",
+            "fact_key": "user.coffee_sugar",
+            "id": "bbc5281f-db48-e2d4-ed32-44b074494cc7",
+            "kind": "preference",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "6724512a3f5efb749ffdf98c9caaaf356c4db56bfb034a3de11c9124b7e0fbd7"
+          },
+          "state": "obsolete",
+          "updated_at": 1793797710,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797641,
+            "evidence": "Prefiro café com açúcar",
+            "interaction_id": "6724512a3f5efb749ffdf98c9caaaf356c4db56bfb034a3de11c9124b7e0fbd7"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_coffee_preference",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "coffee_sugar",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "user",
+          "temporal": "preference",
+          "value": "with_sugar"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797648,
+          "input": {
+            "content": "Prefiro respostas objetivas",
+            "fact_key": "user.communication_focus",
+            "id": "e4270584-92cd-fce9-20b4-a16e15bd34c2",
+            "kind": "preference",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "e117cfef72dc7d59a11be202f78bd98b166ee3f58fa025b0b4f93e4df00829b1"
+          },
+          "state": "active",
+          "updated_at": 1793797648,
+          "version": 1
+        },
+        "provenance": [
+          {
+            "at": 1793797648,
+            "evidence": "Prefiro respostas objetivas",
+            "interaction_id": "e117cfef72dc7d59a11be202f78bd98b166ee3f58fa025b0b4f93e4df00829b1"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "communication_focus",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "user",
+          "temporal": "preference",
+          "value": "objective"
+        },
+        "revisions": []
+      },
+      {
+        "memory": {
+          "created_at": 1793797655,
+          "input": {
+            "content": "Meu objetivo é aprender italiano",
+            "fact_key": "user.goal.5f01585e334f",
+            "id": "6a0ae447-68ab-1c2a-8792-41250954397e",
+            "kind": "goal",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "34e55d89d2fa953c93f069a82c2345295737c7aec4db86ca4117cd520ce3ee34"
+          },
+          "state": "obsolete",
+          "updated_at": 1793797720,
+          "version": 3
+        },
+        "provenance": [
+          {
+            "at": 1793797655,
+            "evidence": "Meu objetivo é aprender italiano",
+            "interaction_id": "34e55d89d2fa953c93f069a82c2345295737c7aec4db86ca4117cd520ce3ee34"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_goal",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "goal.5f01585e334f",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "user",
+          "temporal": "durable",
+          "value": "meu objetivo e aprender italiano"
+        },
+        "revisions": [
+          2,
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797678,
+          "input": {
+            "content": "Agora estou implementando meu projeto em TypeScript",
+            "fact_key": "project.corticeira.language.execution",
+            "id": "45ffbc0a-f7df-bd30-3721-b48b28c89a53",
+            "kind": "fact",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "3662b498b393dfac8f560d290fe793317703291d30823a1bfd03588646afaf16"
+          },
+          "state": "active",
+          "updated_at": 1793797681,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797678,
+            "evidence": "Agora estou implementando meu projeto em TypeScript",
+            "interaction_id": "3662b498b393dfac8f560d290fe793317703291d30823a1bfd03588646afaf16"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "language",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "project.corticeira",
+          "temporal": "in_progress",
+          "value": "typescript"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797689,
+          "input": {
+            "content": "Projeto corticeira: decidiu usar postgresql como banco de dados.",
+            "fact_key": "project.corticeira.database",
+            "id": "38901ef9-d529-5de2-42e2-a149fb5a48b5",
+            "kind": "decision",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "35d88ae02f00ce32e7b0d3f45a3e4c9322f32a0d8eef978b7ecb3e17e89f29f2"
+          },
+          "state": "active",
+          "updated_at": 1793797691,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797689,
+            "evidence": "Decidi usar PostgreSQL no meu projeto",
+            "interaction_id": "35d88ae02f00ce32e7b0d3f45a3e4c9322f32a0d8eef978b7ecb3e17e89f29f2"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "database",
+          "relevance": 0.8,
+          "replaces_id": "0baf703f-3e82-cf99-b4de-6f4ace5b6e20",
+          "replaces_version": 2,
+          "subject": "project.corticeira",
+          "temporal": "durable",
+          "value": "postgresql"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797699,
+          "input": {
+            "content": "Não tenho mais 36 GB, agora são 48 GB",
+            "fact_key": "device.primary_computer.ram_capacity",
+            "id": "d2ef1b80-b4bc-3121-c848-35f58a0d2eb0",
+            "kind": "hardware",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "565d486c8b27a333a1bf590117ca4cbeb6e227612e64a4de7543ab4fc4ea8694"
+          },
+          "state": "active",
+          "updated_at": 1793797702,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797699,
+            "evidence": "Não tenho mais 36 GB, agora são 48 GB",
+            "interaction_id": "565d486c8b27a333a1bf590117ca4cbeb6e227612e64a4de7543ab4fc4ea8694"
+          }
+        ],
+        "quality": {
+          "confidence": 0.85,
+          "evidence_rule": "llm_v3_grounded:explicit_ram_correction_from_36_gb",
+          "expires_at": null,
+          "facets": [],
+          "priority": 2,
+          "property": "ram_capacity",
+          "relevance": 0.8,
+          "replaces_id": "4733a4b6-317e-ba6f-51d4-95b17c78eacf",
+          "replaces_version": 2,
+          "subject": "device.primary_computer",
+          "temporal": "durable",
+          "value": "48_gb"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797710,
+          "input": {
+            "content": "Prefere café sem açúcar.",
+            "fact_key": "user.coffee_sugar",
+            "id": "c0ddca40-5ed0-6e4e-8ed2-675d436836c4",
+            "kind": "preference",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "8361de42639e9a064c56a6929af358fca8167ec5dbee0bbee72157a2739977fd"
+          },
+          "state": "active",
+          "updated_at": 1793797710,
+          "version": 1
+        },
+        "provenance": [
+          {
+            "at": 1793797710,
+            "evidence": "Na verdade, agora prefiro café sem açúcar",
+            "interaction_id": "8361de42639e9a064c56a6929af358fca8167ec5dbee0bbee72157a2739977fd"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_coffee_preference",
+          "expires_at": null,
+          "facets": [],
+          "priority": 2,
+          "property": "coffee_sugar",
+          "relevance": 0.8,
+          "replaces_id": "bbc5281f-db48-e2d4-ed32-44b074494cc7",
+          "replaces_version": 1,
+          "subject": "user",
+          "temporal": "preference",
+          "value": "without_sugar"
+        },
+        "revisions": []
+      },
+      {
+        "memory": {
+          "created_at": 1793797717,
+          "input": {
+            "content": "Objetivo concluído: aprender italiano.",
+            "fact_key": "user.goal.5f01585e334f",
+            "id": "b2fe2d4a-2d87-8cf9-082b-a25c92e61298",
+            "kind": "goal",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "17d5070aefcc897fec7f5387aa952e5d3d79283c1a784a5140fee83f633a99be"
+          },
+          "state": "active",
+          "updated_at": 1793797720,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797717,
+            "evidence": "Concluí meu objetivo de aprender italiano",
+            "interaction_id": "17d5070aefcc897fec7f5387aa952e5d3d79283c1a784a5140fee83f633a99be"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_completed_goal",
+          "expires_at": null,
+          "facets": [],
+          "priority": 2,
+          "property": "goal.5f01585e334f",
+          "relevance": 0.8,
+          "replaces_id": "6a0ae447-68ab-1c2a-8792-41250954397e",
+          "replaces_version": 2,
+          "subject": "user",
+          "temporal": "completed",
+          "value": "completed:aprender italiano"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797743,
+          "input": {
+            "content": "Prefiro respostas curtas",
+            "fact_key": "user.communication_style",
+            "id": "9a1e62a1-d0f7-b511-dd43-1816f718c078",
+            "kind": "preference",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "78244b10d9a2c53123b50009cd701c7db6b47ea9f79e47ab2dcb17ce21fcaf27"
+          },
+          "state": "active",
+          "updated_at": 1793797743,
+          "version": 1
+        },
+        "provenance": [
+          {
+            "at": 1793797743,
+            "evidence": "Prefiro respostas curtas",
+            "interaction_id": "78244b10d9a2c53123b50009cd701c7db6b47ea9f79e47ab2dcb17ce21fcaf27"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "communication_style",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "user",
+          "temporal": "preference",
+          "value": "concise"
+        },
+        "revisions": []
+      },
+      {
+        "memory": {
+          "created_at": 1793797750,
+          "input": {
+            "content": "O projeto continua sendo um catálogo de conchas",
+            "fact_key": "project.corticeira.description",
+            "id": "c49b33f6-15fb-c6cd-1bca-12afd247cb68",
+            "kind": "project",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "a2509e291aed5085e815029b6a4d5becf04f50179222349d69c5debe77079d9f"
+          },
+          "state": "active",
+          "updated_at": 1793797753,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797750,
+            "evidence": "O projeto continua sendo um catálogo de conchas",
+            "interaction_id": "a2509e291aed5085e815029b6a4d5becf04f50179222349d69c5debe77079d9f"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "description",
+          "relevance": 0.8,
+          "replaces_id": "154efd1c-0ecb-5338-3d26-c827ce5158ac",
+          "replaces_version": 2,
+          "subject": "project.corticeira",
+          "temporal": "durable",
+          "value": "o projeto continua sendo um catalogo de conchas"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797764,
+          "input": {
+            "content": "Meu outro computador tem 12 GB de RAM",
+            "fact_key": "device.other_computer.ram_capacity",
+            "id": "2a0c3a2f-5939-4ed2-13b6-3197e3549f1d",
+            "kind": "hardware",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "433f495a1e34d22818327fac6659a55acda610b1369bfe489ade1b70fc1539de"
+          },
+          "state": "active",
+          "updated_at": 1793797767,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797764,
+            "evidence": "Meu outro computador tem 12 GB de RAM",
+            "interaction_id": "433f495a1e34d22818327fac6659a55acda610b1369bfe489ade1b70fc1539de"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "ram_capacity",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "device.other_computer",
+          "temporal": "durable",
+          "value": "12_gb"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797776,
+          "input": {
+            "content": "Cancelei meu projeto",
+            "fact_key": "project.corticeira.lifecycle",
+            "id": "0dd7cc03-61f2-2523-5ff3-dcb1b62209ac",
+            "kind": "project",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "06f05430122c6390c3c994aca1c2ed38b337f619fec8701ec8c507a472a4e64b"
+          },
+          "state": "active",
+          "updated_at": 1793797778,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797776,
+            "evidence": "Cancelei meu projeto",
+            "interaction_id": "06f05430122c6390c3c994aca1c2ed38b337f619fec8701ec8c507a472a4e64b"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "lifecycle",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "project.corticeira",
+          "temporal": "cancelled",
+          "value": "cancelled"
+        },
+        "revisions": [
+          1
+        ]
+      }
+    ],
+    "initial_deleted": [
+      {
+        "deleted_at": 1793797725,
+        "id": "d58a2955-10b5-e9b0-2b97-fc5a7b3b0884",
+        "kind": "preference",
+        "state": "deleted"
+      },
+      {
+        "deleted_at": 1793797721,
+        "id": "a6d6bd7b-8de0-af31-be78-111954410ca7",
+        "kind": "preference",
+        "state": "deleted"
+      }
+    ],
+    "policy": {
+      "auto_kinds": [
+        "preference"
+      ],
+      "automatic_indexing": true,
+      "autonomous_preferences": true,
+      "enabled": true,
+      "extraction_mode": "llm",
+      "lexical_weight": 0.5,
+      "max_pending": 64,
+      "minimum_confidence": 0.96,
+      "minimum_relevance": 0.8,
+      "minimum_similarity": 0.6,
+      "semantic_weight": 0.5
+    },
+    "initial_metrics": {
+      "current_vectors": 12,
+      "history_events": [
+        {
+          "count": 13,
+          "state": "approve"
+        },
+        {
+          "count": 1,
+          "state": "auto_correct"
+        },
+        {
+          "count": 3,
+          "state": "auto_promote"
+        },
+        {
+          "count": 1,
+          "state": "auto_superseded"
+        },
+        {
+          "count": 17,
+          "state": "create"
+        },
+        {
+          "count": 4,
+          "state": "obsolete"
+        }
+      ],
+      "jobs": [
+        {
+          "count": 23,
+          "state": "done"
+        }
+      ],
+      "memories": [
+        {
+          "count": 12,
+          "state": "active"
+        },
+        {
+          "count": 5,
+          "state": "obsolete"
+        }
+      ],
+      "pending_vectors": 0,
+      "project": "corticeira",
+      "provenance_rows": 17,
+      "scope": "phase22c-final-conversations-v1",
+      "sqlite_main_page_bytes": 1101824,
+      "vector_json_bytes": 114139
+    },
+    "after_long": [
+      {
+        "memory": {
+          "created_at": 1793797597,
+          "input": {
+            "content": "Estou começando um projeto de catálogo de conchas",
+            "fact_key": "project.corticeira.description",
+            "id": "154efd1c-0ecb-5338-3d26-c827ce5158ac",
+            "kind": "project",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "583e7b0f03cae6641421a25766e95adf87380e5cc20334c0cf9f3ce1171251fa"
+          },
+          "state": "obsolete",
+          "updated_at": 1793797753,
+          "version": 3
+        },
+        "provenance": [
+          {
+            "at": 1793797597,
+            "evidence": "Estou começando um projeto de catálogo de conchas",
+            "interaction_id": "583e7b0f03cae6641421a25766e95adf87380e5cc20334c0cf9f3ce1171251fa"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "description",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "project.corticeira",
+          "temporal": "durable",
+          "value": "estou comecando um projeto de catalogo de conchas"
+        },
+        "revisions": [
+          2,
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797608,
+          "input": {
+            "content": "Projeto corticeira: planeja usar sqlite como banco de dados.",
+            "fact_key": "project.corticeira.database",
+            "id": "0baf703f-3e82-cf99-b4de-6f4ace5b6e20",
+            "kind": "decision",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "f20d9eae6548fc244033ae7d11aa37954f5793a9eb869855bb10745f5ec13c93"
+          },
+          "state": "obsolete",
+          "updated_at": 1793797691,
+          "version": 3
+        },
+        "provenance": [
+          {
+            "at": 1793797608,
+            "evidence": "Pretendo usar Rust e SQLite no meu projeto",
+            "interaction_id": "f20d9eae6548fc244033ae7d11aa37954f5793a9eb869855bb10745f5ec13c93"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "database",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "project.corticeira",
+          "temporal": "planned",
+          "value": "sqlite"
+        },
+        "revisions": [
+          2,
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797608,
+          "input": {
+            "content": "Projeto corticeira: planeja usar linguagem rust.",
+            "fact_key": "project.corticeira.language",
+            "id": "2f760b5f-cb82-9b80-f75d-b315e7996165",
+            "kind": "decision",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "f20d9eae6548fc244033ae7d11aa37954f5793a9eb869855bb10745f5ec13c93"
+          },
+          "state": "active",
+          "updated_at": 1793797612,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797608,
+            "evidence": "Pretendo usar Rust e SQLite no meu projeto",
+            "interaction_id": "f20d9eae6548fc244033ae7d11aa37954f5793a9eb869855bb10745f5ec13c93"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "language",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "project.corticeira",
+          "temporal": "planned",
+          "value": "rust"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797622,
+          "input": {
+            "content": "Meu computador principal tem 36 GB de RAM",
+            "fact_key": "device.primary_computer.ram_capacity",
+            "id": "4733a4b6-317e-ba6f-51d4-95b17c78eacf",
+            "kind": "hardware",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "b1c4c2d4d029576af651e9f1b62a004720e115c2ac4d1982d93361799883302e"
+          },
+          "state": "obsolete",
+          "updated_at": 1793797702,
+          "version": 3
+        },
+        "provenance": [
+          {
+            "at": 1793797622,
+            "evidence": "Meu computador principal tem 36 GB de RAM",
+            "interaction_id": "b1c4c2d4d029576af651e9f1b62a004720e115c2ac4d1982d93361799883302e"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "ram_capacity",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "device.primary_computer",
+          "temporal": "durable",
+          "value": "36_gb"
+        },
+        "revisions": [
+          2,
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797632,
+          "input": {
+            "content": "Meu notebook de trabalho tem 18 GB de RAM",
+            "fact_key": "device.work_laptop.ram_capacity",
+            "id": "3f3817c9-acde-41bb-30b3-a9ea957859cd",
+            "kind": "hardware",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "5e118e23caecc2d7f3e61c38673282d02e96f547860f03cd95e86226cd2fdf17"
+          },
+          "state": "active",
+          "updated_at": 1793797634,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797632,
+            "evidence": "Meu notebook de trabalho tem 18 GB de RAM",
+            "interaction_id": "5e118e23caecc2d7f3e61c38673282d02e96f547860f03cd95e86226cd2fdf17"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "ram_capacity",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "device.work_laptop",
+          "temporal": "durable",
+          "value": "18_gb"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797641,
+          "input": {
+            "content": "Prefere café com açúcar.",
+            "fact_key": "user.coffee_sugar",
+            "id": "bbc5281f-db48-e2d4-ed32-44b074494cc7",
+            "kind": "preference",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "6724512a3f5efb749ffdf98c9caaaf356c4db56bfb034a3de11c9124b7e0fbd7"
+          },
+          "state": "obsolete",
+          "updated_at": 1793797710,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797641,
+            "evidence": "Prefiro café com açúcar",
+            "interaction_id": "6724512a3f5efb749ffdf98c9caaaf356c4db56bfb034a3de11c9124b7e0fbd7"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_coffee_preference",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "coffee_sugar",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "user",
+          "temporal": "preference",
+          "value": "with_sugar"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797648,
+          "input": {
+            "content": "Prefiro respostas objetivas",
+            "fact_key": "user.communication_focus",
+            "id": "e4270584-92cd-fce9-20b4-a16e15bd34c2",
+            "kind": "preference",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "e117cfef72dc7d59a11be202f78bd98b166ee3f58fa025b0b4f93e4df00829b1"
+          },
+          "state": "active",
+          "updated_at": 1793797648,
+          "version": 1
+        },
+        "provenance": [
+          {
+            "at": 1793797648,
+            "evidence": "Prefiro respostas objetivas",
+            "interaction_id": "e117cfef72dc7d59a11be202f78bd98b166ee3f58fa025b0b4f93e4df00829b1"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "communication_focus",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "user",
+          "temporal": "preference",
+          "value": "objective"
+        },
+        "revisions": []
+      },
+      {
+        "memory": {
+          "created_at": 1793797655,
+          "input": {
+            "content": "Meu objetivo é aprender italiano",
+            "fact_key": "user.goal.5f01585e334f",
+            "id": "6a0ae447-68ab-1c2a-8792-41250954397e",
+            "kind": "goal",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "34e55d89d2fa953c93f069a82c2345295737c7aec4db86ca4117cd520ce3ee34"
+          },
+          "state": "obsolete",
+          "updated_at": 1793797720,
+          "version": 3
+        },
+        "provenance": [
+          {
+            "at": 1793797655,
+            "evidence": "Meu objetivo é aprender italiano",
+            "interaction_id": "34e55d89d2fa953c93f069a82c2345295737c7aec4db86ca4117cd520ce3ee34"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_goal",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "goal.5f01585e334f",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "user",
+          "temporal": "durable",
+          "value": "meu objetivo e aprender italiano"
+        },
+        "revisions": [
+          2,
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797678,
+          "input": {
+            "content": "Agora estou implementando meu projeto em TypeScript",
+            "fact_key": "project.corticeira.language.execution",
+            "id": "45ffbc0a-f7df-bd30-3721-b48b28c89a53",
+            "kind": "fact",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "3662b498b393dfac8f560d290fe793317703291d30823a1bfd03588646afaf16"
+          },
+          "state": "active",
+          "updated_at": 1793797681,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797678,
+            "evidence": "Agora estou implementando meu projeto em TypeScript",
+            "interaction_id": "3662b498b393dfac8f560d290fe793317703291d30823a1bfd03588646afaf16"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "language",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "project.corticeira",
+          "temporal": "in_progress",
+          "value": "typescript"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797689,
+          "input": {
+            "content": "Projeto corticeira: decidiu usar postgresql como banco de dados.",
+            "fact_key": "project.corticeira.database",
+            "id": "38901ef9-d529-5de2-42e2-a149fb5a48b5",
+            "kind": "decision",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "35d88ae02f00ce32e7b0d3f45a3e4c9322f32a0d8eef978b7ecb3e17e89f29f2"
+          },
+          "state": "active",
+          "updated_at": 1793797691,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797689,
+            "evidence": "Decidi usar PostgreSQL no meu projeto",
+            "interaction_id": "35d88ae02f00ce32e7b0d3f45a3e4c9322f32a0d8eef978b7ecb3e17e89f29f2"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "database",
+          "relevance": 0.8,
+          "replaces_id": "0baf703f-3e82-cf99-b4de-6f4ace5b6e20",
+          "replaces_version": 2,
+          "subject": "project.corticeira",
+          "temporal": "durable",
+          "value": "postgresql"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797699,
+          "input": {
+            "content": "Não tenho mais 36 GB, agora são 48 GB",
+            "fact_key": "device.primary_computer.ram_capacity",
+            "id": "d2ef1b80-b4bc-3121-c848-35f58a0d2eb0",
+            "kind": "hardware",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "565d486c8b27a333a1bf590117ca4cbeb6e227612e64a4de7543ab4fc4ea8694"
+          },
+          "state": "active",
+          "updated_at": 1793797702,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797699,
+            "evidence": "Não tenho mais 36 GB, agora são 48 GB",
+            "interaction_id": "565d486c8b27a333a1bf590117ca4cbeb6e227612e64a4de7543ab4fc4ea8694"
+          }
+        ],
+        "quality": {
+          "confidence": 0.85,
+          "evidence_rule": "llm_v3_grounded:explicit_ram_correction_from_36_gb",
+          "expires_at": null,
+          "facets": [],
+          "priority": 2,
+          "property": "ram_capacity",
+          "relevance": 0.8,
+          "replaces_id": "4733a4b6-317e-ba6f-51d4-95b17c78eacf",
+          "replaces_version": 2,
+          "subject": "device.primary_computer",
+          "temporal": "durable",
+          "value": "48_gb"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797710,
+          "input": {
+            "content": "Prefere café sem açúcar.",
+            "fact_key": "user.coffee_sugar",
+            "id": "c0ddca40-5ed0-6e4e-8ed2-675d436836c4",
+            "kind": "preference",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "8361de42639e9a064c56a6929af358fca8167ec5dbee0bbee72157a2739977fd"
+          },
+          "state": "active",
+          "updated_at": 1793797710,
+          "version": 1
+        },
+        "provenance": [
+          {
+            "at": 1793797710,
+            "evidence": "Na verdade, agora prefiro café sem açúcar",
+            "interaction_id": "8361de42639e9a064c56a6929af358fca8167ec5dbee0bbee72157a2739977fd"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_coffee_preference",
+          "expires_at": null,
+          "facets": [],
+          "priority": 2,
+          "property": "coffee_sugar",
+          "relevance": 0.8,
+          "replaces_id": "bbc5281f-db48-e2d4-ed32-44b074494cc7",
+          "replaces_version": 1,
+          "subject": "user",
+          "temporal": "preference",
+          "value": "without_sugar"
+        },
+        "revisions": []
+      },
+      {
+        "memory": {
+          "created_at": 1793797717,
+          "input": {
+            "content": "Objetivo concluído: aprender italiano.",
+            "fact_key": "user.goal.5f01585e334f",
+            "id": "b2fe2d4a-2d87-8cf9-082b-a25c92e61298",
+            "kind": "goal",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "17d5070aefcc897fec7f5387aa952e5d3d79283c1a784a5140fee83f633a99be"
+          },
+          "state": "active",
+          "updated_at": 1793797720,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797717,
+            "evidence": "Concluí meu objetivo de aprender italiano",
+            "interaction_id": "17d5070aefcc897fec7f5387aa952e5d3d79283c1a784a5140fee83f633a99be"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_completed_goal",
+          "expires_at": null,
+          "facets": [],
+          "priority": 2,
+          "property": "goal.5f01585e334f",
+          "relevance": 0.8,
+          "replaces_id": "6a0ae447-68ab-1c2a-8792-41250954397e",
+          "replaces_version": 2,
+          "subject": "user",
+          "temporal": "completed",
+          "value": "completed:aprender italiano"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797743,
+          "input": {
+            "content": "Prefiro respostas curtas",
+            "fact_key": "user.communication_style",
+            "id": "9a1e62a1-d0f7-b511-dd43-1816f718c078",
+            "kind": "preference",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "78244b10d9a2c53123b50009cd701c7db6b47ea9f79e47ab2dcb17ce21fcaf27"
+          },
+          "state": "active",
+          "updated_at": 1793797743,
+          "version": 1
+        },
+        "provenance": [
+          {
+            "at": 1793797743,
+            "evidence": "Prefiro respostas curtas",
+            "interaction_id": "78244b10d9a2c53123b50009cd701c7db6b47ea9f79e47ab2dcb17ce21fcaf27"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "communication_style",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "user",
+          "temporal": "preference",
+          "value": "concise"
+        },
+        "revisions": []
+      },
+      {
+        "memory": {
+          "created_at": 1793797750,
+          "input": {
+            "content": "O projeto continua sendo um catálogo de conchas",
+            "fact_key": "project.corticeira.description",
+            "id": "c49b33f6-15fb-c6cd-1bca-12afd247cb68",
+            "kind": "project",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "a2509e291aed5085e815029b6a4d5becf04f50179222349d69c5debe77079d9f"
+          },
+          "state": "active",
+          "updated_at": 1793797753,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797750,
+            "evidence": "O projeto continua sendo um catálogo de conchas",
+            "interaction_id": "a2509e291aed5085e815029b6a4d5becf04f50179222349d69c5debe77079d9f"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "description",
+          "relevance": 0.8,
+          "replaces_id": "154efd1c-0ecb-5338-3d26-c827ce5158ac",
+          "replaces_version": 2,
+          "subject": "project.corticeira",
+          "temporal": "durable",
+          "value": "o projeto continua sendo um catalogo de conchas"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797764,
+          "input": {
+            "content": "Meu outro computador tem 12 GB de RAM",
+            "fact_key": "device.other_computer.ram_capacity",
+            "id": "2a0c3a2f-5939-4ed2-13b6-3197e3549f1d",
+            "kind": "hardware",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "433f495a1e34d22818327fac6659a55acda610b1369bfe489ade1b70fc1539de"
+          },
+          "state": "active",
+          "updated_at": 1793797767,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797764,
+            "evidence": "Meu outro computador tem 12 GB de RAM",
+            "interaction_id": "433f495a1e34d22818327fac6659a55acda610b1369bfe489ade1b70fc1539de"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "ram_capacity",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "device.other_computer",
+          "temporal": "durable",
+          "value": "12_gb"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797776,
+          "input": {
+            "content": "Cancelei meu projeto",
+            "fact_key": "project.corticeira.lifecycle",
+            "id": "0dd7cc03-61f2-2523-5ff3-dcb1b62209ac",
+            "kind": "project",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "06f05430122c6390c3c994aca1c2ed38b337f619fec8701ec8c507a472a4e64b"
+          },
+          "state": "active",
+          "updated_at": 1793797778,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797776,
+            "evidence": "Cancelei meu projeto",
+            "interaction_id": "06f05430122c6390c3c994aca1c2ed38b337f619fec8701ec8c507a472a4e64b"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "lifecycle",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "project.corticeira",
+          "temporal": "cancelled",
+          "value": "cancelled"
+        },
+        "revisions": [
+          1
+        ]
+      }
+    ],
+    "final_details": [
+      {
+        "memory": {
+          "created_at": 1793797597,
+          "input": {
+            "content": "Estou começando um projeto de catálogo de conchas",
+            "fact_key": "project.corticeira.description",
+            "id": "154efd1c-0ecb-5338-3d26-c827ce5158ac",
+            "kind": "project",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "583e7b0f03cae6641421a25766e95adf87380e5cc20334c0cf9f3ce1171251fa"
+          },
+          "state": "obsolete",
+          "updated_at": 1793797753,
+          "version": 3
+        },
+        "provenance": [
+          {
+            "at": 1793797597,
+            "evidence": "Estou começando um projeto de catálogo de conchas",
+            "interaction_id": "583e7b0f03cae6641421a25766e95adf87380e5cc20334c0cf9f3ce1171251fa"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "description",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "project.corticeira",
+          "temporal": "durable",
+          "value": "estou comecando um projeto de catalogo de conchas"
+        },
+        "revisions": [
+          2,
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797608,
+          "input": {
+            "content": "Projeto corticeira: planeja usar sqlite como banco de dados.",
+            "fact_key": "project.corticeira.database",
+            "id": "0baf703f-3e82-cf99-b4de-6f4ace5b6e20",
+            "kind": "decision",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "f20d9eae6548fc244033ae7d11aa37954f5793a9eb869855bb10745f5ec13c93"
+          },
+          "state": "obsolete",
+          "updated_at": 1793797691,
+          "version": 3
+        },
+        "provenance": [
+          {
+            "at": 1793797608,
+            "evidence": "Pretendo usar Rust e SQLite no meu projeto",
+            "interaction_id": "f20d9eae6548fc244033ae7d11aa37954f5793a9eb869855bb10745f5ec13c93"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "database",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "project.corticeira",
+          "temporal": "planned",
+          "value": "sqlite"
+        },
+        "revisions": [
+          2,
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797608,
+          "input": {
+            "content": "Projeto corticeira: planeja usar linguagem rust.",
+            "fact_key": "project.corticeira.language",
+            "id": "2f760b5f-cb82-9b80-f75d-b315e7996165",
+            "kind": "decision",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "f20d9eae6548fc244033ae7d11aa37954f5793a9eb869855bb10745f5ec13c93"
+          },
+          "state": "active",
+          "updated_at": 1793797612,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797608,
+            "evidence": "Pretendo usar Rust e SQLite no meu projeto",
+            "interaction_id": "f20d9eae6548fc244033ae7d11aa37954f5793a9eb869855bb10745f5ec13c93"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "language",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "project.corticeira",
+          "temporal": "planned",
+          "value": "rust"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797622,
+          "input": {
+            "content": "Meu computador principal tem 36 GB de RAM",
+            "fact_key": "device.primary_computer.ram_capacity",
+            "id": "4733a4b6-317e-ba6f-51d4-95b17c78eacf",
+            "kind": "hardware",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "b1c4c2d4d029576af651e9f1b62a004720e115c2ac4d1982d93361799883302e"
+          },
+          "state": "obsolete",
+          "updated_at": 1793797702,
+          "version": 3
+        },
+        "provenance": [
+          {
+            "at": 1793797622,
+            "evidence": "Meu computador principal tem 36 GB de RAM",
+            "interaction_id": "b1c4c2d4d029576af651e9f1b62a004720e115c2ac4d1982d93361799883302e"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "ram_capacity",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "device.primary_computer",
+          "temporal": "durable",
+          "value": "36_gb"
+        },
+        "revisions": [
+          2,
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797632,
+          "input": {
+            "content": "Meu notebook de trabalho tem 18 GB de RAM",
+            "fact_key": "device.work_laptop.ram_capacity",
+            "id": "3f3817c9-acde-41bb-30b3-a9ea957859cd",
+            "kind": "hardware",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "5e118e23caecc2d7f3e61c38673282d02e96f547860f03cd95e86226cd2fdf17"
+          },
+          "state": "active",
+          "updated_at": 1793797634,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797632,
+            "evidence": "Meu notebook de trabalho tem 18 GB de RAM",
+            "interaction_id": "5e118e23caecc2d7f3e61c38673282d02e96f547860f03cd95e86226cd2fdf17"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "ram_capacity",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "device.work_laptop",
+          "temporal": "durable",
+          "value": "18_gb"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797641,
+          "input": {
+            "content": "Prefere café com açúcar.",
+            "fact_key": "user.coffee_sugar",
+            "id": "bbc5281f-db48-e2d4-ed32-44b074494cc7",
+            "kind": "preference",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "6724512a3f5efb749ffdf98c9caaaf356c4db56bfb034a3de11c9124b7e0fbd7"
+          },
+          "state": "obsolete",
+          "updated_at": 1793797710,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797641,
+            "evidence": "Prefiro café com açúcar",
+            "interaction_id": "6724512a3f5efb749ffdf98c9caaaf356c4db56bfb034a3de11c9124b7e0fbd7"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_coffee_preference",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "coffee_sugar",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "user",
+          "temporal": "preference",
+          "value": "with_sugar"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797648,
+          "input": {
+            "content": "Prefiro respostas objetivas",
+            "fact_key": "user.communication_focus",
+            "id": "e4270584-92cd-fce9-20b4-a16e15bd34c2",
+            "kind": "preference",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "e117cfef72dc7d59a11be202f78bd98b166ee3f58fa025b0b4f93e4df00829b1"
+          },
+          "state": "active",
+          "updated_at": 1793797648,
+          "version": 1
+        },
+        "provenance": [
+          {
+            "at": 1793797648,
+            "evidence": "Prefiro respostas objetivas",
+            "interaction_id": "e117cfef72dc7d59a11be202f78bd98b166ee3f58fa025b0b4f93e4df00829b1"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "communication_focus",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "user",
+          "temporal": "preference",
+          "value": "objective"
+        },
+        "revisions": []
+      },
+      {
+        "memory": {
+          "created_at": 1793797655,
+          "input": {
+            "content": "Meu objetivo é aprender italiano",
+            "fact_key": "user.goal.5f01585e334f",
+            "id": "6a0ae447-68ab-1c2a-8792-41250954397e",
+            "kind": "goal",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "34e55d89d2fa953c93f069a82c2345295737c7aec4db86ca4117cd520ce3ee34"
+          },
+          "state": "obsolete",
+          "updated_at": 1793797720,
+          "version": 3
+        },
+        "provenance": [
+          {
+            "at": 1793797655,
+            "evidence": "Meu objetivo é aprender italiano",
+            "interaction_id": "34e55d89d2fa953c93f069a82c2345295737c7aec4db86ca4117cd520ce3ee34"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_goal",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "goal.5f01585e334f",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "user",
+          "temporal": "durable",
+          "value": "meu objetivo e aprender italiano"
+        },
+        "revisions": [
+          2,
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797678,
+          "input": {
+            "content": "Agora estou implementando meu projeto em TypeScript",
+            "fact_key": "project.corticeira.language.execution",
+            "id": "45ffbc0a-f7df-bd30-3721-b48b28c89a53",
+            "kind": "fact",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "3662b498b393dfac8f560d290fe793317703291d30823a1bfd03588646afaf16"
+          },
+          "state": "active",
+          "updated_at": 1793797681,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797678,
+            "evidence": "Agora estou implementando meu projeto em TypeScript",
+            "interaction_id": "3662b498b393dfac8f560d290fe793317703291d30823a1bfd03588646afaf16"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "language",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "project.corticeira",
+          "temporal": "in_progress",
+          "value": "typescript"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797689,
+          "input": {
+            "content": "Projeto corticeira: decidiu usar postgresql como banco de dados.",
+            "fact_key": "project.corticeira.database",
+            "id": "38901ef9-d529-5de2-42e2-a149fb5a48b5",
+            "kind": "decision",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "35d88ae02f00ce32e7b0d3f45a3e4c9322f32a0d8eef978b7ecb3e17e89f29f2"
+          },
+          "state": "active",
+          "updated_at": 1793797691,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797689,
+            "evidence": "Decidi usar PostgreSQL no meu projeto",
+            "interaction_id": "35d88ae02f00ce32e7b0d3f45a3e4c9322f32a0d8eef978b7ecb3e17e89f29f2"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "database",
+          "relevance": 0.8,
+          "replaces_id": "0baf703f-3e82-cf99-b4de-6f4ace5b6e20",
+          "replaces_version": 2,
+          "subject": "project.corticeira",
+          "temporal": "durable",
+          "value": "postgresql"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797699,
+          "input": {
+            "content": "Não tenho mais 36 GB, agora são 48 GB",
+            "fact_key": "device.primary_computer.ram_capacity",
+            "id": "d2ef1b80-b4bc-3121-c848-35f58a0d2eb0",
+            "kind": "hardware",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "565d486c8b27a333a1bf590117ca4cbeb6e227612e64a4de7543ab4fc4ea8694"
+          },
+          "state": "active",
+          "updated_at": 1793797702,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797699,
+            "evidence": "Não tenho mais 36 GB, agora são 48 GB",
+            "interaction_id": "565d486c8b27a333a1bf590117ca4cbeb6e227612e64a4de7543ab4fc4ea8694"
+          }
+        ],
+        "quality": {
+          "confidence": 0.85,
+          "evidence_rule": "llm_v3_grounded:explicit_ram_correction_from_36_gb",
+          "expires_at": null,
+          "facets": [],
+          "priority": 2,
+          "property": "ram_capacity",
+          "relevance": 0.8,
+          "replaces_id": "4733a4b6-317e-ba6f-51d4-95b17c78eacf",
+          "replaces_version": 2,
+          "subject": "device.primary_computer",
+          "temporal": "durable",
+          "value": "48_gb"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797710,
+          "input": {
+            "content": "Prefere café sem açúcar.",
+            "fact_key": "user.coffee_sugar",
+            "id": "c0ddca40-5ed0-6e4e-8ed2-675d436836c4",
+            "kind": "preference",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "8361de42639e9a064c56a6929af358fca8167ec5dbee0bbee72157a2739977fd"
+          },
+          "state": "active",
+          "updated_at": 1793797710,
+          "version": 1
+        },
+        "provenance": [
+          {
+            "at": 1793797710,
+            "evidence": "Na verdade, agora prefiro café sem açúcar",
+            "interaction_id": "8361de42639e9a064c56a6929af358fca8167ec5dbee0bbee72157a2739977fd"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_coffee_preference",
+          "expires_at": null,
+          "facets": [],
+          "priority": 2,
+          "property": "coffee_sugar",
+          "relevance": 0.8,
+          "replaces_id": "bbc5281f-db48-e2d4-ed32-44b074494cc7",
+          "replaces_version": 1,
+          "subject": "user",
+          "temporal": "preference",
+          "value": "without_sugar"
+        },
+        "revisions": []
+      },
+      {
+        "memory": {
+          "created_at": 1793797717,
+          "input": {
+            "content": "Objetivo concluído: aprender italiano.",
+            "fact_key": "user.goal.5f01585e334f",
+            "id": "b2fe2d4a-2d87-8cf9-082b-a25c92e61298",
+            "kind": "goal",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "17d5070aefcc897fec7f5387aa952e5d3d79283c1a784a5140fee83f633a99be"
+          },
+          "state": "active",
+          "updated_at": 1793797720,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797717,
+            "evidence": "Concluí meu objetivo de aprender italiano",
+            "interaction_id": "17d5070aefcc897fec7f5387aa952e5d3d79283c1a784a5140fee83f633a99be"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_completed_goal",
+          "expires_at": null,
+          "facets": [],
+          "priority": 2,
+          "property": "goal.5f01585e334f",
+          "relevance": 0.8,
+          "replaces_id": "6a0ae447-68ab-1c2a-8792-41250954397e",
+          "replaces_version": 2,
+          "subject": "user",
+          "temporal": "completed",
+          "value": "completed:aprender italiano"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797743,
+          "input": {
+            "content": "Prefiro respostas curtas",
+            "fact_key": "user.communication_style",
+            "id": "9a1e62a1-d0f7-b511-dd43-1816f718c078",
+            "kind": "preference",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "78244b10d9a2c53123b50009cd701c7db6b47ea9f79e47ab2dcb17ce21fcaf27"
+          },
+          "state": "active",
+          "updated_at": 1793797743,
+          "version": 1
+        },
+        "provenance": [
+          {
+            "at": 1793797743,
+            "evidence": "Prefiro respostas curtas",
+            "interaction_id": "78244b10d9a2c53123b50009cd701c7db6b47ea9f79e47ab2dcb17ce21fcaf27"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "communication_style",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "user",
+          "temporal": "preference",
+          "value": "concise"
+        },
+        "revisions": []
+      },
+      {
+        "memory": {
+          "created_at": 1793797750,
+          "input": {
+            "content": "O projeto continua sendo um catálogo de conchas",
+            "fact_key": "project.corticeira.description",
+            "id": "c49b33f6-15fb-c6cd-1bca-12afd247cb68",
+            "kind": "project",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "a2509e291aed5085e815029b6a4d5becf04f50179222349d69c5debe77079d9f"
+          },
+          "state": "active",
+          "updated_at": 1793797753,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797750,
+            "evidence": "O projeto continua sendo um catálogo de conchas",
+            "interaction_id": "a2509e291aed5085e815029b6a4d5becf04f50179222349d69c5debe77079d9f"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "description",
+          "relevance": 0.8,
+          "replaces_id": "154efd1c-0ecb-5338-3d26-c827ce5158ac",
+          "replaces_version": 2,
+          "subject": "project.corticeira",
+          "temporal": "durable",
+          "value": "o projeto continua sendo um catalogo de conchas"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797764,
+          "input": {
+            "content": "Meu outro computador tem 12 GB de RAM",
+            "fact_key": "device.other_computer.ram_capacity",
+            "id": "2a0c3a2f-5939-4ed2-13b6-3197e3549f1d",
+            "kind": "hardware",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "433f495a1e34d22818327fac6659a55acda610b1369bfe489ade1b70fc1539de"
+          },
+          "state": "active",
+          "updated_at": 1793797767,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797764,
+            "evidence": "Meu outro computador tem 12 GB de RAM",
+            "interaction_id": "433f495a1e34d22818327fac6659a55acda610b1369bfe489ade1b70fc1539de"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_named_device_capacity",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "ram_capacity",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "device.other_computer",
+          "temporal": "durable",
+          "value": "12_gb"
+        },
+        "revisions": [
+          1
+        ]
+      },
+      {
+        "memory": {
+          "created_at": 1793797776,
+          "input": {
+            "content": "Cancelei meu projeto",
+            "fact_key": "project.corticeira.lifecycle",
+            "id": "0dd7cc03-61f2-2523-5ff3-dcb1b62209ac",
+            "kind": "project",
+            "project": "corticeira",
+            "scope": "phase22c-final-conversations-v1",
+            "source": "user",
+            "source_id": "06f05430122c6390c3c994aca1c2ed38b337f619fec8701ec8c507a472a4e64b"
+          },
+          "state": "active",
+          "updated_at": 1793797778,
+          "version": 2
+        },
+        "provenance": [
+          {
+            "at": 1793797776,
+            "evidence": "Cancelei meu projeto",
+            "interaction_id": "06f05430122c6390c3c994aca1c2ed38b337f619fec8701ec8c507a472a4e64b"
+          }
+        ],
+        "quality": {
+          "confidence": 0.9,
+          "evidence_rule": "llm_v3_grounded:explicit_v3_grounded",
+          "expires_at": null,
+          "facets": [],
+          "priority": 1,
+          "property": "lifecycle",
+          "relevance": 0.8,
+          "replaces_id": null,
+          "replaces_version": null,
+          "subject": "project.corticeira",
+          "temporal": "cancelled",
+          "value": "cancelled"
+        },
+        "revisions": [
+          1
+        ]
+      }
+    ],
+    "final_metrics": {
+      "current_vectors": 12,
+      "history_events": [
+        {
+          "count": 13,
+          "state": "approve"
+        },
+        {
+          "count": 1,
+          "state": "auto_correct"
+        },
+        {
+          "count": 3,
+          "state": "auto_promote"
+        },
+        {
+          "count": 1,
+          "state": "auto_superseded"
+        },
+        {
+          "count": 17,
+          "state": "create"
+        },
+        {
+          "count": 4,
+          "state": "obsolete"
+        }
+      ],
+      "jobs": [
+        {
+          "count": 23,
+          "state": "done"
+        }
+      ],
+      "memories": [
+        {
+          "count": 12,
+          "state": "active"
+        },
+        {
+          "count": 5,
+          "state": "obsolete"
+        }
+      ],
+      "pending_vectors": 0,
+      "project": "corticeira",
+      "provenance_rows": 17,
+      "scope": "phase22c-final-conversations-v1",
+      "sqlite_main_page_bytes": 1101824,
+      "vector_json_bytes": 114139
+    },
+    "identity": {
+      "created_at": 1793795137,
+      "profile": {
+        "description": "Fictional isolated QA identity",
+        "instructions": "Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. Use tools only when the user asks for an external observation or action; remembered facts alone need no external inspection.",
+        "name": "Lucille Synthetic Phase22",
+        "personality": "Concise"
+      },
+      "updated_at": 1793796210,
+      "version": 2
+    },
+    "index": {
+      "indexed": 63,
+      "space": {
+        "context_tokens": 2048,
+        "dimension": 768,
+        "document_prefix": "search_document: ",
+        "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+        "index_version": 5,
+        "model": "nomic-ai/nomic-embed-text-v1.5",
+        "normalization": "layer_norm_then_l2",
+        "pooling": "mean",
+        "query_prefix": "search_query: ",
+        "revision": "0188c9bf409793f810680a5a431e7b899c46104c"
+      },
+      "transport_verified": false
+    },
+    "deleted": [
+      {
+        "deleted_at": 1793797725,
+        "id": "d58a2955-10b5-e9b0-2b97-fc5a7b3b0884",
+        "kind": "preference",
+        "state": "deleted"
+      },
+      {
+        "deleted_at": 1793797721,
+        "id": "a6d6bd7b-8de0-af31-be78-111954410ca7",
+        "kind": "preference",
+        "state": "deleted"
+      }
+    ],
+    "finished": "2026-11-04T13:41:17.961Z",
+    "execution_complete": true
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "method": "Independent literal scope interpretation of the frozen negative queries, in addition to native namespace/project counters. The retrieval test measures injected context, not a generated user-visible answer.",
+  "native_scope_errors_definition": "Returned canonical record has different namespace or project than the request; this counter is zero. It does not prove subject/actor relevance.",
+  "observations": [
+    {
+      "query_id": "cq-019",
+      "question": "Você sabe qual é minha data de nascimento?",
+      "injected": "database: own project SQLite decision",
+      "classification": "irrelevant_property_injection",
+      "critical_semantic_scope": false,
+      "delivered_user_claim_evaluated": false
+    },
+    {
+      "query_id": "cq-020",
+      "question": "Meu irmão usa qual banco de dados?",
+      "injected": "database: own project SQLite decision",
+      "classification": "foreign_actor_question_received_own_project_fact",
+      "critical_semantic_scope": true,
+      "delivered_user_claim_evaluated": false,
+      "reason": "A record about the USER project does not establish the brother database. Correct namespace/project IDs alone do not bind the actor asked about."
+    }
+  ],
+  "critical_semantic_scope_injections": 1,
+  "result": "Retrieval fails negative relevance and actor-authority criteria, despite aggregate precision/recall above numeric minima. No unsupported brother database answer was generated in this retrieval-only stage."
+}

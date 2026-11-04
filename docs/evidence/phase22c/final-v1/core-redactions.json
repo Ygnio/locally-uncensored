@@ -1,0 +1,65 @@
+{
+  "method": "Only isolated private QA paths are redacted, with exact-text before/after hashes. SYSTEM messages are omitted from full GUI fixtures. All original user/assistant/model raw text is retained except explicitly listed path redactions. Full requests are separately retained privately and will have public payload evidence.",
+  "redactions": [
+    {
+      "path": "$.turns[34].messages[2].content",
+      "original_sha256": "9f89e1ee51ba08f7a12616dc78fa14e2698caf9803c9e5236a5d329297c401a3",
+      "public_sha256": "115d3721ab33bdee6a5310bd308882849c9a46b7ce614c9ffd7feaa385a11581",
+      "reason": "Private isolated Windows QA path replaced; full original remains private."
+    },
+    {
+      "path": "$.turns[34].messages[3].agentBlocks[0].toolCall.result",
+      "original_sha256": "9f89e1ee51ba08f7a12616dc78fa14e2698caf9803c9e5236a5d329297c401a3",
+      "public_sha256": "115d3721ab33bdee6a5310bd308882849c9a46b7ce614c9ffd7feaa385a11581",
+      "reason": "Private isolated Windows QA path replaced; full original remains private."
+    },
+    {
+      "path": "$.turns[34].messages[3].agentBlocks[0].toolCall.error",
+      "original_sha256": "9f89e1ee51ba08f7a12616dc78fa14e2698caf9803c9e5236a5d329297c401a3",
+      "public_sha256": "115d3721ab33bdee6a5310bd308882849c9a46b7ce614c9ffd7feaa385a11581",
+      "reason": "Private isolated Windows QA path replaced; full original remains private."
+    },
+    {
+      "path": "$.turns[34].messages[3].agentBlocks[0].toolCalls[0].result",
+      "original_sha256": "9f89e1ee51ba08f7a12616dc78fa14e2698caf9803c9e5236a5d329297c401a3",
+      "public_sha256": "115d3721ab33bdee6a5310bd308882849c9a46b7ce614c9ffd7feaa385a11581",
+      "reason": "Private isolated Windows QA path replaced; full original remains private."
+    },
+    {
+      "path": "$.turns[34].messages[3].agentBlocks[0].toolCalls[0].error",
+      "original_sha256": "9f89e1ee51ba08f7a12616dc78fa14e2698caf9803c9e5236a5d329297c401a3",
+      "public_sha256": "115d3721ab33bdee6a5310bd308882849c9a46b7ce614c9ffd7feaa385a11581",
+      "reason": "Private isolated Windows QA path replaced; full original remains private."
+    },
+    {
+      "path": "$.probes[12].turn.messages[2].content",
+      "original_sha256": "9f89e1ee51ba08f7a12616dc78fa14e2698caf9803c9e5236a5d329297c401a3",
+      "public_sha256": "115d3721ab33bdee6a5310bd308882849c9a46b7ce614c9ffd7feaa385a11581",
+      "reason": "Private isolated Windows QA path replaced; full original remains private."
+    },
+    {
+      "path": "$.probes[12].turn.messages[3].agentBlocks[0].toolCall.result",
+      "original_sha256": "9f89e1ee51ba08f7a12616dc78fa14e2698caf9803c9e5236a5d329297c401a3",
+      "public_sha256": "115d3721ab33bdee6a5310bd308882849c9a46b7ce614c9ffd7feaa385a11581",
+      "reason": "Private isolated Windows QA path replaced; full original remains private."
+    },
+    {
+      "path": "$.probes[12].turn.messages[3].agentBlocks[0].toolCall.error",
+      "original_sha256": "9f89e1ee51ba08f7a12616dc78fa14e2698caf9803c9e5236a5d329297c401a3",
+      "public_sha256": "115d3721ab33bdee6a5310bd308882849c9a46b7ce614c9ffd7feaa385a11581",
+      "reason": "Private isolated Windows QA path replaced; full original remains private."
+    },
+    {
+      "path": "$.probes[12].turn.messages[3].agentBlocks[0].toolCalls[0].result",
+      "original_sha256": "9f89e1ee51ba08f7a12616dc78fa14e2698caf9803c9e5236a5d329297c401a3",
+      "public_sha256": "115d3721ab33bdee6a5310bd308882849c9a46b7ce614c9ffd7feaa385a11581",
+      "reason": "Private isolated Windows QA path replaced; full original remains private."
+    },
+    {
+      "path": "$.probes[12].turn.messages[3].agentBlocks[0].toolCalls[0].error",
+      "original_sha256": "9f89e1ee51ba08f7a12616dc78fa14e2698caf9803c9e5236a5d329297c401a3",
+      "public_sha256": "115d3721ab33bdee6a5310bd308882849c9a46b7ce614c9ffd7feaa385a11581",
+      "reason": "Private isolated Windows QA path replaced; full original remains private."
+    }
+  ]
+}

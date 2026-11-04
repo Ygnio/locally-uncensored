@@ -1,0 +1,206 @@
+{
+  "unseen_evaluation_unchanged": true,
+  "extraction_misses": [
+    {
+      "id": "cx-008",
+      "original_user": "My own preference is coffee without sugar.",
+      "gold": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        }
+      ],
+      "actual_gemma_nominations": [
+        {
+          "evidence": "My own preference is coffee without sugar",
+          "category": "preference"
+        }
+      ],
+      "native_llm_record_count": 0,
+      "stage": "native semantic normalization/grounding after valid actual LLM nomination",
+      "interpretation": "No claim that the model failed to identify this original source. The post-nomination native reader remains narrower than these paraphrases."
+    },
+    {
+      "id": "cx-011",
+      "original_user": "Entre as bebidas, minha favorita é café.",
+      "gold": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "favorite_beverage",
+          "value": "coffee"
+        }
+      ],
+      "actual_gemma_nominations": [
+        {
+          "evidence": "Entre as bebidas, minha favorita é café",
+          "category": "preference"
+        }
+      ],
+      "native_llm_record_count": 0,
+      "stage": "native semantic normalization/grounding after valid actual LLM nomination",
+      "interpretation": "No claim that the model failed to identify this original source. The post-nomination native reader remains narrower than these paraphrases."
+    },
+    {
+      "id": "cx-012",
+      "original_user": "My favorite beverage for myself is tea.",
+      "gold": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "favorite_beverage",
+          "value": "tea"
+        }
+      ],
+      "actual_gemma_nominations": [
+        {
+          "evidence": "My favorite beverage for myself is tea",
+          "category": "preference"
+        }
+      ],
+      "native_llm_record_count": 0,
+      "stage": "native semantic normalization/grounding after valid actual LLM nomination",
+      "interpretation": "No claim that the model failed to identify this original source. The post-nomination native reader remains narrower than these paraphrases."
+    },
+    {
+      "id": "cx-015",
+      "original_user": "Para o meu projeto, a linguagem que decidi usar é Rust.",
+      "gold": [
+        {
+          "kind": "decision",
+          "subject": "project.corticeira",
+          "property": "language",
+          "value": "rust"
+        }
+      ],
+      "actual_gemma_nominations": [
+        {
+          "evidence": "Para o meu projeto, a linguagem que decidi usar é Rust",
+          "category": "decision"
+        }
+      ],
+      "native_llm_record_count": 0,
+      "stage": "native semantic normalization/grounding after valid actual LLM nomination",
+      "interpretation": "No claim that the model failed to identify this original source. The post-nomination native reader remains narrower than these paraphrases."
+    },
+    {
+      "id": "cx-016",
+      "original_user": "My choice for my project database is SQLite.",
+      "gold": [
+        {
+          "kind": "decision",
+          "subject": "project.corticeira",
+          "property": "database",
+          "value": "sqlite"
+        }
+      ],
+      "actual_gemma_nominations": [
+        {
+          "evidence": "My choice for my project database is SQLite",
+          "category": "decision"
+        }
+      ],
+      "native_llm_record_count": 0,
+      "stage": "native semantic normalization/grounding after valid actual LLM nomination",
+      "interpretation": "No claim that the model failed to identify this original source. The post-nomination native reader remains narrower than these paraphrases."
+    },
+    {
+      "id": "cx-019",
+      "original_user": "Meu computador principal está equipado com 36 GB de RAM.",
+      "gold": [
+        {
+          "kind": "hardware",
+          "subject": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "36_gb"
+        }
+      ],
+      "actual_gemma_nominations": [
+        {
+          "evidence": "Meu computador principal está equipado com 36 GB de RAM",
+          "category": "hardware"
+        }
+      ],
+      "native_llm_record_count": 0,
+      "stage": "native semantic normalization/grounding after valid actual LLM nomination",
+      "interpretation": "No claim that the model failed to identify this original source. The post-nomination native reader remains narrower than these paraphrases."
+    },
+    {
+      "id": "cx-021",
+      "original_user": "Tenho como objetivo aprender italiano.",
+      "gold": [
+        {
+          "kind": "goal",
+          "subject": "user",
+          "property": "goal.learning",
+          "value": "aprender italiano"
+        }
+      ],
+      "actual_gemma_nominations": [
+        {
+          "evidence": "Tenho como objetivo aprender italiano",
+          "category": "goal"
+        }
+      ],
+      "native_llm_record_count": 0,
+      "stage": "native semantic normalization/grounding after valid actual LLM nomination",
+      "interpretation": "No claim that the model failed to identify this original source. The post-nomination native reader remains narrower than these paraphrases."
+    },
+    {
+      "id": "cx-022",
+      "original_user": "Já concluí meu objetivo de aprender francês.",
+      "gold": [
+        {
+          "kind": "goal",
+          "subject": "user",
+          "property": "goal.learning",
+          "value": "aprender frances"
+        }
+      ],
+      "actual_gemma_nominations": [
+        {
+          "evidence": "Já concluí meu objetivo de aprender francês",
+          "category": "goal"
+        }
+      ],
+      "native_llm_record_count": 0,
+      "stage": "native semantic normalization/grounding after valid actual LLM nomination",
+      "interpretation": "No claim that the model failed to identify this original source. The post-nomination native reader remains narrower than these paraphrases."
+    }
+  ],
+  "negation_false_write": {
+    "id": "cx-033",
+    "state": "candidate",
+    "automatically_promoted": false,
+    "stage": "native fact normalization accepts negated device amount; actual Gemma also nominated the negated evidence, so both nomination and grounding need scrutiny",
+    "result": "Fails the zero-critical-write rule even though review prevented active injection."
+  },
+  "utility_failures": [
+    {
+      "fixture": "main",
+      "turn": 26,
+      "stage": "tombstone reactivation / source-language support, then generation and verifier",
+      "detail": "Original renewed preference was acknowledged but new wording did not reactivate it. Later both generated never-informed assertions were correctly withheld; lost utility remains."
+    },
+    {
+      "fixture": "main",
+      "turn": 31,
+      "stage": "initial indirect retrieval",
+      "detail": "Active catalog purpose exists but no relevant context arrived; bounded absence is not a useful answer."
+    },
+    {
+      "fixture": "main",
+      "turn": 32,
+      "stage": "verifier relevance",
+      "detail": "Correct GPU absence rejected because unrelated known memories satisfied a global known-information gate."
+    },
+    {
+      "fixture": "planned",
+      "turn": 1,
+      "stage": "current-source grounding then verifier, cancellation and persistence",
+      "detail": "USER Planejo usar MySQL was not represented as a current statement; legitimate acknowledgement/advice was retained twice, cancelling original-source learning. Later database queries lose this original intent."
+    }
+  ]
+}

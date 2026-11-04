@@ -1,0 +1,111 @@
+{
+  "source_file": "driver-fault22c-bridge-unavailable-failure-1793799790238.json",
+  "source_private_sha256": "9c514dda184a234fe6b351d1a30df239f9fe73a97461b2cf2f3afb61d695b6d9",
+  "data": {
+    "label": "fault22c-bridge-unavailable",
+    "scope": "phase22c-fault-bridge-offline",
+    "project": "bridge-offline",
+    "plan_id": "model-bridge-unavailable-no-persistence",
+    "started": "2026-11-04T13:42:57.344Z",
+    "turns": [],
+    "probes": [],
+    "conversations": [
+      "ae45796f-a17c-4a37-8dde-7fbbc71afee4"
+    ],
+    "existing_bindings": [],
+    "initial_identity": {
+      "created_at": 1793795137,
+      "profile": {
+        "description": "Fictional isolated QA identity",
+        "instructions": "Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. Use tools only when the user asks for an external observation or action; remembered facts alone need no external inspection.",
+        "name": "Lucille Synthetic Phase22",
+        "personality": "Concise"
+      },
+      "updated_at": 1793796210,
+      "version": 2
+    },
+    "initial_index": {
+      "indexed": 63,
+      "space": {
+        "context_tokens": 2048,
+        "dimension": 768,
+        "document_prefix": "search_document: ",
+        "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+        "index_version": 5,
+        "model": "nomic-ai/nomic-embed-text-v1.5",
+        "normalization": "layer_norm_then_l2",
+        "pooling": "mean",
+        "query_prefix": "search_query: ",
+        "revision": "0188c9bf409793f810680a5a431e7b899c46104c"
+      },
+      "transport_verified": false
+    },
+    "initial_details": [],
+    "initial_deleted": [],
+    "policy": {
+      "auto_kinds": [
+        "preference"
+      ],
+      "automatic_indexing": true,
+      "autonomous_preferences": true,
+      "enabled": true,
+      "extraction_mode": "llm",
+      "lexical_weight": 0.5,
+      "max_pending": 64,
+      "minimum_confidence": 0.96,
+      "minimum_relevance": 0.8,
+      "minimum_similarity": 0.6,
+      "semantic_weight": 0.5
+    },
+    "initial_metrics": {
+      "current_vectors": 0,
+      "history_events": [],
+      "jobs": [],
+      "memories": [],
+      "pending_vectors": 0,
+      "project": "bridge-offline",
+      "provenance_rows": 0,
+      "scope": "phase22c-fault-bridge-offline",
+      "sqlite_main_page_bytes": 1101824,
+      "vector_json_bytes": 0
+    },
+    "last_conversation": {
+      "id": "ae45796f-a17c-4a37-8dde-7fbbc71afee4",
+      "title": "Prefiro tema claro.",
+      "messages": [
+        {
+          "id": "ac723306-2fc7-408b-b3ce-f3ec4e447741",
+          "role": "user",
+          "content": "Prefiro tema claro.",
+          "timestamp": 1793799779637
+        },
+        {
+          "id": "f2b2ff6b-cdf0-4f69-837d-d539c564ad22",
+          "role": "assistant",
+          "content": "\n\nError: Synthetic payload inspector is not answering on 127.0.0.1:15284. It is either not running, still starting up, or listening on a different address. Start it and send again, or pick a different backend in Settings, AI Backends.",
+          "thinking": "",
+          "modelId": "openai::lucille-real-gemma",
+          "timestamp": 1793799779638,
+          "error": {
+            "kind": "engine",
+            "detail": "Synthetic payload inspector is not answering on 127.0.0.1:15284. It is either not running, still starting up, or listening on a different address. Start it and send again, or pick a different backend in Settings, AI Backends.",
+            "at": 0
+          }
+        }
+      ],
+      "model": "openai::lucille-real-gemma",
+      "systemPrompt": "",
+      "mode": "lu",
+      "createdAt": 1793799777370,
+      "updatedAt": 1793799789424,
+      "personaEnabled": false,
+      "lucille": {
+        "profile": "lucille",
+        "scope": "phase22c-fault-bridge-offline",
+        "project": "bridge-offline",
+        "tokenBudget": 8192
+      }
+    },
+    "error": "Error: Failed or simulated reply"
+  }
+}

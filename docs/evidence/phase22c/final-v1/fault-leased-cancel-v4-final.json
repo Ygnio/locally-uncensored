@@ -1,0 +1,93 @@
+{
+  "source_file": "fault-leased-cancel-v4-final.json",
+  "source_private_sha256": "ff4d4bca1e5da2e06a740a3bdbdf5c950ae56b9ac712308470a41f311844b8e7",
+  "data": {
+    "method": "Actual full GUI learning worker observed running, native cancellation during the real lease, then a new actual Gemma extraction replayed with that revoked lease. The original in-flight worker also remained unable to commit.",
+    "passed": true,
+    "source": {
+      "id": "72935d0e67dfcfab8144870b3fcd0fa3951206138f9d68f487128cc4890f5e32",
+      "message_id": "62a161a3-62ec-4968-aadb-f128acfa8d33",
+      "conversation_id": "3bb3e020-b0e3-46c4-9566-f4f381f6fdcb",
+      "text": "Prefiro café sem açúcar.",
+      "scope": "phase22c-fault-leased-cancel-v4",
+      "project": "fault-leased-cancel-v4-v4"
+    },
+    "cancel": {
+      "cancelled": true
+    },
+    "before_late": {
+      "current_vectors": 0,
+      "history_events": [],
+      "jobs": [
+        {
+          "count": 1,
+          "state": "cancelled"
+        }
+      ],
+      "memories": [],
+      "pending_vectors": 0,
+      "project": "fault-leased-cancel-v4-v4",
+      "provenance_rows": 0,
+      "scope": "phase22c-fault-leased-cancel-v4",
+      "sqlite_main_page_bytes": 552960,
+      "vector_json_bytes": 0
+    },
+    "actual_model_reply": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"version\": 3,\n  \"scope\": \"phase22c-fault-leased-cancel-v4\",\n  \"project\": \"fault-leased-cancel-v4-v4\",\n  \"claims\": [\n    {\n      \"evidence\": \"Prefiro café sem açúcar\",\n      \"category\": \"preference\"\n    }\n  ]\n}"
+          }
+        }
+      ],
+      "created": 1793796883,
+      "model": "lucille-real-gemma",
+      "system_fingerprint": "b11064-a894dae93",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 92,
+        "prompt_tokens": 441,
+        "total_tokens": 533,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "id": "chatcmpl-fxvee7zrXXD9cDYd099H6MFu3oigkM4i",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 441,
+        "prompt_ms": 763.07,
+        "prompt_per_token_ms": 1.7303174603174605,
+        "prompt_per_second": 577.9286304008807,
+        "predicted_n": 92,
+        "predicted_ms": 3211.545,
+        "predicted_per_token_ms": 35.2917032967033,
+        "predicted_per_second": 28.33527165274035
+      }
+    },
+    "late_completion": {
+      "completed": false
+    },
+    "after": {
+      "current_vectors": 0,
+      "history_events": [],
+      "jobs": [
+        {
+          "count": 1,
+          "state": "cancelled"
+        }
+      ],
+      "memories": [],
+      "pending_vectors": 0,
+      "project": "fault-leased-cancel-v4-v4",
+      "provenance_rows": 0,
+      "scope": "phase22c-fault-leased-cancel-v4",
+      "sqlite_main_page_bytes": 552960,
+      "vector_json_bytes": 0
+    },
+    "private_lease_sha256": "aa6f73142bb1de2bfba2ab8d5e14c19e620fd34ee18bd6d89ff04645b7bc0754"
+  }
+}
