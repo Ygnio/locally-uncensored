@@ -1280,11 +1280,7 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
                     "decidi trocar",
                 ],
             );
-            if s.starts_with("quero voltar a registrar minha preferencia: ")
-                || s.starts_with("i want to remember my preference again: ")
-                || s.starts_with("pode voltar a memorizar: ")
-                || s.starts_with("you can remember this again: ")
-            {
+            if crate::evidence::explicit_renewal(span) {
                 c.rule = format!("explicit_v3_renewal:{}", c.rule);
                 c.confidence = 0.85
             }

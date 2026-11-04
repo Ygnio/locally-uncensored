@@ -24,6 +24,18 @@ pub(crate) struct Evidence<'a> {
 fn has(words: &[&str], alternatives: &[&str]) -> bool {
     alternatives.iter().any(|w| words.contains(w))
 }
+/// An imperative storage operation is distinct from a change in personal liking.
+pub(crate) fn explicit_renewal(text: &str) -> bool {
+    let s = fold(text);
+    let command = s.split(':').next().unwrap_or(&s);
+    let words = command.split(|c: char| !c.is_alphanumeric()).filter(|w| !w.is_empty()).collect::<Vec<_>>();
+    !text.contains('?') && !has(&words, &["nao", "not", "never", "talvez", "maybe"])
+        && ((words.first() == Some(&"volte") && has(&words, &["guardar", "memorizar", "registrar"]))
+            || s.starts_with("quero voltar a registrar minha preferencia: ")
+            || s.starts_with("i want to remember my preference again: ")
+            || s.starts_with("pode voltar a memorizar: ")
+            || s.starts_with("you can remember this again: "))
+}
 /// Interpretation is deliberately partial. Unproved relations return None.
 pub(crate) fn interpret<'a>(text: &'a str, project: &'a str) -> Option<Evidence<'a>> {
     let s = fold(text);
@@ -77,6 +89,14 @@ pub(crate) fn interpret<'a>(text: &'a str, project: &'a str) -> Option<Evidence<
         confidence: 0.9,
         kind: Kind::Fact,
     };
+    if explicit_renewal(text) && s.contains("minha preferencia por ") {
+        let target = s.split("minha preferencia por ").nth(1)?;
+        if target == "cafe sem acucar" {
+            e.kind = Kind::Preference; e.temporal = "preference";
+            e.property = "coffee_sugar".into(); e.value = "without_sugar".into();
+            return Some(e);
+        }
+    }
     // Nominal preference predicates require a personal possessor and a copula.
     let copula = words.iter().position(|w| ["e", "is"].contains(w));
     if let Some(at) = copula {

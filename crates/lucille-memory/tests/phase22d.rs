@@ -229,3 +229,29 @@ fn typed_lexical_lookup_uses_canonical_links_after_short_correction_and_reopen()
     }
 }
 
+#[test]
+fn renewal_after_restart_is_reviewed_and_does_not_erase_tombstones_or_infer_liking_transition() {
+    for (original, forgotten, renewed) in [
+        ("Eu gosto de jogos em que posso escolher minha classe.", "Esqueça minha preferência por escolher classes em jogos.", "Volte a guardar esta preferência: eu gosto de jogos em que posso escolher minha classe."),
+        ("Prefiro café sem açúcar.", "Esqueça minha preferência por café.", "Volte a memorizar minha preferência por café sem açúcar."),
+    ] {
+        let (d, mut s) = setup(true);
+        learn(&mut s, original, "preference");
+        assert_eq!(s.list("lucille", "demo").unwrap().iter().filter(|m| m.state == Status::Active).count(), 1);
+        s.enqueue_learning(input(forgotten, "forget")).unwrap();
+        assert!(s.list("lucille", "demo").unwrap().is_empty());
+        drop(s);
+        let mut s = Store::open(&d.path().join("synthetic.sqlite3")).unwrap();
+        learn(&mut s, original, "preference");
+        assert!(s.list("lucille", "demo").unwrap().is_empty());
+        learn(&mut s, renewed, "preference");
+        let rows = s.list("lucille", "demo").unwrap();
+        assert_eq!(rows.len(), 1, "{renewed}");
+        assert_eq!(rows[0].state, Status::Candidate);
+        assert_eq!(s.deleted_memories("lucille", "demo").unwrap().len(), 1);
+        s.change(&rows[0].input.id,"lucille","demo",rows[0].version,Action::Approve).unwrap();
+        assert!(s.context(request("Quais são minhas preferências?")).unwrap().facts.iter().any(|f| f.entity == "user" && f.modality == "preference"));
+    }
+    assert!(dialogue::extract("Voltei a gostar de café sem açúcar.", "demo").iter().all(|c| !c.rule.contains("renewal")));
+    assert!(dialogue::extract("Você lembra minha preferência por café sem açúcar?", "demo").is_empty());
+}
