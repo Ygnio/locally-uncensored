@@ -6,6 +6,7 @@ import {verifyMemoryAnswer,type AnswerSnapshot,type MemoryLearningReceipt} from 
 it('does not promise durable keeping-in-mind in response to an explicit save request',()=>{
  const s=base();s.query='Volte a guardar esta preferência: eu gosto de jogos em que posso escolher minha classe.';s.currentStatements=[]
  expect(verifyMemoryAnswer('Perfeito, agora manterei em mente que você gosta de jogos em que pode escolher sua classe.',s).violations.map(v=>v.code)).toContain('unconfirmed_memory_promise')
+ expect(verifyMemoryAnswer('Agora guardei novamente que você gosta de jogos em que pode escolher sua classe. Qual outro detalhe sobre seus jogos favoritos você gostaria de compartilhar?',s).violations.map(v=>v.code)).toContain('unconfirmed_memory_mutation')
  s.query='Please remember this preference.'
  expect(verifyMemoryAnswer("I'll keep that in mind.",s).violations.map(v=>v.code)).toContain('unconfirmed_memory_promise')
  expect(verifyMemoryAnswer('I can keep that in mind after approval.',s).violations).toEqual([])
@@ -95,6 +96,7 @@ it('preserves the correct negative capacity in the original localized repair exa
 it('does not infer workload headroom from capacity alone, while preserving a denial of the guarantee',()=>{
  const s=base();s.query='Meu computador principal tem 26 GB de RAM.';s.currentStatements=[{...s.currentStatements[0],entity:'device.primary_computer',property:'ram_capacity',value:'26_gb',modality:'current_fact',evidence:[{role:'current_user_statement',text:s.query}]}]
  for(const text of ['26 GB de RAM oferecem uma excelente margem para multitarefa e projetos complexos.','26 GB de RAM é uma quantidade sólida para produtividade e desenvolvimento fluido.','Essa é uma quantidade excelente de memória, ideal para multitarefa pesada e edição de vídeo.','Com 26 GB, seu notebook oferece um equilíbrio sólido para produtividade e navegação fluida.'])expect(verifyMemoryAnswer(text,s).violations.map(v=>v.code)).toContain('authority_workload_performance')
+ expect(verifyMemoryAnswer('Essa é uma quantidade excelente de memória, permitindo multitarefas fluidas e o uso de softwares pesados. Você pretende usar esse computador para alguma tarefa específica, como edição de vídeo ou jogos?',s).violations.map(v=>v.code)).toContain('unproven_personal_performance')
  expect(verifyMemoryAnswer('26 GB de RAM não garantem desenvolvimento fluido.',s).violations).toEqual([])
  expect(verifyMemoryAnswer('26 GB de RAM podem oferecer uma excelente margem para multitarefa, dependendo da carga.',s).violations).toEqual([])
 })

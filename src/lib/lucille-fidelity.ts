@@ -147,11 +147,11 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     const mutation = elliptical || /\b(?:removi|apaguei|exclui|esqueci|memorizei|guardei|salvei|registrei|reativei|anotei|atualizei)\b|\b(?:i have |i.ve |i )(?:removed|deleted|forgotten|saved|memorized|stored|reactivated|noted|updated)\b|\b(?:foi|foram|esta|estao|has been|have been|is|are) (?:removid|apagad|excluid|esquecid|memorizad|guardad|anotad|armazenad|reativad|salv|registrad|removed|deleted|forgotten|memorized|memorised|reactivated|saved|stored)/.test(q)
     const forgetQuestion=/^\s*(?:por favor,?\s+|please\s+)?(?:esqueca|forget)\b/.test(query)
     const refersToSource = snapshot.currentStatements.length>0 && /^(?:isso|essa|esse|this|it)\b/.test(q.trim()) && !/arquivo|\bfile\b|readme|\bpatch\b|\bcodigo\b|\bcode\b/.test(q)
-    const memoryDomain = /memori|preferencia|preference|remember|metas pessoais|personal goals|informacoes de hardware|preferencias de projeto|suas configuracoes|your settings/.test(q) || /\b(?:anotei|registrei|guardei|salvei|memorizei)\s+que\s+(?:voce|seu|sua)\b/.test(q) || forgetQuestion || refersToSource || elliptical
+    const memoryRequest=/\b(?:guardar|memorizar|memorize|remember|registrar|record|armazenar|store)\b/.test(query) && (snapshot.currentStatements.length>0 || /memori|preferencia|preference|remember|memor/.test(query))
+    const memoryDomain = /memori|preferencia|preference|remember|metas pessoais|personal goals|informacoes de hardware|preferencias de projeto|suas configuracoes|your settings/.test(q) || /\b(?:anotei|registrei|guardei|salvei|memorizei)\s+que\s+(?:voce|seu|sua)\b/.test(q) || forgetQuestion || refersToSource || elliptical || memoryRequest
     const promise=/\b(?:sera|serao|will be)\s+(?:incluid|registrad|salv|armazenad|atualizad|included|saved|stored|recorded)|\b(?:atualizara|vou (?:salvar|memorizar|registrar|guardar)|i will (?:save|store|remember|record))\b/.test(q)
     const conditionalReview=/\b(?:se|if)\b.{0,45}(?:aprovar|aprovad|confirmar|confirm|approve)|(?:apos|after).{0,25}(?:aprovacao|approval)|depende.{0,25}(?:revisao|aprovacao)/.test(q)
     if(promise && memoryDomain && !conditionalReview)add('unconfirmed_memory_promise',span)
-    const memoryRequest=/\b(?:guardar|memorizar|memorize|remember|registrar|record|armazenar|store)\b/.test(query)
     const keepInMind=/\b(?:manterei|vou manter)\s+em mente\b|\bi(?: will|.ll) keep (?:that |this |it )?in mind\b/.test(q)
     if(memoryRequest && keepInMind && !conditionalReview)add('unconfirmed_memory_promise',span)
     if(forgetQuestion && /\b(?:voce esqueceu|you forgot)\b/.test(q))add('wrong_forget_actor',span)
@@ -192,7 +192,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     if (epistemic && !/duvid|doubt|certeza|certain|,\s*(?:e |and |seu |your |o projeto|the project|voce |you )/.test(q)) continue
     if (uncertain(span) && !execution(span) && !completion(span)) continue
     const subject = /\b(?:voce|seus?|suas?|you|your)\b|projeto|project/.test(q)
-    if (!deniesCapacityGuarantee(span) && (subject || personalQuestion) && /ram|memoria|memory|computador|computer|notebook|laptop/.test(fold(text)+' '+query) && /fluidez|(?:experiencia|desempenho).{0,25}\bfluid[ao]s?\b|sem (?:grandes )?gargalos|sem travamentos|mais estavel|maior estabilidade|no bottlenecks|smooth performance|more stable|will run smoothly/.test(q) && !/\b(?:pode|poderia|talvez|depende|estimativa|might|could|may|depends|estimate)\b/.test(q)) {
+    if (!deniesCapacityGuarantee(span) && (subject || personalQuestion) && /ram|memoria|memory|computador|computer|notebook|laptop/.test(fold(text)+' '+query) && /fluidez|(?:experiencia|desempenho|multitarefas?|navegacao|produtividade|desenvolvimento|execucao|tarefas?).{0,25}\bfluid[ao]s?\b|sem (?:grandes )?gargalos|sem travamentos|mais estavel|maior estabilidade|no bottlenecks|smooth performance|more stable|will run smoothly/.test(q) && !/\b(?:pode|poderia|talvez|depende|estimativa|might|could|may|depends|estimate)\b/.test(q)) {
       const source=current.some(f=>f.evidence.some(e=>e.role!=='previous_property_link_not_current_value' && fold(e.text).includes(q.trim())))
       if(!source)add('unproven_personal_performance',span,false)
     }
