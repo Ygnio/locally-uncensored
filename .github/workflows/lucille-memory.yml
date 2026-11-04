@@ -2,9 +2,9 @@ name: Lucille identity and memory
 
 on:
   push:
-    branches: [feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality, feature/lucille-phase21c-real-inference, feature/lucille-phase21d-real-quality, feature/lucille-phase22-autonomous-memory, feature/lucille-phase22b-answer-fidelity, feature/lucille-phase22c-evidence-authority]
+    branches: [feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality, feature/lucille-phase21c-real-inference, feature/lucille-phase21d-real-quality, feature/lucille-phase22-autonomous-memory, feature/lucille-phase22b-answer-fidelity, feature/lucille-phase22c-evidence-authority, feature/lucille-phase22d-learning-integrity]
   pull_request:
-    branches: [master, feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality, feature/lucille-phase21c-real-inference, feature/lucille-phase21d-real-quality, feature/lucille-phase22-autonomous-memory, feature/lucille-phase22b-answer-fidelity]
+    branches: [master, feature/lucille-memory-hybrid-phase1, feature/lucille-unified-identity-code, feature/lucille-phase16-validation, feature/lucille-phase2-intelligent-memory, feature/lucille-phase21-semantic-learning, feature/lucille-phase21b-quality, feature/lucille-phase21c-real-inference, feature/lucille-phase21d-real-quality, feature/lucille-phase22-autonomous-memory, feature/lucille-phase22b-answer-fidelity, feature/lucille-phase22c-evidence-authority]
   workflow_dispatch:
 
 permissions:
@@ -39,29 +39,69 @@ jobs:
           if [ "$RUNNER_OS" = "Windows" ]; then suffix=".exe"; fi
           export LUCILLE_QA_BRIDGE="$CARGO_TARGET_DIR/debug/examples/synthetic_bridge$suffix"
           npx vitest run --maxWorkers=1 \
+            src/api/__tests__/comfy-edit-card-memory.test.ts \
+            src/hooks/__tests__/memory-deleted-stays-deleted.test.ts \
+            src/hooks/__tests__/memory-extraktion-bucht-lokale-spur.test.ts \
+            src/hooks/__tests__/memory-learns-about-the-user-on-a-phone.test.ts \
+            src/hooks/__tests__/memory-reaches-the-phone-engine.test.ts \
+            src/hooks/__tests__/memory-silent-call-gate.test.ts \
+            src/hooks/__tests__/useCreate-mac-edit-memory.test.ts \
+            src/stores/__tests__/lucille-binding-persistence.test.ts \
+            src/stores/__tests__/memory-collections.test.ts \
+            src/stores/__tests__/memory-context-cap.test.ts \
+            src/stores/__tests__/memory-forget-race.test.ts \
+            src/stores/__tests__/memory-import-history.test.ts \
+            src/stores/__tests__/memory-markdown-roundtrip.test.ts \
+            src/stores/__tests__/memory-provenance.test.ts \
+            src/stores/__tests__/memory-remove-undo.test.ts \
+            src/stores/__tests__/memory-scope.test.ts \
+            src/stores/__tests__/memory-sensitive.test.ts \
+            src/stores/__tests__/memory-sources.test.ts \
+            src/stores/__tests__/memory-tool-result-filter.test.ts \
+            src/stores/__tests__/memory-vectors-idb-refused.test.ts \
+            src/stores/__tests__/memoryStore-migrate.test.ts \
+            src/stores/__tests__/remote-memory-hydration.test.ts \
+            src/stores/__tests__/remote-memory-revocation.test.ts \
+            src/lib/__tests__/app-identity.test.ts \
+            src/lib/__tests__/builtin-model-identity.test.ts \
+            src/lib/__tests__/cloud-teaser-click-identity.test.ts \
+            src/lib/__tests__/comfy-edit-memory.test.ts \
+            src/lib/__tests__/displaced-engine-frees-its-memory.test.ts \
+            src/lib/__tests__/lucille-answer.test.ts \
             src/lib/__tests__/lucille-atomic.test.ts \
-            src/lib/__tests__/lucille-real-validation.test.ts \
-            src/lib/__tests__/lucille-llm.test.ts \
-            src/lib/__tests__/lucille-full-bootstrap.test.ts \
-            src/lib/__tests__/lucille-semantic.test.ts \
-            src/lib/__tests__/lucille-index-worker.test.ts \
-            src/lib/__tests__/lucille-learning.test.ts \
-            src/lib/__tests__/lucille-prepared-source.test.ts \
-            src/lib/__tests__/lucille-unified.test.ts \
+            src/lib/__tests__/lucille-authority.test.ts \
             src/lib/__tests__/lucille-context.test.ts \
             src/lib/__tests__/lucille-fidelity.test.ts \
-            src/lib/__tests__/lucille-authority.test.ts \
-            src/lib/__tests__/lucille-answer.test.ts \
+            src/lib/__tests__/lucille-full-bootstrap.test.ts \
+            src/lib/__tests__/lucille-index-worker.test.ts \
+            src/lib/__tests__/lucille-learning.test.ts \
+            src/lib/__tests__/lucille-llm.test.ts \
+            src/lib/__tests__/lucille-prepared-source.test.ts \
             src/lib/__tests__/lucille-real-sqlite.test.ts \
-            src/hooks/__tests__/memory-silent-call-gate.test.ts \
-            src/hooks/__tests__/memory-extraktion-bucht-lokale-spur.test.ts \
-            src/hooks/__tests__/memory-deleted-stays-deleted.test.ts \
-            src/hooks/__tests__/memory-learns-about-the-user-on-a-phone.test.ts \
-            src/stores/__tests__/lucille-binding-persistence.test.ts \
-            src/stores/__tests__/memory-scope.test.ts \
-            src/stores/__tests__/memory-collections.test.ts \
+            src/lib/__tests__/lucille-real-validation.test.ts \
+            src/lib/__tests__/lucille-semantic.test.ts \
+            src/lib/__tests__/lucille-unified.test.ts \
+            src/lib/__tests__/mac-edit-memory.test.ts \
+            src/lib/__tests__/mac-memory-fit.test.tsx \
+            src/lib/__tests__/memory-e2e.test.ts \
+            src/lib/__tests__/memory-extraction-phone-rules.test.ts \
             src/lib/__tests__/memory-extraction.test.ts \
-            src/lib/__tests__/memory-retrieval.test.ts
+            src/lib/__tests__/memory-forget.test.ts \
+            src/lib/__tests__/memory-learning-yield.test.ts \
+            src/lib/__tests__/memory-legacy-uebernehmen.test.ts \
+            src/lib/__tests__/memory-persistence.test.ts \
+            src/lib/__tests__/memory-retrieval.test.ts \
+            src/lib/__tests__/memory-sync-coordinator.test.ts \
+            src/lib/__tests__/memory-sync-plan.test.ts \
+            src/lib/__tests__/onboarding-shared-memory.test.ts \
+            src/lib/__tests__/shared-memory-wording.test.ts \
+            src/api/cloud/__tests__/memory-sync.test.ts \
+            src/components/chat/__tests__/memory-panel-delete.test.tsx \
+            src/components/chat/__tests__/memory-sources-chip-is-gone.test.ts \
+            src/mobile/boot/__tests__/memory-default.test.ts \
+            src/mobile/data/__tests__/device-memory.test.ts \
+            src/lib/computer/__tests__/memory-policy.test.ts \
+            src/components/create/experimental/__tests__/mac-edit-reference-slots-follow-memory.test.tsx
       - name: Atomic source grammar parity (no model or Windows API call)
         run: python scripts/test-lucille-atomic-schema.py
       - name: Type check
