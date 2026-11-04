@@ -49,6 +49,7 @@ pub(crate) fn device(s: &str) -> Option<&'static str> {
         s,
         &[
             "computador principal",
+            "pc principal",
             "primary computer",
             "meu pc",
             "my pc",
@@ -84,6 +85,7 @@ pub(crate) fn mixed_devices(s: &str) -> bool {
         s,
         &[
             "computador principal",
+            "pc principal",
             "primary computer",
             "meu pc",
             "my pc",

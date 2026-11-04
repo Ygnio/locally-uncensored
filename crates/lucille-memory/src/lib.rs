@@ -2,9 +2,9 @@
 pub mod autonomous;
 mod aux_backup;
 pub mod context_facts;
-pub mod turn_sources;
 mod coverage;
 pub mod dialogue;
+mod evidence;
 mod extraction;
 pub mod intelligent;
 pub mod isolation;
@@ -14,6 +14,7 @@ pub mod relevance;
 mod retrieval;
 pub mod semantic;
 pub mod semantic_text;
+pub mod turn_sources;
 mod types;
 use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 use std::{
