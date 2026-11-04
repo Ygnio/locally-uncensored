@@ -167,6 +167,7 @@ fn game_preference(span: &str) -> Option<Claim> {
         facets.push("progression".into())
     }
     Some(Claim {
+        authority: None,
         kind: Kind::Preference,
         content: span.into(),
         subject: "user".into(),

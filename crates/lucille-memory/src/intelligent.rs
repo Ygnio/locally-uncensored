@@ -64,6 +64,7 @@ impl LearningPolicy {
         Ok(())
     }
     fn promotes(&self, c: &Claim) -> bool {
+        if !crate::source_authority::valid(c) {return false}
         if self.autonomous_preferences {
             return self.enabled
                 && self.auto_kinds.contains(&Kind::Preference)
@@ -136,7 +137,9 @@ impl Quality {
             replaces_id: None,
             replaces_version: None,
             facets: c.facets.clone(),
-            evidence_rule: c.rule.clone(),
+            evidence_rule: c.authority.as_ref().map(|proof|
+                format!("{}|native_source_authority_v1:{}", c.rule, serde_json::to_string(proof).expect("bounded source proof")))
+                .unwrap_or_else(|| c.rule.clone()),
         }
     }
 }
@@ -364,6 +367,7 @@ impl Store {
         } else {
             extract(&input.user_text)
         };
+        claims = claims.into_iter().filter_map(|c|crate::source_authority::attest(&input.user_text,c)).collect();
         claims.retain(|c| {
             c.project_hint
                 .as_ref()
@@ -543,8 +547,8 @@ impl Store {
             && (proposals.len() > 4
                 || proposals.iter().any(|c| {
                     !lease.claims.contains(c)
-                        || !extract(&c.evidence).contains(c)
-                            && !crate::dialogue::extract(&c.evidence, &lease.project).contains(c)
+                        || !crate::source_authority::valid(c)
+                        || !crate::source_authority::independently_interpreted(c,&lease.project)
                 }))
         {
             return Err("Unverified extraction proposal".into());
@@ -590,7 +594,8 @@ impl Store {
         let mut grounded = vec![];
         if let Some(json) = llm {
             let (text, mode) = input.as_ref().ok_or("Missing LLM source")?;
-            grounded = crate::llm::validate(&text, &scope, &project, json)?;
+            grounded = crate::llm::validate(&text, &scope, &project, json)?
+                .into_iter().filter_map(|c|crate::source_authority::attest(text,c)).collect();
             if mode == "hybrid" {
                 for c in verified.iter().cloned() {
                     if !grounded.iter().any(|v| {
@@ -819,6 +824,11 @@ fn ingest(
     policy: &LearningPolicy,
     at: i64,
 ) -> Result<()> {
+    if !crate::source_authority::valid(c) {
+        return Err("Original statement authority missing or invalid".into());
+    }
+    let (conversation_id,message_id):(String,String)=tx.query_row("SELECT conversation_id,message_id FROM extraction_jobs WHERE id=?1",[&lease.id],|r|Ok((r.get(0)?,r.get(1)?))).map_err(db_error)?;
+    if !crate::source_authority::bound_to_job(c,&lease.id,&conversation_id,&message_id,&lease.scope,&lease.project) {return Err("Statement authority belongs to another original source".into())}
     if policy.autonomous_preferences
         && !crate::dialogue::project_scope_matches(&c.evidence, &lease.project)
     {
@@ -854,6 +864,7 @@ fn ingest(
             resolved.property = "ram_capacity".into();
         }
     }
+    crate::source_authority::rebind(c, &mut resolved);
     let c = &resolved;
     // Order by original source reservation, not by extraction completion time.
     // A slow older job cannot overwrite a later source for the same temporal track.
@@ -863,7 +874,7 @@ fn ingest(
     }
     let erased:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memory_tombstones WHERE scope=?1 AND project=?2 AND claim_digest=?3)",params![lease.scope,lease.project,c.fingerprint()],|r|r.get(0)).map_err(db_error)?;
     if erased {
-        let renewed:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memories m JOIN memory_quality q ON q.memory_id=m.id WHERE m.scope=?1 AND m.project=?2 AND m.state='active' AND q.subject=?3 AND q.property=?4 AND q.value=?5 AND q.evidence_rule LIKE '%renewal%')",params![lease.scope,lease.project,c.subject,c.property,c.value],|r|r.get(0)).map_err(db_error)?;
+        let renewed:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memories m JOIN memory_quality q ON q.memory_id=m.id WHERE m.scope=?1 AND m.project=?2 AND m.state='active' AND q.subject=?3 AND q.property=?4 AND q.value=?5 AND (q.evidence_rule LIKE 'explicit_v3_renewal:%' OR q.evidence_rule LIKE 'llm_v3_grounded:explicit_v3_renewal:%'))",params![lease.scope,lease.project,c.subject,c.property,c.value],|r|r.get(0)).map_err(db_error)?;
         let fresh:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM extraction_jobs j WHERE j.id=?1 AND j.created_at >= COALESCE((SELECT max(deleted_at) FROM memory_tombstones WHERE scope=?2 AND project=?3 AND claim_digest=?4),j.created_at))",params![lease.id,lease.scope,lease.project,c.fingerprint()],|r|r.get(0)).map_err(db_error)?;
         if !(policy.autonomous_preferences && (renewed || c.rule.contains("renewal") && fresh)) {
             return Ok(());

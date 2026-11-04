@@ -9,7 +9,7 @@ use crate::{
 fn any(s: &str, p: &[&str]) -> bool {
     p.iter().any(|v| s.contains(v))
 }
-pub fn eligible_source(text: &str) -> bool {
+fn eligible_clause(text: &str) -> bool {
     if !(12..=1600).contains(&text.len()) {
         return false;
     }
@@ -263,6 +263,12 @@ pub fn eligible_source(text: &str) -> bool {
             .split(['.', '!', ';', '\n'])
             .any(|s| s.trim().len() >= 12 && !s.contains('?'))
 }
+pub fn eligible_source(text: &str) -> bool {
+    (12..=1600).contains(&text.len())
+        && crate::source_authority::clauses(text).iter().any(|part|
+            part.origin == crate::source_authority::Origin::PersonalDeclaration
+                && eligible_clause(part.text))
+}
 pub fn project_scope_matches(text: &str, project: &str) -> bool {
     let s = fold(text);
     let quoted = s.split_whitespace().collect::<Vec<_>>();
@@ -388,6 +394,7 @@ fn base(
     temporal: &str,
 ) -> Claim {
     Claim {
+        authority: None,
         kind,
         content: span.into(),
         subject: subject.into(),
@@ -460,7 +467,7 @@ fn transient(s: &str) -> bool {
         ],
     )
 }
-fn preference_authorship(span: &str) -> bool {
+pub(crate) fn preference_authorship(span: &str) -> bool {
     if crate::evidence::interpret(span, "proof").is_some_and(|e| e.kind == Kind::Preference) {
         return true;
     }
@@ -866,13 +873,15 @@ pub(crate) fn separate_tracks(subject: &str, property: &str, left: &str, right: 
         && execution_track(subject, property, left) != execution_track(subject, property, right)
 }
 pub fn extract(text: &str, project: &str) -> Vec<Claim> {
-    if !eligible_source(text) || !project_scope_matches(text, project) {
+    if !eligible_source(text) {
         return vec![];
     }
     let mut out = vec![];
-    for raw in text.split(['.', '!', ';', '\n']) {
-        let span = raw.trim();
-        if span.len() < 12 || span.len() > 300 || span.contains('?') {
+    for part in crate::source_authority::clauses(text) {
+        let span = part.text;
+        if part.origin != crate::source_authority::Origin::PersonalDeclaration
+            || !eligible_clause(span) || !project_scope_matches(span, project)
+            || span.len() < 12 || span.len() > 300 || span.contains('?') {
             continue;
         }
         let s = fold(span);
@@ -1288,6 +1297,7 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
                 c.temporal = "temporary".into();
                 c.ttl_seconds = Some(3600)
             }
+            let Some(c) = crate::source_authority::attest(text, c) else {continue};
             if !out.iter().any(|v: &Claim| {
                 v.fingerprint() == c.fingerprint()
                     && v.temporal == c.temporal
@@ -1303,7 +1313,10 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
     out
 }
 pub fn normalize(text: &str, scope: &str, project: &str, raw: &str) -> Result<Vec<Claim>> {
-    if !eligible_source(text) || !project_scope_matches(text, project) || raw.len() > 12000 {
+    if !eligible_source(text) || raw.len() > 12000
+        || !crate::source_authority::clauses(text).iter().any(|part|
+            part.origin==crate::source_authority::Origin::PersonalDeclaration
+                && eligible_clause(part.text) && project_scope_matches(part.text,project)) {
         return Err("Ineligible V3 source".into());
     }
     let output: AtomicOutput = serde_json::from_str(raw).map_err(|_| "Invalid V3 schema")?;
@@ -1315,6 +1328,7 @@ pub fn normalize(text: &str, scope: &str, project: &str, raw: &str) -> Result<Ve
         return Err("V3 scope/version/ceiling mismatch".into());
     }
     let mut accepted = vec![];
+    let interpreted = extract(text, project);
     for p in output.claims {
         let span = p
             .evidence
@@ -1326,7 +1340,13 @@ pub fn normalize(text: &str, scope: &str, project: &str, raw: &str) -> Result<Ve
         {
             continue;
         }
-        for mut c in extract(span, project) {
+        // Nomination selects a literal parent span, never a new statement author.
+        // Interpret once with the complete source and retain native owned subclauses.
+        for mut c in interpreted.iter().filter(|c| {
+            c.authority.as_ref().is_some_and(|proof|
+                text.match_indices(span).any(|(start, _)|
+                    proof.start >= start && proof.end <= start + span.len()))
+        }).cloned() {
             // Coarse B-to-B taxonomy hints never gain promotion authority. The
             // complete literal clause is independently parsed into the canonical kind.
             let review_alias = (p.category == Kind::Goal
@@ -1359,7 +1379,8 @@ pub fn normalize(text: &str, scope: &str, project: &str, raw: &str) -> Result<Ve
     Ok(accepted)
 }
 pub fn safe_preference(c: &Claim) -> bool {
-    !ambiguous_preference(&fold(&c.evidence))
+    crate::source_authority::valid(c)
+        && !ambiguous_preference(&fold(&c.evidence))
         && preference_authorship(&c.evidence)
         && c.kind == Kind::Preference
         && c.subject == "user"
@@ -1379,6 +1400,7 @@ pub fn safe_preference(c: &Claim) -> bool {
             "games_class_selection",
             "interface_clutter",
             "favorite_beverage",
+            "beverage_preference",
             "communication_focus",
             "music_instrument",
             "book_genre",

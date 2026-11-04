@@ -97,6 +97,12 @@ pub(crate) fn interpret<'a>(text: &'a str, project: &'a str) -> Option<Evidence<
             return Some(e);
         }
     }
+    // A preference for coffee is not a sugar preparation or a favorite-beverage claim.
+    // Keep this separate canonical relation rather than manufacturing those qualifiers.
+    if ["eu prefiro cafe","prefiro cafe","eu gosto de cafe","gosto de cafe","i prefer coffee","i like coffee"].contains(&s.as_str()) {
+        e.kind=Kind::Preference;e.temporal="preference";
+        e.property="beverage_preference".into();e.value="coffee".into();return Some(e)
+    }
     // Nominal preference predicates require a personal possessor and a copula.
     let copula = words.iter().position(|w| ["e", "is"].contains(w));
     if let Some(at) = copula {

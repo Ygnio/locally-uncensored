@@ -14,6 +14,7 @@ pub mod relevance;
 mod retrieval;
 pub mod semantic;
 pub mod semantic_text;
+pub mod source_authority;
 pub mod turn_sources;
 mod types;
 use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};

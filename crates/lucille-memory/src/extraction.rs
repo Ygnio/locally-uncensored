@@ -27,6 +27,8 @@ pub fn fold(text: &str) -> String {
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct Claim {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub authority: Option<crate::source_authority::SourceAuthority>,
     pub kind: Kind,
     pub content: String,
     pub subject: String,
@@ -251,6 +253,7 @@ fn classify(sentence: &str) -> Option<Claim> {
         return None;
     }
     let mut claim = Claim {
+        authority: None,
         kind: Kind::Fact,
         content: evidence.to_string(),
         subject: "user".into(),

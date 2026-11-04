@@ -39,3 +39,13 @@ Não há necessidade demonstrada de nova tabela ou schema. Metadados de auditori
 6. Somente após encerrar produção, criar/versionar novo conjunto e congelar código, avaliadores, parâmetros, pesos/runtime, identidade/políticas, executáveis e frontend. Não ajustar após os resultados. Comparar com conjuntos antigos imutáveis e séries 20 → 50 → 100 no mesmo escopo original. Aprovação depende de todas as metas e zero críticas; testes técnicos sozinhos não aprovam.
 
 CI permanece separado: consultas de leitura, sem dispatch repetido, alteração administrativa, merge ou afirmação de verde sem runs. Evidências públicas somente sintéticas; fontes, tokens, leases e logs privados permanecem locais.
+
+## Primeira correção de origem — desenvolvimento
+
+A representação intermediária Claim agora recebe SourceAuthority calculada exclusivamente a partir da mensagem original nativa: autor de transporte, falante, sujeito, classe de origem, digest da fonte, intervalo UTF-8 e vínculo aos campos canônicos. A seleção de evidência pelo modelo só restringe afirmações já atribuídas nativamente; não reinterpreta o trecho isolado como uma nova declaração USER. Cada afirmação é revalidada antes de candidatura, promoção e conclusão, com vínculo ao job reservado e aos fences existentes.
+
+A auditoria compacta usa Quality.evidence_rule e o JSON de filas existentes, mantendo schema 5. Jobs pendentes antigos sem prova original falham de modo conservador; não recebem autoria presumida durante restore. Memórias canônicas existentes permanecem legíveis. A prova é um contrato nativo de origem, não uma assinatura contra um administrador capaz de forjar integralmente o banco.
+
+O replay de desenvolvimento em [source-authority.json](evidence/phase22e/development/source-authority.json) conserva as mesmas cinco respostas reais anteriores do Gemma e identifica separadamente nove propostas controladas. dx-031 e dx-032 passaram de uma memória ativa por modo a zero candidatas em rules/llm/hybrid. Os cinco positivos mistos preservaram exatamente uma preferência própria em cada modo; café simples é beverage_preference=coffee, sem inferir açúcar ou bebida favorita. As três paráfrases antigas continuam sem extração nesta etapa. Não houve nova inferência nem aprovação de holdout.
+
+Validação local: 140 testes Rust aprovados, incluindo os 135 anteriores inalterados e cinco testes novos. Incluem autoria mista/externa, intervalo UTF-8, tentativa de autoridade fornecida pelo modelo, corrupção de vínculo ao job e falta de prova em fila antiga. Bridges e diagnóstico recompilados com modelos desligados. GUI, TypeScript completo e validação real final da 2.2E ainda pendentes.
