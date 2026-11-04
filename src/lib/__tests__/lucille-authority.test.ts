@@ -10,6 +10,24 @@ const snapshot=(facts:MemoryFact[]=[fact()],query='Qual linguagem escolhi para m
 function wire(s:AnswerSnapshot){const identity:ChatMessage={role:'system',content:'Native scoped identity'};registerAnswerSnapshot(identity,s);return[identity,{role:'user',content:s.query} as ChatMessage]}
 const emptyFolder:ToolEvidence={call_id:'real-call',tool:'file_list',requested:true,executed:true,result_confirmed:true,outcome:'completed',observation:{operation:'file_list',resource:'.',observed_at:100,result:'The folder is empty.',result_truncated:false,coverage:'requested_resource_only'}}
 
+it.each([
+  'Esqueça minha preferência por café.',
+  'Volte a guardar esta preferência: eu gosto de jogos em que posso escolher minha classe.',
+  'Volte a memorizar minha preferência por café sem açúcar.',
+  'Forget my preference for coffee.',
+  'I want to remember my preference again: I prefer coffee without sugar.',
+])('routes the native memory directive without offering file tools: %s',query=>{
+  expect(memoryQuestionNeedsNoTools(query)).toBe(true)
+})
+it.each([
+  'Esqueça minha preferência e escreva um arquivo.',
+  'Forget my preference and read the project files.',
+  'Remember to email the team.',
+  'Guarde o arquivo na pasta do projeto.',
+])('retains ordinary external action routing when explicitly requested: %s',query=>{
+  expect(memoryQuestionNeedsNoTools(query)).toBe(false)
+})
+
 describe('typed evidence authority, independent of wording recognition',()=>{
   it('a decision does not prove general development even without a technology in that sentence',()=>{
     const r=verifyMemoryAnswer('Você decidiu usar Rust. Seu projeto ainda está em desenvolvimento.',snapshot())
