@@ -12,6 +12,16 @@ export interface AuthorityClaim {
   reason: string; critical: boolean
 }
 export const normalizeEvidenceText = (text: string) => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+/** Denying an implication is not asserting poor (or good) actual performance.
+ * A later independent positive predicate must still be checked.
+ */
+export function deniesCapacityGuarantee(text: string): boolean {
+  const q=normalizeEvidenceText(text)
+  const denial=q.match(/\b(?:nao (?:garante|assegura|comprova|implica)|(?:does not|doesn.t|cannot|can.t) (?:guarantee|ensure|prove|imply))\b/)
+  if(!denial)return false
+  const tail=q.slice(denial.index!+denial[0].length)
+  return !/\b(?:mas|porem|but|however|e|and)\b.{0,80}\b(?:oferece|garante|assegura|proporciona|tem|e|is|offers|provides|guarantees|ensures|suficiente|sufficient|excelente|excellent|ideal)\b/.test(tail)
+}
 export function technologyRoles(text:string): {value:string;role:'origin'|'destination'}[] {
   const q=normalizeEvidenceText(text)
   const instead=q.search(/\bem vez de\b|\binstead of\b/)
@@ -129,7 +139,7 @@ export function authorityClaims(text: string, snapshot: AnswerSnapshot): Authori
     if (project && /(?:nao (?:tem|possui|ha)|sem).{0,25}arquivos|(?:has no|does not have|doesn.t have|without).{0,20}files|(?:projeto|project).{0,40}(?:esta vazio|esta vazia|is empty)/.test(q) && !epistemic && !hypothetical(/nao tem|nao possui|nao ha|sem|has no|does not|doesn.t|without|vazio|vazia|empty/)) {
       add(span,'project.'+snapshot.project,'file_inventory','empty','observation',literalEvidence(span,current),'An observed directory is not an exhaustive project inventory. A resource/entity/coverage binding is required.',true,true)
     }
-    if (/ram|memoria|memory|computador|computer|desktop|notebook|laptop/.test(normalizeEvidenceText(text+' '+snapshot.query)) && /\b(?:voce|you|seu|sua|your|meu|minha|my)\b/.test(q+' '+normalizeEvidenceText(snapshot.query)) && /(?:excelente|ideal|suficiente|excellent|ideal|sufficient).{0,40}(?:capacidade|capacity|rodar|run|desempenho|performance)|(?:capacidade|capacity).{0,25}(?:excelente|excellent)|\bgarant.{0,45}(?:rodar|run|fluidez|desempenho)/.test(q) && !hypothetical(/excelente|ideal|suficiente|excellent|sufficient|garant/)) {
+    if (/\bram\b|\b\d+\s*(?:gb|gib)\b|computador|computer|desktop|notebook|laptop|(?:capacidade|how much|quanto).{0,20}(?:memoria|memory)/.test(normalizeEvidenceText(text+' '+snapshot.query)) && /\b(?:voce|you|seu|sua|your|meu|minha|my)\b/.test(q+' '+normalizeEvidenceText(snapshot.query)) && /(?:excelente|ideal|suficiente|excellent|ideal|sufficient).{0,40}(?:capacidade|capacity|rodar|run|desempenho|performance)|(?:capacidade|capacity).{0,25}(?:excelente|excellent)|\bgarant.{0,45}(?:rodar|run|fluidez|desempenho)/.test(q) && !deniesCapacityGuarantee(span) && !hypothetical(/excelente|ideal|suficiente|excellent|sufficient|garant/)) {
       add(span,'user','workload_performance','adequate','consequence',literalEvidence(span,current),'RAM quantity alone cannot attest workload suitability or performance.',false)
     }
   }

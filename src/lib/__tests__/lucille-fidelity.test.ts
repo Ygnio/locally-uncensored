@@ -288,3 +288,34 @@ it('2.2D rejects developing as an inference from a generic start and a technolog
   }
   expect(verifyMemoryAnswer('Você está desenvolvendo seu projeto em Rust.',snapshot([fact({modality:'in_progress'})])).violations).toEqual([])
 })
+
+it('2.2D distinguishes bounded missing GPU information from unproved first-person nonreceipt',()=>{
+  const s=snapshot([],'Eu já informei qual é minha GPU?')
+  expect(verifyMemoryAnswer('Ainda não recebi essa informação.',s).violations.map(v=>v.code)).toContain('absence_without_evidence')
+  expect(verifyMemoryAnswer('Não há registro disponível sobre qual GPU você utiliza.',s).violations).toEqual([])
+})
+it('2.2D checks passive completed storage and idempotent forget receipts',()=>{
+  const s=snapshot([],'Volte a memorizar minha preferência por café sem açúcar.')
+  for(const text of ['Sua preferência por café sem açúcar foi memorizada.','Sua preferência foi guardada.','Your preference has been memorized.'])expect(verifyMemoryAnswer(text,s).violations.map(v=>v.code)).toContain('unconfirmed_memory_mutation')
+  const empty=snapshot([],'Esqueça minha preferência por café.')
+  empty.directiveReceipt={id:'f'.repeat(64),action:'forget',property:'coffee_sugar',state:'done',had_records:false,scope:'test',project:'atlas',conversation_id:'c',source_message_id:'u'}
+  expect(verifyMemoryAnswer('A preferência por café foi esquecida.',empty).violations).toEqual([])
+})
+it('2.2D does not confuse generic Rust memory safety with personal hardware performance',()=>{
+  const s=snapshot([fact({modality:'decision'})],'Para o meu projeto, a linguagem que decidi usar é Rust.')
+  expect(verifyMemoryAnswer('Rust é uma excelente escolha pela sua performance e segurança de memória.',s).violations).toEqual([])
+})
+it('2.2D supports an arithmetic RAM delta only through a unique typed literal source',()=>{
+  const current=fact({entity:'device.primary_computer',property:'ram_capacity',value:'48_gb',modality:'current_fact',validity:'current_user_statement',evidence:[{role:'current_user_statement',text:'Não tenho mais 36 GB, agora são 48 GB.'}]})
+  const s={...snapshot([],'Não tenho mais 36 GB, agora são 48 GB.'),currentStatements:[current]}
+  expect(verifyMemoryAnswer('Esse é um aumento de 12 GB.',s).violations).toEqual([])
+  expect(verifyMemoryAnswer('Esse é um aumento de 24 GB.',s).violations.some(v=>v.critical)).toBe(true)
+  expect(verifyMemoryAnswer('Seu computador principal tem 12 GB de RAM.',s).violations.some(v=>v.critical)).toBe(true)
+  expect(verifyMemoryAnswer('Seu notebook de trabalho recebeu um aumento de 12 GB.',s).violations.some(v=>v.critical)).toBe(true)
+  expect(verifyMemoryAnswer('Esse é um aumento de 12 GB.',{...s,currentStatements:[{...current,evidence:[]}]}).violations.some(v=>v.critical)).toBe(true)
+})
+it('2.2D accepts denial of a performance guarantee but checks a coordinated positive assertion',()=>{
+  const s=snapshot([fact({entity:'device.primary_computer',property:'ram_capacity',value:'48_gb',modality:'current_fact'})],'Qual é a RAM do meu computador principal?')
+  expect(verifyMemoryAnswer('Seu computador principal possui 48 GB de RAM. A quantidade de RAM por si só não garante fluidez ao rodar seu ambiente e banco juntos.',s).violations).toEqual([])
+  expect(verifyMemoryAnswer('RAM não garante fluidez, mas oferece excelente capacidade para rodar seu ambiente.',s).violations.length).toBeGreaterThan(0)
+})
