@@ -14,6 +14,7 @@ pub mod relevance;
 mod retrieval;
 pub mod semantic;
 pub mod semantic_text;
+pub mod source_authority;
 pub mod turn_sources;
 mod types;
 use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
@@ -422,8 +423,9 @@ impl Store {
         context_facts::append_project_state(&tx, &req, &mut memories)?;
         // The state qualifier participates in the same reference ceiling.
         memories.truncate(12);
-        let (facts, used) = loop {
+        let (facts, relations, used) = loop {
             let facts = context_facts::project(&tx, &memories)?;
+            let relations = retrieval::relation_context(&tx,&req.query,&memories,at)?;
             let extra = if memories.is_empty() {
                 0
             } else {
@@ -435,8 +437,9 @@ impl Store {
                         .len()
                     + 64
             };
+            let extra=extra+if relations.is_empty(){0}else{serde_json::to_vec(&relations).map_err(|_|"Invalid query relations")?.len()+32};
             if used + extra <= req.token_budget {
-                break (facts, used + extra);
+                break (facts, relations, used + extra);
             }
             if memories.pop().is_none() {
                 return Err("Identity exceeds context budget".into());
@@ -464,6 +467,7 @@ impl Store {
             memories,
             facts,
             current_statements,
+            relations,
             references,
             token_budget: req.token_budget,
             used_upper_bound: used,

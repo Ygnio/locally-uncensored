@@ -1,0 +1,140 @@
+{
+  "status": "known development protocol regression only, not final evaluation",
+  "private_original_sha256": "e09cc3b09c55883e25446cedb7c333496a8fc144f096a15d4c467e42d4a879d9",
+  "passed": true,
+  "artifact_checks": {
+    "before": {
+      "native_gui_verified": true,
+      "bridge_verified": true,
+      "frontend_verified": true,
+      "live_model_pin_verified": true,
+      "ready": "2026-11-04T22:41:44.303Z"
+    },
+    "after": {
+      "native_gui_verified": true,
+      "bridge_verified": true,
+      "frontend_verified": true,
+      "live_model_pin_verified": true,
+      "ready": "2026-11-04T22:46:44.840Z"
+    }
+  },
+  "rows": [
+    {
+      "id": "final-cancel-chat",
+      "type": "prepared_cancel",
+      "mode": "chat",
+      "passed": true,
+      "started_utc": "2026-11-04T22:45:17.658943+00:00",
+      "finished_utc": "2026-11-04T22:45:30.396682+00:00",
+      "records_after": 0,
+      "jobs": [
+        {
+          "state": "cancelled",
+          "attempts": 0
+        }
+      ],
+      "late_completed": null,
+      "owned_termination": {}
+    },
+    {
+      "id": "final-cancel-agent",
+      "type": "prepared_cancel",
+      "mode": "agent",
+      "passed": true,
+      "started_utc": "2026-11-04T22:45:30.399801+00:00",
+      "finished_utc": "2026-11-04T22:45:44.378049+00:00",
+      "records_after": 0,
+      "jobs": [
+        {
+          "state": "cancelled",
+          "attempts": 0
+        }
+      ],
+      "late_completed": null,
+      "owned_termination": {}
+    },
+    {
+      "id": "final-cancel-code",
+      "type": "prepared_cancel",
+      "mode": "code",
+      "passed": true,
+      "started_utc": "2026-11-04T22:45:44.381399+00:00",
+      "finished_utc": "2026-11-04T22:45:58.353724+00:00",
+      "records_after": 0,
+      "jobs": [
+        {
+          "state": "cancelled",
+          "attempts": 0
+        }
+      ],
+      "late_completed": null,
+      "owned_termination": {}
+    },
+    {
+      "id": "final-source-order",
+      "type": "ordered_sources",
+      "mode": "chat",
+      "passed": true,
+      "started_utc": "2026-11-04T22:45:58.356932+00:00",
+      "finished_utc": "2026-11-04T22:46:14.353992+00:00",
+      "records_after": 1,
+      "jobs": [
+        {
+          "state": "done",
+          "attempts": 1
+        },
+        {
+          "state": "done",
+          "attempts": 1
+        }
+      ],
+      "late_completed": null,
+      "owned_termination": {}
+    },
+    {
+      "id": "final-cancel-lease",
+      "type": "leased_cancel",
+      "mode": null,
+      "passed": true,
+      "started_utc": "2026-11-04T22:46:14.357120+00:00",
+      "finished_utc": "2026-11-04T22:46:30.336615+00:00",
+      "records_after": 0,
+      "jobs": [
+        {
+          "state": "cancelled",
+          "attempts": 1
+        }
+      ],
+      "late_completed": false,
+      "owned_termination": {}
+    },
+    {
+      "id": "final-restart-lease",
+      "type": "restart",
+      "mode": null,
+      "passed": true,
+      "started_utc": "2026-11-04T22:46:30.340902+00:00",
+      "finished_utc": "2026-11-04T22:47:16.893920+00:00",
+      "records_after": 4,
+      "jobs": [
+        {
+          "state": "done",
+          "attempts": 2
+        }
+      ],
+      "late_completed": false,
+      "owned_termination": {
+        "image_verified": true,
+        "creation_verified": true
+      }
+    }
+  ],
+  "copy": {
+    "status": "system_write_rejected",
+    "error": "NotAllowedError: Failed to execute 'writeText' on 'Clipboard': Document is not focused.",
+    "handler_payload_matches_verified": true,
+    "document_focused": false,
+    "limitation": "Actual browser clipboard API rejected a background document; no success credit and clipboard unchanged."
+  },
+  "freeze_sha256": "b1df1f5e2e921e124bf256bfc6d4b339a045900b9afa75322d222c7ef7758740"
+}

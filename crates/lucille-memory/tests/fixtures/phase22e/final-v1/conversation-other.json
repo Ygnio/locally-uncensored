@@ -1,0 +1,82 @@
+{
+  "id": "phase22e-final-gui-other-v1",
+  "authored_after_development": {
+    "production_code_commit": "9fca27daf715ef5597e2536f6651583b48ec1f2b",
+    "ended_utc": "2026-11-04T23:08:29.325397+00:00",
+    "authored_utc": "2026-11-04 23:15:30 UTC",
+    "no_native_or_model_rehearsal": true,
+    "authoring": "New synthetic sources and semantic gold authored after development by the same Codex author/team as implementation. This is not external or fully independent blinded evaluation. One explicitly marked known_anchor is a known development anchor."
+  },
+  "scope": "phase22e-final-gui-main",
+  "project": "pitanga",
+  "turns": [
+    {
+      "id": "go-t01",
+      "text": "No meu projeto Pitanga, o banco que escolhi é MySQL.",
+      "new_session": true,
+      "mode": "agent",
+      "review": true,
+      "expected_atoms": [
+        "mysql_choice_received",
+        "no_premature_persistence"
+      ],
+      "scenario": "other_project_database"
+    },
+    {
+      "id": "go-t02",
+      "text": "Estou implementando meu projeto Pitanga em TypeScript.",
+      "new_session": true,
+      "mode": "code",
+      "review": true,
+      "expected_atoms": [
+        "typescript_execution_received",
+        "no_premature_persistence"
+      ],
+      "scenario": "other_project_execution"
+    },
+    {
+      "id": "go-t03",
+      "text": "Futuramente, pretendo usar Rust no meu projeto Pitanga.",
+      "new_session": true,
+      "mode": "chat",
+      "review": true,
+      "expected_atoms": [
+        "rust_plan_received",
+        "no_premature_persistence"
+      ],
+      "scenario": "other_project_plan"
+    }
+  ],
+  "probes": [
+    {
+      "id": "go-p01",
+      "text": "Qual banco escolhi no Pitanga?",
+      "mode": "code",
+      "expected_atoms": [
+        "mysql_chosen"
+      ],
+      "scenario": "other_project_database"
+    },
+    {
+      "id": "go-p02",
+      "text": "Que linguagem estou implementando no Pitanga e qual está planejada para o futuro?",
+      "mode": "agent",
+      "expected_atoms": [
+        "typescript_in_progress",
+        "rust_planned_future"
+      ],
+      "scenario": "plan_vs_execution"
+    },
+    {
+      "id": "go-p03",
+      "text": "Compare o banco do Pitanga com o banco do projeto Jatobá.",
+      "mode": "chat",
+      "expected_atoms": [
+        "mysql_chosen",
+        "jatoba_unavailable_in_binding"
+      ],
+      "scenario": "cross_project_partial"
+    }
+  ],
+  "contract_note": "Run main then other, preserving main records. Use the same scope and this different explicitly bound project. The cross-project probe must give the authorized Pitanga portion and explicitly identify unavailable Jatobá information. That missing requested fact also remains unavailable in full-request completeness, never silently dropped or credited from another binding."
+}

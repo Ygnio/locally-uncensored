@@ -97,6 +97,7 @@ pub(crate) fn mixed_devices(s: &str) -> bool {
 }
 fn claim(evidence: &str, kind: Kind, property: &str, value: &str, content: &str) -> Claim {
     Claim {
+        authority: None,
         kind,
         content: content.into(),
         subject: "user".into(),

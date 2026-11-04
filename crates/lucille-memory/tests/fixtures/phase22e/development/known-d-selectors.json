@@ -1,0 +1,407 @@
+{
+  "id": "phase22e-development-known-d-selectors",
+  "cases": [
+    {
+      "id": "da-001",
+      "query": "Quanto de RAM tem meu PC principal?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "mode": "chat",
+      "known_context": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "64_gb"
+        }
+      ],
+      "expected": [
+        "64_gb"
+      ],
+      "scenario": "known_fact"
+    },
+    {
+      "id": "da-002",
+      "query": "Qual é a capacidade de RAM do meu notebook de trabalho?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "mode": "agent",
+      "known_context": [
+        {
+          "entity": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "20_gb"
+        }
+      ],
+      "expected": [
+        "20_gb"
+      ],
+      "scenario": "known_fact"
+    },
+    {
+      "id": "da-003",
+      "query": "Quanto de RAM tem meu principal e meu notebook de trabalho?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "mode": "code",
+      "known_context": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "64_gb"
+        },
+        {
+          "entity": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "20_gb"
+        }
+      ],
+      "expected": [
+        "64_gb",
+        "20_gb"
+      ],
+      "scenario": "known_fact"
+    },
+    {
+      "id": "da-004",
+      "query": "Qual linguagem eu havia decidido para meu projeto?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "mode": "chat",
+      "known_context": [
+        {
+          "entity": "project.imbuia",
+          "property": "language",
+          "value": "python"
+        }
+      ],
+      "expected": [
+        "python_decision"
+      ],
+      "scenario": "known_fact"
+    },
+    {
+      "id": "da-005",
+      "query": "Que banco está nos planos do meu projeto?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "mode": "agent",
+      "known_context": [
+        {
+          "entity": "project.imbuia",
+          "property": "database",
+          "value": "postgresql"
+        }
+      ],
+      "expected": [
+        "postgresql_planned"
+      ],
+      "scenario": "known_fact"
+    },
+    {
+      "id": "da-006",
+      "query": "Qual é a descrição do meu projeto?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "mode": "code",
+      "known_context": [
+        {
+          "entity": "project.imbuia",
+          "property": "description",
+          "value": "estou comecando um projeto de catalogo de cristais"
+        }
+      ],
+      "expected": [
+        "catalogo_de_cristais"
+      ],
+      "scenario": "known_fact"
+    },
+    {
+      "id": "da-007",
+      "query": "Como está ficando aquele projeto?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "mode": "chat",
+      "known_context": [
+        {
+          "entity": "project.imbuia",
+          "property": "description",
+          "value": "estou comecando um projeto de catalogo de cristais"
+        },
+        {
+          "entity": "project.imbuia",
+          "property": "language",
+          "value": "python"
+        },
+        {
+          "entity": "project.imbuia",
+          "property": "database",
+          "value": "postgresql"
+        }
+      ],
+      "expected": [
+        "catalogo_de_cristais",
+        "python_decision",
+        "postgresql_planned"
+      ],
+      "scenario": "purpose_not_execution"
+    },
+    {
+      "id": "da-008",
+      "query": "Como eu prefiro meu café?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "mode": "agent",
+      "known_context": [
+        {
+          "entity": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        }
+      ],
+      "expected": [
+        "without_sugar"
+      ],
+      "scenario": "known_fact"
+    },
+    {
+      "id": "da-009",
+      "query": "Qual é a minha bebida preferida?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "mode": "code",
+      "known_context": [
+        {
+          "entity": "user",
+          "property": "favorite_beverage",
+          "value": "tea"
+        }
+      ],
+      "expected": [
+        "tea"
+      ],
+      "scenario": "known_fact"
+    },
+    {
+      "id": "da-010",
+      "query": "O que eu gosto na escolha de classes nos jogos?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "mode": "chat",
+      "known_context": [
+        {
+          "entity": "user",
+          "property": "games_class_selection",
+          "value": "positive"
+        }
+      ],
+      "expected": [
+        "class_selection_positive"
+      ],
+      "scenario": "known_fact"
+    },
+    {
+      "id": "da-011",
+      "query": "Qual era a RAM antes e quanto tem agora meu computador principal?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "mode": "agent",
+      "known_context": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "40_gb",
+          "state": "obsolete"
+        },
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "64_gb"
+        }
+      ],
+      "expected": [
+        "40_gb_historical",
+        "64_gb_current"
+      ],
+      "scenario": "known_fact"
+    },
+    {
+      "id": "da-012",
+      "query": "Compare minha preferência por café antes e agora.",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "mode": "code",
+      "known_context": [
+        {
+          "entity": "user",
+          "property": "coffee_sugar",
+          "value": "with_sugar",
+          "state": "obsolete"
+        },
+        {
+          "entity": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        }
+      ],
+      "expected": [
+        "with_sugar_historical",
+        "without_sugar_current"
+      ],
+      "scenario": "known_fact"
+    },
+    {
+      "id": "da-013",
+      "query": "Qual GPU consta nas minhas informações?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "mode": "chat",
+      "known_context": [],
+      "expected": [
+        "bounded_unknown_gpu"
+      ],
+      "scenario": "unknown_property"
+    },
+    {
+      "id": "da-014",
+      "query": "Qual banco meu irmão costuma usar?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "mode": "agent",
+      "known_context": [],
+      "expected": [
+        "bounded_unknown_brother"
+      ],
+      "scenario": "foreign_actor"
+    },
+    {
+      "id": "da-015",
+      "query": "Minha preferência por criação de personagens continua disponível?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "mode": "code",
+      "known_context": [],
+      "expected": [
+        "bounded_no_current_record"
+      ],
+      "scenario": "deleted_value"
+    },
+    {
+      "id": "da-016",
+      "query": "Qual é o status atual do projeto Angico?",
+      "scope": "phase22d-final-ret-main",
+      "project": "angico",
+      "mode": "chat",
+      "known_context": [
+        {
+          "entity": "project.angico",
+          "property": "lifecycle",
+          "value": "cancelled"
+        }
+      ],
+      "expected": [
+        "cancelled"
+      ],
+      "scenario": "known_fact"
+    },
+    {
+      "id": "da-017",
+      "query": "Antes do cancelamento, que linguagem usava o projeto Angico?",
+      "scope": "phase22d-final-ret-main",
+      "project": "angico",
+      "mode": "agent",
+      "known_context": [
+        {
+          "entity": "project.angico",
+          "property": "language",
+          "value": "rust",
+          "state": "active",
+          "validity": "historical",
+          "modality": "in_progress"
+        },
+        {
+          "entity": "project.angico",
+          "property": "lifecycle",
+          "value": "cancelled"
+        }
+      ],
+      "expected": [
+        "rust_historical",
+        "cancelled"
+      ],
+      "scenario": "known_fact"
+    },
+    {
+      "id": "da-018",
+      "query": "Que linguagem eu escolhi para o projeto Aroeira?",
+      "scope": "phase22d-final-ret-main",
+      "project": "aroeira",
+      "mode": "code",
+      "known_context": [
+        {
+          "entity": "project.aroeira",
+          "property": "language",
+          "value": "rust"
+        }
+      ],
+      "expected": [
+        "rust_decision"
+      ],
+      "scenario": "known_fact"
+    },
+    {
+      "id": "da-019",
+      "query": "Meu computador principal tem quanta RAM?",
+      "scope": "phase22d-final-ret-other",
+      "project": "imbuia",
+      "mode": "chat",
+      "known_context": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "72_gb"
+        }
+      ],
+      "expected": [
+        "72_gb"
+      ],
+      "scenario": "known_fact"
+    },
+    {
+      "id": "da-020",
+      "query": "Que linguagem estou comprovadamente implementando no projeto Murici?",
+      "scope": "phase22d-final-ret-main",
+      "project": "murici",
+      "mode": "agent",
+      "known_context": [
+        {
+          "entity": "project.murici",
+          "property": "language",
+          "value": "javascript"
+        }
+      ],
+      "expected": [
+        "javascript_in_progress"
+      ],
+      "scenario": "known_fact"
+    },
+    {
+      "id": "da-021",
+      "query": "Qual objetivo de aprendizado eu já concluí?",
+      "scope": "phase22d-final-ret-main",
+      "project": "imbuia",
+      "mode": "code",
+      "known_context": [
+        {
+          "entity": "user",
+          "property": "goal.bc4b6c59a2ef",
+          "value": "completed:aprender frances"
+        }
+      ],
+      "expected": [
+        "learn_french_completed"
+      ],
+      "scenario": "completed_goal"
+    }
+  ],
+  "method": "Known D fixture questions preserved for evaluator development only. da-017 uses actual active storage state plus independently required historical projection. No new model inference and not a final independent corpus."
+}

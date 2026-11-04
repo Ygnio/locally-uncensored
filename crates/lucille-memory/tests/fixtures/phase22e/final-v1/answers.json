@@ -1,0 +1,536 @@
+{
+  "id": "phase22e-final-answers-v1",
+  "authored_after_development": {
+    "production_code_commit": "9fca27daf715ef5597e2536f6651583b48ec1f2b",
+    "ended_utc": "2026-11-04T23:08:29.325397+00:00",
+    "authored_utc": "2026-11-04 23:15:30 UTC",
+    "no_native_or_model_rehearsal": true,
+    "authoring": "New synthetic sources and semantic gold authored after development by the same Codex author/team as implementation. This is not external or fully independent blinded evaluation. One explicitly marked known_anchor is a known development anchor."
+  },
+  "cases": [
+    {
+      "id": "ea-001",
+      "query": "Quanto de RAM tem o computador principal que uso?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "mode": "chat",
+      "known_context": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "64_gb"
+        }
+      ],
+      "expected": [
+        "primary_64_current"
+      ],
+      "scenario": "known_ram",
+      "source_labels": [
+        "primary-now"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-002",
+      "query": "Qual a RAM do meu notebook de trabalho?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "mode": "agent",
+      "known_context": [
+        {
+          "entity": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "12_gb"
+        }
+      ],
+      "expected": [
+        "work_12_current"
+      ],
+      "scenario": "known_ram",
+      "source_labels": [
+        "work-ram"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-003",
+      "query": "Compare a RAM do meu computador principal e do notebook de trabalho.",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "mode": "code",
+      "known_context": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "64_gb"
+        },
+        {
+          "entity": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "12_gb"
+        }
+      ],
+      "expected": [
+        "primary_64_current",
+        "work_12_current"
+      ],
+      "scenario": "two_devices",
+      "source_labels": [
+        "primary-now",
+        "work-ram"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-004",
+      "query": "Quanto de RAM tinha antes meu computador principal e quanto possui agora?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "mode": "chat",
+      "known_context": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "48_gb",
+          "state": "obsolete",
+          "validity": "historical"
+        },
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "64_gb"
+        }
+      ],
+      "expected": [
+        "primary_48_historical",
+        "primary_64_current"
+      ],
+      "scenario": "ram_history",
+      "source_labels": [
+        "primary-before",
+        "primary-now"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-005",
+      "query": "É correto dizer que meu computador principal tem 128 GB de RAM?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "mode": "agent",
+      "known_context": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "64_gb"
+        }
+      ],
+      "expected": [
+        "primary_64_current",
+        "reject_primary_128"
+      ],
+      "scenario": "false_premise_128",
+      "source_labels": [
+        "primary-now"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-006",
+      "query": "Qual linguagem eu escolhi, e isso prova que já implementei o projeto?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "mode": "code",
+      "known_context": [
+        {
+          "entity": "project.jatoba",
+          "property": "language",
+          "value": "python"
+        }
+      ],
+      "expected": [
+        "python_chosen",
+        "no_implementation_evidence"
+      ],
+      "scenario": "choice_not_execution",
+      "source_labels": [
+        "language-choice"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-007",
+      "query": "Qual banco está no planejamento do meu projeto?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "mode": "chat",
+      "known_context": [
+        {
+          "entity": "project.jatoba",
+          "property": "database",
+          "value": "postgresql"
+        }
+      ],
+      "expected": [
+        "postgresql_planned"
+      ],
+      "scenario": "planned_database",
+      "source_labels": [
+        "database-plan"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-008",
+      "query": "Qual é a finalidade do projeto de catálogo que comecei?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "mode": "agent",
+      "known_context": [
+        {
+          "entity": "project.jatoba",
+          "property": "description",
+          "value": "estou comecando um projeto de catalogo de miniaturas"
+        }
+      ],
+      "expected": [
+        "miniature_catalogue_purpose"
+      ],
+      "scenario": "purpose",
+      "source_labels": [
+        "purpose"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-009",
+      "query": "Resuma o assunto do projeto, a linguagem escolhida e o banco planejado.",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "mode": "code",
+      "known_context": [
+        {
+          "entity": "project.jatoba",
+          "property": "description",
+          "value": "estou comecando um projeto de catalogo de miniaturas"
+        },
+        {
+          "entity": "project.jatoba",
+          "property": "language",
+          "value": "python"
+        },
+        {
+          "entity": "project.jatoba",
+          "property": "database",
+          "value": "postgresql"
+        }
+      ],
+      "expected": [
+        "miniature_catalogue_purpose",
+        "python_chosen",
+        "postgresql_planned"
+      ],
+      "scenario": "three_properties",
+      "source_labels": [
+        "purpose",
+        "language-choice",
+        "database-plan"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-010",
+      "query": "Como eu prefiro tomar meu café da tarde?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "mode": "chat",
+      "known_context": [
+        {
+          "entity": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar"
+        }
+      ],
+      "expected": [
+        "coffee_without_sugar"
+      ],
+      "scenario": "known_preference",
+      "source_labels": [
+        "coffee"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-011",
+      "query": "O que eu gosto na escolha de classes nos jogos?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "mode": "agent",
+      "known_context": [
+        {
+          "entity": "user",
+          "property": "games_class_selection",
+          "value": "positive"
+        }
+      ],
+      "expected": [
+        "class_selection_positive"
+      ],
+      "scenario": "known_preference",
+      "source_labels": [
+        "classes"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-012",
+      "query": "Qual é a minha bebida favorita?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "mode": "code",
+      "known_context": [
+        {
+          "entity": "user",
+          "property": "favorite_beverage",
+          "value": "tea"
+        }
+      ],
+      "expected": [
+        "favorite_tea"
+      ],
+      "scenario": "known_preference",
+      "source_labels": [
+        "favorite"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-013",
+      "query": "Que GPU consta nas informações do meu computador principal?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "mode": "chat",
+      "known_context": [],
+      "expected": [
+        "bounded_unknown_gpu"
+      ],
+      "scenario": "unknown_property",
+      "source_labels": [],
+      "forbidden_claims": [
+        "The user never provided a GPU at any time",
+        "A specific GPU model",
+        "RAM proves a computer is fast or fluid"
+      ]
+    },
+    {
+      "id": "ea-014",
+      "query": "Que banco meu irmão usa no projeto dele?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "mode": "agent",
+      "known_context": [],
+      "expected": [
+        "bounded_unknown_brother"
+      ],
+      "scenario": "foreign_actor",
+      "source_labels": [],
+      "forbidden_claims": [
+        "Assigning the user database to the brother",
+        "The brother never provided information anywhere"
+      ]
+    },
+    {
+      "id": "ea-015",
+      "query": "Qual preferência por criação de personagens continua registrada?",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "mode": "code",
+      "known_context": [],
+      "expected": [
+        "bounded_no_current_creation"
+      ],
+      "scenario": "deleted_value",
+      "source_labels": [],
+      "forbidden_claims": [
+        "Recovering deleted character-creation preference",
+        "Claiming this preference was never provided"
+      ]
+    },
+    {
+      "id": "ea-016",
+      "query": "Como está o projeto Cedrinho?",
+      "scope": "phase22e-final-ret-main",
+      "project": "cedrinho",
+      "mode": "chat",
+      "known_context": [
+        {
+          "entity": "project.cedrinho",
+          "property": "lifecycle",
+          "value": "cancelled"
+        }
+      ],
+      "expected": [
+        "cedrinho_cancelled"
+      ],
+      "scenario": "cancelled_status",
+      "source_labels": [
+        "cancelled-state"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-017",
+      "query": "Em qual linguagem eu implementava o Cedrinho antes de cancelar?",
+      "scope": "phase22e-final-ret-main",
+      "project": "cedrinho",
+      "mode": "agent",
+      "known_context": [
+        {
+          "entity": "project.cedrinho",
+          "property": "language",
+          "value": "rust",
+          "state": "active",
+          "validity": "historical",
+          "modality": "in_progress"
+        },
+        {
+          "entity": "project.cedrinho",
+          "property": "lifecycle",
+          "value": "cancelled"
+        }
+      ],
+      "expected": [
+        "rust_historical_in_progress",
+        "cedrinho_cancelled"
+      ],
+      "scenario": "cancelled_history",
+      "source_labels": [
+        "cancelled-language",
+        "cancelled-state"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-018",
+      "query": "Que banco escolhi para o projeto Pitanga?",
+      "scope": "phase22e-final-ret-main",
+      "project": "pitanga",
+      "mode": "code",
+      "known_context": [
+        {
+          "entity": "project.pitanga",
+          "property": "database",
+          "value": "mysql"
+        }
+      ],
+      "expected": [
+        "mysql_chosen"
+      ],
+      "scenario": "other_project",
+      "source_labels": [
+        "other-database"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-019",
+      "query": "Quanta RAM há no meu computador principal neste contexto?",
+      "scope": "phase22e-final-ret-other",
+      "project": "jatoba",
+      "mode": "chat",
+      "known_context": [
+        {
+          "entity": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "24_gb"
+        }
+      ],
+      "expected": [
+        "other_scope_primary_24"
+      ],
+      "scenario": "other_scope",
+      "source_labels": [
+        "other-scope-ram"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-020",
+      "query": "Qual linguagem está sendo implementada no Pitanga?",
+      "scope": "phase22e-final-ret-main",
+      "project": "pitanga",
+      "mode": "agent",
+      "known_context": [
+        {
+          "entity": "project.pitanga",
+          "property": "language",
+          "value": "typescript"
+        }
+      ],
+      "expected": [
+        "typescript_in_progress"
+      ],
+      "scenario": "implementation",
+      "source_labels": [
+        "actual-language"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-021",
+      "query": "No Pitanga, diferencie a linguagem em implementação daquela planejada para depois.",
+      "scope": "phase22e-final-ret-main",
+      "project": "pitanga",
+      "mode": "code",
+      "known_context": [
+        {
+          "entity": "project.pitanga",
+          "property": "language",
+          "value": "typescript"
+        },
+        {
+          "entity": "project.pitanga",
+          "property": "language",
+          "value": "rust"
+        }
+      ],
+      "expected": [
+        "typescript_in_progress",
+        "rust_planned_future"
+      ],
+      "scenario": "plan_vs_execution",
+      "source_labels": [
+        "actual-language",
+        "future-language"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "ea-022",
+      "query": "Compare o banco planejado no Jatobá com o banco do projeto Pitanga.",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "mode": "chat",
+      "known_context": [
+        {
+          "entity": "project.jatoba",
+          "property": "database",
+          "value": "postgresql"
+        }
+      ],
+      "expected": [
+        "postgresql_planned",
+        "pitanga_unavailable_in_binding"
+      ],
+      "scenario": "cross_project_partial",
+      "source_labels": [
+        "database-plan"
+      ],
+      "forbidden_claims": [
+        "Reading or claiming MySQL under this binding",
+        "Calling this a full comparison without the unavailable part"
+      ]
+    }
+  ],
+  "method": "Known selectors bind to the real stage-C seed store after extraction. They isolate ranking, not native eligibility, authority, state or projection validity. Selector failure is scored unavailable, never used to edit gold. Cancellation can leave the language state active while its projection is historical, explicitly asserted. No native preflight before freeze."
+}

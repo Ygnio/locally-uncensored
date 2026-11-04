@@ -1,7 +1,7 @@
 //! Fixed-schema, parameterized backup of derived learning state. No imported SQL.
 use crate::{
     db_error, identifier,
-    intelligent::{extract, quality, Claim, LearningPolicy},
+    intelligent::{quality, Claim, LearningPolicy},
     semantic::EmbeddingSpace,
     Result,
 };
@@ -185,8 +185,8 @@ pub(crate) fn restore(tx: &Transaction, backup: &AuxBackup) -> Result<()> {
             serde_json::from_str(&raw).map_err(|_| "Invalid evidence backup")?;
         if claims.len() > 4
             || claims.iter().any(|c| {
-                !extract(&c.evidence).contains(c)
-                    && !crate::dialogue::extract(&c.evidence, &project).contains(c)
+                !crate::source_authority::independently_interpreted(c,&project)
+                    || !crate::source_authority::bound_to_job(c,&id,&conversation,&message,&scope,&project)
             })
             || (!(0..=3).contains(&attempts))
             || (["done", "failed", "cancelled"].contains(&state.as_str()) && !claims.is_empty())

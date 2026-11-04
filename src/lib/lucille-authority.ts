@@ -15,9 +15,21 @@ export const normalizeEvidenceText = (text: string) => text.normalize('NFD').rep
 /** Denying an implication is not asserting poor (or good) actual performance.
  * A later independent positive predicate must still be checked.
  */
+/** Keep explicit contrasting subjects separate; relative game features are not
+ * new speakers. This is response attribution, never permission to learn. */
+export function answerRelationClauses(text:string):string[]{
+ return text.split(/(?<=[.!?;\n])\s+|\b(?:mas|por[eé]m|however|but)\b|,?\s+(?=(?:enquanto|whereas|while)\s+(?:(?:a|o|the)\s+)?(?:personage(?:m|ns)|characters?|narrador(?:a)?|narrators?|ferramenta|tool|voc[eê]|you)(?![\p{L}\p{N}_]))|\s+(?=(?:e|and)\s+(?:(?:a|o|the)\s+)?(?:personagem|character|narradora?|narrator|ferramenta|tool|(?:(?:voc[eê]|you)\s+)?(?:decidiu|escolheu|planeja|pretende|usa|utiliza|uses|plans|decided|chose|intends))\b)|\s+(?=(?:embora|although)\b)/iu).slice(0,128)
+}
+/** An explicitly named fictional/document/tool subject is not the USER.
+ * A later personal subject remains a personal claim and cannot borrow this exemption. */
+export function externalAssertion(span:string):boolean{
+ const q=normalizeEvidenceText(span).trim().replace(/^(?:e|and|enquanto|while|whereas)\s+/,'')
+ const anchor=q.match(/^(?:(?:a|o|the)\s+)?(?:narrador(?:a)?|narrator|personagem|character|ferramenta|tool|documento|document|log|texto|text)\b/)
+ return !!anchor && !/\b(?:voce|seu|sua|seus|suas|you|your|usuario|user)\b/.test(q.slice(anchor[0].length))
+}
 export function deniesCapacityGuarantee(text: string): boolean {
   const q=normalizeEvidenceText(text)
-  const denial=q.match(/\b(?:nao (?:garante|assegura|comprova|implica)|(?:does not|doesn.t|cannot|can.t) (?:guarantee|ensure|prove|imply))\b/)
+  const denial=q.match(/\b(?:nao (?:garante|garantem|assegura|asseguram|comprova|comprovam|implica|implicam)|(?:does not|doesn.t|cannot|can.t) (?:guarantee|ensure|prove|imply))\b/)
   if(!denial)return false
   const tail=q.slice(denial.index!+denial[0].length)
   return !/\b(?:mas|porem|but|however|e|and)\b.{0,80}\b(?:oferece|garante|assegura|proporciona|tem|e|is|offers|provides|guarantees|ensures|suficiente|sufficient|excelente|excellent|ideal)\b/.test(tail)
@@ -59,7 +71,8 @@ export function requestedMemoryProperties(query: string): string[] {
   if (/\bgpu\b|placa de video|graphics card/.test(q)) properties.push('gpu_model')
   if (/data de nascimento|birth ?date|birthday/.test(q)) properties.push('birth_date')
   if (/cafe|coffee/.test(q)) properties.push('coffee_sugar')
-  if (/bebida|beverage|drink/.test(q)) properties.push('favorite_beverage')
+  if (/pref|gost|likes/.test(q) && /bebida|beverage|drink|cafe|coffee/.test(q) && !/favorit|favourit|acucar|sugar/.test(q)) properties.push('beverage_preference')
+  if (/bebida|beverage|drink/.test(q) && !properties.includes('beverage_preference')) properties.push('favorite_beverage')
   if (/tema|theme|modo escuro|dark mode/.test(q)) properties.push('interface_theme')
   return properties
 }
@@ -99,7 +112,8 @@ export function authorityClaims(text: string, snapshot: AnswerSnapshot): Authori
   const add = (span: string, entity: string, property: string, value: string, relation: AuthorityClaim['relation'], proof: MemoryFact[], reason: string, critical = true, tool = false) => {
     result.push({ span, entity, property, value, relation, verdict: proof.length ? 'supported' : tool ? 'tool_dependent' : 'insufficient', references: proof.map(f => f.id), origins: origins(proof), reason, critical })
   }
-  for (const span of text.split(/(?<=[.!?;])\s+|\n+/).filter(s => s.trim())) {
+  for (const span of answerRelationClauses(text).filter(s=>s.trim())) {
+    if(externalAssertion(span))continue
     const q = normalizeEvidenceText(span)
     if (span.trim().endsWith('?')) continue
     const epistemic = /nao (?:ha|tenho).{0,35}(?:confirmacao|evidencia)|no (?:confirmation|evidence)|(?:not|isn.t|nao).{0,18}(?:confirmed|confirmado)|cannot confirm|nao (?:implica|significa|comprova)|does not (?:mean|imply|prove)|doesn.t (?:mean|imply|prove)/.test(q)
@@ -108,7 +122,7 @@ export function authorityClaims(text: string, snapshot: AnswerSnapshot): Authori
       // Modality binds before this predicate, never to a later relative clause
       // such as “games where you can choose a class”.
       return /^(?:se|if|talvez|maybe|hipoteticamente|hypothetically)\b/.test(q.trim())
-        || (at>=0 && /\b(?:might|could|may|pode|podera|poderia|should|estimativa|estimate)\b/.test(q.slice(0,at)))
+        || (at>=0 && /\b(?:might|could|may|pode|podem|podera|poderao|poderia|poderiam|should|estimativa|estimate)\b/.test(q.slice(0,at)))
     }
     const project = /\b(?:projeto|project)\b/.test(q)
     if (/\b(?:trocou|migrou|substituiu|swapped|migrated|switched|replaced)\b/.test(q) && !/\b(?:decidiu|decidi|decided|planeja|plans?|pretende|intends?)\b/.test(q) && !epistemic && !hypothetical(/\b(?:trocou|migrou|substituiu|swapped|migrated|switched|replaced)\b/)) {
@@ -139,7 +153,7 @@ export function authorityClaims(text: string, snapshot: AnswerSnapshot): Authori
     if (project && /(?:nao (?:tem|possui|ha)|sem).{0,25}arquivos|(?:has no|does not have|doesn.t have|without).{0,20}files|(?:projeto|project).{0,40}(?:esta vazio|esta vazia|is empty)/.test(q) && !epistemic && !hypothetical(/nao tem|nao possui|nao ha|sem|has no|does not|doesn.t|without|vazio|vazia|empty/)) {
       add(span,'project.'+snapshot.project,'file_inventory','empty','observation',literalEvidence(span,current),'An observed directory is not an exhaustive project inventory. A resource/entity/coverage binding is required.',true,true)
     }
-    if (/\bram\b|\b\d+\s*(?:gb|gib)\b|computador|computer|desktop|notebook|laptop|(?:capacidade|how much|quanto).{0,20}(?:memoria|memory)/.test(normalizeEvidenceText(text+' '+snapshot.query)) && /\b(?:voce|you|seu|sua|your|meu|minha|my)\b/.test(q+' '+normalizeEvidenceText(snapshot.query)) && /(?:excelente|ideal|suficiente|excellent|ideal|sufficient).{0,40}(?:capacidade|capacity|rodar|run|desempenho|performance)|(?:capacidade|capacity).{0,25}(?:excelente|excellent)|\bgarant.{0,45}(?:rodar|run|fluidez|desempenho)/.test(q) && !deniesCapacityGuarantee(span) && !hypothetical(/excelente|ideal|suficiente|excellent|sufficient|garant/)) {
+    if (/\bram\b|\b\d+\s*(?:gb|gib)\b|computador|computer|desktop|notebook|laptop|(?:capacidade|how much|quanto).{0,20}(?:memoria|memory)/.test(normalizeEvidenceText(text+' '+snapshot.query)) && /\b(?:voce|you|seu|sua|your|meu|minha|my)\b/.test(q+' '+normalizeEvidenceText(snapshot.query)) && /(?:excelente|ideal|suficiente|excellent|ideal|sufficient).{0,40}(?:capacidade|capacity|rodar|run|desempenho|performance)|(?:capacidade|capacity).{0,25}(?:excelente|excellent)|\bgarant.{0,45}(?:rodar|run|fluidez|desempenho)|(?:excelente|ideal|suficiente|excellent|sufficient)\s+(?:margem|folga|headroom)|(?:quantidade|amount)\s+(?:solida|adequada|suficiente|solid|adequate|sufficient).{0,60}(?:produtividade|desenvolvimento|multitarefa|tarefas|productivity|development|multitask|tasks)|(?:excelente|ideal|suficiente|solid[ao]|adequad[ao]|excellent|sufficient|solid|adequate).{0,40}\b(?:para|for)\b.{0,35}(?:multitarefa|produtividade|edicao|navegacao|desenvolvimento|tarefas|multitask|productivity|editing|browsing|development|tasks)/.test(q) && !deniesCapacityGuarantee(span) && !hypothetical(/excelente|ideal|suficiente|solid[ao]|adequad[ao]|excellent|sufficient|solid|adequate|garant/)) {
       add(span,'user','workload_performance','adequate','consequence',literalEvidence(span,current),'RAM quantity alone cannot attest workload suitability or performance.',false)
     }
   }

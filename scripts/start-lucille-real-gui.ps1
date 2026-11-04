@@ -1,7 +1,7 @@
-param([Parameter(Mandatory=$true)][string]$QaExe,[ValidateSet('21c','21d','22','22b','22c','22d')][string]$Phase='21c',[switch]$StaticFrontend)
+param([Parameter(Mandatory=$true)][string]$QaExe,[ValidateSet('21c','21d','22','22b','22c','22d','22e')][string]$Phase='21c',[switch]$StaticFrontend)
 $ErrorActionPreference='Stop'
 $repo=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
-$profileName=if($Phase -in @('22','22b','22c','22d')){"lucille-synthetic-full$Phase"}else{'lucille-synthetic-full'}
+$profileName=if($Phase -in @('22','22b','22c','22d','22e')){"lucille-synthetic-full$Phase"}else{'lucille-synthetic-full'}
 $root=(Resolve-Path (Join-Path $repo ('.lucille-qa-runtime\'+$profileName))).Path
 $real=(Resolve-Path (Join-Path $repo (".lucille-qa-runtime\lucille-synthetic-real$Phase"))).Path
 foreach($path in @($root,$real)){if([IO.File]::ReadAllText((Join-Path $path '.lucille-isolated')) -ne "synthetic-data-only`n"){throw 'Synthetic marker required'}}
@@ -19,7 +19,7 @@ try{
  $node=(Get-Command node).Source
  $viteArgs=@('node_modules/vite/bin/vite.js')
  if($StaticFrontend){
-  if($Phase -notin @('22b','22c','22d') -or -not(Test-Path -LiteralPath (Join-Path $repo ("qa-dist-$Phase/index.html")))){throw 'Dedicated Phase22B static build required'}
+  if($Phase -notin @('22b','22c','22d','22e') -or -not(Test-Path -LiteralPath (Join-Path $repo ("qa-dist-$Phase/index.html")))){throw 'Dedicated Phase22B static build required'}
   $viteArgs+='preview'
  }
  $viteArgs+=@('--config','vite.lucille-validation.config.ts')
@@ -38,7 +38,7 @@ try{
 $deadline=[DateTime]::UtcNow.AddSeconds(30)
 while(-not(Test-OwnListener 15287)){if($gui.HasExited){throw 'Own GUI host exited; manifest retained'}
  if([DateTime]::UtcNow -gt $deadline){
-  if($Phase -notin @('22','22b','22c','22d')){throw 'Own WebView inspection startup failed; manifest retained'}
+  if($Phase -notin @('22','22b','22c','22d','22e')){throw 'Own WebView inspection startup failed; manifest retained'}
   $driver=Join-Path $real 'reports\driver-ready-progress.json'
   if(-not(Test-Path -LiteralPath $driver) -or (Get-Item -LiteralPath $driver).LastWriteTime -lt $gui.StartTime){throw 'Neither CDP nor fresh native in-page driver became available'}
   @{cdp=$false;fallback='native in-page QA driver';recorded=[DateTime]::UtcNow.ToString('o')} | ConvertTo-Json | Set-Content (Join-Path $real 'reports\gui-inspection-status.json')

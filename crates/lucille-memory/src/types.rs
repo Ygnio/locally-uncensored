@@ -148,6 +148,8 @@ pub struct TurnContext {
     pub token_budget: usize,
     pub used_upper_bound: usize,
     pub retrieval_state: String,
+    #[serde(default,skip_serializing_if="Vec::is_empty")]
+    pub relations: Vec<crate::retrieval::RelationContext>,
 }
 /// Contract only. No provider is instantiated or contacted in phase 1.
 #[derive(Clone, Debug, Serialize, Deserialize)]

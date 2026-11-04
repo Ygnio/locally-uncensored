@@ -1,0 +1,183 @@
+{
+  "method": "Unchanged production verifier on exact previously observed raw/displayed real GUI text. Explicit projected snapshots encode the documented original USER/canonical relations; these are diagnostic preconditions, not a claim to have captured the original full wire snapshot or new model inference.",
+  "rows": [
+    {
+      "id": "premature-registered",
+      "answer": "Registrado: você prefere café com açúcar.",
+      "source": "Quero voltar a registrar minha preferência: eu prefiro café com açúcar.",
+      "snapshot": {
+        "scope": "phase22c-final-historical-series",
+        "project": "candeia",
+        "query": "Quero voltar a registrar minha preferência: eu prefiro café com açúcar.",
+        "facts": [],
+        "currentStatements": [
+          {
+            "id": "current-turn-0",
+            "version": 0,
+            "entity": "user",
+            "property": "coffee_sugar",
+            "value": "with_sugar",
+            "modality": "preference",
+            "validity": "current_user_statement",
+            "scope": "phase22c-final-historical-series",
+            "project": "candeia",
+            "review": "original_user_statement",
+            "facets": [],
+            "evidence": [
+              {
+                "role": "current_source",
+                "text": "Quero voltar a registrar minha preferência: eu prefiro café com açúcar."
+              }
+            ]
+          }
+        ]
+      },
+      "check": {
+        "assertions": [
+          {
+            "entity": "user",
+            "property": "coffee_sugar",
+            "value": "with_sugar",
+            "span": "Registrado: você prefere café com açúcar.",
+            "supported": true,
+            "references": [
+              "current-turn-0"
+            ]
+          }
+        ],
+        "violations": [],
+        "authority": [],
+        "uncertain": false,
+        "supportedAssertions": 1,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 9.590000000000032
+      }
+    },
+    {
+      "id": "false-never-provided",
+      "answer": "Como você ainda não me forneceu os detalhes específicos do banco que planejou nem do banco do seu irmão, por favor, descreva ambos para que eu possa compará-los. Assim que você enviar as informações, farei a análise.",
+      "source": "Pretendo usar SQLite como banco de dados no meu projeto.",
+      "snapshot": {
+        "scope": "phase22d-final-conversations-v1",
+        "project": "embauba",
+        "query": "Compare o banco que planejei para meu projeto com o banco do meu irmão.",
+        "facts": [
+          {
+            "id": "canonical-sqlite-plan",
+            "version": 2,
+            "entity": "project.embauba",
+            "property": "database",
+            "value": "sqlite",
+            "modality": "planned",
+            "validity": "historical",
+            "scope": "phase22d-final-conversations-v1",
+            "project": "embauba",
+            "review": "reviewed",
+            "facets": [],
+            "evidence": [
+              {
+                "role": "current_source",
+                "text": "Pretendo usar SQLite como banco de dados no meu projeto."
+              }
+            ]
+          }
+        ],
+        "currentStatements": []
+      },
+      "check": {
+        "assertions": [],
+        "violations": [],
+        "authority": [],
+        "uncertain": false,
+        "supportedAssertions": 0,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 3.8298999999999523
+      }
+    },
+    {
+      "id": "correct-ram-delta",
+      "answer": "Você aumentou sua capacidade em 24 GB. Como essa mudança impacta seu fluxo de trabalho atual?",
+      "source": "Não tenho mais 32 GB, agora são 56 GB.",
+      "snapshot": {
+        "scope": "phase22d-final-conversations-v1",
+        "project": "embauba",
+        "query": "Não tenho mais 32 GB, agora são 56 GB.",
+        "facts": [
+          {
+            "id": "primary-before",
+            "version": 2,
+            "entity": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "32_gb",
+            "modality": "current_fact",
+            "validity": "current",
+            "scope": "phase22d-final-conversations-v1",
+            "project": "embauba",
+            "review": "original_user_statement",
+            "facets": [],
+            "evidence": []
+          },
+          {
+            "id": "work",
+            "version": 2,
+            "entity": "device.work_laptop",
+            "property": "ram_capacity",
+            "value": "24_gb",
+            "modality": "current_fact",
+            "validity": "current",
+            "scope": "phase22d-final-conversations-v1",
+            "project": "embauba",
+            "review": "original_user_statement",
+            "facets": [],
+            "evidence": []
+          }
+        ],
+        "currentStatements": [
+          {
+            "id": "current-turn-0",
+            "version": 0,
+            "entity": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "56_gb",
+            "modality": "current_fact",
+            "validity": "current_user_statement",
+            "scope": "phase22d-final-conversations-v1",
+            "project": "embauba",
+            "review": "original_user_statement",
+            "facets": [],
+            "evidence": [
+              {
+                "role": "current_source",
+                "text": "Não tenho mais 32 GB, agora são 56 GB."
+              }
+            ]
+          }
+        ]
+      },
+      "check": {
+        "assertions": [
+          {
+            "entity": "unspecified",
+            "property": "capacity_update",
+            "value": "24_gb",
+            "span": "Você aumentou sua capacidade em 24 GB.",
+            "supported": false,
+            "references": []
+          }
+        ],
+        "violations": [
+          {
+            "code": "unsupported_typed_value",
+            "span": "Você aumentou sua capacidade em 24 GB.",
+            "critical": true
+          }
+        ],
+        "authority": [],
+        "uncertain": false,
+        "supportedAssertions": 0,
+        "unsupportedAssertions": 1,
+        "elapsedMs": 1.3335000000000719
+      }
+    }
+  ]
+}

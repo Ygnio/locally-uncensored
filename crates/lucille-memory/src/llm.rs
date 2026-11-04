@@ -238,6 +238,7 @@ fn novel_preference(p: &Proposal) -> Option<Claim> {
         return None;
     }
     Some(Claim {
+        authority: None,
         kind: Kind::Preference,
         content: p.evidence.trim().into(),
         subject: "user".into(),

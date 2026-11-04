@@ -1,0 +1,46 @@
+{
+  "status": "Production and evaluator development ended; final corpus not yet authored. Known limitations remain, final approval depends on frozen evaluation.",
+  "ended_utc": "2026-11-04T23:08:29.325397+00:00",
+  "production_code_commit": "9fca27daf715ef5597e2536f6651583b48ec1f2b",
+  "technical": {
+    "rust": 147,
+    "typescript": 724,
+    "schema": 3,
+    "evaluator_contract": 3,
+    "literal_origin_rubric": 1,
+    "typecheck": true,
+    "changed_source_lint": true,
+    "normal_frontend_build": true,
+    "static_qa_frontend_build": true,
+    "native_gui_build": true
+  },
+  "known_actual_validation": {
+    "extraction_original_d_cases": 40,
+    "retrieval_original_d_mandatory_lexical": "16/16",
+    "gui_v3_planned": 15,
+    "gui_v3_executed": 15,
+    "gui_v3_operation_reads": "62/62",
+    "gui_v3_prior_to_latest_response_fix_critical_confirmation": 1,
+    "native_faults": "6/6",
+    "real_transport_modes": "3/3",
+    "fallback_nomic_off": "48 GB.",
+    "legacy_answer_selectors": "21/21",
+    "legacy_actual_answers": {
+      "planned": 21,
+      "total": 21,
+      "preflight_ready": 0,
+      "not_executed": 0,
+      "delivered": 20,
+      "blocked": 1,
+      "errors": 0
+    }
+  },
+  "remaining_limitations": [
+    "Known model asserted that a deleted preference remained available (da-015); verifier correctly blocked both attempts, reducing useful availability.",
+    "Source framing/verifier can confuse correctly attributed external summaries; no wrong personal canonical writes observed in those known tool reads.",
+    "Project start can remain a durable description without an independently retrieved lifecycle.",
+    "Background clipboard API refused; no physical copy success credit."
+  ],
+  "final_policy": "After final outputs, do not modify production/evaluator/corpora/prompts/thresholds/parameters. All missing/blocked/error cases remain planned denominators; any critical failure rejects phase.",
+  "review_correction": "Initial interpretation of da-015 as bounded absence was wrong; literal raw generations demonstrate unsupported resurrection claims, correctly blocked. Production/evaluator/corpora unchanged."
+}

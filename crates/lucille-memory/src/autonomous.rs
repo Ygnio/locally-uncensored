@@ -71,6 +71,13 @@ pub(crate) fn forget_property(text: &str) -> Option<&'static str> {
         "criacao",
         "personagens",
         "escolher",
+        "escolho",
+        "seleciono",
+        "que",
+        "eu",
+        "where",
+        "i",
+        "select",
         "selecao",
         "classe",
         "classes",
@@ -152,7 +159,7 @@ pub(crate) fn forget_property(text: &str) -> Option<&'static str> {
     {
         fields.push("games_character_creation")
     }
-    if has(&["classe", "classes", "class"]) && has(&["escolher", "selecao", "choose", "selection"])
+    if has(&["classe", "classes", "class"]) && has(&["escolher", "escolho", "seleciono", "selecao", "choose", "select", "selection"])
     {
         fields.push("games_class_selection")
     }
@@ -201,7 +208,7 @@ impl Store {
         }
         let at = crate::now();
         let memories = {
-            let mut q=tx.prepare(&format!("SELECT {} FROM memories WHERE scope=?1 AND project=?2 AND id IN (SELECT memory_id FROM memory_quality WHERE subject='user' AND property=?3)",COLS)).map_err(db_error)?;
+            let mut q=tx.prepare(&format!("SELECT {} FROM memories WHERE scope=?1 AND project=?2 AND id IN (SELECT memory_id FROM memory_quality WHERE subject='user' AND (property=?3 OR (?3='coffee_sugar' AND property IN ('beverage_preference','favorite_beverage') AND value='coffee')))",COLS)).map_err(db_error)?;
             let rows = q
                 .query_map(params![input.scope, input.project, property], row)
                 .map_err(db_error)?
