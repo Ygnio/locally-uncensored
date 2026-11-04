@@ -15,6 +15,12 @@ for(const directory of [root,store]) if(readFileSync(resolve(directory,'.lucille
 const sha=data=>createHash('sha256').update(data).digest('hex')
 const freeze=JSON.parse(readFileSync(args.freeze,'utf8')), datasetPath=relative(repo,resolve(args.dataset)).split(sep).join('/')
 if(!freeze.corpus_sha256[datasetPath])throw Error('Dataset must be frozen')
+// Only this frozen development clone may retain known D scopes. The same
+// authorization applies to preflight and actual execution; final stays E-only.
+const knownLegacyDevelopment=freeze.kind==='development'
+ && datasetPath==='crates/lucille-memory/tests/fixtures/phase22e/development/known-d-selectors.json'
+ && store===resolve(root,'development-selector-contract/lucille-synthetic-known-native')
+ && args.label.startsWith('development-')
 function verify(){
   for(const [path,hash] of Object.entries(freeze.source_sha256_lf))if(sha(readFileSync(resolve(repo,path),'utf8').replaceAll('\r\n','\n'))!==hash)throw Error('Source changed: '+path)
   for(const [path,hash] of Object.entries(freeze.corpus_sha256))if(sha(readFileSync(resolve(repo,path)))!==hash)throw Error('Corpus changed: '+path)
@@ -50,7 +56,7 @@ const dataset=JSON.parse(readFileSync(args.dataset,'utf8')), rows=[]
 for(const item of dataset.cases){
  try{
   const mode=item.mode, scope=item.scope, project=item.project
-  if(!['chat','agent','code'].includes(mode)||!(/^phase22e-/.test(scope) || preflight && /^phase22d-/.test(scope)))throw Error('Explicit synthetic binding required')
+   if(!['chat','agent','code'].includes(mode)||!(/^phase22e-/.test(scope) || knownLegacyDevelopment && /^phase22d-/.test(scope)))throw Error('Explicit synthetic binding required')
   const embedded=preflight?null:await api('/v1/embeddings',{model:space.model,input:space.query_prefix+item.query,encoding_format:'float'})
   const vector=preflight?null:{space,vector:embedded.data[0].embedding}, messageId=randomUUID(), conversationId='phase22e-independent-answer-'+item.id
   let context

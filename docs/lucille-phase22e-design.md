@@ -145,3 +145,9 @@ Houve tombstones reais para classe, preparo e favorito café; dois replays não 
 Os [seis cenários nativos reais](evidence/phase22e/development/robustness-known-v3.json) passaram: cancelamento preparado nos três modos, ordenação de fontes, cancelamento de lease e reinício durante extração. Conclusões tardias não alteraram o canônico, sem duplicação observada. A [queda/restauração real do broker](evidence/phase22e/development/transport-known-v3.json) passou em Chat, Agent e Code, com erro real apresentado e a fonte USER original persistida após a recuperação, sem reenviar a fonte. Executáveis, frontend, pin vivo e processo GUI foram conferidos antes/depois. São regressões de protocolo conhecidas, não corpus linguístico final.
 
 O botão real de cópia recebeu exatamente a resposta verificada, mas a API original recusou o documento em segundo plano. Nenhum sucesso de cópia foi creditado; não houve escrita na área de transferência nem conteúdo pessoal registrado. A GUI operou por observação/controle interno da própria aplicação isolada, sem controle da tela ou do Firefox.
+
+## Pré-teste conhecido v4 e autorização do clone legado
+
+O pré-teste dos21seletores foi novamente21/21. A primeira execução completa v4, porém, teve21/21not_executed e zero gerações: uma guarda do reader permitia escoposD somente no pré-teste. Esse resultado permanece intacto. A mesma guarda agora vale para pré-teste e execução: somente freeze de desenvolvimento, corpus known-d-selectors exato, clone legado exato dentro da raizE e label development autorizamD. O final continua permitindo somenteE. Importação e orçamento completo do adapter continuam sujeitos à execução real, além dos seletores; pré-teste não equivale a geração aprovada.
+
+Na GUI, o caso conhecido48respondeu48GB com a porta/processoNomic realmente desligados e novamente após sua restauração. As respostas foram geradas pelo Gemma real em sessões novas do escopo conhecidov2, sem reenviar fontes de aprendizagem.
