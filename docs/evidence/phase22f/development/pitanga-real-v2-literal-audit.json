@@ -1,0 +1,756 @@
+{
+  "id": "phase22f-development-pitanga-real-v2-literal-audit",
+  "label": "devf1-pitanga",
+  "classification": "known 2.2E replay on 2.2F development artifacts",
+  "inputs": {
+    "development_manifest_sha256": "2ebbdc19b4dabb89465fbb7573a6cce9889a13ded9c4f8b18aa9c9eb11efad92",
+    "native_driver_final_sha256": "09961530c3fbab85fb7bba44a29da026c4e5e22592d4c5e95a6959ed59345830",
+    "preserved_e_plan": {
+      "path": "crates/lucille-memory/tests/fixtures/phase22e/final-v1/conversation-other.json",
+      "sha256": "8bba4471988683f9b5af46d5277f26c9c25ee5e22a387b772bfaa88b502ffb8e"
+    },
+    "preserved_e_literal_audit": {
+      "path": "docs/evidence/phase22e/final-v1/gui-other-empty-literal-audit.json",
+      "sha256": "e4502cfee12a14e3af3995a962752d79cb228dfc7bd813684632d382018bbe49"
+    }
+  },
+  "method": "Read-only literal review of six executed synthetic turns and their observed GUI DOM, native operation read intervals and E gold. These probes appear in both arrays of the raw artifact; each is counted once. Same development team.",
+  "binding": {
+    "scope": "phase22f-devf1-pitanga",
+    "project": "pitanga",
+    "profile": "lucille",
+    "identity_version": 1
+  },
+  "started_utc": "2026-11-11T12:55:19.740Z",
+  "finished_utc": "2026-11-11T12:56:31.389Z",
+  "coverage": {
+    "planned": 6,
+    "executed": 6,
+    "delivered": 4,
+    "blocked_by_fidelity": 2,
+    "useful_availability": {
+      "numerator": 4,
+      "denominator": 6
+    },
+    "predeclared_atom_completeness": {
+      "numerator": 7,
+      "denominator": 11
+    },
+    "full_request_completeness": {
+      "numerator": 7,
+      "denominator": 12,
+      "extra_unavailable_part": "Jatoba database outside the Pitanga binding"
+    },
+    "delivered_memory_claim_fidelity": {
+      "numerator": 2,
+      "denominator": 3
+    },
+    "critical_persistence_claims_raw": 1,
+    "critical_persistence_claims_delivered": 0,
+    "critical_modality_claims_raw": 2,
+    "critical_modality_claims_delivered": 0,
+    "confirmation_timing_source_turns": 3,
+    "regenerations_total": 2
+  },
+  "persistence": {
+    "initial_jobs": 0,
+    "initial_memories": 0,
+    "final_jobs_done": 3,
+    "explicit_reviews": 3,
+    "final_memories_active": 3,
+    "final_current_vectors": 3,
+    "final_tombstones": 0
+  },
+  "turns": [
+    {
+      "id": "go-t01",
+      "mode": "agent",
+      "source": "No meu projeto Pitanga, o banco que escolhi é MySQL.",
+      "source_sha256": "eefb3f6180880e61f4e619aa2cb814f84db501b3bdd16db5264f6ec5028638e6",
+      "status": "checked",
+      "expected_atoms": [
+        "mysql_choice_received",
+        "no_premature_persistence"
+      ],
+      "retained_atoms": [
+        "mysql_choice_received",
+        "no_premature_persistence"
+      ],
+      "unavailable_atoms": [],
+      "assistant_content": "Entendido. O banco de dados escolhido para o projeto Pitanga é o MySQL.",
+      "first_terminal_dom_ms": 6104,
+      "first_terminal_dom_text": "lucille-real-gemma\n\nEntendido. O banco de dados escolhido para o projeto Pitanga é o MySQL.",
+      "attempts": [
+        {
+          "raw_answer": "Entendido. Registrei que o banco de dados escolhido para o projeto Pitanga é o MySQL.",
+          "assertions": [
+            {
+              "entity": "project.pitanga",
+              "property": "database",
+              "value": "mysql",
+              "span": "Registrei que o banco de dados escolhido para o projeto Pitanga é o MySQL.",
+              "supported": true
+            }
+          ],
+          "violations": [
+            {
+              "code": "unconfirmed_memory_mutation",
+              "span": "Registrei que o banco de dados escolhido para o projeto Pitanga é o MySQL.",
+              "critical": true
+            }
+          ]
+        }
+      ],
+      "regenerations": 0,
+      "operation_reads": [
+        {
+          "event": "assistant_created",
+          "observed_at_ms": 130,
+          "read_started_ms": 144,
+          "proof_read_started_ms": 159,
+          "read_finished_ms": 174,
+          "job_state": null,
+          "source_operation_state": null,
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "assistant_content",
+          "observed_at_ms": 6096,
+          "read_started_ms": 6104,
+          "proof_read_started_ms": 6127,
+          "read_finished_ms": 6137,
+          "job_state": "queued",
+          "source_operation_state": "source_persisted",
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "generation_terminal",
+          "observed_at_ms": 6165,
+          "read_started_ms": 6165,
+          "proof_read_started_ms": 6173,
+          "read_finished_ms": 6184,
+          "job_state": "queued",
+          "source_operation_state": "processing",
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "learning_terminal",
+          "observed_at_ms": 10900,
+          "read_started_ms": 10900,
+          "proof_read_started_ms": 10907,
+          "read_finished_ms": 10913,
+          "job_state": "done",
+          "source_operation_state": "completed",
+          "learning_receipt_present": true,
+          "directive_receipt_present": false
+        }
+      ],
+      "delivered_memory_claims": [
+        {
+          "property": "database",
+          "value": "mysql",
+          "modality": "decision",
+          "supported": true,
+          "basis": "current USER turn"
+        }
+      ],
+      "assessment": "The raw persistence claim was critical before a terminal receipt. The local repair preserved the acknowledged MySQL choice, was verified again, and is the only answer wording observed in the GUI.",
+      "native_binding_verified_fields": [
+        "operation_id",
+        "identity_version",
+        "profile",
+        "scope",
+        "project",
+        "conversation_id",
+        "source_message_id",
+        "mode",
+        "record_id",
+        "candidate_version",
+        "reviewed_version"
+      ],
+      "before_exposure": {
+        "operation": "source_persisted",
+        "learning_receipt_present": false,
+        "directive_receipt_present": false
+      },
+      "learning_receipt": {
+        "effect": "create",
+        "entity": "project.pitanga",
+        "property": "database",
+        "state": "candidate",
+        "value": "mysql",
+        "version": 1
+      },
+      "after_explicit_review": {
+        "state": "active",
+        "version": 2,
+        "temporal": "durable",
+        "source": "user"
+      },
+      "localized_repair": {
+        "method": "operation_prefix_removal",
+        "original": "Entendido. Registrei que o banco de dados escolhido para o projeto Pitanga é o MySQL.",
+        "delivered": "Entendido. O banco de dados escolhido para o projeto Pitanga é o MySQL."
+      }
+    },
+    {
+      "id": "go-t02",
+      "mode": "code",
+      "source": "Estou implementando meu projeto Pitanga em TypeScript.",
+      "source_sha256": "5372fbd023059421a23dc22d973d0734698c6bcd7c80ea20bc9845523393b7f2",
+      "status": "checked",
+      "expected_atoms": [
+        "typescript_execution_received",
+        "no_premature_persistence"
+      ],
+      "retained_atoms": [
+        "typescript_execution_received",
+        "no_premature_persistence"
+      ],
+      "unavailable_atoms": [],
+      "assistant_content": "Que excelente escolha! O TypeScript traz uma robustez incrível para projetos, facilitando a manutenção e a escalabilidade.\n\nComo você está no início ou no meio da implementação, gostaria de saber: qual é o objetivo principal do **Projeto Pitanga** (ex: um app web, uma biblioteca, um sistema de backend) e em que parte você está trabalhando agora?",
+      "first_terminal_dom_ms": 7553,
+      "first_terminal_dom_text": "Estou implementando meu projeto Pitanga em TypeScript.\n\nQue excelente escolha! O TypeScript traz uma robustez incrível para projetos, facilitando a manutenção e a escalabilidade.\n\nComo você está no início ou no meio da implementação, gostaria de saber: qual é o objetivo principal do Projeto Pitanga (ex: um app web, uma biblioteca, um sistema de backend) e em que parte você está trabalhando agora?\n\n3,391 in · 75 out\nResponding\n7s",
+      "attempts": [
+        {
+          "raw_answer": "Que excelente escolha! O TypeScript traz uma robustez incrível para projetos, facilitando a manutenção e a escalabilidade.\n\nComo você está no início ou no meio da implementação, gostaria de saber: qual é o objetivo principal do **Projeto Pitanga** (ex: um app web, uma biblioteca, um sistema de backend) e em que parte você está trabalhando agora?",
+          "assertions": [
+            {
+              "entity": "project.pitanga",
+              "property": "language",
+              "value": "typescript",
+              "span": "O TypeScript traz uma robustez incrível para projetos, facilitando a manutenção e a escalabilidade.",
+              "supported": true
+            }
+          ],
+          "violations": []
+        }
+      ],
+      "regenerations": 0,
+      "operation_reads": [
+        {
+          "event": "assistant_created",
+          "observed_at_ms": 126,
+          "read_started_ms": 132,
+          "proof_read_started_ms": 165,
+          "read_finished_ms": 190,
+          "job_state": null,
+          "source_operation_state": null,
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "assistant_content",
+          "observed_at_ms": 7526,
+          "read_started_ms": 7552,
+          "proof_read_started_ms": 7578,
+          "read_finished_ms": 7587,
+          "job_state": "queued",
+          "source_operation_state": "source_persisted",
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "generation_terminal",
+          "observed_at_ms": 7673,
+          "read_started_ms": 7673,
+          "proof_read_started_ms": 7678,
+          "read_finished_ms": 7684,
+          "job_state": "queued",
+          "source_operation_state": "processing",
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "learning_terminal",
+          "observed_at_ms": 11606,
+          "read_started_ms": 11606,
+          "proof_read_started_ms": 11613,
+          "read_finished_ms": 11619,
+          "job_state": "done",
+          "source_operation_state": "completed",
+          "learning_receipt_present": true,
+          "directive_receipt_present": false
+        }
+      ],
+      "delivered_memory_claims": [
+        {
+          "property": "implementation_stage",
+          "value": "beginning_or_middle",
+          "modality": "current_fact",
+          "supported": false,
+          "critical": false,
+          "basis": "USER establishes in-progress only; do not double-count the weaker embedded claim"
+        }
+      ],
+      "assessment": "The answer acknowledges TypeScript and ongoing work. It adds an unsupported restriction to the beginning or middle stage, which is a separate noncritical literal fidelity failure. Generic TypeScript praise is outside this memory claim.",
+      "native_binding_verified_fields": [
+        "operation_id",
+        "identity_version",
+        "profile",
+        "scope",
+        "project",
+        "conversation_id",
+        "source_message_id",
+        "mode",
+        "record_id",
+        "candidate_version",
+        "reviewed_version"
+      ],
+      "before_exposure": {
+        "operation": "source_persisted",
+        "learning_receipt_present": false,
+        "directive_receipt_present": false
+      },
+      "learning_receipt": {
+        "effect": "create",
+        "entity": "project.pitanga",
+        "property": "language",
+        "state": "candidate",
+        "value": "typescript",
+        "version": 1
+      },
+      "after_explicit_review": {
+        "state": "active",
+        "version": 2,
+        "temporal": "in_progress",
+        "source": "user"
+      }
+    },
+    {
+      "id": "go-t03",
+      "mode": "chat",
+      "source": "Futuramente, pretendo usar Rust no meu projeto Pitanga.",
+      "source_sha256": "86d5eb6cce5099b1e4035fb0801680014e740d21e3c01cecfda5d9df6b2fa69c",
+      "status": "checked",
+      "expected_atoms": [
+        "rust_plan_received",
+        "no_premature_persistence"
+      ],
+      "retained_atoms": [
+        "rust_plan_received",
+        "no_premature_persistence"
+      ],
+      "unavailable_atoms": [],
+      "assistant_content": "É uma excelente escolha, pois Rust oferece alta performance e gerenciamento de memória eficiente. Você pode integrar Rust ao projeto Pitanga através de WebAssembly ou como uma biblioteca de backend.",
+      "first_terminal_dom_ms": 3673,
+      "first_terminal_dom_text": "lucille-real-gemma\n\nÉ uma excelente escolha, pois Rust oferece alta performance e gerenciamento de memória eficiente. Você pode integrar Rust ao projeto Pitanga através de WebAssembly ou como uma biblioteca de backend.",
+      "attempts": [
+        {
+          "raw_answer": "É uma excelente escolha, pois Rust oferece alta performance e gerenciamento de memória eficiente. Você pode integrar Rust ao projeto Pitanga através de WebAssembly ou como uma biblioteca de backend.",
+          "assertions": [
+            {
+              "entity": "project.pitanga",
+              "property": "language",
+              "value": "rust",
+              "span": "É uma excelente escolha, pois Rust oferece alta performance e gerenciamento de memória eficiente.",
+              "supported": true
+            },
+            {
+              "entity": "project.pitanga",
+              "property": "language",
+              "value": "rust",
+              "span": "Você pode integrar Rust ao projeto Pitanga através de WebAssembly ou como uma biblioteca de backend.",
+              "supported": true
+            }
+          ],
+          "violations": []
+        }
+      ],
+      "regenerations": 0,
+      "operation_reads": [
+        {
+          "event": "assistant_created",
+          "observed_at_ms": 118,
+          "read_started_ms": 133,
+          "proof_read_started_ms": 194,
+          "read_finished_ms": 237,
+          "job_state": null,
+          "source_operation_state": null,
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "assistant_content",
+          "observed_at_ms": 3658,
+          "read_started_ms": 3673,
+          "proof_read_started_ms": 3703,
+          "read_finished_ms": 3714,
+          "job_state": "queued",
+          "source_operation_state": "source_persisted",
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "generation_terminal",
+          "observed_at_ms": 3684,
+          "read_started_ms": 3714,
+          "proof_read_started_ms": 3725,
+          "read_finished_ms": 3732,
+          "job_state": "queued",
+          "source_operation_state": "processing",
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "learning_terminal",
+          "observed_at_ms": 8938,
+          "read_started_ms": 8938,
+          "proof_read_started_ms": 8944,
+          "read_finished_ms": 8951,
+          "job_state": "done",
+          "source_operation_state": "completed",
+          "learning_receipt_present": true,
+          "directive_receipt_present": false
+        }
+      ],
+      "delivered_memory_claims": [],
+      "assessment": "The answer acknowledges the Rust plan through prospective advice. It does not assert that Rust is already implemented. Generic Rust praise is outside this memory claim.",
+      "native_binding_verified_fields": [
+        "operation_id",
+        "identity_version",
+        "profile",
+        "scope",
+        "project",
+        "conversation_id",
+        "source_message_id",
+        "mode",
+        "record_id",
+        "candidate_version",
+        "reviewed_version"
+      ],
+      "before_exposure": {
+        "operation": "source_persisted",
+        "learning_receipt_present": false,
+        "directive_receipt_present": false
+      },
+      "learning_receipt": {
+        "effect": "create",
+        "entity": "project.pitanga",
+        "property": "language",
+        "state": "candidate",
+        "value": "rust",
+        "version": 1
+      },
+      "after_explicit_review": {
+        "state": "active",
+        "version": 2,
+        "temporal": "planned",
+        "source": "user"
+      }
+    },
+    {
+      "id": "go-p01",
+      "mode": "code",
+      "source": "Qual banco escolhi no Pitanga?",
+      "source_sha256": "4b2b2e94ef04cd263a7663c7dca430d5910bdc10a7ae2d8e2a66319ec7fde5d4",
+      "status": "checked",
+      "expected_atoms": [
+        "mysql_chosen"
+      ],
+      "retained_atoms": [
+        "mysql_chosen"
+      ],
+      "unavailable_atoms": [],
+      "assistant_content": "Você escolheu o MySQL como banco de dados para o projeto Pitanga.",
+      "first_terminal_dom_ms": 5579,
+      "first_terminal_dom_text": "Qual banco escolhi no Pitanga?\n\nVocê escolheu o MySQL como banco de dados para o projeto Pitanga.\n\n3,602 in · 16 out\nResponding\n5s",
+      "attempts": [
+        {
+          "raw_answer": "Você escolheu o MySQL como banco de dados para o projeto Pitanga.",
+          "assertions": [
+            {
+              "entity": "project.pitanga",
+              "property": "database",
+              "value": "mysql",
+              "span": "Você escolheu o MySQL como banco de dados para o projeto Pitanga.",
+              "supported": true
+            }
+          ],
+          "violations": []
+        }
+      ],
+      "regenerations": 0,
+      "operation_reads": [
+        {
+          "event": "assistant_created",
+          "observed_at_ms": 113,
+          "read_started_ms": 117,
+          "proof_read_started_ms": 147,
+          "read_finished_ms": 155,
+          "job_state": null,
+          "source_operation_state": null,
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "assistant_content",
+          "observed_at_ms": 5572,
+          "read_started_ms": 5579,
+          "proof_read_started_ms": 5601,
+          "read_finished_ms": 5612,
+          "job_state": null,
+          "source_operation_state": null,
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "generation_terminal",
+          "observed_at_ms": 5732,
+          "read_started_ms": 5732,
+          "proof_read_started_ms": 5737,
+          "read_finished_ms": 5744,
+          "job_state": null,
+          "source_operation_state": null,
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "learning_terminal",
+          "observed_at_ms": 6456,
+          "read_started_ms": 6456,
+          "proof_read_started_ms": 6461,
+          "read_finished_ms": 6467,
+          "job_state": null,
+          "source_operation_state": null,
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        }
+      ],
+      "delivered_memory_claims": [
+        {
+          "property": "database",
+          "value": "mysql",
+          "modality": "decision",
+          "supported": true,
+          "basis": "approved version-2 Pitanga memory"
+        }
+      ],
+      "assessment": "The answer correctly presents MySQL as the selected database using the approved memory. The probe created no new job or receipt."
+    },
+    {
+      "id": "go-p02",
+      "mode": "agent",
+      "source": "Que linguagem estou implementando no Pitanga e qual está planejada para o futuro?",
+      "source_sha256": "6dd649effdefe874dfcd372d489e597582b49bb8a36dc18050b70e7b3d820352",
+      "status": "blocked",
+      "expected_atoms": [
+        "typescript_in_progress",
+        "rust_planned_future"
+      ],
+      "retained_atoms": [],
+      "unavailable_atoms": [
+        "typescript_in_progress",
+        "rust_planned_future"
+      ],
+      "assistant_content": "\n\nAgent error: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+      "first_terminal_dom_ms": 11062,
+      "first_terminal_dom_text": "lucille-real-gemma\n\nAgent error: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+      "attempts": [
+        {
+          "raw_answer": "Você está implementando o projeto Pitanga em TypeScript. Para o futuro, está planejado usar a linguagem Rust.",
+          "assertions": [
+            {
+              "entity": "project.pitanga",
+              "property": "language",
+              "value": "typescript",
+              "span": "Você está implementando o projeto Pitanga em TypeScript.",
+              "supported": true
+            }
+          ],
+          "violations": [
+            {
+              "code": "known_relation_not_used",
+              "span": "Você está implementando o projeto Pitanga em TypeScript. Para o futuro, está planejado usar a linguagem Rust.",
+              "critical": false
+            }
+          ]
+        },
+        {
+          "raw_answer": "Você está implementando o projeto Pitanga em TypeScript e planeja usar Rust no futuro.",
+          "assertions": [
+            {
+              "entity": "project.pitanga",
+              "property": "language",
+              "value": "typescript",
+              "span": "Você está implementando o projeto Pitanga em TypeScript",
+              "supported": true
+            }
+          ],
+          "violations": [
+            {
+              "code": "known_relation_not_used",
+              "span": "Você está implementando o projeto Pitanga em TypeScript e planeja usar Rust no futuro.",
+              "critical": false
+            }
+          ]
+        }
+      ],
+      "regenerations": 1,
+      "operation_reads": [
+        {
+          "event": "assistant_created",
+          "observed_at_ms": 120,
+          "read_started_ms": 127,
+          "proof_read_started_ms": 168,
+          "read_finished_ms": 178,
+          "job_state": null,
+          "source_operation_state": null,
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "assistant_content",
+          "observed_at_ms": 11050,
+          "read_started_ms": 11062,
+          "proof_read_started_ms": 11080,
+          "read_finished_ms": 11088,
+          "job_state": null,
+          "source_operation_state": null,
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "generation_terminal",
+          "observed_at_ms": 11258,
+          "read_started_ms": 11258,
+          "proof_read_started_ms": 11266,
+          "read_finished_ms": 11271,
+          "job_state": null,
+          "source_operation_state": null,
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "learning_terminal",
+          "observed_at_ms": 11977,
+          "read_started_ms": 11977,
+          "proof_read_started_ms": 11983,
+          "read_finished_ms": 11989,
+          "job_state": null,
+          "source_operation_state": null,
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        }
+      ],
+      "delivered_memory_claims": [],
+      "assessment": "Both raw answers state the correct TypeScript execution and future Rust plan. The verifier recognizes only the TypeScript clause and twice rejects the complete answer with known_relation_not_used. The GUI provides no answer atoms."
+    },
+    {
+      "id": "go-p03",
+      "mode": "chat",
+      "source": "Compare o banco do Pitanga com o banco do projeto Jatobá.",
+      "source_sha256": "bcfa5b2133668b3ec3d699dd5b9536f70671a88c0822f3c0bebb17540bda1109",
+      "status": "blocked",
+      "expected_atoms": [
+        "mysql_chosen",
+        "jatoba_unavailable_in_binding"
+      ],
+      "retained_atoms": [],
+      "unavailable_atoms": [
+        "mysql_chosen",
+        "jatoba_unavailable_in_binding"
+      ],
+      "assistant_content": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+      "first_terminal_dom_ms": 5872,
+      "first_terminal_dom_text": "lucille-real-gemma\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+      "attempts": [
+        {
+          "raw_answer": "O projeto Pitanga utiliza o MySQL como banco de dados. Não há informações disponíveis sobre o banco do projeto Jatobá para comparação.",
+          "assertions": [
+            {
+              "entity": "project.pitanga",
+              "property": "database",
+              "value": "mysql",
+              "span": "O projeto Pitanga utiliza o MySQL como banco de dados.",
+              "supported": true
+            }
+          ],
+          "violations": [
+            {
+              "code": "plan_or_decision_as_execution",
+              "span": "O projeto Pitanga utiliza o MySQL como banco de dados.",
+              "critical": true
+            }
+          ]
+        },
+        {
+          "raw_answer": "O projeto Pitanga utiliza MySQL como banco de dados, enquanto não há registro disponível sobre o banco do projeto Jatobá.",
+          "assertions": [
+            {
+              "entity": "project.pitanga",
+              "property": "database",
+              "value": "mysql",
+              "span": "O projeto Pitanga utiliza MySQL como banco de dados",
+              "supported": true
+            }
+          ],
+          "violations": [
+            {
+              "code": "plan_or_decision_as_execution",
+              "span": "O projeto Pitanga utiliza MySQL como banco de dados",
+              "critical": true
+            }
+          ]
+        }
+      ],
+      "regenerations": 1,
+      "operation_reads": [
+        {
+          "event": "assistant_created",
+          "observed_at_ms": 113,
+          "read_started_ms": 122,
+          "proof_read_started_ms": 157,
+          "read_finished_ms": 187,
+          "job_state": null,
+          "source_operation_state": null,
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "assistant_content",
+          "observed_at_ms": 5857,
+          "read_started_ms": 5871,
+          "proof_read_started_ms": 5893,
+          "read_finished_ms": 5902,
+          "job_state": null,
+          "source_operation_state": null,
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "generation_terminal",
+          "observed_at_ms": 5945,
+          "read_started_ms": 5945,
+          "proof_read_started_ms": 5950,
+          "read_finished_ms": 5955,
+          "job_state": null,
+          "source_operation_state": null,
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        },
+        {
+          "event": "learning_terminal",
+          "observed_at_ms": 6663,
+          "read_started_ms": 6663,
+          "proof_read_started_ms": 6669,
+          "read_finished_ms": 6674,
+          "job_state": null,
+          "source_operation_state": null,
+          "learning_receipt_present": false,
+          "directive_receipt_present": false
+        }
+      ],
+      "delivered_memory_claims": [],
+      "assessment": "Both raw attempts assert current MySQL use, which exceeds the approved choice. Both mention Jatoba is unavailable but neither explicitly ties unavailability to the binding. The critical raw modality error is blocked and neither planned atom is delivered."
+    }
+  ],
+  "limitations": [
+    "This run used a fresh Pitanga development scope; it did not prepopulate that scope with the original Jatoba main-project records. Absence of a leaked Jatoba value here provides no positive isolation test against a conflicting populated binding.",
+    "Operation reads are asynchronous intervals relative to each turn; a terminal receipt observation bounds the time of commit but is not the database commit timestamp.",
+    "No display of a true post-commit persistence confirmation or forgetting receipt, completed replay, external file tool, or copy observation was exercised here."
+  ]
+}
