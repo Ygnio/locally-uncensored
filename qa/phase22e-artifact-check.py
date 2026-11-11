@@ -93,6 +93,9 @@ def verify_artifacts(repo, root, freeze, phase='22e'):
     assert Path(gui['gui']['executable']).resolve(strict=True) == native
     assert digest(native) == freeze['native_gui_sha256'], 'Frozen native GUI changed'
     assert digest(bridge) == freeze['bridge_sha256'], 'Frozen native bridge changed'
+    if phase == '22f':
+        dependencies = {p.name:digest(p) for p in sorted(native.parent.glob('*.dll')) if p.is_file()}
+        assert dependencies == freeze['native_local_dependencies_sha256'], 'Frozen native DLL inventory changed'
     static = repo / ('qa-dist-' + phase)
     assert (static / '.lucille-static-build').read_bytes() == b'synthetic-data-only\n'
     actual = {p.relative_to(static).as_posix(): digest(p) for p in static.rglob('*') if p.is_file()}

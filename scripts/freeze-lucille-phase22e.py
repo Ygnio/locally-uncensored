@@ -102,6 +102,9 @@ def main(a, phase='22e'):
         source_authority_version=int(re.search(r'pub const SOURCE_AUTHORITY_VERSION: u32 = (\d+);',(repo/'crates/lucille-memory/src/source_authority.rs').read_text(encoding='utf-8')).group(1)),
         identity=fixture.get('identity') if fixture else None,policy=fixture.get('policy') if fixture else None,
         evaluation_contract='No source/prompt/policy/parameter/corpus/ranking changes during execution; actual raw generations, all fidelity reports, displayed text and usefulness are separate.')
+    if phase=='22f':
+        data['native_local_dependencies_sha256'] = {} if a.without_gui else {
+            p.name:digest(p) for p in sorted(gui.parent.glob('*.dll')) if p.is_file()}
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_bytes((json.dumps(data,ensure_ascii=False,indent=2)+'\n').encode('utf-8'))
     print(json.dumps(dict(kind=a.kind,source_files=len(sources),corpora=len(corpora),sha256=digest(output))))

@@ -47,6 +47,9 @@ def main(a, phase='22e'):
     native = Path(gui['gui']['executable']).resolve(strict=True)
     assert native == expected_native.resolve(strict=True)
     assert hashlib.sha256(native.read_bytes()).hexdigest() == freeze['native_gui_sha256']
+    if phase == '22f':
+        dependencies = {p.name:artifacts.digest(p) for p in sorted(native.parent.glob('*.dll')) if p.is_file()}
+        assert dependencies == freeze['native_local_dependencies_sha256']
     assert json.loads((reports / 'real-public-pin.json').read_text(encoding='utf-8')) == freeze['model_pin']
     ready = artifacts.read_report(reports / 'driver-ready-progress.json', timeout=5)
     assert ready['native'] is True
@@ -102,6 +105,8 @@ def main(a, phase='22e'):
             print(a.label, 'copy payload observation', copy.get('status'), copy.get('handler_payload_matches_verified'), flush=True)
         h.verify(repo, a.freeze)
         assert hashlib.sha256(native.read_bytes()).hexdigest() == freeze['native_gui_sha256']
+        if phase == '22f':
+            assert {p.name:artifacts.digest(p) for p in sorted(native.parent.glob('*.dll')) if p.is_file()} == dependencies
         assert json.loads((reports / 'real-public-pin.json').read_text(encoding='utf-8')) == freeze['model_pin']
         for relative, sha in freeze.get('frontend_sha256', {}).items():
             assert hashlib.sha256((static / relative).read_bytes()).hexdigest() == sha
