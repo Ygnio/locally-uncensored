@@ -24,13 +24,349 @@ pub(crate) struct Evidence<'a> {
 fn has(words: &[&str], alternatives: &[&str]) -> bool {
     alternatives.iter().any(|w| words.contains(w))
 }
+fn tokens(s: &str) -> Vec<&str> {
+    s.split(|c: char| !c.is_alphanumeric())
+        .filter(|w| !w.is_empty())
+        .collect()
+}
+fn possessive(word: &str) -> bool {
+    ["meu", "minha", "meus", "minhas", "my"].contains(&word)
+}
+fn preference_descriptor(words: &[&str]) -> bool {
+    if has(
+        words,
+        &[
+            "contrario",
+            "oposto",
+            "opposite",
+            "except",
+            "exceto",
+            "instead",
+            "rather",
+        ],
+    ) {
+        return false;
+    }
+    words.iter().enumerate().any(|(i, word)| {
+        let prefix = &words[..i];
+        let after = &words[i + 1..];
+        let emphasis = after
+            .first()
+            .is_some_and(|w| ["own", "proprio", "propria", "proprios", "proprias"].contains(w));
+        possessive(word)
+            && after.get(usize::from(emphasis)).is_some_and(|w| {
+                [
+                    "preferencia",
+                    "preferencias",
+                    "preference",
+                    "preferences",
+                    "preferred",
+                    "favorito",
+                    "favorita",
+                    "favorite",
+                    "favourite",
+                ]
+                .contains(w)
+            })
+            && (matches!(
+                prefix,
+                [] | ["a" | "o" | "as" | "os" | "among"]
+                    | ["one", "of"]
+                    | ["entre", "as", "bebidas"]
+                    | ["among", "the", "drinks" | "beverages"]
+            ) || (prefix.last() == Some(&"de")
+                && has(prefix, &["idioma", "lingua", "tema", "respostas"])))
+    })
+}
+fn nominal_preference<'a>(words: &'a [&'a str]) -> Option<(&'a [&'a str], &'a [&'a str])> {
+    for (i, word) in words.iter().enumerate() {
+        if ["e", "sao", "is", "are"].contains(word) {
+            let left = &words[..i];
+            let right = &words[i + 1..];
+            if preference_descriptor(left) {
+                return Some((left, right));
+            }
+            if preference_descriptor(right) {
+                return Some((right, left));
+            }
+        }
+        let tail = &words[i..];
+        if tail.len() >= 5
+            && ["faz", "fazem"].contains(word)
+            && tail[1] == "parte"
+            && ["de", "da", "das", "do", "dos"].contains(&tail[2])
+            && preference_descriptor(&tail[3..])
+        {
+            return Some((&tail[3..], &words[..i]));
+        }
+    }
+    None
+}
+fn adverbial_preference(words: &[&str]) -> Option<(usize, usize)> {
+    words.iter().enumerate().find_map(|(i, word)| {
+        if *word != "i" {
+            return None;
+        }
+        let modifier = words[i + 1..]
+            .iter()
+            .take(2)
+            .take_while(|w| ["now", "personally", "usually", "really", "generally"].contains(w))
+            .count();
+        let verb = i + 1 + modifier;
+        (modifier > 0
+            && words
+                .get(verb)
+                .is_some_and(|w| ["prefer", "like", "enjoy", "love"].contains(w)))
+        .then_some((i, verb + 1))
+    })
+}
+/// Witness the speaker of the predicate without deciding its canonical value.
+pub(crate) fn owns_preference_predicate(text: &str) -> bool {
+    let s = fold(text);
+    let words = tokens(&s);
+    nominal_preference(&words).is_some()
+        || adverbial_preference(&words).is_some()
+        || explicit_renewal(text)
+}
+fn preference_value(descriptor: &[&str], target: &[&str]) -> Option<(&'static str, &'static str)> {
+    let start = target
+        .iter()
+        .take_while(|w| ["a", "o", "os", "the"].contains(w))
+        .count();
+    let target = &target[start..];
+    let target = if let Some(at) = target
+        .iter()
+        .position(|w| ["when", "while", "quando"].contains(w))
+    {
+        let adjunct = &target[at..];
+        if adjunct.len() == 4
+            && ["i", "eu"].contains(&adjunct[1])
+            && ["drink", "tomo", "bebo"].contains(&adjunct[2])
+            && ["it", "coffee", "cafe"].contains(&adjunct[3])
+        {
+            &target[..at]
+        } else {
+            target
+        }
+    } else {
+        target
+    };
+    match target {
+        ["light", "theme"] | ["tema", "claro"] => Some(("interface_theme", "light")),
+        ["dark", "theme"] | ["tema", "escuro"] => Some(("interface_theme", "dark")),
+        ["portugues" | "portuguese"]
+            if has(
+                descriptor,
+                &[
+                    "idioma",
+                    "lingua",
+                    "language",
+                    "respostas",
+                    "answers",
+                    "replies",
+                ],
+            ) =>
+        {
+            Some(("response_language", "pt"))
+        }
+        ["jogos", "de", "estrategia", "por", "turnos"] | ["turn", "based", "strategy", "games"] => {
+            Some(("games_turn_strategy", "positive"))
+        }
+        ["cafe" | "coffee", preparation, "acucar" | "sugar"] => match *preparation {
+            "sem" | "without" => Some(("coffee_sugar", "without_sugar")),
+            "com" | "with" => Some(("coffee_sugar", "with_sugar")),
+            _ => None,
+        },
+        _ => None,
+    }
+}
+fn modified_preference_value(words: &[&str]) -> Option<(&'static str, &'static str)> {
+    let (speaker, target) = adverbial_preference(words)?;
+    let before = &words[..speaker];
+    let target = &words[target..];
+    if before.windows(2).any(|pair| pair == ["my", "coffee"])
+        || before
+            .windows(3)
+            .any(|pair| pair == ["my", "own", "coffee"])
+    {
+        // Only the explicitly bound coffee permits this pronoun resolution.
+        if let ["it", preparation, "sugar"] = target {
+            return preference_value(&[], &["coffee", preparation, "sugar"]);
+        }
+    }
+    preference_value(&[], target)
+}
+fn device_relative_clause(words: &[&str]) -> bool {
+    words.iter().enumerate().any(|(i, word)| {
+        let body = match *word {
+            "que" => words[i + 1..]
+                .strip_prefix(&["eu"])
+                .unwrap_or(&words[i + 1..]),
+            "i" => &words[i + 1..],
+            _ => return false,
+        };
+        body.first()
+            .is_some_and(|verb| ["uso", "utilizo", "use"].contains(verb))
+            && [
+                &["computador", "principal"][..],
+                &["pc", "principal"],
+                &["notebook", "de", "trabalho"],
+                &["notebook", "do", "trabalho"],
+                &["primary", "computer"],
+                &["work", "laptop"],
+            ]
+            .iter()
+            .any(|device| words[..i].ends_with(device))
+    })
+}
+pub(crate) fn owns_device_relative_clause(text: &str) -> bool {
+    device_relative_clause(&tokens(&fold(text)))
+}
+fn possessed_device(words: &[&str]) -> bool {
+    words.iter().enumerate().any(|(i, word)| {
+        possessive(word)
+            && words[i + 1..]
+                .iter()
+                .take(3)
+                .find(|w| !["outro", "other", "primary", "main", "work"].contains(w))
+                .is_some_and(|w| {
+                    ["computador", "computer", "pc", "notebook", "laptop", "note"].contains(w)
+                })
+    })
+}
+fn installed_capacity_predicate(words: &[&str]) -> bool {
+    let Some(amount_at) = words.iter().enumerate().position(|(i, word)| {
+        (words.get(i + 1) == Some(&"gb") && word.parse::<u32>().is_ok())
+            || word
+                .strip_suffix("gb")
+                .is_some_and(|n| n.parse::<u32>().is_ok())
+    }) else {
+        return false;
+    };
+    words.iter().enumerate().any(|(i, word)| {
+        let next = i
+            + 1
+            + words[i + 1..]
+                .iter()
+                .take_while(|w| {
+                    ["hoje", "atualmente", "agora", "today", "currently", "now"].contains(w)
+                })
+                .count();
+        match *word {
+            "ha" => next == amount_at,
+            "conta" => words.get(next) == Some(&"com") && next + 1 == amount_at,
+            "esta" | "estao" | "is" | "are" => {
+                words.get(next).is_some_and(|w| {
+                    [
+                        "instalado",
+                        "instalados",
+                        "instalada",
+                        "instaladas",
+                        "installed",
+                    ]
+                    .contains(w)
+                }) && (next + 1 == amount_at
+                    || (amount_at < i
+                        && words[amount_at + 1..i]
+                            .iter()
+                            .all(|w| ["gb", "of", "de", "ram", "memoria", "memory"].contains(w))))
+            }
+            _ => false,
+        }
+    })
+}
+fn owned_choice(words: &[&str]) -> bool {
+    words.iter().enumerate().any(|(at, word)| {
+        possessive(word)
+            && words[at + 1..]
+                .iter()
+                .take(3)
+                .find(|w| !["database", "language", "final", "atual", "current"].contains(w))
+                .is_some_and(|w| ["escolha", "choice", "decisao", "decision"].contains(w))
+    }) || (has(words, &["meu", "my"])
+        && has(words, &["decidi", "decided"])
+        && has(words, &["usar", "use"]))
+}
+
+pub(crate) fn owns_project_choice_descriptor(text: &str) -> bool {
+    let s = fold(text);
+    let words = tokens(&s);
+    has(&words, &["projeto", "project"]) && owned_choice(&words)
+}
+
+fn project_choice(words: &[&str]) -> Option<(&'static str, &'static str)> {
+    if !has(words, &["projeto", "project"])
+        || has(
+            words,
+            &[
+                "anterior",
+                "antiga",
+                "previous",
+                "former",
+                "candidata",
+                "candidate",
+            ],
+        )
+    {
+        return None;
+    }
+    for (i, word) in words.iter().enumerate() {
+        if !["e", "foi", "is", "was"].contains(word) {
+            continue;
+        }
+        for (descriptor, target) in [
+            (&words[..i], &words[i + 1..]),
+            (&words[i + 1..], &words[..i]),
+        ] {
+            if !owned_choice(descriptor) {
+                continue;
+            }
+            let Some((last, qualifier)) = target.split_last() else {
+                continue;
+            };
+            // An introductory project adjunct may precede the selected value.
+            // Alternative values or an additional proposition do not qualify.
+            if !qualifier.is_empty()
+                && !qualifier
+                    .last()
+                    .is_some_and(|w| ["projeto", "project"].contains(w))
+            {
+                continue;
+            }
+            for (property, nouns, values) in [
+                (
+                    "language",
+                    &["linguagem", "language"][..],
+                    &["rust", "python", "typescript", "javascript"][..],
+                ),
+                (
+                    "database",
+                    &["database", "banco"][..],
+                    &["sqlite", "mysql", "postgresql"][..],
+                ),
+            ] {
+                if has(descriptor, nouns) {
+                    if let Some(value) = values.iter().find(|v| *v == last) {
+                        return Some((property, *value));
+                    }
+                }
+            }
+        }
+    }
+    None
+}
 /// An imperative storage operation is distinct from a change in personal liking.
 pub(crate) fn explicit_renewal(text: &str) -> bool {
     let s = fold(text);
     let command = s.split(':').next().unwrap_or(&s);
-    let words = command.split(|c: char| !c.is_alphanumeric()).filter(|w| !w.is_empty()).collect::<Vec<_>>();
-    !text.contains('?') && !has(&words, &["nao", "not", "never", "talvez", "maybe"])
-        && ((words.first() == Some(&"volte") && has(&words, &["guardar", "memorizar", "registrar"]))
+    let words = command
+        .split(|c: char| !c.is_alphanumeric())
+        .filter(|w| !w.is_empty())
+        .collect::<Vec<_>>();
+    !text.contains('?')
+        && !has(&words, &["nao", "not", "never", "talvez", "maybe"])
+        && ((words.first() == Some(&"volte")
+            && has(&words, &["guardar", "memorizar", "registrar"]))
             || s.starts_with("quero voltar a registrar minha preferencia: ")
             || s.starts_with("i want to remember my preference again: ")
             || s.starts_with("pode voltar a memorizar: ")
@@ -39,10 +375,7 @@ pub(crate) fn explicit_renewal(text: &str) -> bool {
 /// Interpretation is deliberately partial. Unproved relations return None.
 pub(crate) fn interpret<'a>(text: &'a str, project: &'a str) -> Option<Evidence<'a>> {
     let s = fold(text);
-    let words = s
-        .split(|c: char| !c.is_alphanumeric())
-        .filter(|w| !w.is_empty())
-        .collect::<Vec<_>>();
+    let words = tokens(&s);
     if text.contains('?')
         || has(
             &words,
@@ -68,7 +401,11 @@ pub(crate) fn interpret<'a>(text: &'a str, project: &'a str) -> Option<Evidence<
     {
         return None;
     }
-    let personal = has(&words, &["meu", "minha", "my", "eu", "i", "tenho"])
+    let relative_device = device_relative_clause(&words);
+    let personal = has(
+        &words,
+        &["meu", "minha", "meus", "minhas", "my", "eu", "i", "tenho"],
+    ) || relative_device
         || s.starts_with("o pc principal ");
     if !personal {
         return None;
@@ -92,30 +429,46 @@ pub(crate) fn interpret<'a>(text: &'a str, project: &'a str) -> Option<Evidence<
     if explicit_renewal(text) && s.contains("minha preferencia por ") {
         let target = s.split("minha preferencia por ").nth(1)?;
         if target == "cafe sem acucar" {
-            e.kind = Kind::Preference; e.temporal = "preference";
-            e.property = "coffee_sugar".into(); e.value = "without_sugar".into();
+            e.kind = Kind::Preference;
+            e.temporal = "preference";
+            e.property = "coffee_sugar".into();
+            e.value = "without_sugar".into();
             return Some(e);
         }
     }
     // A preference for coffee is not a sugar preparation or a favorite-beverage claim.
     // Keep this separate canonical relation rather than manufacturing those qualifiers.
-    if ["eu prefiro cafe","prefiro cafe","eu gosto de cafe","gosto de cafe","i prefer coffee","i like coffee"].contains(&s.as_str()) {
-        e.kind=Kind::Preference;e.temporal="preference";
-        e.property="beverage_preference".into();e.value="coffee".into();return Some(e)
+    if [
+        "eu prefiro cafe",
+        "prefiro cafe",
+        "eu gosto de cafe",
+        "gosto de cafe",
+        "i prefer coffee",
+        "i like coffee",
+    ]
+    .contains(&s.as_str())
+    {
+        e.kind = Kind::Preference;
+        e.temporal = "preference";
+        e.property = "beverage_preference".into();
+        e.value = "coffee".into();
+        return Some(e);
+    }
+    if let Some((property, value)) = nominal_preference(&words)
+        .and_then(|(descriptor, target)| preference_value(descriptor, target))
+        .or_else(|| modified_preference_value(&words))
+    {
+        e.kind = Kind::Preference;
+        e.temporal = "preference";
+        e.property = property.into();
+        e.value = value.into();
+        return Some(e);
     }
     // Nominal preference predicates require a personal possessor and a copula.
     let copula = words.iter().position(|w| ["e", "is"].contains(w));
     if let Some(at) = copula {
         let head = &words[..at];
-        let raw_tail = &words[at + 1..];
-        // A consumption-time adjunct qualifies the same preparation preference;
-        // it does not nominate another speaker or a different drink.
-        let tail = if let Some(boundary)=raw_tail.iter().position(|w|["when","while","quando"].contains(w)) {
-            let adjunct=&raw_tail[boundary..];
-            if adjunct.len()==4 && ["i","eu"].contains(&adjunct[1])
-                && ["drink","tomo","bebo"].contains(&adjunct[2])
-                && ["it","coffee","cafe"].contains(&adjunct[3]) {&raw_tail[..boundary]}else{raw_tail}
-        }else{raw_tail};
+        let tail = &words[at + 1..];
         if has(
             head,
             &[
@@ -144,52 +497,29 @@ pub(crate) fn interpret<'a>(text: &'a str, project: &'a str) -> Option<Evidence<
                 .into();
                 return Some(e);
             }
-            if [
-                &["cafe", "sem", "acucar"][..],
-                &["coffee", "without", "sugar"][..],
-            ]
-            .contains(&tail)
-            {
-                e.property = "coffee_sugar".into();
-                e.value = "without_sugar".into();
-                return Some(e);
-            }
         }
-        if has(head, &["projeto", "project"])
-            && has(head, &["meu", "my"])
-            && (has(head, &["escolha", "choice"])
-                || (has(head, &["decidi", "decided"]) && has(head, &["usar", "use"])))
-            && tail.len() == 1
-        {
-            let property = if has(head, &["linguagem", "language"])
-                && has(tail, &["rust", "python", "typescript", "javascript"])
-            {
-                "language"
-            } else if has(head, &["database", "banco"])
-                && has(tail, &["sqlite", "mysql", "postgresql"])
-            {
-                "database"
-            } else {
-                return None;
-            };
-            e.kind = Kind::Decision;
-            e.entity = format!("project.{project}");
-            e.property = property.into();
-            e.value = tail[0].into();
-            return Some(e);
-        }
+    }
+    if let Some((property, value)) = project_choice(&words) {
+        e.kind = Kind::Decision;
+        e.entity = format!("project.{project}");
+        e.property = property.into();
+        e.value = value.into();
+        return Some(e);
     }
     if has(&words, &["ram", "memoria", "memory"])
         && !has(
             &words,
             &[
                 "comprar", "buy", "instale", "install", "quero", "want", "gpu", "vram", "livres",
-                "free",
+                "free", "livre", "gostaria", "would", "should", "deveria", "pretendo", "plan",
+                "previsao", "previsto", "prevista", "maximum", "maximo",
             ],
         )
         && (has(&words, &["tem", "possui", "tenho", "has", "have"])
             || s.contains("equipado com")
-            || s.contains("equipped with"))
+            || s.contains("equipped with")
+            || ((possessed_device(&words) || relative_device)
+                && installed_capacity_predicate(&words)))
     {
         let amounts = crate::coverage::amounts(&s);
         if amounts.len() == 1 {

@@ -18,7 +18,22 @@ export const normalizeEvidenceText = (text: string) => text.normalize('NFD').rep
 /** Keep explicit contrasting subjects separate; relative game features are not
  * new speakers. This is response attribution, never permission to learn. */
 export function answerRelationClauses(text:string):string[]{
- return text.split(/(?<=[.!?;\n])\s+|\b(?:mas|por[eé]m|however|but)\b|,?\s+(?=(?:enquanto|whereas|while)\s+(?:(?:a|o|the)\s+)?(?:personage(?:m|ns)|characters?|narrador(?:a)?|narrators?|ferramenta|tool|voc[eê]|you)(?![\p{L}\p{N}_]))|\s+(?=(?:e|and)\s+(?:(?:a|o|the)\s+)?(?:personagem|character|narradora?|narrator|ferramenta|tool|(?:(?:voc[eê]|you)\s+)?(?:decidiu|escolheu|planeja|pretende|usa|utiliza|uses|plans|decided|chose|intends))\b)|\s+(?=(?:embora|although)\b)/iu).slice(0,128)
+ return text.split(/(?<=[.!?;\n])\s+|\b(?:mas|por[eé]m|however|but)\b|,?\s+(?:enquanto|whereas|while)\s+(?=n[aã]o (?:h[aá]|tenho|encontrei)(?![\p{L}\p{N}_])|there (?:is|are) no\b|i (?:do not|don.t) (?:know|have)\b)|,?\s+(?=(?:enquanto|whereas|while)\s+(?:(?:a|o|the)\s+)?(?:personage(?:m|ns)|characters?|narrador(?:a)?|narrators?|ferramenta|tool|voc[eê]|you)(?![\p{L}\p{N}_]))|\s+(?=(?:e|and)\s+(?:(?:a|o|the)\s+)?(?:personagem|character|narradora?|narrator|ferramenta|tool|(?:(?:voc[eê]|you)\s+)?(?:decidiu|escolheu|planeja|pretende|usa|utiliza|uses|plans|decided|chose|intends))\b)|\s+(?=(?:embora|although)\b)/iu).slice(0,128)
+}
+
+/** Query form that asks for a plan or choice, including a nominal past
+ * predicate. Scope and the temporal validity of the record are supplied by SQLite. */
+export function requestsProjectPlan(query: string, fact: MemoryFact): boolean {
+  if (!['database','language'].includes(fact.property) || !['planned','decision'].includes(fact.modality)) return false
+  const q = normalizeEvidenceText(query)
+  if (/\b(?:agora|atualmente|current(?:ly)?|now|still|ainda)\b/.test(q)) return false
+  const field = fact.property === 'database' ? /\b(?:banco|database)\b/ : /\b(?:linguagem|language)\b/
+  const relation = fact.modality === 'planned' ? /\b(?:planejad[ao]|planejava|pretendia|planejei|planned|had intended|had planned)\b/ : /\b(?:escolhid[ao]|decidid[ao]|escolhi|decidi|chosen|chose|selected|decided)\b/
+  return answerRelationClauses(q).some(clause => field.test(clause) && relation.test(clause) && !/\b(?:irmao|irma|brother|sister|colleague|colega)\b/.test(clause.split(/\b(?:com|versus|vs\.?|against|with|to)\b/u,1)[0]))
+}
+
+export function historicalProjectWording(span: string): boolean {
+  return /\b(?:planejava|pretendia|tinha (?:planejado|escolhido|decidido)|havia (?:planejado|escolhido|decidido)|had (?:planned|intended|chosen|selected|decided)|used to (?:plan|intend))\b|\b(?:planejad[ao]|escolhid[ao]|decidid[ao]|planned|chosen|selected)\b[^,;.!?]{0,65}\b(?:era|foi|was)\b|\b(?:era|foi|was)\b[^,;.!?]{0,65}\b(?:planejad[ao]|escolhid[ao]|decidid[ao]|planned|chosen|selected)\b/.test(normalizeEvidenceText(span))
 }
 /** An explicitly named fictional/document/tool subject is not the USER.
  * A later personal subject remains a personal claim and cannot borrow this exemption. */

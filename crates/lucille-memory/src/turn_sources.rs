@@ -57,25 +57,6 @@ pub(crate) fn validate(req: &TurnRequest, source: &SourceProof) -> Result<String
     }
     Ok(id)
 }
-pub(crate) fn receipt(db: &Connection, input: &Interaction) -> Result<Option<serde_json::Value>> {
-    let Some(property) = crate::autonomous::forget_property(&input.user_text) else {
-        return Ok(None);
-    };
-    let id = id(input)?;
-    let op:Option<String>=db.query_row("SELECT h.operation FROM history h WHERE h.record_id=?1 AND h.operation IN ('forget_applied','forget_empty') AND EXISTS(SELECT 1 FROM extraction_jobs j WHERE j.id=?2 AND j.state='done') ORDER BY h.sequence DESC LIMIT 1",params![receipt_id(&id)?,id],|r|r.get(0)).optional().map_err(db_error)?;
-    Ok(op.map(|op|serde_json::json!({"id":id,"action":"forget","property":property,"state":"done","had_records":op=="forget_applied","scope":input.scope,"project":input.project,"conversation_id":input.conversation_id,"source_message_id":input.message_id})))
-}
-/// Durable per-source result, never inferred from a reservation or model text.
-/// Rows are read in the caller's transaction, so rollback cannot produce a receipt.
-pub(crate) fn learning_receipt(db: &Connection, req: &TurnRequest, source: &SourceProof) -> Result<Option<serde_json::Value>> {
-    let id=validate(req,source)?;
-    let done:bool=db.query_row("SELECT EXISTS(SELECT 1 FROM extraction_jobs WHERE id=?1 AND state='done')",[&id],|r|r.get(0)).map_err(db_error)?;
-    if !done {return Ok(None)}
-    let mut stmt=db.prepare("SELECT m.id,m.version,m.state,q.subject,q.property,q.value FROM memories m JOIN memory_quality q ON q.memory_id=m.id JOIN memory_provenance p ON p.memory_id=m.id WHERE p.interaction_id=?1 AND m.scope=?2 AND m.project=?3 AND m.state IN ('candidate','active') AND (q.expires_at IS NULL OR q.expires_at>?4) ORDER BY m.id LIMIT 17").map_err(db_error)?;
-    let records=stmt.query_map(params![id,req.scope,req.project,crate::now()],|r| Ok(serde_json::json!({"id":r.get::<_,String>(0)?,"version":r.get::<_,i64>(1)?,"state":r.get::<_,String>(2)?,"entity":r.get::<_,String>(3)?,"property":r.get::<_,String>(4)?,"value":r.get::<_,String>(5)?}))).map_err(db_error)?.collect::<rusqlite::Result<Vec<_>>>().map_err(db_error)?;
-    if records.is_empty() || records.len()>16 {return Ok(None)}
-    Ok(Some(serde_json::json!({"id":id,"action":"learn","state":"done","scope":req.scope,"project":req.project,"conversation_id":req.conversation_id,"source_message_id":source.interaction.message_id,"records":records})))
-}
 pub(crate) fn statements(
     db: &Connection,
     req: &TurnRequest,
@@ -160,7 +141,7 @@ impl Store {
             token_budget: 8192,
         };
         Ok(
-            serde_json::json!({"job":job,"proof":proof,"current_statements":statements(&self.db,&req,&proof)?,"directive_receipt":receipt(&self.db,&input)?,"source_authority":crate::source_authority::speaker_summary(&input.user_text)}),
+            serde_json::json!({"job":job,"proof":proof,"current_statements":statements(&self.db,&req,&proof)?,"directive_receipt":crate::source_operations::forget(&self.db,&input)?,"source_authority":crate::source_authority::speaker_summary(&input.user_text)}),
         )
     }
     pub fn publish_user_turn(&mut self, source: SourceProof) -> Result<serde_json::Value> {

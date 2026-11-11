@@ -1,6 +1,7 @@
 //! Canonical, opt-in SQLite memory. No inference, networking, process control or personal-data discovery.
 pub mod autonomous;
 mod aux_backup;
+mod source_operations;
 pub mod context_facts;
 mod coverage;
 pub mod dialogue;
@@ -114,6 +115,7 @@ impl Store {
             include_str!("003_code.sql"),
             include_str!("004_intelligent.sql"),
             include_str!("005_semantic_learning.sql"),
+            include_str!("006_source_operations.sql"),
         ];
         if version < 0 || version > migrations.len() as i64 {
             return Err("Unsupported newer database schema".into());

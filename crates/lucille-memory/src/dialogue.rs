@@ -236,7 +236,8 @@ fn eligible_clause(text: &str) -> bool {
             "beverage",
         ]
         .contains(&words[1])
-        && crate::evidence::interpret(text, "proof").is_none()
+        && !crate::evidence::owns_preference_predicate(text)
+        && !crate::evidence::owns_project_choice_descriptor(text)
     {
         return false;
     }
@@ -310,6 +311,11 @@ pub fn project_scope_matches(text: &str, project: &str) -> bool {
         ["project", "projeto"].contains(&p[0])
             && !p[1].is_empty()
             && !(original[index].ends_with(',') && ["a", "o", "the", "eu", "i", "we", "decidi", "escolhi", "pretendo", "planejo", "quero", "vou"].contains(&p[1]))
+            // A comma closes a deictic project adjunct. A technical value
+            // starting the next clause is not a new project name.
+            && !(index > 0 && original[index].ends_with(',')
+                && ["deste", "desse", "neste", "nesse", "this"].contains(&w[index - 1])
+                && ["postgresql", "sqlite", "mysql", "typescript", "javascript", "rust", "python"].contains(&p[1]))
             && !(["neste", "nesse"].contains(&p[1])
                 && w.get(index + 2)
                     .is_some_and(|word| ["momento", "estado", "ponto", "contexto"].contains(word)))
@@ -467,10 +473,7 @@ fn transient(s: &str) -> bool {
         ],
     )
 }
-pub(crate) fn preference_authorship(span: &str) -> bool {
-    if crate::evidence::interpret(span, "proof").is_some_and(|e| e.kind == Kind::Preference) {
-        return true;
-    }
+fn verbal_or_established_preference_authorship(span: &str) -> bool {
     let s = format!(" {} ", fold(span));
     any(
         &s,
@@ -523,9 +526,15 @@ pub(crate) fn preference_authorship(span: &str) -> bool {
         ],
     )
 }
+pub(crate) fn preference_authorship(span: &str) -> bool {
+    verbal_or_established_preference_authorship(span)
+        || crate::evidence::owns_preference_predicate(span)
+}
 pub fn preference(span: &str) -> Option<Claim> {
     let s = fold(span);
-    if !preference_authorship(span) {
+    // New nominal predicates use the bounded relation interpreter. They do
+    // not authorize the legacy token classifier for unrelated clauses.
+    if !verbal_or_established_preference_authorship(span) {
         return None;
     }
 

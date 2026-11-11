@@ -22,6 +22,8 @@ const TABLES: &[(&str, usize)] = &[
     ("memory_tombstones", 6),
     ("embedding_spaces", 3),
     ("memory_vectors", 4),
+    ("memory_source_operations", 4),
+    ("memory_source_operation_records", 5),
 ];
 #[derive(Default, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -38,8 +40,13 @@ pub(crate) fn export(db: &Connection) -> Result<AuxBackup> {
         } else {
             "1,2"
         };
+        let filter = if table.starts_with("memory_source_operation") {
+            "WHERE source_id IN (SELECT id FROM extraction_jobs WHERE state='done')"
+        } else {
+            ""
+        };
         let mut q = db
-            .prepare(&format!("SELECT * FROM {table} ORDER BY {order}"))
+            .prepare(&format!("SELECT * FROM {table} {filter} ORDER BY {order}"))
             .map_err(db_error)?;
         let mut rows = q.query([]).map_err(db_error)?;
         let mut out = Vec::new();
@@ -62,7 +69,9 @@ pub(crate) fn export(db: &Connection) -> Result<AuxBackup> {
                 return Err("Learning backup exceeds row ceiling".into());
             }
         }
-        tables.insert(table.to_string(), out);
+        if filter.is_empty() || !out.is_empty() {
+            tables.insert(table.to_string(), out);
+        }
     }
     Ok(AuxBackup { tables })
 }
@@ -252,6 +261,7 @@ pub(crate) fn restore(tx: &Transaction, backup: &AuxBackup) -> Result<()> {
             .check_vector(&vector)?;
     }
     drop(q);
+    crate::source_operations::validate_restored(tx)?;
     // Imported leases are not authority in this process. Retain attempt bounds.
     tx.execute("UPDATE extraction_jobs SET state=CASE WHEN attempts>=3 THEN 'failed' ELSE 'retry' END,evidence_json=CASE WHEN attempts>=3 THEN '[]' ELSE evidence_json END,lease_token=NULL,lease_until=NULL WHERE state='running'",[]).map_err(db_error)?;
     Ok(())

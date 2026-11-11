@@ -480,11 +480,13 @@ fn sqlite_wal_migration_versions_and_future_schema_guard_are_real() {
         "wal"
     );
     assert_eq!(
-        db.query_row("SELECT count(*) FROM schema_migrations", [], |r| r
+        db.query_row("SELECT count(*) FROM schema_migrations WHERE version <= 5", [], |r| r
             .get::<_, i64>(0))
             .unwrap(),
         5
     );
+    assert_eq!(db.query_row("PRAGMA user_version", [], |r| r.get::<_, i64>(0)).unwrap(), 6);
+    assert_eq!(db.query_row("SELECT count(*) FROM schema_migrations WHERE version = 6", [], |r| r.get::<_, i64>(0)).unwrap(), 1);
     drop(s);
     db.pragma_update(None, "user_version", 99).unwrap();
     assert!(Store::open(&dir.path().join("synthetic.sqlite3")).is_err());

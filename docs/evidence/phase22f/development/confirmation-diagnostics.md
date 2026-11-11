@@ -1,0 +1,29 @@
+# Confirmações transacionais da memória
+
+## Falha reproduzida da 2.2E
+
+No caso Agent `go-t01`, o composer enviou “No meu projeto Pitanga, o banco que escolhi é MySQL.”. A preparação nativa vinculou a fonte à conversa e projetou a decisão `project.pitanga/database/mysql` como `current-turn-0`, versão 0. O prompt instruía o Gemma a reconhecer a declaração sem confirmar gravação. O Gemma retornou “Entendido. Registrei que o banco de dados escolhido para o projeto Pitanga é o MySQL.”.
+
+O verificador aceitou a decisão do usuário, corretamente sustentada pela fonte. O ramo separado que procurava operações exigia um domínio de memória, como “preferência”, uma solicitação explícita ou um sujeito como “você” logo depois de “Registrei que”. O complemento “o banco” não atendia a essas condições. Nenhuma violação foi emitida, nenhuma regeneração ocorreu e o Agent exibiu o texto verificado aos 5.854 ms. A tentativa não produziu nota de reflexão. O caminho de entrega também permite o uso do conteúdo aceito em notas intermediárias quando há chamadas de ferramenta. O botão de cópia da mensagem usa o conteúdo exibido.
+
+A leitura anterior à exibição tinha recibo `null`. A leitura dos 5.860–5.883 ms observou `queued`, zero tentativas e nenhum recibo. A candidata v1 só foi observada aos 10.485–10.495 ms e a revisão v2 ocorreu depois. Esses intervalos identificam observações em torno da pintura e do término, sem atribuir um instante de commit entre as amostras. [Auditoria original de Pitanga](../../phase22e/final-v1/gui-other-empty-literal-audit.json).
+
+## Prova transacional na 2.2F
+
+A reserva nativa vincula o hash da fonte, a operação e a versão da identidade Lucille à linha do job. A criação ou atualização canônica grava ID, versão, estado e efeito do registro na mesma transação. O esquecimento captura as versões de exclusão dos registros afetados e exige tombstones no mesmo vínculo. O recibo distingue exclusão real de uma operação concluída sem registros correspondentes. Nenhuma dessas tabelas guarda texto da fonte ou conteúdo apagado.
+
+A leitura anterior à entrega confere identidade, versão, modo, conversa, mensagem, escopo, projeto e operação. Confirmações de aprendizagem exigem o job concluído e o mesmo estado e versão materializados com proveniência da fonte. Acrescentar proveniência a um valor já existente não cria um recibo de nova gravação. A versão aprovada por revisão também não pode usar o recibo da candidata para se apresentar como uma nova operação da mesma mensagem. Um recibo perde autoridade para a entrega se a identidade mudar ou o registro de aprendizagem ficar obsoleto. Os status de fonte recebida, reservada, em processamento, concluída, falha e cancelada não são equivalentes a uma confirmação de persistência.
+
+A migração física 006 acrescenta as tabelas de recibos. O formato lógico de backup 5 inclui duas coleções opcionais de metadados de operações concluídas. A restauração valida estado terminal, versão da identidade, histórico por efeito e versão do registro, além de tombstones do mesmo vínculo para exclusão. Uma operação pendente não recebe autoridade importada. A 2.2F continua lendo backups antigos sem essas coleções. Builds anteriores que rejeitam coleções desconhecidas podem recusar um backup 2.2F que as inclua. Jobs anteriores à migração continuam legíveis e não recebem recibos retroativos.
+
+O verificador compartilhado de Chat, Agent e Code separa a alegação operacional do conteúdo factual. No caso Pitanga, remove o prefixo “Registrei que” e revalida a decisão preservada. Para uma operação confirmada e pertinente à solicitação, o aplicativo produz o texto operacional a partir do recibo, com linguagem de candidata, criação, atualização ou remoção conforme o efeito nativo. O prompt pede ao modelo que deixe esse status a cargo do aplicativo. Alegações reconhecidas em pensamentos do modelo são retidas. A classificação de texto cobre construções PT/EN, voz passiva e complementos elípticos, com limites próprios de um verificador linguístico. A autorização do status exibido depende dos metadados nativos. O texto aceito alimenta a mensagem e o relatório de fidelidade usado na verificação da cópia.
+
+## Regressões direcionadas
+
+O teste TypeScript reaplica literalmente a resposta original de Pitanga no fluxo compartilhado para Chat, Agent e Code. Verifica a preservação de MySQL, a remoção da confirmação, a retenção do trecho bruto para auditoria e a identidade entre conteúdo aceito e texto do relatório. Testa também vínculo incorreto, candidata, atualização, operação vazia e stream fragmentado. O teste SQLite provoca um aborto real na escrita do recibo e verifica que o canônico e a confirmação são revertidos juntos. Testa a persistência do recibo após reabertura, a separação entre candidata e revisão e o tombstone com ID e versão exatos.
+
+## Plano anterior ao cancelamento
+
+No caso Code `gm-p06`, o primeiro texto misturava “o banco planejado [...] é o PostgreSQL” com “o banco que seu irmão usa”. O verificador aplicava o verbo “usa” da segunda relação à primeira e sinalizava execução. A regeneração preservou a ausência sobre o irmão, mas passou a dizer “Você planeja usar o PostgreSQL” como plano atual depois do cancelamento. O registro nativo ainda era projetado como plano atual naquele ensaio. [Auditoria original de Jatobá](../../phase22e/final-v1/gui-main-literal-audit.json).
+
+A preparação 2.2F mantém a projeção histórica tipada para a pergunta específica sobre o plano anterior. Quando a projeção é excluída, o texto do mesmo registro não retorna como dado legado sem tipo. O verificador separa a cláusula comparativa de ausência, aceita o passado do plano próprio e exige vínculo histórico nativo para alegar ordem explícita. O teste reaplica as duas respostas originais e verifica a retenção de PostgreSQL no passado e da ausência independente sobre o irmão em PT/EN.

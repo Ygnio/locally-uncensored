@@ -429,6 +429,7 @@ impl Store {
             return Err("Learning queue is full".into());
         }
         tx.execute("INSERT OR IGNORE INTO extraction_jobs(id,conversation_id,message_id,scope,project,mode,state,evidence_json,created_at,updated_at,next_at) VALUES(?1,?2,?3,?4,?5,?6,'queued',?7,?8,?8,?8)",params![id,input.conversation_id,input.message_id,input.scope,input.project,types::label(&input.mode),serde_json::to_string(&claims).map_err(|_|"Invalid evidence")?,now()]).map_err(db_error)?;
+        crate::source_operations::reserve(&tx, &id, None)?;
         if deferred {
             tx.execute(
                 "UPDATE extraction_jobs SET next_at=?2,lease_token=?3,lease_until=?4 WHERE id=?1",
@@ -940,6 +941,9 @@ fn ingest(
                 .map_err(db_error)?;
                 put_quality(tx, &memory.input.id, &q)?;
                 tx.execute("INSERT INTO history(memory_id,record_id,operation,version,at) VALUES(?1,?1,'update',?2,?3)",params![memory.input.id,memory.version+1,at]).map_err(db_error)?;
+                if matches!(memory.state, crate::Status::Active | crate::Status::Candidate) {
+                    crate::source_operations::record(tx, &lease.id, &memory.input.id, memory.version + 1, &types::label(&memory.state), "update")?;
+                }
             }
         }
         provenance(tx, &memory.input.id, lease, c, at)?;
@@ -1022,6 +1026,9 @@ fn ingest(
         params![id, at],
     )
     .map_err(db_error)?;
+    if state != "conflict" {
+        crate::source_operations::record(tx, &lease.id, &id, 1, state, if auto_replace { "update" } else { "create" })?;
+    }
     Ok(())
 }
 fn provenance(tx: &Transaction, id: &str, lease: &Lease, c: &Claim, at: i64) -> Result<()> {

@@ -35,6 +35,9 @@ fn relation_domains(q: &str) -> Vec<&'static str> {
             out.push(label)
         }
     }
+    if !out.contains(&"assunto do projeto") && description_intent(&q) {
+        out.push("assunto do projeto");
+    }
     out
 }
 fn third_party(q: &str) -> bool {
@@ -550,7 +553,7 @@ fn database_choice_intent(query: &str) -> bool {
 }
 fn description_intent(query: &str) -> bool {
     let q = fold(query);
-    [
+    let named_description = [
         "description",
         "descricao",
         "sobre o projeto",
@@ -561,7 +564,18 @@ fn description_intent(query: &str) -> bool {
         "purpose of",
     ]
     .iter()
-    .any(|w| q.contains(w))
+    .any(|w| q.contains(w));
+    let words = q.split(|c: char| !c.is_alphanumeric()).filter(|w| !w.is_empty()).collect::<Vec<_>>();
+    named_description || words.iter().enumerate().any(|(at, word)| {
+        ["finalidade", "proposito", "objetivo"].contains(word) && [
+            &["do", "projeto"][..],
+            &["deste", "projeto"],
+            &["desse", "projeto"],
+            &["daquele", "projeto"],
+            &["de", "meu", "projeto"],
+            &["do", "meu", "projeto"],
+        ].iter().any(|target| words[at + 1..].starts_with(target))
+    })
 }
 fn query_device(query:&str)->Option<&'static str>{
     let q=fold(query);
