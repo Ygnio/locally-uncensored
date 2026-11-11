@@ -92,6 +92,14 @@ def main(a, phase='22e'):
         assert d['execution_complete'] is True and d['scope'] == a.scope
         assert len(d['probes']) == len(plan.get('probes', []))
         assert len(d['turns']) == len(plan.get('turns', [])) + len(plan.get('probes', []))
+        if a.observe_copy:
+            assert phase == '22f'
+            copy_path = reports / ('driver-' + a.label + '-copy.json')
+            assert not copy_path.exists()
+            copy_control = dict(id=str(uuid.uuid4()), label=a.label, copy=True, observe_copy_payload=True)
+            (reports / 'control.json').write_bytes((json.dumps(copy_control) + '\n').encode('utf-8'))
+            copy = artifacts.read_report(copy_path, timeout=35)
+            print(a.label, 'copy payload observation', copy.get('status'), copy.get('handler_payload_matches_verified'), flush=True)
         h.verify(repo, a.freeze)
         assert hashlib.sha256(native.read_bytes()).hexdigest() == freeze['native_gui_sha256']
         assert json.loads((reports / 'real-public-pin.json').read_text(encoding='utf-8')) == freeze['model_pin']
@@ -109,6 +117,7 @@ def cli(phase='22e'):
         p.add_argument('--' + name, required=True)
     p.add_argument('--initialize', action='store_true', help='Configure only the fresh synthetic fixture identity before development; never used for a frozen final run.')
     p.add_argument('--nomic-off', action='store_true', help='Record a Phase 2.2F lexical run with the owned Nomic listener closed.')
+    p.add_argument('--observe-copy', action='store_true', help='Observe the real Phase 2.2F Copy payload without writing the system clipboard.')
     p.add_argument('--timeout', type=int, default=7200)
     main(p.parse_args(), phase)
 

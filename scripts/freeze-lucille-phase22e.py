@@ -68,8 +68,14 @@ def main(a, phase='22e'):
     pin=json.loads((root/'reports/real-public-pin.json').read_text(encoding='utf-8'))
     assert pin['simulation'] is False and pin['memory_protocol']==3
     static=repo/('qa-dist-'+phase)
-    assert (static/'.lucille-static-build').read_bytes()==b'synthetic-data-only\n'
     gui, bridge=run_path(str(repo/'qa/phase22e-artifact-check.py'))['artifact_paths'](repo,phase)
+    if a.without_gui:
+        assert phase=='22f' and a.kind=='development', 'A final freeze requires the native GUI and frontend'
+        gui_hash, frontend = None, {}
+    else:
+        assert (static/'.lucille-static-build').read_bytes()==b'synthetic-data-only\n'
+        gui_hash=digest(gui)
+        frontend={p.relative_to(static).as_posix():digest(p) for p in sorted(static.rglob('*')) if p.is_file()}
     fixture=json.loads(Path(a.identity).read_text(encoding='utf-8')) if a.identity else None
     if a.kind=='final':validate_identity_fixture(fixture)
     schema=5
@@ -90,8 +96,8 @@ def main(a, phase='22e'):
         source_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip(),
         production_code_commit=a.production_commit,source_sha256_lf=sources,
         corpus_sha256=corpora,extraction_corpus=a.extraction,retrieval_corpus=a.retrieval,
-        bridge_sha256=digest(bridge),native_gui_sha256=digest(gui),
-        frontend_sha256={p.relative_to(static).as_posix():digest(p) for p in sorted(static.rglob('*')) if p.is_file()},
+        bridge_sha256=digest(bridge),native_gui_sha256=gui_hash,
+        frontend_sha256=frontend,
         model_pin=pin,schema_version=schema,representation_version=5,index_version=5,atomic_protocol=3,
         source_authority_version=int(re.search(r'pub const SOURCE_AUTHORITY_VERSION: u32 = (\d+);',(repo/'crates/lucille-memory/src/source_authority.rs').read_text(encoding='utf-8')).group(1)),
         identity=fixture.get('identity') if fixture else None,policy=fixture.get('policy') if fixture else None,
@@ -107,6 +113,7 @@ def cli(phase='22e'):
     p.add_argument('--corpus',action='append',required=True)
     p.add_argument('--kind',choices=['development','final'],required=True)
     p.add_argument('--identity')
+    p.add_argument('--without-gui',action='store_true',help='Seal independent Phase 2.2F development stages before the GUI build is available.')
     main(p.parse_args(),phase)
 
 

@@ -32,6 +32,7 @@ jobs:
         run: |
           node --test qa/phase22e-evaluator-contract.test.mjs
           python qa/phase22e-origin-rubric.py
+          python qa/phase22f-evaluation.test.py
       - name: Real Rust SQLite and FTS5 tests
         run: cargo test --locked --manifest-path crates/lucille-memory/Cargo.toml
       - name: Build real synthetic integration bridge
@@ -77,6 +78,8 @@ jobs:
             src/lib/__tests__/lucille-context.test.ts \
             src/lib/__tests__/lucille-fidelity.test.ts \
             src/lib/__tests__/lucille-phase22e.test.ts \
+            src/lib/__tests__/lucille-phase22f-operations.test.ts \
+            src/lib/__tests__/lucille-phase22f-project-history.test.ts \
             src/lib/__tests__/lucille-full-bootstrap.test.ts \
             src/lib/__tests__/lucille-index-worker.test.ts \
             src/lib/__tests__/lucille-learning.test.ts \

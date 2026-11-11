@@ -1,15 +1,17 @@
 """Phase 2.2E frozen extraction with actual Gemma and independent native grounding; invalid output remains a scored miss."""
 import argparse,hashlib,importlib.util,json,re,time,urllib.request,sys,runpy
+from urllib.error import URLError
 sys.dont_write_bytecode=True
 from pathlib import Path
 spec=importlib.util.spec_from_file_location('previous',Path(__file__).with_name('test-lucille-real-extraction.py'))
 h=importlib.util.module_from_spec(spec);spec.loader.exec_module(h)
-def verify_freeze(a,repo):
+def verify_freeze(a,repo,phase):
  if not a.freeze:return
  manifest=json.loads(Path(a.freeze).read_text(encoding="utf-8"))
  assert json.loads((Path(a.root)/'reports/real-public-pin.json').read_text(encoding='utf-8'))==manifest['model_pin']
  for path,digest in manifest["source_sha256_lf"].items():assert hashlib.sha256((repo/path).read_bytes().replace(b"\r\n",b"\n")).hexdigest()==digest,path
  for path,digest in manifest["corpus_sha256"].items():assert hashlib.sha256((repo/path).read_bytes()).hexdigest()==digest,path
+ if phase=='22f':assert Path(a.dataset).resolve(strict=True).relative_to(repo).as_posix() in manifest['corpus_sha256']
  assert hashlib.sha256(Path(a.bridge).read_bytes()).hexdigest()==manifest["bridge_sha256"]
 def main(a, phase='22e'):
  repo=Path(__file__).resolve().parents[1];root=Path(a.root).resolve(strict=True)
@@ -17,7 +19,7 @@ def main(a, phase='22e'):
  assert root==repo/'.lucille-qa-runtime'/('lucille-synthetic-real'+phase)
  assert re.fullmatch(r'[a-z0-9-]{1,60}',a.label)
  assert (root/'.lucille-isolated').read_bytes()==b'synthetic-data-only\n'
- verify_freeze(a,repo)
+ verify_freeze(a,repo,phase)
  if a.label.startswith('final'):assert a.freeze,'Final requires freeze'
  dataset_path=Path(a.dataset);data=json.loads(dataset_path.read_text(encoding='utf-8'))
  audit_origin=runpy.run_path(str(repo/'qa/phase22e-origin-rubric.py'))['audit_origin']
@@ -30,23 +32,36 @@ def main(a, phase='22e'):
  assert not out.exists(),'Never overwrite completed results'
  prior=[json.loads(s) for s in progress.read_text(encoding='utf-8').splitlines()] if progress.exists() else []
  modes={m:{'tp':0,'fp':0,'missed':0,'active_correct':0,'active_wrong':0,'critical_writes':0,'scope_errors':0,'by_category':{}} for m in ['rules','llm','hybrid']}
+ if phase=='22f':
+  for stats in modes.values():stats.update(planned=len(data['cases']),measured=0,not_executed=0,native_failed=0)
  for i,case in enumerate(data['cases']):
   if i<len(prior):
    c=prior[i];assert c['id']==case['id'] and c['dataset_sha256']==digest
   else:
-   assert not (root/'gemma.stop').exists(),'Owned model stop requested'
    scope=case.get('scope','eval22');project=case.get('project','cedro')
    payload={'model':'lucille-real-gemma','temperature':0,'max_tokens':768,'messages':[{'role':'system','content':prompt},{'role':'user','content':json.dumps({'scope':scope,'project':project,'user_text':case['text']},ensure_ascii=False)}]}
+   if phase=='22f':payload.update(reasoning_effort='none',chat_template_kwargs={'enable_thinking':False})
    start=time.monotonic();req=urllib.request.Request('http://127.0.0.1:15284/v1/chat/completions',data=json.dumps(payload).encode(),headers={'Content-Type':'application/json'})
-   with urllib.request.urlopen(req,timeout=120) as res:reply=json.load(res)
-   output=reply['choices'][0]['message']['content']
+   model_error=None
+   try:
+    if (root/'gemma.stop').exists():raise ConnectionError('Owned model stop requested')
+    with urllib.request.urlopen(req,timeout=120) as res:reply=json.load(res)
+    output=reply['choices'][0]['message']['content']
+   except (URLError,TimeoutError,ConnectionError) as error:
+    if phase!='22f':raise
+    reply,output=None,'{"claims":[]}'
+    model_error={'type':type(error).__name__,'http_status':getattr(error,'code',None)}
    try:
     raw=json.loads(output);parse_error=None
    except (ValueError,TypeError):
     raw={'claims':[]};parse_error='invalid_json'
    if not isinstance(raw,dict) or not isinstance(raw.get('claims'),list):raw={'claims':[]};parse_error='invalid_claims_container'
    c={'id':case['id'],'dataset_sha256':digest,'response':reply,'latency_seconds':time.monotonic()-start,'raw_claims':raw['claims'],'raw_parse_error':parse_error,'native_modes':{}}
+   if model_error:c['model_error']=model_error
    for mode in modes:
+    if model_error and mode!='rules':
+     c['native_modes'][mode]={'details':[],'status':'not_executed'}
+     continue
     store=root/a.label/('lucille-synthetic-'+mode+'-'+case['id'])
     manifest=json.loads(Path(a.freeze).read_text(encoding='utf-8')) if a.freeze else {}
     if not store.exists() and manifest.get('identity'):
@@ -59,6 +74,10 @@ def main(a, phase='22e'):
    with progress.open('a',encoding='utf-8') as f:f.write(json.dumps(c,ensure_ascii=False)+'\n')
   for mode,stats in modes.items():
    details=c['native_modes'][mode]['details'];tp,fp,miss=h.score(details,case['expected'])
+   if phase=='22f':
+    result=c['native_modes'][mode]
+    status=result.get('status','native_failed' if result.get('rejected_output') else 'measured')
+    stats[status]+=1
    if origin_rubric:origin_violations[mode].extend({'case':case['id'],**v} for v in audit_origin(details,case))
    for k,v in [('tp',tp),('fp',fp),('missed',miss)]:stats[k]+=v
    b=stats['by_category'].setdefault(case['category'],{'tp':0,'fp':0,'missed':0,'active_correct':0,'active_wrong':0,'critical_writes':0,'n':0});b['n']+=1
@@ -67,11 +86,12 @@ def main(a, phase='22e'):
    for k,v in [('active_correct',atp),('active_wrong',afp),('critical_writes',len(details) if case.get('critical') else fp if case.get('critical_on_fp') else 0)]:stats[k]+=v;b[k]+=v
    stats['scope_errors']+=sum(d['memory']['input']['scope']!=case.get('scope','eval22') or d['memory']['input']['project']!=case.get('project','cedro') for d in details)
   print(i+1,case['id'],[(m,h.score(c['native_modes'][m]['details'],case['expected'])) for m in modes],flush=True)
- verify_freeze(a,repo)
+ verify_freeze(a,repo,phase)
  for mode,stats in modes.items():
   stats['origin_violations']=len(origin_violations[mode])
   stats['precision']=stats['tp']/max(1,stats['tp']+stats['fp']);stats['recall']=stats['tp']/max(1,stats['tp']+stats['missed']);stats['promotion_precision']=stats['active_correct']/max(1,stats['active_correct']+stats['active_wrong'])
   stats['passed']=stats['precision']>=.95 and stats['recall']>=.8 and stats['promotion_precision']>=.99 and not any(stats[k] for k in ['active_wrong','critical_writes','scope_errors','origin_violations'])
+  if phase=='22f':stats['passed']=stats['passed'] and stats['measured']==stats['planned']
  out.write_bytes((json.dumps({'dataset_sha256':digest,'cases':len(data['cases']),'modes':modes,'literal_origin_rubric':origin_rubric,'origin_violations':origin_violations,'invalid_raw_outputs':sum(bool(c.get('raw_parse_error')) for c in [json.loads(s) for s in progress.read_text(encoding='utf-8').splitlines()]),'raw_proposals':sum(len(c['raw_claims']) for c in ([json.loads(s) for s in progress.read_text(encoding='utf-8').splitlines()]))},indent=2,ensure_ascii=False)+'\n').encode())
  print(json.dumps(modes,indent=2))
 def cli(phase='22e'):
