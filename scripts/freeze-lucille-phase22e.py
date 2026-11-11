@@ -110,6 +110,8 @@ def main(a, phase='22e'):
             build=json.loads(build_contract.read_text(encoding='utf-8-sig'))
             assert build['artifacts_sha256']=={gui.name:gui_hash,**data['native_local_dependencies_sha256']}
             assert build['base_manifest_sha256']==digest(repo/'src-tauri/Cargo.toml')
+            assert build['identifier']=='dev.ygnio.lucille.phase16'
+            assert build['tauri_config_sha256']==digest(repo/'src-tauri/tauri.lucille-validation.conf.json')
             data['native_build_contract'] = build
             data['native_build_contract_sha256'] = digest(build_contract)
     output.parent.mkdir(parents=True,exist_ok=True)

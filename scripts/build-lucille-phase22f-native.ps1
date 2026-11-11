@@ -20,11 +20,15 @@ $receipt=Join-Path $qa 'reports\native-build-contract.json'
 if(Test-Path -LiteralPath $receipt){throw 'Retain the previous QA build record before another build'}
 $priorConfig=$env:TAURI_CONFIG
 $priorDebug=$env:CARGO_PROFILE_DEV_DEBUG
-$bundleConfig='{"bundle":{"active":false,"externalBin":[],"resources":[]}}'
+$validationConfig=Join-Path $repo 'src-tauri\tauri.lucille-validation.conf.json'
+$validationBytes=[IO.File]::ReadAllBytes($validationConfig)
+$qaConfig=$encoding.GetString($validationBytes)
+$parsedConfig=ConvertFrom-Json $qaConfig
+if($parsedConfig.identifier -ne 'dev.ygnio.lucille.phase16' -or $parsedConfig.bundle.active -or $parsedConfig.bundle.externalBin.Count -ne 0){throw 'The dedicated non-packaged validation configuration is required'}
 $exitCode=1
 try {
  [IO.File]::WriteAllBytes($manifest,$qaManifest)
- $env:TAURI_CONFIG=$bundleConfig
+ $env:TAURI_CONFIG=$qaConfig
  $env:CARGO_PROFILE_DEV_DEBUG='0'
  cargo build --offline --locked --manifest-path $manifest --target-dir $target -j 2 --features lucille-validation --bin lucille-full-validation
  $exitCode=$LASTEXITCODE
@@ -45,4 +49,4 @@ foreach($file in $files){
  Copy-Item -LiteralPath (Join-Path $built $file) -Destination (Join-Path $artifacts $file)
  $hashes[$file]=(Get-FileHash -LiteralPath (Join-Path $artifacts $file) -Algorithm SHA256).Hash.ToLowerInvariant()
 }
-@{utc=[DateTime]::UtcNow.ToString('o');target='x86_64-pc-windows-gnu';features=@('lucille-validation');crate_type=@('rlib');base_manifest_sha256=(Digest $original);qa_manifest_sha256=(Digest $qaManifest);bundle=(ConvertFrom-Json $bundleConfig).bundle;artifacts_sha256=$hashes} | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $receipt -Encoding utf8
+@{utc=[DateTime]::UtcNow.ToString('o');target='x86_64-pc-windows-gnu';features=@('lucille-validation');crate_type=@('rlib');base_manifest_sha256=(Digest $original);qa_manifest_sha256=(Digest $qaManifest);tauri_config_sha256=(Digest $validationBytes);identifier=$parsedConfig.identifier;bundle=$parsedConfig.bundle;artifacts_sha256=$hashes} | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $receipt -Encoding utf8
