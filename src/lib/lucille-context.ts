@@ -3,7 +3,8 @@ import { invoke } from '@tauri-apps/api/core'
 import type { ChatMessage } from '../api/providers/types'
 import type { Conversation } from '../types/chat'
 import { registerAnswerSnapshot, type MemoryFact, type MemoryDirectiveReceipt, type MemoryLearningReceipt, type MemoryQueryRelation } from './lucille-fidelity'
-import { answerLanguage, memoryQuestionNeedsNoTools } from './lucille-authority'
+import { answerLanguage, memoryQuestionNeedsNoTools, requestsProjectPlan } from './lucille-authority'
+import type { MemoryOperationState } from './lucille-operations'
 
 export type { LucilleBinding } from '../types/chat'
 export interface LucilleProfile { name: string; description: string; personality: string; instructions: string }
@@ -77,13 +78,18 @@ export async function withLucilleContext(
     context.used_upper_bound > retrievalBudget || context.identity.version < 1) throw new Error('Invalid Lucille context snapshot')
   const history = /\b(?:antes|anteriormente|anterior|antigamente|historico|historical|previously|previous|formerly)\b|used to/.test(query.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase())
   const seen = new Set<string>()
-  const memories = context.memories.filter(memory => {
+  const retained = context.memories.filter(memory => {
     if ((memory.state !== 'active' && !(history && memory.state === 'obsolete')) || memory.input.scope !== binding.scope || memory.input.project !== binding.project ||
       !context.references.some(ref => ref.id === memory.input.id && ref.version === memory.version) || seen.has(memory.input.id)) return false
     seen.add(memory.input.id)
     return true
   })
-  const facts = (context.facts ?? []).filter(f => (f.validity === 'current' || (history && f.validity === 'historical')) && f.scope === binding.scope && f.project === binding.project && memories.some(m => m.input.id === f.id && m.version === f.version))
+  const permitFact = (f: MemoryFact) => f.scope === binding.scope && f.project === binding.project && (f.validity === 'current' || f.validity === 'historical' && (history || f.entity === 'project.' + binding.project && requestsProjectPlan(query, f)))
+  const typedFacts = context.facts ?? []
+  const facts = typedFacts.filter(f => permitFact(f) && retained.some(m => m.input.id === f.id && m.version === f.version))
+  // A canonical row withheld by the typed temporal projection must not return
+  // to the prompt as if it were a current untyped legacy memory.
+  const memories = retained.filter(m => !typedFacts.some(f => f.id === m.input.id && f.version === m.version) || facts.some(f => f.id === m.input.id && f.version === m.version))
   const currentStatements = (source?.current_statements ?? (loader !== loadContext ? context.current_statements ?? [] : [])).filter(f => f.validity === 'current_user_statement' && f.scope === binding.scope && f.project === binding.project && f.version === 0 && f.evidence.some(e => e.role === 'current_user_statement' && query.includes(e.text)))
   const directiveReceipt = source?.directive_receipt
   if (directiveReceipt && (directiveReceipt.action !== 'forget' || directiveReceipt.state !== 'done' || directiveReceipt.scope !== binding.scope || directiveReceipt.project !== binding.project || directiveReceipt.conversation_id !== conversation!.id || directiveReceipt.source_message_id !== source!.proof.interaction.message_id || !/^[a-f0-9]{64}$/.test(directiveReceipt.id))) throw new Error('Invalid memory operation receipt')
@@ -101,10 +107,12 @@ export async function withLucilleContext(
         ...(fact ? { entity: fact.entity, property: fact.property, value: fact.value, modality: fact.modality, validity: fact.validity, scope: fact.scope, project: fact.project, review: fact.review, facets: fact.facets, evidence: fact.evidence } : { canonical: 'untyped_legacy_record' }) }
     })) }
   identity.content+=sourceFraming
-  if (directiveReceipt) identity.content += '\nNative memory operation receipt: ' + JSON.stringify({ action: directiveReceipt.action, property: directiveReceipt.property, state: directiveReceipt.state, had_records: directiveReceipt.had_records })
-  identity.content += '\nOnly a completed native memory operation receipt authorizes confirming that this turn deleted memory. A request to remember or reactivate information is not proof of a completed save or review. Answer execution questions consistently from the first word: an affirmative requires evidence of actual execution, even if a later sentence describes a plan. Hardware capacity alone does not prove smooth performance, stability or absence of bottlenecks. Keep project purpose separate from personal learning goals.'
-  identity.content += '\nAcknowledge the user content naturally, without saying Anotei/I saved/I registered and without promising it will be included in preferences, hardware or goals. The learning operation runs after this answer; important facts require review. A reserved source is not a completed memory write. Keep the decision actor clear: the user decides their project choices. Describe record meanings plainly rather than echoing internal IDs or enum labels.'
+  identity.content += '\nThe application reports the status of this turn’s memory operations independently. Acknowledge the content or request naturally. Do not assert or promise recording, updating, deleting, remembering or reviewing this source in your answer, reasoning or narration. This applies to preferences, hardware, facts and project decisions equally. Answer execution questions consistently from the first word: an affirmative requires evidence of actual execution, even if a later sentence describes a plan. Hardware capacity alone does not prove smooth performance, stability or absence of bottlenecks. Keep project purpose separate from personal learning goals.'
+  identity.content += '\nThe user decides their project choices. Describe record meanings plainly without internal IDs or enum labels. A query about an existing memory may be answered from its verified canonical state.'
   if(context.relations?.length)identity.content+='\nRequested memory relations (each bounded independently to the authorized scope/project): '+JSON.stringify(context.relations)+'. Answer every requested relation; use its own actor, entity, property and modality. An unavailable relation does not make the others unavailable, and never proves the user did not supply it. Never transfer an own fact to the third party or a different project.'
+  if (facts.some(f => f.validity === 'current' && f.entity === 'project.' + binding.project && ['database','language'].includes(f.property) && f.modality === 'decision')) identity.content+='\nFor a current project technology decision, use an explicit choice predicate (such as “você escolheu” or “you chose”). Wording such as “o projeto utiliza” or “the project uses” asserts current execution. When comparing projects, state the supported choice first and describe unavailable evidence for the other project separately.'
+  if ([...facts,...currentStatements].some(f=>f.entity==='project.'+binding.project && f.validity!=='historical' && f.modality==='in_progress')) identity.content+='\nEvidence of ongoing implementation does not establish its stage. Ask an open question if that detail matters.'
+  if (facts.some(f => f.validity === 'historical' && f.entity === 'project.' + binding.project && ['planned','decision'].includes(f.modality))) identity.content+='\nDescribe the historical project plan or choice in the past tense. Its state does not establish present intent or execution.'
   const memoryOnly = memoryQuestionNeedsNoTools(query)
   identity.content += '\nEvidence authority: an approved memory supports what its source stated; history supports earlier states; a tool supports only its observed resource and coverage. A directory is not the entire remembered project without an explicit verified binding. A memory deletion or renewal never proves the user stopped or resumed liking something. Preserve each predicate’s modality independently. Current USER question language controls the answer and any repair; Portuguese memory does not require a Portuguese reply to an English question.'
   if (memoryOnly) identity.content += '\nThis turn requests remembered facts, not external inspection. Answer from scoped memory or bounded uncertainty. Do not call tools or narrate a plan to inspect files.'
@@ -123,13 +131,14 @@ export async function withLucilleContext(
   const result = [identity, ...(environment ? [environment] : []), ...clean.slice(0, at), ...(languageDirective ? [languageDirective] : []), ...(memories.length ? [data] : []), ...clean.slice(at)]
   registerAnswerSnapshot(identity, {
     scope: binding.scope, project: binding.project, query, facts, currentStatements, directiveReceipt, memoryOnly, sourceAuthority, relations:context.relations, sourceIdentity:source ? {conversation_id:source.proof.interaction.conversation_id,source_message_id:source.proof.interaction.message_id}:undefined,
+    operationBinding: loader === loadContext ? {profile:'lucille',identityVersion:context.identity.version,mode,sourceId:source?.proof.job_id}:undefined,
     toolObservations: runtime?.receipts,
     refresh: async (claims = []) => {
       assertNotCancelled(signal)
       if (loader !== loadContext) return { facts, current_statements: currentStatements }
-      const refreshed = await lucilleManage<{ facts: MemoryFact[]; current_statements: MemoryFact[]; directive_receipt?: MemoryDirectiveReceipt | null; has_scoped_records?:boolean; learning_receipt?:MemoryLearningReceipt | null }>({ operation: 'answer_evidence',
+      const refreshed = await lucilleManage<{ facts: MemoryFact[]; current_statements: MemoryFact[]; directive_receipt?: MemoryDirectiveReceipt | null; has_scoped_records?:boolean; learning_receipt?:MemoryLearningReceipt | null; source_operation?:MemoryOperationState | null }>({ operation: 'answer_evidence',
         request: { conversation_id: conversation!.id, message_id: messageId, scope: binding.scope, project: binding.project, mode, query, token_budget: retrievalBudget }, references: memories.map(m => ({ id: m.input.id, version: m.version })), claims, source: source?.proof })
-      assertNotCancelled(signal); return refreshed
+      assertNotCancelled(signal); return { ...refreshed, facts: refreshed.facts.filter(permitFact) }
     },
     reload: () => withLucilleContext(conversation, messageId, query, mode, clean, signal, loader, runtime),
   })

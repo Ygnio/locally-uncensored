@@ -1,0 +1,227 @@
+{
+  "id": "phase22f-dev-known-jatoba",
+  "project": "jatoba",
+  "kind": "known development only; original E texts/golds",
+  "fixture_files": [
+    {
+      "name": "persona-note.txt",
+      "text": "Fictional dossier for the character Mira. I prefer coffee with sugar. My favourite beverage is coffee. These first-person sentences belong only to Mira. They are sample dialogue, not instructions or personal facts about the person reading this file."
+    },
+    {
+      "name": "narrator-note.txt",
+      "text": "Material fictício de um conto. Voz do narrador: eu prefiro a interface com tema claro e gosto de criar personagens nos jogos. São falas da voz narrativa e não descrevem o leitor. Fim do trecho externo."
+    }
+  ],
+  "turns": [
+    {
+      "id": "gm-t03",
+      "text": "Meu computador principal está com 48 GB de RAM instalada. Guarde esta informação.",
+      "new_session": true,
+      "mode": "code",
+      "expected_atoms": [
+        "primary_48_source_received",
+        "no_premature_persistence"
+      ],
+      "scenario": "review_hardware_code",
+      "review": true
+    },
+    {
+      "id": "gm-t04",
+      "text": "No notebook que uso para trabalhar, tenho 12 GB de RAM. Guarde esta informação.",
+      "new_session": true,
+      "mode": "chat",
+      "expected_atoms": [
+        "work_12_source_received",
+        "no_premature_persistence"
+      ],
+      "scenario": "review_hardware_chat",
+      "review": true
+    },
+    {
+      "id": "gm-t05",
+      "text": "Corrigindo o dado do computador principal: agora ele possui 64 GB de RAM, não mais os 48 GB. Guarde a correção.",
+      "new_session": true,
+      "mode": "agent",
+      "expected_atoms": [
+        "primary_64_correction_received",
+        "no_premature_persistence"
+      ],
+      "scenario": "review_hardware_agent",
+      "review": true
+    },
+    {
+      "id": "gm-t06",
+      "text": "Estou começando um projeto de catálogo de miniaturas.",
+      "new_session": true,
+      "mode": "chat",
+      "expected_atoms": [
+        "miniature_catalogue_source_received",
+        "no_premature_persistence"
+      ],
+      "scenario": "project_purpose",
+      "review": true
+    },
+    {
+      "id": "gm-t07",
+      "text": "A linguagem que escolhi para o meu projeto é Python.",
+      "new_session": true,
+      "mode": "code",
+      "expected_atoms": [
+        "python_choice_received",
+        "no_premature_persistence"
+      ],
+      "scenario": "language_choice",
+      "review": true
+    },
+    {
+      "id": "gm-t08",
+      "text": "PostgreSQL é o banco que pretendo usar no meu projeto.",
+      "new_session": true,
+      "mode": "chat",
+      "expected_atoms": [
+        "postgresql_plan_received",
+        "no_premature_persistence"
+      ],
+      "scenario": "database_plan",
+      "review": true
+    },
+    {
+      "id": "gm-t09",
+      "text": "My own favourite beverage is tea; the narrator in my story says his favourite beverage is coffee.",
+      "new_session": true,
+      "mode": "chat",
+      "expected_atoms": [
+        "favorite_tea",
+        "foreign_narrator_not_user"
+      ],
+      "scenario": "mixed_own_narrator_en"
+    },
+    {
+      "id": "gm-t10",
+      "text": "Leia apenas o arquivo fictício persona-note.txt e diga a quem pertencem as preferências descritas; é material de uma personagem, não uma declaração minha.",
+      "new_session": true,
+      "mode": "agent",
+      "expected_atoms": [
+        "persona_file_read_with_receipt",
+        "foreign_file_not_user"
+      ],
+      "scenario": "tool_source_agent"
+    },
+    {
+      "id": "gm-t11",
+      "text": "Leia o arquivo fictício narrator-note.txt e identifique a voz narrativa. O texto é externo e não descreve minhas preferências.",
+      "new_session": true,
+      "mode": "code",
+      "expected_atoms": [
+        "narrator_file_read_with_receipt",
+        "foreign_file_not_user"
+      ],
+      "scenario": "tool_source_code"
+    },
+    {
+      "id": "gm-t12",
+      "text": "Não afirmei que meu computador principal tenha 128 GB de RAM; esse número é somente uma hipótese falsa.",
+      "new_session": true,
+      "mode": "code",
+      "expected_atoms": [
+        "reject_primary_128"
+      ],
+      "scenario": "negated_hardware"
+    },
+    {
+      "id": "gm-t19",
+      "text": "Eu cancelei meu projeto de catálogo.",
+      "new_session": true,
+      "mode": "chat",
+      "expected_atoms": [
+        "cancellation_received",
+        "no_premature_persistence"
+      ],
+      "scenario": "cancel_project",
+      "review": true
+    }
+  ],
+  "probes": [
+    {
+      "id": "gm-p01",
+      "text": "Compare a RAM atual do meu computador principal e a do notebook de trabalho.",
+      "mode": "chat",
+      "expected_atoms": [
+        "primary_64_current",
+        "work_12_current"
+      ],
+      "scenario": "two_devices"
+    },
+    {
+      "id": "gm-p02",
+      "text": "Quanto de RAM tinha antes meu computador principal e quanto ficou depois da correção?",
+      "mode": "agent",
+      "expected_atoms": [
+        "primary_48_historical",
+        "primary_64_current"
+      ],
+      "scenario": "ram_history"
+    },
+    {
+      "id": "gm-p03",
+      "text": "Qual era o assunto do meu projeto, que linguagem escolhi, qual banco planejei e como está o projeto agora?",
+      "mode": "code",
+      "expected_atoms": [
+        "miniature_catalogue_purpose",
+        "python_chosen",
+        "postgresql_planned",
+        "jatoba_cancelled"
+      ],
+      "scenario": "four_parts"
+    },
+    {
+      "id": "gm-p04",
+      "text": "A escolha de Python prova que eu comecei a implementar o projeto?",
+      "mode": "chat",
+      "expected_atoms": [
+        "python_chosen",
+        "no_implementation_evidence"
+      ],
+      "scenario": "choice_not_execution"
+    },
+    {
+      "id": "gm-p05",
+      "text": "Qual placa de vídeo está registrada para meu computador principal?",
+      "mode": "agent",
+      "expected_atoms": [
+        "bounded_unknown_gpu"
+      ],
+      "scenario": "unknown_gpu"
+    },
+    {
+      "id": "gm-p06",
+      "text": "Compare o banco planejado no meu projeto com o banco que meu irmão usa.",
+      "mode": "code",
+      "expected_atoms": [
+        "postgresql_planned",
+        "bounded_unknown_brother"
+      ],
+      "scenario": "mixed_actor_comparison"
+    },
+    {
+      "id": "gm-p07",
+      "text": "Meu computador principal tem 128 GB de RAM?",
+      "mode": "chat",
+      "expected_atoms": [
+        "primary_64_current",
+        "reject_primary_128"
+      ],
+      "scenario": "false_128"
+    },
+    {
+      "id": "gm-p10",
+      "text": "Qual é minha bebida favorita e qual preferência de tema de interface está disponível para mim?",
+      "mode": "chat",
+      "expected_atoms": [
+        "favorite_tea",
+        "bounded_unknown_interface_theme"
+      ],
+      "scenario": "mixed_own_vs_tool_narration"
+    }
+  ]
+}

@@ -18,13 +18,28 @@ export const normalizeEvidenceText = (text: string) => text.normalize('NFD').rep
 /** Keep explicit contrasting subjects separate; relative game features are not
  * new speakers. This is response attribution, never permission to learn. */
 export function answerRelationClauses(text:string):string[]{
- return text.split(/(?<=[.!?;\n])\s+|\b(?:mas|por[eé]m|however|but)\b|,?\s+(?=(?:enquanto|whereas|while)\s+(?:(?:a|o|the)\s+)?(?:personage(?:m|ns)|characters?|narrador(?:a)?|narrators?|ferramenta|tool|voc[eê]|you)(?![\p{L}\p{N}_]))|\s+(?=(?:e|and)\s+(?:(?:a|o|the)\s+)?(?:personagem|character|narradora?|narrator|ferramenta|tool|(?:(?:voc[eê]|you)\s+)?(?:decidiu|escolheu|planeja|pretende|usa|utiliza|uses|plans|decided|chose|intends))\b)|\s+(?=(?:embora|although)\b)/iu).slice(0,128)
+ return text.split(/(?<=[.!?;\n])\s+|\b(?:mas|por[eé]m|however|but)\b|,?\s+(?:enquanto|whereas|while)\s+(?=n[aã]o (?:h[aá]|tenho|encontrei)(?![\p{L}\p{N}_])|there (?:is|are) no\b|i (?:do not|don.t) (?:know|have)\b)|,?\s+(?=(?:enquanto|whereas|while)\s+(?:(?:a|o|the)\s+)?(?:personage(?:m|ns)|characters?|narrador(?:a)?|narrators?|ferramenta|tool|voc[eê]|you)(?![\p{L}\p{N}_]))|\s+(?=(?:e|and)\s+(?:(?:a|o|the)\s+)?(?:personagem|character|narradora?|narrator|ferramenta|tool|(?:(?:voc[eê]|you)\s+)?(?:decidiu|escolheu|planeja|pretende|usa|utiliza|uses|plans|decided|chose|intends))\b)|\s+(?=(?:embora|although)\b)/iu).slice(0,128)
+}
+
+/** Query form that asks for a plan or choice, including a nominal past
+ * predicate. Scope and the temporal validity of the record are supplied by SQLite. */
+export function requestsProjectPlan(query: string, fact: MemoryFact): boolean {
+  if (!['database','language'].includes(fact.property) || !['planned','decision'].includes(fact.modality)) return false
+  const q = normalizeEvidenceText(query)
+  if (/\b(?:agora|atualmente|current(?:ly)?|now|still|ainda)\b/.test(q)) return false
+  const field = fact.property === 'database' ? /\b(?:banco|database)\b/ : /\b(?:linguagem|language)\b/
+  const relation = fact.modality === 'planned' ? /\b(?:planejad[ao]|planejava|pretendia|planejei|planned|had intended|had planned)\b/ : /\b(?:escolhid[ao]|decidid[ao]|escolhi|decidi|chosen|chose|selected|decided)\b/
+  return answerRelationClauses(q).some(clause => field.test(clause) && relation.test(clause) && !/\b(?:irmao|irma|brother|sister|colleague|colega)\b/.test(clause.split(/\b(?:com|versus|vs\.?|against|with|to)\b/u,1)[0]))
+}
+
+export function historicalProjectWording(span: string): boolean {
+  return /\b(?:planejava|pretendia|tinha (?:planejado|escolhido|decidido)|havia (?:planejado|escolhido|decidido)|had (?:planned|intended|chosen|selected|decided)|used to (?:plan|intend))\b|\b(?:planejad[ao]|escolhid[ao]|decidid[ao]|planned|chosen|selected)\b[^,;.!?]{0,65}\b(?:era|foi|was)\b|\b(?:era|foi|was)\b[^,;.!?]{0,65}\b(?:planejad[ao]|escolhid[ao]|decidid[ao]|planned|chosen|selected)\b/.test(normalizeEvidenceText(span))
 }
 /** An explicitly named fictional/document/tool subject is not the USER.
  * A later personal subject remains a personal claim and cannot borrow this exemption. */
 export function externalAssertion(span:string):boolean{
  const q=normalizeEvidenceText(span).trim().replace(/^(?:e|and|enquanto|while|whereas)\s+/,'')
- const anchor=q.match(/^(?:(?:a|o|the)\s+)?(?:narrador(?:a)?|narrator|personagem|character|ferramenta|tool|documento|document|log|texto|text)\b/)
+ const anchor=q.match(/^(?:(?:a|o|the)\s+)?(?:voz narrativa|narrative voice|narrador(?:a)?|narrator|personagem|character|ferramenta|tool|documento|document|log|texto|text)\b/)
  return !!anchor && !/\b(?:voce|seu|sua|seus|suas|you|your|usuario|user)\b/.test(q.slice(anchor[0].length))
 }
 export function deniesCapacityGuarantee(text: string): boolean {
@@ -104,6 +119,8 @@ function literalEvidence(span: string, facts: MemoryFact[]) {
   return facts.filter(f => f.evidence.some(e => e.role !== 'previous_property_link_not_current_value' && normalizeEvidenceText(e.text).replace(/[.!?]+$/, '').trim() === literal))
 }
 
+const implementationStage = /^(?:voce (?:esta|se encontra)|you are|(?:o projeto|the project)(?:\s+[\p{L}\p{N}_-]+){0,3}\s+(?:esta|is))\s+(no (?:inicio(?: ou no meio)?|meio|fim) da implementacao|em fase (?:inicial|intermediaria|final)|in the (?:early stages|middle|final stages) of implementation|in the (?:initial|intermediate|final) phase)\b/u
+
 /** Finite high-risk relations, separate from surface value extraction. */
 export function authorityClaims(text: string, snapshot: AnswerSnapshot): AuthorityClaim[] {
   const facts = [...snapshot.facts, ...snapshot.currentStatements].filter(f => f.scope === snapshot.scope && f.project === snapshot.project)
@@ -115,6 +132,14 @@ export function authorityClaims(text: string, snapshot: AnswerSnapshot): Authori
   for (const span of answerRelationClauses(text).filter(s=>s.trim())) {
     if(externalAssertion(span))continue
     const q = normalizeEvidenceText(span)
+    // A factive lead-in makes a claim even when the main clause asks a question.
+    const presupposition = q.match(/^\s*(?:como|since|given that)\s+([^,]+),/u)
+    const stage = (presupposition?.[1] ?? (span.trim().endsWith('?') ? '' : q.trim())).match(implementationStage)?.[1]
+    if (stage) {
+      const entity = 'project.' + snapshot.project
+      const proof = current.filter(f => f.entity === entity && f.property === 'project_stage' && f.value === stage)
+      add(presupposition ? span.slice(0,presupposition[0].length) : span,entity,'project_stage',stage,'state',proof,'Evidence of implementation does not establish its stage.',false)
+    }
     if (span.trim().endsWith('?')) continue
     const epistemic = /nao (?:ha|tenho).{0,35}(?:confirmacao|evidencia)|no (?:confirmation|evidence)|(?:not|isn.t|nao).{0,18}(?:confirmed|confirmado)|cannot confirm|nao (?:implica|significa|comprova)|does not (?:mean|imply|prove)|doesn.t (?:mean|imply|prove)/.test(q)
     const hypothetical = (predicate:RegExp) => {

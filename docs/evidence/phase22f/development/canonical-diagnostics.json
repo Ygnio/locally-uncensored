@@ -1,0 +1,718 @@
+{
+  "id": "phase22f-known-canonical-baseline",
+  "frozen_e": {
+    "closure_commit": "9fca27daf715ef5597e2536f6651583b48ec1f2b",
+    "bridge_sha256": "6e491715189ab1100d1bd4d20d5d39a921a334fb50742a9086f797bb08df7375",
+    "immutable_gemma_capture_sha256": "47be6c88eefcfb63ad99d3a3d801450c9c7d95fff8a2aac548383fa8f9edd5fa",
+    "frozen_extraction_sha256": "1d99e1d932b649cf7dcbae1bf37bca80912be8b799f9bbbc9999f26e2dc80c0f",
+    "frozen_retrieval_sha256": "1f65d2ed629655abf98fd2c4e23493f668ea1e04c1f8f8f95c88c7f806e3c372",
+    "frozen_order_audit_sha256": "68141854619edc633b85dd6893e59ef3d796bff9a5ef58896d8e046184e98674"
+  },
+  "method": "Before Phase 2.2F production edits, hash-verified the Phase 2.2E bridge and replayed the seven exact original Gemma extractions in 21 isolated SQLite stores plus the exact C RAM seed in one separate rules store. No new model inference. Each store was checked read-only with query_only and quick_check. Canonical values in intended_canonical_relation are fixture expectations. Model output only nominated evidence and category.",
+  "cases": [
+    {
+      "id": "ex-001",
+      "original_source": "Café sem açúcar é a minha preferência no intervalo da tarde.",
+      "original_scope": "phase22e-final-ext-001",
+      "original_project": "jatoba",
+      "clauses": [
+        {
+          "text": "Café sem açúcar é a minha preferência no intervalo da tarde",
+          "start_utf8": 0,
+          "end_utf8": 64,
+          "message_author": "user",
+          "statement_author": "user",
+          "origin": "PersonalDeclaration"
+        }
+      ],
+      "proposed_evidence_and_category": [
+        {
+          "evidence": "Café sem açúcar é a minha preferência no intervalo da tarde",
+          "category": "preference"
+        }
+      ],
+      "intended_canonical_relation": {
+        "kind": "preference",
+        "subject": "user",
+        "property": "coffee_sugar",
+        "value": "without_sugar",
+        "temporal": "preference",
+        "allowed_evidence": [
+          "Café sem açúcar é a minha preferência no intervalo da tarde.",
+          "Café sem açúcar é a minha preferência no intervalo da tarde"
+        ]
+      },
+      "author_and_interpretation_diagnosis": {
+        "first_failing_stage": "semantic_interpretation",
+        "concrete_condition": "The nominal copula branch accepted a preference descriptor on the left and the preparation on the right. This source fronts the coffee preparation and places the possessive preference descriptor on the right. The older verbal classifier had no such ownership frame.",
+        "classification_observation": "Original source inspected against the frozen 2.2E attribution code. Store replay below records actual enqueue, validation and SQLite observations."
+      },
+      "verified_sqlite": {
+        "rules": {
+          "validation": {
+            "accepted": []
+          },
+          "enqueue_state": "ignored",
+          "enqueue_reason": "not_eligible",
+          "sqlite_jobs": [],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        },
+        "llm": {
+          "validation": {
+            "accepted": []
+          },
+          "enqueue_state": "queued",
+          "enqueue_reason": null,
+          "sqlite_jobs": [
+            {
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        },
+        "hybrid": {
+          "validation": {
+            "accepted": []
+          },
+          "enqueue_state": "queued",
+          "enqueue_reason": null,
+          "sqlite_jobs": [
+            {
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "ex-006",
+      "original_source": "My preferred interface appearance is the light theme.",
+      "original_scope": "phase22e-final-ext-006",
+      "original_project": "jatoba",
+      "clauses": [
+        {
+          "text": "My preferred interface appearance is the light theme",
+          "start_utf8": 0,
+          "end_utf8": 52,
+          "message_author": "user",
+          "statement_author": "user",
+          "origin": "PersonalDeclaration"
+        }
+      ],
+      "proposed_evidence_and_category": [
+        {
+          "evidence": "My preferred interface appearance is the light theme",
+          "category": "preference"
+        }
+      ],
+      "intended_canonical_relation": {
+        "kind": "preference",
+        "subject": "user",
+        "property": "interface_theme",
+        "value": "light",
+        "temporal": "preference",
+        "allowed_evidence": [
+          "My preferred interface appearance is the light theme.",
+          "My preferred interface appearance is the light theme"
+        ]
+      },
+      "author_and_interpretation_diagnosis": {
+        "first_failing_stage": "semantic_interpretation",
+        "concrete_condition": "The personal determiner my was recognized, but the legacy preference gate only matched my preferred theme, not a preferred interface description, and the nominal branch recognized no theme relation.",
+        "classification_observation": "Original source inspected against the frozen 2.2E attribution code. Store replay below records actual enqueue, validation and SQLite observations."
+      },
+      "verified_sqlite": {
+        "rules": {
+          "validation": {
+            "accepted": []
+          },
+          "enqueue_state": "ignored",
+          "enqueue_reason": "not_eligible",
+          "sqlite_jobs": [],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        },
+        "llm": {
+          "validation": {
+            "accepted": []
+          },
+          "enqueue_state": "queued",
+          "enqueue_reason": null,
+          "sqlite_jobs": [
+            {
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        },
+        "hybrid": {
+          "validation": {
+            "accepted": []
+          },
+          "enqueue_state": "queued",
+          "enqueue_reason": null,
+          "sqlite_jobs": [
+            {
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "ex-007",
+      "original_source": "O idioma de minha preferência para receber respostas é português.",
+      "original_scope": "phase22e-final-ext-007",
+      "original_project": "jatoba",
+      "clauses": [
+        {
+          "text": "O idioma de minha preferência para receber respostas é português",
+          "start_utf8": 0,
+          "end_utf8": 67,
+          "message_author": "user",
+          "statement_author": "user",
+          "origin": "PersonalDeclaration"
+        }
+      ],
+      "proposed_evidence_and_category": [
+        {
+          "evidence": "O idioma de minha preferência para receber respostas é português",
+          "category": "preference"
+        }
+      ],
+      "intended_canonical_relation": {
+        "kind": "preference",
+        "subject": "user",
+        "property": "response_language",
+        "value": "pt",
+        "temporal": "preference",
+        "allowed_evidence": [
+          "O idioma de minha preferência para receber respostas é português.",
+          "O idioma de minha preferência para receber respostas é português"
+        ]
+      },
+      "author_and_interpretation_diagnosis": {
+        "first_failing_stage": "semantic_interpretation",
+        "concrete_condition": "The nominal copula had an owned preference phrase, but the bounded nominal branch only returned coffee preparation, favorite beverage or a technology decision. The verbal preference gate did not recognize a language noun modified by de minha preferência.",
+        "classification_observation": "Original source inspected against the frozen 2.2E attribution code. Store replay below records actual enqueue, validation and SQLite observations."
+      },
+      "verified_sqlite": {
+        "rules": {
+          "validation": {
+            "accepted": []
+          },
+          "enqueue_state": "ignored",
+          "enqueue_reason": "not_eligible",
+          "sqlite_jobs": [],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        },
+        "llm": {
+          "validation": {
+            "accepted": []
+          },
+          "enqueue_state": "queued",
+          "enqueue_reason": null,
+          "sqlite_jobs": [
+            {
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        },
+        "hybrid": {
+          "validation": {
+            "accepted": []
+          },
+          "enqueue_state": "queued",
+          "enqueue_reason": null,
+          "sqlite_jobs": [
+            {
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "ex-013",
+      "original_source": "Jogos de estratégia por turnos fazem parte das minhas preferências.",
+      "original_scope": "phase22e-final-ext-013",
+      "original_project": "jatoba",
+      "clauses": [
+        {
+          "text": "Jogos de estratégia por turnos fazem parte das minhas preferências",
+          "start_utf8": 0,
+          "end_utf8": 68,
+          "message_author": "user",
+          "statement_author": "user",
+          "origin": "PersonalDeclaration"
+        }
+      ],
+      "proposed_evidence_and_category": [
+        {
+          "evidence": "Jogos de estratégia por turnos fazem parte das minhas preferências",
+          "category": "preference"
+        }
+      ],
+      "intended_canonical_relation": {
+        "kind": "preference",
+        "subject": "user",
+        "property": "games_turn_strategy",
+        "value": "positive",
+        "temporal": "preference",
+        "allowed_evidence": [
+          "Jogos de estratégia por turnos fazem parte das minhas preferências.",
+          "Jogos de estratégia por turnos fazem parte das minhas preferências"
+        ]
+      },
+      "author_and_interpretation_diagnosis": {
+        "first_failing_stage": "semantic_interpretation",
+        "concrete_condition": "The personal determiner minhas gave speaker ownership, but membership in a person’s preferences is not a copula or one of the old verbal preference forms, so the game genre never reached value selection.",
+        "classification_observation": "Original source inspected against the frozen 2.2E attribution code. Store replay below records actual enqueue, validation and SQLite observations."
+      },
+      "verified_sqlite": {
+        "rules": {
+          "validation": {
+            "accepted": []
+          },
+          "enqueue_state": "ignored",
+          "enqueue_reason": "not_eligible",
+          "sqlite_jobs": [],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        },
+        "llm": {
+          "validation": {
+            "accepted": []
+          },
+          "enqueue_state": "queued",
+          "enqueue_reason": null,
+          "sqlite_jobs": [
+            {
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        },
+        "hybrid": {
+          "validation": {
+            "accepted": []
+          },
+          "enqueue_state": "queued",
+          "enqueue_reason": null,
+          "sqlite_jobs": [
+            {
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "ex-015",
+      "original_source": "Para guardar o acervo deste projeto, PostgreSQL foi a minha escolha final de banco de dados.",
+      "original_scope": "phase22e-final-ext-015",
+      "original_project": "jatoba",
+      "clauses": [
+        {
+          "text": "Para guardar o acervo deste projeto, PostgreSQL foi a minha escolha final de banco de dados",
+          "start_utf8": 0,
+          "end_utf8": 91,
+          "message_author": "user",
+          "statement_author": "user",
+          "origin": "PersonalDeclaration"
+        }
+      ],
+      "proposed_evidence_and_category": [
+        {
+          "evidence": "Para guardar o acervo deste projeto, PostgreSQL foi a minha escolha final de banco de dados",
+          "category": "decision"
+        }
+      ],
+      "intended_canonical_relation": {
+        "kind": "decision",
+        "subject": "project.jatoba",
+        "property": "database",
+        "value": "postgresql",
+        "temporal": "durable",
+        "allowed_evidence": [
+          "Para guardar o acervo deste projeto, PostgreSQL foi a minha escolha final de banco de dados.",
+          "Para guardar o acervo deste projeto, PostgreSQL foi a minha escolha final de banco de dados"
+        ]
+      },
+      "author_and_interpretation_diagnosis": {
+        "first_failing_stage": "project_scope_projection_then_interpretation",
+        "concrete_condition": "The scope checker treated PostgreSQL after deste projeto, as the next project name and rejected the clause for Jatobá. The nominal decision grammar also required a present copula and a descriptor-before-value order; the bounded inverse past-choice frame was absent.",
+        "classification_observation": "Original source inspected against the frozen 2.2E attribution code. Store replay below records actual enqueue, validation and SQLite observations."
+      },
+      "verified_sqlite": {
+        "rules": {
+          "validation": {
+            "error": "Ineligible V3 source"
+          },
+          "enqueue_state": "ignored",
+          "enqueue_reason": "not_eligible",
+          "sqlite_jobs": [],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        },
+        "llm": {
+          "validation": {
+            "error": "Ineligible V3 source"
+          },
+          "enqueue_state": "queued",
+          "enqueue_reason": null,
+          "sqlite_jobs": [
+            {
+              "state": "failed",
+              "attempts": 1,
+              "error_code": "source_ineligible"
+            }
+          ],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        },
+        "hybrid": {
+          "validation": {
+            "error": "Ineligible V3 source"
+          },
+          "enqueue_state": "queued",
+          "enqueue_reason": null,
+          "sqlite_jobs": [
+            {
+              "state": "failed",
+              "attempts": 1,
+              "error_code": "source_ineligible"
+            }
+          ],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "ex-017",
+      "original_source": "No meu computador principal estão instalados 48 GB de RAM.",
+      "original_scope": "phase22e-final-ext-017",
+      "original_project": "jatoba",
+      "clauses": [
+        {
+          "text": "No meu computador principal estão instalados 48 GB de RAM",
+          "start_utf8": 0,
+          "end_utf8": 58,
+          "message_author": "user",
+          "statement_author": "user",
+          "origin": "PersonalDeclaration"
+        }
+      ],
+      "proposed_evidence_and_category": [
+        {
+          "evidence": "No meu computador principal estão instalados 48 GB de RAM",
+          "category": "hardware"
+        }
+      ],
+      "intended_canonical_relation": {
+        "kind": "hardware",
+        "subject": "device.primary_computer",
+        "property": "ram_capacity",
+        "value": "48_gb",
+        "temporal": "durable",
+        "allowed_evidence": [
+          "No meu computador principal estão instalados 48 GB de RAM.",
+          "No meu computador principal estão instalados 48 GB de RAM"
+        ]
+      },
+      "author_and_interpretation_diagnosis": {
+        "first_failing_stage": "semantic_interpretation",
+        "concrete_condition": "The possessed computer is bound to USER, but the typed installed RAM rule required a possession verb or equipado com. Passive estão instalados did not qualify, and the older RAM extractor supplied no capacity.",
+        "classification_observation": "Original source inspected against the frozen 2.2E attribution code. Store replay below records actual enqueue, validation and SQLite observations."
+      },
+      "verified_sqlite": {
+        "rules": {
+          "validation": {
+            "accepted": []
+          },
+          "enqueue_state": "ignored",
+          "enqueue_reason": "not_eligible",
+          "sqlite_jobs": [],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        },
+        "llm": {
+          "validation": {
+            "accepted": []
+          },
+          "enqueue_state": "queued",
+          "enqueue_reason": null,
+          "sqlite_jobs": [
+            {
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        },
+        "hybrid": {
+          "validation": {
+            "accepted": []
+          },
+          "enqueue_state": "queued",
+          "enqueue_reason": null,
+          "sqlite_jobs": [
+            {
+              "state": "done",
+              "attempts": 1,
+              "error_code": null
+            }
+          ],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "ex-018",
+      "original_source": "O meu notebook de trabalho conta hoje com 12 GB de RAM.",
+      "original_scope": "phase22e-final-ext-018",
+      "original_project": "jatoba",
+      "clauses": [
+        {
+          "text": "O meu notebook de trabalho conta hoje com 12 GB de RAM",
+          "start_utf8": 0,
+          "end_utf8": 54,
+          "message_author": "user",
+          "statement_author": "external_or_unproved",
+          "origin": "ReportedSpeech"
+        }
+      ],
+      "proposed_evidence_and_category": [
+        {
+          "evidence": "O meu notebook de trabalho conta hoje com 12 GB de RAM",
+          "category": "hardware"
+        }
+      ],
+      "intended_canonical_relation": {
+        "kind": "hardware",
+        "subject": "device.work_laptop",
+        "property": "ram_capacity",
+        "value": "12_gb",
+        "temporal": "durable",
+        "allowed_evidence": [
+          "O meu notebook de trabalho conta hoje com 12 GB de RAM.",
+          "O meu notebook de trabalho conta hoje com 12 GB de RAM"
+        ]
+      },
+      "author_and_interpretation_diagnosis": {
+        "first_failing_stage": "speaker_classification_then_interpretation",
+        "concrete_condition": "The reporting list matched conta. Because the verb follows a possessed noun without eu, the attribution logic classified the whole clause as reported speech. Its conta hoje com argument is a possession construction. The old installed RAM predicate also did not recognize that construction.",
+        "classification_observation": "Original source inspected against the frozen 2.2E attribution code. Store replay below records actual enqueue, validation and SQLite observations."
+      },
+      "verified_sqlite": {
+        "rules": {
+          "validation": {
+            "error": "Ineligible V3 source"
+          },
+          "enqueue_state": "ignored",
+          "enqueue_reason": "not_eligible",
+          "sqlite_jobs": [],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        },
+        "llm": {
+          "validation": {
+            "error": "Ineligible V3 source"
+          },
+          "enqueue_state": "ignored",
+          "enqueue_reason": "not_eligible",
+          "sqlite_jobs": [],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        },
+        "hybrid": {
+          "validation": {
+            "error": "Ineligible V3 source"
+          },
+          "enqueue_state": "ignored",
+          "enqueue_reason": "not_eligible",
+          "sqlite_jobs": [],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "primary-before",
+      "original_source": "No computador principal que uso há 48 GB de RAM.",
+      "original_scope": "phase22e-final-ret-main",
+      "original_project": "jatoba",
+      "clauses": [
+        {
+          "text": "No computador principal que uso há 48 GB de RAM",
+          "start_utf8": 0,
+          "end_utf8": 48,
+          "message_author": "user",
+          "statement_author": "external_or_unproved",
+          "origin": "Uncertain"
+        }
+      ],
+      "proposed_evidence_and_category": null,
+      "intended_canonical_relation": {
+        "kind": "hardware",
+        "subject": "device.primary_computer",
+        "property": "ram_capacity",
+        "value": "48_gb",
+        "temporal": "durable",
+        "allowed_evidence": [
+          "No computador principal que uso há 48 GB de RAM.",
+          "No computador principal que uso há 48 GB de RAM"
+        ]
+      },
+      "author_and_interpretation_diagnosis": {
+        "first_failing_stage": "speaker_classification_then_interpretation",
+        "concrete_condition": "The leading locative No computador principal did not match the initial article/device frame, and que uso did not supply the existing explicit first-person ownership cue. The typed capacity branch also had no existential há predicate bound to that device and amount.",
+        "classification_observation": "Original source inspected against the frozen 2.2E attribution code. Store replay below records actual enqueue, validation and SQLite observations."
+      },
+      "verified_sqlite": {
+        "rules": {
+          "validation": {
+            "error": "Ineligible extraction source or response size"
+          },
+          "enqueue_state": "ignored",
+          "enqueue_reason": "not_eligible",
+          "sqlite_jobs": [],
+          "sqlite_records": [],
+          "integrity": [
+            [
+              "ok"
+            ]
+          ]
+        }
+      }
+    }
+  ],
+  "out_of_order_baseline": {
+    "newer": "My preference has changed: for my own coffee, I now prefer it without sugar.",
+    "older": "For my own afternoon coffee, I prefer it with sugar.",
+    "cause": "The later source had first-person ownership, but the old verbal classifier recognized I prefer and did not recognize the first-person subject with the inserted adverb now. The named coffee and pronominal object never produced a native preference. A done job with zero memories gave the rowid guard no newer relation for coffee_sugar.",
+    "earlier_source_became_active": "with_sugar",
+    "newer_source_terminal_state": "done",
+    "newer_source_records_before_older_publication": 0,
+    "phase22e_native_evidence": "../../phase22e/final-v1/faults-literal-audit.json"
+  }
+}

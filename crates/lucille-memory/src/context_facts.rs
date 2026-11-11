@@ -135,12 +135,31 @@ pub(crate) fn project(tx: &Transaction, memories: &[Memory]) -> Result<Vec<Conte
                 }
             }
         }
-        let ended_after_field_recorded = if crate::dialogue::execution_track(
-            &q.subject,
-            &q.property,
-            &q.temporal,
-        ) {
-            tx.query_row("SELECT EXISTS(SELECT 1 FROM memories n JOIN memory_quality state ON state.memory_id=n.id WHERE n.scope=?1 AND n.project=?2 AND n.state='active' AND state.subject=?3 AND state.property='lifecycle' AND state.temporal IN ('cancelled','completed') AND n.updated_at>=?4)", params![m.input.scope,m.input.project,q.subject,m.updated_at], |r|r.get::<_,bool>(0)).map_err(db_error)?
+        let technical_track = crate::dialogue::execution_track(&q.subject, &q.property, &q.temporal)
+            || (q.subject.starts_with("project.")
+                && ["language", "database"].contains(&q.property.as_str())
+                && (q.temporal == "planned" || m.input.kind == Kind::Decision));
+        let ended_after_field_recorded = if technical_track {
+            // A reviewed field may have been approved after cancellation. Use
+            // the order of the original USER sources when both are available.
+            tx.query_row(
+                "SELECT EXISTS(
+                    SELECT 1 FROM memories n JOIN memory_quality state ON state.memory_id=n.id
+                    WHERE n.scope=?1 AND n.project=?2 AND n.state='active'
+                      AND state.subject=?3 AND state.property='lifecycle'
+                      AND state.temporal IN ('cancelled','completed')
+                      AND COALESCE(
+                        (SELECT MAX(j.rowid) FROM memory_provenance p
+                         JOIN extraction_jobs j ON j.id=p.interaction_id WHERE p.memory_id=n.id)
+                        >=
+                        (SELECT MAX(j.rowid) FROM memory_provenance p
+                         JOIN extraction_jobs j ON j.id=p.interaction_id WHERE p.memory_id=?4),
+                        n.updated_at>=?5
+                      )
+                )",
+                params![m.input.scope, m.input.project, q.subject, m.input.id, m.updated_at],
+                |r| r.get::<_, bool>(0),
+            ).map_err(db_error)?
         } else {
             false
         };
@@ -228,6 +247,8 @@ pub struct AnswerEvidence {
     pub has_scoped_records: bool,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub learning_receipt: Option<serde_json::Value>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub source_operation: Option<serde_json::Value>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -354,12 +375,12 @@ impl Store {
         } else {
             statements(req)
         };
-        let directive_receipt = if let Some(source) = source {
-            crate::turn_sources::receipt(&tx, &source.interaction)?
-        } else {
-            None
+        let directive_receipt = match source {
+            Some(source) if source.job_id.is_some() => crate::source_operations::forget(&tx, &source.interaction)?,
+            _ => None,
         };
-        let learning_receipt = source.map(|s|crate::turn_sources::learning_receipt(&tx,req,s)).transpose()?.flatten();
+        let learning_receipt = source.map(|s| crate::source_operations::learning(&tx, req, s)).transpose()?.flatten();
+        let source_operation = source.map(|s| crate::source_operations::status(&tx, req, s)).transpose()?.flatten();
         let has_scoped_records = tx
             .query_row(
                 "SELECT EXISTS(SELECT 1 FROM memories WHERE scope=?1 AND project=?2)",
@@ -374,6 +395,7 @@ impl Store {
             directive_receipt,
             has_scoped_records,
             learning_receipt,
+            source_operation,
         })
     }
 }

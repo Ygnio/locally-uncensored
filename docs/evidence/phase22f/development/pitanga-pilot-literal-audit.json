@@ -1,0 +1,168 @@
+{
+  "id": "phase22f-development-pitanga-pilot-literal-audit",
+  "label": "devf-pilot-pitanga",
+  "classification": "known 2.2E replay on F development artifacts; infrastructure prevented answer evaluation",
+  "originals": {
+    "frozen_e_plan": {
+      "path": "crates/lucille-memory/tests/fixtures/phase22e/final-v1/conversation-other.json",
+      "sha256": "8bba4471988683f9b5af46d5277f26c9c25ee5e22a387b772bfaa88b502ffb8e"
+    },
+    "retained_e_literal_audit": {
+      "path": "docs/evidence/phase22e/final-v1/gui-other-empty-literal-audit.json",
+      "sha256": "e4502cfee12a14e3af3995a962752d79cb228dfc7bd813684632d382018bbe49"
+    },
+    "pilot_driver_failure_sha256": "06833be4506028b613eec1e2d1e8052baea058f38ebc5bfb50e7c9bfd07d9c0a",
+    "pilot_transport_capture_sha256": "583931af5e02aff78d4a1214db6f90f0569fc119463087a9c1f1cbc10caf6758",
+    "pilot_controller_log_sha256": "7cbbe0f5b7eb0773d4d8d4636a2319f019d433b81deb6e6231515fc4e59b379c",
+    "development_manifest_sha256": "290740ecfc88c6a40a11da5dfc051365a88656f1d5ae24051d91202a3108c3cf"
+  },
+  "coverage": {
+    "planned": 6,
+    "attempted": 1,
+    "completed_answer_slots": 0,
+    "blocked_by_fidelity": 0,
+    "incomplete_infrastructure": 1,
+    "not_executed_after_abort": 5,
+    "literal_fidelity": "not measured",
+    "confirmation_timing": "not measured for a delivered model answer"
+  },
+  "attempted_slot": {
+    "id": "go-t01",
+    "mode": "agent",
+    "source": "No meu projeto Pitanga, o banco que escolhi é MySQL.",
+    "source_sha256": "eefb3f6180880e61f4e619aa2cb814f84db501b3bdd16db5264f6ec5028638e6",
+    "user_message_captured_utc": "2026-11-11T12:44:26.161000+00:00",
+    "transport_capture_utc": "2026-11-11T12:44:36.045Z",
+    "visible_message_content": "Agent error: ValueError",
+    "fidelity_report_count": 0,
+    "agent_reflection_count": 0,
+    "model_answer_or_verified_text": null,
+    "paint_to_commit": "No completed answer paint timeline retained; the transport capture is app message state, not a DOM snapshot."
+  },
+  "not_executed": [
+    {
+      "id": "go-t02",
+      "mode": "code",
+      "expected_atoms": [
+        "typescript_execution_received",
+        "no_premature_persistence"
+      ]
+    },
+    {
+      "id": "go-t03",
+      "mode": "chat",
+      "expected_atoms": [
+        "rust_plan_received",
+        "no_premature_persistence"
+      ]
+    },
+    {
+      "id": "go-p01",
+      "mode": "code",
+      "expected_atoms": [
+        "mysql_chosen"
+      ]
+    },
+    {
+      "id": "go-p02",
+      "mode": "agent",
+      "expected_atoms": [
+        "typescript_in_progress",
+        "rust_planned_future"
+      ]
+    },
+    {
+      "id": "go-p03",
+      "mode": "chat",
+      "expected_atoms": [
+        "mysql_chosen",
+        "jatoba_unavailable_in_binding"
+      ]
+    }
+  ],
+  "native_after_failure": {
+    "mode": "SQLite URI mode=ro with PRAGMA query_only, same synthetic scope/project",
+    "scope": "phase22f-pilot-pitanga",
+    "project": "pitanga",
+    "database_schema": 6,
+    "exact_source_job_matched": true,
+    "job": {
+      "state": "failed",
+      "attempts": 3,
+      "error_code": "extractor_failed",
+      "created_at": 1794401066,
+      "updated_at": 1794401087
+    },
+    "job_utc_seconds": {
+      "created": "2026-11-11T12:44:26+00:00",
+      "updated": "2026-11-11T12:44:47+00:00"
+    },
+    "source_operation": {
+      "action": "learn",
+      "identity_version": 1,
+      "committed_record_versions": 0
+    },
+    "canonical_records": 0,
+    "tombstones": 0,
+    "retrieval_audits": [
+      {
+        "mode": "agent",
+        "references": []
+      },
+      {
+        "mode": "agent",
+        "references": []
+      },
+      {
+        "mode": "agent",
+        "references": []
+      }
+    ],
+    "receipt_eligibility": "Terminal failed job and zero committed operation records; no learning confirmation."
+  },
+  "broker_and_sampler": {
+    "window_utc": [
+      "2026-11-11T12:44:26.161000+00:00",
+      "2026-11-11T12:44:47.596000+00:00"
+    ],
+    "successful_requests": {
+      "nomic": 1
+    },
+    "error_counts": {
+      "resource_pressure": 20
+    },
+    "refusal_http_status": 503,
+    "new_inference_ram_floor_mib": 2048,
+    "new_inference_commit_headroom_floor_mib": 1024,
+    "near_window_samples": [
+      {
+        "utc": "2026-11-11T12:44:20.7068810Z",
+        "available_mib": 2162,
+        "commit_headroom_mib": 13760
+      },
+      {
+        "utc": "2026-11-11T12:44:31.5372114Z",
+        "available_mib": 1888,
+        "commit_headroom_mib": 13738
+      },
+      {
+        "utc": "2026-11-11T12:44:42.3206848Z",
+        "available_mib": 1903,
+        "commit_headroom_mib": 13769
+      },
+      {
+        "utc": "2026-11-11T12:44:53.1596680Z",
+        "available_mib": 1921,
+        "commit_headroom_mib": 13748
+      }
+    ],
+    "method": "Successful and refused broker records counted in the exact user-message-to-controller-failure window. Resources are asynchronous samples. The Resource pressure classification comes from the broker."
+  },
+  "comparison_with_2_2e": {
+    "prior_case": "go-t01",
+    "prior_finding": "Agent delivered premature Registrei before the durable candidate receipt.",
+    "current_pilot_disposition": "No successful Gemma answer was generated in the observed window, so this pilot neither confirms nor disproves the product correction. The other modes and comparative probes were not executed."
+  },
+  "observer_note": "This pilot driver attempted timestamped answer_evidence using a null job_id, which cannot read F source operation or learning receipt authority. This did not change the real pre-exposure verifier. No complete per-turn timing row was retained by the failing driver, and the post-run native values above come from a separate read-only audit.",
+  "privacy": "Synthetic source/reply only. Conversation, message, native job and raw SQLite identifiers, private paths, request payloads and any leases are excluded."
+}

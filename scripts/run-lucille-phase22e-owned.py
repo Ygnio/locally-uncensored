@@ -44,15 +44,18 @@ def launch(root,kind,contract):
   if (kind=='broker' and port_open(15284)) or (kind!='broker' and ready(root,kind)):return
   time.sleep(1)
  raise RuntimeError('Own endpoint startup timeout: '+kind)
-def main(a):
- root=Path(a.root).resolve(strict=True);assert root==repo/'.lucille-qa-runtime/lucille-synthetic-real22e'
+def main(a, phase='22e'):
+ assert phase in ('22e','22f')
+ root=Path(a.root).resolve(strict=True);assert root==repo/'.lucille-qa-runtime'/('lucille-synthetic-real'+phase)
  assert (root/'.lucille-isolated').read_bytes()==b'synthetic-data-only\n'
  contract=json.loads((root/'attested-contract.json').read_text(encoding='utf-8'));assert contract['memory_protocol']==3 and contract['models']['gemma']['context_tokens']==65536
  kinds=['nomic','gemma','broker'] if a.operation in ['start','stop'] else ['nomic'] if a.operation in ['nomic-restart','nomic-stop'] else ['broker']
  if a.operation!='start':stop(root,kinds)
- if a.operation in ['stop','nomic-stop']:return
+ if a.operation in ['stop','nomic-stop','broker-stop']:return
  assert not any(port_open({'gemma':15288,'nomic':15289,'broker':15284}[k]) for k in kinds),'Own requested ports occupied; no stop attempted'
  time.sleep(3);archive(root,kinds)
  for k in kinds:launch(root,k,contract)
-if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('--root',required=True);p.add_argument('--operation',choices=['start','stop','nomic-restart','nomic-stop','broker-restart'],required=True);main(p.parse_args())
+def cli(phase='22e'):
+ p=argparse.ArgumentParser();p.add_argument('--root',required=True);p.add_argument('--operation',choices=['start','stop','nomic-restart','nomic-stop','broker-restart','broker-stop'],required=True);main(p.parse_args(),phase)
+
+if __name__=='__main__':cli()

@@ -1,0 +1,147 @@
+{
+  "id": "phase22f-development-host-reboot-and-c1-physical-offline",
+  "kind": "known_development",
+  "host_incident": {
+    "stop_code": "0x00000116",
+    "name": "VIDEO_TDR_FAILURE",
+    "kernel_power_bugcheck_decimal": 278,
+    "boot_utc": "2026-11-11T12:59:05.5000000Z",
+    "local_timezone": "America/Sao_Paulo",
+    "windows_events": [
+      {
+        "id": 41,
+        "utc": "2026-11-11T12:59:10.7667159Z"
+      },
+      {
+        "id": 6005,
+        "utc": "2026-11-11T12:59:14.6108231Z"
+      },
+      {
+        "id": 6008,
+        "utc": "2026-11-11T12:59:14.6108231Z"
+      },
+      {
+        "id": 1001,
+        "utc": "2026-11-11T12:59:26.8525938Z"
+      }
+    ],
+    "last_preboot_sample": {
+      "utc": "2026-11-11T12:56:34.6438907Z",
+      "available_mib": 1959,
+      "gemma_working_set_bytes": 7884853248,
+      "nomic_working_set_bytes": 813203456,
+      "gpu_memory_used_mib": 9225,
+      "gpu_memory_total_mib": 12288,
+      "webview_count": 6
+    },
+    "interpretation": "O Windows registrou falha na recupera\u00e7\u00e3o do v\u00eddeo. A \u00faltima amostra antecede o boot em cerca de 151 segundos e n\u00e3o identifica o gatilho.",
+    "postboot_qa_listeners_found": 0,
+    "graceful_stop_recorded": false
+  },
+  "completed_before_reboot": {
+    "stage": "devf1-pitanga",
+    "finished_utc": "2026-11-11T12:56:31.389Z",
+    "gui_turns": 6,
+    "gui_probes": 3,
+    "sqlite_jobs_done": 3,
+    "sqlite_canonical_active": 3
+  },
+  "interrupted_stage": {
+    "stage": "devf1-forget-delete",
+    "reserved_sources": 1,
+    "source_state": "queued",
+    "source_reserved_utc": "2026-11-11T12:56:42+00:00",
+    "source_attempts": 0,
+    "source_error": null,
+    "canonical_records": 0,
+    "tombstones": 0,
+    "completed_turns": 0,
+    "gui_progress_or_final_artifact": false
+  },
+  "postboot_readonly_sqlite": {
+    "utc": "2026-11-11T13:05:08.044737+00:00",
+    "schema": 6,
+    "identity_version": 1,
+    "quick_check": "ok",
+    "integrity_check": "ok",
+    "foreign_key_errors": 0
+  },
+  "offline_evaluator_attempts": [
+    {
+      "label": "devf1-c1-off",
+      "result": "unmeasured",
+      "reason": "O teste de conex\u00e3o de 1 s terminou em TimeoutError antes de confirmar que a porta estava fechada."
+    },
+    {
+      "label": "devf2-c1-off",
+      "result": "passed",
+      "source_head": "fdb179ddf3aed3d862f68c1809aeac0e5f67c9d5",
+      "freeze_sha256": "cd5a01cc66ed5159ab03f071fcfbc4db757fdb98e3527a0513116c3b50089771",
+      "dataset_sha256": "083b2fe71f6d4cdfb10d5dfc01443b9b664b6c42df58e8c57aca6fb7e143df08",
+      "connection_timeout_seconds": 5,
+      "nomic_loopback_port_closed": true,
+      "ranking": {
+        "tp": 30,
+        "fp": 0,
+        "missed": 0,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "planned": 29,
+        "measured": 29,
+        "unmeasured_expected": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "recall_planned": 1.0,
+        "passed": true
+      },
+      "mandatory_fallback": {
+        "planned": 20,
+        "exact": 20,
+        "physical_endpoint_unavailable": true
+      },
+      "initial_artifacts": {
+        "bridge_verified": true,
+        "saved_model_pin_verified": true
+      },
+      "final_artifacts": {
+        "bridge_verified": true,
+        "saved_model_pin_verified": true
+      }
+    }
+  ],
+  "original_artifacts": {
+    "reboot-observation.json": {
+      "sha256": "a5cddba9a74958cabc47419c2e044c46a338c181179f2d9b583afaded42a397b",
+      "bytes": 396
+    },
+    "system-resources-22f.ndjson": {
+      "sha256": "9d7f2902f9a7d19f2e214db5c093d5acd81370d0029fbf9a4f4e58a2883007e0",
+      "bytes": 147619
+    },
+    "post-reboot-sqlite-readonly.json": {
+      "sha256": "d8c9dc1058141abc342c77219a46238d4513f173ce75fca25b1ad373fc9703be",
+      "bytes": 354
+    },
+    "driver-devf1-pitanga-final.json": {
+      "sha256": "09961530c3fbab85fb7bba44a29da026c4e5e22592d4c5e95a6959ed59345830",
+      "bytes": 124944
+    },
+    "phase22f-devf1-c1-off.log": {
+      "sha256": "d190bda42b7e661a30f4f854aa9a9f4a56a70e09a05cfa728c56b6fd49272943",
+      "bytes": 788
+    },
+    "phase22f-devf2-c1-off.log": {
+      "sha256": "ef56c648af99e8406a546c422b6455f1ac33f47cd1d5c68c95d61ed27acfa5e0",
+      "bytes": 1479
+    },
+    "devf2-c1-off-c1-offline.json": {
+      "sha256": "41df22d1f6d67b95b2d93b964270e9ba61adcb8be7dc0d498aebda5582b10ab3",
+      "bytes": 452226
+    },
+    "development-freeze-offline2.json": {
+      "sha256": "cd5a01cc66ed5159ab03f071fcfbc4db757fdb98e3527a0513116c3b50089771",
+      "bytes": 568278
+    }
+  }
+}

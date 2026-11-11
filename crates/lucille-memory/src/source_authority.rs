@@ -216,6 +216,18 @@ fn speech(w: &str) -> bool {
         ],
     )
 }
+fn reporting_verb(ws: &[Word], index: usize) -> bool {
+    let word = &ws[index].text;
+    if word == "conta" {
+        // `conta com` means possession or reliance, including a temporal
+        // adverb between the verb and preposition. `conta que` reports speech.
+        let next = ws[index + 1..]
+            .iter()
+            .find(|w| !member(&w.text, &["hoje", "atualmente", "agora"]));
+        return next.is_none_or(|w| w.text != "com");
+    }
+    speech(word)
+}
 fn leading_foreign(ws: &[Word]) -> bool {
     let mut at = 0;
     while ws.get(at).is_some_and(|w| {
@@ -241,7 +253,16 @@ fn leading_foreign(ws: &[Word]) -> bool {
 }
 fn external(s: &str) -> bool {
     let ws = words(s);
-    if leading_foreign(&ws) {
+    let starts = |prefix: &[&str]| {
+        ws.len() >= prefix.len()
+            && ws.iter().zip(prefix).all(|(word, prefix)| word.text == *prefix)
+            && leading_foreign(&ws[prefix.len()..])
+    };
+    if leading_foreign(&ws)
+        || starts(&["segundo"])
+        || starts(&["de", "acordo", "com"])
+        || starts(&["according", "to"])
+    {
         return true;
     }
     if fictional_role(s) {
@@ -249,8 +270,8 @@ fn external(s: &str) -> bool {
     }
     // A possessed noun that speaks is a reported speaker, even when the
     // relation/name is not one of the small explicit third-party aliases.
-    if let Some(spoken) = ws.iter().position(|w| {
-        speech(&w.text)
+    if let Some(spoken) = ws.iter().enumerate().position(|(index, w)| {
+        reporting_verb(&ws, index)
             && !member(
                 &w.text,
                 &[
@@ -283,11 +304,9 @@ fn external(s: &str) -> bool {
         })
         .unwrap_or(ws.len());
     let actor = ws.iter().position(|w| foreign_noun(&w.text));
-    actor.is_some_and(|at| at < first_self && ws.iter().any(|w| speech(&w.text)))
-        || ws
-            .iter()
-            .position(|w| speech(&w.text))
-            .is_some_and(|at| at < first_self)
+    let spoken = (0..ws.len()).find(|&at| reporting_verb(&ws, at));
+    actor.is_some_and(|at| at < first_self && spoken.is_some())
+        || spoken.is_some_and(|at| at < first_self)
 }
 fn fictional_role(s: &str) -> bool {
     let s = fold(s);
@@ -432,6 +451,7 @@ fn declaration(s: &str) -> bool {
         // another list of every first-person verb/correction/constraint form.
         || !crate::extraction::extract(s).is_empty()
         || crate::dialogue::preference_authorship(s)
+        || crate::evidence::owns_device_relative_clause(s)
 }
 fn quote_end(text: &str, begin: usize, close: &str) -> Option<usize> {
     let mut from = begin;
@@ -542,9 +562,8 @@ fn attributed<'a>(
     let external_source = external(s);
     if external_source {
         let ws = words(s);
-        let boundary = ws
-            .iter()
-            .position(|w| speech(&w.text))
+        let boundary = (0..ws.len())
+            .find(|&at| reporting_verb(&ws, at))
             .or_else(|| ws.iter().position(|w| foreign_noun(&w.text)));
         if boundary.is_some_and(|at| {
             ws[at + 1..].iter().any(|w| {

@@ -1,0 +1,433 @@
+{
+  "kind": "fresh known 2.2F development inference, outside any holdout",
+  "method": "A real Gemma call for each source, same proposal tested in native LLM/hybrid; rules are independent. Candidate status checked in SQLite.",
+  "sealed_original_sha256": {
+    "devf0-a-extraction.json": "b1b85bc4111fbac8dae3176bab12c2e4894978e02b707369a1cd6d45b83af385",
+    "devf0-a-extraction-progress.ndjson": "f9235c6a3dd9b16196e904e33477086b51cfdb994b1f4f473e0f2f21acb9dd18",
+    "development-freeze-bridge1.json": "86df0aab8b967da7ecc8fa636c9a82a582d5f83140446f411743acf489d37a38",
+    "known-extraction.json": "3d7c42a08c4430c4ffea88d45b43ec4f0e634bfe02779a72d241090c4826e383"
+  },
+  "emitted_scores": {
+    "rules": {
+      "tp": 7,
+      "fp": 1,
+      "missed": 1,
+      "active_wrong": 0,
+      "critical_writes": 1,
+      "origin_violations": 0,
+      "measured": 10,
+      "precision": 0.875,
+      "recall": 0.875,
+      "passed": false
+    },
+    "llm": {
+      "tp": 7,
+      "fp": 1,
+      "missed": 1,
+      "active_wrong": 0,
+      "critical_writes": 1,
+      "origin_violations": 0,
+      "measured": 10,
+      "precision": 0.875,
+      "recall": 0.875,
+      "passed": false
+    },
+    "hybrid": {
+      "tp": 7,
+      "fp": 1,
+      "missed": 1,
+      "active_wrong": 0,
+      "critical_writes": 1,
+      "origin_violations": 0,
+      "measured": 10,
+      "precision": 0.875,
+      "recall": 0.875,
+      "passed": false
+    }
+  },
+  "literal_review": {
+    "seven_original_sources_recovered": true,
+    "external_controls_native_records": 0,
+    "seed_candidate_confirmed": true,
+    "seed_scoring_disposition": "evaluator annotation mismatch",
+    "cause": "Only the new development wrapper added Quality.temporal=current; the original C source had no temporal gold. The current RAM fact is stored with temporal=durable. Its subject/property/value, status and actual source match. V1 output is kept and this review does not replace emitted scores."
+  },
+  "observations": [
+    {
+      "id": "ex-001",
+      "source": "Café sem açúcar é a minha preferência no intervalo da tarde.",
+      "nomination": [
+        {
+          "evidence": "Café sem açúcar é a minha preferência no intervalo da tarde",
+          "category": "preference"
+        }
+      ],
+      "canonical": {
+        "rules": [
+          {
+            "state": "active",
+            "kind": "preference",
+            "subject": "user",
+            "property": "coffee_sugar",
+            "value": "without_sugar",
+            "temporal": "preference"
+          }
+        ],
+        "llm": [
+          {
+            "state": "active",
+            "kind": "preference",
+            "subject": "user",
+            "property": "coffee_sugar",
+            "value": "without_sugar",
+            "temporal": "preference"
+          }
+        ],
+        "hybrid": [
+          {
+            "state": "active",
+            "kind": "preference",
+            "subject": "user",
+            "property": "coffee_sugar",
+            "value": "without_sugar",
+            "temporal": "preference"
+          }
+        ]
+      },
+      "latency_seconds": 4.154535600013332
+    },
+    {
+      "id": "ex-006",
+      "source": "My preferred interface appearance is the light theme.",
+      "nomination": [
+        {
+          "evidence": "My preferred interface appearance is the light theme",
+          "category": "preference"
+        }
+      ],
+      "canonical": {
+        "rules": [
+          {
+            "state": "active",
+            "kind": "preference",
+            "subject": "user",
+            "property": "interface_theme",
+            "value": "light",
+            "temporal": "preference"
+          }
+        ],
+        "llm": [
+          {
+            "state": "active",
+            "kind": "preference",
+            "subject": "user",
+            "property": "interface_theme",
+            "value": "light",
+            "temporal": "preference"
+          }
+        ],
+        "hybrid": [
+          {
+            "state": "active",
+            "kind": "preference",
+            "subject": "user",
+            "property": "interface_theme",
+            "value": "light",
+            "temporal": "preference"
+          }
+        ]
+      },
+      "latency_seconds": 3.6285046999983024
+    },
+    {
+      "id": "ex-007",
+      "source": "O idioma de minha preferência para receber respostas é português.",
+      "nomination": [
+        {
+          "evidence": "O idioma de minha preferência para receber respostas é português",
+          "category": "preference"
+        }
+      ],
+      "canonical": {
+        "rules": [
+          {
+            "state": "active",
+            "kind": "preference",
+            "subject": "user",
+            "property": "response_language",
+            "value": "pt",
+            "temporal": "preference"
+          }
+        ],
+        "llm": [
+          {
+            "state": "active",
+            "kind": "preference",
+            "subject": "user",
+            "property": "response_language",
+            "value": "pt",
+            "temporal": "preference"
+          }
+        ],
+        "hybrid": [
+          {
+            "state": "active",
+            "kind": "preference",
+            "subject": "user",
+            "property": "response_language",
+            "value": "pt",
+            "temporal": "preference"
+          }
+        ]
+      },
+      "latency_seconds": 3.7418065999809187
+    },
+    {
+      "id": "ex-013",
+      "source": "Jogos de estratégia por turnos fazem parte das minhas preferências.",
+      "nomination": [
+        {
+          "evidence": "Jogos de estratégia por turnos fazem parte das minhas preferências",
+          "category": "preference"
+        }
+      ],
+      "canonical": {
+        "rules": [
+          {
+            "state": "active",
+            "kind": "preference",
+            "subject": "user",
+            "property": "games_turn_strategy",
+            "value": "positive",
+            "temporal": "preference"
+          }
+        ],
+        "llm": [
+          {
+            "state": "active",
+            "kind": "preference",
+            "subject": "user",
+            "property": "games_turn_strategy",
+            "value": "positive",
+            "temporal": "preference"
+          }
+        ],
+        "hybrid": [
+          {
+            "state": "active",
+            "kind": "preference",
+            "subject": "user",
+            "property": "games_turn_strategy",
+            "value": "positive",
+            "temporal": "preference"
+          }
+        ]
+      },
+      "latency_seconds": 3.8645854000060353
+    },
+    {
+      "id": "ex-015",
+      "source": "Para guardar o acervo deste projeto, PostgreSQL foi a minha escolha final de banco de dados.",
+      "nomination": [
+        {
+          "evidence": "Para guardar o acervo deste projeto, PostgreSQL foi a minha escolha final de banco de dados",
+          "category": "decision"
+        }
+      ],
+      "canonical": {
+        "rules": [
+          {
+            "state": "candidate",
+            "kind": "decision",
+            "subject": "project.jatoba",
+            "property": "database",
+            "value": "postgresql",
+            "temporal": "durable"
+          }
+        ],
+        "llm": [
+          {
+            "state": "candidate",
+            "kind": "decision",
+            "subject": "project.jatoba",
+            "property": "database",
+            "value": "postgresql",
+            "temporal": "durable"
+          }
+        ],
+        "hybrid": [
+          {
+            "state": "candidate",
+            "kind": "decision",
+            "subject": "project.jatoba",
+            "property": "database",
+            "value": "postgresql",
+            "temporal": "durable"
+          }
+        ]
+      },
+      "latency_seconds": 4.034962699981406
+    },
+    {
+      "id": "ex-017",
+      "source": "No meu computador principal estão instalados 48 GB de RAM.",
+      "nomination": [
+        {
+          "evidence": "No meu computador principal estão instalados 48 GB de RAM",
+          "category": "hardware"
+        }
+      ],
+      "canonical": {
+        "rules": [
+          {
+            "state": "candidate",
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "48_gb",
+            "temporal": "durable"
+          }
+        ],
+        "llm": [
+          {
+            "state": "candidate",
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "48_gb",
+            "temporal": "durable"
+          }
+        ],
+        "hybrid": [
+          {
+            "state": "candidate",
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "48_gb",
+            "temporal": "durable"
+          }
+        ]
+      },
+      "latency_seconds": 3.8958955999987666
+    },
+    {
+      "id": "ex-018",
+      "source": "O meu notebook de trabalho conta hoje com 12 GB de RAM.",
+      "nomination": [
+        {
+          "evidence": "O meu notebook de trabalho conta hoje com 12 GB de RAM",
+          "category": "hardware"
+        }
+      ],
+      "canonical": {
+        "rules": [
+          {
+            "state": "candidate",
+            "kind": "hardware",
+            "subject": "device.work_laptop",
+            "property": "ram_capacity",
+            "value": "12_gb",
+            "temporal": "durable"
+          }
+        ],
+        "llm": [
+          {
+            "state": "candidate",
+            "kind": "hardware",
+            "subject": "device.work_laptop",
+            "property": "ram_capacity",
+            "value": "12_gb",
+            "temporal": "durable"
+          }
+        ],
+        "hybrid": [
+          {
+            "state": "candidate",
+            "kind": "hardware",
+            "subject": "device.work_laptop",
+            "property": "ram_capacity",
+            "value": "12_gb",
+            "temporal": "durable"
+          }
+        ]
+      },
+      "latency_seconds": 3.8504619000013918
+    },
+    {
+      "id": "dx-031",
+      "source": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita.",
+      "nomination": [
+        {
+          "evidence": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita",
+          "category": "preference"
+        }
+      ],
+      "canonical": {
+        "rules": [],
+        "llm": [],
+        "hybrid": []
+      },
+      "latency_seconds": 2.6184266000054777
+    },
+    {
+      "id": "dx-032",
+      "source": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar.",
+      "nomination": [
+        {
+          "evidence": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar",
+          "category": "preference"
+        }
+      ],
+      "canonical": {
+        "rules": [],
+        "llm": [],
+        "hybrid": []
+      },
+      "latency_seconds": 3.8149344000266865
+    },
+    {
+      "id": "c-ram-seed",
+      "source": "No computador principal que uso há 48 GB de RAM.",
+      "nomination": [
+        {
+          "evidence": "No computador principal que uso há 48 GB de RAM",
+          "category": "hardware"
+        }
+      ],
+      "canonical": {
+        "rules": [
+          {
+            "state": "candidate",
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "48_gb",
+            "temporal": "durable"
+          }
+        ],
+        "llm": [
+          {
+            "state": "candidate",
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "48_gb",
+            "temporal": "durable"
+          }
+        ],
+        "hybrid": [
+          {
+            "state": "candidate",
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "48_gb",
+            "temporal": "durable"
+          }
+        ]
+      },
+      "latency_seconds": 3.717095400003018
+    }
+  ]
+}

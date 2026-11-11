@@ -50,6 +50,9 @@ def main(args):
     if root not in contract_path.parents:
         raise ValueError('Contract must remain in QA root')
     contract = json.loads(contract_path.read_text(encoding='utf-8'))
+    # Prevent new inference near the Phase 2.2F working margin. The model
+    # supervisor independently retains its emergency shutdown threshold.
+    inference_ram_floor = (1024 if root.name == 'lucille-synthetic-real22f' else 512) * 1024**2
     expected = contract['models']
     stamps = {}
     for kind, pin in expected.items():
@@ -91,7 +94,7 @@ def main(args):
     def upstream(kind, endpoint, payload):
         manifest = verify(kind)
         before = owned.resources()
-        if before['PhysicalAvailable'] < 512 * 1024**2 or before['CommitLimit'] - before['CommitTotal'] < 1024**3:
+        if before['PhysicalAvailable'] < inference_ram_floor or before['CommitLimit'] - before['CommitTotal'] < 1024**3:
             raise ValueError('Resource pressure; no new test inference')
         port = 15288 if kind == 'gemma' else 15289
         key = (root / (kind + '.api-key')).read_text(encoding='ascii')
