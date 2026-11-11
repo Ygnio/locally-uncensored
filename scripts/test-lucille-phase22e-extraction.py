@@ -11,9 +11,10 @@ def verify_freeze(a,repo):
  for path,digest in manifest["source_sha256_lf"].items():assert hashlib.sha256((repo/path).read_bytes().replace(b"\r\n",b"\n")).hexdigest()==digest,path
  for path,digest in manifest["corpus_sha256"].items():assert hashlib.sha256((repo/path).read_bytes()).hexdigest()==digest,path
  assert hashlib.sha256(Path(a.bridge).read_bytes()).hexdigest()==manifest["bridge_sha256"]
-def main(a):
+def main(a, phase='22e'):
  repo=Path(__file__).resolve().parents[1];root=Path(a.root).resolve(strict=True)
- assert root==repo/'.lucille-qa-runtime/lucille-synthetic-real22e'
+ assert phase in ('22e','22f')
+ assert root==repo/'.lucille-qa-runtime'/('lucille-synthetic-real'+phase)
  assert re.fullmatch(r'[a-z0-9-]{1,60}',a.label)
  assert (root/'.lucille-isolated').read_bytes()==b'synthetic-data-only\n'
  verify_freeze(a,repo)
@@ -73,5 +74,7 @@ def main(a):
   stats['passed']=stats['precision']>=.95 and stats['recall']>=.8 and stats['promotion_precision']>=.99 and not any(stats[k] for k in ['active_wrong','critical_writes','scope_errors','origin_violations'])
  out.write_bytes((json.dumps({'dataset_sha256':digest,'cases':len(data['cases']),'modes':modes,'literal_origin_rubric':origin_rubric,'origin_violations':origin_violations,'invalid_raw_outputs':sum(bool(c.get('raw_parse_error')) for c in [json.loads(s) for s in progress.read_text(encoding='utf-8').splitlines()]),'raw_proposals':sum(len(c['raw_claims']) for c in ([json.loads(s) for s in progress.read_text(encoding='utf-8').splitlines()]))},indent=2,ensure_ascii=False)+'\n').encode())
  print(json.dumps(modes,indent=2))
-if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('--root',required=True);p.add_argument('--bridge',required=True);p.add_argument('--dataset',required=True);p.add_argument('--label',required=True);p.add_argument('--freeze');main(p.parse_args())
+def cli(phase='22e'):
+ p=argparse.ArgumentParser();p.add_argument('--root',required=True);p.add_argument('--bridge',required=True);p.add_argument('--dataset',required=True);p.add_argument('--label',required=True);p.add_argument('--freeze');main(p.parse_args(),phase)
+
+if __name__=='__main__':cli()

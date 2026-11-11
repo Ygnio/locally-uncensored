@@ -70,21 +70,30 @@ def running_gui(record, expected):
         kernel.CloseHandle(handle)
 
 
-def verify_artifacts(repo, root, freeze):
+def artifact_paths(repo, phase):
+    build = repo.parent / 'build'
+    if phase == '22f':
+        return build / 'phase22f/lucille-full-validation.exe', build / 'phase22f/real_validation_bridge.exe'
+    assert phase == '22e'
+    return (build / 'tauri/x86_64-pc-windows-msvc/debug/lucille-full-validation.exe',
+            build / 'memory/debug/examples/real_validation_bridge.exe')
+
+
+def verify_artifacts(repo, root, freeze, phase='22e'):
     repo = Path(repo).resolve(strict=True)
     root = Path(root).resolve(strict=True)
-    assert root == repo / '.lucille-qa-runtime/lucille-synthetic-real22e'
+    assert root == repo / '.lucille-qa-runtime' / ('lucille-synthetic-real' + phase)
     assert (root / '.lucille-isolated').read_bytes() == b'synthetic-data-only\n'
     reports = root / 'reports'
     gui = json.loads((root / 'gui-processes.json').read_text(encoding='utf-8'))
     assert Path(gui['real_root']).resolve(strict=True) == root
-    assert Path(gui['root']).resolve(strict=True) == repo / '.lucille-qa-runtime/lucille-synthetic-full22e'
-    native = (repo.parent / 'build/tauri/x86_64-pc-windows-msvc/debug/lucille-full-validation.exe').resolve(strict=True)
+    assert Path(gui['root']).resolve(strict=True) == repo / '.lucille-qa-runtime' / ('lucille-synthetic-full' + phase)
+    native, bridge = artifact_paths(repo, phase)
+    native = native.resolve(strict=True)
     assert Path(gui['gui']['executable']).resolve(strict=True) == native
     assert digest(native) == freeze['native_gui_sha256'], 'Frozen native GUI changed'
-    bridge = repo.parent / 'build/memory/debug/examples/real_validation_bridge.exe'
     assert digest(bridge) == freeze['bridge_sha256'], 'Frozen native bridge changed'
-    static = repo / 'qa-dist-22e'
+    static = repo / ('qa-dist-' + phase)
     assert (static / '.lucille-static-build').read_bytes() == b'synthetic-data-only\n'
     actual = {p.relative_to(static).as_posix(): digest(p) for p in static.rglob('*') if p.is_file()}
     assert actual and actual == freeze['frontend_sha256'], 'Frozen frontend inventory/hash changed'

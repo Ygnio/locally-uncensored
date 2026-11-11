@@ -1,0 +1,13 @@
+# Lucille 2.2F — confiabilidade da memória canônica
+
+A branch `feature/lucille-phase22f-canonical-reliability` parte do HEAD `b8b1d0e255c29e912edf7f6d18e9c48ac11dfcd1`, conferido no checkout e no fork. Os PRs 12 e 13 estavam abertos em rascunho. O código executado no fechamento da 2.2E foi congelado em `9fca27daf715ef5597e2536f6651583b48ec1f2b`, com manifesto em `a9c49bdeea1932480ef2620d9c0bbca5c3b5f52d`. Os hashes dos dois executáveis 2.2E foram conferidos antes da cópia para o arquivo local de QA. [Relatório 2.2E](lucille-phase22e.md), [PR anterior](https://github.com/Ygnio/locally-uncensored/pull/13).
+
+## Desenvolvimento
+
+O baseline inclui sete falsos negativos da extração, uma perda independente de RAM no preparo de recuperação, confirmação prematura no Agent, correção de café sem açúcar ausente e duas diretivas explícitas de esquecimento que deixaram os registros ativos. Os resultados originais, as rubricas e os denominadores da 2.2E permanecem publicados. [Extração](evidence/phase22e/final-v1/extraction-literal-audit.json), [preparo e respostas](evidence/phase22e/final-v1/retrieval-answer-literal-audit.json), [confirmação](evidence/phase22e/final-v1/gui-other-empty-literal-audit.json), [ordenação](evidence/phase22e/final-v1/faults-literal-audit.json), [esquecimento](evidence/phase22e/final-v1/gui-main-literal-audit.json).
+
+O reconhecedor antigo de esquecimento recusava «de verdade» após o verbo porque todos os termos restantes precisavam pertencer ao alvo. «Escolha» e a expressão de preparo «como eu prefiro o açúcar» também ficavam fora da gramática. O novo analisador interpreta a ênfase junto ao imperativo, reconhece a forma nominal da seleção e vincula o açúcar ao tópico café. Citações, negações, perguntas e condições continuam sem efeito de exclusão. O teste de ciclo usa as duas fontes originais, verifica tombstone e recibo, reinicia, repete a fonte antiga, reintroduz e revisa um registro novo e consulta o estado autorizado depois de reiniciar.
+
+## Ambiente de QA
+
+A primeira leitura mostrou 10.703.120 KiB de memória física livre com as portas isoladas livres. O perfil 2.2F tem raízes próprias para a aplicação, o broker e os bancos. A avaliação preserva o contexto Gemma de 65.536 tokens, o Nomic em CPU com 768 dimensões e contexto 2.048 e os hashes dos pesos e do runtime. O broker impede iniciar nova inferência com menos de 2 GiB de RAM livre na raiz 2.2F. O coletor registra RAM, commit, paginação, CPU, VRAM e working set dos processos próprios, incluindo os WebViews vinculados ao PID do host. O log local do broker registra duração e o uso de tokens informado pelo runtime. A auditoria prévia leu os hashes de 104 arquivos protegidos, sem abrir o banco operacional.
