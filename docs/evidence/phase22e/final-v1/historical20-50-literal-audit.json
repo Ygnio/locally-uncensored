@@ -1,0 +1,3552 @@
+{
+  "kind": "Known original longitudinal regression E, separate from unseen final acceptance.",
+  "method": {
+    "fidelity": "Entire visible responses manually reviewed. Literal factual memory statements and scoped absence count in the fidelity denominator. Generic advice, unrelated world knowledge, questions and blocked raw generations are excluded. General factual accuracy was outside this memory audit.",
+    "utility": "Count one atom per planned source-sequence response and at least one per probe, with the unchanged gold reference count for compound probes. Blocked responses contribute zero. These post-run annotations do not alter the frozen evaluator or original probe golds.",
+    "retrieval": "Earliest matching native row for the exact probe conversation and visible assistant response ID. Each ID/version resolves against that stage-end snapshot or the exact persisted revision. Subsequent correction reads receive no initial retrieval credit.",
+    "timing": "Source-bound native observations on each turn clock distinguish acknowledging current USER text from asserting a completed persistent write."
+  },
+  "series": [
+    {
+      "source_turns": 20,
+      "namespace": "phase22c-final-historical-series",
+      "project": "candeia",
+      "fixture": "long-20-v3.json",
+      "original_fixture_sha256": "e94a9c8ea7671a90f165fae2c85422512b745184eabd767bdcf7f164c6b2892a",
+      "original_report_sha256": "73300430e09d4ab47f5c717bc94fa99647f1ec7c31a0f0a80c2568b5dba8aa46",
+      "started_utc": "2026-11-04T23:47:15.148Z",
+      "finished_utc": "2026-11-04T23:50:42.677Z",
+      "existing_conversation_bindings": 0,
+      "initial_project_metrics": {
+        "current_vectors": 0,
+        "history_events": [],
+        "jobs": [],
+        "memories": [],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 0,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 655360,
+        "vector_json_bytes": 0
+      },
+      "end_project_metrics": {
+        "current_vectors": 10,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 4,
+            "state": "auto_promote"
+          },
+          {
+            "count": 10,
+            "state": "create"
+          },
+          {
+            "count": 1,
+            "state": "update"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 10,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 10,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia",
+        "provenance_rows": 11,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 802816,
+        "vector_json_bytes": 95055
+      },
+      "stage_end_tombstones": 0,
+      "stage_end_records": [
+        {
+          "id": "2b24d6c2-bdf0-9d02-3b44-6ae058b5923d",
+          "version": 1,
+          "state": "active",
+          "key": "user.coffee_sugar",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "user",
+            "origin": "personal_declaration",
+            "source_digest": "71613c63928de10404a774f9c582e28794e1b9dece8c9ce9c545adecad734cc7",
+            "evidence_digest": "214442532a9a12455a69be3b1f5fcd85b2cdb6e9e5d9da00cc2eee48b80f4203",
+            "start": 0,
+            "end": 50,
+            "claim_digest": "36700ebed9ccb0327dcbaf2ba19130fcec11653242edea21b2ac195b4ba57f3a"
+          },
+          "provenance": [
+            {
+              "source_turn": 1,
+              "literal": "Nos meus intervalos, eu prefiro café com açúcar"
+            }
+          ],
+          "subject": "user",
+          "property": "coffee_sugar",
+          "value": "with_sugar",
+          "temporal": "preference"
+        },
+        {
+          "id": "b928f804-6394-ccba-a479-d2fadb122de9",
+          "version": 1,
+          "state": "active",
+          "key": "user.interface_theme",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "user",
+            "origin": "personal_declaration",
+            "source_digest": "e4371321b134bb5175199ad4f69ed5116dce888f213f06703d418751d9b8f9b2",
+            "evidence_digest": "99532750b9d54c5c40e1fcbbe03ab790993a89799665b6d323b766ea4b3944ca",
+            "start": 0,
+            "end": 56,
+            "claim_digest": "af4220722dc2de2391c66b93ab184ca2afe16f82d93978cfb247884abe603019"
+          },
+          "provenance": [
+            {
+              "source_turn": 2,
+              "literal": "Para a interface do meu dia a dia, eu prefiro modo claro"
+            }
+          ],
+          "subject": "user",
+          "property": "interface_theme",
+          "value": "light",
+          "temporal": "preference"
+        },
+        {
+          "id": "0afbf884-a54a-995d-ff29-9c075702ec0a",
+          "version": 1,
+          "state": "active",
+          "key": "user.communication_style",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "user",
+            "origin": "personal_declaration",
+            "source_digest": "ec70c083865290e57678a70108b053ecfbb6a6720a43124710dbe1ee43e64880",
+            "evidence_digest": "1da24f7970a15b918900b8c15d41226a012c28afd31fc7c596e73ca351042078",
+            "start": 0,
+            "end": 56,
+            "claim_digest": "ded6e0a9d98123b4f2f2305576bb03dbc06ea7317b8da99766b99fd4eae3d924"
+          },
+          "provenance": [
+            {
+              "source_turn": 3,
+              "literal": "No meu aprendizado, eu gosto de explicações detalhadas"
+            }
+          ],
+          "subject": "user",
+          "property": "communication_style",
+          "value": "detailed",
+          "temporal": "preference"
+        },
+        {
+          "id": "f6b511a0-0bb5-9870-41ae-9f8eee676048",
+          "version": 2,
+          "state": "active",
+          "key": "user.games_tactics",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "user",
+            "origin": "personal_declaration",
+            "source_digest": "7aab3d8a6d25cdbc42973478aeda0e3a421b8053be4a907b426e63f275938611",
+            "evidence_digest": "5ba34788ec0af6dfdd644bec72ab5b792ae26a3e1f5d991767feedbe643e9545",
+            "start": 0,
+            "end": 59,
+            "claim_digest": "32d05ad10bdaf7d17030adf8a0c407142f25d8c30d5b234e43e77b0e3152d532"
+          },
+          "provenance": [
+            {
+              "source_turn": 4,
+              "literal": "Para jogar no tempo livre, eu curto RPG tático com classes"
+            },
+            {
+              "source_turn": 10,
+              "literal": "Nas minhas partidas eu prefiro RPGs com combate tático"
+            }
+          ],
+          "subject": "user",
+          "property": "games_tactics",
+          "value": "positive",
+          "temporal": "preference"
+        },
+        {
+          "id": "3c0a80ef-36b9-6305-6c1b-039bbaf8e829",
+          "version": 2,
+          "state": "active",
+          "key": "project.candeia.description",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "project.candeia",
+            "origin": "personal_declaration",
+            "source_digest": "85b488a0143494fc873dcd36860d0123ce253a75926a0fc1185aced1d467c314",
+            "evidence_digest": "8895cd6b36282d969ab3e6ab4cd6b9f86824ada580714ea5a8094749021e29e9",
+            "start": 0,
+            "end": 55,
+            "claim_digest": "dd2fc8014333b66281af32d559c98f1d229788a61cc34f843be46fc44e407814"
+          },
+          "provenance": [
+            {
+              "source_turn": 6,
+              "literal": "Estou começando um projeto de controle de luminosidade"
+            }
+          ],
+          "subject": "project.candeia",
+          "property": "description",
+          "value": "estou comecando um projeto de controle de luminosidade",
+          "temporal": "durable"
+        },
+        {
+          "id": "f9be7c7d-2fb3-5723-77fa-163f563854a8",
+          "version": 2,
+          "state": "active",
+          "key": "project.candeia.database",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "project.candeia",
+            "origin": "personal_declaration",
+            "source_digest": "85b488a0143494fc873dcd36860d0123ce253a75926a0fc1185aced1d467c314",
+            "evidence_digest": "5ac2470e8ad03606cc2e2a71ebb8dc0c91d8cab0678a17fae95fa986cb275796",
+            "start": 57,
+            "end": 91,
+            "claim_digest": "00a93e2bc8c77f1150b23cb54b4acf1c6b61bced6eb4d225ccb774fb2a2456be"
+          },
+          "provenance": [
+            {
+              "source_turn": 6,
+              "literal": "Quero usar TypeScript e PostgreSQL"
+            }
+          ],
+          "subject": "project.candeia",
+          "property": "database",
+          "value": "postgresql",
+          "temporal": "planned"
+        },
+        {
+          "id": "fba6f2fc-fcaa-361b-f3a4-ee63e85c33cb",
+          "version": 2,
+          "state": "active",
+          "key": "project.candeia.language",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "project.candeia",
+            "origin": "personal_declaration",
+            "source_digest": "85b488a0143494fc873dcd36860d0123ce253a75926a0fc1185aced1d467c314",
+            "evidence_digest": "5ac2470e8ad03606cc2e2a71ebb8dc0c91d8cab0678a17fae95fa986cb275796",
+            "start": 57,
+            "end": 91,
+            "claim_digest": "e79104485626326d1c6f637b482dcb8cec5853c1668d0c5fe20f95cd84f8e56b"
+          },
+          "provenance": [
+            {
+              "source_turn": 6,
+              "literal": "Quero usar TypeScript e PostgreSQL"
+            }
+          ],
+          "subject": "project.candeia",
+          "property": "language",
+          "value": "typescript",
+          "temporal": "planned"
+        },
+        {
+          "id": "bbf6f406-c42f-865d-312e-875a3224c625",
+          "version": 2,
+          "state": "active",
+          "key": "device.primary_computer.ram_capacity",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "device.primary_computer",
+            "origin": "personal_declaration",
+            "source_digest": "dfb4883773391651b4142938b115b9b963b01afd92bfaa4c1191e56677f4a85d",
+            "evidence_digest": "a879f5f3e23dc4d482d88d2203bb7b66c8d267a42431936df0c7db96f399abfc",
+            "start": 0,
+            "end": 41,
+            "claim_digest": "c8690c5fb9d25f041f67cb1983b591ffc78c6fc3bd428f9e4e076745a2d4cac5"
+          },
+          "provenance": [
+            {
+              "source_turn": 7,
+              "literal": "Meu computador principal tem 26 GB de RAM"
+            }
+          ],
+          "subject": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "26_gb",
+          "temporal": "durable"
+        },
+        {
+          "id": "cc5c0289-61bf-91ea-c993-a2e3a8ade91f",
+          "version": 2,
+          "state": "active",
+          "key": "device.work_laptop.ram_capacity",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "device.work_laptop",
+            "origin": "personal_declaration",
+            "source_digest": "59f5550dfe7a15380533502a6ff4e13a3104a67b1063727599a7d51d325e5af6",
+            "evidence_digest": "d169d8b278ae72b9d707118576cc85f2605b0b16924187ee0dd4db1b2a1a94af",
+            "start": 0,
+            "end": 41,
+            "claim_digest": "71c678dfcf065e64bdc325db9dbf43e2c60d9e51d052043750bb77013c4f231e"
+          },
+          "provenance": [
+            {
+              "source_turn": 8,
+              "literal": "Meu notebook de trabalho tem 18 GB de RAM"
+            }
+          ],
+          "subject": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "18_gb",
+          "temporal": "durable"
+        },
+        {
+          "id": "d683b3d9-50db-0de0-b199-e811a4bf9106",
+          "version": 2,
+          "state": "active",
+          "key": "user.goal.f47cc78cd5ce",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "user",
+            "origin": "personal_declaration",
+            "source_digest": "1adabe091b710e0c06081a3d97e86a9054acb39c5a7e487ae4eed064ca7d24dd",
+            "evidence_digest": "66c2b2755d1131055b1be0f625eb603d17f20bb68f13ef3ebbc4feb7eb152649",
+            "start": 0,
+            "end": 44,
+            "claim_digest": "7a9211d219b25655e3a0f6eae4a4792fc8420885316245f58116aa60d5e1242f"
+          },
+          "provenance": [
+            {
+              "source_turn": 9,
+              "literal": "Quero aprender circuitos elétricos básicos"
+            }
+          ],
+          "subject": "user",
+          "property": "goal.f47cc78cd5ce",
+          "value": "quero aprender circuitos eletricos basicos",
+          "temporal": "durable"
+        }
+      ],
+      "retrieval_metrics": {
+        "true_positive": 10,
+        "false_positive": 0,
+        "missed": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "literal_metrics": {
+        "probe_turns": 10,
+        "observed_turns": 30,
+        "status_counts": {
+          "checked": 26,
+          "blocked": 2,
+          "regenerated": 2
+        },
+        "blocked_turns": [
+          7,
+          21
+        ],
+        "useful_responses": 28,
+        "planned_responses": 30,
+        "availability": 0.9333333333333333,
+        "useful_probes": 9,
+        "original_regex_pass": 9,
+        "retained_atoms": 28,
+        "planned_atoms": 32,
+        "completeness": 0.875,
+        "probe_retained_atoms": 9,
+        "probe_planned_atoms": 12,
+        "supported_delivered_memory_claims": 11,
+        "delivered_memory_claims": 11,
+        "fidelity": 1.0,
+        "critical_delivered_errors": 0,
+        "premature_completed_write_claims": 0,
+        "cross_project_value_leaks": 0
+      },
+      "literal_turns": [
+        {
+          "turn": 1,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Nos meus intervalos, eu prefiro café com açúcar.",
+          "displayed": "É uma ótima escolha para manter o foco. Você prefere o café bem doce ou apenas um toque de açúcar?",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [],
+          "native_timeline": [
+            {
+              "event": "assistant_content",
+              "observed_at_ms": 2243,
+              "native_read_ms": [
+                2252,
+                2279
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "generation_terminal",
+              "observed_at_ms": 2418,
+              "native_read_ms": [
+                2418,
+                2432
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "learning_terminal",
+              "observed_at_ms": 7382,
+              "native_read_ms": [
+                7382,
+                7393
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "receipt_records": [
+                {
+                  "entity": "user",
+                  "id": "2b24d6c2-bdf0-9d02-3b44-6ae058b5923d",
+                  "property": "coffee_sugar",
+                  "state": "active",
+                  "value": "with_sugar",
+                  "version": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "turn": 2,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Para a interface do meu dia a dia, eu prefiro modo claro.",
+          "displayed": "O modo claro é excelente para leitura e visibilidade. Você prefere uma interface com cores vibrantes ou algo mais suave e pastel?",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [],
+          "native_timeline": [
+            {
+              "event": "assistant_content",
+              "observed_at_ms": 2529,
+              "native_read_ms": [
+                2539,
+                2566
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "generation_terminal",
+              "observed_at_ms": 2657,
+              "native_read_ms": [
+                2657,
+                2675
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "learning_terminal",
+              "observed_at_ms": 7637,
+              "native_read_ms": [
+                7637,
+                7646
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "receipt_records": [
+                {
+                  "entity": "user",
+                  "id": "b928f804-6394-ccba-a479-d2fadb122de9",
+                  "property": "interface_theme",
+                  "state": "active",
+                  "value": "light",
+                  "version": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "turn": 3,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "No meu aprendizado, eu gosto de explicações detalhadas.",
+          "displayed": "Explicações detalhadas ajudam a construir uma base sólida de compreensão. Você prefere que eu aprofunde em conceitos teóricos ou que foque em exemplos práticos?",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [],
+          "native_timeline": [
+            {
+              "event": "assistant_content",
+              "observed_at_ms": 2779,
+              "native_read_ms": [
+                2792,
+                2826
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "generation_terminal",
+              "observed_at_ms": 2922,
+              "native_read_ms": [
+                2922,
+                2936
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "learning_terminal",
+              "observed_at_ms": 7133,
+              "native_read_ms": [
+                7133,
+                7143
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "receipt_records": [
+                {
+                  "entity": "user",
+                  "id": "0afbf884-a54a-995d-ff29-9c075702ec0a",
+                  "property": "communication_style",
+                  "state": "active",
+                  "value": "detailed",
+                  "version": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "turn": 4,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Para jogar no tempo livre, eu curto RPG tático com classes.",
+          "displayed": "RPG tático com classes oferece uma profundidade estratégica excelente. Você prefere jogos com um foco maior em exploração de mapa ou em combate por turnos?",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [],
+          "native_timeline": [
+            {
+              "event": "assistant_content",
+              "observed_at_ms": 2879,
+              "native_read_ms": [
+                2889,
+                2917
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "generation_terminal",
+              "observed_at_ms": 2922,
+              "native_read_ms": [
+                2922,
+                2949
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "learning_terminal",
+              "observed_at_ms": 7118,
+              "native_read_ms": [
+                7118,
+                7129
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "receipt_records": [
+                {
+                  "entity": "user",
+                  "id": "f6b511a0-0bb5-9870-41ae-9f8eee676048",
+                  "property": "games_tactics",
+                  "state": "active",
+                  "value": "positive",
+                  "version": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "turn": 5,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Entre os jogos, os de estratégia por turnos são os meus favoritos.",
+          "displayed": "Estratégia por turnos permite uma análise cuidadosa de cada movimento. Você prefere jogos com grandes escalas épicas ou algo mais focado em pequenos grupos de personagens?",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [],
+          "literal_note": "The declared turn-based preference remains in the conversation context. The completed job has no receipt for a separate turn-based record.",
+          "native_timeline": [
+            {
+              "event": "assistant_content",
+              "observed_at_ms": 3143,
+              "native_read_ms": [
+                3152,
+                3192
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "generation_terminal",
+              "observed_at_ms": 3192,
+              "native_read_ms": [
+                3192,
+                3210
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "learning_terminal",
+              "observed_at_ms": 7659,
+              "native_read_ms": [
+                7659,
+                7670
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "receipt_records": null
+            }
+          ]
+        },
+        {
+          "turn": 6,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Estou começando um projeto de controle de luminosidade. Quero usar TypeScript e PostgreSQL.",
+          "displayed": "TypeScript e PostgreSQL são uma combinação robusta para gerenciar dados de forma tipada. Você pretende usar algum framework específico, como NestJS ou Express, para conectar as duas tecnologias?",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [],
+          "native_timeline": [
+            {
+              "event": "assistant_content",
+              "observed_at_ms": 3093,
+              "native_read_ms": [
+                3104,
+                3143
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "generation_terminal",
+              "observed_at_ms": 3190,
+              "native_read_ms": [
+                3190,
+                3206
+              ],
+              "job_state": "running",
+              "job_attempts": 1,
+              "receipt_records": null
+            },
+            {
+              "event": "learning_terminal",
+              "observed_at_ms": 7918,
+              "native_read_ms": [
+                7918,
+                7928
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "receipt_records": [
+                {
+                  "entity": "project.candeia",
+                  "id": "3c0a80ef-36b9-6305-6c1b-039bbaf8e829",
+                  "property": "description",
+                  "state": "candidate",
+                  "value": "estou comecando um projeto de controle de luminosidade",
+                  "version": 1
+                },
+                {
+                  "entity": "project.candeia",
+                  "id": "f9be7c7d-2fb3-5723-77fa-163f563854a8",
+                  "property": "database",
+                  "state": "candidate",
+                  "value": "postgresql",
+                  "version": 1
+                },
+                {
+                  "entity": "project.candeia",
+                  "id": "fba6f2fc-fcaa-361b-f3a4-ee63e85c33cb",
+                  "property": "language",
+                  "state": "candidate",
+                  "value": "typescript",
+                  "version": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "turn": 7,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Meu computador principal tem 26 GB de RAM.",
+          "displayed": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+          "status": "blocked",
+          "planned_atoms": 1,
+          "retained_atoms": 0,
+          "useful": false,
+          "memory_claims": [],
+          "literal_note": "Both raw generations extrapolated multitasking suitability from RAM alone. Both were blocked. The candidate appeared after the block and was reviewed.",
+          "attempts": [
+            {
+              "literal": "26 GB de RAM é uma quantidade excelente para multitarefa e projetos de desenvolvimento. Você costuma usar essa memória para rodar várias aplicações simultaneamente ou para tarefas pesadas como edição e renderização?",
+              "native_violations": [
+                {
+                  "code": "authority_workload_performance",
+                  "span": "26 GB de RAM é uma quantidade excelente para multitarefa e projetos de desenvolvimento.",
+                  "critical": false
+                }
+              ],
+              "durable_learning_receipt_at_check": false
+            },
+            {
+              "literal": "Com 26 GB de RAM, você tem uma quantidade sólida de memória para multitarefas. Você pretende usar essa capacidade para rodar o projeto de luminosidade e outras aplicações simultaneamente?",
+              "native_violations": [
+                {
+                  "code": "authority_workload_performance",
+                  "span": "Com 26 GB de RAM, você tem uma quantidade sólida de memória para multitarefas.",
+                  "critical": false
+                }
+              ],
+              "durable_learning_receipt_at_check": false
+            }
+          ],
+          "native_timeline": [
+            {
+              "event": "assistant_content",
+              "observed_at_ms": 6759,
+              "native_read_ms": [
+                6772,
+                6788
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "generation_terminal",
+              "observed_at_ms": 6980,
+              "native_read_ms": [
+                6980,
+                6992
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "learning_terminal",
+              "observed_at_ms": 9818,
+              "native_read_ms": [
+                9818,
+                9828
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "receipt_records": [
+                {
+                  "entity": "device.primary_computer",
+                  "id": "bbf6f406-c42f-865d-312e-875a3224c625",
+                  "property": "ram_capacity",
+                  "state": "candidate",
+                  "value": "26_gb",
+                  "version": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "turn": 8,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Meu notebook de trabalho tem 18 GB de RAM.",
+          "displayed": "Seu notebook de trabalho tem 18 GB de RAM. Você pretende usá-lo para o projeto de controle de luminosidade ou ele é dedicado a outras tarefas?",
+          "status": "regenerated",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "Seu notebook de trabalho tem 18 GB de RAM.",
+              "source_turns": [
+                8
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "literal_note": "First generation extrapolated multitasking suitability. Regeneration gave the exact current USER value. The candidate appeared later and was reviewed.",
+          "attempts": [
+            {
+              "literal": "Seu notebook de trabalho tem uma quantidade sólida de RAM para multitarefas. Você pretende usá-lo para o projeto de controle de luminosidade ou ele é dedicado a outras tarefas?",
+              "native_violations": [
+                {
+                  "code": "authority_workload_performance",
+                  "span": "Seu notebook de trabalho tem uma quantidade sólida de RAM para multitarefas.",
+                  "critical": false
+                }
+              ],
+              "durable_learning_receipt_at_check": false
+            },
+            {
+              "literal": "Seu notebook de trabalho tem 18 GB de RAM. Você pretende usá-lo para o projeto de controle de luminosidade ou ele é dedicado a outras tarefas?",
+              "native_violations": [],
+              "durable_learning_receipt_at_check": false
+            }
+          ],
+          "native_timeline": [
+            {
+              "event": "assistant_content",
+              "observed_at_ms": 6980,
+              "native_read_ms": [
+                6992,
+                7047
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "generation_terminal",
+              "observed_at_ms": 7045,
+              "native_read_ms": [
+                7047,
+                7070
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "learning_terminal",
+              "observed_at_ms": 11767,
+              "native_read_ms": [
+                11767,
+                11778
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "receipt_records": [
+                {
+                  "entity": "device.work_laptop",
+                  "id": "cc5c0289-61bf-91ea-c993-a2e3a8ade91f",
+                  "property": "ram_capacity",
+                  "state": "candidate",
+                  "value": "18_gb",
+                  "version": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "turn": 9,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quero aprender circuitos elétricos básicos.",
+          "displayed": "Aprender circuitos elétricos básicos é o primeiro passo para entender como a eletrônica funciona. Você gostaria de começar pelos conceitos fundamentais, como tensão e corrente, ou prefere ir direto para a prática com componentes como resistores e LEDs?",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [],
+          "native_timeline": [
+            {
+              "event": "assistant_content",
+              "observed_at_ms": 4149,
+              "native_read_ms": [
+                4159,
+                4212
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "generation_terminal",
+              "observed_at_ms": 4213,
+              "native_read_ms": [
+                4213,
+                4245
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "learning_terminal",
+              "observed_at_ms": 9231,
+              "native_read_ms": [
+                9231,
+                9242
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "receipt_records": [
+                {
+                  "entity": "user",
+                  "id": "d683b3d9-50db-0de0-b199-e811a4bf9106",
+                  "property": "goal.f47cc78cd5ce",
+                  "state": "candidate",
+                  "value": "quero aprender circuitos eletricos basicos",
+                  "version": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "turn": 10,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Nas minhas partidas eu prefiro RPGs com combate tático.",
+          "displayed": "Como você já gosta de RPGs com classes, o combate tático permite explorar bem as sinergias entre os personagens. Você prefere um sistema de combate mais rígido ou um que permita mais liberdade de movimento?",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "você já gosta de RPGs com classes",
+              "source_turns": [
+                4
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "native_timeline": [
+            {
+              "event": "assistant_content",
+              "observed_at_ms": 4331,
+              "native_read_ms": [
+                4342,
+                4386
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "generation_terminal",
+              "observed_at_ms": 4475,
+              "native_read_ms": [
+                4475,
+                4494
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "learning_terminal",
+              "observed_at_ms": 9204,
+              "native_read_ms": [
+                9204,
+                9213
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "receipt_records": [
+                {
+                  "entity": "user",
+                  "id": "f6b511a0-0bb5-9870-41ae-9f8eee676048",
+                  "property": "games_tactics",
+                  "state": "active",
+                  "value": "positive",
+                  "version": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "turn": 11,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona a rotação da Terra?",
+          "displayed": "A Terra gira em torno de seu próprio eixo, criando o ciclo do dia e da noite. Esse movimento é chamado de rotação e ocorre de oeste para leste, levando aproximadamente 24 horas para completar uma volta.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 12,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 14 em uma variável?",
+          "displayed": "Em TypeScript ou JavaScript, você pode representar o número 14 usando `let valor = 14;` ou `const valor = 14;`. Se estiver usando uma linguagem como Python, seria `valor = 14`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 13,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 17 somado a 23?",
+          "displayed": "A soma de 17 e 23 é 40.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 14,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona a condução de calor?",
+          "displayed": "A condução de calor é a transferência de energia térmica através de um material, onde as moléculas vibram e transmitem calor para as vizinhas. Esse processo ocorre principalmente em sólidos, como metais, onde os elétrons e átomos se movem para distribuir a temperatura.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 15,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 17 em uma variável?",
+          "displayed": "Em TypeScript ou JavaScript, você pode representar o número 17 usando `let valor = 17;` ou `const valor = 17;`. Em Python, seria `valor = 17`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 16,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 20 somado a 26?",
+          "displayed": "A soma de 20 e 26 é 46.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 17,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona um ímã?",
+          "displayed": "Um ímã funciona através do magnetismo, que é a propriedade de criar um campo de força ao redor de si mesmo. Isso ocorre devido ao alinhamento dos spins e momentos magnéticos dos átomos em seu interior, criando polos norte e sul.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 18,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 20 em uma variável?",
+          "displayed": "Em TypeScript ou JavaScript, você pode representar o número 20 usando `let valor = 20;` ou `const valor = 20;`. Em Python, seria `valor = 20`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 19,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 23 somado a 29?",
+          "displayed": "A soma de 23 e 29 é 52.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 20,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona a difusão de um cheiro?",
+          "displayed": "A difusão de um cheiro ocorre quando as moléculas aromáticas se espalham de uma área de alta concentração para uma de baixa concentração. Esse movimento aleatório das partículas permite que o odor preencha o espaço e chegue aos nossos receptores olfativos.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 21,
+          "role_in_series": "probe",
+          "mode": "chat",
+          "input": "Como está ficando aquele projeto?",
+          "displayed": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+          "status": "blocked",
+          "planned_atoms": 3,
+          "retained_atoms": 0,
+          "useful": false,
+          "memory_claims": [],
+          "literal_note": "All three native references matched. Both raw answers changed 'starting' to 'está sendo desenvolvido'; the final block lost all three required atoms.",
+          "attempts": [
+            {
+              "literal": "O projeto Candeia está sendo desenvolvido como um sistema de controle de luminosidade. Você planeja utilizar TypeScript como linguagem de programação e PostgreSQL como banco de dados.",
+              "native_violations": [
+                {
+                  "code": "unproven_project_progress",
+                  "span": "O projeto Candeia está sendo desenvolvido como um sistema de controle de luminosidade.",
+                  "critical": true
+                }
+              ],
+              "durable_learning_receipt_at_check": false
+            },
+            {
+              "literal": "O projeto Candeia está sendo desenvolvido como um sistema de controle de luminosidade. Você planeja utilizar TypeScript como linguagem de programação e PostgreSQL como banco de dados.",
+              "native_violations": [
+                {
+                  "code": "unproven_project_progress",
+                  "span": "O projeto Candeia está sendo desenvolvido como um sistema de controle de luminosidade.",
+                  "critical": true
+                }
+              ],
+              "durable_learning_receipt_at_check": false
+            }
+          ],
+          "original_probe": {
+            "text": "Como está ficando aquele projeto?",
+            "expected": [
+              {
+                "property": "language",
+                "value": "typescript",
+                "temporal": "planned"
+              },
+              {
+                "property": "database",
+                "value": "postgresql",
+                "temporal": "planned"
+              },
+              {
+                "property": "description"
+              }
+            ],
+            "answer_pattern": "TypeScript",
+            "mode": "chat",
+            "answer_none": [],
+            "category": "language"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 184,
+            "identity_version": 3,
+            "budget": 7380,
+            "used": 3333,
+            "references": [
+              {
+                "id": "f9be7c7d-2fb3-5723-77fa-163f563854a8",
+                "version": 2,
+                "key": "project.candeia.database",
+                "property": "database",
+                "subject": "project.candeia",
+                "value": "postgresql",
+                "temporal": "planned"
+              },
+              {
+                "id": "3c0a80ef-36b9-6305-6c1b-039bbaf8e829",
+                "version": 2,
+                "key": "project.candeia.description",
+                "property": "description",
+                "subject": "project.candeia",
+                "value": "estou comecando um projeto de controle de luminosidade",
+                "temporal": "durable"
+              },
+              {
+                "id": "fba6f2fc-fcaa-361b-f3a4-ee63e85c33cb",
+                "version": 2,
+                "key": "project.candeia.language",
+                "property": "language",
+                "subject": "project.candeia",
+                "value": "typescript",
+                "temporal": "planned"
+              }
+            ],
+            "later_audit_rows": 1,
+            "score": {
+              "true_positive": 3,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": false
+        },
+        {
+          "turn": 22,
+          "role_in_series": "probe",
+          "mode": "agent",
+          "input": "Should I sweeten my morning coffee?",
+          "displayed": "Since you prefer coffee with sugar, you should definitely sweeten it to satisfy your taste.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "you prefer coffee with sugar",
+              "source_turns": [
+                1
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "original_probe": {
+            "text": "Should I sweeten my morning coffee?",
+            "expected": [
+              {
+                "property": "coffee_sugar",
+                "value": "with_sugar"
+              }
+            ],
+            "answer_pattern": "with sugar|com açúcar|\\byes\\b|\\bsim\\b",
+            "mode": "agent",
+            "answer_none": [
+              "without sugar|sem açúcar|unsweetened|no sugar"
+            ],
+            "category": "coffee_sugar"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 186,
+            "identity_version": 3,
+            "budget": 7276,
+            "used": 1723,
+            "references": [
+              {
+                "id": "2b24d6c2-bdf0-9d02-3b44-6ae058b5923d",
+                "version": 1,
+                "key": "user.coffee_sugar",
+                "property": "coffee_sugar",
+                "subject": "user",
+                "value": "with_sugar",
+                "temporal": "preference"
+              }
+            ],
+            "later_audit_rows": 0,
+            "score": {
+              "true_positive": 1,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": true
+        },
+        {
+          "turn": 23,
+          "role_in_series": "probe",
+          "mode": "chat",
+          "input": "Que tipo de RPG combina com o meu gosto?",
+          "displayed": "RPG de combate tático com sistema de classes combina perfeitamente com o seu gosto. Você prefere jogos que permitam estratégias por turnos e uma estrutura clara de personagens.",
+          "status": "regenerated",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "RPG de combate tático com sistema de classes combina perfeitamente com o seu gosto.",
+              "source_turns": [
+                4,
+                10
+              ],
+              "supported": true,
+              "critical": false
+            },
+            {
+              "literal": "Você prefere jogos que permitam estratégias por turnos e uma estrutura clara de personagens.",
+              "source_turns": [
+                4,
+                5,
+                10
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "literal_note": "Regeneration retained the supported tactical preference and paraphrased class structure and turn-based context.",
+          "attempts": [
+            {
+              "literal": "RPG de combate tático com sistema de classes combina perfeitamente com o seu gosto. Jogos que enfatizam a estratégia por turnos e a especialização de personagens são as melhores opções para você.",
+              "native_violations": [
+                {
+                  "code": "unsupported_typed_value",
+                  "span": "Jogos que enfatizam a estratégia por turnos e a especialização de personagens são as melhores opções para você.",
+                  "critical": true
+                }
+              ],
+              "durable_learning_receipt_at_check": false
+            },
+            {
+              "literal": "RPG de combate tático com sistema de classes combina perfeitamente com o seu gosto. Você prefere jogos que permitam estratégias por turnos e uma estrutura clara de personagens.",
+              "native_violations": [],
+              "durable_learning_receipt_at_check": false
+            }
+          ],
+          "original_probe": {
+            "text": "Que tipo de RPG combina com o meu gosto?",
+            "expected": [
+              {
+                "property": "games_tactics",
+                "value": "positive"
+              }
+            ],
+            "answer_pattern": "táti|tacti",
+            "mode": "chat",
+            "answer_none": [],
+            "category": "games_tactics"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 187,
+            "identity_version": 3,
+            "budget": 7380,
+            "used": 2201,
+            "references": [
+              {
+                "id": "f6b511a0-0bb5-9870-41ae-9f8eee676048",
+                "version": 2,
+                "key": "user.games_tactics",
+                "property": "games_tactics",
+                "subject": "user",
+                "value": "positive",
+                "temporal": "preference"
+              }
+            ],
+            "later_audit_rows": 1,
+            "score": {
+              "true_positive": 1,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": true
+        },
+        {
+          "turn": 24,
+          "role_in_series": "probe",
+          "mode": "chat",
+          "input": "Como você deve explicar um conceito para mim?",
+          "displayed": "Como você prefere explicações detalhadas, devo fornecer descrições minuciosas que explorem as nuances e os fundamentos de cada conceito. Isso significa ir além do básico para garantir que você compreenda todos os detalhes importantes.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "você prefere explicações detalhadas",
+              "source_turns": [
+                3
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "original_probe": {
+            "text": "Como você deve explicar um conceito para mim?",
+            "expected": [
+              {
+                "property": "communication_style",
+                "value": "detailed"
+              }
+            ],
+            "answer_pattern": "detalh|detail|explica",
+            "mode": "chat",
+            "answer_none": [],
+            "category": "communication_style"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 189,
+            "identity_version": 3,
+            "budget": 7380,
+            "used": 1770,
+            "references": [
+              {
+                "id": "0afbf884-a54a-995d-ff29-9c075702ec0a",
+                "version": 1,
+                "key": "user.communication_style",
+                "property": "communication_style",
+                "subject": "user",
+                "value": "detailed",
+                "temporal": "preference"
+              }
+            ],
+            "later_audit_rows": 0,
+            "score": {
+              "true_positive": 1,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": true
+        },
+        {
+          "turn": 25,
+          "role_in_series": "probe",
+          "mode": "chat",
+          "input": "Qual é minha preferência de tema de interface?",
+          "displayed": "Sua preferência de tema de interface é o modo claro.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "Sua preferência de tema de interface é o modo claro.",
+              "source_turns": [
+                2
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "original_probe": {
+            "text": "Qual é minha preferência de tema de interface?",
+            "expected": [
+              {
+                "property": "interface_theme",
+                "value": "light"
+              }
+            ],
+            "answer_pattern": "clar|light",
+            "mode": "chat",
+            "answer_none": [],
+            "category": "interface_theme"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 190,
+            "identity_version": 3,
+            "budget": 7380,
+            "used": 1759,
+            "references": [
+              {
+                "id": "b928f804-6394-ccba-a479-d2fadb122de9",
+                "version": 1,
+                "key": "user.interface_theme",
+                "property": "interface_theme",
+                "subject": "user",
+                "value": "light",
+                "temporal": "preference"
+              }
+            ],
+            "later_audit_rows": 0,
+            "score": {
+              "true_positive": 1,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": true
+        },
+        {
+          "turn": 26,
+          "role_in_series": "probe",
+          "mode": "code",
+          "input": "How much RAM does my work laptop have?",
+          "displayed": "Your work laptop has 18 GB of RAM.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "Your work laptop has 18 GB of RAM.",
+              "source_turns": [
+                8
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "original_probe": {
+            "text": "How much RAM does my work laptop have?",
+            "expected": [
+              {
+                "property": "ram_capacity",
+                "value": "18_gb",
+                "subject": "device.work_laptop"
+              }
+            ],
+            "answer_pattern": "18\\s*GB",
+            "mode": "code",
+            "answer_none": [],
+            "category": "ram_capacity"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 191,
+            "identity_version": 3,
+            "budget": 7302,
+            "used": 1730,
+            "references": [
+              {
+                "id": "cc5c0289-61bf-91ea-c993-a2e3a8ade91f",
+                "version": 2,
+                "key": "device.work_laptop.ram_capacity",
+                "property": "ram_capacity",
+                "subject": "device.work_laptop",
+                "value": "18_gb",
+                "temporal": "durable"
+              }
+            ],
+            "later_audit_rows": 0,
+            "score": {
+              "true_positive": 1,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": true
+        },
+        {
+          "turn": 27,
+          "role_in_series": "probe",
+          "mode": "chat",
+          "input": "Qual é a RAM do meu computador principal?",
+          "displayed": "Seu computador principal tem 26 GB de RAM.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "Seu computador principal tem 26 GB de RAM.",
+              "source_turns": [
+                7
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "original_probe": {
+            "text": "Qual é a RAM do meu computador principal?",
+            "expected": [
+              {
+                "property": "ram_capacity",
+                "value": "26_gb",
+                "subject": "device.primary_computer"
+              }
+            ],
+            "answer_pattern": "26\\s*GB",
+            "mode": "chat",
+            "answer_none": [],
+            "category": "ram_capacity"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 192,
+            "identity_version": 3,
+            "budget": 7380,
+            "used": 1740,
+            "references": [
+              {
+                "id": "bbf6f406-c42f-865d-312e-875a3224c625",
+                "version": 2,
+                "key": "device.primary_computer.ram_capacity",
+                "property": "ram_capacity",
+                "subject": "device.primary_computer",
+                "value": "26_gb",
+                "temporal": "durable"
+              }
+            ],
+            "later_audit_rows": 0,
+            "score": {
+              "true_positive": 1,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": true
+        },
+        {
+          "turn": 28,
+          "role_in_series": "probe",
+          "mode": "chat",
+          "input": "Qual é meu objetivo atual sobre circuitos elétricos básicos?",
+          "displayed": "Seu objetivo atual é aprender circuitos elétricos básicos.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "Seu objetivo atual é aprender circuitos elétricos básicos.",
+              "source_turns": [
+                9
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "original_probe": {
+            "text": "Qual é meu objetivo atual sobre circuitos elétricos básicos?",
+            "expected": [
+              {
+                "property": "goal.",
+                "subject": "user",
+                "temporal": "durable"
+              }
+            ],
+            "answer_pattern": "circuit|elétr|eletr",
+            "mode": "chat",
+            "answer_none": [],
+            "category": "goal"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 193,
+            "identity_version": 3,
+            "budget": 7380,
+            "used": 1746,
+            "references": [
+              {
+                "id": "d683b3d9-50db-0de0-b199-e811a4bf9106",
+                "version": 2,
+                "key": "user.goal.f47cc78cd5ce",
+                "property": "goal.f47cc78cd5ce",
+                "subject": "user",
+                "value": "quero aprender circuitos eletricos basicos",
+                "temporal": "durable"
+              }
+            ],
+            "later_audit_rows": 0,
+            "score": {
+              "true_positive": 1,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": true
+        },
+        {
+          "turn": 29,
+          "role_in_series": "probe",
+          "mode": "chat",
+          "input": "Qual é a capital da Argentina?",
+          "displayed": "A capital da Argentina é Buenos Aires.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [],
+          "literal_note": "Correct general-knowledge answer with no memory injection.",
+          "original_probe": {
+            "text": "Qual é a capital da Argentina?",
+            "expected": [],
+            "answer_pattern": "Buenos Aires",
+            "mode": "chat",
+            "answer_none": [],
+            "category": "irrelevant"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 194,
+            "identity_version": 3,
+            "budget": 7380,
+            "used": 894,
+            "references": [],
+            "later_audit_rows": 0,
+            "score": {
+              "true_positive": 0,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": true
+        },
+        {
+          "turn": 30,
+          "role_in_series": "probe",
+          "mode": "chat",
+          "input": "Qual banco está planejado no projeto candeia2?",
+          "displayed": "Não há registro específico sobre qual banco está planejado no projeto candeia2 até o momento.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "Não há registro específico sobre qual banco está planejado no projeto candeia2 até o momento.",
+              "source_turns": [],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "literal_note": "No leaked value and no candeia2 record at this stage. Wording leaves the binding limit implicit. Credit uses the original probe's scoped absence/no-leakage rubric.",
+          "original_probe": {
+            "text": "Qual banco está planejado no projeto candeia2?",
+            "expected": [],
+            "answer_pattern": "não|not|informa|context|defin|sei|know",
+            "mode": "chat",
+            "answer_none": [
+              "PostgreSQL"
+            ],
+            "category": "scope_fence"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 195,
+            "identity_version": 3,
+            "budget": 7380,
+            "used": 894,
+            "references": [],
+            "later_audit_rows": 0,
+            "score": {
+              "true_positive": 0,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": true
+        }
+      ]
+    },
+    {
+      "source_turns": 50,
+      "namespace": "phase22c-final-historical-series",
+      "project": "candeia2",
+      "fixture": "long-50-v3.json",
+      "original_fixture_sha256": "b244780d91caaffea0dbbce86f597c3ef66b2303dc64aad34e2adc76d243ee66",
+      "original_report_sha256": "955b7812c7688dd2c7ad6c006ba01154b5f7b6a62d4341393675135c84b761f3",
+      "started_utc": "2026-11-04T23:50:47.148Z",
+      "finished_utc": "2026-11-04T23:56:54.482Z",
+      "existing_conversation_bindings": 11,
+      "initial_project_metrics": {
+        "current_vectors": 0,
+        "history_events": [],
+        "jobs": [],
+        "memories": [],
+        "pending_vectors": 0,
+        "project": "candeia2",
+        "provenance_rows": 0,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 802816,
+        "vector_json_bytes": 0
+      },
+      "end_project_metrics": {
+        "current_vectors": 8,
+        "history_events": [
+          {
+            "count": 6,
+            "state": "approve"
+          },
+          {
+            "count": 2,
+            "state": "auto_promote"
+          },
+          {
+            "count": 8,
+            "state": "create"
+          }
+        ],
+        "jobs": [
+          {
+            "count": 6,
+            "state": "done"
+          }
+        ],
+        "memories": [
+          {
+            "count": 8,
+            "state": "active"
+          }
+        ],
+        "pending_vectors": 0,
+        "project": "candeia2",
+        "provenance_rows": 8,
+        "scope": "phase22c-final-historical-series",
+        "sqlite_main_page_bytes": 913408,
+        "vector_json_bytes": 76075
+      },
+      "stage_end_tombstones": 0,
+      "stage_end_records": [
+        {
+          "id": "31832b39-2ca7-bef9-15e3-1a0725924ebd",
+          "version": 2,
+          "state": "active",
+          "key": "project.candeia2.language",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia2",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "project.candeia2",
+            "origin": "personal_declaration",
+            "source_digest": "f81a1f8b84e937668d7fa4b75aef480c5f0476728bfe2325acce12919119f26c",
+            "evidence_digest": "0f568ebd5d3a50bb9598b7978ee1b4029349cceae81e34bf4ebf353bafdc0cf3",
+            "start": 67,
+            "end": 97,
+            "claim_digest": "5f8b301c1d23491bd9ec0f10ec31199bcaf5f7688e492d97c7565510a0a930e5"
+          },
+          "provenance": [
+            {
+              "source_turn": 1,
+              "literal": "Quero usar JavaScript e SQLite"
+            }
+          ],
+          "subject": "project.candeia2",
+          "property": "language",
+          "value": "javascript",
+          "temporal": "planned"
+        },
+        {
+          "id": "4ee7c95c-1e89-ced0-94b5-3cda9fb0b24e",
+          "version": 2,
+          "state": "active",
+          "key": "project.candeia2.database",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia2",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "project.candeia2",
+            "origin": "personal_declaration",
+            "source_digest": "f81a1f8b84e937668d7fa4b75aef480c5f0476728bfe2325acce12919119f26c",
+            "evidence_digest": "0f568ebd5d3a50bb9598b7978ee1b4029349cceae81e34bf4ebf353bafdc0cf3",
+            "start": 67,
+            "end": 97,
+            "claim_digest": "f2eee8ad48e7abe58c0bf5b49aa7c941412291afc1f4fd537d413f68ffb86ad9"
+          },
+          "provenance": [
+            {
+              "source_turn": 1,
+              "literal": "Quero usar JavaScript e SQLite"
+            }
+          ],
+          "subject": "project.candeia2",
+          "property": "database",
+          "value": "sqlite",
+          "temporal": "planned"
+        },
+        {
+          "id": "85aa2290-6784-344e-075f-5238c03b9a59",
+          "version": 2,
+          "state": "active",
+          "key": "project.candeia2.description",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia2",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "project.candeia2",
+            "origin": "personal_declaration",
+            "source_digest": "f81a1f8b84e937668d7fa4b75aef480c5f0476728bfe2325acce12919119f26c",
+            "evidence_digest": "aceb7f14837aa65541bf106252aad33b01eb96018d24b2f68e65bbff40954084",
+            "start": 0,
+            "end": 65,
+            "claim_digest": "d3dc3f12d4bac6da3c8a410b2e496fc47367bc6d86762889b6a904153dff103e"
+          },
+          "provenance": [
+            {
+              "source_turn": 1,
+              "literal": "Estou começando um projeto de painel de iluminação residencial"
+            }
+          ],
+          "subject": "project.candeia2",
+          "property": "description",
+          "value": "estou comecando um projeto de painel de iluminacao residencial",
+          "temporal": "durable"
+        },
+        {
+          "id": "cda16b48-af17-d8c6-55b6-d4049e534d64",
+          "version": 1,
+          "state": "active",
+          "key": "user.coffee_sugar",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia2",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "user",
+            "origin": "personal_declaration",
+            "source_digest": "c234dd7fffc7a2eb031e1ae15163ca47ad64fa4278f9f31dd79b549dffb1760c",
+            "evidence_digest": "f94af320b5f88fc691a8fdaeb94905c9b91fc902f338f61fd2d5a3da3e2120de",
+            "start": 0,
+            "end": 55,
+            "claim_digest": "5367eace9acc760809ddfde6ad900c074b43abde380a6d4773e769ee0a3887dc"
+          },
+          "provenance": [
+            {
+              "source_turn": 2,
+              "literal": "No lanche da minha tarde, eu prefiro café sem açúcar"
+            }
+          ],
+          "subject": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar",
+          "temporal": "preference"
+        },
+        {
+          "id": "47fdb6d5-9712-a6d9-5646-37b9bbd5f07b",
+          "version": 1,
+          "state": "active",
+          "key": "user.interface_theme",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia2",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "user",
+            "origin": "personal_declaration",
+            "source_digest": "9ca87b62bb73d11bd47e035d22c1d2ccbc4192af4469921cd278d67edc107525",
+            "evidence_digest": "67104da71a5d6758bfcac775a87e384478652819b37513669925829e35de82be",
+            "start": 0,
+            "end": 56,
+            "claim_digest": "e1077beee8758e6a845cf4147c071f160bf333daeedb4ae1fc35437c1405b835"
+          },
+          "provenance": [
+            {
+              "source_turn": 3,
+              "literal": "Na interface que uso diariamente, eu prefiro modo escuro"
+            }
+          ],
+          "subject": "user",
+          "property": "interface_theme",
+          "value": "dark",
+          "temporal": "preference"
+        },
+        {
+          "id": "523f4a64-caf9-b8a4-0fef-075a8b176bca",
+          "version": 2,
+          "state": "active",
+          "key": "device.primary_computer.ram_capacity",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia2",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "device.primary_computer",
+            "origin": "personal_declaration",
+            "source_digest": "ad6606703aac4df2d0f5149e177350826b096019060d1a8b904fb44464bded90",
+            "evidence_digest": "2769d8904506e04cb9e54b20b5b35406b2590f4af3f8a90f117b7e03ef292092",
+            "start": 0,
+            "end": 41,
+            "claim_digest": "cf25218a4f5c1e4a6c74ad6d6ca8197b23ad3e29c5d206619ba6508152f8702f"
+          },
+          "provenance": [
+            {
+              "source_turn": 4,
+              "literal": "Meu computador principal tem 36 GB de RAM"
+            }
+          ],
+          "subject": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "36_gb",
+          "temporal": "durable"
+        },
+        {
+          "id": "24619344-b319-a2ca-7117-c5c2990b164c",
+          "version": 2,
+          "state": "active",
+          "key": "device.work_laptop.ram_capacity",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia2",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "device.work_laptop",
+            "origin": "personal_declaration",
+            "source_digest": "d52866cf423c5cc73b103a223741d34cb34f351cea55f7062a0c66ea4e043254",
+            "evidence_digest": "f4f6f0a08fc02d6eeba60da855e952dd3544555de16af3dce4dabb4e9fd6957e",
+            "start": 0,
+            "end": 41,
+            "claim_digest": "0355d35aa43a8f98a9eb6dead22c079e60949bc2b2df1ed991aae76f489a237e"
+          },
+          "provenance": [
+            {
+              "source_turn": 5,
+              "literal": "Meu notebook de trabalho tem 10 GB de RAM"
+            }
+          ],
+          "subject": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "10_gb",
+          "temporal": "durable"
+        },
+        {
+          "id": "6a6aef1c-3298-7fa6-e3d4-88fc5dfd0ad2",
+          "version": 2,
+          "state": "active",
+          "key": "user.goal.656c51ba08fa",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia2",
+          "origin_proof": {
+            "version": 2,
+            "message_author": "user",
+            "statement_author": "user",
+            "subject": "user",
+            "origin": "personal_declaration",
+            "source_digest": "1bced88be5be31b86cfea1c8644cdb49f937cc9b1694bf69581f14f7d596ea9a",
+            "evidence_digest": "b58a7743312a833e8e642a86cf034fe6db50112822ceb81a81dcac24d7a188c6",
+            "start": 0,
+            "end": 49,
+            "claim_digest": "bdd79e49ed8f63b1c451f851699a506a4fcbab224400cdb82104f4ccaa2a0c5f"
+          },
+          "provenance": [
+            {
+              "source_turn": 6,
+              "literal": "Meu objetivo é terminar o painel de iluminação"
+            }
+          ],
+          "subject": "user",
+          "property": "goal.656c51ba08fa",
+          "value": "meu objetivo e terminar o painel de iluminacao",
+          "temporal": "durable"
+        }
+      ],
+      "retrieval_metrics": {
+        "true_positive": 8,
+        "false_positive": 0,
+        "missed": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "literal_metrics": {
+        "probe_turns": 8,
+        "observed_turns": 58,
+        "status_counts": {
+          "checked": 57,
+          "regenerated": 1
+        },
+        "blocked_turns": [],
+        "useful_responses": 58,
+        "planned_responses": 58,
+        "availability": 1.0,
+        "useful_probes": 8,
+        "original_regex_pass": 7,
+        "retained_atoms": 60,
+        "planned_atoms": 60,
+        "completeness": 1.0,
+        "probe_retained_atoms": 10,
+        "probe_planned_atoms": 10,
+        "supported_delivered_memory_claims": 14,
+        "delivered_memory_claims": 14,
+        "fidelity": 1.0,
+        "critical_delivered_errors": 0,
+        "premature_completed_write_claims": 0,
+        "cross_project_value_leaks": 0
+      },
+      "literal_turns": [
+        {
+          "turn": 1,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Estou começando um projeto de painel de iluminação residencial. Quero usar JavaScript e SQLite.",
+          "displayed": "Essa é uma excelente combinação para um projeto de iluminação, pois o SQLite é leve e o JavaScript oferece flexibilidade para a lógica. Você pretende usar algum framework específico ou uma biblioteca para a interface?",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [],
+          "native_timeline": [
+            {
+              "event": "assistant_content",
+              "observed_at_ms": 2853,
+              "native_read_ms": [
+                2862,
+                2878
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "generation_terminal",
+              "observed_at_ms": 2938,
+              "native_read_ms": [
+                2938,
+                2957
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "learning_terminal",
+              "observed_at_ms": 7932,
+              "native_read_ms": [
+                7932,
+                7944
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "receipt_records": [
+                {
+                  "entity": "project.candeia2",
+                  "id": "31832b39-2ca7-bef9-15e3-1a0725924ebd",
+                  "property": "language",
+                  "state": "candidate",
+                  "value": "javascript",
+                  "version": 1
+                },
+                {
+                  "entity": "project.candeia2",
+                  "id": "4ee7c95c-1e89-ced0-94b5-3cda9fb0b24e",
+                  "property": "database",
+                  "state": "candidate",
+                  "value": "sqlite",
+                  "version": 1
+                },
+                {
+                  "entity": "project.candeia2",
+                  "id": "85aa2290-6784-344e-075f-5238c03b9a59",
+                  "property": "description",
+                  "state": "candidate",
+                  "value": "estou comecando um projeto de painel de iluminacao residencial",
+                  "version": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "turn": 2,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "No lanche da minha tarde, eu prefiro café sem açúcar.",
+          "displayed": "Você prefere café sem açúcar no lanche da tarde. Gostaria de registrar essa preferência para o seu perfil?",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "Você prefere café sem açúcar no lanche da tarde.",
+              "source_turns": [
+                2
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "literal_note": "Asks whether to register while native automatic learning is queued. No claim of completed write. Active record observed later.",
+          "native_timeline": [
+            {
+              "event": "assistant_content",
+              "observed_at_ms": 2789,
+              "native_read_ms": [
+                2802,
+                2833
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "generation_terminal",
+              "observed_at_ms": 2905,
+              "native_read_ms": [
+                2905,
+                2927
+              ],
+              "job_state": "running",
+              "job_attempts": 1,
+              "receipt_records": null
+            },
+            {
+              "event": "learning_terminal",
+              "observed_at_ms": 6564,
+              "native_read_ms": [
+                6564,
+                6574
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "receipt_records": [
+                {
+                  "entity": "user",
+                  "id": "cda16b48-af17-d8c6-55b6-d4049e534d64",
+                  "property": "coffee_sugar",
+                  "state": "active",
+                  "value": "without_sugar",
+                  "version": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "turn": 3,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Na interface que uso diariamente, eu prefiro modo escuro.",
+          "displayed": "Você prefere o modo escuro na interface que usa diariamente. Deseja que eu registre essa preferência?",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "Você prefere o modo escuro na interface que usa diariamente.",
+              "source_turns": [
+                3
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "literal_note": "Asks whether to register while native automatic learning is queued. No claim of completed write. Active record observed later.",
+          "native_timeline": [
+            {
+              "event": "assistant_content",
+              "observed_at_ms": 2539,
+              "native_read_ms": [
+                2550,
+                2582
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "generation_terminal",
+              "observed_at_ms": 2672,
+              "native_read_ms": [
+                2672,
+                2691
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "learning_terminal",
+              "observed_at_ms": 7406,
+              "native_read_ms": [
+                7406,
+                7418
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "receipt_records": [
+                {
+                  "entity": "user",
+                  "id": "47fdb6d5-9712-a6d9-5646-37b9bbd5f07b",
+                  "property": "interface_theme",
+                  "state": "active",
+                  "value": "dark",
+                  "version": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "turn": 4,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Meu computador principal tem 36 GB de RAM.",
+          "displayed": "Seu computador principal possui 36 GB de RAM. Deseja que eu registre essa especificação?",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "Seu computador principal possui 36 GB de RAM.",
+              "source_turns": [
+                4
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "literal_note": "Asks whether to register while native learning is queued. Candidate appeared later and was reviewed.",
+          "native_timeline": [
+            {
+              "event": "assistant_content",
+              "observed_at_ms": 2453,
+              "native_read_ms": [
+                2464,
+                2481
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "generation_terminal",
+              "observed_at_ms": 2663,
+              "native_read_ms": [
+                2663,
+                2674
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "learning_terminal",
+              "observed_at_ms": 6828,
+              "native_read_ms": [
+                6828,
+                6838
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "receipt_records": [
+                {
+                  "entity": "device.primary_computer",
+                  "id": "523f4a64-caf9-b8a4-0fef-075a8b176bca",
+                  "property": "ram_capacity",
+                  "state": "candidate",
+                  "value": "36_gb",
+                  "version": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "turn": 5,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Meu notebook de trabalho tem 10 GB de RAM.",
+          "displayed": "Seu notebook de trabalho possui 10 GB de RAM. Deseja que eu registre essa especificação?",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "Seu notebook de trabalho possui 10 GB de RAM.",
+              "source_turns": [
+                5
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "literal_note": "Asks whether to register while native learning is queued. Candidate appeared later and was reviewed.",
+          "native_timeline": [
+            {
+              "event": "assistant_content",
+              "observed_at_ms": 3113,
+              "native_read_ms": [
+                3124,
+                3165
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "generation_terminal",
+              "observed_at_ms": 3175,
+              "native_read_ms": [
+                3175,
+                3191
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "learning_terminal",
+              "observed_at_ms": 7902,
+              "native_read_ms": [
+                7902,
+                7912
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "receipt_records": [
+                {
+                  "entity": "device.work_laptop",
+                  "id": "24619344-b319-a2ca-7117-c5c2990b164c",
+                  "property": "ram_capacity",
+                  "state": "candidate",
+                  "value": "10_gb",
+                  "version": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "turn": 6,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Meu objetivo é terminar o painel de iluminação.",
+          "displayed": "Seu objetivo é terminar o painel de iluminação. Deseja que eu registre esse objetivo?",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "Seu objetivo é terminar o painel de iluminação.",
+              "source_turns": [
+                6
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "literal_note": "Asks whether to register while native learning is queued. Candidate appeared later and was reviewed.",
+          "native_timeline": [
+            {
+              "event": "assistant_content",
+              "observed_at_ms": 2746,
+              "native_read_ms": [
+                2756,
+                2798
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "generation_terminal",
+              "observed_at_ms": 2933,
+              "native_read_ms": [
+                2933,
+                2945
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "receipt_records": null
+            },
+            {
+              "event": "learning_terminal",
+              "observed_at_ms": 7920,
+              "native_read_ms": [
+                7920,
+                7931
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "receipt_records": [
+                {
+                  "entity": "user",
+                  "id": "6a6aef1c-3298-7fa6-e3d4-88fc5dfd0ad2",
+                  "property": "goal.656c51ba08fa",
+                  "state": "candidate",
+                  "value": "meu objetivo e terminar o painel de iluminacao",
+                  "version": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "turn": 7,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 11 somado a 17?",
+          "displayed": "11 somado a 17 é igual a 28.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 8,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona a força de atrito?",
+          "displayed": "A força de atrito é a resistência ao movimento entre duas superfícies em contato, agindo na direção oposta ao deslocamento. Ela depende da natureza das superfícies, da força normal aplicada e da rugosidade do material.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 9,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 11 em uma variável?",
+          "displayed": "Em JavaScript, você pode representar o número 11 usando a declaração `let numero = 11;` ou `const numero = 11;`. Se estiver usando uma linguagem de tipagem como TypeScript, seria `let numero: number = 11;`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 10,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 14 somado a 20?",
+          "displayed": "14 somado a 20 é igual a 34.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 11,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona a rotação da Terra?",
+          "displayed": "A Terra gira em torno de seu próprio eixo, um movimento chamado rotação, que leva aproximadamente 24 horas para completar um ciclo. Esse movimento é responsável pela sucessão dos dias e das noites e pela variação da temperatura em diferentes partes do planeta.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 12,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 14 em uma variável?",
+          "displayed": "Em JavaScript, você pode representar o número 14 usando `let numero = 14;` ou `const numero = 14;`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 13,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 17 somado a 23?",
+          "displayed": "17 somado a 23 é igual a 40.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 14,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona a condução de calor?",
+          "displayed": "A condução de calor é a transferência de energia térmica através de um material, onde as moléculas vibram e colidem, transmitindo calor para as vizinhas. Esse processo ocorre principalmente em sólidos, onde a energia se propaga de forma mais rápida em materiais com alta condutividade térmica.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 15,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 17 em uma variável?",
+          "displayed": "Em JavaScript, você pode representar o número 17 usando `let numero = 17;` ou `const numero = 17;`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 16,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 20 somado a 26?",
+          "displayed": "20 somado a 26 é igual a 46.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 17,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona um ímã?",
+          "displayed": "Um ímã funciona através de campos magnéticos gerados pelo alinhamento de pequenos dipolos magnéticos em seus átomos. Esses dipolos criam uma força de atração ou repulsão que atua em objetos magnéticos ao seu redor.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 18,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 20 em uma variável?",
+          "displayed": "Em JavaScript, você pode representar o número 20 usando `let numero = 20;` ou `const numero = 20;`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 19,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 23 somado a 29?",
+          "displayed": "23 somado a 29 é igual a 52.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 20,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona a difusão de um cheiro?",
+          "displayed": "A difusão de um cheiro ocorre quando as moléculas aromáticas se espalham de uma área de alta concentração para uma de baixa concentração. Esse processo é facilitado pelo movimento aleatório das moléculas no ar ou em um fluido, permitindo que o odor preencha o espaço.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 21,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 23 em uma variável?",
+          "displayed": "Em JavaScript, você pode representar o número 23 usando `let numero = 23;` ou `const numero = 23;`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 22,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 26 somado a 32?",
+          "displayed": "26 somado a 32 é igual a 58.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 23,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona uma bússola?",
+          "displayed": "Uma bússola funciona através de uma agulha magnetizada que se alinha com o campo magnético da Terra. Como o polo norte magnético da Terra atrai o polo sul da agulha, ela aponta consistentemente para o norte geográfico.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 24,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 26 em uma variável?",
+          "displayed": "Em JavaScript, você pode representar o número 26 usando `let numero = 26;` ou `const numero = 26;`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 25,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 29 somado a 35?",
+          "displayed": "29 somado a 35 é igual a 64.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 26,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona uma lente convexa?",
+          "displayed": "Uma lente convexa funciona convergindo os raios de luz para um ponto focal, fazendo com que eles se aproximem à medida que atravessam a lente. Isso permite ampliar objetos e criar imagens nítidas, sendo amplamente utilizada em lupas e óculos para correção de hipermetropia.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 27,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 29 em uma variável?",
+          "displayed": "Em JavaScript, você pode representar o número 29 usando `let numero = 29;` ou `const numero = 29;`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 28,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 32 somado a 38?",
+          "displayed": "32 somado a 38 é igual a 70.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 29,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona o crescimento de raízes?",
+          "displayed": "O crescimento de raízes ocorre através da divisão celular e alongamento das células na ponta da raiz, impulsionados por hormônios como a auxina. Esse processo permite que a planta se fixe ao solo e absorva água e nutrientes de forma eficiente.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 30,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 32 em uma variável?",
+          "displayed": "Em JavaScript, você pode representar o número 32 usando `let numero = 32;` ou `const numero = 32;`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 31,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 35 somado a 41?",
+          "displayed": "35 somado a 41 é igual a 76.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 32,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona a sombra de um objeto?",
+          "displayed": "A sombra de um objeto é formada quando ele bloqueia a passagem da luz, impedindo que os raios luminosos alcancem a superfície atrás dele. A área onde a luz é obstruída cria uma região mais escura, cuja forma e tamanho dependem da posição da fonte de luz, do tamanho do objeto e da distância entre eles.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 33,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 35 em uma variável?",
+          "displayed": "Em JavaScript, você pode representar o número 35 usando `let numero = 35;` ou `const numero = 35;`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 34,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 38 somado a 44?",
+          "displayed": "38 somado a 44 é igual a 82.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 35,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona uma engrenagem?",
+          "displayed": "Uma engrenagem funciona transmitindo movimento e força entre dois eixos através de dentes interconectados que se encaixam. Esse mecanismo permite alterar a velocidade, o torque e a direção do movimento de uma roda motriz para uma roda movida.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 36,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 38 em uma variável?",
+          "displayed": "Em JavaScript, você pode representar o número 38 usando `let numero = 38;` ou `const numero = 38;`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 37,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 41 somado a 47?",
+          "displayed": "41 somado a 47 é igual a 88.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 38,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona o brilho de uma estrela?",
+          "displayed": "O brilho de uma estrela é determinado pela sua luminosidade total e pela distância até o observador. Ele depende da temperatura da superfície, do tamanho da estrela e da quantidade de energia que ela emite por unidade de tempo.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 39,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 41 em uma variável?",
+          "displayed": "Em JavaScript, você pode representar o número 41 usando `let numero = 41;` ou `const numero = 41;`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 40,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 44 somado a 50?",
+          "displayed": "44 somado a 50 é igual a 94.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 41,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona refração da luz?",
+          "displayed": "A refração da luz ocorre quando a luz muda de direção e velocidade ao passar de um meio transparente para outro (como do ar para a água). Essa mudança de trajetória acontece porque a velocidade da luz varia dependendo da densidade do material que ela está atravessando.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 42,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 44 em uma variável?",
+          "displayed": "Em JavaScript, você pode representar o número 44 usando `let numero = 44;` ou `const numero = 44;`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 43,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 47 somado a 53?",
+          "displayed": "47 somado a 53 é igual a 100.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 44,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona um termômetro?",
+          "displayed": "Um termômetro funciona medindo a variação de uma propriedade física em resposta à temperatura, como a expansão térmica de um líquido (mercúrio ou álcool), a mudança na resistência elétrica de um fio ou a emissão de radiação infravermelha. Cada tipo de termômetro converte essa mudança física em uma escala numérica de temperatura.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 45,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 47 em uma variável?",
+          "displayed": "Em JavaScript, você pode representar o número 47 usando `let numero = 47;` ou `const numero = 47;`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 46,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 50 somado a 56?",
+          "displayed": "50 somado a 56 é igual a 106.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 47,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona o som no ar?",
+          "displayed": "O som no ar funciona através de ondas mecânicas que se propagam como vibrações. Quando um objeto vibra, ele empurra as moléculas de ar ao redor, criando zonas de compressão e rarefação que viajam pelo meio até atingirem nossos ouvidos.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 48,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como eu represento o número 50 em uma variável?",
+          "displayed": "Em JavaScript, você pode representar o número 50 usando `let numero = 50;` ou `const numero = 50;`.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 49,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Quanto é 53 somado a 59?",
+          "displayed": "53 somado a 59 é igual a 112.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 50,
+          "role_in_series": "source_sequence",
+          "mode": "chat",
+          "input": "Como funciona a mudança de estado da água?",
+          "displayed": "A mudança de estado da água ocorre quando a energia térmica é adicionada ou removida, alterando a organização das moléculas. Isso resulta na transição entre sólido (gelo), líquido (água) e gasoso (vapor), dependendo da temperatura e da pressão.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": []
+        },
+        {
+          "turn": 51,
+          "role_in_series": "probe",
+          "mode": "chat",
+          "input": "Como está ficando aquele projeto?",
+          "displayed": "Você está começando o projeto de um painel de iluminação residencial. Para ele, você planeja utilizar a linguagem JavaScript e o banco de dados SQLite.",
+          "status": "regenerated",
+          "planned_atoms": 3,
+          "retained_atoms": 3,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "Você está começando o projeto de um painel de iluminação residencial.",
+              "source_turns": [
+                1
+              ],
+              "supported": true,
+              "critical": false
+            },
+            {
+              "literal": "você planeja utilizar a linguagem JavaScript",
+              "source_turns": [
+                1
+              ],
+              "supported": true,
+              "critical": false
+            },
+            {
+              "literal": "o banco de dados SQLite",
+              "source_turns": [
+                1
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "literal_note": "Regeneration replaced 'está avançando' with 'está começando' and retained the JavaScript and SQLite plans.",
+          "attempts": [
+            {
+              "literal": "O projeto Candeia2 está avançando como um painel de iluminação residencial. Você planeja desenvolvê-lo utilizando JavaScript e o banco de dados SQLite.",
+              "native_violations": [
+                {
+                  "code": "authority_execution",
+                  "span": "O projeto Candeia2 está avançando como um painel de iluminação residencial.",
+                  "critical": true
+                }
+              ],
+              "durable_learning_receipt_at_check": false
+            },
+            {
+              "literal": "Você está começando o projeto de um painel de iluminação residencial. Para ele, você planeja utilizar a linguagem JavaScript e o banco de dados SQLite.",
+              "native_violations": [],
+              "durable_learning_receipt_at_check": false
+            }
+          ],
+          "original_probe": {
+            "text": "Como está ficando aquele projeto?",
+            "expected": [
+              {
+                "property": "language",
+                "value": "javascript",
+                "temporal": "planned"
+              },
+              {
+                "property": "database",
+                "value": "sqlite",
+                "temporal": "planned"
+              },
+              {
+                "property": "description"
+              }
+            ],
+            "answer_pattern": "JavaScript",
+            "mode": "chat",
+            "answer_none": [
+              "Python",
+              "PostgreSQL"
+            ],
+            "category": "language"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 246,
+            "identity_version": 3,
+            "budget": 7380,
+            "used": 3359,
+            "references": [
+              {
+                "id": "85aa2290-6784-344e-075f-5238c03b9a59",
+                "version": 2,
+                "key": "project.candeia2.description",
+                "property": "description",
+                "subject": "project.candeia2",
+                "value": "estou comecando um projeto de painel de iluminacao residencial",
+                "temporal": "durable"
+              },
+              {
+                "id": "31832b39-2ca7-bef9-15e3-1a0725924ebd",
+                "version": 2,
+                "key": "project.candeia2.language",
+                "property": "language",
+                "subject": "project.candeia2",
+                "value": "javascript",
+                "temporal": "planned"
+              },
+              {
+                "id": "4ee7c95c-1e89-ced0-94b5-3cda9fb0b24e",
+                "version": 2,
+                "key": "project.candeia2.database",
+                "property": "database",
+                "subject": "project.candeia2",
+                "value": "sqlite",
+                "temporal": "planned"
+              }
+            ],
+            "later_audit_rows": 1,
+            "score": {
+              "true_positive": 3,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": true
+        },
+        {
+          "turn": 52,
+          "role_in_series": "probe",
+          "mode": "chat",
+          "input": "Qual banco de dados eu planejo usar no meu projeto?",
+          "displayed": "Você planeja usar o SQLite como banco de dados no seu projeto Candeia2.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "Você planeja usar o SQLite como banco de dados no seu projeto Candeia2.",
+              "source_turns": [
+                1
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "original_probe": {
+            "text": "Qual banco de dados eu planejo usar no meu projeto?",
+            "expected": [
+              {
+                "property": "database",
+                "value": "sqlite",
+                "temporal": "planned"
+              }
+            ],
+            "answer_pattern": "SQLite",
+            "mode": "chat",
+            "answer_none": [],
+            "category": "database"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 248,
+            "identity_version": 3,
+            "budget": 7380,
+            "used": 1722,
+            "references": [
+              {
+                "id": "4ee7c95c-1e89-ced0-94b5-3cda9fb0b24e",
+                "version": 2,
+                "key": "project.candeia2.database",
+                "property": "database",
+                "subject": "project.candeia2",
+                "value": "sqlite",
+                "temporal": "planned"
+              }
+            ],
+            "later_audit_rows": 0,
+            "score": {
+              "true_positive": 1,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": true
+        },
+        {
+          "turn": 53,
+          "role_in_series": "probe",
+          "mode": "agent",
+          "input": "Should I put sugar in my coffee?",
+          "displayed": "Since you prefer coffee without sugar, you should probably skip it to enjoy the natural flavor of the beans.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "you prefer coffee without sugar",
+              "source_turns": [
+                2
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "original_probe": {
+            "text": "Should I put sugar in my coffee?",
+            "expected": [
+              {
+                "property": "coffee_sugar",
+                "value": "without_sugar"
+              }
+            ],
+            "answer_pattern": "without sugar|unsweetened|no sugar|sem açúcar|não.*açúcar|no.*sugar",
+            "mode": "agent",
+            "answer_none": [
+              "\\bwith sugar\\b|com açúcar"
+            ],
+            "category": "coffee_sugar"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 249,
+            "identity_version": 3,
+            "budget": 7301,
+            "used": 1733,
+            "references": [
+              {
+                "id": "cda16b48-af17-d8c6-55b6-d4049e534d64",
+                "version": 1,
+                "key": "user.coffee_sugar",
+                "property": "coffee_sugar",
+                "subject": "user",
+                "value": "without_sugar",
+                "temporal": "preference"
+              }
+            ],
+            "later_audit_rows": 0,
+            "score": {
+              "true_positive": 1,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": true
+        },
+        {
+          "turn": 54,
+          "role_in_series": "probe",
+          "mode": "chat",
+          "input": "Qual é minha preferência de tema visual?",
+          "displayed": "Você prefere o modo escuro na interface que usa diariamente.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "Você prefere o modo escuro na interface que usa diariamente.",
+              "source_turns": [
+                3
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "original_probe": {
+            "text": "Qual é minha preferência de tema visual?",
+            "expected": [
+              {
+                "property": "interface_theme",
+                "value": "dark"
+              }
+            ],
+            "answer_pattern": "escur|dark",
+            "mode": "chat",
+            "answer_none": [],
+            "category": "interface_theme"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 250,
+            "identity_version": 3,
+            "budget": 7380,
+            "used": 1760,
+            "references": [
+              {
+                "id": "47fdb6d5-9712-a6d9-5646-37b9bbd5f07b",
+                "version": 1,
+                "key": "user.interface_theme",
+                "property": "interface_theme",
+                "subject": "user",
+                "value": "dark",
+                "temporal": "preference"
+              }
+            ],
+            "later_audit_rows": 0,
+            "score": {
+              "true_positive": 1,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": true
+        },
+        {
+          "turn": 55,
+          "role_in_series": "probe",
+          "mode": "code",
+          "input": "How much RAM is installed in my main desktop?",
+          "displayed": "Your main computer has 36 GB of RAM.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "Your main computer has 36 GB of RAM.",
+              "source_turns": [
+                4
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "original_probe": {
+            "text": "How much RAM is installed in my main desktop?",
+            "expected": [
+              {
+                "property": "ram_capacity",
+                "value": "36_gb",
+                "subject": "device.primary_computer"
+              }
+            ],
+            "answer_pattern": "36\\s*GB",
+            "mode": "code",
+            "answer_none": [],
+            "category": "ram_capacity"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 251,
+            "identity_version": 3,
+            "budget": 7302,
+            "used": 1742,
+            "references": [
+              {
+                "id": "523f4a64-caf9-b8a4-0fef-075a8b176bca",
+                "version": 2,
+                "key": "device.primary_computer.ram_capacity",
+                "property": "ram_capacity",
+                "subject": "device.primary_computer",
+                "value": "36_gb",
+                "temporal": "durable"
+              }
+            ],
+            "later_audit_rows": 0,
+            "score": {
+              "true_positive": 1,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": true
+        },
+        {
+          "turn": 56,
+          "role_in_series": "probe",
+          "mode": "chat",
+          "input": "Qual é a RAM do meu notebook de trabalho?",
+          "displayed": "Seu notebook de trabalho tem 10 GB de RAM.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "Seu notebook de trabalho tem 10 GB de RAM.",
+              "source_turns": [
+                5
+              ],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "original_probe": {
+            "text": "Qual é a RAM do meu notebook de trabalho?",
+            "expected": [
+              {
+                "property": "ram_capacity",
+                "value": "10_gb",
+                "subject": "device.work_laptop"
+              }
+            ],
+            "answer_pattern": "10\\s*GB",
+            "mode": "chat",
+            "answer_none": [],
+            "category": "ram_capacity"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 252,
+            "identity_version": 3,
+            "budget": 7380,
+            "used": 1732,
+            "references": [
+              {
+                "id": "24619344-b319-a2ca-7117-c5c2990b164c",
+                "version": 2,
+                "key": "device.work_laptop.ram_capacity",
+                "property": "ram_capacity",
+                "subject": "device.work_laptop",
+                "value": "10_gb",
+                "temporal": "durable"
+              }
+            ],
+            "later_audit_rows": 0,
+            "score": {
+              "true_positive": 1,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": true
+        },
+        {
+          "turn": 57,
+          "role_in_series": "probe",
+          "mode": "chat",
+          "input": "What database is planned for project candeia?",
+          "displayed": "No relevant record is available regarding the specific database planned for project candeia.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [
+            {
+              "literal": "No relevant record is available regarding the specific database planned for project candeia.",
+              "source_turns": [],
+              "supported": true,
+              "critical": false
+            }
+          ],
+          "literal_note": "Candeia has a PostgreSQL plan from H20. This candeia2 turn injects no references and discloses no external value. The old regex misses English 'No relevant record is available'.",
+          "original_probe": {
+            "text": "What database is planned for project candeia?",
+            "expected": [],
+            "answer_pattern": "not|não|informa|context|know|sei|defin",
+            "mode": "chat",
+            "answer_none": [
+              "PostgreSQL",
+              "SQLite"
+            ],
+            "category": "scope_fence"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 253,
+            "identity_version": 3,
+            "budget": 7380,
+            "used": 894,
+            "references": [],
+            "later_audit_rows": 0,
+            "score": {
+              "true_positive": 0,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": false
+        },
+        {
+          "turn": 58,
+          "role_in_series": "probe",
+          "mode": "chat",
+          "input": "Quanto é 17 mais 18?",
+          "displayed": "O resultado de 17 mais 18 é 35.",
+          "status": "checked",
+          "planned_atoms": 1,
+          "retained_atoms": 1,
+          "useful": true,
+          "memory_claims": [],
+          "literal_note": "Correct arithmetic answer with no memory injection.",
+          "original_probe": {
+            "text": "Quanto é 17 mais 18?",
+            "expected": [],
+            "answer_pattern": "35",
+            "mode": "chat",
+            "answer_none": [],
+            "category": "irrelevant"
+          },
+          "earliest_native_retrieval": {
+            "sequence": 254,
+            "identity_version": 3,
+            "budget": 7380,
+            "used": 894,
+            "references": [],
+            "later_audit_rows": 0,
+            "score": {
+              "true_positive": 0,
+              "false_positive": 0,
+              "missed": 0
+            }
+          },
+          "original_regex_pass": true
+        }
+      ]
+    }
+  ]
+}

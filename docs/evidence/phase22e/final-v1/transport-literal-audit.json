@@ -1,0 +1,429 @@
+{
+  "kind": "Post-run literal audit of isolated native transport recovery. Frozen controller outcomes preserved.",
+  "method": "Native composer received an owned broker outage while the original USER source was queued. The DOM observer captured an actual error and the controller restored the broker without resending the turn. Exact USER, receipt, final record, evidence byte range and read-only scoped database observations were cross-checked.",
+  "strict_run": {
+    "planned": 3,
+    "executed": 2,
+    "passed": 1,
+    "failed": 1,
+    "not_executed": 1,
+    "overall_passed": false,
+    "reason": "The frozen controller hard-codes without_sugar for each mode. Agent uses an explicit dark-theme source and persisted interface_theme/dark; its active record cannot satisfy the unrelated coffee assertion at line 67. The strict run aborted there and has no final aggregate or Code result.",
+    "log_and_partial_result": [
+      {
+        "file": "phase22e-final22e-transport-v1.log",
+        "sha256": "9b8637de5a95ccf065c94d4927565f590a1cd149f8fbf3a1180565fce74328f6"
+      },
+      {
+        "file": "final22e-transport-v1-transport-progress.json",
+        "sha256": "12d728a149779fdb2030dddafb3d43c8d149c646b3b0639fded16e88c609babb"
+      }
+    ]
+  },
+  "supplemental_observation": {
+    "mode": "code",
+    "observed": true,
+    "original_source_recovered": true,
+    "primary_gate_credit": false,
+    "note": "This fresh scope runs only the frozen Code source left unexecuted by the primary abort. It exercises the same outage, bundled native observer and broker restoration. Literal source/receipt evidence is supplemental.",
+    "inputs": [
+      {
+        "file": "phase22e-supplemental-transport.py",
+        "sha256": "00ed94210db1a1b7035bc03cb14fc9c045606ce638998698b97598b72a2af629"
+      },
+      {
+        "file": "phase22e-supplemental-transport-v1.log",
+        "sha256": "82b7e86461051e6156e604aa23c91e25876f521e0908dbf399490c49a9795e77"
+      },
+      {
+        "file": "supplemental-transport-22e-code-observations.json",
+        "sha256": "8b6e7ff410b87eaf5c012dc3bfc3350fa2be3f34bf826c23bc81d123f2f63c18"
+      }
+    ]
+  },
+  "shared_inputs": [
+    {
+      "file": "freeze.json",
+      "sha256": "31cd0b728ebafd1ce1adea7e3febe250deb8180cb5ef322d951c096be49d436b"
+    },
+    {
+      "file": "faults.json",
+      "sha256": "baa95d1ec9dde9a007105cc0f7eab236d7f3996ff9c9ebedb97b7c347dec48ac"
+    },
+    {
+      "file": "test-lucille-phase22e-transport.py",
+      "sha256": "6d9571806c484e7515b7c5ba5aaf5fc3a0add2ef6b8bd04e961af0dbe277fbb5"
+    }
+  ],
+  "rows": [
+    {
+      "mode": "chat",
+      "frozen_source_id": "final-e-cancel-chat",
+      "exact_source": "No meu intervalo, o café eu prefiro sem açúcar.",
+      "scope": "phase22e-fault-final22e-transport-v1-chat",
+      "project": "sintetico-e",
+      "status_in_strict_run": "passed",
+      "supplemental": false,
+      "primary_gate_credit": true,
+      "native_transport_observed": true,
+      "native_recovery_from_original_user_source": true,
+      "first_visible_error": {
+        "literal": "Error: Synthetic payload inspector is not answering on 127.0.0.1:15284. It is either not running, still starting up, or listening on a different address. Start it and send again, or pick a different backend in Settings, AI Backends.",
+        "painted_elapsed_ms": 10003,
+        "observer_utc": "2026-11-11T10:59:25.570Z"
+      },
+      "timeline": [
+        {
+          "event": "assistant_created",
+          "elapsed_ms": 120,
+          "native_read_elapsed_ms": [
+            135,
+            204
+          ],
+          "job_state": null,
+          "job_attempts": null,
+          "learning_receipt_available": false
+        },
+        {
+          "event": "assistant_content",
+          "elapsed_ms": 9983,
+          "native_read_elapsed_ms": [
+            10003,
+            10042
+          ],
+          "job_state": "queued",
+          "job_attempts": 0,
+          "learning_receipt_available": false
+        },
+        {
+          "event": "generation_terminal",
+          "elapsed_ms": 10054,
+          "native_read_elapsed_ms": [
+            10054,
+            10073
+          ],
+          "job_state": "queued",
+          "job_attempts": 0,
+          "learning_receipt_available": false
+        },
+        {
+          "event": "learning_terminal",
+          "elapsed_ms": 44826,
+          "native_read_elapsed_ms": [
+            44826,
+            44837
+          ],
+          "job_state": "done",
+          "job_attempts": 1,
+          "learning_receipt_available": true
+        }
+      ],
+      "queued_at_error": true,
+      "receipt_appeared_after_error": true,
+      "no_resend": {
+        "visible_user_messages": 1,
+        "same_user_id_in_error_and_final": true,
+        "final_receipt_binds_original_source": true
+      },
+      "learning_receipt": {
+        "action": "learn",
+        "conversation_id": "46cd5ce2-5668-4556-8829-8856d93c3942",
+        "id": "1d9221bc54d7869e647d541a6dab13e34da776861cc26fa87b5162d6bb75a2fa",
+        "project": "sintetico-e",
+        "records": [
+          {
+            "entity": "user",
+            "id": "273ead50-36b6-0fd3-e1b1-513db3affe6e",
+            "property": "coffee_sugar",
+            "state": "active",
+            "value": "without_sugar",
+            "version": 1
+          }
+        ],
+        "scope": "phase22e-fault-final22e-transport-v1-chat",
+        "source_message_id": "3c121472-f6ad-4858-8158-9ce51c556276",
+        "state": "done"
+      },
+      "provenance": {
+        "at": 1794394800,
+        "evidence": "No meu intervalo, o café eu prefiro sem açúcar",
+        "interaction_id": "1d9221bc54d7869e647d541a6dab13e34da776861cc26fa87b5162d6bb75a2fa"
+      },
+      "source_authority_proof": {
+        "version": 2,
+        "message_author": "user",
+        "statement_author": "user",
+        "subject": "user",
+        "origin": "personal_declaration",
+        "source_digest": "4a646b61040e910bdf8b0c3c3177ffc7683a0bdb1921f184900a00bf965d45cb",
+        "evidence_digest": "946130ae7e6e0f73b2532535f91ceb72a61cb37c716afd93a2f4ad9de2e16652",
+        "start": 0,
+        "end": 49,
+        "claim_digest": "7a48673e83c55bfd130031fc901a675873ccca51127a9e7952b7d3ea64ca59e1"
+      },
+      "durable_scope_check": {
+        "jobs": 1,
+        "done_attempts": 1,
+        "active_records": 1,
+        "key": "user.coffee_sugar",
+        "version": 1
+      },
+      "inputs": [
+        {
+          "file": "driver-final22e-transport-v1-chat-transport-progress.json",
+          "sha256": "b7b0e92a00f3eb61be47d7ffe3e60bbe1c93e6dddad7c50857a1b3bb14c52a6e"
+        },
+        {
+          "file": "driver-final22e-transport-v1-chat-final.json",
+          "sha256": "814607e5beaa59fa81d491e5b0494350d1bc945379a8f3f02815b938ca4eeac5"
+        }
+      ]
+    },
+    {
+      "mode": "agent",
+      "frozen_source_id": "final-e-cancel-agent",
+      "exact_source": "Na interface do meu aplicativo, minha preferência é pelo tema escuro.",
+      "scope": "phase22e-fault-final22e-transport-v1-agent",
+      "project": "sintetico-e",
+      "status_in_strict_run": "failed_assertion",
+      "supplemental": false,
+      "primary_gate_credit": false,
+      "native_transport_observed": true,
+      "native_recovery_from_original_user_source": true,
+      "first_visible_error": {
+        "literal": "Agent error: Synthetic payload inspector is not answering on 127.0.0.1:15284. It is either not running, still starting up, or listening on a different address. Start it and send again, or pick a different backend in Settings, AI Backends.",
+        "painted_elapsed_ms": 38048,
+        "observer_utc": "2026-11-11T11:00:45.772Z"
+      },
+      "timeline": [
+        {
+          "event": "assistant_created",
+          "elapsed_ms": 128,
+          "native_read_elapsed_ms": [
+            140,
+            158
+          ],
+          "job_state": null,
+          "job_attempts": null,
+          "learning_receipt_available": false
+        },
+        {
+          "event": "assistant_content",
+          "elapsed_ms": 38036,
+          "native_read_elapsed_ms": [
+            38047,
+            38065
+          ],
+          "job_state": "queued",
+          "job_attempts": 0,
+          "learning_receipt_available": false
+        },
+        {
+          "event": "generation_terminal",
+          "elapsed_ms": 38270,
+          "native_read_elapsed_ms": [
+            38270,
+            38319
+          ],
+          "job_state": "queued",
+          "job_attempts": 0,
+          "learning_receipt_available": false
+        },
+        {
+          "event": "learning_terminal",
+          "elapsed_ms": 73506,
+          "native_read_elapsed_ms": [
+            73506,
+            73518
+          ],
+          "job_state": "done",
+          "job_attempts": 1,
+          "learning_receipt_available": true
+        }
+      ],
+      "queued_at_error": true,
+      "receipt_appeared_after_error": true,
+      "no_resend": {
+        "visible_user_messages": 1,
+        "same_user_id_in_error_and_final": true,
+        "final_receipt_binds_original_source": true
+      },
+      "learning_receipt": {
+        "action": "learn",
+        "conversation_id": "f1391ad1-5c69-4171-933a-bc5be15183cd",
+        "id": "6e074f85cc2710637cacfced78aeefc4d95305b69c731a2cb754c7b47ede4829",
+        "project": "sintetico-e",
+        "records": [
+          {
+            "entity": "user",
+            "id": "97b1d243-84a0-1972-5d71-3811abb7a610",
+            "property": "interface_theme",
+            "state": "active",
+            "value": "dark",
+            "version": 1
+          }
+        ],
+        "scope": "phase22e-fault-final22e-transport-v1-agent",
+        "source_message_id": "50ccf046-9ed6-40ed-9739-4a364d2671b6",
+        "state": "done"
+      },
+      "provenance": {
+        "at": 1794394880,
+        "evidence": "Na interface do meu aplicativo, minha preferência é pelo tema escuro",
+        "interaction_id": "6e074f85cc2710637cacfced78aeefc4d95305b69c731a2cb754c7b47ede4829"
+      },
+      "source_authority_proof": {
+        "version": 2,
+        "message_author": "user",
+        "statement_author": "user",
+        "subject": "user",
+        "origin": "personal_declaration",
+        "source_digest": "a2c054f38a60b031182bbf1c20e2d895cc66f2747d2e27e724f5cd4334ce1ae8",
+        "evidence_digest": "57d7ca98be820ef9dec7a3b22808dd913bb10e7d0be2e4d1987da16516cf6bfb",
+        "start": 0,
+        "end": 70,
+        "claim_digest": "11c78894d0f4f3e3fb557a9c2de2fef5345c2839443a832cfc113714a726ac41"
+      },
+      "durable_scope_check": {
+        "jobs": 1,
+        "done_attempts": 1,
+        "active_records": 1,
+        "key": "user.interface_theme",
+        "version": 1
+      },
+      "inputs": [
+        {
+          "file": "driver-final22e-transport-v1-agent-transport-progress.json",
+          "sha256": "c521d2e28fcb4cce2f83e44b1c94addb03ed1302b13fbc94554738650bd40780"
+        },
+        {
+          "file": "driver-final22e-transport-v1-agent-final.json",
+          "sha256": "78277c52e6313c2d3c433baa6cf4862d28ea20925383eb8f2a2c734acd4fe3bf"
+        }
+      ]
+    },
+    {
+      "mode": "code",
+      "frozen_source_id": "final-e-cancel-code",
+      "exact_source": "Choosing my character class is something I enjoy in games.",
+      "scope": "phase22e-fault-supplemental-transport-22e-code",
+      "project": "sintetico-e",
+      "status_in_strict_run": "not_executed",
+      "supplemental": true,
+      "primary_gate_credit": false,
+      "native_transport_observed": true,
+      "native_recovery_from_original_user_source": true,
+      "first_visible_error": {
+        "literal": "Error: [network] HTTP 503 Synthetic payload inspector is not answering on 127.0.0.1:15284. It is either not running, still starting up, or listening on a different address. Start it and send again, or pick a different backend in Settings, AI Backends.",
+        "painted_elapsed_ms": 13918,
+        "observer_utc": "2026-11-11T11:02:09.446Z"
+      },
+      "timeline": [
+        {
+          "event": "assistant_created",
+          "elapsed_ms": 131,
+          "native_read_elapsed_ms": [
+            137,
+            152
+          ],
+          "job_state": null,
+          "job_attempts": null,
+          "learning_receipt_available": false
+        },
+        {
+          "event": "assistant_content",
+          "elapsed_ms": 13908,
+          "native_read_elapsed_ms": [
+            13917,
+            13936
+          ],
+          "job_state": "queued",
+          "job_attempts": 0,
+          "learning_receipt_available": false
+        },
+        {
+          "event": "generation_terminal",
+          "elapsed_ms": 13934,
+          "native_read_elapsed_ms": [
+            13936,
+            13962
+          ],
+          "job_state": "queued",
+          "job_attempts": 0,
+          "learning_receipt_available": false
+        },
+        {
+          "event": "learning_terminal",
+          "elapsed_ms": 48905,
+          "native_read_elapsed_ms": [
+            48905,
+            48916
+          ],
+          "job_state": "done",
+          "job_attempts": 1,
+          "learning_receipt_available": true
+        }
+      ],
+      "queued_at_error": true,
+      "receipt_appeared_after_error": true,
+      "no_resend": {
+        "visible_user_messages": 1,
+        "same_user_id_in_error_and_final": true,
+        "final_receipt_binds_original_source": true
+      },
+      "learning_receipt": {
+        "action": "learn",
+        "conversation_id": "d16e52ae-4858-449d-99b1-93fdfdfb611d",
+        "id": "505b6de399c6f2ec0340c00765e4f03b5bd291f77d774ec66a85c8f0a2b6bdde",
+        "project": "sintetico-e",
+        "records": [
+          {
+            "entity": "user",
+            "id": "669cbf8d-2503-9d2b-c9ff-14c20e2f14cb",
+            "property": "games_class_selection",
+            "state": "active",
+            "value": "positive",
+            "version": 1
+          }
+        ],
+        "scope": "phase22e-fault-supplemental-transport-22e-code",
+        "source_message_id": "f6e02725-640a-48d9-865f-594387b58edf",
+        "state": "done"
+      },
+      "provenance": {
+        "at": 1794394964,
+        "evidence": "Choosing my character class is something I enjoy in games",
+        "interaction_id": "505b6de399c6f2ec0340c00765e4f03b5bd291f77d774ec66a85c8f0a2b6bdde"
+      },
+      "source_authority_proof": {
+        "version": 2,
+        "message_author": "user",
+        "statement_author": "user",
+        "subject": "user",
+        "origin": "personal_declaration",
+        "source_digest": "6ba051b1d43e743c3561b9fb355a472d61ea9321a0f856248cc5ff0ec1955103",
+        "evidence_digest": "ac2cba56336d074e5daa4cde715f4c14d3f85580f0644cdeccfa8261c35c216d",
+        "start": 0,
+        "end": 57,
+        "claim_digest": "7713b122cd46246b22264de1701d0a93f59aa1c49ef53641b3a9f60a5c233492"
+      },
+      "durable_scope_check": {
+        "jobs": 1,
+        "done_attempts": 1,
+        "active_records": 1,
+        "key": "user.games_class_selection",
+        "version": 1
+      },
+      "inputs": [
+        {
+          "file": "driver-supplemental-transport-22e-code-transport-progress.json",
+          "sha256": "6afc833f92192b2ec13b4769e63f940bda86f931eeb2ad3d2893bcf7d9792614"
+        },
+        {
+          "file": "driver-supplemental-transport-22e-code-final.json",
+          "sha256": "39b9c6f262e3cc76bdbedbefd8cd2c95372e78c93ea2725fdf2c26743910e0b4"
+        }
+      ]
+    }
+  ]
+}
