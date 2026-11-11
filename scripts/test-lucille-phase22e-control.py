@@ -68,7 +68,7 @@ def main(a, phase='22e'):
         if a.nomic_off:
             assert phase == '22f' and not a.initialize
             try:
-                with socket.create_connection(('127.0.0.1', 15289), timeout=1):
+                with socket.create_connection(('127.0.0.1', 15289), timeout=5):
                     raise RuntimeError('Expected the owned Nomic endpoint to be down')
             except ConnectionRefusedError:
                 pass

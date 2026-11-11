@@ -407,7 +407,7 @@ def main(args):
     if args.offline:
         import socket
         try:
-            with socket.create_connection(('127.0.0.1', 15289), timeout=1):
+            with socket.create_connection(('127.0.0.1', 15289), timeout=5):
                 raise RuntimeError('Nomic endpoint is still listening; offline run refused')
         except ConnectionRefusedError:
             services['nomic_loopback_port_closed'] = True
