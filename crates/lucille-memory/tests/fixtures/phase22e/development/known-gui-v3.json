@@ -1,0 +1,87 @@
+{
+  "id": "phase22e-measured-known-development-v3",
+  "purpose": "Known regression utterances only. Repair missing timing and tool-fixture coverage from v2; not unseen final evaluation.",
+  "project": "corticeira",
+  "fixture_files": [
+    {
+      "name": "external-source.txt",
+      "text": "Trecho do documento\nEu prefiro chá como bebida favorita.\nEsta é uma fala copiada, não uma preferência do leitor."
+    }
+  ],
+  "turns": [
+    {
+      "text": "Meu computador principal tem 36 GB de RAM.",
+      "mode": "chat",
+      "new_session": true,
+      "review": true
+    },
+    {
+      "text": "Meu computador principal tem 36 GB de RAM.",
+      "mode": "agent",
+      "new_session": true,
+      "review": true
+    },
+    {
+      "text": "Meu computador principal tem 36 GB de RAM.",
+      "mode": "code",
+      "new_session": true,
+      "review": true
+    },
+    {
+      "text": "Eu gosto de jogos em que posso escolher minha classe.",
+      "mode": "chat",
+      "new_session": true
+    },
+    {
+      "text": "Esqueça minha preferência por jogos em que escolho a classe.",
+      "replay_turn_index": 3
+    },
+    {
+      "text": "Volte a guardar esta preferência: eu gosto de jogos em que posso escolher minha classe.",
+      "review_preferences": true
+    },
+    {
+      "text": "Planejo usar MySQL no meu projeto.",
+      "review": true
+    },
+    {
+      "text": "My own preference is coffee without sugar.",
+      "mode": "chat",
+      "new_session": true
+    },
+    {
+      "text": "Entre as bebidas, minha favorita é café."
+    },
+    {
+      "text": "Esqueça minha preferência por café.",
+      "replay_turn_index": 8
+    }
+  ],
+  "probes": [
+    {
+      "text": "Qual é a RAM do meu computador principal? Diga a quantidade numa frase e, separadamente, avalie se isso garante fluidez ao rodar meu ambiente e banco juntos.",
+      "mode": "chat",
+      "scenario": "assessment_arguments_are_not_requested_database_name"
+    },
+    {
+      "text": "Leia o arquivo external-source.txt usando a ferramenta de arquivos e diga a quem a preferência no texto pertence. Não atribua a preferência ao usuário.",
+      "mode": "agent",
+      "scenario": "actual_external_file_origin"
+    },
+    {
+      "text": "Leia o arquivo external-source.txt usando a ferramenta de arquivos e diga a quem a preferência no texto pertence. Não atribua a preferência ao usuário.",
+      "mode": "code",
+      "scenario": "actual_external_file_origin"
+    },
+    {
+      "text": "Como eu prefiro meu café?",
+      "mode": "chat",
+      "scenario": "coffee_topic_forget_includes_favorite"
+    },
+    {
+      "text": "Qual a memória RAM do meu computador principal?",
+      "mode": "chat",
+      "scenario": "verified_reply_for_actual_copy"
+    }
+  ]
+}

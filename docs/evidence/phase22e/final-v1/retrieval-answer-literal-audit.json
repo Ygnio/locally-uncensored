@@ -1,0 +1,1784 @@
+{
+  "id": "phase22e-final-v1-retrieval-answer-literal-audit",
+  "status": "REPROVADA: C gate not measured after seed failure; D availability and full-request completeness below thresholds",
+  "reviewed_utc": "2026-11-04T23:37:29.239649+00:00",
+  "method": "Post-run literal read-only audit of frozen sources/golds, actual canonical versions, every D raw and delivered response and both D execution ledgers. No product/evaluator/corpus/rubric changes, model calls, source substitutions or additional trials. Same Codex development team, not an external blinded evaluation.",
+  "frozen_binding": {
+    "sealed_commit": "a9c49bdeea1932480ef2620d9c0bbca5c3b5f52d",
+    "manifest_source_head": "9b5d8ff76e5a7661609be01bfcc4f87117d433c0",
+    "production_code_commit": "9fca27daf715ef5597e2536f6651583b48ec1f2b",
+    "freeze_sha256": "31cd0b728ebafd1ce1adea7e3febe250deb8180cb5ef322d951c096be49d436b",
+    "model_pin": {
+      "simulation": false,
+      "models": {
+        "gemma": {
+          "model": "HauhauCS/Gemma4-12B-QAT-Uncensored-HauhauCS-Balanced",
+          "revision": "ae8045ac2bd216293ca49a3065da2c942dde4b68",
+          "fingerprint": "59656d7494d6376ca97e9e20b64ea2e16cd97f12ec6d47bfccba91cb785b5134",
+          "context_tokens": 65536
+        },
+        "nomic": {
+          "model": "nomic-ai/nomic-embed-text-v1.5",
+          "revision": "0188c9bf409793f810680a5a431e7b899c46104c",
+          "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+          "dimension": 768,
+          "normalization": "layer_norm_then_l2",
+          "pooling": "mean",
+          "document_prefix": "search_document: ",
+          "query_prefix": "search_query: ",
+          "context_tokens": 2048,
+          "index_version": 5
+        }
+      },
+      "runtime_sha256": "d629481a5c60518afd6679b3fcb9e428a98523628470ed3b88d5261b0df712cb",
+      "memory_protocol": 3
+    },
+    "schema": 5,
+    "representation": 5,
+    "index": 5,
+    "atomic_protocol": 3,
+    "source_authority": 2,
+    "D_generation_parameters": {
+      "temperature": 0,
+      "max_tokens": 384,
+      "stream": false,
+      "reasoning_effort": "none",
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      }
+    },
+    "D_execution_surface": "Native bridge plus shared context adapter/verifier; no GUI, learning publication, tool dispatch or native streaming is proven by this D stage"
+  },
+  "input_sha256": [
+    {
+      "artifact": "freeze.json",
+      "sha256": "31cd0b728ebafd1ce1adea7e3febe250deb8180cb5ef322d951c096be49d436b"
+    },
+    {
+      "artifact": "authoring.json",
+      "sha256": "2e92f473cf8a67fbddd52d2035d9da6437c4c4db4f5d61909199adf314305076"
+    },
+    {
+      "artifact": "execution-parameters.json",
+      "sha256": "5a404e3eb131d5ffd1753f15e9da529dfde1e98ed274ec2e8ff7d5d9adc124f8"
+    },
+    {
+      "artifact": "answer-rubric.json",
+      "sha256": "6342e0eae103e3b96a1b2ab64eaf1c9798fe24c5c6bebfa92c0169e87a0e4f19"
+    },
+    {
+      "artifact": "retrieval.json",
+      "sha256": "1f65d2ed629655abf98fd2c4e23493f668ea1e04c1f8f8f95c88c7f806e3c372"
+    },
+    {
+      "artifact": "answers.json",
+      "sha256": "0e33d12ed80124c07c207029a3712ed1670c65b2c9596bc92757edea0543b47d"
+    },
+    {
+      "artifact": "C-failure-ledger.json",
+      "sha256": "a74a65d9deea1dd72288fc83d52f03d22fa74e08a2890644c16565d342bb08ee"
+    },
+    {
+      "artifact": "C-execution.log",
+      "sha256": "bdf9c19e42d7af77d87e5d2088e4dd0b13d498a17272fa61e426bef6fce14048"
+    },
+    {
+      "artifact": "D-preflight.json",
+      "sha256": "98fdbf36440dffd448c9c08556ece6db56c4572539556d03c35dc3f8224491fd"
+    },
+    {
+      "artifact": "D-actual.json",
+      "sha256": "38002b4738fe7671fa2c97901c2fe15e89df578380e2f40505800ce33a0636f6"
+    },
+    {
+      "artifact": "standalone-native-snapshot.sqlite3",
+      "sha256": "dbbef0a3f99ad79869656991d12ad55d61b36fee9792f12cf911ca0142e905ad"
+    }
+  ],
+  "actual_standalone_native_state": {
+    "summary": {
+      "canonical_records": 3,
+      "active_records": 3,
+      "tombstones": 0,
+      "learning_jobs": 3,
+      "schema": 5,
+      "quick_check": "ok",
+      "audit_access": "SQLite mode=ro plus query_only; no Store.open or bridge invocation"
+    },
+    "sqlite_sha256_before_and_after_read_only_audit": "dbbef0a3f99ad79869656991d12ad55d61b36fee9792f12cf911ca0142e905ad",
+    "canonical_sources": [
+      {
+        "id": "74cc96c3-234e-8a49-f875-2f10e462514d",
+        "scope": "phase22e-final-ret-main",
+        "project": "jatoba",
+        "kind": "project",
+        "state": "active",
+        "version": 2,
+        "subject": "project.jatoba",
+        "property": "description",
+        "value": "estou comecando um projeto de catalogo de miniaturas",
+        "temporal": "durable",
+        "source_label": "purpose",
+        "original_source": "Estou começando um projeto de catálogo de miniaturas.",
+        "literal_evidence": "Estou começando um projeto de catálogo de miniaturas",
+        "source_authority": {
+          "version": 2,
+          "message_author": "user",
+          "statement_author": "user",
+          "subject": "project.jatoba",
+          "origin": "personal_declaration",
+          "source_digest": "ba3513ce71168360730f6821c37164508e5dca0a347e6463a3461fef12d1054c",
+          "evidence_digest": "a0e66a198fd9c83e8f241bf219058a5cfc2aae1b007639ec0ccc511bcfae9735",
+          "start": 0,
+          "end": 54
+        },
+        "provenance": [
+          {
+            "evidence": "Estou começando um projeto de catálogo de miniaturas",
+            "interaction_id": "1d6315a47a2b04e8c753f76b04e38684ffb55fd89eac741158e10ad8a1afdfba"
+          }
+        ],
+        "source_digest_and_extent_verified": true
+      },
+      {
+        "id": "b3470ced-a27a-451a-efc9-402c5fe6e794",
+        "scope": "phase22e-final-ret-main",
+        "project": "jatoba",
+        "kind": "decision",
+        "state": "active",
+        "version": 2,
+        "subject": "project.jatoba",
+        "property": "language",
+        "value": "python",
+        "temporal": "durable",
+        "source_label": "language-choice",
+        "original_source": "Escolhi Python como linguagem para o meu projeto.",
+        "literal_evidence": "Escolhi Python como linguagem para o meu projeto",
+        "source_authority": {
+          "version": 2,
+          "message_author": "user",
+          "statement_author": "user",
+          "subject": "project.jatoba",
+          "origin": "personal_declaration",
+          "source_digest": "c6f1f6e5f66278051090878acbbeb66714fed66ea71583fdad44cf772db9fae1",
+          "evidence_digest": "ef2a6b064f8996161187b43e2a0886e204431a883ae95e22f3af5dd6bf5c0cc1",
+          "start": 0,
+          "end": 48
+        },
+        "provenance": [
+          {
+            "evidence": "Escolhi Python como linguagem para o meu projeto",
+            "interaction_id": "fbbd01bdcb9b5244191f07ad1f7007286f0b3d9b72e72fcd15b48947d965f2d3"
+          }
+        ],
+        "source_digest_and_extent_verified": true
+      },
+      {
+        "id": "f5d3fdfa-b991-f324-da39-a7ed3abc59a5",
+        "scope": "phase22e-final-ret-main",
+        "project": "jatoba",
+        "kind": "decision",
+        "state": "active",
+        "version": 2,
+        "subject": "project.jatoba",
+        "property": "database",
+        "value": "postgresql",
+        "temporal": "planned",
+        "source_label": "database-plan",
+        "original_source": "No meu projeto, pretendo usar PostgreSQL como banco de dados.",
+        "literal_evidence": "No meu projeto, pretendo usar PostgreSQL como banco de dados",
+        "source_authority": {
+          "version": 2,
+          "message_author": "user",
+          "statement_author": "user",
+          "subject": "project.jatoba",
+          "origin": "personal_declaration",
+          "source_digest": "f1c81ed0dedf8433df3bb02964d173c2e4326741521983459ab75738a9aa5f45",
+          "evidence_digest": "a8e6f6a71d766fca7f4d55596d76e243e1b679e9ba96613c8a1c9ddab5eb6b2e",
+          "start": 0,
+          "end": 60
+        },
+        "provenance": [
+          {
+            "evidence": "No meu projeto, pretendo usar PostgreSQL como banco de dados",
+            "interaction_id": "781cca0001f149e96af66a6bb2578b655f224dc27a8e7a0bc18b4061abb65914"
+          }
+        ],
+        "source_digest_and_extent_verified": true
+      }
+    ]
+  },
+  "stage_C": {
+    "status": "NAO_AFERIDO: failed precondition before all retrieval query loops",
+    "gate_passed": false,
+    "completed_setup_events": 3,
+    "failed_setup_events": 1,
+    "not_attempted_setup_events": 13,
+    "planned_setup_events": 17,
+    "failed_event_ordinal": 4,
+    "failed_event_label": "primary-before",
+    "original_source": "No computador principal que uso há 48 GB de RAM.",
+    "observed_native_result": {
+      "enqueue_state": "ignored",
+      "reason": "not_eligible",
+      "new_records": 0
+    },
+    "cause": "The legitimate first-person own-device relative formulation produced no canonical RAM record in frozen rules seeding. The one-record setup assertion then stopped the remaining seeds and all query loops. This is a source-coverage/extraction precondition failure followed by a setup cascade, not a measured retrieval ranking miss.",
+    "planned_queries": 29,
+    "executed_queries": 0,
+    "planned_expected_labels": 30,
+    "mandatory_lexical_queries_planned": 20,
+    "mandatory_lexical_expected_labels_planned": 25,
+    "mandatory_lexical_queries_executed": 0,
+    "mandatory_lexical_status": "NAO_AFERIDO; gate failed due to absent coverage",
+    "precision": null,
+    "recall": null,
+    "hybrid_gate_passed": false,
+    "wrong_actor_scope_deleted_query_outcomes": "Unmeasured across 0/29 query executions; zero observed cannot establish these safety gates.",
+    "known_development_results_are_not_substitutes": true,
+    "queries": [
+      {
+        "id": "er-001",
+        "status": "not_executed",
+        "expected": [
+          "primary-now"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-002",
+        "status": "not_executed",
+        "expected": [
+          "primary-now"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-003",
+        "status": "not_executed",
+        "expected": [
+          "work-ram"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-004",
+        "status": "not_executed",
+        "expected": [
+          "primary-now",
+          "work-ram"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-005",
+        "status": "not_executed",
+        "expected": [
+          "primary-before",
+          "primary-now"
+        ],
+        "mandatory_lexical": false
+      },
+      {
+        "id": "er-006",
+        "status": "not_executed",
+        "expected": [
+          "primary-now"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-007",
+        "status": "not_executed",
+        "expected": [
+          "purpose"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-008",
+        "status": "not_executed",
+        "expected": [
+          "language-choice"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-009",
+        "status": "not_executed",
+        "expected": [
+          "database-plan"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-010",
+        "status": "not_executed",
+        "expected": [
+          "coffee"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-011",
+        "status": "not_executed",
+        "expected": [
+          "classes"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-012",
+        "status": "not_executed",
+        "expected": [
+          "favorite"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-013",
+        "status": "not_executed",
+        "expected": [
+          "primary-now",
+          "database-plan"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-014",
+        "status": "not_executed",
+        "expected": [
+          "purpose",
+          "language-choice",
+          "database-plan"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-015",
+        "status": "not_executed",
+        "expected": [],
+        "mandatory_lexical": false
+      },
+      {
+        "id": "er-016",
+        "status": "not_executed",
+        "expected": [],
+        "mandatory_lexical": false
+      },
+      {
+        "id": "er-017",
+        "status": "not_executed",
+        "expected": [],
+        "mandatory_lexical": false
+      },
+      {
+        "id": "er-018",
+        "status": "not_executed",
+        "expected": [
+          "database-plan"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-019",
+        "status": "not_executed",
+        "expected": [
+          "other-scope-ram"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-020",
+        "status": "not_executed",
+        "expected": [],
+        "mandatory_lexical": false
+      },
+      {
+        "id": "er-021",
+        "status": "not_executed",
+        "expected": [
+          "other-database"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-022",
+        "status": "not_executed",
+        "expected": [],
+        "mandatory_lexical": false
+      },
+      {
+        "id": "er-023",
+        "status": "not_executed",
+        "expected": [
+          "database-plan"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-024",
+        "status": "not_executed",
+        "expected": [
+          "actual-language"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-025",
+        "status": "not_executed",
+        "expected": [
+          "future-language"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-026",
+        "status": "not_executed",
+        "expected": [
+          "actual-language",
+          "future-language"
+        ],
+        "mandatory_lexical": true
+      },
+      {
+        "id": "er-027",
+        "status": "not_executed",
+        "expected": [
+          "cancelled-language",
+          "cancelled-state"
+        ],
+        "mandatory_lexical": false
+      },
+      {
+        "id": "er-028",
+        "status": "not_executed",
+        "expected": [
+          "cancelled-state"
+        ],
+        "mandatory_lexical": false
+      },
+      {
+        "id": "er-029",
+        "status": "not_executed",
+        "expected": [],
+        "mandatory_lexical": false
+      }
+    ]
+  },
+  "stage_D": {
+    "planned": 22,
+    "preflight_ready": 7,
+    "preflight_missing": 15,
+    "real_model_generations": 7,
+    "delivered": 7,
+    "blocked": 0,
+    "not_executed": 15,
+    "cascade_missing_cases": 14,
+    "independent_projection_rejection_cases": 1,
+    "useful": 7,
+    "availability": {
+      "numerator": 7,
+      "denominator": 22,
+      "ratio": 0.3181818181818182,
+      "minimum": 0.95,
+      "passed": false
+    },
+    "predeclared_atom_completeness": {
+      "retained": 10,
+      "denominator": 31,
+      "ratio": 0.3225806451612903,
+      "minimum": 0.95,
+      "passed": false
+    },
+    "full_request_completeness": {
+      "retained": 10,
+      "denominator": 32,
+      "ratio": 0.3125,
+      "additional_unavailable_requested_part": {
+        "case": "ea-022",
+        "part": "Pitanga database",
+        "retained": false
+      },
+      "minimum": 0.95,
+      "passed": false
+    },
+    "delivered_only_literal_fidelity": {
+      "supported_claims": 11,
+      "all_literal_claims": 11,
+      "ratio": 1.0,
+      "critical_delivered_claims_observed": 0,
+      "scope": "Supplementary delivered-only evidence, not approval of the missing 15 cases or full phase. Nonassertive requests and explanatory restatements are not counted as extra facts."
+    },
+    "interventions": {
+      "raw_attempts": 7,
+      "regenerations": 0,
+      "localized_repairs": 0,
+      "raw_to_delivered_changes": 0
+    },
+    "coverage_limits": [
+      "The C/D shared store is only partially seeded, so D is not an independently fully prepared 22-case answer test.",
+      "Absent hardware/preferences/cancellation/other-project seeds prevent 14 cases from reaching generation. They remain in every planned denominator.",
+      "ea-008 has an existing source but native query-projection failure; it is not silently repaired or replaced by ea-009.",
+      "ea-015 lacks a real prior deletion/tombstone because the creation/deletion events were skipped. Its correct bounded current-absence reply does not prove deleted-memory safety.",
+      "Pitanga MySQL and other scope/project adversarial values were never seeded. No wrong-scope claim among the seven deliveries is not a complete isolation validation.",
+      "D responses have no native save/forget receipts; they make no current-operation completed-save assertion. Existing recorded decision wording in ea-006 refers to the actual reviewed version, not a newly completed write.",
+      "ea-022 is useful but its explicit outside-binding explanation is incomplete under the frozen atom definition; the unavailable actual database remains an unfilled full-request part."
+    ],
+    "cases": [
+      {
+        "id": "ea-001",
+        "mode": "chat",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "jatoba"
+        },
+        "query": "Quanto de RAM tem o computador principal que uso?",
+        "expected_atoms": [
+          "primary_64_current"
+        ],
+        "preflight_status": "not_executed",
+        "actual_status": "not_executed",
+        "original_sources": [
+          {
+            "label": "primary-now",
+            "text": "Meu computador principal agora tem 64 GB de RAM, em vez dos 48 GB anteriores.",
+            "seed_status": "not_attempted_after_abort"
+          }
+        ],
+        "generations": 0,
+        "delivered": "",
+        "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained_atoms": [],
+        "useful": false,
+        "unretained_atoms": [
+          "primary_64_current"
+        ],
+        "error": "Error: Selector must identify one actual canonical record: {\"selector\":{\"entity\":\"device.primary_computer\",\"property\":\"ram_capacity\",\"value\":\"64_gb\"},\"matches\":0,\"available\":[]}",
+        "claims": [],
+        "cause_class": "cascade_from_incomplete_retrieval_seed_state",
+        "literal_note": "Required canonical selector cannot be satisfied in the actual partial store. The frozen evaluator retains this planned case as not_executed; it is not a generated bad answer, a successful bounded answer, or evidence that its skipped source was tested and failed extraction."
+      },
+      {
+        "id": "ea-002",
+        "mode": "agent",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "jatoba"
+        },
+        "query": "Qual a RAM do meu notebook de trabalho?",
+        "expected_atoms": [
+          "work_12_current"
+        ],
+        "preflight_status": "not_executed",
+        "actual_status": "not_executed",
+        "original_sources": [
+          {
+            "label": "work-ram",
+            "text": "O notebook de trabalho que utilizo tem 12 GB de RAM.",
+            "seed_status": "not_attempted_after_abort"
+          }
+        ],
+        "generations": 0,
+        "delivered": "",
+        "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained_atoms": [],
+        "useful": false,
+        "unretained_atoms": [
+          "work_12_current"
+        ],
+        "error": "Error: Selector must identify one actual canonical record: {\"selector\":{\"entity\":\"device.work_laptop\",\"property\":\"ram_capacity\",\"value\":\"12_gb\"},\"matches\":0,\"available\":[]}",
+        "claims": [],
+        "cause_class": "cascade_from_incomplete_retrieval_seed_state",
+        "literal_note": "Required canonical selector cannot be satisfied in the actual partial store. The frozen evaluator retains this planned case as not_executed; it is not a generated bad answer, a successful bounded answer, or evidence that its skipped source was tested and failed extraction."
+      },
+      {
+        "id": "ea-003",
+        "mode": "code",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "jatoba"
+        },
+        "query": "Compare a RAM do meu computador principal e do notebook de trabalho.",
+        "expected_atoms": [
+          "primary_64_current",
+          "work_12_current"
+        ],
+        "preflight_status": "not_executed",
+        "actual_status": "not_executed",
+        "original_sources": [
+          {
+            "label": "primary-now",
+            "text": "Meu computador principal agora tem 64 GB de RAM, em vez dos 48 GB anteriores.",
+            "seed_status": "not_attempted_after_abort"
+          },
+          {
+            "label": "work-ram",
+            "text": "O notebook de trabalho que utilizo tem 12 GB de RAM.",
+            "seed_status": "not_attempted_after_abort"
+          }
+        ],
+        "generations": 0,
+        "delivered": "",
+        "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained_atoms": [],
+        "useful": false,
+        "unretained_atoms": [
+          "primary_64_current",
+          "work_12_current"
+        ],
+        "error": "Error: Selector must identify one actual canonical record: {\"selector\":{\"entity\":\"device.primary_computer\",\"property\":\"ram_capacity\",\"value\":\"64_gb\"},\"matches\":0,\"available\":[]}",
+        "claims": [],
+        "cause_class": "cascade_from_incomplete_retrieval_seed_state",
+        "literal_note": "Required canonical selector cannot be satisfied in the actual partial store. The frozen evaluator retains this planned case as not_executed; it is not a generated bad answer, a successful bounded answer, or evidence that its skipped source was tested and failed extraction."
+      },
+      {
+        "id": "ea-004",
+        "mode": "chat",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "jatoba"
+        },
+        "query": "Quanto de RAM tinha antes meu computador principal e quanto possui agora?",
+        "expected_atoms": [
+          "primary_48_historical",
+          "primary_64_current"
+        ],
+        "preflight_status": "not_executed",
+        "actual_status": "not_executed",
+        "original_sources": [
+          {
+            "label": "primary-before",
+            "text": "No computador principal que uso há 48 GB de RAM.",
+            "seed_status": "failed_no_record"
+          },
+          {
+            "label": "primary-now",
+            "text": "Meu computador principal agora tem 64 GB de RAM, em vez dos 48 GB anteriores.",
+            "seed_status": "not_attempted_after_abort"
+          }
+        ],
+        "generations": 0,
+        "delivered": "",
+        "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained_atoms": [],
+        "useful": false,
+        "unretained_atoms": [
+          "primary_48_historical",
+          "primary_64_current"
+        ],
+        "error": "Error: Selector must identify one actual canonical record: {\"selector\":{\"entity\":\"device.primary_computer\",\"property\":\"ram_capacity\",\"value\":\"48_gb\",\"state\":\"obsolete\",\"validity\":\"historical\"},\"matches\":0,\"available\":[]}",
+        "claims": [],
+        "cause_class": "cascade_from_incomplete_retrieval_seed_state",
+        "literal_note": "Required canonical selector cannot be satisfied in the actual partial store. The frozen evaluator retains this planned case as not_executed; it is not a generated bad answer, a successful bounded answer, or evidence that its skipped source was tested and failed extraction."
+      },
+      {
+        "id": "ea-005",
+        "mode": "agent",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "jatoba"
+        },
+        "query": "É correto dizer que meu computador principal tem 128 GB de RAM?",
+        "expected_atoms": [
+          "primary_64_current",
+          "reject_primary_128"
+        ],
+        "preflight_status": "not_executed",
+        "actual_status": "not_executed",
+        "original_sources": [
+          {
+            "label": "primary-now",
+            "text": "Meu computador principal agora tem 64 GB de RAM, em vez dos 48 GB anteriores.",
+            "seed_status": "not_attempted_after_abort"
+          }
+        ],
+        "generations": 0,
+        "delivered": "",
+        "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained_atoms": [],
+        "useful": false,
+        "unretained_atoms": [
+          "primary_64_current",
+          "reject_primary_128"
+        ],
+        "error": "Error: Selector must identify one actual canonical record: {\"selector\":{\"entity\":\"device.primary_computer\",\"property\":\"ram_capacity\",\"value\":\"64_gb\"},\"matches\":0,\"available\":[]}",
+        "claims": [],
+        "cause_class": "cascade_from_incomplete_retrieval_seed_state",
+        "literal_note": "Required canonical selector cannot be satisfied in the actual partial store. The frozen evaluator retains this planned case as not_executed; it is not a generated bad answer, a successful bounded answer, or evidence that its skipped source was tested and failed extraction."
+      },
+      {
+        "id": "ea-006",
+        "mode": "code",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "jatoba"
+        },
+        "query": "Qual linguagem eu escolhi, e isso prova que já implementei o projeto?",
+        "expected_atoms": [
+          "python_chosen",
+          "no_implementation_evidence"
+        ],
+        "preflight_status": "preflight_ready",
+        "actual_status": "delivered",
+        "original_sources": [
+          {
+            "label": "language-choice",
+            "text": "Escolhi Python como linguagem para o meu projeto.",
+            "seed_status": "completed"
+          }
+        ],
+        "generations": 1,
+        "delivered": "Você escolheu a linguagem Python para o projeto Jatoba. Isso não prova que o projeto já foi implementado, pois a informação registrada é uma decisão.",
+        "delivered_sha256": "1bc4364959ba382f51acf5d58d2d28bf66c993b6df91839f5e6303ab1b5c3bde",
+        "retained_atoms": [
+          "python_chosen",
+          "no_implementation_evidence"
+        ],
+        "useful": true,
+        "unretained_atoms": [],
+        "literal_note": "The first sentence preserves the USER decision. The second denies the inference from choice to implementation, not implementation itself. The explanation that the stored information is a decision restates the same evidence.",
+        "claims": [
+          {
+            "actor": "user",
+            "entity": "project.jatoba",
+            "property": "language",
+            "value": "python",
+            "modality": "decision",
+            "supported": true,
+            "critical": false,
+            "source_label": "language-choice",
+            "canonical_reference": {
+              "id": "b3470ced-a27a-451a-efc9-402c5fe6e794",
+              "version": 2
+            },
+            "support_for_bounded_absence": null
+          },
+          {
+            "actor": "available evidence",
+            "entity": "project.jatoba",
+            "property": "implementation_evidence",
+            "value": "not_established_by_choice",
+            "modality": "bounded_epistemic",
+            "supported": true,
+            "critical": false,
+            "source_label": "language-choice",
+            "canonical_reference": {
+              "id": "b3470ced-a27a-451a-efc9-402c5fe6e794",
+              "version": 2
+            },
+            "support_for_bounded_absence": null
+          }
+        ],
+        "native_facts": [
+          {
+            "entity": "project.jatoba",
+            "evidence": [
+              {
+                "role": "current_source",
+                "text": "Escolhi Python como linguagem para o meu projeto"
+              }
+            ],
+            "facets": [],
+            "id": "b3470ced-a27a-451a-efc9-402c5fe6e794",
+            "modality": "decision",
+            "project": "jatoba",
+            "property": "language",
+            "review": "reviewed",
+            "scope": "phase22e-final-ret-main",
+            "validity": "current",
+            "value": "python",
+            "version": 2
+          }
+        ],
+        "attempts": [
+          {
+            "raw_answer": "Você escolheu a linguagem Python para o projeto Jatoba. Isso não prova que o projeto já foi implementado, pois a informação registrada é uma decisão.",
+            "raw_sha256": "1bc4364959ba382f51acf5d58d2d28bf66c993b6df91839f5e6303ab1b5c3bde",
+            "native_operation": {
+              "checkedAtUtc": "2026-11-04T23:28:41.900Z",
+              "learning": null,
+              "directive": null
+            },
+            "verifier_status": "checked",
+            "verifier_violations": [],
+            "verifier_supported_assertions": 1,
+            "literal_review_is_separate_from_verifier": true
+          }
+        ],
+        "model_responses": [
+          {
+            "model": "lucille-real-gemma",
+            "system_fingerprint": "b11064-a894dae93",
+            "usage": {
+              "completion_tokens": 32,
+              "prompt_tokens": 838,
+              "total_tokens": 870,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              }
+            }
+          }
+        ],
+        "raw_and_delivered_unchanged": true
+      },
+      {
+        "id": "ea-007",
+        "mode": "chat",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "jatoba"
+        },
+        "query": "Qual banco está no planejamento do meu projeto?",
+        "expected_atoms": [
+          "postgresql_planned"
+        ],
+        "preflight_status": "preflight_ready",
+        "actual_status": "delivered",
+        "original_sources": [
+          {
+            "label": "database-plan",
+            "text": "No meu projeto, pretendo usar PostgreSQL como banco de dados.",
+            "seed_status": "completed"
+          }
+        ],
+        "generations": 1,
+        "delivered": "O banco de dados planejado para o seu projeto Jatoba é o PostgreSQL.",
+        "delivered_sha256": "164be4c0de29da9e6dd45f9b8df918ff5d0768703281eaf31f393efdf77040e9",
+        "retained_atoms": [
+          "postgresql_planned"
+        ],
+        "useful": true,
+        "unretained_atoms": [],
+        "literal_note": "Preserves the database plan without asserting installation or execution.",
+        "claims": [
+          {
+            "actor": "user",
+            "entity": "project.jatoba",
+            "property": "database",
+            "value": "postgresql",
+            "modality": "planned",
+            "supported": true,
+            "critical": false,
+            "source_label": "database-plan",
+            "canonical_reference": {
+              "id": "f5d3fdfa-b991-f324-da39-a7ed3abc59a5",
+              "version": 2
+            },
+            "support_for_bounded_absence": null
+          }
+        ],
+        "native_facts": [
+          {
+            "entity": "project.jatoba",
+            "evidence": [
+              {
+                "role": "current_source",
+                "text": "No meu projeto, pretendo usar PostgreSQL como banco de dados"
+              }
+            ],
+            "facets": [],
+            "id": "f5d3fdfa-b991-f324-da39-a7ed3abc59a5",
+            "modality": "planned",
+            "project": "jatoba",
+            "property": "database",
+            "review": "reviewed",
+            "scope": "phase22e-final-ret-main",
+            "validity": "current",
+            "value": "postgresql",
+            "version": 2
+          }
+        ],
+        "attempts": [
+          {
+            "raw_answer": "O banco de dados planejado para o seu projeto Jatoba é o PostgreSQL.",
+            "raw_sha256": "164be4c0de29da9e6dd45f9b8df918ff5d0768703281eaf31f393efdf77040e9",
+            "native_operation": {
+              "checkedAtUtc": "2026-11-04T23:28:43.784Z",
+              "learning": null,
+              "directive": null
+            },
+            "verifier_status": "checked",
+            "verifier_violations": [],
+            "verifier_supported_assertions": 1,
+            "literal_review_is_separate_from_verifier": true
+          }
+        ],
+        "model_responses": [
+          {
+            "model": "lucille-real-gemma",
+            "system_fingerprint": "b11064-a894dae93",
+            "usage": {
+              "completion_tokens": 17,
+              "prompt_tokens": 838,
+              "total_tokens": 855,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              }
+            }
+          }
+        ],
+        "raw_and_delivered_unchanged": true
+      },
+      {
+        "id": "ea-008",
+        "mode": "agent",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "jatoba"
+        },
+        "query": "Qual é a finalidade do projeto de catálogo que comecei?",
+        "expected_atoms": [
+          "miniature_catalogue_purpose"
+        ],
+        "preflight_status": "not_executed",
+        "actual_status": "not_executed",
+        "original_sources": [
+          {
+            "label": "purpose",
+            "text": "Estou começando um projeto de catálogo de miniaturas.",
+            "seed_status": "completed"
+          }
+        ],
+        "generations": 0,
+        "delivered": "",
+        "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained_atoms": [],
+        "useful": false,
+        "unretained_atoms": [
+          "miniature_catalogue_purpose"
+        ],
+        "error": "Error: Native reference/actor/temporal validation rejected known context",
+        "claims": [],
+        "cause_class": "available_source_rejected_by_native_query_projection",
+        "literal_note": "The purpose record exists and is delivered in ea-009. Native description_intent does not recognize this finalidade/catalogue query, so the explicit known-reference projection is rejected. This is separate from the later seeds that never ran.",
+        "causal_code_locations": [
+          "crates/lucille-memory/src/retrieval.rs:551",
+          "crates/lucille-memory/src/retrieval.rs:790",
+          "qa/phase22e-evaluator-contract.mjs:10"
+        ]
+      },
+      {
+        "id": "ea-009",
+        "mode": "code",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "jatoba"
+        },
+        "query": "Resuma o assunto do projeto, a linguagem escolhida e o banco planejado.",
+        "expected_atoms": [
+          "miniature_catalogue_purpose",
+          "python_chosen",
+          "postgresql_planned"
+        ],
+        "preflight_status": "preflight_ready",
+        "actual_status": "delivered",
+        "original_sources": [
+          {
+            "label": "purpose",
+            "text": "Estou começando um projeto de catálogo de miniaturas.",
+            "seed_status": "completed"
+          },
+          {
+            "label": "language-choice",
+            "text": "Escolhi Python como linguagem para o meu projeto.",
+            "seed_status": "completed"
+          },
+          {
+            "label": "database-plan",
+            "text": "No meu projeto, pretendo usar PostgreSQL como banco de dados.",
+            "seed_status": "completed"
+          }
+        ],
+        "generations": 1,
+        "delivered": "O projeto consiste em um catálogo de miniaturas. Você escolheu Python como linguagem e planeja usar PostgreSQL como banco de dados.",
+        "delivered_sha256": "71129911730b7b7cef671bef3e79d0ace273c829719cb6169f0a654c9cf94498",
+        "retained_atoms": [
+          "miniature_catalogue_purpose",
+          "python_chosen",
+          "postgresql_planned"
+        ],
+        "useful": true,
+        "unretained_atoms": [],
+        "literal_note": "Three separately requested relations are delivered with their own modalities; no claim that implementation has begun or completed.",
+        "claims": [
+          {
+            "actor": "user",
+            "entity": "project.jatoba",
+            "property": "description",
+            "value": "catalogue of miniatures",
+            "modality": "project_description",
+            "supported": true,
+            "critical": false,
+            "source_label": "purpose",
+            "canonical_reference": {
+              "id": "74cc96c3-234e-8a49-f875-2f10e462514d",
+              "version": 2
+            },
+            "support_for_bounded_absence": null
+          },
+          {
+            "actor": "user",
+            "entity": "project.jatoba",
+            "property": "language",
+            "value": "python",
+            "modality": "decision",
+            "supported": true,
+            "critical": false,
+            "source_label": "language-choice",
+            "canonical_reference": {
+              "id": "b3470ced-a27a-451a-efc9-402c5fe6e794",
+              "version": 2
+            },
+            "support_for_bounded_absence": null
+          },
+          {
+            "actor": "user",
+            "entity": "project.jatoba",
+            "property": "database",
+            "value": "postgresql",
+            "modality": "planned",
+            "supported": true,
+            "critical": false,
+            "source_label": "database-plan",
+            "canonical_reference": {
+              "id": "f5d3fdfa-b991-f324-da39-a7ed3abc59a5",
+              "version": 2
+            },
+            "support_for_bounded_absence": null
+          }
+        ],
+        "native_facts": [
+          {
+            "entity": "project.jatoba",
+            "evidence": [
+              {
+                "role": "current_source",
+                "text": "Estou começando um projeto de catálogo de miniaturas"
+              }
+            ],
+            "facets": [],
+            "id": "74cc96c3-234e-8a49-f875-2f10e462514d",
+            "modality": "project_description",
+            "project": "jatoba",
+            "property": "description",
+            "review": "reviewed",
+            "scope": "phase22e-final-ret-main",
+            "validity": "current",
+            "value": "estou comecando um projeto de catalogo de miniaturas",
+            "version": 2
+          },
+          {
+            "entity": "project.jatoba",
+            "evidence": [
+              {
+                "role": "current_source",
+                "text": "Escolhi Python como linguagem para o meu projeto"
+              }
+            ],
+            "facets": [],
+            "id": "b3470ced-a27a-451a-efc9-402c5fe6e794",
+            "modality": "decision",
+            "project": "jatoba",
+            "property": "language",
+            "review": "reviewed",
+            "scope": "phase22e-final-ret-main",
+            "validity": "current",
+            "value": "python",
+            "version": 2
+          },
+          {
+            "entity": "project.jatoba",
+            "evidence": [
+              {
+                "role": "current_source",
+                "text": "No meu projeto, pretendo usar PostgreSQL como banco de dados"
+              }
+            ],
+            "facets": [],
+            "id": "f5d3fdfa-b991-f324-da39-a7ed3abc59a5",
+            "modality": "planned",
+            "project": "jatoba",
+            "property": "database",
+            "review": "reviewed",
+            "scope": "phase22e-final-ret-main",
+            "validity": "current",
+            "value": "postgresql",
+            "version": 2
+          }
+        ],
+        "attempts": [
+          {
+            "raw_answer": "O projeto consiste em um catálogo de miniaturas. Você escolheu Python como linguagem e planeja usar PostgreSQL como banco de dados.",
+            "raw_sha256": "71129911730b7b7cef671bef3e79d0ace273c829719cb6169f0a654c9cf94498",
+            "native_operation": {
+              "checkedAtUtc": "2026-11-04T23:28:46.503Z",
+              "learning": null,
+              "directive": null
+            },
+            "verifier_status": "checked",
+            "verifier_violations": [],
+            "verifier_supported_assertions": 1,
+            "literal_review_is_separate_from_verifier": true
+          }
+        ],
+        "model_responses": [
+          {
+            "model": "lucille-real-gemma",
+            "system_fingerprint": "b11064-a894dae93",
+            "usage": {
+              "completion_tokens": 27,
+              "prompt_tokens": 1044,
+              "total_tokens": 1071,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              }
+            }
+          }
+        ],
+        "raw_and_delivered_unchanged": true
+      },
+      {
+        "id": "ea-010",
+        "mode": "chat",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "jatoba"
+        },
+        "query": "Como eu prefiro tomar meu café da tarde?",
+        "expected_atoms": [
+          "coffee_without_sugar"
+        ],
+        "preflight_status": "not_executed",
+        "actual_status": "not_executed",
+        "original_sources": [
+          {
+            "label": "coffee",
+            "text": "Meu café da tarde eu prefiro sem açúcar.",
+            "seed_status": "not_attempted_after_abort"
+          }
+        ],
+        "generations": 0,
+        "delivered": "",
+        "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained_atoms": [],
+        "useful": false,
+        "unretained_atoms": [
+          "coffee_without_sugar"
+        ],
+        "error": "Error: Selector must identify one actual canonical record: {\"selector\":{\"entity\":\"user\",\"property\":\"coffee_sugar\",\"value\":\"without_sugar\"},\"matches\":0,\"available\":[]}",
+        "claims": [],
+        "cause_class": "cascade_from_incomplete_retrieval_seed_state",
+        "literal_note": "Required canonical selector cannot be satisfied in the actual partial store. The frozen evaluator retains this planned case as not_executed; it is not a generated bad answer, a successful bounded answer, or evidence that its skipped source was tested and failed extraction."
+      },
+      {
+        "id": "ea-011",
+        "mode": "agent",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "jatoba"
+        },
+        "query": "O que eu gosto na escolha de classes nos jogos?",
+        "expected_atoms": [
+          "class_selection_positive"
+        ],
+        "preflight_status": "not_executed",
+        "actual_status": "not_executed",
+        "original_sources": [
+          {
+            "label": "classes",
+            "text": "Gosto de jogos em que a escolha da classe do personagem fica comigo.",
+            "seed_status": "not_attempted_after_abort"
+          }
+        ],
+        "generations": 0,
+        "delivered": "",
+        "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained_atoms": [],
+        "useful": false,
+        "unretained_atoms": [
+          "class_selection_positive"
+        ],
+        "error": "Error: Selector must identify one actual canonical record: {\"selector\":{\"entity\":\"user\",\"property\":\"games_class_selection\",\"value\":\"positive\"},\"matches\":0,\"available\":[]}",
+        "claims": [],
+        "cause_class": "cascade_from_incomplete_retrieval_seed_state",
+        "literal_note": "Required canonical selector cannot be satisfied in the actual partial store. The frozen evaluator retains this planned case as not_executed; it is not a generated bad answer, a successful bounded answer, or evidence that its skipped source was tested and failed extraction."
+      },
+      {
+        "id": "ea-012",
+        "mode": "code",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "jatoba"
+        },
+        "query": "Qual é a minha bebida favorita?",
+        "expected_atoms": [
+          "favorite_tea"
+        ],
+        "preflight_status": "not_executed",
+        "actual_status": "not_executed",
+        "original_sources": [
+          {
+            "label": "favorite",
+            "text": "A minha bebida favorita entre todas é chá.",
+            "seed_status": "not_attempted_after_abort"
+          }
+        ],
+        "generations": 0,
+        "delivered": "",
+        "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained_atoms": [],
+        "useful": false,
+        "unretained_atoms": [
+          "favorite_tea"
+        ],
+        "error": "Error: Selector must identify one actual canonical record: {\"selector\":{\"entity\":\"user\",\"property\":\"favorite_beverage\",\"value\":\"tea\"},\"matches\":0,\"available\":[]}",
+        "claims": [],
+        "cause_class": "cascade_from_incomplete_retrieval_seed_state",
+        "literal_note": "Required canonical selector cannot be satisfied in the actual partial store. The frozen evaluator retains this planned case as not_executed; it is not a generated bad answer, a successful bounded answer, or evidence that its skipped source was tested and failed extraction."
+      },
+      {
+        "id": "ea-013",
+        "mode": "chat",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "jatoba"
+        },
+        "query": "Que GPU consta nas informações do meu computador principal?",
+        "expected_atoms": [
+          "bounded_unknown_gpu"
+        ],
+        "preflight_status": "preflight_ready",
+        "actual_status": "delivered",
+        "original_sources": [],
+        "generations": 1,
+        "delivered": "Não há informações disponíveis sobre o seu computador principal no momento. Por favor, forneça os detalhes para que eu possa registrá-los.",
+        "delivered_sha256": "13c69eac0f732b5dfd5a409c61e315434a045d4f0fc769eaec77d2746649ed4b",
+        "retained_atoms": [
+          "bounded_unknown_gpu"
+        ],
+        "useful": true,
+        "unretained_atoms": [],
+        "literal_note": "The reply is broader than the GPU question, but explicitly concerns information available now. It does not claim the USER never supplied a GPU. The request to supply details so they can be recorded is a modal solicitation, not a claim of a completed save. The failed RAM seed means lack of stored information here cannot be described as absence of a prior USER declaration.",
+        "claims": [
+          {
+            "actor": "available context",
+            "entity": "device.primary_computer",
+            "property": "available_device_information",
+            "value": "unavailable_now",
+            "modality": "bounded_epistemic",
+            "supported": true,
+            "critical": false,
+            "source_label": null,
+            "canonical_reference": null,
+            "support_for_bounded_absence": "Read-only actual partial-store snapshot and the local/current wording; not a history-wide absence claim"
+          }
+        ],
+        "native_facts": [],
+        "attempts": [
+          {
+            "raw_answer": "Não há informações disponíveis sobre o seu computador principal no momento. Por favor, forneça os detalhes para que eu possa registrá-los.",
+            "raw_sha256": "13c69eac0f732b5dfd5a409c61e315434a045d4f0fc769eaec77d2746649ed4b",
+            "native_operation": {
+              "checkedAtUtc": "2026-11-04T23:28:49.104Z",
+              "learning": null,
+              "directive": null
+            },
+            "verifier_status": "checked",
+            "verifier_violations": [],
+            "verifier_supported_assertions": 0,
+            "literal_review_is_separate_from_verifier": true
+          }
+        ],
+        "model_responses": [
+          {
+            "model": "lucille-real-gemma",
+            "system_fingerprint": "b11064-a894dae93",
+            "usage": {
+              "completion_tokens": 29,
+              "prompt_tokens": 616,
+              "total_tokens": 645,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              }
+            }
+          }
+        ],
+        "raw_and_delivered_unchanged": true
+      },
+      {
+        "id": "ea-014",
+        "mode": "agent",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "jatoba"
+        },
+        "query": "Que banco meu irmão usa no projeto dele?",
+        "expected_atoms": [
+          "bounded_unknown_brother"
+        ],
+        "preflight_status": "preflight_ready",
+        "actual_status": "delivered",
+        "original_sources": [],
+        "generations": 1,
+        "delivered": "Não há registro disponível sobre qual banco seu irmão usa no projeto dele.",
+        "delivered_sha256": "145a68dd716b1f14956eab8cf5c6aeab75a395e21863286d8350a57b69ba0c85",
+        "retained_atoms": [
+          "bounded_unknown_brother"
+        ],
+        "useful": true,
+        "unretained_atoms": [],
+        "literal_note": "Does not transfer USER PostgreSQL to the brother and does not make a history-wide never-provided claim.",
+        "claims": [
+          {
+            "actor": "available context",
+            "entity": "brother.project",
+            "property": "database",
+            "value": "unavailable_here",
+            "modality": "bounded_epistemic",
+            "supported": true,
+            "critical": false,
+            "source_label": null,
+            "canonical_reference": null,
+            "support_for_bounded_absence": "Read-only actual partial-store snapshot and the local/current wording; not a history-wide absence claim"
+          }
+        ],
+        "native_facts": [],
+        "attempts": [
+          {
+            "raw_answer": "Não há registro disponível sobre qual banco seu irmão usa no projeto dele.",
+            "raw_sha256": "145a68dd716b1f14956eab8cf5c6aeab75a395e21863286d8350a57b69ba0c85",
+            "native_operation": {
+              "checkedAtUtc": "2026-11-04T23:28:50.600Z",
+              "learning": null,
+              "directive": null
+            },
+            "verifier_status": "checked",
+            "verifier_violations": [],
+            "verifier_supported_assertions": 0,
+            "literal_review_is_separate_from_verifier": true
+          }
+        ],
+        "model_responses": [
+          {
+            "model": "lucille-real-gemma",
+            "system_fingerprint": "b11064-a894dae93",
+            "usage": {
+              "completion_tokens": 15,
+              "prompt_tokens": 615,
+              "total_tokens": 630,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              }
+            }
+          }
+        ],
+        "raw_and_delivered_unchanged": true
+      },
+      {
+        "id": "ea-015",
+        "mode": "code",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "jatoba"
+        },
+        "query": "Qual preferência por criação de personagens continua registrada?",
+        "expected_atoms": [
+          "bounded_no_current_creation"
+        ],
+        "preflight_status": "preflight_ready",
+        "actual_status": "delivered",
+        "original_sources": [],
+        "generations": 1,
+        "delivered": "Não há nenhum registro específico de preferência por criação de personagens disponível no momento.",
+        "delivered_sha256": "de8a4817a1bb97bbb60cb3a70cd8f35c7151ae82db29fbfb06493bda463e6aa2",
+        "retained_atoms": [
+          "bounded_no_current_creation"
+        ],
+        "useful": true,
+        "unretained_atoms": [],
+        "literal_note": "The bounded current-absence answer is correct for the actual partial store. The creation-preference seed and its deletion were never reached, and there are zero tombstones. This is NOT proof that deletion or protection against revival succeeded; only the requested current-absence response atom is credited.",
+        "claims": [
+          {
+            "actor": "available context",
+            "entity": "user",
+            "property": "games_character_creation",
+            "value": "no_current_record_available",
+            "modality": "bounded_epistemic",
+            "supported": true,
+            "critical": false,
+            "source_label": null,
+            "canonical_reference": null,
+            "support_for_bounded_absence": "Read-only actual partial-store snapshot and the local/current wording; not a history-wide absence claim"
+          }
+        ],
+        "native_facts": [],
+        "attempts": [
+          {
+            "raw_answer": "Não há nenhum registro específico de preferência por criação de personagens disponível no momento.",
+            "raw_sha256": "de8a4817a1bb97bbb60cb3a70cd8f35c7151ae82db29fbfb06493bda463e6aa2",
+            "native_operation": {
+              "checkedAtUtc": "2026-11-04T23:28:52.231Z",
+              "learning": null,
+              "directive": null
+            },
+            "verifier_status": "checked",
+            "verifier_violations": [],
+            "verifier_supported_assertions": 0,
+            "literal_review_is_separate_from_verifier": true
+          }
+        ],
+        "model_responses": [
+          {
+            "model": "lucille-real-gemma",
+            "system_fingerprint": "b11064-a894dae93",
+            "usage": {
+              "completion_tokens": 17,
+              "prompt_tokens": 661,
+              "total_tokens": 678,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              }
+            }
+          }
+        ],
+        "raw_and_delivered_unchanged": true
+      },
+      {
+        "id": "ea-016",
+        "mode": "chat",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "cedrinho"
+        },
+        "query": "Como está o projeto Cedrinho?",
+        "expected_atoms": [
+          "cedrinho_cancelled"
+        ],
+        "preflight_status": "not_executed",
+        "actual_status": "not_executed",
+        "original_sources": [
+          {
+            "label": "cancelled-state",
+            "text": "Eu cancelei o meu projeto.",
+            "seed_status": "not_attempted_after_abort"
+          }
+        ],
+        "generations": 0,
+        "delivered": "",
+        "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained_atoms": [],
+        "useful": false,
+        "unretained_atoms": [
+          "cedrinho_cancelled"
+        ],
+        "error": "Error: Selector must identify one actual canonical record: {\"selector\":{\"entity\":\"project.cedrinho\",\"property\":\"lifecycle\",\"value\":\"cancelled\"},\"matches\":0,\"available\":[]}",
+        "claims": [],
+        "cause_class": "cascade_from_incomplete_retrieval_seed_state",
+        "literal_note": "Required canonical selector cannot be satisfied in the actual partial store. The frozen evaluator retains this planned case as not_executed; it is not a generated bad answer, a successful bounded answer, or evidence that its skipped source was tested and failed extraction."
+      },
+      {
+        "id": "ea-017",
+        "mode": "agent",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "cedrinho"
+        },
+        "query": "Em qual linguagem eu implementava o Cedrinho antes de cancelar?",
+        "expected_atoms": [
+          "rust_historical_in_progress",
+          "cedrinho_cancelled"
+        ],
+        "preflight_status": "not_executed",
+        "actual_status": "not_executed",
+        "original_sources": [
+          {
+            "label": "cancelled-language",
+            "text": "Estou implementando o meu projeto em Rust.",
+            "seed_status": "not_attempted_after_abort"
+          },
+          {
+            "label": "cancelled-state",
+            "text": "Eu cancelei o meu projeto.",
+            "seed_status": "not_attempted_after_abort"
+          }
+        ],
+        "generations": 0,
+        "delivered": "",
+        "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained_atoms": [],
+        "useful": false,
+        "unretained_atoms": [
+          "rust_historical_in_progress",
+          "cedrinho_cancelled"
+        ],
+        "error": "Error: Selector must identify one actual canonical record: {\"selector\":{\"entity\":\"project.cedrinho\",\"property\":\"language\",\"value\":\"rust\",\"state\":\"active\",\"validity\":\"historical\",\"modality\":\"in_progress\"},\"matches\":0,\"available\":[]}",
+        "claims": [],
+        "cause_class": "cascade_from_incomplete_retrieval_seed_state",
+        "literal_note": "Required canonical selector cannot be satisfied in the actual partial store. The frozen evaluator retains this planned case as not_executed; it is not a generated bad answer, a successful bounded answer, or evidence that its skipped source was tested and failed extraction."
+      },
+      {
+        "id": "ea-018",
+        "mode": "code",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "pitanga"
+        },
+        "query": "Que banco escolhi para o projeto Pitanga?",
+        "expected_atoms": [
+          "mysql_chosen"
+        ],
+        "preflight_status": "not_executed",
+        "actual_status": "not_executed",
+        "original_sources": [
+          {
+            "label": "other-database",
+            "text": "Para o meu projeto, escolhi MySQL como banco de dados.",
+            "seed_status": "not_attempted_after_abort"
+          }
+        ],
+        "generations": 0,
+        "delivered": "",
+        "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained_atoms": [],
+        "useful": false,
+        "unretained_atoms": [
+          "mysql_chosen"
+        ],
+        "error": "Error: Selector must identify one actual canonical record: {\"selector\":{\"entity\":\"project.pitanga\",\"property\":\"database\",\"value\":\"mysql\"},\"matches\":0,\"available\":[]}",
+        "claims": [],
+        "cause_class": "cascade_from_incomplete_retrieval_seed_state",
+        "literal_note": "Required canonical selector cannot be satisfied in the actual partial store. The frozen evaluator retains this planned case as not_executed; it is not a generated bad answer, a successful bounded answer, or evidence that its skipped source was tested and failed extraction."
+      },
+      {
+        "id": "ea-019",
+        "mode": "chat",
+        "binding": {
+          "scope": "phase22e-final-ret-other",
+          "project": "jatoba"
+        },
+        "query": "Quanta RAM há no meu computador principal neste contexto?",
+        "expected_atoms": [
+          "other_scope_primary_24"
+        ],
+        "preflight_status": "not_executed",
+        "actual_status": "not_executed",
+        "original_sources": [
+          {
+            "label": "other-scope-ram",
+            "text": "O meu computador principal conta com 24 GB de RAM.",
+            "seed_status": "not_attempted_after_abort"
+          }
+        ],
+        "generations": 0,
+        "delivered": "",
+        "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained_atoms": [],
+        "useful": false,
+        "unretained_atoms": [
+          "other_scope_primary_24"
+        ],
+        "error": "Error: Selector must identify one actual canonical record: {\"selector\":{\"entity\":\"device.primary_computer\",\"property\":\"ram_capacity\",\"value\":\"24_gb\"},\"matches\":0,\"available\":[]}",
+        "claims": [],
+        "cause_class": "cascade_from_incomplete_retrieval_seed_state",
+        "literal_note": "Required canonical selector cannot be satisfied in the actual partial store. The frozen evaluator retains this planned case as not_executed; it is not a generated bad answer, a successful bounded answer, or evidence that its skipped source was tested and failed extraction."
+      },
+      {
+        "id": "ea-020",
+        "mode": "agent",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "pitanga"
+        },
+        "query": "Qual linguagem está sendo implementada no Pitanga?",
+        "expected_atoms": [
+          "typescript_in_progress"
+        ],
+        "preflight_status": "not_executed",
+        "actual_status": "not_executed",
+        "original_sources": [
+          {
+            "label": "actual-language",
+            "text": "Neste projeto estou implementando em TypeScript.",
+            "seed_status": "not_attempted_after_abort"
+          }
+        ],
+        "generations": 0,
+        "delivered": "",
+        "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained_atoms": [],
+        "useful": false,
+        "unretained_atoms": [
+          "typescript_in_progress"
+        ],
+        "error": "Error: Selector must identify one actual canonical record: {\"selector\":{\"entity\":\"project.pitanga\",\"property\":\"language\",\"value\":\"typescript\"},\"matches\":0,\"available\":[]}",
+        "claims": [],
+        "cause_class": "cascade_from_incomplete_retrieval_seed_state",
+        "literal_note": "Required canonical selector cannot be satisfied in the actual partial store. The frozen evaluator retains this planned case as not_executed; it is not a generated bad answer, a successful bounded answer, or evidence that its skipped source was tested and failed extraction."
+      },
+      {
+        "id": "ea-021",
+        "mode": "code",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "pitanga"
+        },
+        "query": "No Pitanga, diferencie a linguagem em implementação daquela planejada para depois.",
+        "expected_atoms": [
+          "typescript_in_progress",
+          "rust_planned_future"
+        ],
+        "preflight_status": "not_executed",
+        "actual_status": "not_executed",
+        "original_sources": [
+          {
+            "label": "actual-language",
+            "text": "Neste projeto estou implementando em TypeScript.",
+            "seed_status": "not_attempted_after_abort"
+          },
+          {
+            "label": "future-language",
+            "text": "Pretendo usar Rust no meu projeto futuramente.",
+            "seed_status": "not_attempted_after_abort"
+          }
+        ],
+        "generations": 0,
+        "delivered": "",
+        "delivered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "retained_atoms": [],
+        "useful": false,
+        "unretained_atoms": [
+          "typescript_in_progress",
+          "rust_planned_future"
+        ],
+        "error": "Error: Selector must identify one actual canonical record: {\"selector\":{\"entity\":\"project.pitanga\",\"property\":\"language\",\"value\":\"typescript\"},\"matches\":0,\"available\":[]}",
+        "claims": [],
+        "cause_class": "cascade_from_incomplete_retrieval_seed_state",
+        "literal_note": "Required canonical selector cannot be satisfied in the actual partial store. The frozen evaluator retains this planned case as not_executed; it is not a generated bad answer, a successful bounded answer, or evidence that its skipped source was tested and failed extraction."
+      },
+      {
+        "id": "ea-022",
+        "mode": "chat",
+        "binding": {
+          "scope": "phase22e-final-ret-main",
+          "project": "jatoba"
+        },
+        "query": "Compare o banco planejado no Jatobá com o banco do projeto Pitanga.",
+        "expected_atoms": [
+          "postgresql_planned",
+          "pitanga_unavailable_in_binding"
+        ],
+        "preflight_status": "preflight_ready",
+        "actual_status": "delivered",
+        "original_sources": [
+          {
+            "label": "database-plan",
+            "text": "No meu projeto, pretendo usar PostgreSQL como banco de dados.",
+            "seed_status": "completed"
+          }
+        ],
+        "generations": 1,
+        "delivered": "O projeto Jatobá planeja usar o PostgreSQL como banco de dados. No entanto, não há informações disponíveis sobre o banco do projeto Pitanga.",
+        "delivered_sha256": "677db1185457a234af4a45aec04e9430c940d24e0cd96b5282762239ccdbc760",
+        "retained_atoms": [
+          "postgresql_planned"
+        ],
+        "useful": true,
+        "unretained_atoms": [
+          "pitanga_unavailable_in_binding"
+        ],
+        "literal_note": "Useful honest partial answer: USER PostgreSQL plan plus Pitanga unavailability. It neither supplies MySQL nor claims a complete comparison. The frozen pitanga_unavailable_in_binding atom explicitly requires identifying the outside-binding limitation; the delivered wording does not say why Pitanga is unavailable. That stricter atom is conservatively not credited. The separately predeclared unavailable Pitanga database remains an unfilled full-request part.",
+        "claims": [
+          {
+            "actor": "user",
+            "entity": "project.jatoba",
+            "property": "database",
+            "value": "postgresql",
+            "modality": "planned",
+            "supported": true,
+            "critical": false,
+            "source_label": "database-plan",
+            "canonical_reference": {
+              "id": "f5d3fdfa-b991-f324-da39-a7ed3abc59a5",
+              "version": 2
+            },
+            "support_for_bounded_absence": null
+          },
+          {
+            "actor": "available context",
+            "entity": "project.pitanga",
+            "property": "database",
+            "value": "unavailable",
+            "modality": "bounded_epistemic",
+            "supported": true,
+            "critical": false,
+            "source_label": null,
+            "canonical_reference": null,
+            "support_for_bounded_absence": "Read-only actual partial-store snapshot and the local/current wording; not a history-wide absence claim"
+          }
+        ],
+        "native_facts": [
+          {
+            "entity": "project.jatoba",
+            "evidence": [
+              {
+                "role": "current_source",
+                "text": "No meu projeto, pretendo usar PostgreSQL como banco de dados"
+              }
+            ],
+            "facets": [],
+            "id": "f5d3fdfa-b991-f324-da39-a7ed3abc59a5",
+            "modality": "planned",
+            "project": "jatoba",
+            "property": "database",
+            "review": "reviewed",
+            "scope": "phase22e-final-ret-main",
+            "validity": "current",
+            "value": "postgresql",
+            "version": 2
+          }
+        ],
+        "attempts": [
+          {
+            "raw_answer": "O projeto Jatobá planeja usar o PostgreSQL como banco de dados. No entanto, não há informações disponíveis sobre o banco do projeto Pitanga.",
+            "raw_sha256": "677db1185457a234af4a45aec04e9430c940d24e0cd96b5282762239ccdbc760",
+            "native_operation": {
+              "checkedAtUtc": "2026-11-04T23:28:55.976Z",
+              "learning": null,
+              "directive": null
+            },
+            "verifier_status": "checked",
+            "verifier_violations": [],
+            "verifier_supported_assertions": 1,
+            "literal_review_is_separate_from_verifier": true
+          }
+        ],
+        "model_responses": [
+          {
+            "model": "lucille-real-gemma",
+            "system_fingerprint": "b11064-a894dae93",
+            "usage": {
+              "completion_tokens": 31,
+              "prompt_tokens": 967,
+              "total_tokens": 998,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              }
+            }
+          }
+        ],
+        "raw_and_delivered_unchanged": true
+      }
+    ]
+  },
+  "global_rubric_denominators": {
+    "all_planned_response_slots": 60,
+    "all_predeclared_semantic_atoms": 99,
+    "additional_unavailable_requested_parts": 2,
+    "all_full_request_parts": 101,
+    "this_audit_covers_response_slots": 22,
+    "GUI_response_slots_outside_this_audit": 38,
+    "scope_note": "This is the D subset contribution, not a 60-slot aggregate. The GUI slots require separate literal review; this artifact neither scores them nor silently drops them."
+  },
+  "final_judgment": "C quantitative retrieval and mandatory lexical gates fail for absent final coverage. D useful availability 7/22 and conservative full-request completeness 10/32 fail. Eleven observed delivered claims are supported, but this cannot compensate for missing cases, untested deletion/isolation preconditions or failed usefulness gates. Preserve this frozen final result; no tuning or replacement trial was performed."
+}

@@ -1,0 +1,64 @@
+{
+  "status": "known real protocol regression, not unseen final evaluation",
+  "private_original_sha256": "8cb829de9348b777219718d4155af48130892a709bcf5dc15dc5efda8edb140e",
+  "passed": true,
+  "rows": [
+    {
+      "mode": "chat",
+      "source": "Prefiro café sem açúcar.",
+      "passed": true,
+      "actual_error": [
+        "\n\nError: Synthetic payload inspector is not answering on 127.0.0.1:15284. It is either not running, still starting up, or listening on a different address. Start it and send again, or pick a different backend in Settings, AI Backends."
+      ],
+      "records_after_recovery": [
+        {
+          "state": "active",
+          "subject": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar",
+          "provenance_evidence": [
+            "Prefiro café sem açúcar"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "agent",
+      "source": "Prefiro café sem açúcar.",
+      "passed": true,
+      "actual_error": [
+        "\n\nAgent error: Synthetic payload inspector is not answering on 127.0.0.1:15284. It is either not running, still starting up, or listening on a different address. Start it and send again, or pick a different backend in Settings, AI Backends."
+      ],
+      "records_after_recovery": [
+        {
+          "state": "active",
+          "subject": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar",
+          "provenance_evidence": [
+            "Prefiro café sem açúcar"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "code",
+      "source": "Prefiro café sem açúcar.",
+      "passed": true,
+      "actual_error": [
+        "\n\nError: [network] HTTP 503 Synthetic payload inspector is not answering on 127.0.0.1:15284. It is either not running, still starting up, or listening on a different address. Start it and send again, or pick a different backend in Settings, AI Backends."
+      ],
+      "records_after_recovery": [
+        {
+          "state": "active",
+          "subject": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar",
+          "provenance_evidence": [
+            "Prefiro café sem açúcar"
+          ]
+        }
+      ]
+    }
+  ]
+}

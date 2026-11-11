@@ -1,0 +1,65 @@
+{
+  "id": "phase22e-final-protocol-regressions-v1",
+  "authored_after_development": {
+    "production_code_commit": "9fca27daf715ef5597e2536f6651583b48ec1f2b",
+    "ended_utc": "2026-11-04T23:08:29.325397+00:00",
+    "authored_utc": "2026-11-04 23:15:30 UTC",
+    "no_native_or_model_rehearsal": true,
+    "authoring": "New synthetic sources and semantic gold authored after development by the same Codex author/team as implementation. This is not external or fully independent blinded evaluation. One explicitly marked known_anchor is a known development anchor."
+  },
+  "kind": "Known protocol regressions on new scoped synthetic sources. Wording is new; prepared/leased/order/restart protocols are known, not unseen generalization.",
+  "cases": [
+    {
+      "id": "final-e-cancel-chat",
+      "type": "prepared_cancel",
+      "mode": "chat",
+      "project": "sintetico-e",
+      "text": "No meu intervalo, o café eu prefiro sem açúcar."
+    },
+    {
+      "id": "final-e-cancel-agent",
+      "type": "prepared_cancel",
+      "mode": "agent",
+      "project": "sintetico-e",
+      "text": "Na interface do meu aplicativo, minha preferência é pelo tema escuro."
+    },
+    {
+      "id": "final-e-cancel-code",
+      "type": "prepared_cancel",
+      "mode": "code",
+      "project": "sintetico-e",
+      "text": "Choosing my character class is something I enjoy in games."
+    },
+    {
+      "id": "final-e-source-order",
+      "type": "ordered_sources",
+      "mode": "chat",
+      "project": "sintetico-e",
+      "texts": [
+        "For my own afternoon coffee, I prefer it with sugar.",
+        "My preference has changed: for my own coffee, I now prefer it without sugar."
+      ],
+      "expected_value": "without_sugar"
+    },
+    {
+      "id": "final-e-cancel-lease",
+      "type": "leased_cancel",
+      "project": "sintetico-e",
+      "text": "Eu prefiro tomar o café da tarde sem açúcar. Para as respostas dirigidas a mim, prefiro português. Em jogos, gosto de escolher a classe do personagem. Na interface do aplicativo, prefiro o tema escuro."
+    },
+    {
+      "id": "final-e-restart-lease",
+      "type": "restart",
+      "project": "sintetico-e",
+      "text": "Eu prefiro tomar o café da tarde sem açúcar. Para as respostas dirigidas a mim, prefiro português. Em jogos, gosto de escolher a classe do personagem. Na interface do aplicativo, prefiro o tema escuro.",
+      "expected_records": 4
+    }
+  ],
+  "canonical_preferences": [
+    "user/coffee_sugar/without_sugar",
+    "user/response_language/pt",
+    "user/games_class_selection/positive",
+    "user/interface_theme/dark"
+  ],
+  "no_rehearsal": true
+}

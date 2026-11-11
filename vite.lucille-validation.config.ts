@@ -11,12 +11,13 @@ let phase22Root = ''
 let phase22b = false
 let phase22c = false
 let phase22d = false
+let phase22e = false
 if (contract) {
   const path = resolve(contract)
-  const root = ['21c', '21d', '22', '22b', '22c', '22d'].map(phase => resolve(`.lucille-qa-runtime/lucille-synthetic-real${phase}`)).find(candidate => path.startsWith(candidate + sep))
+  const root = ['21c', '21d', '22', '22b', '22c', '22d', '22e'].map(phase => resolve(`.lucille-qa-runtime/lucille-synthetic-real${phase}`)).find(candidate => path.startsWith(candidate + sep))
   if (!root || readFileSync(resolve(root, '.lucille-isolated'), 'utf8') !== 'synthetic-data-only\n') throw new Error('Real pin must come from the dedicated marked QA root')
   const data = JSON.parse(readFileSync(path, 'utf8'))
-  if (data.memory_protocol === 3 && /lucille-synthetic-real22[bcd]?$/.test(root)) { phase22Root = root; phase22b = root.endsWith('real22b'); phase22c = root.endsWith('real22c'); phase22d = root.endsWith('real22d') }
+  if (data.memory_protocol === 3 && /lucille-synthetic-real22[bcde]?$/.test(root)) { phase22Root = root; phase22b = root.endsWith('real22b'); phase22c = root.endsWith('real22c'); phase22d = root.endsWith('real22d'); phase22e = root.endsWith('real22e') }
   publicPin = JSON.stringify({ simulation: false, ...(data.memory_protocol ? { memory_protocol: data.memory_protocol } : {}), models: data.models, runtime_sha256: data.runtime_sha256 })
 }
 // A QA-only in-page driver exercises the real composer/hooks when the Windows
@@ -50,14 +51,14 @@ const configureControlServer = (server: Pick<import('vite').ViteDevServer, 'midd
 }
 const phase22Driver = {
   name: 'lucille-phase22-owned-driver',
-  transformIndexHtml: { order:'pre' as const, handler() { return phase22Root ? [{ tag: 'script', attrs: { type: 'module', src: phase22d ? '/qa/phase22d-driver.js' : phase22c ? '/qa/phase22c-driver.js' : phase22b ? '/qa/phase22b-driver.js' : '/qa/phase22-driver.js' }, injectTo: 'body' as const }] : [] } },
+  transformIndexHtml: { order:'pre' as const, handler() { return phase22Root ? [{ tag: 'script', attrs: { type: 'module', src: phase22e ? '/qa/phase22e-driver.js' : phase22d ? '/qa/phase22d-driver.js' : phase22c ? '/qa/phase22c-driver.js' : phase22b ? '/qa/phase22b-driver.js' : '/qa/phase22-driver.js' }, injectTo: 'body' as const }] : [] } },
   configureServer: configureControlServer,
   configurePreviewServer: configureControlServer,
 }
 const validationHeaders = {'Content-Security-Policy':"default-src 'self'; connect-src 'self' ws://127.0.0.1:15283 http://127.0.0.1:15284 ipc: http://ipc.localhost; img-src 'self' data: blob:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'"}
 export default defineConfig({
   plugins: [react(), tailwindcss(), phase22Driver],
-  build: phase22b || phase22c || phase22d ? { outDir:phase22d ? 'qa-dist-22d' : phase22c ? 'qa-dist-22c' : 'qa-dist-22b', emptyOutDir:true } : undefined,
+  build: phase22b || phase22c || phase22d || phase22e ? { outDir:phase22e ? 'qa-dist-22e' : phase22d ? 'qa-dist-22d' : phase22c ? 'qa-dist-22c' : 'qa-dist-22b', emptyOutDir:true } : undefined,
   preview: { host:'127.0.0.1',port:15283,strictPort:true,headers:validationHeaders },
   resolve: { alias: ABSENT_PACKAGES },
   define: {'import.meta.env.VITE_LUCILLE_PHASE1': JSON.stringify('1'), 'import.meta.env.VITE_LUCILLE_REAL_VALIDATION_PIN': JSON.stringify(publicPin)},

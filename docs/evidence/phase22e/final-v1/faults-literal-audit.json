@@ -1,0 +1,490 @@
+{
+  "id": "phase22e-final-v1-native-faults-literal-audit",
+  "status": "FAILED: 3/6 passed, ordered-sources failed, two lease cases did not execute",
+  "reviewed_utc": "2026-11-11T11:04:07.043415+00:00",
+  "method": "Read-only review of original frozen fault-plan outcomes, native driver snapshots, real Gemma broker responses and query-only SQLite. Same Codex development team. No rerun, replacement, scoring, fixture or source changes. Prepared-source tests used native operations bound to each mode, without composer submissions.",
+  "frozen_inputs": {
+    "freeze": {
+      "filename": "freeze.json",
+      "sha256": "31cd0b728ebafd1ce1adea7e3febe250deb8180cb5ef322d951c096be49d436b"
+    },
+    "fault_plan": {
+      "filename": "faults.json",
+      "sha256": "baa95d1ec9dde9a007105cc0f7eab236d7f3996ff9c9ebedb97b7c347dec48ac"
+    }
+  },
+  "originals": {
+    "controller_progress": {
+      "filename": "final22e-native-faults-v1-faults-progress.json",
+      "sha256": "340bff56b43f29868d391e1f5e1fa04a0b8bbdcca6c95fd1cac0040079bc929e"
+    },
+    "controller_log": {
+      "filename": "phase22e-final22e-native-faults-v1.log",
+      "sha256": "bd26fed954a383b2bd1841d615461b16865f946e897b4b84e49686a6df65867a"
+    },
+    "final_complete_report_written": false
+  },
+  "curation": "Synthetic sources, literal Gemma proposals and scoped states retained. Private lease values, write proofs, record and job IDs, paths and request metadata omitted.",
+  "sqlite_observation": {
+    "qa_only": true,
+    "uri_mode": "ro",
+    "query_only": true,
+    "user_version": 5
+  },
+  "counts": {
+    "planned": 6,
+    "attempted": 4,
+    "passed": 3,
+    "failed": 1,
+    "not_executed": 2
+  },
+  "gate_conclusion": "The prepared cancellation cases prove no duplicate or revived record on their specific retry paths. In the primary run, active leased cancellation, host restart and late completion lacked execution. The two supplemental scenarios passed in separate scopes; the primary ordered-sources failure and 3/6 pass count are unchanged.",
+  "cases": [
+    {
+      "id": "final-e-cancel-chat",
+      "type": "prepared_cancel",
+      "mode": "chat",
+      "status": "passed",
+      "scope": "phase22e-fault-final-e-cancel-chat",
+      "project": "sintetico-e",
+      "original_source": "No meu intervalo, o café eu prefiro sem açúcar.",
+      "started_utc": "2026-11-11T10:57:47.657894+00:00",
+      "finished_utc": "2026-11-11T10:58:00.979814+00:00",
+      "native_cancellation_confirmed": true,
+      "replay_state": "cancelled",
+      "retry_state": "cancelled",
+      "nonexistent_job_publication_state": "ignored",
+      "assistant_role_source_rejected": true,
+      "native_observed_record_count": 0,
+      "readonly_job": {
+        "state": "cancelled",
+        "attempts": 0,
+        "error_code": null,
+        "lease_cleared": true,
+        "expiry_cleared": true
+      },
+      "readonly_learning_input_count": 0,
+      "readonly_memory_count": 0,
+      "original_native_snapshots": [
+        {
+          "filename": "driver-final-e-cancel-chat-prepare-fault.json",
+          "sha256": "e0a8a23bcd2f2b7026ec03406c1a9a9cb0a43c10a5b11f4ce857129aa5642e0c"
+        },
+        {
+          "filename": "driver-final-e-cancel-chat-cancel-fault.json",
+          "sha256": "1407044107586b455a0d8ace0f8114cfdc9111af4a6cfad7f72b7ecfaecad779"
+        },
+        {
+          "filename": "driver-final-e-cancel-chat-replay-fault.json",
+          "sha256": "5e0375f7506b0862d8a6194e7423c28157eca1c981b0a9ff73bcaecd133828d6"
+        },
+        {
+          "filename": "driver-final-e-cancel-chat-retry-fault.json",
+          "sha256": "632126c98eb04cd410d5495143a5ce809f393cb4b8dbc0f106a563c2a03645e6"
+        },
+        {
+          "filename": "driver-final-e-cancel-chat-missing-fault.json",
+          "sha256": "3c11446a96704f0d4a807a7c6ee16278e62febf4e4ae117a118428bbe1676630"
+        },
+        {
+          "filename": "driver-final-e-cancel-chat-assistant-fault.json",
+          "sha256": "c978a5338c61adba31e4739aa51dca90a6f441ac3bbe052ee35a07be10abdd34"
+        },
+        {
+          "filename": "driver-final-e-cancel-chat-details-fault.json",
+          "sha256": "629985df3d63f1efce2d6a3175eec24fb513f6423936efa888dd9fc671416395"
+        }
+      ]
+    },
+    {
+      "id": "final-e-cancel-agent",
+      "type": "prepared_cancel",
+      "mode": "agent",
+      "status": "passed",
+      "scope": "phase22e-fault-final-e-cancel-agent",
+      "project": "sintetico-e",
+      "original_source": "Na interface do meu aplicativo, minha preferência é pelo tema escuro.",
+      "started_utc": "2026-11-11T10:58:00.984547+00:00",
+      "finished_utc": "2026-11-11T10:58:14.989705+00:00",
+      "native_cancellation_confirmed": true,
+      "replay_state": "cancelled",
+      "retry_state": "cancelled",
+      "nonexistent_job_publication_state": "ignored",
+      "assistant_role_source_rejected": true,
+      "native_observed_record_count": 0,
+      "readonly_job": {
+        "state": "cancelled",
+        "attempts": 0,
+        "error_code": null,
+        "lease_cleared": true,
+        "expiry_cleared": true
+      },
+      "readonly_learning_input_count": 0,
+      "readonly_memory_count": 0,
+      "original_native_snapshots": [
+        {
+          "filename": "driver-final-e-cancel-agent-prepare-fault.json",
+          "sha256": "d7bc0c568db8ddec5da0ab8b105187f15d7a028ed3b2f9639851300ff097f634"
+        },
+        {
+          "filename": "driver-final-e-cancel-agent-cancel-fault.json",
+          "sha256": "02fda6532c82da3a376f332790a11c2808d29ac8e17f920e03225e0d43fcf62f"
+        },
+        {
+          "filename": "driver-final-e-cancel-agent-replay-fault.json",
+          "sha256": "c2cdf52274a6d7e5158e90e61754b91767d5c5874d4e69057fa946241b476069"
+        },
+        {
+          "filename": "driver-final-e-cancel-agent-retry-fault.json",
+          "sha256": "b23248850a826d7e032a9d60c4d00564a979d0c077e2533d29ac28b27124734b"
+        },
+        {
+          "filename": "driver-final-e-cancel-agent-missing-fault.json",
+          "sha256": "10f12530800ddbd7417ddbfd9203b8616f2f6718ef23512d7fa3e99f93034fd7"
+        },
+        {
+          "filename": "driver-final-e-cancel-agent-assistant-fault.json",
+          "sha256": "c978a5338c61adba31e4739aa51dca90a6f441ac3bbe052ee35a07be10abdd34"
+        },
+        {
+          "filename": "driver-final-e-cancel-agent-details-fault.json",
+          "sha256": "b61f85e533fc4c6983d1927bb0a2928af270fdcc34b843fca4c82b1581a0c6d8"
+        }
+      ]
+    },
+    {
+      "id": "final-e-cancel-code",
+      "type": "prepared_cancel",
+      "mode": "code",
+      "status": "passed",
+      "scope": "phase22e-fault-final-e-cancel-code",
+      "project": "sintetico-e",
+      "original_source": "Choosing my character class is something I enjoy in games.",
+      "started_utc": "2026-11-11T10:58:14.995009+00:00",
+      "finished_utc": "2026-11-11T10:58:28.989840+00:00",
+      "native_cancellation_confirmed": true,
+      "replay_state": "cancelled",
+      "retry_state": "cancelled",
+      "nonexistent_job_publication_state": "ignored",
+      "assistant_role_source_rejected": true,
+      "native_observed_record_count": 0,
+      "readonly_job": {
+        "state": "cancelled",
+        "attempts": 0,
+        "error_code": null,
+        "lease_cleared": true,
+        "expiry_cleared": true
+      },
+      "readonly_learning_input_count": 0,
+      "readonly_memory_count": 0,
+      "original_native_snapshots": [
+        {
+          "filename": "driver-final-e-cancel-code-prepare-fault.json",
+          "sha256": "6638d316ca5906b777d9dcc6f96dc13d5b61a423c7522314ab519ba5a3942198"
+        },
+        {
+          "filename": "driver-final-e-cancel-code-cancel-fault.json",
+          "sha256": "e6c87289ee464fa019f5219177618b689e9ad500b0186044a3b91c7124830298"
+        },
+        {
+          "filename": "driver-final-e-cancel-code-replay-fault.json",
+          "sha256": "90ef769b144c6e489fe63b7dbfde5d4bc873ceaabd0ec307c03bf78994b168c4"
+        },
+        {
+          "filename": "driver-final-e-cancel-code-retry-fault.json",
+          "sha256": "4e37a965e66fbe1047e96d2e48f217d8123207d681f4897002842fc8a4965dca"
+        },
+        {
+          "filename": "driver-final-e-cancel-code-missing-fault.json",
+          "sha256": "f69e96b6718349a1737036a2f2cf1c5fab022ec3f47a4e0a3bcb2281ff1c582b"
+        },
+        {
+          "filename": "driver-final-e-cancel-code-assistant-fault.json",
+          "sha256": "c978a5338c61adba31e4739aa51dca90a6f441ac3bbe052ee35a07be10abdd34"
+        },
+        {
+          "filename": "driver-final-e-cancel-code-details-fault.json",
+          "sha256": "9ff8df96e266a7f5b801b64e7c1318c8e0d8d37abd1ff3e4114103769b122b48"
+        }
+      ]
+    },
+    {
+      "id": "final-e-source-order",
+      "type": "ordered_sources",
+      "mode": "chat",
+      "status": "failed",
+      "scope": "phase22e-fault-final-e-source-order",
+      "project": "sintetico-e",
+      "expected": {
+        "one_current_property": "user/coffee_sugar",
+        "value": "without_sugar",
+        "same_native_state_before_and_after_older_publication": true
+      },
+      "sources_in_publication_order": [
+        {
+          "relative_source_order": "newer",
+          "original_source": "My preference has changed: for my own coffee, I now prefer it without sugar.",
+          "prepare_observed_utc": "2026-11-11T10:58:32.954Z",
+          "prepare_authority": {
+            "message_author": "user",
+            "personal_intervals": 1,
+            "current_statements": []
+          },
+          "publish_observed_utc": "2026-11-11T10:58:34.946Z",
+          "publish_job_state": "queued",
+          "actual_gemma_extraction": {
+            "original_filename": "real-broker-calls.ndjson",
+            "original_line_sha256": "a835af485d71c1e2d8df095457c8dbd7a07e0ac881fcadb0744bf1855dc5b238",
+            "completed_utc": "2026-11-11T10:58:40.526037+00:00",
+            "latency_seconds": 4.659540499997092,
+            "model": "lucille-real-gemma",
+            "proposal_version": 3,
+            "claims": [
+              {
+                "category": "preference",
+                "evidence": "My preference has changed: for my own coffee, I now prefer it without sugar"
+              }
+            ]
+          },
+          "readonly_terminal_job": {
+            "state": "done",
+            "attempts": 1,
+            "error_code": null,
+            "lease_cleared": true,
+            "expiry_cleared": true
+          }
+        },
+        {
+          "relative_source_order": "older",
+          "original_source": "For my own afternoon coffee, I prefer it with sugar.",
+          "prepare_observed_utc": "2026-11-11T10:58:30.961Z",
+          "prepare_authority": {
+            "message_author": "user",
+            "personal_intervals": 1,
+            "current_statements": [
+              {
+                "entity": "user",
+                "property": "coffee_sugar",
+                "value": "with_sugar"
+              }
+            ]
+          },
+          "publish_observed_utc": "2026-11-11T10:58:42.962Z",
+          "publish_job_state": "queued",
+          "actual_gemma_extraction": {
+            "original_filename": "real-broker-calls.ndjson",
+            "original_line_sha256": "2af7f8370cc932ac2a304147a8259126b4fae57b023fc345940a7f0cf1d5c36d",
+            "completed_utc": "2026-11-11T10:58:46.180237+00:00",
+            "latency_seconds": 2.8870480000041425,
+            "model": "lucille-real-gemma",
+            "proposal_version": 3,
+            "claims": [
+              {
+                "category": "preference",
+                "evidence": "For my own afternoon coffee, I prefer it with sugar"
+              }
+            ]
+          },
+          "readonly_terminal_job": {
+            "state": "done",
+            "attempts": 1,
+            "error_code": null,
+            "lease_cleared": true,
+            "expiry_cleared": true
+          }
+        }
+      ],
+      "before_older_publication": {
+        "observed_utc": "2026-11-11T10:58:40.943Z",
+        "observed_canonical_records": []
+      },
+      "after_older_publication": {
+        "observed_utc": "2026-11-11T10:58:46.952Z",
+        "observed_canonical_records": [
+          {
+            "entity": "user",
+            "property": "coffee_sugar",
+            "value": "with_sugar",
+            "state": "active",
+            "version": 1,
+            "provenance_evidence": [
+              "For my own afternoon coffee, I prefer it with sugar"
+            ],
+            "all_provenance_bound_to_older_source": true
+          }
+        ]
+      },
+      "failure_boundary": "The newer USER source reserved and published a job. Its own-author span and actual Gemma evidence were present. Native preparation exposed no current statement for the correction, and the finished extraction materialized no canonical record. The older source did materialize with its original provenance. The ordered-sources assertion failed. The evidence does not isolate an internal parser branch or demonstrate overwrite of an already committed newer record.",
+      "original_native_snapshots": [
+        {
+          "filename": "driver-final-e-source-order-prepare-0-fault.json",
+          "sha256": "4c02528e0eb7681e34a34c9e40e17cc207dff4235798e4c9f8601a7085ee186a"
+        },
+        {
+          "filename": "driver-final-e-source-order-prepare-1-fault.json",
+          "sha256": "c4d9abb35b7a61a09b2a78d7dfde55fad8bb4689911354c19026768d3e0d3870"
+        },
+        {
+          "filename": "driver-final-e-source-order-newer-fault.json",
+          "sha256": "35f98970afb2e3b4cea2862037a663937861e03fb200f507343f2689cea4240b"
+        },
+        {
+          "filename": "driver-final-e-source-order-before-fault.json",
+          "sha256": "8bf20efce6cf35850d00de9d49c2ad2dc4b283c4451270ad0529d3ac58d68d64"
+        },
+        {
+          "filename": "driver-final-e-source-order-older-fault.json",
+          "sha256": "8a8689b7773c29cb45b78d1da16fb8d0900cf586bf1d16501894942d824711d1"
+        },
+        {
+          "filename": "driver-final-e-source-order-after-fault.json",
+          "sha256": "127952aac745d7a94df757088ef481ccc933261585917d46cd0a04542ed71780"
+        }
+      ]
+    },
+    {
+      "id": "final-e-cancel-lease",
+      "type": "leased_cancel",
+      "status": "not_executed",
+      "reason": "The ordered-sources assertion aborted the frozen controller loop.",
+      "readonly_job_count": 0
+    },
+    {
+      "id": "final-e-restart-lease",
+      "type": "restart",
+      "status": "not_executed",
+      "reason": "The ordered-sources assertion aborted the frozen controller loop.",
+      "readonly_job_count": 0
+    }
+  ],
+  "supplemental_leased_faults": {
+    "method": "Supplemental run of the two originally unexecuted cases only, with the same frozen cases and artifact pin in separate synthetic scopes. The primary ordered-sources failure and denominator are preserved.",
+    "included_in_primary_gate": false,
+    "planned": 2,
+    "passed": 2,
+    "frozen_sha256": "31cd0b728ebafd1ce1adea7e3febe250deb8180cb5ef322d951c096be49d436b",
+    "originals": {
+      "complete_report": {
+        "filename": "supplemental-final22e-unexecuted-faults-v1-faults.json",
+        "sha256": "be7a0d6870a7f44f2817a3ebee74c714536b5da95285ee4eaeb4f597a44fb0af"
+      },
+      "progress": {
+        "filename": "supplemental-final22e-unexecuted-faults-v1-faults-progress.json",
+        "sha256": "852745e3544963464d0f048d463f7e27a42068d3e8b4cf4d84d063d8469ff1f8"
+      },
+      "controller_log": {
+        "filename": "phase22e-supplemental-unexecuted-faults-v1.log",
+        "sha256": "22db93b6db30b0783b0c7b7d3db5f40228bbfa92e204e56c2b4e2db9d15ebc1d"
+      }
+    },
+    "artifact_attestation": {
+      "initial_artifacts": {
+        "native_gui_verified": true,
+        "bridge_verified": true,
+        "frontend_verified": true,
+        "live_model_pin_verified": true
+      },
+      "final_artifacts": {
+        "native_gui_verified": true,
+        "bridge_verified": true,
+        "frontend_verified": true,
+        "live_model_pin_verified": true
+      }
+    },
+    "cases": [
+      {
+        "id": "final-e-cancel-lease",
+        "type": "leased_cancel",
+        "synthetic_scope": "phase22e-fault-supp-e-final-e-cancel-lease",
+        "project": "sintetico-e",
+        "source": "Eu prefiro tomar o café da tarde sem açúcar. Para as respostas dirigidas a mim, prefiro português. Em jogos, gosto de escolher a classe do personagem. Na interface do aplicativo, prefiro o tema escuro.",
+        "status": "passed",
+        "started_utc": "2026-11-11T11:02:47.650283+00:00",
+        "finished_utc": "2026-11-11T11:03:02.986408+00:00",
+        "at_interruption": {
+          "state": "running",
+          "attempts": 1
+        },
+        "terminal": {
+          "state": "cancelled",
+          "attempts": 1
+        },
+        "terminal_lease_cleared": true,
+        "actual_gemma_extraction": {
+          "model": "lucille-real-gemma",
+          "claims": 4,
+          "response_utf8_sha256": "ce1d9891d87156c9ad69f5f052bf8705dd9ce7c1d34462659168b6befa4e0760"
+        },
+        "late_completion_accepted": false,
+        "canonical_unchanged_after_late_completion": true,
+        "canonical_count_before_late": 0,
+        "canonical_count_after_late": 0,
+        "final_canonical_facts": [],
+        "native_cancellation_confirmed": true
+      },
+      {
+        "id": "final-e-restart-lease",
+        "type": "restart",
+        "synthetic_scope": "phase22e-fault-supp-e-final-e-restart-lease",
+        "project": "sintetico-e",
+        "source": "Eu prefiro tomar o café da tarde sem açúcar. Para as respostas dirigidas a mim, prefiro português. Em jogos, gosto de escolher a classe do personagem. Na interface do aplicativo, prefiro o tema escuro.",
+        "status": "passed",
+        "started_utc": "2026-11-11T11:03:02.987815+00:00",
+        "finished_utc": "2026-11-11T11:03:50.380878+00:00",
+        "at_interruption": {
+          "state": "running",
+          "attempts": 1
+        },
+        "terminal": {
+          "state": "done",
+          "attempts": 2
+        },
+        "terminal_lease_cleared": true,
+        "actual_gemma_extraction": {
+          "model": "lucille-real-gemma",
+          "claims": 4,
+          "response_utf8_sha256": "d34721c2b0547d591d830905ead43c3e57cb3c2b0657139caa8296c520ec567f"
+        },
+        "late_completion_accepted": false,
+        "canonical_unchanged_after_late_completion": true,
+        "canonical_count_before_late": 4,
+        "canonical_count_after_late": 4,
+        "final_canonical_facts": [
+          {
+            "entity": "user",
+            "property": "coffee_sugar",
+            "value": "without_sugar",
+            "state": "active",
+            "version": 1
+          },
+          {
+            "entity": "user",
+            "property": "interface_theme",
+            "value": "dark",
+            "state": "active",
+            "version": 1
+          },
+          {
+            "entity": "user",
+            "property": "games_class_selection",
+            "value": "positive",
+            "state": "active",
+            "version": 1
+          },
+          {
+            "entity": "user",
+            "property": "response_language",
+            "value": "pt",
+            "state": "active",
+            "version": 1
+          }
+        ],
+        "owned_host_restart_identity": {
+          "image_verified": true,
+          "creation_verified": true
+        },
+        "distinct_final_canonical_facts": 4
+      }
+    ]
+  }
+}

@@ -226,6 +226,8 @@ pub struct AnswerEvidence {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub directive_receipt: Option<serde_json::Value>,
     pub has_scoped_records: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub learning_receipt: Option<serde_json::Value>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -293,6 +295,8 @@ impl Store {
                     "language",
                     "database",
                     "ram_capacity",
+                    "gpu_model",
+                    "beverage_preference",
                     "free_ram",
                     "coffee_sugar",
                     "interface_theme",
@@ -316,7 +320,7 @@ impl Store {
             {
                 return Err("Unsupported claimed field".into());
             }
-            let mut stmt=tx.prepare(&format!("SELECT {} FROM memories WHERE id IN (SELECT memory_id FROM memory_quality WHERE subject=?3 AND property=?4 AND value=?5) AND scope=?1 AND project=?2 AND state IN ('active','obsolete') ORDER BY updated_at DESC,id LIMIT 2",crate::COLS)).map_err(db_error)?;
+            let mut stmt=tx.prepare(&format!("SELECT {} FROM memories WHERE id IN (SELECT memory_id FROM memory_quality WHERE subject=?3 AND property=?4 AND (?5='' OR value=?5)) AND scope=?1 AND project=?2 AND state IN ('active','obsolete') ORDER BY updated_at DESC,id LIMIT 2",crate::COLS)).map_err(db_error)?;
             let records = stmt
                 .query_map(
                     params![
@@ -355,6 +359,7 @@ impl Store {
         } else {
             None
         };
+        let learning_receipt = source.map(|s|crate::turn_sources::learning_receipt(&tx,req,s)).transpose()?.flatten();
         let has_scoped_records = tx
             .query_row(
                 "SELECT EXISTS(SELECT 1 FROM memories WHERE scope=?1 AND project=?2)",
@@ -368,6 +373,7 @@ impl Store {
             current_statements,
             directive_receipt,
             has_scoped_records,
+            learning_receipt,
         })
     }
 }

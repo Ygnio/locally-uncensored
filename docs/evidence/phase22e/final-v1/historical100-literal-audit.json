@@ -1,0 +1,2573 @@
+{
+  "id": "phase22e-final-v1-historical100-literal-audit",
+  "kind": "Known frozen longitudinal regression after H20 and H50 in one fresh synthetic namespace.",
+  "reviewed_utc": "2026-11-11T11:01:51.089839+00:00",
+  "started_utc": "2026-11-04T23:56:59.145Z",
+  "finished_utc": "2026-11-05T00:12:36.745Z",
+  "original_hashes": {
+    "crates/lucille-memory/tests/fixtures/phase22/long-100-v3.json": "256d80c1a9046b0e27c06f257fcb9dca4d50afdb3e70ddb5ec3773a919e986fb",
+    "crates/lucille-memory/tests/fixtures/phase22e/final-v1/freeze.json": "31cd0b728ebafd1ce1adea7e3febe250deb8180cb5ef322d951c096be49d436b",
+    "docs/evidence/phase22d/final-v1/historical-100-review.json": "fae37fcfc03dc27c88a36666585337bb5cc3a24ecb42ade2703cbcfb5b698448",
+    "driver-final22e-historical100-v1-final.json": "c5f78e869154f0bb4f91e563f7dcaad31d9513dda563f2c923daecc0451d46a8",
+    "driver-final22e-historical50-v1-final.json": "955b7812c7688dd2c7ad6c006ba01154b5f7b6a62d4341393675135c84b761f3",
+    "final22e-historical-namespace-before.json": "c17332726e64f9496041f7ec743722acf30006019590d429b0d3dadedf1a21a9"
+  },
+  "scope": "phase22c-final-historical-series",
+  "project": "candeia",
+  "execution_complete": true,
+  "method": "Read every delivered reply and independently adjudicate the memory-bearing literal spans. Resolve earliest injected native retrieval references by exact ID and version. Use original frozen golds and score extra references separately. Original usefulness and completeness count one source/general atom per response and at least one per probe; the compound probe has three. General world-knowledge correctness is outside the fidelity denominator.",
+  "coverage": {
+    "source_and_general_turns": 100,
+    "new_session_probes": 10,
+    "planned": 110,
+    "completed": 110,
+    "delivered": 110,
+    "modes": {
+      "chat": 108,
+      "agent": 1,
+      "code": 1
+    },
+    "identity_version_before": 3,
+    "identity_version_after": 3,
+    "pending_vectors_after": 0,
+    "current_vectors_after": 11
+  },
+  "metrics": {
+    "original_gold_regex_passed": 10,
+    "original_gold_probes_useful": 10,
+    "original_regression_useful_responses": 110,
+    "original_regression_planned_responses": 110,
+    "availability": 1.0,
+    "original_regression_retained_atoms": 112,
+    "original_regression_expected_atoms": 112,
+    "completeness": 1.0,
+    "delivered_literal_claims": 26,
+    "supported_literal_claims": 25,
+    "literal_fidelity": 0.9615384615384616,
+    "ambiguous_absence_claims": 1,
+    "unambiguously_unsupported_critical_delivered_claims": 0,
+    "premature_completed_write_claims_delivered": 0,
+    "blocked_turns": [],
+    "regenerated_turns": [
+      101
+    ]
+  },
+  "retrieval_metrics": {
+    "tp": 10,
+    "fp": 1,
+    "missed": 0,
+    "precision": 0.9090909090909091,
+    "recall": 1.0,
+    "cross_project_refs": 0,
+    "noncurrent_refs": 0,
+    "irrelevant_or_fenced_leakage": 0
+  },
+  "key_regressions": {
+    "historical_save": {
+      "turn": 92,
+      "phase_22d_literal": "Registrado: você prefere café com açúcar.",
+      "phase_22e_literal": "Entendido, você prefere café com açúcar.",
+      "dom_first_delivered_ms": 10980,
+      "verification_had_learning_receipt": false,
+      "snapshots": [
+        {
+          "event": "assistant_created",
+          "observed_at_ms": 128,
+          "read_started_ms": 141,
+          "read_finished_ms": 356,
+          "job": null,
+          "learning_receipt": null,
+          "directive_receipt": null
+        },
+        {
+          "event": "assistant_content",
+          "observed_at_ms": 10964,
+          "read_started_ms": 10978,
+          "read_finished_ms": 11135,
+          "job": {
+            "state": "queued",
+            "attempts": 0,
+            "created_at": 1793837381,
+            "updated_at": 1793837381
+          },
+          "learning_receipt": null,
+          "directive_receipt": null
+        },
+        {
+          "event": "generation_terminal",
+          "observed_at_ms": 11134,
+          "read_started_ms": 11135,
+          "read_finished_ms": 11181,
+          "job": {
+            "state": "queued",
+            "attempts": 0,
+            "created_at": 1793837381,
+            "updated_at": 1793837392
+          },
+          "learning_receipt": null,
+          "directive_receipt": null
+        },
+        {
+          "event": "learning_terminal",
+          "observed_at_ms": 14880,
+          "read_started_ms": 14880,
+          "read_finished_ms": 14891,
+          "job": {
+            "state": "done",
+            "attempts": 1,
+            "created_at": 1793837381,
+            "updated_at": 1793837395
+          },
+          "learning_receipt": {
+            "action": "learn",
+            "state": "done",
+            "records": [
+              {
+                "entity": "user",
+                "id": "c62c9829-c84a-ccea-f04f-dd5efa750585",
+                "property": "coffee_sugar",
+                "state": "candidate",
+                "value": "with_sugar",
+                "version": 1
+              }
+            ],
+            "source_matches_verifier": true,
+            "binding_matches": true
+          },
+          "directive_receipt": null
+        }
+      ],
+      "native_record_history": [
+        {
+          "operation": "create",
+          "version": 1,
+          "at_epoch_s": 1793837395
+        },
+        {
+          "operation": "approve",
+          "version": 2,
+          "at_epoch_s": 1793837398
+        }
+      ],
+      "finding": "The new reply acknowledges the preference. The exact-source candidate was observed later and review activated it. No later receipt certifies the earlier reply."
+    },
+    "language_replacement": {
+      "source_turn": 21,
+      "probe_turn": 101,
+      "old_typescript": {
+        "id": "fba6f2fc-fcaa-361b-f3a4-ee63e85c33cb",
+        "scope": "phase22c-final-historical-series",
+        "project": "candeia",
+        "version": 3,
+        "state": "obsolete",
+        "subject": "project.candeia",
+        "property": "language",
+        "value": "typescript",
+        "temporal": "planned",
+        "facets": [],
+        "replaces_id": null,
+        "replaces_version": null
+      },
+      "new_rust": {
+        "id": "35dc19bc-10a7-b3ed-cb11-1b9257d14c72",
+        "scope": "phase22c-final-historical-series",
+        "project": "candeia",
+        "version": 2,
+        "state": "active",
+        "subject": "project.candeia",
+        "property": "language",
+        "value": "rust",
+        "temporal": "durable",
+        "facets": [],
+        "replaces_id": "fba6f2fc-fcaa-361b-f3a4-ee63e85c33cb",
+        "replaces_version": 2
+      },
+      "raw_attempts": [
+        {
+          "raw": "O projeto Candeia é um sistema de controle de luminosidade que você está desenvolvendo. Você decidiu utilizar a linguagem Rust e o banco de dados PostgreSQL para sua implementação.",
+          "violations": [
+            {
+              "code": "unproven_decision",
+              "span": "Você decidiu utilizar a linguagem Rust e o banco de dados PostgreSQL para sua implementação.",
+              "critical": true
+            },
+            {
+              "code": "modality_omitted",
+              "span": "Você decidiu utilizar a linguagem Rust e o banco de dados PostgreSQL para sua implementação.",
+              "critical": false
+            },
+            {
+              "code": "authority_execution",
+              "span": "O projeto Candeia é um sistema de controle de luminosidade que você está desenvolvendo.",
+              "critical": true
+            }
+          ]
+        },
+        {
+          "raw": "O projeto Candeia é um sistema de controle de luminosidade que você está começando. Você decidiu usar a linguagem Rust e planeja utilizar o PostgreSQL como banco de dados.",
+          "violations": []
+        }
+      ],
+      "first_attempt_visible": false,
+      "finding": "The first attempt overstated implementation and the PostgreSQL decision. The delivered regeneration retained the description and Rust decision and restored the PostgreSQL plan."
+    },
+    "scope_fence": {
+      "turn": 110,
+      "out_of_binding_active_record": {
+        "id": "31832b39-2ca7-bef9-15e3-1a0725924ebd",
+        "scope": "phase22c-final-historical-series",
+        "project": "candeia2",
+        "version": 2,
+        "state": "active",
+        "subject": "project.candeia2",
+        "property": "language",
+        "value": "javascript",
+        "temporal": "planned",
+        "facets": [],
+        "replaces_id": null,
+        "replaces_version": null
+      },
+      "initial_native_references": [],
+      "original_gold_pass": true,
+      "explicit_current_binding_qualifier": false,
+      "finding": "No JavaScript or Rust leaked into the reply. The phrase does not clearly restrict absence to the current binding."
+    },
+    "coffee_lifecycle": {
+      "forget_turn": 86,
+      "forget_dom_first_delivered_ms": 10209,
+      "verifier_had_completed_source_matched_directive": true,
+      "forget_snapshots": [
+        {
+          "event": "assistant_created",
+          "observed_at_ms": 120,
+          "read_started_ms": 132,
+          "read_finished_ms": 266,
+          "job": null,
+          "learning_receipt": null,
+          "directive_receipt": null
+        },
+        {
+          "event": "assistant_content",
+          "observed_at_ms": 10192,
+          "read_started_ms": 10207,
+          "read_finished_ms": 10357,
+          "job": {
+            "state": "done",
+            "attempts": 0,
+            "created_at": 1793837306,
+            "updated_at": 1793837306
+          },
+          "learning_receipt": null,
+          "directive_receipt": {
+            "action": "forget",
+            "state": "done",
+            "property": "coffee_sugar",
+            "had_records": true,
+            "source_matches_verifier": true,
+            "binding_matches": true
+          }
+        },
+        {
+          "event": "generation_terminal",
+          "observed_at_ms": 10376,
+          "read_started_ms": 10376,
+          "read_finished_ms": 10389,
+          "job": {
+            "state": "done",
+            "attempts": 0,
+            "created_at": 1793837306,
+            "updated_at": 1793837306
+          },
+          "learning_receipt": null,
+          "directive_receipt": {
+            "action": "forget",
+            "state": "done",
+            "property": "coffee_sugar",
+            "had_records": true,
+            "source_matches_verifier": true,
+            "binding_matches": true
+          }
+        },
+        {
+          "event": "learning_terminal",
+          "observed_at_ms": 11097,
+          "read_started_ms": 11097,
+          "read_finished_ms": 11108,
+          "job": {
+            "state": "done",
+            "attempts": 0,
+            "created_at": 1793837306,
+            "updated_at": 1793837306
+          },
+          "learning_receipt": null,
+          "directive_receipt": {
+            "action": "forget",
+            "state": "done",
+            "property": "coffee_sugar",
+            "had_records": true,
+            "source_matches_verifier": true,
+            "binding_matches": true
+          }
+        }
+      ],
+      "tombstones": [
+        {
+          "id": "2b24d6c2-bdf0-9d02-3b44-6ae058b5923d",
+          "kind": "preference",
+          "deleted_at_epoch_s": 1793837306
+        },
+        {
+          "id": "83aa0d03-20cf-a9b8-4d43-918e08ae1df8",
+          "kind": "preference",
+          "deleted_at_epoch_s": 1793837306
+        }
+      ],
+      "old_source_replay": {
+        "at_turn": 87,
+        "source_turn": 11,
+        "state": "done",
+        "canonical_unchanged": true
+      },
+      "plain_post_forget_declaration": {
+        "turn": 91,
+        "canonical_created": false,
+        "snapshots": [
+          {
+            "event": "assistant_created",
+            "observed_at_ms": 135,
+            "read_started_ms": 147,
+            "read_finished_ms": 404,
+            "job": null,
+            "learning_receipt": null,
+            "directive_receipt": null
+          },
+          {
+            "event": "assistant_content",
+            "observed_at_ms": 11108,
+            "read_started_ms": 11126,
+            "read_finished_ms": 11289,
+            "job": {
+              "state": "queued",
+              "attempts": 0,
+              "created_at": 1793837366,
+              "updated_at": 1793837366
+            },
+            "learning_receipt": null,
+            "directive_receipt": null
+          },
+          {
+            "event": "generation_terminal",
+            "observed_at_ms": 11150,
+            "read_started_ms": 11289,
+            "read_finished_ms": 11338,
+            "job": {
+              "state": "queued",
+              "attempts": 0,
+              "created_at": 1793837366,
+              "updated_at": 1793837377
+            },
+            "learning_receipt": null,
+            "directive_receipt": null
+          },
+          {
+            "event": "learning_terminal",
+            "observed_at_ms": 14839,
+            "read_started_ms": 14839,
+            "read_finished_ms": 14849,
+            "job": {
+              "state": "done",
+              "attempts": 1,
+              "created_at": 1793837366,
+              "updated_at": 1793837380
+            },
+            "learning_receipt": null,
+            "directive_receipt": null
+          }
+        ]
+      },
+      "explicit_reintroduction": {
+        "turn": 92,
+        "candidate_receipt_record": {
+          "entity": "user",
+          "id": "c62c9829-c84a-ccea-f04f-dd5efa750585",
+          "property": "coffee_sugar",
+          "state": "candidate",
+          "value": "with_sugar",
+          "version": 1
+        },
+        "approved_version": 2,
+        "retrieval_probe": 102
+      },
+      "old_forget_replay": {
+        "at_turn": 93,
+        "source_turn": 86,
+        "reason": "directive_already_processed",
+        "canonical_unchanged": true
+      }
+    },
+    "hardware": {
+      "ambiguous_statement_turn": 41,
+      "stage_has_39_gb_record": false,
+      "named_correction_turn": 61,
+      "main_probe": 103,
+      "laptop_probe": 104,
+      "explicit_128_gb_probe_in_original_plan": false
+    }
+  },
+  "retrieval": [
+    {
+      "turn": 101,
+      "mode": "chat",
+      "category": "language",
+      "original_gold": [
+        {
+          "property": "language",
+          "value": "rust"
+        },
+        {
+          "property": "database",
+          "value": "postgresql",
+          "temporal": "planned"
+        },
+        {
+          "property": "description"
+        }
+      ],
+      "initial_native_sequence": 355,
+      "initial_native_references": [
+        {
+          "id": "f9be7c7d-2fb3-5723-77fa-163f563854a8",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "version": 2,
+          "state": "active",
+          "subject": "project.candeia",
+          "property": "database",
+          "value": "postgresql",
+          "temporal": "planned",
+          "facets": [],
+          "replaces_id": null,
+          "replaces_version": null,
+          "resolved_from": "exact_H100_snapshot"
+        },
+        {
+          "id": "3c0a80ef-36b9-6305-6c1b-039bbaf8e829",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "version": 2,
+          "state": "active",
+          "subject": "project.candeia",
+          "property": "description",
+          "value": "estou comecando um projeto de controle de luminosidade",
+          "temporal": "durable",
+          "facets": [],
+          "replaces_id": null,
+          "replaces_version": null,
+          "resolved_from": "exact_H100_snapshot"
+        },
+        {
+          "id": "35dc19bc-10a7-b3ed-cb11-1b9257d14c72",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "version": 2,
+          "state": "active",
+          "subject": "project.candeia",
+          "property": "language",
+          "value": "rust",
+          "temporal": "durable",
+          "facets": [],
+          "replaces_id": "fba6f2fc-fcaa-361b-f3a4-ee63e85c33cb",
+          "replaces_version": 2,
+          "resolved_from": "exact_H100_snapshot"
+        }
+      ],
+      "budget": 7380,
+      "used": 3417,
+      "later_native_audit_sequences": [
+        356
+      ],
+      "score": {
+        "tp": 3,
+        "fp": 0,
+        "missed": 0
+      },
+      "extra_gold_unmatched_properties": []
+    },
+    {
+      "turn": 102,
+      "mode": "agent",
+      "category": "coffee_sugar",
+      "original_gold": [
+        {
+          "property": "coffee_sugar",
+          "value": "with_sugar"
+        }
+      ],
+      "initial_native_sequence": 357,
+      "initial_native_references": [
+        {
+          "id": "c62c9829-c84a-ccea-f04f-dd5efa750585",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "version": 2,
+          "state": "active",
+          "subject": "user",
+          "property": "coffee_sugar",
+          "value": "with_sugar",
+          "temporal": "preference",
+          "facets": [],
+          "replaces_id": null,
+          "replaces_version": null,
+          "resolved_from": "exact_H100_snapshot"
+        }
+      ],
+      "budget": 7276,
+      "used": 1726,
+      "later_native_audit_sequences": [],
+      "score": {
+        "tp": 1,
+        "fp": 0,
+        "missed": 0
+      },
+      "extra_gold_unmatched_properties": []
+    },
+    {
+      "turn": 103,
+      "mode": "code",
+      "category": "ram_capacity",
+      "original_gold": [
+        {
+          "property": "ram_capacity",
+          "value": "50_gb",
+          "subject": "device.primary_computer"
+        }
+      ],
+      "initial_native_sequence": 358,
+      "initial_native_references": [
+        {
+          "id": "4f15d8a0-62d2-9571-2b09-676b12dadd63",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "version": 2,
+          "state": "active",
+          "subject": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "50_gb",
+          "temporal": "durable",
+          "facets": [],
+          "replaces_id": "bbf6f406-c42f-865d-312e-875a3224c625",
+          "replaces_version": 2,
+          "resolved_from": "exact_H100_snapshot"
+        }
+      ],
+      "budget": 7302,
+      "used": 1847,
+      "later_native_audit_sequences": [],
+      "score": {
+        "tp": 1,
+        "fp": 0,
+        "missed": 0
+      },
+      "extra_gold_unmatched_properties": []
+    },
+    {
+      "turn": 104,
+      "mode": "chat",
+      "category": "ram_capacity",
+      "original_gold": [
+        {
+          "property": "ram_capacity",
+          "value": "18_gb",
+          "subject": "device.work_laptop"
+        }
+      ],
+      "initial_native_sequence": 359,
+      "initial_native_references": [
+        {
+          "id": "cc5c0289-61bf-91ea-c993-a2e3a8ade91f",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "version": 2,
+          "state": "active",
+          "subject": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "18_gb",
+          "temporal": "durable",
+          "facets": [],
+          "replaces_id": null,
+          "replaces_version": null,
+          "resolved_from": "exact_H100_snapshot"
+        }
+      ],
+      "budget": 7380,
+      "used": 1730,
+      "later_native_audit_sequences": [],
+      "score": {
+        "tp": 1,
+        "fp": 0,
+        "missed": 0
+      },
+      "extra_gold_unmatched_properties": []
+    },
+    {
+      "turn": 105,
+      "mode": "chat",
+      "category": "goal",
+      "original_gold": [
+        {
+          "property": "goal.",
+          "subject": "user",
+          "temporal": "completed"
+        }
+      ],
+      "initial_native_sequence": 360,
+      "initial_native_references": [
+        {
+          "id": "ec46cd62-2816-1e49-eee9-f6cc5a2e054b",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "version": 2,
+          "state": "active",
+          "subject": "user",
+          "property": "goal.f47cc78cd5ce",
+          "value": "completed:aprender circuitos eletricos basicos",
+          "temporal": "completed",
+          "facets": [],
+          "replaces_id": "d683b3d9-50db-0de0-b199-e811a4bf9106",
+          "replaces_version": 2,
+          "resolved_from": "exact_H100_snapshot"
+        }
+      ],
+      "budget": 7380,
+      "used": 1891,
+      "later_native_audit_sequences": [],
+      "score": {
+        "tp": 1,
+        "fp": 0,
+        "missed": 0
+      },
+      "extra_gold_unmatched_properties": []
+    },
+    {
+      "turn": 106,
+      "mode": "chat",
+      "category": "games_tactics",
+      "original_gold": [
+        {
+          "property": "games_tactics",
+          "value": "positive"
+        }
+      ],
+      "initial_native_sequence": 361,
+      "initial_native_references": [
+        {
+          "id": "f6b511a0-0bb5-9870-41ae-9f8eee676048",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "version": 3,
+          "state": "active",
+          "subject": "user",
+          "property": "games_tactics",
+          "value": "positive",
+          "temporal": "preference",
+          "facets": [
+            "classes",
+            "progression",
+            "rpg"
+          ],
+          "replaces_id": null,
+          "replaces_version": null,
+          "resolved_from": "exact_H100_snapshot"
+        },
+        {
+          "id": "70f8066c-2efb-5716-2ab3-c876ba32bd2c",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "version": 1,
+          "state": "active",
+          "subject": "user",
+          "property": "games_turn_strategy",
+          "value": "positive",
+          "temporal": "preference",
+          "facets": [],
+          "replaces_id": null,
+          "replaces_version": null,
+          "resolved_from": "exact_H100_snapshot"
+        }
+      ],
+      "budget": 7380,
+      "used": 3250,
+      "later_native_audit_sequences": [],
+      "score": {
+        "tp": 1,
+        "fp": 1,
+        "missed": 0
+      },
+      "extra_gold_unmatched_properties": [
+        "games_turn_strategy"
+      ]
+    },
+    {
+      "turn": 107,
+      "mode": "chat",
+      "category": "communication_style",
+      "original_gold": [
+        {
+          "property": "communication_style",
+          "value": "detailed"
+        }
+      ],
+      "initial_native_sequence": 362,
+      "initial_native_references": [
+        {
+          "id": "0afbf884-a54a-995d-ff29-9c075702ec0a",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "version": 1,
+          "state": "active",
+          "subject": "user",
+          "property": "communication_style",
+          "value": "detailed",
+          "temporal": "preference",
+          "facets": [],
+          "replaces_id": null,
+          "replaces_version": null,
+          "resolved_from": "exact_H100_snapshot"
+        }
+      ],
+      "budget": 7380,
+      "used": 1770,
+      "later_native_audit_sequences": [],
+      "score": {
+        "tp": 1,
+        "fp": 0,
+        "missed": 0
+      },
+      "extra_gold_unmatched_properties": []
+    },
+    {
+      "turn": 108,
+      "mode": "chat",
+      "category": "interface_theme",
+      "original_gold": [
+        {
+          "property": "interface_theme",
+          "value": "light"
+        }
+      ],
+      "initial_native_sequence": 363,
+      "initial_native_references": [
+        {
+          "id": "b928f804-6394-ccba-a479-d2fadb122de9",
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "version": 1,
+          "state": "active",
+          "subject": "user",
+          "property": "interface_theme",
+          "value": "light",
+          "temporal": "preference",
+          "facets": [],
+          "replaces_id": null,
+          "replaces_version": null,
+          "resolved_from": "exact_H100_snapshot"
+        }
+      ],
+      "budget": 7380,
+      "used": 1759,
+      "later_native_audit_sequences": [],
+      "score": {
+        "tp": 1,
+        "fp": 0,
+        "missed": 0
+      },
+      "extra_gold_unmatched_properties": []
+    },
+    {
+      "turn": 109,
+      "mode": "chat",
+      "category": "irrelevant",
+      "original_gold": [],
+      "initial_native_sequence": 364,
+      "initial_native_references": [],
+      "budget": 7380,
+      "used": 894,
+      "later_native_audit_sequences": [],
+      "score": {
+        "tp": 0,
+        "fp": 0,
+        "missed": 0
+      },
+      "extra_gold_unmatched_properties": []
+    },
+    {
+      "turn": 110,
+      "mode": "chat",
+      "category": "scope_fence",
+      "original_gold": [],
+      "initial_native_sequence": 365,
+      "initial_native_references": [],
+      "budget": 7380,
+      "used": 894,
+      "later_native_audit_sequences": [],
+      "score": {
+        "tp": 0,
+        "fp": 0,
+        "missed": 0
+      },
+      "extra_gold_unmatched_properties": []
+    }
+  ],
+  "turns": [
+    {
+      "turn": 1,
+      "mode": "chat",
+      "source": "Quanto é 5 somado a 11?",
+      "delivered": "O resultado de 5 somado a 11 é 16.",
+      "dom_first_delivered_ms": 2365,
+      "native_fidelity_status": "checked",
+      "generation_ms": 2450,
+      "extraction_wait_ms": 748,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 2,
+      "mode": "chat",
+      "source": "Como funciona ciclo da água?",
+      "delivered": "O ciclo da água é o processo contínuo de movimentação da água entre a superfície da Terra e a atmosfera. Ele envolve etapas como evaporação, condensação, precipitação e infiltração, movidas principalmente pelo calor do sol e pela gravidade.",
+      "dom_first_delivered_ms": 3197,
+      "native_fidelity_status": "checked",
+      "generation_ms": 3208,
+      "extraction_wait_ms": 733,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 3,
+      "mode": "chat",
+      "source": "Como eu represento o número 5 em uma variável?",
+      "delivered": "Você pode representar o número 5 em uma variável declarando um nome e atribuindo o valor a ele, como `x = 5` em muitas linguagens de programação. A escolha do nome depende do contexto, podendo ser algo genérico como `numero` ou específico como `quantidade`.",
+      "dom_first_delivered_ms": 3496,
+      "native_fidelity_status": "checked",
+      "generation_ms": 3690,
+      "extraction_wait_ms": 733,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 4,
+      "mode": "chat",
+      "source": "Quanto é 8 somado a 14?",
+      "delivered": "O resultado de 8 somado a 14 é 22.",
+      "dom_first_delivered_ms": 2208,
+      "native_fidelity_status": "checked",
+      "generation_ms": 2414,
+      "extraction_wait_ms": 739,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 5,
+      "mode": "chat",
+      "source": "Como funciona uma balança?",
+      "delivered": "Uma balança funciona medindo a força da gravidade sobre um objeto ou a massa de um corpo em relação a uma unidade de medida. Dependendo do tipo, ela pode usar um sistema de braços e pesos (balança de pratos), uma mola que se estica (balança de molas) ou sensores eletrônicos que convertem pressão em sinais digitais.",
+      "dom_first_delivered_ms": 4248,
+      "native_fidelity_status": "checked",
+      "generation_ms": 4463,
+      "extraction_wait_ms": 737,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 6,
+      "mode": "chat",
+      "source": "Como eu represento o número 8 em uma variável?",
+      "delivered": "Você pode representar o número 8 em uma variável declarando um nome e atribuindo o valor a ele, como `y = 8`. O nome da variável pode variar conforme a necessidade do seu código.",
+      "dom_first_delivered_ms": 3248,
+      "native_fidelity_status": "checked",
+      "generation_ms": 3446,
+      "extraction_wait_ms": 757,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 7,
+      "mode": "chat",
+      "source": "Quanto é 11 somado a 17?",
+      "delivered": "O resultado de 11 somado a 17 é 28.",
+      "dom_first_delivered_ms": 2507,
+      "native_fidelity_status": "checked",
+      "generation_ms": 2669,
+      "extraction_wait_ms": 741,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 8,
+      "mode": "chat",
+      "source": "Como funciona a força de atrito?",
+      "delivered": "A força de atrito é a resistência ao movimento que ocorre entre duas superfícies em contato, agindo em sentido oposto à direção do deslocamento. Ela depende da natureza das superfícies, da força normal aplicada e da rugosidade do contato.",
+      "dom_first_delivered_ms": 3723,
+      "native_fidelity_status": "checked",
+      "generation_ms": 3931,
+      "extraction_wait_ms": 736,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 9,
+      "mode": "chat",
+      "source": "Como eu represento o número 11 em uma variável?",
+      "delivered": "Você pode representar o número 11 em uma variável atribuindo o valor a um nome, como `z = 11`. O nome escolhido deve ser significativo para o contexto do seu problema.",
+      "dom_first_delivered_ms": 3444,
+      "native_fidelity_status": "checked",
+      "generation_ms": 3454,
+      "extraction_wait_ms": 749,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 10,
+      "mode": "chat",
+      "source": "Quanto é 14 somado a 20?",
+      "delivered": "O resultado de 14 somado a 20 é 34.",
+      "dom_first_delivered_ms": 2756,
+      "native_fidelity_status": "checked",
+      "generation_ms": 2946,
+      "extraction_wait_ms": 746,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 11,
+      "mode": "chat",
+      "source": "Mudei de ideia, agora prefiro café sem açúcar.",
+      "delivered": "Entendido, agora você prefere café sem açúcar.",
+      "dom_first_delivered_ms": 2705,
+      "native_fidelity_status": "checked",
+      "generation_ms": 2941,
+      "extraction_wait_ms": 3444,
+      "claims": [
+        {
+          "literal": "agora você prefere café sem açúcar",
+          "sha256": "8e73edd190b0eecad95f20445f1e257d003271cd3138958e8e93ffbba463c24c",
+          "supported": true,
+          "critical": false,
+          "basis": "Current USER declaration."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 12,
+      "mode": "chat",
+      "source": "Como eu represento o número 14 em uma variável?",
+      "delivered": "Você pode representar o número 14 em uma variável atribuindo o valor a um nome, como `w = 14`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 3858,
+      "native_fidelity_status": "checked",
+      "generation_ms": 3936,
+      "extraction_wait_ms": 723,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 13,
+      "mode": "chat",
+      "source": "Quanto é 17 somado a 23?",
+      "delivered": "O resultado de 17 somado a 23 é 40.",
+      "dom_first_delivered_ms": 2945,
+      "native_fidelity_status": "checked",
+      "generation_ms": 3164,
+      "extraction_wait_ms": 731,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 14,
+      "mode": "chat",
+      "source": "Como funciona a condução de calor?",
+      "delivered": "A condução de calor é a transferência de energia térmica através de um material sólido, onde as moléculas vibram e colidem, transmitindo calor para as vizinhas. Esse processo ocorre de forma mais eficiente em materiais com alta condutividade térmica, como metais.",
+      "dom_first_delivered_ms": 4142,
+      "native_fidelity_status": "checked",
+      "generation_ms": 4163,
+      "extraction_wait_ms": 743,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 15,
+      "mode": "chat",
+      "source": "Como eu represento o número 17 em uma variável?",
+      "delivered": "Você pode representar o número 17 em uma variável atribuindo o valor a um nome, como `v = 17`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 4010,
+      "native_fidelity_status": "checked",
+      "generation_ms": 4199,
+      "extraction_wait_ms": 725,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 16,
+      "mode": "chat",
+      "source": "Quanto é 20 somado a 26?",
+      "delivered": "O resultado de 20 somado a 26 é 46.",
+      "dom_first_delivered_ms": 3171,
+      "native_fidelity_status": "checked",
+      "generation_ms": 3407,
+      "extraction_wait_ms": 732,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 17,
+      "mode": "chat",
+      "source": "Como funciona um ímã?",
+      "delivered": "Um ímã funciona através do magnetismo, possuindo polos norte e sul que exercem forças de atração ou repulsão sobre outros objetos magnéticos. Isso ocorre devido ao alinhamento dos domínios magnéticos em seu interior, que criam um campo magnético ao redor do objeto.",
+      "dom_first_delivered_ms": 4898,
+      "native_fidelity_status": "checked",
+      "generation_ms": 5016,
+      "extraction_wait_ms": 728,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 18,
+      "mode": "chat",
+      "source": "Como eu represento o número 20 em uma variável?",
+      "delivered": "Você pode representar o número 20 em uma variável atribuindo o valor a um nome, como `u = 20`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 4282,
+      "native_fidelity_status": "checked",
+      "generation_ms": 4488,
+      "extraction_wait_ms": 751,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 19,
+      "mode": "chat",
+      "source": "Quanto é 23 somado a 29?",
+      "delivered": "O resultado de 23 somado a 29 é 52.",
+      "dom_first_delivered_ms": 3456,
+      "native_fidelity_status": "checked",
+      "generation_ms": 3691,
+      "extraction_wait_ms": 770,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 20,
+      "mode": "chat",
+      "source": "Como funciona a difusão de um cheiro?",
+      "delivered": "A difusão de um cheiro ocorre quando as moléculas aromáticas se espalham de uma região de alta concentração para uma de baixa concentração. Esse processo é facilitado pelo movimento aleatório das moléculas no ar ou em um líquido, permitindo que o odor preencha o espaço.",
+      "dom_first_delivered_ms": 5001,
+      "native_fidelity_status": "checked",
+      "generation_ms": 5015,
+      "extraction_wait_ms": 745,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 21,
+      "mode": "chat",
+      "source": "Decidi trocar TypeScript por Rust.",
+      "delivered": "Entendido, você decidiu trocar TypeScript por Rust.",
+      "dom_first_delivered_ms": 3351,
+      "native_fidelity_status": "checked",
+      "generation_ms": 3415,
+      "extraction_wait_ms": 4502,
+      "claims": [
+        {
+          "literal": "você decidiu trocar TypeScript por Rust",
+          "sha256": "16d0910dfa4aada110a7fd6c3e3e9fad8caeed44a2daa7ffeb210fc8048b626b",
+          "supported": true,
+          "critical": false,
+          "basis": "Current USER declaration supports the choice and the prior language in the correction."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 22,
+      "mode": "chat",
+      "source": "Quanto é 26 somado a 32?",
+      "delivered": "O resultado de 26 somado a 32 é 58.",
+      "dom_first_delivered_ms": 4111,
+      "native_fidelity_status": "checked",
+      "generation_ms": 4219,
+      "extraction_wait_ms": 757,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 23,
+      "mode": "chat",
+      "source": "Como funciona uma bússola?",
+      "delivered": "Uma bússola funciona através do magnetismo, utilizando uma agulha magnetizada que se alinha com o campo magnético da Terra. A ponta da agulha aponta para o polo norte magnético, servindo como um guia de direção constante.",
+      "dom_first_delivered_ms": 5015,
+      "native_fidelity_status": "checked",
+      "generation_ms": 5219,
+      "extraction_wait_ms": 743,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 24,
+      "mode": "chat",
+      "source": "Como eu represento o número 26 em uma variável?",
+      "delivered": "Você pode representar o número 26 em uma variável atribuindo o valor a um nome, como `t = 26`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 4912,
+      "native_fidelity_status": "checked",
+      "generation_ms": 4989,
+      "extraction_wait_ms": 739,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 25,
+      "mode": "chat",
+      "source": "Quanto é 29 somado a 35?",
+      "delivered": "O resultado de 29 somado a 35 é 64.",
+      "dom_first_delivered_ms": 3913,
+      "native_fidelity_status": "checked",
+      "generation_ms": 3977,
+      "extraction_wait_ms": 736,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 26,
+      "mode": "chat",
+      "source": "Como funciona uma lente convexa?",
+      "delivered": "Uma lente convexa funciona convergindo os raios de luz para um ponto comum, o que permite ampliar imagens ou focar objetos. Ela é mais espessa no centro do que nas bordas, sendo usada em dispositivos como lupas e óculos para hipermetropia.",
+      "dom_first_delivered_ms": 5278,
+      "native_fidelity_status": "checked",
+      "generation_ms": 5513,
+      "extraction_wait_ms": 731,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 27,
+      "mode": "chat",
+      "source": "Como eu represento o número 29 em uma variável?",
+      "delivered": "Você pode representar o número 29 em uma variável atribuindo o valor a um nome, como `s = 29`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 5174,
+      "native_fidelity_status": "checked",
+      "generation_ms": 5249,
+      "extraction_wait_ms": 744,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 28,
+      "mode": "chat",
+      "source": "Quanto é 32 somado a 38?",
+      "delivered": "O resultado de 32 somado a 38 é 70.",
+      "dom_first_delivered_ms": 4422,
+      "native_fidelity_status": "checked",
+      "generation_ms": 4438,
+      "extraction_wait_ms": 731,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 29,
+      "mode": "chat",
+      "source": "Como funciona o crescimento de raízes?",
+      "delivered": "O crescimento das raízes ocorre através da divisão celular e alongamento das células, permitindo que a planta se fixe ao solo e absorva água e nutrientes. Esse processo é guiado por hormônios como a auxina, que orientam a raiz a crescer em direção a fontes de umidade e minerais.",
+      "dom_first_delivered_ms": 5762,
+      "native_fidelity_status": "checked",
+      "generation_ms": 5776,
+      "extraction_wait_ms": 761,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 30,
+      "mode": "chat",
+      "source": "Como eu represento o número 32 em uma variável?",
+      "delivered": "Você pode representar o número 32 em uma variável atribuindo o valor a um nome, como `r = 32`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 5487,
+      "native_fidelity_status": "checked",
+      "generation_ms": 5501,
+      "extraction_wait_ms": 736,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 31,
+      "mode": "chat",
+      "source": "Concluí meu objetivo de aprender circuitos elétricos básicos.",
+      "delivered": "Parabéns por concluir seu objetivo de aprender circuitos elétricos básicos.",
+      "dom_first_delivered_ms": 4595,
+      "native_fidelity_status": "checked",
+      "generation_ms": 4760,
+      "extraction_wait_ms": 5027,
+      "claims": [
+        {
+          "literal": "concluir seu objetivo de aprender circuitos elétricos básicos",
+          "sha256": "b28d97d5dbad27817ce0c57ff53fc2df72af284b47322dc2bb08d00b14098c3a",
+          "supported": true,
+          "critical": false,
+          "basis": "Current USER declaration."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 32,
+      "mode": "chat",
+      "source": "Como funciona a sombra de um objeto?",
+      "delivered": "A sombra de um objeto é formada quando ele bloqueia a passagem da luz, impedindo que os raios luminosos atinjam a superfície atrás dele. A área onde a luz é obstruída cria uma região mais escura, cuja forma e tamanho dependem da posição da fonte de luz, do objeto e da superfície de projeção.",
+      "dom_first_delivered_ms": 6611,
+      "native_fidelity_status": "checked",
+      "generation_ms": 6817,
+      "extraction_wait_ms": 739,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 33,
+      "mode": "chat",
+      "source": "Como eu represento o número 35 em uma variável?",
+      "delivered": "Você pode representar o número 35 em uma variável atribuindo o valor a um nome, como `q = 35`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 5785,
+      "native_fidelity_status": "checked",
+      "generation_ms": 6001,
+      "extraction_wait_ms": 736,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 34,
+      "mode": "chat",
+      "source": "Quanto é 38 somado a 44?",
+      "delivered": "O resultado de 38 somado a 44 é 82.",
+      "dom_first_delivered_ms": 4973,
+      "native_fidelity_status": "checked",
+      "generation_ms": 4995,
+      "extraction_wait_ms": 749,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 35,
+      "mode": "chat",
+      "source": "Como funciona uma engrenagem?",
+      "delivered": "Uma engrenagem funciona transmitindo movimento e força entre dois eixos através de dentes interconectados que giram simultaneamente. Esse mecanismo permite alterar a velocidade, o torque e a direção do movimento em sistemas mecânicos.",
+      "dom_first_delivered_ms": 5718,
+      "native_fidelity_status": "checked",
+      "generation_ms": 5733,
+      "extraction_wait_ms": 750,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 36,
+      "mode": "chat",
+      "source": "Como eu represento o número 38 em uma variável?",
+      "delivered": "Você pode representar o número 38 em uma variável atribuindo o valor a um nome, como `p = 38`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 6014,
+      "native_fidelity_status": "checked",
+      "generation_ms": 6028,
+      "extraction_wait_ms": 749,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 37,
+      "mode": "chat",
+      "source": "Quanto é 41 somado a 47?",
+      "delivered": "O resultado de 41 somado a 47 é 88.",
+      "dom_first_delivered_ms": 5213,
+      "native_fidelity_status": "checked",
+      "generation_ms": 5230,
+      "extraction_wait_ms": 763,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 38,
+      "mode": "chat",
+      "source": "Como funciona o brilho de uma estrela?",
+      "delivered": "O brilho de uma estrela é determinado pela sua luminosidade total e pela distância entre ela e o observador. Ele depende de fatores como a temperatura da superfície, o tamanho da estrela e a taxa em que ela produz energia.",
+      "dom_first_delivered_ms": 6263,
+      "native_fidelity_status": "checked",
+      "generation_ms": 6276,
+      "extraction_wait_ms": 732,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 39,
+      "mode": "chat",
+      "source": "Como eu represento o número 41 em uma variável?",
+      "delivered": "Você pode representar o número 41 em uma variável atribuindo o valor a um nome, como `o = 41`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 6204,
+      "native_fidelity_status": "checked",
+      "generation_ms": 6278,
+      "extraction_wait_ms": 743,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 40,
+      "mode": "chat",
+      "source": "Quanto é 44 somado a 50?",
+      "delivered": "O resultado de 44 somado a 50 é 94.",
+      "dom_first_delivered_ms": 5528,
+      "native_fidelity_status": "checked",
+      "generation_ms": 5743,
+      "extraction_wait_ms": 727,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 41,
+      "mode": "chat",
+      "source": "Na verdade, agora são 39 GB.",
+      "delivered": "Entendido, agora são 39 GB.",
+      "dom_first_delivered_ms": 5227,
+      "native_fidelity_status": "checked",
+      "generation_ms": 5245,
+      "extraction_wait_ms": 3218,
+      "claims": [
+        {
+          "literal": "agora são 39 GB",
+          "sha256": "5e00474bec5cb2a41c5b8180494163290b357241fee00898c9d9eff0c80e19a3",
+          "supported": true,
+          "critical": false,
+          "basis": "Current USER declaration. Reply avoids attaching this ambiguous number to a device."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 42,
+      "mode": "chat",
+      "source": "Como eu represento o número 44 em uma variável?",
+      "delivered": "Você pode representar o número 44 em uma variável atribuindo o valor a um nome, como `n = 44`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 6262,
+      "native_fidelity_status": "checked",
+      "generation_ms": 6276,
+      "extraction_wait_ms": 734,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 43,
+      "mode": "chat",
+      "source": "Quanto é 47 somado a 53?",
+      "delivered": "O resultado de 47 somado a 53 é 100.",
+      "dom_first_delivered_ms": 5827,
+      "native_fidelity_status": "checked",
+      "generation_ms": 5988,
+      "extraction_wait_ms": 744,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 44,
+      "mode": "chat",
+      "source": "Como funciona um termômetro?",
+      "delivered": "Um termômetro funciona medindo a variação de uma propriedade física de um material em resposta à temperatura. Dependendo do tipo, ele pode medir a expansão térmica de um líquido (como o mercúrio), a mudança na resistência elétrica de um fio ou a emissão de radiação infravermelha.",
+      "dom_first_delivered_ms": 7277,
+      "native_fidelity_status": "checked",
+      "generation_ms": 7500,
+      "extraction_wait_ms": 744,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 45,
+      "mode": "chat",
+      "source": "Como eu represento o número 47 em uma variável?",
+      "delivered": "Você pode representar o número 47 em uma variável atribuindo o valor a um nome, como `m = 47`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 6834,
+      "native_fidelity_status": "checked",
+      "generation_ms": 7041,
+      "extraction_wait_ms": 742,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 46,
+      "mode": "chat",
+      "source": "Quanto é 50 somado a 56?",
+      "delivered": "O resultado de 50 somado a 56 é 106.",
+      "dom_first_delivered_ms": 6078,
+      "native_fidelity_status": "checked",
+      "generation_ms": 6267,
+      "extraction_wait_ms": 737,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 47,
+      "mode": "chat",
+      "source": "Como funciona o som no ar?",
+      "delivered": "O som no ar funciona através de ondas mecânicas que se propagam como vibrações. Quando um objeto vibra, ele empurra as moléculas de ar ao redor, criando zonas de compressão e rarefação que viajam pelo meio até atingirem nossos ouvidos.",
+      "dom_first_delivered_ms": 7323,
+      "native_fidelity_status": "checked",
+      "generation_ms": 7560,
+      "extraction_wait_ms": 746,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 48,
+      "mode": "chat",
+      "source": "Como eu represento o número 50 em uma variável?",
+      "delivered": "Você pode representar o número 50 em uma variável atribuindo o valor a um nome, como `l = 50`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 7089,
+      "native_fidelity_status": "checked",
+      "generation_ms": 7254,
+      "extraction_wait_ms": 737,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 49,
+      "mode": "chat",
+      "source": "Quanto é 53 somado a 59?",
+      "delivered": "O resultado de 53 somado a 59 é 112.",
+      "dom_first_delivered_ms": 6305,
+      "native_fidelity_status": "checked",
+      "generation_ms": 6496,
+      "extraction_wait_ms": 740,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 50,
+      "mode": "chat",
+      "source": "Como funciona a mudança de estado da água?",
+      "delivered": "A mudança de estado da água ocorre quando ela absorve ou libera energia térmica, alterando sua organização molecular. Isso resulta em transições entre sólido (gelo), líquido (água) e gasoso (vapor) através de processos como fusão, vaporização e solidificação.",
+      "dom_first_delivered_ms": 7728,
+      "native_fidelity_status": "checked",
+      "generation_ms": 7747,
+      "extraction_wait_ms": 760,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 51,
+      "mode": "chat",
+      "source": "Como eu represento o número 53 em uma variável?",
+      "delivered": "Você pode representar o número 53 em uma variável atribuindo o valor a um nome, como `k = 53`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 7450,
+      "native_fidelity_status": "checked",
+      "generation_ms": 7546,
+      "extraction_wait_ms": 732,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 52,
+      "mode": "chat",
+      "source": "Quanto é 56 somado a 62?",
+      "delivered": "O resultado de 56 somado a 62 é 118.",
+      "dom_first_delivered_ms": 6621,
+      "native_fidelity_status": "checked",
+      "generation_ms": 6778,
+      "extraction_wait_ms": 745,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 53,
+      "mode": "chat",
+      "source": "Como funciona um circuito simples?",
+      "delivered": "Um circuito simples funciona permitindo que a corrente elétrica flua em um caminho fechado, geralmente composto por uma fonte de energia (como uma bateria), um condutor (fio) e uma carga (como uma lâmpada). A energia é transferida da fonte para a carga, que realiza um trabalho, e retorna à fonte para completar o ciclo.",
+      "dom_first_delivered_ms": 8436,
+      "native_fidelity_status": "checked",
+      "generation_ms": 8533,
+      "extraction_wait_ms": 740,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 54,
+      "mode": "chat",
+      "source": "Como eu represento o número 56 em uma variável?",
+      "delivered": "Você pode representar o número 56 em uma variável atribuindo o valor a um nome, como `j = 56`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 7757,
+      "native_fidelity_status": "checked",
+      "generation_ms": 7871,
+      "extraction_wait_ms": 762,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 55,
+      "mode": "chat",
+      "source": "Quanto é 59 somado a 65?",
+      "delivered": "O resultado de 59 somado a 65 é 124.",
+      "dom_first_delivered_ms": 7090,
+      "native_fidelity_status": "checked",
+      "generation_ms": 7280,
+      "extraction_wait_ms": 743,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 56,
+      "mode": "chat",
+      "source": "Como funciona uma alavanca?",
+      "delivered": "Uma alavanca funciona como uma máquina simples que utiliza um ponto de apoio (fulcro) para transmitir força e movimento entre dois pontos. Ela permite multiplicar a força aplicada ou a distância percorrida, facilitando o deslocamento de objetos pesados através do equilíbrio de momentos.",
+      "dom_first_delivered_ms": 8295,
+      "native_fidelity_status": "checked",
+      "generation_ms": 8311,
+      "extraction_wait_ms": 734,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 57,
+      "mode": "chat",
+      "source": "Como eu represento o número 59 em uma variável?",
+      "delivered": "Você pode representar o número 59 em uma variável atribuindo o valor a um nome, como `i = 59`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 8196,
+      "native_fidelity_status": "checked",
+      "generation_ms": 8337,
+      "extraction_wait_ms": 732,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 58,
+      "mode": "chat",
+      "source": "Quanto é 62 somado a 68?",
+      "delivered": "O resultado de 62 somado a 68 é 130.",
+      "dom_first_delivered_ms": 7295,
+      "native_fidelity_status": "checked",
+      "generation_ms": 7524,
+      "extraction_wait_ms": 741,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 59,
+      "mode": "chat",
+      "source": "Como funciona a formação de nuvens?",
+      "delivered": "As nuvens se formam quando o vapor de água na atmosfera se resfria e condensa em pequenas gotículas de água ou cristais de gelo. Esse processo geralmente ocorre quando o ar úmido sobe, expande e esfria, permitindo que as moléculas de água se agrupem em torno de partículas menores, como poeira ou sal.",
+      "dom_first_delivered_ms": 9284,
+      "native_fidelity_status": "checked",
+      "generation_ms": 9383,
+      "extraction_wait_ms": 738,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 60,
+      "mode": "chat",
+      "source": "Como eu represento o número 62 em uma variável?",
+      "delivered": "Você pode representar o número 62 em uma variável atribuindo o valor a um nome, como `h = 62`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 8450,
+      "native_fidelity_status": "checked",
+      "generation_ms": 8558,
+      "extraction_wait_ms": 746,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 61,
+      "mode": "chat",
+      "source": "Atualizei o computador principal para 50 GB.",
+      "delivered": "Entendido, você atualizou o computador principal para 50 GB.",
+      "dom_first_delivered_ms": 7577,
+      "native_fidelity_status": "checked",
+      "generation_ms": 7593,
+      "extraction_wait_ms": 3148,
+      "claims": [
+        {
+          "literal": "você atualizou o computador principal para 50 GB",
+          "sha256": "2ce73ee73c94669bd817b9709a7386b2f1404f1626b5d489bbbdef47441a82fa",
+          "supported": true,
+          "critical": false,
+          "basis": "Current USER declaration."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 62,
+      "mode": "chat",
+      "source": "Como funciona ciclo da água?",
+      "delivered": "O ciclo da água é o processo contínuo de movimentação da água entre a superfície da Terra e a atmosfera. Ele envolve etapas como evaporação, condensação, precipitação e infiltração, movidas principalmente pelo calor do sol e pela gravidade.",
+      "dom_first_delivered_ms": 9076,
+      "native_fidelity_status": "checked",
+      "generation_ms": 9183,
+      "extraction_wait_ms": 727,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 63,
+      "mode": "chat",
+      "source": "Como eu represento o número 65 em uma variável?",
+      "delivered": "Você pode representar o número 65 em uma variável atribuindo o valor a um nome, como `g = 65`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 8766,
+      "native_fidelity_status": "checked",
+      "generation_ms": 8959,
+      "extraction_wait_ms": 728,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 64,
+      "mode": "chat",
+      "source": "Quanto é 68 somado a 74?",
+      "delivered": "O resultado de 68 somado a 74 é 142.",
+      "dom_first_delivered_ms": 7895,
+      "native_fidelity_status": "checked",
+      "generation_ms": 8081,
+      "extraction_wait_ms": 752,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 65,
+      "mode": "chat",
+      "source": "Como funciona uma balança?",
+      "delivered": "Uma balança funciona medindo a força da gravidade sobre um objeto ou a massa de um corpo em relação a uma unidade de medida. Dependendo do tipo, ela pode usar um sistema de braços e pesos, uma mola que se estica ou sensores eletrônicos que convertem pressão em sinais digitais.",
+      "dom_first_delivered_ms": 9611,
+      "native_fidelity_status": "checked",
+      "generation_ms": 9843,
+      "extraction_wait_ms": 738,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 66,
+      "mode": "chat",
+      "source": "Como eu represento o número 68 em uma variável?",
+      "delivered": "Você pode representar o número 68 em uma variável atribuindo o valor a um nome, como `f = 68`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 9011,
+      "native_fidelity_status": "checked",
+      "generation_ms": 9126,
+      "extraction_wait_ms": 729,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 67,
+      "mode": "chat",
+      "source": "Quanto é 71 somado a 77?",
+      "delivered": "O resultado de 71 somado a 77 é 148.",
+      "dom_first_delivered_ms": 8338,
+      "native_fidelity_status": "checked",
+      "generation_ms": 8549,
+      "extraction_wait_ms": 746,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 68,
+      "mode": "chat",
+      "source": "Como funciona a força de atrito?",
+      "delivered": "A força de atrito é a resistência ao movimento que ocorre entre duas superfícies em contato, agindo em sentido oposto à direção do deslocamento. Ela depende da natureza das superfícies, da força normal aplicada e da rugosidade do contato.",
+      "dom_first_delivered_ms": 9584,
+      "native_fidelity_status": "checked",
+      "generation_ms": 9598,
+      "extraction_wait_ms": 723,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 69,
+      "mode": "chat",
+      "source": "Como eu represento o número 71 em uma variável?",
+      "delivered": "Você pode representar o número 71 em uma variável atribuindo o valor a um nome, como `e = 71`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 9385,
+      "native_fidelity_status": "checked",
+      "generation_ms": 9578,
+      "extraction_wait_ms": 733,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 70,
+      "mode": "chat",
+      "source": "Quanto é 74 somado a 80?",
+      "delivered": "O resultado de 74 somado a 80 é 154.",
+      "dom_first_delivered_ms": 8760,
+      "native_fidelity_status": "checked",
+      "generation_ms": 8883,
+      "extraction_wait_ms": 741,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 71,
+      "mode": "chat",
+      "source": "Jogos de estratégia por turnos são meus favoritos mesmo depois de experimentar outros gêneros.",
+      "delivered": "Entendido, jogos de estratégia por turnos continuam sendo seus favoritos mesmo após você ter experimentado outros gêneros.",
+      "dom_first_delivered_ms": 8688,
+      "native_fidelity_status": "checked",
+      "generation_ms": 8805,
+      "extraction_wait_ms": 3994,
+      "claims": [
+        {
+          "literal": "jogos de estratégia por turnos continuam sendo seus favoritos",
+          "sha256": "c9446640050dc3c67a67577dd7cc9f10fdfec73ff2d8678e1e059da3af6b78ad",
+          "supported": true,
+          "critical": false,
+          "basis": "Current USER declaration."
+        },
+        {
+          "literal": "você ter experimentado outros gêneros",
+          "sha256": "bae7d49b0dd0e53b9802de44564557b240ad96e9bb953b8ff6c1c7f502c57621",
+          "supported": true,
+          "critical": false,
+          "basis": "Current USER declaration."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 72,
+      "mode": "chat",
+      "source": "Como eu represento o número 74 em uma variável?",
+      "delivered": "Você pode representar o número 74 em uma variável atribuindo o valor a um nome, como `d = 74`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 9822,
+      "native_fidelity_status": "checked",
+      "generation_ms": 9939,
+      "extraction_wait_ms": 729,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 73,
+      "mode": "chat",
+      "source": "Quanto é 77 somado a 83?",
+      "delivered": "O resultado de 77 somado a 83 é 160.",
+      "dom_first_delivered_ms": 8946,
+      "native_fidelity_status": "checked",
+      "generation_ms": 9069,
+      "extraction_wait_ms": 743,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 74,
+      "mode": "chat",
+      "source": "Como funciona a condução de calor?",
+      "delivered": "A condução de calor é a transferência de energia térmica através de um material sólido, onde as moléculas vibram e colidem, transmitindo calor para as vizinhas. Esse processo ocorre de forma mais eficiente em materiais com alta condutividade térmica, como metais.",
+      "dom_first_delivered_ms": 10269,
+      "native_fidelity_status": "checked",
+      "generation_ms": 10387,
+      "extraction_wait_ms": 744,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 75,
+      "mode": "chat",
+      "source": "Como eu represento o número 77 em uma variável?",
+      "delivered": "Você pode representar o número 77 em uma variável atribuindo o valor a um nome, como `c = 77`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 10100,
+      "native_fidelity_status": "checked",
+      "generation_ms": 10225,
+      "extraction_wait_ms": 723,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 76,
+      "mode": "chat",
+      "source": "Eu gosto de RPG tático com evolução de personagem.",
+      "delivered": "É ótimo que você goste de RPGs táticos com evolução de personagem, pois isso permite uma progressão profunda e recompensadora ao longo do jogo.",
+      "dom_first_delivered_ms": 10031,
+      "native_fidelity_status": "checked",
+      "generation_ms": 10155,
+      "extraction_wait_ms": 4614,
+      "claims": [
+        {
+          "literal": "você goste de RPGs táticos",
+          "sha256": "65d9468b0da46413ee0bf8013955335be056993d9a765e77c811362fb838a9f0",
+          "supported": true,
+          "critical": false,
+          "basis": "Current USER declaration."
+        },
+        {
+          "literal": "com evolução de personagem",
+          "sha256": "db078e80873cd40f752aef0cadafcdbdd8c7fa0fc0d87b852c11a686cd1518d9",
+          "supported": true,
+          "critical": false,
+          "basis": "Current USER declaration."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 77,
+      "mode": "chat",
+      "source": "Como funciona um ímã?",
+      "delivered": "Um ímã funciona através do magnetismo, possuindo polos norte e sul que exercem forças de atração ou repulsão sobre outros objetos magnéticos. Isso ocorre devido ao alinhamento dos domínios magnéticos em seu interior, que criam um campo magnético ao redor do objeto.",
+      "dom_first_delivered_ms": 10892,
+      "native_fidelity_status": "checked",
+      "generation_ms": 11013,
+      "extraction_wait_ms": 743,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 78,
+      "mode": "chat",
+      "source": "Como eu represento o número 80 em uma variável?",
+      "delivered": "Você pode representar o número 80 em uma variável atribuindo o valor a um nome, como `b = 80`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 10363,
+      "native_fidelity_status": "checked",
+      "generation_ms": 10377,
+      "extraction_wait_ms": 734,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 79,
+      "mode": "chat",
+      "source": "Quanto é 83 somado a 89?",
+      "delivered": "O resultado de 83 somado a 89 é 172.",
+      "dom_first_delivered_ms": 9796,
+      "native_fidelity_status": "checked",
+      "generation_ms": 9928,
+      "extraction_wait_ms": 742,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 80,
+      "mode": "chat",
+      "source": "Como funciona a difusão de um cheiro?",
+      "delivered": "A difusão de um cheiro ocorre quando as moléculas aromáticas se espalham de uma região de alta concentração para uma de baixa concentração. Esse processo é facilitado pelo movimento aleatório das moléculas no ar ou em um líquido, permitindo que o odor preencha o espaço.",
+      "dom_first_delivered_ms": 11067,
+      "native_fidelity_status": "checked",
+      "generation_ms": 11087,
+      "extraction_wait_ms": 749,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 81,
+      "mode": "chat",
+      "source": "Como eu represento o número 83 em uma variável?",
+      "delivered": "Você pode representar o número 83 em uma variável atribuindo o valor a um nome, como `a = 83`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 10820,
+      "native_fidelity_status": "checked",
+      "generation_ms": 10953,
+      "extraction_wait_ms": 738,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 82,
+      "mode": "chat",
+      "source": "Quanto é 86 somado a 92?",
+      "delivered": "O resultado de 86 somado a 92 é 178.",
+      "dom_first_delivered_ms": 10131,
+      "native_fidelity_status": "checked",
+      "generation_ms": 10265,
+      "extraction_wait_ms": 730,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 83,
+      "mode": "chat",
+      "source": "Como funciona uma bússola?",
+      "delivered": "Uma bússola funciona através do magnetismo, utilizando uma agulha magnetizada que se alinha com o campo magnético da Terra. A ponta da agulha aponta para o polo norte magnético, servindo como um guia de direção constante.",
+      "dom_first_delivered_ms": 11265,
+      "native_fidelity_status": "checked",
+      "generation_ms": 11412,
+      "extraction_wait_ms": 728,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 84,
+      "mode": "chat",
+      "source": "Como eu represento o número 86 em uma variável?",
+      "delivered": "Você pode representar o número 86 em uma variável atribuindo o valor a um nome, como `z = 86`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 11255,
+      "native_fidelity_status": "checked",
+      "generation_ms": 11392,
+      "extraction_wait_ms": 736,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 85,
+      "mode": "chat",
+      "source": "Quanto é 89 somado a 95?",
+      "delivered": "O resultado de 89 somado a 95 é 184.",
+      "dom_first_delivered_ms": 10472,
+      "native_fidelity_status": "checked",
+      "generation_ms": 10635,
+      "extraction_wait_ms": 725,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 86,
+      "mode": "chat",
+      "source": "Esqueça minha preferência por café.",
+      "delivered": "Entendido, esqueci sua preferência por café.",
+      "dom_first_delivered_ms": 10209,
+      "native_fidelity_status": "checked",
+      "generation_ms": 10376,
+      "extraction_wait_ms": 732,
+      "claims": [
+        {
+          "literal": "esqueci sua preferência por café",
+          "sha256": "5eecbd22c4dfa5c353df4177db8062d7f6dcec82e587190653aea7a0fcd20aff",
+          "supported": true,
+          "critical": false,
+          "basis": "Completed source-specific native forget receipt at verification; two native tombstones."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 87,
+      "mode": "chat",
+      "source": "Quanto é 25 menos 4?",
+      "delivered": "O resultado de 25 menos 4 é 21.",
+      "dom_first_delivered_ms": 10332,
+      "native_fidelity_status": "checked",
+      "generation_ms": 10469,
+      "extraction_wait_ms": 725,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 88,
+      "mode": "chat",
+      "source": "Quanto é 92 somado a 98?",
+      "delivered": "O resultado de 92 somado a 98 é 190.",
+      "dom_first_delivered_ms": 10638,
+      "native_fidelity_status": "checked",
+      "generation_ms": 10655,
+      "extraction_wait_ms": 745,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 89,
+      "mode": "chat",
+      "source": "Como funciona o crescimento de raízes?",
+      "delivered": "O crescimento das raízes ocorre através da divisão celular e alongamento das células, permitindo que a planta se fixe ao solo e absorva água e nutrientes. Esse processo é guiado por hormônios como a auxina, que orientam a raiz a crescer em direção a fontes de umidade e minerais.",
+      "dom_first_delivered_ms": 12107,
+      "native_fidelity_status": "checked",
+      "generation_ms": 12247,
+      "extraction_wait_ms": 731,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 90,
+      "mode": "chat",
+      "source": "Como eu represento o número 92 em uma variável?",
+      "delivered": "Você pode representar o número 92 em uma variável atribuindo o valor a um nome, como `x = 92`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 11561,
+      "native_fidelity_status": "checked",
+      "generation_ms": 11707,
+      "extraction_wait_ms": 740,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 91,
+      "mode": "chat",
+      "source": "Na rotina atual, eu prefiro café com açúcar.",
+      "delivered": "Entendido, agora você prefere café com açúcar em sua rotina atual.",
+      "dom_first_delivered_ms": 11128,
+      "native_fidelity_status": "checked",
+      "generation_ms": 11150,
+      "extraction_wait_ms": 3699,
+      "claims": [
+        {
+          "literal": "agora você prefere café com açúcar em sua rotina atual",
+          "sha256": "09ae5abc588ac31ca14a0252667e4c008afd547f876ccc2578ab8205156a7332",
+          "supported": true,
+          "critical": false,
+          "basis": "Current USER declaration. No storage result is claimed."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 92,
+      "mode": "chat",
+      "source": "Quero voltar a registrar minha preferência: eu prefiro café com açúcar.",
+      "delivered": "Entendido, você prefere café com açúcar.",
+      "dom_first_delivered_ms": 10980,
+      "native_fidelity_status": "checked",
+      "generation_ms": 11134,
+      "extraction_wait_ms": 3757,
+      "claims": [
+        {
+          "literal": "você prefere café com açúcar",
+          "sha256": "928627f4fb1b6bd55027a33c4e4a47aed4db80c91bfa8771080d70009994b585",
+          "supported": true,
+          "critical": false,
+          "basis": "Current USER declaration. The reply acknowledges the preference and gives no confirmation of persistence."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1,
+      "qualification": "Useful acknowledgement; request status and pending review remain implicit at display."
+    },
+    {
+      "turn": 93,
+      "mode": "chat",
+      "source": "Quanto é 3 vezes 9?",
+      "delivered": "O resultado de 3 vezes 9 é 27.",
+      "dom_first_delivered_ms": 11381,
+      "native_fidelity_status": "checked",
+      "generation_ms": 11414,
+      "extraction_wait_ms": 732,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 94,
+      "mode": "chat",
+      "source": "Quanto é 98 somado a 104?",
+      "delivered": "O resultado de 98 somado a 104 é 202.",
+      "dom_first_delivered_ms": 11169,
+      "native_fidelity_status": "checked",
+      "generation_ms": 11368,
+      "extraction_wait_ms": 733,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 95,
+      "mode": "chat",
+      "source": "Como funciona uma engrenagem?",
+      "delivered": "Uma engrenagem funciona transmitindo movimento e força entre dois eixos através de dentes interconectados que giram simultaneamente. Esse mecanismo permite alterar a velocidade, o torque e a direção do movimento em sistemas mecânicos.",
+      "dom_first_delivered_ms": 12196,
+      "native_fidelity_status": "checked",
+      "generation_ms": 12407,
+      "extraction_wait_ms": 743,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 96,
+      "mode": "chat",
+      "source": "Como eu represento o número 98 em uma variável?",
+      "delivered": "Você pode representar o número 98 em uma variável atribuindo o valor a um nome, como `m = 98`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 12220,
+      "native_fidelity_status": "checked",
+      "generation_ms": 12391,
+      "extraction_wait_ms": 746,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 97,
+      "mode": "chat",
+      "source": "Quanto é 101 somado a 107?",
+      "delivered": "O resultado de 101 somado a 107 é 208.",
+      "dom_first_delivered_ms": 11506,
+      "native_fidelity_status": "checked",
+      "generation_ms": 11669,
+      "extraction_wait_ms": 742,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 98,
+      "mode": "chat",
+      "source": "Como funciona o brilho de uma estrela?",
+      "delivered": "O brilho de uma estrela é determinado pela sua luminosidade total e pela distância entre ela e o observador. Ele depende de fatores como a temperatura da superfície, o tamanho da estrela e a taxa em que ela produz energia.",
+      "dom_first_delivered_ms": 12610,
+      "native_fidelity_status": "checked",
+      "generation_ms": 12765,
+      "extraction_wait_ms": 726,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 99,
+      "mode": "chat",
+      "source": "Como eu represento o número 101 em uma variável?",
+      "delivered": "Você pode representar o número 101 em uma variável atribuindo o valor a um nome, como `n = 101`. O nome da variável deve ser escolhido de acordo com o contexto do seu código.",
+      "dom_first_delivered_ms": 12680,
+      "native_fidelity_status": "checked",
+      "generation_ms": 12698,
+      "extraction_wait_ms": 748,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 100,
+      "mode": "chat",
+      "source": "Quanto é 104 somado a 110?",
+      "delivered": "O resultado de 104 somado a 110 é 214.",
+      "dom_first_delivered_ms": 12032,
+      "native_fidelity_status": "checked",
+      "generation_ms": 12238,
+      "extraction_wait_ms": 728,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 101,
+      "mode": "chat",
+      "source": "Como está ficando aquele projeto?",
+      "delivered": "O projeto Candeia é um sistema de controle de luminosidade que você está começando. Você decidiu usar a linguagem Rust e planeja utilizar o PostgreSQL como banco de dados.",
+      "dom_first_delivered_ms": 7237,
+      "native_fidelity_status": "regenerated",
+      "generation_ms": 7271,
+      "extraction_wait_ms": 748,
+      "claims": [
+        {
+          "literal": "um sistema de controle de luminosidade que você está começando",
+          "sha256": "e6c649d9f9be20865aad6a9c12a14fb3f06976f066c396a08149246751ec7aee",
+          "supported": true,
+          "critical": false,
+          "basis": "Exact description record preserves the USER saying they were starting a luminosity-control project."
+        },
+        {
+          "literal": "Você decidiu usar a linguagem Rust",
+          "sha256": "f4a554c8f224de8cea48ba041193d3bcf7b0b2988bb38863ab5f68346d9eb2b7",
+          "supported": true,
+          "critical": false,
+          "basis": "Exact active replacement, Rust v2, and USER decision."
+        },
+        {
+          "literal": "planeja utilizar o PostgreSQL como banco de dados",
+          "sha256": "a11209ad5505270f417f14de7fa95b616b4821c059391a21d2c0e25b93581f7a",
+          "supported": true,
+          "critical": false,
+          "basis": "Exact stage database record has temporal=planned."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 3,
+      "expected_original_atoms": 3
+    },
+    {
+      "turn": 102,
+      "mode": "agent",
+      "source": "Should I add sugar to my coffee now?",
+      "delivered": "Since you prefer coffee with sugar, you should add some now.",
+      "dom_first_delivered_ms": 5733,
+      "native_fidelity_status": "checked",
+      "generation_ms": 5948,
+      "extraction_wait_ms": 768,
+      "claims": [
+        {
+          "literal": "you prefer coffee with sugar",
+          "sha256": "0315885da6daf8b38cc6c0c70323391b4137955a33e665d2a12023296f47b068",
+          "supported": true,
+          "critical": false,
+          "basis": "Exact manually approved explicit-renewal record v2."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 103,
+      "mode": "code",
+      "source": "What is the RAM capacity of my main desktop?",
+      "delivered": "Your main desktop has 50 GB of RAM.",
+      "dom_first_delivered_ms": 4865,
+      "native_fidelity_status": "checked",
+      "generation_ms": 4980,
+      "extraction_wait_ms": 765,
+      "claims": [
+        {
+          "literal": "Your main desktop has 50 GB of RAM",
+          "sha256": "8b3a4af24c221ad6aadf7ef8fdec000e18511306be0808c99889b71bf92e9172",
+          "supported": true,
+          "critical": false,
+          "basis": "Exact approved correction for the main computer."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 104,
+      "mode": "chat",
+      "source": "Quanto de RAM tem meu notebook de trabalho?",
+      "delivered": "Seu notebook de trabalho tem 18 GB de RAM.",
+      "dom_first_delivered_ms": 2261,
+      "native_fidelity_status": "checked",
+      "generation_ms": 2440,
+      "extraction_wait_ms": 737,
+      "claims": [
+        {
+          "literal": "Seu notebook de trabalho tem 18 GB de RAM",
+          "sha256": "bb13f88753ffd384e90c5accd0001177fd390ce7506414000c30730e010dccf8",
+          "supported": true,
+          "critical": false,
+          "basis": "Exact record for the work laptop."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 105,
+      "mode": "chat",
+      "source": "Qual objetivo eu concluí sobre circuitos elétricos básicos?",
+      "delivered": "Você concluiu o objetivo de aprender circuitos elétricos básicos.",
+      "dom_first_delivered_ms": 2326,
+      "native_fidelity_status": "checked",
+      "generation_ms": 2426,
+      "extraction_wait_ms": 732,
+      "claims": [
+        {
+          "literal": "Você concluiu o objetivo de aprender circuitos elétricos básicos",
+          "sha256": "2ff320d6b00ab8cfe8571d4b16413beffb9aa410bfa37d3be23d9a79ff13880a",
+          "supported": true,
+          "critical": false,
+          "basis": "Exact approved completed goal record."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 106,
+      "mode": "chat",
+      "source": "Qual tipo de RPG combina com minhas preferências?",
+      "delivered": "RPG de estratégia por turnos combina perfeitamente com você, especialmente aqueles que focam em combate tático e evolução de personagens. Como você prefere sistemas com classes e progressão clara, jogos que equilibram estratégia e RPG serão os mais adequados.",
+      "dom_first_delivered_ms": 4150,
+      "native_fidelity_status": "checked",
+      "generation_ms": 4229,
+      "extraction_wait_ms": 754,
+      "claims": [
+        {
+          "literal": "RPG de estratégia por turnos",
+          "sha256": "146c8269973736d272d29c98798b9ecd7f3620800a54db350c2d1dcd1894faf5",
+          "supported": true,
+          "critical": false,
+          "basis": "Exact current turn-strategy and tactical RPG preferences."
+        },
+        {
+          "literal": "combate tático",
+          "sha256": "f77b3cbf9872446d907138c92027eeb0993f9cd08cfff47b19fd133c69cf81d0",
+          "supported": true,
+          "critical": false,
+          "basis": "Exact tactical RPG preference."
+        },
+        {
+          "literal": "evolução de personagens",
+          "sha256": "3663f02f216bc2ee908c9f0eb90bc68fe5c0073f022e3056753ff90724d58282",
+          "supported": true,
+          "critical": false,
+          "basis": "Current stage tactical preference contains progression and explicit evidence."
+        },
+        {
+          "literal": "você prefere sistemas com classes e progressão clara",
+          "sha256": "8f8f4266265bf9e4daf54ced7eb2d0c839e1beb19ec5e5f051d99329caa0af1e",
+          "supported": true,
+          "critical": false,
+          "basis": "Current stage tactical preference has classes and progression from earlier and current USER sources."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 107,
+      "mode": "chat",
+      "source": "Como você deve explicar um algoritmo para mim?",
+      "delivered": "Como você prefere explicações detalhadas, devo descrever cada etapa do algoritmo com profundidade, cobrindo a lógica interna e os detalhes técnicos. Isso inclui explicar o funcionamento de cada componente, a complexidade e como os dados se transformam em cada fase do processo.",
+      "dom_first_delivered_ms": 3658,
+      "native_fidelity_status": "checked",
+      "generation_ms": 3675,
+      "extraction_wait_ms": 739,
+      "claims": [
+        {
+          "literal": "você prefere explicações detalhadas",
+          "sha256": "db2a3badf359aebfeb534fcf34700919c9a0b9906be819074171530e88174780",
+          "supported": true,
+          "critical": false,
+          "basis": "Exact active communication-style preference."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 108,
+      "mode": "chat",
+      "source": "Qual tema eu prefiro na minha interface?",
+      "delivered": "Você prefere o modo claro para a interface do seu dia a dia.",
+      "dom_first_delivered_ms": 2390,
+      "native_fidelity_status": "checked",
+      "generation_ms": 2452,
+      "extraction_wait_ms": 739,
+      "claims": [
+        {
+          "literal": "Você prefere o modo claro",
+          "sha256": "09a6a06fed719456cc1e3d747d972da74a2f2a2fedca9179b3ff3b920670ff34",
+          "supported": true,
+          "critical": false,
+          "basis": "Exact active interface-theme preference."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1
+    },
+    {
+      "turn": 109,
+      "mode": "chat",
+      "source": "Qual é a capital da Bolívia?",
+      "delivered": "A capital da Bolívia é Sucre. A cidade de La Paz também é importante, sendo a sede de governo e a maior cidade do país.",
+      "dom_first_delivered_ms": 2615,
+      "native_fidelity_status": "checked",
+      "generation_ms": 2676,
+      "extraction_wait_ms": 738,
+      "claims": [],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1,
+      "qualification": "Correct requested answer Sucre and no personal retrieval; general-knowledge addenda are outside this memory audit."
+    },
+    {
+      "turn": 110,
+      "mode": "chat",
+      "source": "Qual linguagem está no projeto candeia2?",
+      "delivered": "Não há registro específico sobre a linguagem do projeto candeia2 no momento. Poderia me informar qual é o projeto ou fornecer mais detalhes?",
+      "dom_first_delivered_ms": 2524,
+      "native_fidelity_status": "checked",
+      "generation_ms": 2671,
+      "extraction_wait_ms": 755,
+      "claims": [
+        {
+          "literal": "Não há registro específico sobre a linguagem do projeto candeia2 no momento",
+          "sha256": "bbf590418500a0c4fae2a26786cad38789eac8350c4c565ecaeb34bab9994568",
+          "supported": false,
+          "critical": false,
+          "basis": "No cross-project records were injected. Wording could be read as global absence, while candeia2 held an active JavaScript record. The original gold accepts a bounded reading; this literal absence gets no unambiguous support credit."
+        }
+      ],
+      "useful_original_regression": true,
+      "retained_original_atoms": 1,
+      "expected_original_atoms": 1,
+      "qualification": "Meets original probe by avoiding out-of-binding facts; omits an explicit current-binding qualifier."
+    }
+  ],
+  "limits": [
+    "The additional turn-strategy reference in probe 106 supports the RPG recommendation but counts as extra under the unchanged retrieval gold.",
+    "The 128 GB premise is tested in separate suites. H100 verifies the 50 GB named correction and 18 GB laptop without testing that wording.",
+    "This known regression does not compensate for failures on frozen new cases.",
+    "This curation publishes synthetic sources, replies, timelines and scoped record summaries. Raw service logs, source proofs, leases, credentials and private paths are omitted."
+  ]
+}

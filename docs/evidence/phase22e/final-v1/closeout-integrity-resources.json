@@ -1,0 +1,328 @@
+{
+  "utc": "2026-11-11T11:05:28.793062+00:00",
+  "freeze_sha256": "31cd0b728ebafd1ce1adea7e3febe250deb8180cb5ef322d951c096be49d436b",
+  "frozen_sources_verified": 4690,
+  "frozen_corpus_verified": 14,
+  "artifacts": {
+    "native_gui_matches": true,
+    "native_bridge_matches": true,
+    "frontend_files": 934,
+    "frontend_matches": true
+  },
+  "protected": {
+    "baseline_utc": "2026-11-04T19:31:27.178888+00:00",
+    "total": 104,
+    "matched": 104,
+    "differing_or_unavailable": 0,
+    "categories": {
+      "installed_program_files": {
+        "total": 42,
+        "matched": 42
+      },
+      "existing_ai_files": {
+        "total": 62,
+        "matched": 62
+      }
+    }
+  },
+  "model_weights": {
+    "gemma": {
+      "bytes": 7381381760,
+      "sha256": "59656d7494d6376ca97e9e20b64ea2e16cd97f12ec6d47bfccba91cb785b5134",
+      "matched": true
+    },
+    "nomic": {
+      "bytes": 274290560,
+      "sha256": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "matched": true
+    }
+  },
+  "runtime": {
+    "sha256": "d629481a5c60518afd6679b3fcb9e428a98523628470ed3b88d5261b0df712cb",
+    "matched": true,
+    "bundle_files": 54,
+    "bundle_matched": 54,
+    "manifest_sha256": "0677891f81b61b8f683ab62c777ab8ce1f7b40b5eceaf236dc3dd9cb8984cef9"
+  },
+  "sqlite": {
+    "mode": "read-only + query_only on the isolated QA stores",
+    "extraction_files": 120,
+    "extraction_files_ok": 120,
+    "partial_retrieval": {
+      "quick_check": [
+        "ok"
+      ],
+      "integrity_check": [
+        "ok"
+      ],
+      "foreign_key_errors": 0,
+      "schema": 5
+    },
+    "gui": {
+      "quick_check": [
+        "ok"
+      ],
+      "integrity_check": [
+        "ok"
+      ],
+      "foreign_key_errors": 0,
+      "schema": 5,
+      "identity_version": 3,
+      "scopes": [
+        {
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "state": "active",
+          "count": 11
+        },
+        {
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "state": "obsolete",
+          "count": 3
+        },
+        {
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia2",
+          "state": "active",
+          "count": 8
+        },
+        {
+          "scope": "phase22e-development-known-v1",
+          "project": "corticeira",
+          "state": "active",
+          "count": 5
+        },
+        {
+          "scope": "phase22e-development-known-v2",
+          "project": "corticeira",
+          "state": "active",
+          "count": 8
+        },
+        {
+          "scope": "phase22e-development-known-v2",
+          "project": "corticeira",
+          "state": "obsolete",
+          "count": 1
+        },
+        {
+          "scope": "phase22e-development-known-v3",
+          "project": "corticeira",
+          "state": "active",
+          "count": 3
+        },
+        {
+          "scope": "phase22e-fault-development-transport-v3-agent",
+          "project": "sintetico",
+          "state": "active",
+          "count": 1
+        },
+        {
+          "scope": "phase22e-fault-development-transport-v3-chat",
+          "project": "sintetico",
+          "state": "active",
+          "count": 1
+        },
+        {
+          "scope": "phase22e-fault-development-transport-v3-code",
+          "project": "sintetico",
+          "state": "active",
+          "count": 1
+        },
+        {
+          "scope": "phase22e-fault-final-e-source-order",
+          "project": "sintetico-e",
+          "state": "active",
+          "count": 1
+        },
+        {
+          "scope": "phase22e-fault-final-restart-lease",
+          "project": "sintetico",
+          "state": "active",
+          "count": 4
+        },
+        {
+          "scope": "phase22e-fault-final-source-order",
+          "project": "sintetico",
+          "state": "active",
+          "count": 1
+        },
+        {
+          "scope": "phase22e-fault-final22e-transport-v1-agent",
+          "project": "sintetico-e",
+          "state": "active",
+          "count": 1
+        },
+        {
+          "scope": "phase22e-fault-final22e-transport-v1-chat",
+          "project": "sintetico-e",
+          "state": "active",
+          "count": 1
+        },
+        {
+          "scope": "phase22e-fault-supp-e-final-e-restart-lease",
+          "project": "sintetico-e",
+          "state": "active",
+          "count": 4
+        },
+        {
+          "scope": "phase22e-fault-supplemental-transport-22e-code",
+          "project": "sintetico-e",
+          "state": "active",
+          "count": 1
+        },
+        {
+          "scope": "phase22e-final-gui-main",
+          "project": "jatoba",
+          "state": "active",
+          "count": 7
+        },
+        {
+          "scope": "phase22e-final-gui-main",
+          "project": "pitanga",
+          "state": "active",
+          "count": 3
+        }
+      ],
+      "tombstones": [
+        {
+          "scope": "phase22c-final-historical-series",
+          "project": "candeia",
+          "count": 2
+        },
+        {
+          "scope": "phase22e-development-known-v2",
+          "project": "corticeira",
+          "count": 3
+        },
+        {
+          "scope": "phase22e-development-known-v3",
+          "project": "corticeira",
+          "count": 3
+        }
+      ],
+      "final_fault_jobs": [
+        {
+          "scope": "phase22e-fault-final-e-cancel-agent",
+          "mode": "agent",
+          "state": "cancelled",
+          "attempts": 0,
+          "count": 1
+        },
+        {
+          "scope": "phase22e-fault-final-e-cancel-chat",
+          "mode": "chat",
+          "state": "cancelled",
+          "attempts": 0,
+          "count": 1
+        },
+        {
+          "scope": "phase22e-fault-final-e-cancel-code",
+          "mode": "code",
+          "state": "cancelled",
+          "attempts": 0,
+          "count": 1
+        },
+        {
+          "scope": "phase22e-fault-final-e-source-order",
+          "mode": "chat",
+          "state": "done",
+          "attempts": 1,
+          "count": 2
+        },
+        {
+          "scope": "phase22e-fault-final22e-transport-v1-agent",
+          "mode": "agent",
+          "state": "done",
+          "attempts": 1,
+          "count": 1
+        },
+        {
+          "scope": "phase22e-fault-final22e-transport-v1-chat",
+          "mode": "chat",
+          "state": "done",
+          "attempts": 1,
+          "count": 1
+        }
+      ]
+    }
+  },
+  "samples": [
+    {
+      "source": "system-resources-22e-before-host-reboot.ndjson",
+      "sha256": "a5f44666df8d3bec07d5dc8468819ae67ee5640db238a80cc9eb0300141cd5ee",
+      "sample_count": 410,
+      "first_utc": "2026-11-04T23:23:59.6349672Z",
+      "last_utc": "2026-11-05T00:37:27.0922880Z",
+      "lowest_available_mib": 406,
+      "lowest_available_utc": "2026-11-05T00:36:12.2537976Z",
+      "peak_commit_mib": 24078.93,
+      "minimum_commit_headroom_mib": 8644.44,
+      "peak_pages_per_second": 19267,
+      "peak_own_native_gui_working_set_mib": 49.84,
+      "peak_own_native_gui_private_mib": 27.88
+    },
+    {
+      "source": "system-resources-22e.ndjson",
+      "sha256": "2ff0235e8f290f6ed55f3e44f2b1e09da1cd6713229e58da2423a0942a2c8523",
+      "sample_count": 55,
+      "first_utc": "2026-11-11T10:55:29.9161186Z",
+      "last_utc": "2026-11-11T11:05:05.0348056Z",
+      "lowest_available_mib": 2080,
+      "lowest_available_utc": "2026-11-11T10:58:41.5264893Z",
+      "peak_commit_mib": 18143.03,
+      "minimum_commit_headroom_mib": 14580.34,
+      "peak_pages_per_second": 12733,
+      "peak_own_native_gui_working_set_mib": 64.65,
+      "peak_own_native_gui_private_mib": 18.82
+    }
+  ],
+  "projected_plus_2048_mib": {
+    "minimum_baseline_mib": 406,
+    "arithmetical_mib": 2454,
+    "measured": false
+  },
+  "cleanup": {
+    "ports": {
+      "15283": "closed",
+      "15284": "closed",
+      "15287": "closed",
+      "15288": "closed",
+      "15289": "closed"
+    },
+    "model_stop_records": {
+      "gemma": {
+        "exit_code": 1,
+        "stop_reason": "requested test shutdown",
+        "stop_identity_verified": true
+      },
+      "nomic": {
+        "exit_code": 1,
+        "stop_reason": "requested test shutdown",
+        "stop_identity_verified": true
+      }
+    },
+    "extra_series_200_run": false,
+    "sampler_stop_marker": true,
+    "role_check": {
+      "ports_closed": [
+        15283,
+        15284,
+        15287,
+        15288,
+        15289
+      ],
+      "verified_utc": "2026-11-11T11:05:15.1536699Z",
+      "live_owned_roles": [],
+      "roles_checked": [
+        "gui",
+        "vite",
+        "sampler",
+        "gemma",
+        "nomic",
+        "broker"
+      ]
+    },
+    "role_check_sha256": "618d7394b57d7de9d3572890de0bb1e3967dd6dd9c21d141a4986a0e76620c39"
+  }
+}

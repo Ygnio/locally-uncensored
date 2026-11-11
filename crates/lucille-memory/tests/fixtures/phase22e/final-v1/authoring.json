@@ -1,0 +1,60 @@
+{
+  "id": "phase22e-final-authoring-v1",
+  "authored_after_development": {
+    "production_code_commit": "9fca27daf715ef5597e2536f6651583b48ec1f2b",
+    "ended_utc": "2026-11-04T23:08:29.325397+00:00",
+    "authored_utc": "2026-11-04 23:15:30 UTC",
+    "no_native_or_model_rehearsal": true,
+    "authoring": "New synthetic sources and semantic gold authored after development by the same Codex author/team as implementation. This is not external or fully independent blinded evaluation. One explicitly marked known_anchor is a known development anchor."
+  },
+  "status": "authored_unexecuted_before_freeze",
+  "new_evaluation_occurred": false,
+  "authorship": "Same Codex author/team as implementation. Semantic gold was authored after development; this is not externally authored or blinded and does not claim complete evaluator independence.",
+  "permitted_reads": [
+    "Frozen E scripts/evaluator contract schemas",
+    "Old D fixtures for format and canonical fields",
+    "Known E development selector/anchor schemas to avoid an invalid cancellation selector"
+  ],
+  "forbidden_actions_not_performed": [
+    "No model/embedding calls",
+    "No NativeStore/bridge/UI/application tests",
+    "No new-data retrieval or answer-result inspection",
+    "No native selector preflight",
+    "No production/evaluator mutation",
+    "No old corpus mutation",
+    "No commit"
+  ],
+  "counts": {
+    "extraction_cases": 40,
+    "extraction_positive": 20,
+    "extraction_negative": 20,
+    "known_anchors": 1,
+    "new_extraction_sources": 39,
+    "retrieval_events": 17,
+    "retrieval_atomic_learns": 16,
+    "retrieval_queries": 29,
+    "mandatory_lexical_queries": 20,
+    "answer_cases": 22,
+    "gui_turns_and_probes": 38,
+    "fault_cases": 6,
+    "planned_answer_and_gui_slots": 60
+  },
+  "run_order": [
+    "Freeze files and existing E artifacts before evaluation",
+    "A extraction",
+    "C retrieval learns then queries",
+    "D answers using exact C store",
+    "GUI main with explicit main scope/project",
+    "GUI other with same scope and different explicitly bound project, preserving main",
+    "GUI empty with explicit empty scope",
+    "Known-protocol faults with new synthetic sources"
+  ],
+  "fallback_known48": "An already E-validated known48 fixture may be reused unchanged by freeze. No replacement is authored and it is not relabelled new.",
+  "static_audit": "Only JSON/UTF8/LF parsing, literal source substrings, unique ids/scopes, label references, selector-to-authored-seed semantics, mandatory flags, replay index reachability, fixture names/lengths and atom-definition coverage are inspected. No product result is consulted.",
+  "gates_reference": "answer-rubric.json",
+  "limitations": [
+    "No selector/canonical record is prevalidated against application state. Any extraction/selector failure remains a scored evaluation failure.",
+    "The full cross-project comparison includes an intentionally unavailable requested part in full-request completeness. No scope widening.",
+    "Project lifecycle resumption is not covered; cancellation, historical retrieval and preference renewal after deletion are authored."
+  ]
+}
