@@ -101,6 +101,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   const all = [...snapshot.facts, ...snapshot.currentStatements].filter(f => f.scope === snapshot.scope && f.project === snapshot.project)
   const current = all.filter(f => f.validity !== 'historical')
   const query = fold(snapshot.query)
+  const askedProperties = requestedMemoryProperties(snapshot.query)
   const personalQuestion = /\b(?:meu|minha|meus|minhas|my|our|aquele|aquela|aqueles|aquelas|that)\b|pref|gosto|lembra|remember/.test(query) || (/\b(?:eu|i)\b/.test(query) && /tenho|tomo|bebo|gosto|escolhi|decidi|conclui|terminei|finalizei|have|drink|chose|choose|decided|like|prefer/.test(query))
   const preferenceQuestion = personalQuestion && /pref|gost|favorit|tema|theme|interface|bebida|beverage|respost|answer|repl|explain|cafe|coffee|idioma|language|jogo|game|character|personag|classe/.test(query)
   const projectQuestion = personalQuestion && /projeto|project|linguagem|language|banco|database/.test(query)
@@ -204,10 +205,16 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
         if (!['de', 'do', 'da', 'que', 'that', 'which', 'sobre', 'about', 'sem', 'com', 'para', 'with', 'without', 'esta', 'esteja', 'e', 'is', 'was', 'foi', 'sera', 'vai', 'ainda', 'has', 'tem', 'continua', 'planeja', 'agora', 'atualmente', 'recentemente', 'recently', 'anteriormente', 'previously', 'atual', 'current', 'ou', 'or', 'hoje', 'usa', 'usava', 'utiliza', 'utilizava', 'possui', 'segue', 'parece', 'estava', 'estara', 'ja', 'nao', 'aqui', 'precisa', 'exige', 'requer', 'apresenta', 'will', 'uses', 'needs', 'requires', 'currently', 'now', 'already', 'still', 'seems', 'would', 'could', 'should', 'may', 'might', 'can'].includes(name) && name !== fold(snapshot.project) && identitySyntax) add('unsupported_project_entity', span)
       }
     }
-    if (subject || projectQuestion) {
+    // A standalone plan predicate can inherit a project from a preceding,
+    // verified clause about the same requested technology field.
+    const impliedPlan = /^(?:(?:para o futuro|futuramente|in the future)[,\s]+)?(?:(?:e|and)\s+)?(?:esta planejad[ao] usar|planeja usar|pretende usar|is planned to use|plans to use|intends to use)\s+(?:(?:a linguagem|o banco|the language|the database)\s+)?[a-z0-9]+(?:\s+(?:no futuro|futuramente|in the future))?[.!]?$/.test(q.trim())
+    if (subject || projectQuestion || impliedPlan) {
       for (const value of ['typescript', 'javascript', 'python', 'rust', 'sqlite', 'postgresql', 'mysql']) {
         if (!new RegExp('\\b' + value + '\\b').test(q)) continue
         const property = ['sqlite', 'postgresql', 'mysql'].includes(value) ? 'database' : 'language'
+        if (!subject && !projectQuestion && (!askedProperties.includes(property) || !assertions.some(a =>
+          a.span !== span && a.supported && a.entity === 'project.' + snapshot.project && a.property === property &&
+          !violations.some(v => v.span === a.span)))) continue
         if (/\bprojeto|\bproject|linguagem|programming language|banco de dados|database/.test(q) || projectQuestion || (subject && personalQuestion && /escolh|decid|guardar|armazen|persist|store|stack/.test(query)) || (current.some(f => f.property === property && f.entity === 'project.' + snapshot.project) && !/objetivo|goal|aprender|learn|estud|study/.test(q))) {
           const choiceOrigin=technologyRoles(span).some(role=>role.value===value && role.role==='origin')
           record(span, property, value, 'project.' + snapshot.project, false, choiceOrigin)
@@ -338,7 +345,6 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     }
     if (subject && /\b(?:20\d\d)\b/.test(q) && /projeto|project|computador|computer/.test(q) && !current.some(f => mentions(span, f.value) && /date|data|year/.test(f.property))) add('unsupported_personal_date', span)
   }
-  const askedProperties = requestedMemoryProperties(snapshot.query)
   const foreignActor = /\b(?:irmao|irma|brother|sister|colega|colleague|amigo|friend)\b/.test(query)
   const askedEntity = entityIn(snapshot.query)
   const generalProjectStatus = projectQuestion && /como esta|como anda|how is|status of/.test(query) && !/linguagem|language|banco|database/.test(query)

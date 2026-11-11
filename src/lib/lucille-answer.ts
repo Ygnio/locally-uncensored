@@ -149,8 +149,15 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
     snapshot = answerSnapshot(current)
     if (!snapshot) throw new Error('Lucille refreshed context snapshot unavailable')
     const codes = [...new Set(check.violations.map(v => v.code))].join(', ')
+    const modalityEvidence = check.assertions.filter(a => a.supported && check.violations.some(v =>
+      v.span === a.span && v.code === 'plan_or_decision_as_execution')).flatMap(a =>
+      [...evidence.facts, ...evidence.currentStatements].filter(f =>
+        a.references.includes(f.id) && f.entity === a.entity && f.property === a.property && f.value === a.value &&
+        f.scope === evidence.scope && f.project === evidence.project && ['decision','planned'].includes(f.modality))
+        .map(f => ({ entity:f.entity, property:f.property, value:f.value, modality:f.modality, validity:f.validity })))
     const repairs:Record<string,string>={
       authority_execution:'A project choice or description does not attest execution or progress. Keep the known choice and state what execution evidence is unavailable.',
+      authority_project_stage:'Keep any confirmed implementation details. Ask about the stage directly if relevant, without presupposing it has reached a particular stage.',
       authority_preference_transition:'Renewed storage does not mean the user stopped or resumed liking anything. The supported relation is a present preference; the unsupported relation is a personal transition. Formulate the present preference directly. Do not use resumed, again, voltou a gostar, retomou or deixou de gostar without an original source attesting that personal transition.',
       authority_file_inventory:'The tool only observed its requested directory. It has no verified exhaustive binding to the remembered project. State the scoped project lifecycle from memory; do not infer project file absence.',
       authority_stack_transition:'A choice to change technology does not prove an executed replacement. Preserve the decision, with the origin and target in their proper roles.',
@@ -165,7 +172,7 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
       application_owned_memory_confirmation:'The application reports the result of memory operations. Acknowledge the user content without reporting an operation outcome in the response or narration.',
       unproven_personal_performance:'For this retry, restrict the answer to acknowledging the equipment and capacity actually stated by the USER. Do not discuss capabilities, speed, free room, fluency, stability, applications, performance or bottlenecks at all. Capacity alone proves none of those personal outcomes.',
       modality_omitted:'A matched canonical choice is only planned or hypothetical. Preserve its qualifier. If you are acknowledging hardware, omit the unasked technology stack rather than implying it is implemented.',
-      plan_or_decision_as_execution:'The source is only a plan or decision. State its actual modality; do not claim implementation or execution.',
+      plan_or_decision_as_execution:'State a verified decision as the user’s choice (“você escolheu”, “you chose”), or a plan as intent. Do not say that the project “utiliza”, “usa” or “uses” that technology. Give the supported own fact, then express each other unavailable relation separately.',
       terminal_project_plan_as_current:'The retrieved plan preceded the project’s terminal state. State the earlier plan in the past tense; preserve separately what is unavailable about the other person or project.',
       unproven_project_progress:'Current project work is not established by the sources. State that current execution is unconfirmed, without claiming it has not begun.',
       unproven_completion:'There is no supported completion claim. Preserve the actual known plan, decision or state and make uncertainty about completion explicit.',
@@ -179,6 +186,7 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
       wrong_decision_actor:'The decision or unknown status belongs to the user and their project. Do not claim in first person that you made or did not make the decision.',
     }
     const guidance=[...new Set(check.violations.map(v=>repairs[v.code]).filter(Boolean))].join(' ')
+      + (modalityEvidence.length ? ' Verified facts for the rejected predicate, with their actual modality: '+JSON.stringify(modalityEvidence) : '')
       + (language ? ' Required response language: '+(language==='en'?'English':'Portuguese')+'. Translate the formulation into that language; retain proper names and technical values.' : '')
       + (evidence.sourceAuthority && (evidence.sourceAuthority.external>0 || evidence.sourceAuthority.quoted>0) ? ' The current USER transported external or quoted speech. Preserve that speaker; first-person wording inside a tool/document/fiction is not a personal USER preference. Only independently personal source parts or confirmed canonical facts support USER attributes. Native source classification: '+JSON.stringify(evidence.sourceAuthority) : '')
       + ' Rejected predicate relations (not authoritative facts): '

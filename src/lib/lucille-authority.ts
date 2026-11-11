@@ -119,6 +119,8 @@ function literalEvidence(span: string, facts: MemoryFact[]) {
   return facts.filter(f => f.evidence.some(e => e.role !== 'previous_property_link_not_current_value' && normalizeEvidenceText(e.text).replace(/[.!?]+$/, '').trim() === literal))
 }
 
+const implementationStage = /^(?:voce (?:esta|se encontra)|you are|(?:o projeto|the project)(?:\s+[\p{L}\p{N}_-]+){0,3}\s+(?:esta|is))\s+(no (?:inicio(?: ou no meio)?|meio|fim) da implementacao|em fase (?:inicial|intermediaria|final)|in the (?:early stages|middle|final stages) of implementation|in the (?:initial|intermediate|final) phase)\b/u
+
 /** Finite high-risk relations, separate from surface value extraction. */
 export function authorityClaims(text: string, snapshot: AnswerSnapshot): AuthorityClaim[] {
   const facts = [...snapshot.facts, ...snapshot.currentStatements].filter(f => f.scope === snapshot.scope && f.project === snapshot.project)
@@ -130,6 +132,14 @@ export function authorityClaims(text: string, snapshot: AnswerSnapshot): Authori
   for (const span of answerRelationClauses(text).filter(s=>s.trim())) {
     if(externalAssertion(span))continue
     const q = normalizeEvidenceText(span)
+    // A factive lead-in makes a claim even when the main clause asks a question.
+    const presupposition = q.match(/^\s*(?:como|since|given that)\s+([^,]+),/u)
+    const stage = (presupposition?.[1] ?? (span.trim().endsWith('?') ? '' : q.trim())).match(implementationStage)?.[1]
+    if (stage) {
+      const entity = 'project.' + snapshot.project
+      const proof = current.filter(f => f.entity === entity && f.property === 'project_stage' && f.value === stage)
+      add(presupposition ? span.slice(0,presupposition[0].length) : span,entity,'project_stage',stage,'state',proof,'Evidence of implementation does not establish its stage.',false)
+    }
     if (span.trim().endsWith('?')) continue
     const epistemic = /nao (?:ha|tenho).{0,35}(?:confirmacao|evidencia)|no (?:confirmation|evidence)|(?:not|isn.t|nao).{0,18}(?:confirmed|confirmado)|cannot confirm|nao (?:implica|significa|comprova)|does not (?:mean|imply|prove)|doesn.t (?:mean|imply|prove)/.test(q)
     const hypothetical = (predicate:RegExp) => {
