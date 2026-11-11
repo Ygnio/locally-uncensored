@@ -2,6 +2,7 @@ use lucille_memory::{
     dialogue,
     intelligent::{Interaction, LearningPolicy},
     llm::ExtractionMode,
+    semantic::{EmbeddingSpace, QueryVector},
     source_authority::{clauses, Origin},
     Action, ConfigurationPermit, Mode, Profile, Status, Store, TurnRequest,
 };
@@ -93,26 +94,213 @@ fn request(query: &str) -> TurnRequest {
 }
 
 fn learn_reviewed(store: &mut Store, id: &str, source: &str) {
-    let job = store.enqueue_learning(input(id, source)).unwrap();
+    learn_reviewed_in(store, id, PROJECT, source);
+}
+
+fn learn_reviewed_in(store: &mut Store, id: &str, project: &str, source: &str) -> Vec<String> {
+    let mut interaction = input(id, source);
+    interaction.project = project.into();
+    let job = store.enqueue_learning(interaction).unwrap();
     assert_eq!(job["state"], "queued", "{source}");
     complete(store, "");
     let candidates: Vec<_> = store
-        .memory_details(SCOPE, PROJECT)
+        .memory_details(SCOPE, project)
         .unwrap()
         .into_iter()
         .filter(|d| d.memory.state == Status::Candidate)
         .collect();
     assert!(!candidates.is_empty(), "{source}");
-    for d in candidates {
-        store
-            .change(
-                &d.memory.input.id,
-                SCOPE,
-                PROJECT,
-                d.memory.version,
-                Action::Approve,
-            )
+    candidates
+        .into_iter()
+        .map(|d| {
+            store
+                .change(
+                    &d.memory.input.id,
+                    SCOPE,
+                    project,
+                    d.memory.version,
+                    Action::Approve,
+                )
+                .unwrap();
+            d.memory.input.id
+        })
+        .collect()
+}
+
+#[test]
+fn known_project_relations_use_only_the_requested_property_and_track_in_each_ranker() {
+    let fixture: Value =
+        serde_json::from_str(include_str!("fixtures/phase22e/final-v1/retrieval.json")).unwrap();
+    let gui: Value = serde_json::from_str(include_str!(
+        "fixtures/phase22e/final-v1/conversation-other.json"
+    ))
+    .unwrap();
+    let seeded = [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "other-database",
+        "actual-language",
+        "future-language",
+    ];
+    let (_root, mut store) = open(ExtractionMode::Rules);
+    let mut ids = std::collections::HashMap::new();
+    for event in fixture["events"].as_array().unwrap() {
+        let Some(label) = event["label"]
+            .as_str()
+            .filter(|label| seeded.contains(label))
+        else {
+            continue;
+        };
+        // The older GUI independently demonstrated these two typed sources.
+        // This test exercises retrieval regardless of C2 source eligibility.
+        let gui_source = match label {
+            "actual-language" => Some("go-t02"),
+            "future-language" => Some("go-t03"),
+            _ => None,
+        };
+        let source = gui_source
+            .and_then(|id| {
+                gui["turns"]
+                    .as_array()
+                    .unwrap()
+                    .iter()
+                    .find(|turn| turn["id"] == id)
+            })
+            .unwrap_or(event)["text"]
+            .as_str()
             .unwrap();
+        let records = learn_reviewed_in(
+            &mut store,
+            label,
+            event["project"].as_str().unwrap(),
+            source,
+        );
+        assert_eq!(records.len(), 1, "{label}");
+        ids.insert(label, records[0].clone());
+    }
+    let space = EmbeddingSpace {
+        model: "synthetic-equal-similarity".into(),
+        revision: "1".into(),
+        fingerprint: "a".repeat(64),
+        dimension: 2,
+        normalization: "l2".into(),
+        pooling: "mean".into(),
+        document_prefix: "doc: ".into(),
+        query_prefix: "query: ".into(),
+        context_tokens: 2048,
+        index_version: 5,
+    };
+    let permit = ConfigurationPermit::explicit_settings_action(true).unwrap();
+    store.configure_embedding_space(&space, &permit).unwrap();
+    for project in [PROJECT, "pitanga"] {
+        for detail in store.memory_details(SCOPE, project).unwrap() {
+            let m = detail.memory;
+            // Every candidate has the same maximum cosine. Property and
+            // modality, not a convenient score difference, must fence it.
+            store
+                .put_memory_vector(&m.input.id, m.version, &space, &[1., 0.], &permit)
+                .unwrap();
+        }
+    }
+    let vector = QueryVector {
+        space,
+        vector: vec![1., 0.],
+    };
+    let queries = ["er-014", "er-018", "er-023", "er-024", "er-025", "er-026"];
+    for (lexical_weight, query_vector) in [
+        (1., None),
+        (0., Some(&vector)),
+        (0.7, Some(&vector)),
+        (0.7, None),
+    ] {
+        let mut policy = store.learning_policy().unwrap();
+        policy.lexical_weight = lexical_weight;
+        policy.semantic_weight = 1. - lexical_weight;
+        store.set_learning_policy(policy, &permit).unwrap();
+        for q in fixture["queries"].as_array().unwrap() {
+            let id = q["id"].as_str().unwrap();
+            if !queries.contains(&id) {
+                continue;
+            }
+            let mut req = request(q["query"].as_str().unwrap());
+            req.project = q["project"].as_str().unwrap().into();
+            let context = store.context_hybrid(req, query_vector).unwrap();
+            let mut actual = context
+                .references
+                .iter()
+                .map(|r| r.id.clone())
+                .collect::<Vec<_>>();
+            let mut expected = q["expected"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|label| ids[label.as_str().unwrap()].clone())
+                .collect::<Vec<_>>();
+            actual.sort();
+            expected.sort();
+            assert_eq!(actual, expected, "{id} lexical_weight={lexical_weight}");
+        }
+    }
+    let different_project = store
+        .context(request(
+            "No Pitanga, compare a linguagem em implementação com a planejada para o futuro.",
+        ))
+        .unwrap();
+    assert!(different_project.references.is_empty());
+}
+
+#[test]
+fn a_bound_project_predicate_is_not_mistaken_for_a_foreign_project_name() {
+    let (_root, mut store) = open(ExtractionMode::Rules);
+    for (id, source, temporal, value) in [
+        (
+            "actual-c2",
+            "Neste projeto estou implementando em TypeScript.",
+            "in_progress",
+            "typescript",
+        ),
+        (
+            "future-c2",
+            "Pretendo usar Rust no meu projeto futuramente.",
+            "planned",
+            "rust",
+        ),
+    ] {
+        let claims = dialogue::extract(source, "pitanga");
+        assert_eq!(claims.len(), 1, "{source}");
+        let c = &claims[0];
+        assert_eq!(
+            (
+                c.subject.as_str(),
+                c.property.as_str(),
+                c.temporal.as_str(),
+                c.value.as_str()
+            ),
+            ("project.pitanga", "language", temporal, value),
+            "{source}",
+        );
+        assert_eq!(
+            learn_reviewed_in(&mut store, id, "pitanga", source).len(),
+            1
+        );
+    }
+    let details = store.memory_details(SCOPE, "pitanga").unwrap();
+    assert_eq!(details.len(), 2);
+    assert!(details.iter().all(|d| d.memory.state == Status::Active));
+    for source in [
+        "Neste projeto Jatobá estou implementando em TypeScript.",
+        "Pretendo usar Rust no meu projeto Futuramente.",
+        "A personagem diz: neste projeto estou implementando em TypeScript.",
+    ] {
+        assert!(dialogue::extract(source, "pitanga").is_empty(), "{source}");
+        let mut i = input("foreign-project", source);
+        i.project = "pitanga".into();
+        assert_eq!(
+            store.enqueue_learning(i).unwrap()["state"],
+            "ignored",
+            "{source}"
+        );
     }
 }
 

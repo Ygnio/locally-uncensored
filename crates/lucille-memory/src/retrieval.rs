@@ -19,6 +19,7 @@ pub struct QueryRelation {
 }
 fn relation_domains(q: &str) -> Vec<&'static str> {
     let q = fold(q);
+    let description = description_intent(&q);
     let mut out = Vec::new();
     for (words, label) in [
         (&["banco", "database"][..], "banco de dados"),
@@ -31,11 +32,11 @@ fn relation_domains(q: &str) -> Vec<&'static str> {
             "assunto do projeto",
         ),
     ] {
-        if words.iter().any(|w| q.contains(w)) {
+        if !(description && label == "tema de interface") && words.iter().any(|w| q.contains(w)) {
             out.push(label)
         }
     }
-    if !out.contains(&"assunto do projeto") && description_intent(&q) {
+    if !out.contains(&"assunto do projeto") && description {
         out.push("assunto do projeto");
     }
     out
@@ -60,11 +61,24 @@ fn third_party(q: &str) -> bool {
             || (*w == "outra pessoa" && q.contains(w))
     })
 }
+fn named_comparison_project(query: &str) -> Option<&str> {
+    let (qualifier, command) = query.split_once(',')?;
+    let mut words = qualifier.split_whitespace();
+    let (preposition, name) = (words.next()?, words.next()?);
+    (words.next().is_none()
+        && ["no", "na", "in"].contains(&fold(preposition).as_str())
+        && name.chars().next().is_some_and(char::is_uppercase)
+        && name.chars().all(|c| c.is_alphanumeric() || matches!(c, '-' | '_'))
+        && fold(command.trim_start()).starts_with("compare "))
+        .then_some(name)
+}
 pub fn query_relations(query: &str) -> Vec<QueryRelation> {
     let folded = fold(query);
+    let named_project = named_comparison_project(query);
+    let comparison = folded.starts_with("compare ") || named_project.is_some();
     if query.len() > 1600
         || query.contains(['"', '“', '”', '`'])
-        || !(query.contains('?') || folded.starts_with("compare "))
+        || !(query.contains('?') || comparison)
     {
         return vec![];
     }
@@ -80,9 +94,12 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
     {
         // Preserve the Portuguese copula: accent folding must not turn é into
         // the coordinating conjunction e and manufacture a relation "Qual".
-        if !["e", "and", "com", "with", "versus", "vs", "vs."].contains(&word.to_lowercase().as_str()) {
+        let conjunction = ["e", "and", "com", "with", "versus", "vs", "vs."].contains(&word.to_lowercase().as_str());
+        let list_comma = word.ends_with(',');
+        if !conjunction && !list_comma {
             continue;
         }
+        let boundary = if list_comma { index + word.len() - 1 } else { index };
         let tail = &query[index + word.len()..];
         let words = fold(tail)
             .split_whitespace()
@@ -124,22 +141,41 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
                 "cafe",
                 "coffee",
                 "assunto",
+                "finalidade",
+                "proposito",
                 "tecnologias",
                 "implementada",
                 "implemented",
             ]
             .contains(&w.as_str())
         });
+        let preceding_domains = relation_domains(&query[start..boundary]);
+        let explicit_project_list_item = list_comma
+            && preceding_domains.iter().any(|d| ["linguagem", "banco de dados", "assunto do projeto"].contains(d))
+            && head.is_some_and(|w| [
+                "linguagem", "language", "banco", "database", "tema", "assunto", "finalidade", "proposito",
+            ].contains(&w.as_str()));
+        let shared_track = conjunction
+            && preceding_domains.iter().any(|d| ["linguagem", "banco de dados"].contains(d))
+            && ((comparison && head.is_some_and(|w| [
+                "planejada", "planejado", "planned", "futuro", "futura", "future",
+            ].contains(&w.as_str())))
+                || (matches!(words.first().map(String::as_str), Some("a" | "o" | "the"))
+                    && matches!(words.get(1).map(String::as_str), Some("que" | "that" | "which"))
+                    && words.iter().skip(2).any(|w| [
+                        "projeto", "project", "usa", "uses", "agora", "now",
+                    ].contains(&w.as_str()))));
         // Arguments of a workload assessment share its predicate. Mentioning
         // a database alongside an environment does not ask for its saved name.
         // A new explicit question still starts an independently requested slot.
-        let preceding = fold(&query[start..index]);
+        let preceding = fold(&query[start..boundary]);
         let assessment = ["garant", "guarantee", "fluidez", "smooth", "desempenho", "performance"]
             .iter().any(|p| preceding.contains(p));
         let explicit_question = head.is_some_and(|w| ["qual", "quais", "what", "which", "quanto", "quantos"].contains(&w.as_str()));
         if assessment && !explicit_question { continue; }
-        if starts_relation && index > start && spans.len() < 7 {
-            spans.push(query[start..index].trim().to_owned());
+        if ((conjunction && starts_relation) || explicit_project_list_item || shared_track)
+            && boundary > start && spans.len() < 7 {
+            spans.push(query[start..boundary].trim().to_owned());
             start = index + word.len();
         }
     }
@@ -162,7 +198,12 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
                 part.push_str(shared[0]);
             }
             let part_domains = relation_domains(&part);
-            if ["banco de dados", "linguagem", "assunto do projeto"]
+            if let Some(name) = named_project {
+                // An explicit leading comparison qualifier belongs to both
+                // requested fields and is checked against the native binding.
+                part.push_str(" projeto ");
+                part.push_str(name);
+            } else if ["banco de dados", "linguagem", "assunto do projeto"]
                 .iter()
                 .any(|d| part_domains.contains(d))
                 && ["projeto", "project"]
@@ -179,6 +220,8 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
             let q = fold(&part);
             let intent = if historical_intent(&part) {
                 "historical"
+            } else if let Some(field) = requested_project_field(&part) {
+                field.track.label()
             } else if [
                 "implementad",
                 "implementing",
@@ -231,6 +274,9 @@ fn relation_matches(tx: &Transaction, m: &Memory, r: &QueryRelation) -> Result<b
     let Some(q) = quality(tx, &m.input.id)? else {
         return Ok(r.intent == "any");
     };
+    if let Some(field) = requested_project_field(&r.query) {
+        return Ok(field.accepts(m, &q));
+    }
     if ["language", "database"].contains(&q.property.as_str()) {
         if r.intent == "execution" {
             return Ok(["current", "in_progress"].contains(&q.temporal.as_str()));
@@ -358,7 +404,113 @@ pub(crate) fn implicit_device_comparison(query: &str) -> bool {
     .any(|w| q.contains(w));
     [primary, work, other].iter().filter(|v| **v).count() >= 2
 }
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum ProjectTrack {
+    Any,
+    Choice,
+    Planned,
+    Current,
+    Execution,
+}
+impl ProjectTrack {
+    fn label(self) -> &'static str {
+        match self {
+            Self::Any => "any",
+            Self::Choice => "choice",
+            Self::Planned => "planned",
+            Self::Current => "current",
+            Self::Execution => "execution",
+        }
+    }
+}
+#[derive(Clone, Copy)]
+struct ProjectField {
+    property: &'static str,
+    track: ProjectTrack,
+    lifecycle_requested: bool,
+}
+impl ProjectField {
+    fn matches(self, memory: &Memory, q: &crate::intelligent::Quality) -> bool {
+        q.subject == format!("project.{}", memory.input.project)
+            && q.property == self.property
+            && match self.track {
+                // Current-state questions keep a plan as contextual evidence
+                // when there is no observed implementation. The native
+                // current-project guard below enforces that precedence.
+                ProjectTrack::Any | ProjectTrack::Current => true,
+                // A related plan can contextualize a choice question. Its
+                // projected modality remains planned, so it grants no choice
+                // or execution assertion in the verifier.
+                ProjectTrack::Choice => memory.input.kind == Kind::Decision
+                    && ["durable", "planned"].contains(&q.temporal.as_str()),
+                ProjectTrack::Planned => q.temporal == "planned",
+                ProjectTrack::Execution => ["current", "in_progress"].contains(&q.temporal.as_str()),
+            }
+    }
+
+    fn accepts(self, memory: &Memory, q: &crate::intelligent::Quality) -> bool {
+        self.matches(memory, q)
+            || (q.property == "lifecycle"
+                && q.subject == format!("project.{}", memory.input.project)
+                && (self.lifecycle_requested || ["cancelled", "completed"].contains(&q.temporal.as_str())))
+    }
+}
+fn requested_project_field(query: &str) -> Option<ProjectField> {
+    // A typed restriction is safe only when the clause asks for one field.
+    // If an unsplit compound is ambiguous, preserve the general selector.
+    let q = fold(query);
+    let words = q.split(|c: char| !c.is_alphanumeric()).collect::<Vec<_>>();
+    let has = |alternatives: &[&str]| alternatives.iter().any(|w| words.contains(w));
+    let prefix = |alternatives: &[&str]| words.iter().any(|w| alternatives.iter().any(|stem| w.starts_with(stem)));
+    let description = description_intent(&q);
+    if has(&["ram", "memoria", "memory", "cafe", "coffee"])
+        || (!description && has(&["tema", "theme"]))
+    {
+        return None;
+    }
+    let property = match (
+        has(&["banco", "database"]),
+        has(&["linguagem", "language"]),
+        description,
+    ) {
+        (true, false, false) => "database",
+        (false, true, false) => "language",
+        (false, false, true) => "description",
+        _ => return None,
+    };
+    let track = if property == "description" {
+        ProjectTrack::Any
+    } else if prefix(&["planej", "pretend", "futur", "intend", "plann"]) || has(&["plan", "plans"]) {
+        ProjectTrack::Planned
+    } else if has(&["escolhi", "escolhida", "escolhido", "chosen", "chose", "decidi", "decidiu", "decided", "selected"]) {
+        ProjectTrack::Choice
+    } else if has(&[
+        "implementando", "implementacao", "implementada", "implementado", "implementing",
+        "implementation", "implemented", "desenvolvendo", "developing", "andamento",
+        "usa", "uso", "uses", "utiliza", "using",
+    ]) {
+        ProjectTrack::Execution
+    } else if has(&["agora", "atualmente", "vigente", "current", "now"]) {
+        ProjectTrack::Current
+    } else {
+        ProjectTrack::Any
+    };
+    let project_anchor = has(&["projeto", "project"]) || named_comparison_project(query).is_some();
+    let technical_anchor = property != "description"
+        && !matches!(track, ProjectTrack::Any | ProjectTrack::Current)
+        && !has(&["idioma", "respostas", "answers", "replies", "aprender", "learn", "estudar", "study"]);
+    (project_anchor || technical_anchor).then_some(ProjectField {
+        property,
+        track,
+        lifecycle_requested: has(&["status", "estado", "lifecycle"]),
+    })
+}
 fn current_project_field(query: &str, property: &str) -> bool {
+    if let Some(field) = requested_project_field(query) {
+        return field.property == property
+            && matches!(field.track, ProjectTrack::Current | ProjectTrack::Execution)
+            && !historical_intent(query);
+    }
     let q = fold(query);
     ["language", "database"].contains(&property)
         && !historical_intent(query)
@@ -567,7 +719,7 @@ fn description_intent(query: &str) -> bool {
     .any(|w| q.contains(w));
     let words = q.split(|c: char| !c.is_alphanumeric()).filter(|w| !w.is_empty()).collect::<Vec<_>>();
     named_description || words.iter().enumerate().any(|(at, word)| {
-        ["finalidade", "proposito", "objetivo"].contains(word) && [
+        ["finalidade", "proposito", "objetivo", "tema"].contains(word) && [
             &["do", "projeto"][..],
             &["deste", "projeto"],
             &["desse", "projeto"],
@@ -636,6 +788,9 @@ fn eligible_source(
     at: i64,
     canonical_claim: bool,
 ) -> Result<bool> {
+    if named_comparison_project(query).is_some_and(|name| fold(name) != fold(&m.input.project)) {
+        return Ok(false);
+    }
     let relations=query_relations(query);
     if !relations.is_empty(){
         for r in relations {if relation_matches(tx,m,&r)? && eligible_source(tx,m,&r.query,at,canonical_claim)?{return Ok(true)}}
@@ -750,6 +905,9 @@ fn eligible_source(
     let q = crate::relevance::normalize_query(query);
     let summary = crate::dialogue::project_summary(query);
     if let Some(meta) = &meta {
+        if requested_project_field(query).is_some_and(|field| !field.accepts(m, meta)) {
+            return Ok(false);
+        }
         if m.input.kind == Kind::Preference {
             let slots = preference_slots(query);
             if !slots.is_empty() && !slots.contains(&meta.property.as_str()) {
@@ -1098,6 +1256,7 @@ impl crate::Store {
                     || (description_intent(&req.query)
                         && q.property == "description"
                         && q.subject == format!("project.{}", req.project))
+                    || requested_project_field(&req.query).is_some_and(|field| field.matches(&m, q))
             });
             trace.push(serde_json::json!({"canonical_lexical_match":canonical_lexical_match,"id":m.input.id,"content":m.input.content,"version":m.version,"state":m.state,"quality":meta,"scope_project_pass":true,"state_temporal_entity_intent_pass":gate,"lexical_rank_bm25":lexical.get(&m.input.id),"lexical_coverage":coverage,"lexical_gate":coverage>=crate::relevance::LEXICAL_COVERAGE,"cosine":similarity,"semantic_threshold_pass":similarity.is_some_and(|s|s>=policy.minimum_similarity),"selected":selected,"reason":if selected{"selected_after_all_filters"}else if !active{"not_current"}else if !gate{"temporal_entity_intent_or_conflict_filter"}else{"threshold_margin_rank_diversity_or_budget"}}));
         }
@@ -1138,6 +1297,7 @@ pub(crate) fn select(
     }
     let current_field = current_project_field(&req.query, "language")
         || current_project_field(&req.query, "database");
+    let project_field = requested_project_field(&req.query);
     let history = historical_intent(&req.query);
     let summary = crate::dialogue::project_summary(&req.query);
     let communication = communication_intent(&req.query);
@@ -1175,10 +1335,19 @@ pub(crate) fn select(
         || !slots.is_empty()
         || identified_ram
         || description
+        || project_field.is_some()
     {
         // Filter identified canonical slots before the existing 100-record cap:
         // unrelated recent records must not crowd an older indexed property out.
-        let mut q=tx.prepare(&format!("SELECT {COLS} FROM memories WHERE scope=?1 AND project=?2 AND (state='active' OR (state='obsolete' AND ?3)) AND (?4 OR id IN (SELECT memory_id FROM memory_quality WHERE (?5 AND (?9 OR subject=?6) AND property='ram_capacity') OR (?7 AND subject=?8 AND property='description'))) ORDER BY updated_at DESC,id LIMIT 100")).map_err(db_error)?;
+        let mut q=tx.prepare(&format!(
+            "SELECT {COLS} FROM memories WHERE scope=?1 AND project=?2
+             AND (state='active' OR (state='obsolete' AND ?3))
+             AND (?4 OR id IN (SELECT memory_id FROM memory_quality
+                 WHERE (?5 AND (?9 OR subject=?6) AND property='ram_capacity')
+                    OR (?7 AND subject=?8 AND property='description')
+                    OR (?10!='' AND subject=?8 AND property=?10)))
+             ORDER BY updated_at DESC,id LIMIT 100"
+        )).map_err(db_error)?;
         lexical = q
             .query_map(
                 params![
@@ -1190,7 +1359,8 @@ pub(crate) fn select(
                     query_device(&req.query).unwrap_or(""),
                     description,
                     format!("project.{}", req.project),
-                    implicit_device_comparison(&req.query)
+                    implicit_device_comparison(&req.query),
+                    project_field.map_or("", |field| field.property)
                 ],
                 row,
             )
@@ -1218,7 +1388,8 @@ pub(crate) fn select(
         let coffee_match =
             coffee && quality(tx, &m.input.id)?.is_some_and(|q| q.property == "coffee_sugar");
         let slot_match = quality(tx, &m.input.id)?.is_some_and(|q| {
-            (identified_ram
+            project_field.is_some_and(|field| field.matches(&m, &q))
+                || (identified_ram
                 && q.property == "ram_capacity"
                 && (implicit_device_comparison(&req.query)
                     || query_device(&req.query) == Some(q.subject.as_str())))

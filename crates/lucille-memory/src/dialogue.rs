@@ -316,6 +316,14 @@ pub fn project_scope_matches(text: &str, project: &str) -> bool {
             && !(index > 0 && original[index].ends_with(',')
                 && ["deste", "desse", "neste", "nesse", "this"].contains(&w[index - 1])
                 && ["postgresql", "sqlite", "mysql", "typescript", "javascript", "rust", "python"].contains(&p[1]))
+            // In an already bound project phrase, a lowercase first-person
+            // progressive or temporal adverb is part of the predicate.
+            && !(index > 0 && original[index + 1].chars().next().is_some_and(char::is_lowercase)
+                && ((["neste", "nesse"].contains(&w[index - 1])
+                    && p[1] == "estou"
+                    && w.get(index + 2).is_some_and(|word| ["implementando", "desenvolvendo"].contains(word)))
+                    || (["meu", "my"].contains(&w[index - 1])
+                        && ["futuramente", "posteriormente", "later"].contains(&p[1]))))
             && !(["neste", "nesse"].contains(&p[1])
                 && w.get(index + 2)
                     .is_some_and(|word| ["momento", "estado", "ponto", "contexto"].contains(word)))
