@@ -18,6 +18,8 @@ if([regex]::Matches($originalText,[regex]::Escape($libraryTypes)).Count -ne 1){t
 $qaManifest=$encoding.GetBytes($originalText.Replace($libraryTypes,'crate-type = ["rlib"]'))
 $receipt=Join-Path $qa 'reports\native-build-contract.json'
 if(Test-Path -LiteralPath $receipt){throw 'Retain the previous QA build record before another build'}
+$pendingOriginal=Join-Path $qa 'reports\native-cargo-manifest-pending.toml'
+if(Test-Path -LiteralPath $pendingOriginal){throw 'An interrupted build retained the original Cargo manifest in QA reports'}
 $priorConfig=$env:TAURI_CONFIG
 $priorDebug=$env:CARGO_PROFILE_DEV_DEBUG
 $validationConfig=Join-Path $repo 'src-tauri\tauri.lucille-validation.conf.json'
@@ -26,6 +28,7 @@ $qaConfig=$encoding.GetString($validationBytes)
 $parsedConfig=ConvertFrom-Json $qaConfig
 if($parsedConfig.identifier -ne 'dev.ygnio.lucille.phase16' -or $parsedConfig.bundle.active -or $parsedConfig.bundle.externalBin.Count -ne 0){throw 'The dedicated non-packaged validation configuration is required'}
 $exitCode=1
+[IO.File]::WriteAllBytes($pendingOriginal,$original)
 try {
  [IO.File]::WriteAllBytes($manifest,$qaManifest)
  $env:TAURI_CONFIG=$qaConfig
@@ -36,10 +39,10 @@ try {
  $env:TAURI_CONFIG=$priorConfig
  $env:CARGO_PROFILE_DEV_DEBUG=$priorDebug
  if((Digest ([IO.File]::ReadAllBytes($manifest))) -ne (Digest $qaManifest)){
-  [IO.File]::WriteAllBytes((Join-Path $qa 'reports\native-cargo-manifest-before-build.toml'),$original)
   throw 'Cargo manifest changed concurrently; original bytes retained in the QA report folder'
  }
  [IO.File]::WriteAllBytes($manifest,$original)
+ Remove-Item -LiteralPath $pendingOriginal
 }
 if($exitCode -ne 0){exit $exitCode}
 $built=Join-Path $target 'debug'
