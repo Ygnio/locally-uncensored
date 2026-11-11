@@ -242,8 +242,32 @@ fn device_relative_clause(words: &[&str]) -> bool {
             .any(|device| words[..i].ends_with(device))
     })
 }
+fn fronted_work_laptop_tail<'a>(words: &'a [&'a str]) -> Option<&'a [&'a str]> {
+    let relative = words.strip_prefix(&["no", "notebook", "que"])?;
+    let relative = relative.strip_prefix(&["eu"]).unwrap_or(relative);
+    match relative {
+        ["uso" | "utilizo", "para", "trabalhar", tail @ ..] => Some(tail),
+        _ => None,
+    }
+}
+pub(crate) fn names_fronted_work_laptop(s: &str) -> bool {
+    fronted_work_laptop_tail(&tokens(s)).is_some()
+}
+/// First-person capacity attached to the explicitly described work laptop.
+pub(crate) fn fronted_work_laptop(s: &str) -> bool {
+    let words = tokens(s);
+    let Some(capacity) = fronted_work_laptop_tail(&words) else {
+        return false;
+    };
+    let capacity = capacity.strip_prefix(&["eu"]).unwrap_or(capacity);
+    let ["tenho" | "ha", quantity @ ..] = capacity else {
+        return false;
+    };
+    literal_ram_quantity(quantity, false)
+}
 pub(crate) fn owns_device_relative_clause(text: &str) -> bool {
-    device_relative_clause(&tokens(&fold(text)))
+    let s = fold(text);
+    device_relative_clause(&tokens(&s)) || fronted_work_laptop(&s)
 }
 fn possessed_device(words: &[&str]) -> bool {
     words.iter().enumerate().any(|(i, word)| {
@@ -270,7 +294,6 @@ pub(crate) fn replacement_ram(text: &str) -> Option<(&'static str, u32, u32)> {
     .iter()
     .find_map(|marker| s.split_once(marker))?;
     let words = tokens(current);
-    let old_words = tokens(previous);
     let leading = words
         .strip_prefix(&["o"])
         .or_else(|| words.strip_prefix(&["the"]))
@@ -285,8 +308,55 @@ pub(crate) fn replacement_ram(text: &str) -> Option<(&'static str, u32, u32)> {
         "computador" | "computer" | "pc" | "notebook" | "laptop",
         ..
     ]);
-    if !owned_subject
-        || !has(&words, &["agora", "now", "atualmente", "currently"])
+    if !owned_subject {
+        return None;
+    }
+    let (current_size, previous_size) = ram_replacement_amounts(current, previous)?;
+    Some((crate::coverage::device(current)?, current_size, previous_size))
+}
+
+pub(crate) const CONTEXTUAL_RAM_CORRECTION_RULE: &str = "explicit_contextual_ram_correction_from_";
+
+/// The heading names the antecedent of `ele`. The old quantity must match
+/// the active scoped record before this relative correction can be persisted.
+pub(crate) fn contextual_ram_replacement(text: &str) -> Option<(&'static str, u32, u32)> {
+    let s = fold(text);
+    if text.contains('?') || crate::coverage::mixed_devices(&s) {
+        return None;
+    }
+    let (heading, body) = s.split_once(':')?;
+    let device = heading.strip_prefix("corrigindo o dado do ")?;
+    let device = device.strip_prefix("meu ").unwrap_or(device);
+    if !matches!(device, "computador principal" | "pc principal") {
+        return None;
+    }
+    let (current, previous) = body.trim().split_once(", nao mais ")?;
+    let current_words = tokens(current);
+    let ["agora", "ele", "possui" | "tem", quantity @ ..] = current_words.as_slice() else {
+        return None;
+    };
+    let previous = previous.strip_prefix("os ").unwrap_or(previous);
+    if !literal_ram_quantity(quantity, false) || !literal_ram_quantity(&tokens(previous), true) {
+        return None;
+    }
+    let (current_size, previous_size) = ram_replacement_amounts(current, previous)?;
+    Some(("device.primary_computer", current_size, previous_size))
+}
+
+fn literal_ram_quantity(words: &[&str], allow_unit_only: bool) -> bool {
+    let tail = match words {
+        [amount, "gb", tail @ ..] if amount.parse::<u32>().is_ok() => tail,
+        [amount, tail @ ..]
+            if amount.strip_suffix("gb").is_some_and(|n| n.parse::<u32>().is_ok()) => tail,
+        _ => return false,
+    };
+    (allow_unit_only && tail.is_empty()) || matches!(tail, ["de", "ram"] | ["ram"])
+}
+
+fn ram_replacement_amounts(current: &str, previous: &str) -> Option<(u32, u32)> {
+    let words = tokens(current);
+    let old_words = tokens(previous);
+    if !has(&words, &["agora", "now", "atualmente", "currently"])
         || !has(&words, &["ram"])
         || !has(&words, &["tem", "possui", "has"])
         || has(&words, &[
@@ -311,7 +381,7 @@ pub(crate) fn replacement_ram(text: &str) -> Option<(&'static str, u32, u32)> {
     if current_size == previous_size {
         return None;
     }
-    Some((crate::coverage::device(current)?, *current_size, *previous_size))
+    Some((*current_size, *previous_size))
 }
 fn installed_capacity_predicate(words: &[&str]) -> bool {
     let Some(amount_at) = words.iter().enumerate().position(|(i, word)| {
@@ -321,6 +391,9 @@ fn installed_capacity_predicate(words: &[&str]) -> bool {
                 .is_some_and(|n| n.parse::<u32>().is_ok())
     }) else {
         return false;
+    };
+    let installed = |word: &&str| {
+        matches!(*word, "instalado" | "instalados" | "instalada" | "instaladas" | "installed")
     };
     words.iter().enumerate().any(|(i, word)| {
         let next = i
@@ -334,17 +407,14 @@ fn installed_capacity_predicate(words: &[&str]) -> bool {
         match *word {
             "ha" => next == amount_at,
             "conta" => words.get(next) == Some(&"com") && next + 1 == amount_at,
+            "esta" if words.get(next) == Some(&"com") && next + 1 == amount_at => {
+                words.last().is_some_and(installed)
+                    && words[amount_at + 1..words.len() - 1]
+                        .iter()
+                        .all(|w| ["gb", "de", "ram", "memoria"].contains(w))
+            }
             "esta" | "estao" | "is" | "are" => {
-                words.get(next).is_some_and(|w| {
-                    [
-                        "instalado",
-                        "instalados",
-                        "instalada",
-                        "instaladas",
-                        "installed",
-                    ]
-                    .contains(w)
-                }) && (next + 1 == amount_at
+                words.get(next).is_some_and(installed) && (next + 1 == amount_at
                     || (amount_at < i
                         && words[amount_at + 1..i]
                             .iter()
@@ -480,7 +550,7 @@ pub(crate) fn interpret<'a>(text: &'a str, project: &'a str) -> Option<Evidence<
     {
         return None;
     }
-    let relative_device = device_relative_clause(&words);
+    let relative_device = device_relative_clause(&words) || fronted_work_laptop(&s);
     let personal = has(
         &words,
         &["meu", "minha", "meus", "minhas", "my", "eu", "i", "tenho"],

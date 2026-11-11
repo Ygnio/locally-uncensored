@@ -84,6 +84,23 @@ it('never treats a queue state, a future promise, or an operation-shaped fact as
   expect(verifyMemoryAnswer('Entendi sua escolha pelo MySQL.',evidence).violations).toEqual([])
 })
 
+it('removes a premature storage wrapper from an independently verified RAM acknowledgement', async () => {
+  const evidence=snapshot('code')
+  evidence.query='Meu computador principal está com 48 GB de RAM instalada. Guarde esta informação.'
+  evidence.currentStatements=[{
+    id:'source',version:0,entity:'device.primary_computer',property:'ram_capacity',value:'48_gb',modality:'current_fact',
+    validity:'current_user_statement',scope:evidence.scope,project:evidence.project,review:'source',facets:[],
+    evidence:[{role:'current_user_statement',text:'Meu computador principal está com 48 GB de RAM instalada.'}],
+  }]
+  const regenerate=vi.fn()
+  const result=await validateLucilleCompletion(messages(evidence),{
+    content:'Entendido. Guardei a informação de que seu computador principal possui 48 GB de RAM instalados.',
+  },regenerate)
+  expect(result.completion.content).toBe('Entendido. Seu computador principal possui 48 GB de RAM instalados.')
+  expect(result.report.localizedRepair?.method).toBe('operation_prefix_removal')
+  expect(regenerate).not.toHaveBeenCalled()
+})
+
 it('generates a forget confirmation from the app receipt, including a truthful empty deletion', async () => {
   const evidence = snapshot('agent')
   evidence.query='Esqueça de verdade minha preferência por café.'

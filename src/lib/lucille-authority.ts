@@ -39,7 +39,7 @@ export function historicalProjectWording(span: string): boolean {
  * A later personal subject remains a personal claim and cannot borrow this exemption. */
 export function externalAssertion(span:string):boolean{
  const q=normalizeEvidenceText(span).trim().replace(/^(?:e|and|enquanto|while|whereas)\s+/,'')
- const anchor=q.match(/^(?:(?:a|o|the)\s+)?(?:narrador(?:a)?|narrator|personagem|character|ferramenta|tool|documento|document|log|texto|text)\b/)
+ const anchor=q.match(/^(?:(?:a|o|the)\s+)?(?:voz narrativa|narrative voice|narrador(?:a)?|narrator|personagem|character|ferramenta|tool|documento|document|log|texto|text)\b/)
  return !!anchor && !/\b(?:voce|seu|sua|seus|suas|you|your|usuario|user)\b/.test(q.slice(anchor[0].length))
 }
 export function deniesCapacityGuarantee(text: string): boolean {

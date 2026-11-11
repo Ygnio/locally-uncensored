@@ -34,9 +34,8 @@ pub(crate) fn old_capacity(evidence: &str) -> Option<String> {
         None
     }
 }
-pub(crate) fn device(s: &str) -> Option<&'static str> {
-    let other = any(s, &["outro computador", "other computer"]);
-    let work = any(
+fn work_device(s: &str) -> bool {
+    any(
         s,
         &[
             "notebook de trabalho",
@@ -44,7 +43,12 @@ pub(crate) fn device(s: &str) -> Option<&'static str> {
             "note do trabalho",
             "work laptop",
         ],
-    );
+    ) || crate::evidence::fronted_work_laptop(s)
+}
+pub(crate) fn device(s: &str) -> Option<&'static str> {
+    let other = any(s, &["outro computador", "other computer"]);
+    let work = work_device(s);
+    let names_work = work || crate::evidence::names_fronted_work_laptop(s);
     let primary = any(
         s,
         &[
@@ -57,7 +61,10 @@ pub(crate) fn device(s: &str) -> Option<&'static str> {
             "my computer",
         ],
     );
-    if other && work || primary && work || other && primary && !s.contains("meu outro computador") {
+    if other && names_work
+        || primary && names_work
+        || other && primary && !s.contains("meu outro computador")
+    {
         return None;
     }
     if other {
@@ -72,15 +79,7 @@ pub(crate) fn device(s: &str) -> Option<&'static str> {
 }
 pub(crate) fn mixed_devices(s: &str) -> bool {
     let other = any(s, &["outro computador", "other computer"]);
-    let work = any(
-        s,
-        &[
-            "notebook de trabalho",
-            "notebook do trabalho",
-            "note do trabalho",
-            "work laptop",
-        ],
-    );
+    let work = work_device(s) || crate::evidence::names_fronted_work_laptop(s);
     let primary = any(
         s,
         &[
@@ -231,7 +230,10 @@ pub(crate) fn supplement(evidence: &str) -> Option<Claim> {
     }
     // The correction direction follows the asserted current clause, never
     // whichever number happens to occur last.
-    if let Some((subject, current, previous)) = crate::evidence::replacement_ram(evidence) {
+    let contextual = crate::evidence::contextual_ram_replacement(evidence);
+    if let Some((subject, current, previous)) =
+        contextual.or_else(|| crate::evidence::replacement_ram(evidence))
+    {
         let mut c = claim(
             evidence,
             Kind::Hardware,
@@ -243,7 +245,12 @@ pub(crate) fn supplement(evidence: &str) -> Option<Claim> {
         c.temporal = "durable".into();
         c.confidence = 0.85;
         c.correction = true;
-        c.rule = format!("explicit_ram_correction_from_{previous}_gb");
+        let rule = if contextual.is_some() {
+            crate::evidence::CONTEXTUAL_RAM_CORRECTION_RULE
+        } else {
+            "explicit_ram_correction_from_"
+        };
+        c.rule = format!("{rule}{previous}_gb");
         return Some(c);
     }
     // Existing old -> new correction without a named first-clause device.

@@ -359,6 +359,100 @@ fn exact_named_ram_replacement_and_fronted_coffee_survive_native_review() {
 }
 
 #[test]
+fn original_gui_hardware_sources_preserve_both_devices_and_scoped_history() {
+    fn clause(text: &str) -> &str {
+        text.split_once(". Guarde").unwrap().0
+    }
+    let plan: Value = serde_json::from_str(include_str!("fixtures/phase22e/final-v1/conversation-main.json")).unwrap();
+    let turns = plan["turns"].as_array().unwrap();
+    let source = |id: &str| {
+        turns.iter().find(|t| t["id"] == id).unwrap()["text"].as_str().unwrap()
+    };
+    let correction = source("gm-t05");
+    for mode in modes() {
+        let (_root, mut store) = open(mode);
+        let mut record_ids = Vec::new();
+        for (id, device, amount) in [
+            ("gm-t03", "device.primary_computer", "48_gb"),
+            ("gm-t04", "device.work_laptop", "12_gb"),
+        ] {
+            let text = source(id);
+            assert_eq!(store.enqueue_learning(input(id, text)).unwrap()["state"], "queued");
+            complete(&mut store, &nomination(clause(text), "hardware"));
+            let details = store.memory_details(SCOPE, PROJECT).unwrap();
+            let record = details.iter().find(|d| d.quality.as_ref().is_some_and(|q|
+                q.subject == device && q.property == "ram_capacity" && q.value == amount)).unwrap();
+            assert_eq!((&record.memory.state, record.memory.version), (&Status::Candidate, 1));
+            assert_eq!(record.provenance[0].evidence, clause(text));
+            let record_id = record.memory.input.id.clone();
+            store.change(&record_id, SCOPE, PROJECT, 1, Action::Approve).unwrap();
+            record_ids.push(record_id);
+        }
+
+        let wrong_prior = correction.replace("48 GB", "12 GB");
+        assert_eq!(store.enqueue_learning(input("wrong-prior", &wrong_prior)).unwrap()["state"], "queued");
+        complete(&mut store, &nomination(clause(&wrong_prior), "hardware"));
+        assert_eq!(store.memory_details(SCOPE, PROJECT).unwrap().len(), 2);
+
+        assert_eq!(store.enqueue_learning(input("gm-t05", correction)).unwrap()["state"], "queued");
+        complete(&mut store, &nomination(clause(correction), "hardware"));
+        let details = store.memory_details(SCOPE, PROJECT).unwrap();
+        let current = details.iter().find(|d| d.quality.as_ref().is_some_and(|q| q.value == "64_gb")).unwrap();
+        let quality = current.quality.as_ref().unwrap();
+        assert_eq!(quality.subject, "device.primary_computer");
+        assert_eq!((quality.replaces_id.as_ref(), quality.replaces_version), (record_ids.first(), Some(2)));
+        assert_eq!(current.provenance[0].evidence, clause(correction));
+        assert_eq!(current.memory.state, Status::Conflict);
+        store.change(&current.memory.input.id, SCOPE, PROJECT, 1, Action::Approve).unwrap();
+        let details = store.memory_details(SCOPE, PROJECT).unwrap();
+        assert_eq!(details.len(), 3);
+        assert!(details.iter().any(|d| d.memory.input.id == record_ids[0] && d.memory.state == Status::Obsolete));
+        assert!(details.iter().any(|d| d.memory.input.id == record_ids[1] && d.memory.state == Status::Active));
+        let context = store.context(request("Qual era a RAM do computador principal antes e qual é agora?")).unwrap();
+        assert!(context.facts.iter().any(|f| f.value == "48_gb" && f.validity == "historical"));
+        assert!(context.facts.iter().any(|f| f.value == "64_gb" && f.validity == "current"));
+        assert!(!context.facts.iter().any(|f| f.value == "12_gb"));
+    }
+}
+
+#[test]
+fn contextual_hardware_grammar_rejects_foreign_negated_and_stale_priors() {
+    for text in [
+        "Meu computador principal está com 48 GB de RAM livre.",
+        "Meu computador principal não está com 48 GB de RAM instalada.",
+        "O narrador diz: meu computador principal está com 48 GB de RAM instalada.",
+        "No notebook que meu irmão usa para trabalhar, tenho 12 GB de RAM.",
+        "No notebook que uso para trabalhar, tenho acesso a 12 GB de RAM.",
+        "No notebook que uso para trabalhar, tenho 12 GB de RAM no desktop.",
+        "No notebook que uso para trabalhar, tenho 12 GB de RAM do meu computador principal.",
+        "Corrigindo o dado do computador principal: agora ele não possui 64 GB de RAM, não mais os 48 GB.",
+        "Corrigindo o dado do computador principal: agora ele possui acesso remoto a 64 GB de RAM, não mais os 48 GB.",
+        "Corrigindo o dado do computador principal: agora ele possui 64 GB de RAM, não mais os 48 GB do notebook de trabalho.",
+        "O narrador diz: corrigindo o dado do computador principal: agora ele possui 64 GB de RAM, não mais os 48 GB.",
+    ] {
+        assert!(dialogue::extract(text, PROJECT).iter().all(|c| c.property != "ram_capacity"), "{text}");
+    }
+    let (_root, mut store) = open(ExtractionMode::Rules);
+    let old = "Meu computador principal está com 48 GB de RAM instalada.";
+    let correction = "Corrigindo o dado do computador principal: agora ele possui 64 GB de RAM, não mais os 48 GB.";
+    let foreign = learn_reviewed_in(&mut store, "foreign-old", "another-project", old);
+    assert_eq!(foreign.len(), 1);
+    assert_eq!(store.enqueue_learning(input("foreign-prior", correction)).unwrap()["state"], "queued");
+    complete(&mut store, "");
+    assert!(store.memory_details(SCOPE, PROJECT).unwrap().is_empty());
+
+    let local = learn_reviewed_in(&mut store, "local-old", PROJECT, old);
+    assert_eq!(store.enqueue_learning(input("local-prior", correction)).unwrap()["state"], "queued");
+    complete(&mut store, "");
+    let details = store.memory_details(SCOPE, PROJECT).unwrap();
+    let current = details.iter().find(|d| d.memory.state == Status::Conflict).unwrap();
+    store.change(&local[0], SCOPE, PROJECT, 2, Action::Delete).unwrap();
+    assert_eq!(store.change(&current.memory.input.id, SCOPE, PROJECT, 1, Action::Approve).unwrap_err(),
+               "Replacement source changed; review again");
+    assert!(store.memory_details(SCOPE, PROJECT).unwrap().iter().all(|d| d.memory.state != Status::Active));
+}
+
+#[test]
 fn purpose_query_recovers_the_canonical_project_description_without_a_vector() {
     let (_root, mut store) = open(ExtractionMode::Rules);
     learn_reviewed(

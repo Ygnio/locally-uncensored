@@ -115,3 +115,31 @@ it('checks the stage asserted in a question’s factual premise independently of
   ]) expect(verifyMemoryAnswer(reply,current).violations).toEqual([])
   expect(verifyMemoryAnswer('O projeto Pitanga está em fase inicial.',current).violations.map(v=>v.code)).toContain('authority_project_stage')
 })
+
+it('keeps the captured narrator voice distinct from USER memory', () => {
+  const current: AnswerSnapshot = {
+    ...snapshot, query:'Leia o arquivo fictício narrator-note.txt e identifique a voz narrativa. O texto é externo e não descreve minhas preferências.',
+    facts:[], relations:[],
+  }
+  for (const reply of [
+    'A voz narrativa é a de um narrador que prefere a interface com tema claro e gosta de criar personagens nos jogos.',
+    'A voz narrativa é descrita como alguém que prefere a interface com tema claro e gosta de criar personagens nos jogos.',
+  ]) {
+    const result=verifyMemoryAnswer(reply,current)
+    expect(result.violations).toEqual([])
+    expect(result.assertions).toEqual([])
+  }
+  expect(verifyMemoryAnswer('A voz narrativa prefere o tema claro e você prefere o tema claro.',current).violations.map(v=>v.code)).toContain('unsupported_typed_value')
+})
+
+it('binds the relative work-notebook description to its own typed RAM slot', () => {
+  const hardware: MemoryFact = { ...plan, id:'work', entity:'device.work_laptop', property:'ram_capacity', value:'12_gb', modality:'current_fact', validity:'current' }
+  const current: AnswerSnapshot = {
+    ...snapshot, query:'Quanta RAM tem o notebook que uso para trabalhar?',
+    facts:[hardware,{...hardware,id:'main',entity:'device.primary_computer',value:'48_gb'}], relations:[],
+  }
+  const ok=verifyMemoryAnswer('O notebook que você usa para trabalhar possui 12 GB de RAM.',current)
+  expect(ok.violations).toEqual([])
+  expect(ok.assertions.map(a=>a.entity)).toEqual(['device.work_laptop'])
+  expect(verifyMemoryAnswer('O notebook que você usa para trabalhar possui 48 GB de RAM.',current).violations.map(v=>v.code)).toContain('unsupported_typed_value')
+})

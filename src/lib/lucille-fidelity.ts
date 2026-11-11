@@ -71,7 +71,7 @@ function entityIn(text: string): string | undefined {
   const q = fold(text), found: { index: number; entity: string }[] = []
   for (const [pattern, entity] of [
     [/computador principal|primary computer|main (?:desktop|computer|pc)/g, 'device.primary_computer'],
-    [/notebook de trabalho|work (?:laptop|notebook)|laptop de trabalho/g, 'device.work_laptop'],
+    [/notebook de trabalho|work (?:laptop|notebook)|laptop de trabalho|notebook que (?:eu )?(?:uso|utilizo) para trabalhar|notebook que voce (?:usa|utiliza) para trabalhar/g, 'device.work_laptop'],
     [/outro computador|other computer|secondary (?:computer|pc)/g, 'device.other_computer'],
   ] as const) for (const m of q.matchAll(pattern)) found.push({ index: m.index, entity })
   found.sort((a, b) => b.index - a.index)
