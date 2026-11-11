@@ -14,7 +14,7 @@ Os modos registram a seleção nativa com peso lexical 1, 0 e 0,5, respectivamen
 
 Um plano inédito declara `scenarios`, com `id`, `events` e `queries` por cenário.
 
-- Uma semente C1 contém `action: "seed"`, `label`, `scope`, `project` e `fact`. O fato tem `kind`, `subject`, `property`, `value`, `temporal` e `content`. `facets` e `fact_key` são opcionais. Uma versão histórica pode usar `state: "obsolete"` e a versão atual pode apontar para uma semente anterior em `replaces`.
+- Uma semente C1 contém `action: "seed"`, `label`, `scope`, `project` e `fact`. O fato tem `kind`, `subject`, `property`, `value`, `temporal` e `content`. `facets` e `fact_key` são opcionais. Uma versão histórica usa `state: "obsolete"` e carrega a revisão ativa imediatamente anterior, conforme a exigência da recuperação nativa. A versão atual pode apontar para uma semente anterior em `replaces`.
 - Uma fonte C2 contém `action: "learn"`, `label`, `scope`, `project`, `text` e os mesmos campos tipados em `fact`, exceto `content`. A revisão explícita ocorre se necessária e `approve` permite registrá-la no plano.
 - Uma exclusão ou obsolescência contém `action: "delete"` ou `"obsolete"`, `label` e `target` referente a uma semente anterior.
 - Uma consulta contém `id`, `query`, `scope`, `project`, `requires`, `expected` e opcionalmente `forbidden`, `mode` e `lexical_mandatory`. `expected` e `forbidden` referenciam rótulos de sementes.

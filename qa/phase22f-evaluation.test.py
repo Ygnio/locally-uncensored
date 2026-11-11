@@ -72,6 +72,20 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(scores['recall_planned'], 0)
         self.assertFalse(scores['passed'])
 
+    def test_historical_c1_fixture_carries_previous_active_version(self):
+        run = known('known-retrieval-annotations.json', 'known_replay')
+        scenario = retrieval['scenarios_from'](run, 'c1')[0]
+        backup, ids = retrieval['fixture'](scenario, {'version': 1, 'profile': {}}, {})
+        old = next(row for row in backup['memories'] if row['input']['id'] == ids['primary-before'])
+        tables = backup['intelligent']['tables']
+        revision = next(row for row in tables['memory_revisions'] if row[0] == old['input']['id'])
+        prior = json.loads(revision[2])
+        self.assertEqual((old['state'], old['version']), ('obsolete', 3))
+        self.assertEqual((prior['memory']['state'], prior['memory']['version'], revision[1]), ('active', 2, 2))
+        self.assertEqual(prior['quality']['value'], '48_gb')
+        replacement = next(row for row in tables['memory_quality'] if row[0] == ids['primary-now'])
+        self.assertEqual(replacement[9:11], [old['input']['id'], 2])
+
     def test_transport_gold_is_bound_to_each_source_and_commit(self):
         run = known('known-protocol-annotations.json', 'known_protocol')
         dataset = protocol_plan(run)

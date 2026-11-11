@@ -89,7 +89,8 @@ def check_plan(scenarios, track, *, final=False):
 def fixture(scenario, identity, policy):
     """Logical production backup shape. The isolated Store validates and restores it."""
     now = int(time.time())
-    tables = {'memory_quality': [], 'memory_provenance': [], 'learning_policy': [[1, json.dumps(policy)]]}
+    tables = {'memory_quality': [], 'memory_provenance': [], 'memory_revisions': [],
+              'learning_policy': [[1, json.dumps(policy)]]}
     result = dict(schema=5, identity=dict(profile=identity['profile'], version=identity['version'],
                                          created_at=now, updated_at=now), memories=[], history=[], audits=[],
                   intelligent={'tables': tables})
@@ -106,15 +107,25 @@ def fixture(scenario, identity, policy):
         source_id = 'c1-fixture-' + label
         item = dict(id=rid, **binding(event), kind=fact['kind'], content=fact['content'], fact_key=key,
                     source='reviewed_import', source_id=source_id)
-        result['memories'].append(dict(input=item, state=state, version=2, created_at=now, updated_at=now))
-        result['history'].extend([dict(record_id=rid, operation='create', version=1, at=now),
-                                  dict(record_id=rid, operation='approve' if state == 'active' else 'obsolete',
-                                       version=2, at=now)])
         replaces_id = ids[event['replaces']] if event.get('replaces') else None
-        tables['memory_quality'].append([rid, *(fact[k] for k in ('subject', 'property', 'value')),
-                                          1.0, 1.0, fact['temporal'], None, 2 if replaces_id else 1,
-                                          replaces_id, 2 if replaces_id else None,
-                                          json.dumps(fact.get('facets', [])), 'reviewed_synthetic_fixture'])
+        quality = dict(subject=fact['subject'], property=fact['property'], value=fact['value'], confidence=1.0,
+                       relevance=1.0, temporal=fact['temporal'], expires_at=None, priority=2 if replaces_id else 1,
+                       replaces_id=replaces_id, replaces_version=2 if replaces_id else None,
+                       facets=fact.get('facets', []), evidence_rule='reviewed_synthetic_fixture')
+        tables['memory_quality'].append([rid, *(quality[k] for k in ('subject', 'property', 'value', 'confidence',
+                                          'relevance', 'temporal', 'expires_at', 'priority', 'replaces_id', 'replaces_version')),
+                                          json.dumps(quality['facets']), quality['evidence_rule']])
+        reviewed = dict(input=item, state='active', version=2, created_at=now, updated_at=now)
+        result['history'].extend([dict(record_id=rid, operation='create', version=1, at=now),
+                                  dict(record_id=rid, operation='approve', version=2, at=now)])
+        if state == 'obsolete':
+            # Native historical retrieval requires the immediately preceding
+            # active revision, as written when Store obsoletes a reviewed row.
+            tables['memory_revisions'].append([rid, 2, json.dumps(dict(memory=reviewed, quality=quality)), now])
+            result['history'].append(dict(record_id=rid, operation='obsolete', version=3, at=now))
+            result['memories'].append(dict(reviewed, state='obsolete', version=3))
+        else:
+            result['memories'].append(reviewed)
         tables['memory_provenance'].append([rid, source_id, fact['content'], now])
         ids[label] = rid
     return result, ids
