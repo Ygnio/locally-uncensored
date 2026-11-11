@@ -82,11 +82,12 @@ async function run(control) {
       nativeReads=nativeReads.then(async()=>{
         const read_started_ms=Date.now()-start
         try{
-          const evidence=await manage({operation:'answer_evidence',request,references:[],claims:[],source:{interaction,job_id:null}})
           const sha=async text=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text)))].map(v=>v.toString(16).padStart(2,'0')).join('')
           const jobId=await sha(JSON.stringify([interaction.conversation_id,interaction.message_id,scope,project,await sha(interaction.user_text)]))
           const job=(await scoped('learning_jobs')).find(j=>j.id===jobId)??null
-          operationSnapshots.push({event,observed_at_ms,read_started_ms,read_finished_ms:Date.now()-start,job,learning_receipt:evidence.learning_receipt??null,directive_receipt:evidence.directive_receipt??null,...(qaPhase==='phase22f'?{source_operation:evidence.source_operation??null}:{})})
+          const proof_read_started_ms=Date.now()-start
+          const evidence=await manage({operation:'answer_evidence',request,references:[],claims:[],source:{interaction,job_id:qaPhase==='phase22f'?job?.id??null:null}})
+          operationSnapshots.push({event,observed_at_ms,read_started_ms,read_finished_ms:Date.now()-start,job,learning_receipt:evidence.learning_receipt??null,directive_receipt:evidence.directive_receipt??null,...(qaPhase==='phase22f'?{proof_read_started_ms,source_operation:evidence.source_operation??null}:{})})
         }catch(error){operationSnapshots.push({event,observed_at_ms,read_started_ms,read_finished_ms:Date.now()-start,error:String(error)})}
       })
     }

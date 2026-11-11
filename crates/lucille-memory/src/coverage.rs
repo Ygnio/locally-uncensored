@@ -229,7 +229,24 @@ pub(crate) fn supplement(evidence: &str) -> Option<Claim> {
             ));
         }
     }
-    // Two capacities are accepted only in this explicit old -> new construction.
+    // The correction direction follows the asserted current clause, never
+    // whichever number happens to occur last.
+    if let Some((subject, current, previous)) = crate::evidence::replacement_ram(evidence) {
+        let mut c = claim(
+            evidence,
+            Kind::Hardware,
+            "ram_capacity",
+            &format!("{current}_gb"),
+            evidence,
+        );
+        c.subject = subject.into();
+        c.temporal = "durable".into();
+        c.confidence = 0.85;
+        c.correction = true;
+        c.rule = format!("explicit_ram_correction_from_{previous}_gb");
+        return Some(c);
+    }
+    // Existing old -> new correction without a named first-clause device.
     if let Some(old) = old_capacity(evidence) {
         let newer = amounts(s.split("agora").nth(1)?);
         if newer.len() != 1 {

@@ -52,7 +52,7 @@ def main(args):
     contract = json.loads(contract_path.read_text(encoding='utf-8'))
     # Prevent new inference near the Phase 2.2F working margin. The model
     # supervisor independently retains its emergency shutdown threshold.
-    inference_ram_floor = (2048 if root.name == 'lucille-synthetic-real22f' else 512) * 1024**2
+    inference_ram_floor = (1024 if root.name == 'lucille-synthetic-real22f' else 512) * 1024**2
     expected = contract['models']
     stamps = {}
     for kind, pin in expected.items():

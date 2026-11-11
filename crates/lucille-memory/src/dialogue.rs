@@ -542,7 +542,9 @@ pub fn preference(span: &str) -> Option<Claim> {
     let s = fold(span);
     // New nominal predicates use the bounded relation interpreter. They do
     // not authorize the legacy token classifier for unrelated clauses.
-    if !verbal_or_established_preference_authorship(span) {
+    if !verbal_or_established_preference_authorship(span)
+        || crate::evidence::fronted_coffee_statement(span)
+    {
         return None;
     }
 

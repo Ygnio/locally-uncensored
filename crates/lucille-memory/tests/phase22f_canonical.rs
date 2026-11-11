@@ -305,6 +305,60 @@ fn a_bound_project_predicate_is_not_mistaken_for_a_foreign_project_name() {
 }
 
 #[test]
+fn exact_named_ram_replacement_and_fronted_coffee_survive_native_review() {
+    let fixture: Value =
+        serde_json::from_str(include_str!("fixtures/phase22e/final-v1/retrieval.json")).unwrap();
+    let events = fixture["events"].as_array().unwrap();
+    let source = |label: &str| {
+        events.iter().find(|event| event["label"] == label).unwrap()["text"]
+            .as_str().unwrap()
+    };
+    let (_root, mut store) = open(ExtractionMode::Rules);
+    let before = learn_reviewed_in(&mut store, "ram-before", PROJECT, source("primary-before"));
+    let work = learn_reviewed_in(&mut store, "ram-work", PROJECT, source("work-ram"));
+    let correction = source("primary-now");
+    assert_eq!(store.enqueue_learning(input("ram-replacement", correction)).unwrap()["state"], "queued");
+    complete(&mut store, "");
+    let details = store.memory_details(SCOPE, PROJECT).unwrap();
+    let current = details.iter().find(|d| d.quality.as_ref().is_some_and(|q| q.value == "64_gb")).unwrap();
+    let q = current.quality.as_ref().unwrap();
+    assert_eq!((q.subject.as_str(), q.property.as_str()), ("device.primary_computer", "ram_capacity"));
+    assert_eq!(q.replaces_id.as_ref(), before.first());
+    assert_eq!(current.memory.state, Status::Conflict);
+    assert_eq!(current.provenance[0].evidence, correction.trim_end_matches('.'));
+    store.change(&current.memory.input.id, SCOPE, PROJECT, current.memory.version, Action::Approve)
+        .unwrap();
+    let details = store.memory_details(SCOPE, PROJECT).unwrap();
+    assert!(details.iter().any(|d| d.memory.input.id == before[0] && d.memory.state == Status::Obsolete));
+    assert!(details.iter().any(|d| d.memory.input.id == work[0] && d.memory.state == Status::Active));
+    let context = store.context(request("Qual era a RAM do computador principal antes e qual é agora?")).unwrap();
+    assert!(context.facts.iter().any(|f| f.value == "48_gb" && f.validity == "historical"));
+    assert!(context.facts.iter().any(|f| f.value == "64_gb" && f.validity == "current"));
+    assert!(!context.facts.iter().any(|f| f.value == "12_gb"));
+
+    let coffee = source("coffee");
+    assert_eq!(store.enqueue_learning(input("coffee-fronted", coffee)).unwrap()["state"], "queued");
+    complete(&mut store, "");
+    assert!(store.memory_details(SCOPE, PROJECT).unwrap().iter().any(|d| {
+        d.memory.state == Status::Active
+            && d.quality.as_ref().is_some_and(|q| q.subject == "user"
+                && q.property == "coffee_sugar" && q.value == "without_sugar")
+            && d.provenance[0].evidence == coffee.trim_end_matches('.')
+    }));
+
+    for text in [
+        "Meu computador principal agora tem 64 GB de RAM, em vez dos 48 GB do meu notebook de trabalho.",
+        "Meu computador principal agora não tem 64 GB de RAM, em vez dos 48 GB anteriores.",
+        "O narrador diz: meu computador principal agora tem 64 GB de RAM, em vez dos 48 GB anteriores.",
+        "Meu café da tarde eu prefiro que meu irmão tome sem açúcar.",
+        "A personagem diz: meu café da tarde eu prefiro sem açúcar.",
+    ] {
+        assert!(dialogue::extract(text, PROJECT).iter().all(|c|
+            !["ram_capacity", "coffee_sugar"].contains(&c.property.as_str())), "{text}");
+    }
+}
+
+#[test]
 fn purpose_query_recovers_the_canonical_project_description_without_a_vector() {
     let (_root, mut store) = open(ExtractionMode::Rules);
     learn_reviewed(

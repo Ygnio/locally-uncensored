@@ -120,12 +120,35 @@ fn adverbial_preference(words: &[&str]) -> Option<(usize, usize)> {
         .then_some((i, verb + 1))
     })
 }
+fn fronted_coffee_predicate<'a>(words: &'a [&'a str]) -> Option<&'a [&'a str]> {
+    let rest = match words {
+        ["meu", "cafe", rest @ ..] | ["my", "coffee", rest @ ..]
+        | ["my", "afternoon" | "morning" | "evening", "coffee", rest @ ..] => rest,
+        _ => return None,
+    };
+    let rest = match rest {
+        ["da" | "de", "tarde" | "manha" | "noite", rest @ ..]
+        | ["in", "the", "afternoon" | "morning" | "evening", rest @ ..] => rest,
+        _ => rest,
+    };
+    let target = match rest {
+        ["eu", "prefiro", target @ ..] | ["prefiro", target @ ..]
+        | ["i", "prefer", target @ ..] => target,
+        _ => return None,
+    };
+    Some(target.strip_prefix(&["it"]).unwrap_or(target))
+}
+pub(crate) fn fronted_coffee_statement(text: &str) -> bool {
+    fronted_coffee_predicate(&tokens(&fold(text))).is_some()
+}
+
 /// Witness the speaker of the predicate without deciding its canonical value.
 pub(crate) fn owns_preference_predicate(text: &str) -> bool {
     let s = fold(text);
     let words = tokens(&s);
     nominal_preference(&words).is_some()
         || adverbial_preference(&words).is_some()
+        || fronted_coffee_predicate(&words).is_some()
         || explicit_renewal(text)
 }
 fn preference_value(descriptor: &[&str], target: &[&str]) -> Option<(&'static str, &'static str)> {
@@ -233,6 +256,62 @@ fn possessed_device(words: &[&str]) -> bool {
                     ["computador", "computer", "pc", "notebook", "laptop", "note"].contains(w)
                 })
     })
+}
+/// A stated RAM replacement binds the earlier quantity to the same owned
+/// device. The old-value tail may carry a unit and age marker only.
+pub(crate) fn replacement_ram(text: &str) -> Option<(&'static str, u32, u32)> {
+    let s = fold(text);
+    if text.contains('?') || crate::coverage::mixed_devices(&s) {
+        return None;
+    }
+    let (current, previous) = [
+        " em vez de ", " em vez do ", " em vez dos ", " instead of ",
+    ]
+    .iter()
+    .find_map(|marker| s.split_once(marker))?;
+    let words = tokens(current);
+    let old_words = tokens(previous);
+    let leading = words
+        .strip_prefix(&["o"])
+        .or_else(|| words.strip_prefix(&["the"]))
+        .unwrap_or(&words);
+    let owned_subject = matches!(leading, [
+        "meu" | "my",
+        "computador" | "computer" | "pc" | "notebook" | "laptop",
+        ..
+    ] | [
+        "meu" | "my",
+        "outro" | "other" | "primary" | "work",
+        "computador" | "computer" | "pc" | "notebook" | "laptop",
+        ..
+    ]);
+    if !owned_subject
+        || !has(&words, &["agora", "now", "atualmente", "currently"])
+        || !has(&words, &["ram"])
+        || !has(&words, &["tem", "possui", "has"])
+        || has(&words, &[
+            "nao", "not", "nunca", "never", "se", "if", "talvez", "maybe", "acho", "think",
+            "pretendo", "plan", "would", "livre", "livres", "free", "vram", "gpu", "suporta",
+            "supports", "previsao", "maximum", "maximo", "irmao", "irma", "brother", "sister",
+            "personagem", "character", "narrador", "narradora", "narrator",
+        ])
+        || !old_words.iter().all(|word| {
+            ["gb", "de", "ram", "of", "the", "anterior", "anteriores", "previous", "old"].contains(word)
+                || word.strip_suffix("gb").unwrap_or(word).parse::<u32>().is_ok()
+        })
+    {
+        return None;
+    }
+    let current_amounts = crate::coverage::amounts(current);
+    let previous_amounts = crate::coverage::amounts(previous);
+    let ([current_size], [previous_size]) = (current_amounts.as_slice(), previous_amounts.as_slice())
+    else {
+        return None;
+    };
+    if current_size == previous_size {
+        return None;
+    }
+    Some((crate::coverage::device(current)?, *current_size, *previous_size))
 }
 fn installed_capacity_predicate(words: &[&str]) -> bool {
     let Some(amount_at) = words.iter().enumerate().position(|(i, word)| {
@@ -457,6 +536,11 @@ pub(crate) fn interpret<'a>(text: &'a str, project: &'a str) -> Option<Evidence<
     if let Some((property, value)) = nominal_preference(&words)
         .and_then(|(descriptor, target)| preference_value(descriptor, target))
         .or_else(|| modified_preference_value(&words))
+        .or_else(|| match fronted_coffee_predicate(&words)? {
+            [preparation, sugar] => preference_value(&[], &["coffee", preparation, sugar]),
+            ["unsweetened"] => Some(("coffee_sugar", "without_sugar")),
+            _ => None,
+        })
     {
         e.kind = Kind::Preference;
         e.temporal = "preference";
