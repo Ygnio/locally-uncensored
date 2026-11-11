@@ -50,6 +50,7 @@ def main(a, phase='22e'):
     if phase == '22f':
         dependencies = {p.name:artifacts.digest(p) for p in sorted(native.parent.glob('*.dll')) if p.is_file()}
         assert dependencies == freeze['native_local_dependencies_sha256']
+        assert artifacts.digest(reports / 'native-build-contract.json') == freeze['native_build_contract_sha256']
     assert json.loads((reports / 'real-public-pin.json').read_text(encoding='utf-8')) == freeze['model_pin']
     ready = artifacts.read_report(reports / 'driver-ready-progress.json', timeout=5)
     assert ready['native'] is True

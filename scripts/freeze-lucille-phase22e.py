@@ -105,6 +105,13 @@ def main(a, phase='22e'):
     if phase=='22f':
         data['native_local_dependencies_sha256'] = {} if a.without_gui else {
             p.name:digest(p) for p in sorted(gui.parent.glob('*.dll')) if p.is_file()}
+        if not a.without_gui:
+            build_contract=root/'reports/native-build-contract.json'
+            build=json.loads(build_contract.read_text(encoding='utf-8-sig'))
+            assert build['artifacts_sha256']=={gui.name:gui_hash,**data['native_local_dependencies_sha256']}
+            assert build['base_manifest_sha256']==digest(repo/'src-tauri/Cargo.toml')
+            data['native_build_contract'] = build
+            data['native_build_contract_sha256'] = digest(build_contract)
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_bytes((json.dumps(data,ensure_ascii=False,indent=2)+'\n').encode('utf-8'))
     print(json.dumps(dict(kind=a.kind,source_files=len(sources),corpora=len(corpora),sha256=digest(output))))

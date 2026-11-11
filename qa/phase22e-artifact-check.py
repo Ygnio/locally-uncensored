@@ -96,6 +96,7 @@ def verify_artifacts(repo, root, freeze, phase='22e'):
     if phase == '22f':
         dependencies = {p.name:digest(p) for p in sorted(native.parent.glob('*.dll')) if p.is_file()}
         assert dependencies == freeze['native_local_dependencies_sha256'], 'Frozen native DLL inventory changed'
+        assert digest(reports / 'native-build-contract.json') == freeze['native_build_contract_sha256'], 'Frozen native build metadata changed'
     static = repo / ('qa-dist-' + phase)
     assert (static / '.lucille-static-build').read_bytes() == b'synthetic-data-only\n'
     actual = {p.relative_to(static).as_posix(): digest(p) for p in static.rglob('*') if p.is_file()}
