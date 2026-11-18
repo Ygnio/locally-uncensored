@@ -427,7 +427,7 @@ impl Store {
         memories.truncate(12);
         let (facts, relations, used) = loop {
             let facts = context_facts::project(&tx, &memories)?;
-            let relations = retrieval::relation_context(&tx,&req.query,&memories,at)?;
+            let relations = retrieval::relation_context(&tx,&req.query,&req.project,&memories,at)?;
             let extra = if memories.is_empty() {
                 0
             } else {

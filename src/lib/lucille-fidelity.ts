@@ -27,7 +27,7 @@ export interface AnswerSnapshot {
 }
 export interface SourceSpeakerSummary { message_author:'user';personal:number;external:number;quoted:number;uncertain:number }
 export interface MemoryQueryRelation {
-  query:string;actor:string;intent?:string;state:string;references:{id:string;version:number}[]
+  query:string;actor:string;intent?:string;outside_project?:string;state:string;references:{id:string;version:number}[]
 }
 export interface MemoryLearningReceipt {
   id:string;action:'learn';state:'done';scope:string;project:string;conversation_id:string;source_message_id:string
@@ -537,6 +537,20 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   if (personalQuestion && relevantKnown && uncertain(text) && assertions.length === 0) add('known_information_not_used', text, false)
   for(const relation of snapshot.relations??[]) {
     if(relation.actor!=='user')continue
+    if (relation.outside_project && relation.state === 'unavailable') {
+      const answer = fold(text)
+      const boundary = /(?:fora|outside|beyond).{0,48}(?:escopo|scope|acesso|access|autoriz)|(?:\bsem|\bnao (?:tenho|tem|temos|possuo)|\bno(?=\s+access)|\bwithout|\bcannot|\bcan't|\bnot authorized).{0,32}(?:acesso|acessar|access|autoriz|permission)|(?:acesso|access|autoriz|escopo|scope|consultar).{0,45}(?:apenas|somente|restrit|limit|only)|(?:apenas|somente|so|only).{0,45}(?:acesso|acessar|consultar|access|autoriz)/u
+      const project = fold(relation.outside_project)
+      const onlyExternal = snapshot.relations?.filter(r => r.outside_project).length === 1
+      const explainsBoundary = answer.split(/[.!?\n]+/u).some(sentence => {
+        const identifiesProject = sentence.split(/[^\p{L}\p{N}_-]+/u).includes(project)
+          || (onlyExternal && /\b(?:outro projeto|other project)\b/u.test(sentence))
+        return identifiesProject && boundary.test(sentence)
+      })
+      if (!explainsBoundary) {
+        add('missing_project_access_boundary', text, false)
+      }
+    }
     const known=available.filter(f=>relation.references.some(r=>r.id===f.id && r.version===f.version))
     if(known.length && !assertions.some(a=>a.supported && a.references.some(id=>known.some(f=>f.id===id))))add('known_relation_not_used',text,false)
   }

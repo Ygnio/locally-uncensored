@@ -15,7 +15,7 @@ if ((bridge !== realpathSync(resolve(repo, '../build/phase22f/real_validation_br
 for (const path of [root, store]) {
   if (readFileSync(resolve(path, '.lucille-isolated'), 'utf8') !== 'synthetic-data-only\n') throw Error('Missing QA marker')
 }
-const { request, query_vector, first_pass_only = false } = JSON.parse(readFileSync(0, 'utf8'))
+const { request, query_vector, first_pass_only = false, archived_initial } = JSON.parse(readFileSync(0, 'utf8'))
 const native = data => JSON.parse(execFileSync(bridge, [], {
   input: JSON.stringify(data), encoding: 'utf8', windowsHide: true, env: { ...process.env, LUCILLE_QA_ROOT: store },
 }))
@@ -63,7 +63,7 @@ async function reload() {
 }
 
 async function generate(messages) {
-  if (first_pass_only && generations.length) throw Error("First-pass diagnostic budget exhausted")
+  if (first_pass_only && (archived_initial || generations.length)) throw Error("First-pass diagnostic budget exhausted")
   const started = performance.now()
   const payload = { model: 'lucille-real-gemma', messages, temperature: 0, max_tokens: 384, stream: false,
     reasoning_effort: 'none', chat_template_kwargs: { enable_thinking: false } }
@@ -86,7 +86,9 @@ const started = performance.now()
 let result
 try {
   const messages = await reload()
-  const { completion, report } = await validateLucilleCompletion(messages, await generate(messages), generate)
+  const { completion, report } = await validateLucilleCompletion(messages, archived_initial
+    ? { content: archived_initial, finishReason: 'stop' }
+    : await generate(messages), generate)
   result = { status: 'delivered', delivered: completion.content, report }
 } catch (error) {
   if (error instanceof MemoryAnswerBlocked) result = { status: 'blocked', delivered: '', report: error.report }

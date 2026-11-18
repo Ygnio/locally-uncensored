@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { it, expect } from 'vitest'
 import type { ChatMessage } from '../../api/providers/types'
-import { validateLucilleCompletion, MemoryAnswerBlocked } from '../lucille-answer'
+import { validateLucilleCompletion, validateLucilleStream, MemoryAnswerBlocked } from '../lucille-answer'
 import { verifyMemoryAnswer, registerAnswerSnapshot, type MemoryFact } from '../lucille-fidelity'
 
 const dir = 'docs/evidence/phase22g'
@@ -64,5 +64,42 @@ it('uses the property and temporal track of independently reviewed evidence', ()
   expect(codes('O plano não prova que Lume já utiliza o banco.')).not.toContain('affirmed_unproven_project_execution')
   expect(codes('Não temos registros sobre a RAM anterior do computador principal.')).toContain('absence_without_evidence')
   expect(codes('Não temos registros sobre a RAM anterior do notebook de trabalho.')).not.toContain('absence_without_evidence')
+})
+
+
+it('requires a scoped explanation for the inaccessible project in a comparison', () => {
+  const snapshot = {scope:'qa',project:'lume',query:'Compare o banco de Lume com o de Cedro.',
+    currentStatements:[],facts,relations:[{actor:'user',query:'o banco escolhido em Cedro',
+      intent:'choice',outside_project:'Cedro',state:'unavailable',references:[]}]}
+  const codes = (answer:string)=>verifyMemoryAnswer(answer,snapshot).violations.map(v=>v.code)
+  expect(codes('O registro de Cedro não está disponível.')).toContain('missing_project_access_boundary')
+  expect(codes('Tenho acesso apenas ao histórico de Lume. Não há registro em Cedro.')).toContain('missing_project_access_boundary')
+  expect(codes('Cedro está fora do escopo desta conversa.')).not.toContain('missing_project_access_boundary')
+  for (const name of ['regeneration','corrected-first-pass']) {
+    const row = JSON.parse(readFileSync(dir+'/fidelity/'+name+'.json','utf8'))
+    const context = row.contexts[0]
+    expect(verifyMemoryAnswer(row.delivered,{...snapshot,scope:context.facts[0].scope,
+      project:context.facts[0].project,query:row.generations[0].request.messages.findLast((m:{role:string})=>m.role==='user')?.content,
+      facts:context.facts,relations:context.relations}).violations.map(v=>v.code)).not.toContain('missing_project_access_boundary')
+  }
+})
+
+it('publishes only the verified replacement through the streaming response path', async () => {
+  const fixed = JSON.parse(readFileSync(dir+'/fidelity/corrected-first-pass.json','utf8'))
+  const retry = JSON.parse(readFileSync(dir+'/fidelity/regeneration.json','utf8'))
+  const first = JSON.parse(readFileSync(dir+'/fidelity/first-pass.json','utf8')).find((r:{id:string})=>r.id==='f2q-17')
+  const messages:ChatMessage[] = fixed.generations[0].request.messages
+  const context = fixed.contexts[0]
+  registerAnswerSnapshot(messages[0],{scope:context.facts[0].scope,project:context.facts[0].project,
+    query:messages[messages.length-1].content as string,facts:context.facts,relations:context.relations,currentStatements:[]})
+  async function* incoming() { yield {content:first.delivered,done:true} }
+  const chunks = []
+  let retries = 0
+  for await (const chunk of validateLucilleStream(incoming(),()=>messages,async () => {
+    retries++
+    return {content:retry.delivered,finishReason:'stop'}
+  }, report => expect(report.status).toBe('regenerated'))) chunks.push(chunk.content)
+  expect(retries).toBe(1)
+  expect(chunks).toEqual([retry.delivered])
 })
 

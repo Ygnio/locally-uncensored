@@ -13,6 +13,8 @@ use std::collections::{HashMap, HashSet};
 /// expands the authorized scope/project or grants evidence to a missing actor.
 #[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
 pub struct QueryRelation {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub outside_project: Option<String>,
     pub query: String,
     pub actor: String,
     pub intent: String,
@@ -295,6 +297,7 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
             }
             .into();
             QueryRelation {
+                outside_project: None,
                 query: part,
                 actor,
                 intent,
@@ -304,14 +307,36 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
 }
 #[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
 pub struct RelationContext {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub outside_project: Option<String>,
     pub query: String,
     pub actor: String,
     pub intent: String,
     pub state: String,
     pub references: Vec<crate::Reference>,
 }
+// Resolve parallel project qualifiers against this turn's authorized binding.
+fn bound_relations(query: &str, project: &str) -> Vec<QueryRelation> {
+    fn qualifier(relation: &QueryRelation) -> Option<&str> {
+        if requested_project_field(&relation.query).is_none() { return None; }
+        let mut words = relation.query.trim_end_matches(['.', '?', '!']).split_whitespace().rev();
+        let name = words.next()?;
+        let prep = fold(words.next()?);
+        (["em", "in"].contains(&prep.as_str())
+            && name.chars().all(|c| c.is_alphanumeric() || c == '-' || c == '_')).then_some(name)
+    }
+    let mut relations = query_relations(query);
+    if relations.iter().filter_map(qualifier).any(|name| fold(name) == fold(project)) {
+        for relation in &mut relations {
+            relation.outside_project = qualifier(relation)
+                .filter(|name| name.starts_with(char::is_uppercase) && fold(name) != fold(project))
+                .map(str::to_owned);
+        }
+    }
+    relations
+}
 fn relation_matches(tx: &Transaction, m: &Memory, r: &QueryRelation) -> Result<bool> {
-    if r.actor != "user" {
+    if r.actor != "user" || r.outside_project.is_some() {
         return Ok(false);
     }
     let Some(q) = quality(tx, &m.input.id)? else {
@@ -333,10 +358,11 @@ fn relation_matches(tx: &Transaction, m: &Memory, r: &QueryRelation) -> Result<b
 pub(crate) fn relation_context(
     tx: &Transaction,
     query: &str,
+    project: &str,
     memories: &[Memory],
     at: i64,
 ) -> Result<Vec<RelationContext>> {
-    query_relations(query)
+    bound_relations(query, project)
         .into_iter()
         .map(|r| {
             let mut references = Vec::new();
@@ -361,6 +387,7 @@ pub(crate) fn relation_context(
                 }
             }
             Ok(RelationContext {
+                outside_project: r.outside_project,
                 query: r.query,
                 actor: r.actor,
                 intent: r.intent,
@@ -874,7 +901,7 @@ fn eligible_source(
     if named_comparison_project(query).is_some_and(|name| fold(name) != fold(&m.input.project)) {
         return Ok(false);
     }
-    let relations=query_relations(query);
+    let relations=bound_relations(query, &m.input.project);
     if !relations.is_empty(){
         for r in relations {if relation_matches(tx,m,&r)? && eligible_source(tx,m,&r.query,at,canonical_claim)?{return Ok(true)}}
         return Ok(false)
@@ -1388,10 +1415,10 @@ pub(crate) fn select(
     policy: &LearningPolicy,
     at: i64,
 ) -> Result<(Vec<Memory>, usize)> {
-    let relations=query_relations(&req.query);
+    let relations=bound_relations(&req.query, &req.project);
     if !relations.is_empty(){
         let mut out=Vec::new(); let initial_used=used;
-        for relation in relations.into_iter().filter(|r|r.actor=="user") {
+        for relation in relations.into_iter().filter(|r|r.actor=="user" && r.outside_project.is_none()) {
             let sub=TurnRequest{query:relation.query.clone(),..req.clone()};
             // Keep the real whole-question vector as a global ranking prior.
             // Local actor/modality filters do not claim a new fragment embedding.
@@ -1725,4 +1752,25 @@ pub(crate) fn select(
         }
     }
     Ok((out, used))
+}
+
+#[cfg(test)]
+mod project_comparison_tests {
+    use super::bound_relations;
+
+    #[test]
+    fn parallel_database_qualifiers_respect_the_current_binding_in_either_order() {
+        let query = "Compare o banco planejado em Aurora com o banco escolhido em Cedro.";
+        for (project, expected) in [
+            ("aurora", [None, Some("Cedro")]),
+            ("cedro", [Some("Aurora"), None]),
+        ] {
+            let relations = bound_relations(query, project);
+            let targets: Vec<_> = relations.iter().map(|r| r.outside_project.as_deref()).collect();
+            assert_eq!(targets, expected);
+        }
+        let generic = bound_relations("Compare o banco planejado em Aurora com o banco escolhido em produção.", "aurora");
+        assert_eq!(generic.len(), 2);
+        assert!(generic.iter().all(|r| r.outside_project.is_none()));
+    }
 }

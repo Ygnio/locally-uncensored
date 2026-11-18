@@ -99,9 +99,11 @@ def main(args):
         if kind == 'gemma' and os.environ.get('LUCILLE_G22_BUDGET'):
             # Shared across broker restarts. Exclusive creation reserves an
             # attempt before the upstream call, including failed attempts.
-            budget = root / 'reports' / 'g22-call-budget'
+            fidelity = os.environ['LUCILLE_G22_BUDGET'] == 'fidelity'
+            limit = 8 if fidelity else 12
+            budget = root / 'reports' / ('g22-fidelity-budget' if fidelity else 'g22-call-budget')
             budget.mkdir(exist_ok=True)
-            for slot in range(12):
+            for slot in range(limit):
                 try:
                     with (budget / str(slot)).open('x') as ticket:
                         ticket.write(str(time.time()))
@@ -109,7 +111,7 @@ def main(args):
                 except FileExistsError:
                     continue
             else:
-                raise ValueError('Initial twelve-call Gemma budget exhausted')
+                raise ValueError('Checkpoint Gemma budget exhausted')
         port = 15288 if kind == 'gemma' else 15289
         key = (root / (kind + '.api-key')).read_text(encoding='ascii')
         request = urllib.request.Request(f'http://127.0.0.1:{port}' + endpoint,
