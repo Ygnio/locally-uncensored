@@ -345,7 +345,7 @@
     },
     "last": "source submitted",
     "first": "admission before job allocation",
-    "gemma": false,
+    "gemma": "external C2 evaluator called Gemma before enqueue; stored nomination in nominations.json",
     "job": false,
     "receipt": false,
     "experiment": "Replay enqueue and inspect authority spans and typed claims."
@@ -378,7 +378,7 @@
     },
     "last": "source submitted",
     "first": "admission before job allocation",
-    "gemma": false,
+    "gemma": "external C2 evaluator called Gemma before enqueue; stored nomination in nominations.json",
     "job": false,
     "receipt": false,
     "experiment": "Replay enqueue and inspect authority spans and typed claims."
@@ -411,7 +411,7 @@
     },
     "last": "source submitted",
     "first": "admission before job allocation",
-    "gemma": false,
+    "gemma": "external C2 evaluator called Gemma before enqueue; stored nomination in nominations.json",
     "job": false,
     "receipt": false,
     "experiment": "Replay enqueue and inspect authority spans and typed claims."
@@ -1858,8 +1858,8 @@
     "last": "generation",
     "first": "no verified delivery",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": "none observed",
+    "receipt": "none observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -1901,8 +1901,11 @@
     "last": "display",
     "first": "literal mismatch",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": [
+      "done",
+      "queued"
+    ],
+    "receipt": "observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -1945,8 +1948,11 @@
     "last": "display",
     "first": "literal mismatch",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": [
+      "done",
+      "queued"
+    ],
+    "receipt": "observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -1991,8 +1997,8 @@
     "last": "display",
     "first": "literal mismatch",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": "none observed",
+    "receipt": "none observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2041,8 +2047,11 @@
     "last": "display",
     "first": "literal mismatch",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": [
+      "done",
+      "queued"
+    ],
+    "receipt": "observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2084,8 +2093,11 @@
     "last": "generation",
     "first": "no verified delivery",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": [
+      "done",
+      "queued"
+    ],
+    "receipt": "observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2125,8 +2137,8 @@
     "last": "generation",
     "first": "no verified delivery",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": "none observed",
+    "receipt": "none observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2174,8 +2186,11 @@
     "last": "display",
     "first": "literal mismatch",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": [
+      "done",
+      "queued"
+    ],
+    "receipt": "observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2214,8 +2229,8 @@
     "last": "generation",
     "first": "no verified delivery",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": "none observed",
+    "receipt": "none observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2270,12 +2285,12 @@
     "last": "display",
     "first": "literal mismatch",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": "none observed",
+    "receipt": "none observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
-    "category": "F",
+    "category": "D + E (correct hold)",
     "source": {
       "id": "fv1-main-t15",
       "text": "Na verdade, meu computador principal agora tem 36 GB de RAM. Os 20 GB descreviam a configuração anterior.",
@@ -2310,12 +2325,15 @@
       "retained_atom_ids": [],
       "claims_detail": []
     },
-    "last": "generation",
-    "first": "no verified delivery",
+    "last": "complete USER passed to extraction in llm mode",
+    "first": "all four model nominations selected the old clause",
     "gemma": true,
-    "job": "unknown",
+    "job": [
+      "done",
+      "queued"
+    ],
     "receipt": "none",
-    "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
+    "experiment": "Replay archived nomination and test same source in hybrid."
   },
   {
     "category": "F",
@@ -2354,8 +2372,8 @@
     "last": "generation",
     "first": "no verified delivery",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": "none observed",
+    "receipt": "none observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2405,8 +2423,8 @@
     "last": "display",
     "first": "literal mismatch",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": "none observed",
+    "receipt": "none observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2449,8 +2467,11 @@
     "last": "display",
     "first": "literal mismatch",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": [
+      "done",
+      "queued"
+    ],
+    "receipt": "observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2488,8 +2509,11 @@
     "last": "generation",
     "first": "no verified delivery",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": [
+      "done",
+      "queued"
+    ],
+    "receipt": "none observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2527,8 +2551,8 @@
     "last": "generation",
     "first": "no verified delivery",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": "none observed",
+    "receipt": "none observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2589,8 +2613,8 @@
     "last": "display",
     "first": "literal mismatch",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": "none observed",
+    "receipt": "none observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2634,8 +2658,8 @@
     "last": "generation",
     "first": "no verified delivery",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": "none observed",
+    "receipt": "none observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2689,8 +2713,8 @@
     "last": "display",
     "first": "literal mismatch",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": "none observed",
+    "receipt": "none observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2743,8 +2767,8 @@
     "last": "display",
     "first": "literal mismatch",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": "none observed",
+    "receipt": "none observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2787,8 +2811,12 @@
     "last": "display",
     "first": "literal mismatch",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": [
+      "done",
+      "queued",
+      "running"
+    ],
+    "receipt": "observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2844,8 +2872,8 @@
     "last": "display",
     "first": "literal mismatch",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": "none observed",
+    "receipt": "none observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2885,8 +2913,12 @@
     "last": "generation",
     "first": "no verified delivery",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": [
+      "failed",
+      "queued",
+      "running"
+    ],
+    "receipt": "none observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -2943,7 +2975,10 @@
     "last": "display",
     "first": "literal mismatch",
     "gemma": true,
-    "job": "queued at display",
+    "job": [
+      "done",
+      "queued"
+    ],
     "receipt": "first read 7624 ms, display 2684 ms",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
@@ -2984,8 +3019,8 @@
     "last": "generation",
     "first": "no verified delivery",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": "none observed",
+    "receipt": "none observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   },
   {
@@ -3029,8 +3064,11 @@
     "last": "generation",
     "first": "no verified delivery",
     "gemma": true,
-    "job": "unknown",
-    "receipt": "unknown",
+    "job": [
+      "done",
+      "queued"
+    ],
+    "receipt": "observed",
     "experiment": "Replay original snapshot and both candidates, separating correct holds from false holds."
   }
 ]

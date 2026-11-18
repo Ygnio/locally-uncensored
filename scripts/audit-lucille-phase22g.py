@@ -25,7 +25,7 @@ def main():
             if p.get('reason') == 'not_eligible':
                 failed.add(p['label'])
                 rows.append(dict(category='A', source=events[p['label']], observed=p,
-                    last='source submitted', first='admission before job allocation', gemma=False, job=False, receipt=False,
+                    last='source submitted', first='admission before job allocation', gemma='external C2 evaluator called Gemma before enqueue; stored nomination in nominations.json', job=False, receipt=False,
                     experiment='Replay enqueue and inspect authority spans and typed claims.'))
         for q in observations['queries']:
             obs = q['modes']['fallback' if track == 'c1' else 'hybrid']
@@ -56,10 +56,19 @@ def main():
             gemma=True,job='queued at display' if s['id']=='fv1-forget-t01' else 'unknown',
             receipt={'fv1-forget-t01':'first read 7624 ms, display 2684 ms','fv1-main-t15':'none'}.get(s['id'],'unknown'),
             experiment='Replay original snapshot and both candidates, separating correct holds from false holds.'))
+    gui=read(OUT/'gui-trace.json')
+    for row in rows:
+        observed=row['observed']
+        if observed.get('stage')=='GUI':
+            trace=gui[observed['id']]
+            row['job']=trace['job_states'] or 'none observed'
+            if row['receipt']=='unknown':
+                row['receipt']='observed' if trace['receipt_seen'] else 'none observed'
+            if observed['id']=='fv1-main-t15':
+                row.update(category='D + E (correct hold)',last='complete USER passed to extraction in llm mode',
+                    first='all four model nominations selected the old clause',experiment='Replay archived nomination and test same source in hybrid.')
     (OUT/'audit.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
 
 
 if __name__=='__main__':
     main()
-
-
