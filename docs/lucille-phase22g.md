@@ -88,3 +88,42 @@ A aplicação Tauri de QA executou o frontend compilado do projeto com WebView r
 Passaram 24 testes Rust em duas suítes e 118 testes TypeScript em sete suítes dirigidas. As 12 chamadas autorizadas foram consumidas: nove respostas C2 e três extrações da GUI, com 8.342 tokens de entrada e 484 de saída no total. Os supervisores registraram a parada solicitada e a identidade dos processos encerrados. As cinco portas de QA ficaram livres. Os quatro bancos sintéticos passaram na integridade SQLite e na verificação de chaves estrangeiras. Os 104 arquivos protegidos coincidiram com os hashes do inventário ao encerrar. [Quota e supervisores](evidence/phase22g/consolidation/quota-closeout.json) · [SQLite](evidence/phase22g/consolidation/sqlite.json) · [Inventário](evidence/phase22g/consolidation/protected.json)
 
 **Decisão.** Manter o PR em rascunho. A recuperação e o transporte atingiram os critérios dirigidos, mas falta demonstrar a qualidade das respostas nas consultas dependentes com a seleção final. Não há recomendação para iniciar a próxima avaliação extensa.
+
+## Fidelidade com a recuperação corrigida — 18 de novembro de 2026
+
+**Decisão: CONTINUAR na 2.2G.** Das cinco primeiras respostas reais, quatro cumpriram a rubrica congelada. A comparação entre dois projetos expôs uma falha na construção do contexto e uma lacuna no verificador. Depois da correção, tanto a regeneração dirigida quanto uma nova primeira resposta atenderam à rubrica. O resultado final cobre cinco consultas dirigidas. A avaliação formal 2.2F continua reprovada.
+
+| Caso | Primeira resposta operacional | Resultado individual |
+|---|---|---|
+| f2q-10 | Descreveu os roteiros sonoros para um museu tátil | Adequada. Preservou a finalidade de Crivo. |
+| f2q-15 | Informou que Lacre foi concluído, com a última placa em braile pronta | Adequada. O estado concluído e o detalhe constavam na fonte. |
+| f2q-16 | Identificou TypeScript como escolha e Rust como implementação em andamento | Adequada. Respondeu às duas partes e preservou as modalidades. |
+| f2q-17 | Informou o plano de MySQL em Crivo e disse que o registro de Nacar estava indisponível | Incompleta e entregue. Faltou explicar o limite de acesso. Regeneração e novo primeiro passe adequados após a correção. |
+| f2q-25 | Atribuiu ao usuário a preferência negativa sobre interfaces carregadas no sistema de reservas | Adequada. Preservou autoria e polaridade. |
+
+Cada pedido real foi comparado às referências canônicas e à versão, escopo, projeto, modalidade e evidência literal de cada fato injetado. Na primeira rodada houve **4/5 adequadas, uma entrega inadequada e zero respostas corretas bloqueadas**. Com as quatro respostas preservadas e o novo primeiro passe do caso corrigido, o resultado dirigido chegou a **5/5**. [Pedidos e textos integrais](evidence/phase22g/fidelity/first-pass.json) · [Análise por átomo da rubrica](evidence/phase22g/fidelity/rubric-review.json)
+
+### Onde a comparação falhou
+
+A recuperação agregada de f2q-17 selecionou corretamente o plano de Crivo. Ao montar as relações do prompt, o sistema também anexou a mesma referência ao banco *escolhido em Nacar* e marcou essa segunda relação como recuperada. A primeira divergência foi **B — contexto**. O verificador aceitou a omissão do motivo de indisponibilidade, uma falha **D**. A geração não revelou nenhum dado de Nacar. A resposta inicial, por si só, não isola uma limitação de capacidade do Gemma.
+
+O seletor nativo passou a resolver qualificadores paralelos de projeto contra o vínculo autorizado do turno. Na relação externa, o contexto agora identifica o projeto fora de escopo, informa indisponibilidade e fornece zero referências. O verificador exige a explicação do limite nessa comparação. Os testes trocaram os nomes e inverteram o vínculo autorizado, além de testar um qualificador genérico. A correção cobre esse padrão de comparação; formulações muito diferentes ainda precisam de evidência.
+
+### Regeneração e custo
+
+No único caso inadequado, reapresentamos o texto bruto original ao verificador real com o contexto corrigido. A violação registrada foi `missing_project_access_boundary`. A aplicação solicitou uma única regeneração, exibiu a resposta verificada e preservou o plano de MySQL. O teste de streaming confirmou que o consumidor recebe apenas a substituição verificada nesse caminho. Num pedido novo independente, o Gemma explicou a mesma restrição já na primeira resposta. A evidência favorece uma falha de integração. Não houve indicação para gastar a oitava chamada num novo controle ideal. O resultado anterior de 13/15 brutas em contexto ideal de 4.096 tokens continua histórico. [Instrução corretiva, segunda geração e verificação](evidence/phase22g/fidelity/regeneration.json) · [Primeiro passe independente](evidence/phase22g/fidelity/corrected-first-pass.json)
+
+| Inferência nova | Chamadas | Tokens de entrada | Tokens de saída |
+|---|---:|---:|---:|
+| Cinco consultas obrigatórias | 5 | 4.478 | 137 |
+| Regeneração dirigida, 1/1 útil | 1 | 1.312 | 48 |
+| Reteste independente de f2q-17 | 1 | 966 | 49 |
+| **Total** | **7/8** | **6.756** | **234** |
+
+As cinco gerações iniciais levaram entre 1,33 e 2,57 segundos cada no broker local. O Gemma operou com contexto de 65.536 tokens e Nomic em CPU. Nas duas janelas de inferência, o mínimo amostrado de RAM física livre foi de 2.908.344.320 bytes. O pico de memória usada pela GPU inteira foi de 9.299 MiB. O consumo de tokens do Codex não estava disponível. [Duração, recursos, hash do bridge e encerramento](evidence/phase22g/fidelity/run.json)
+
+### Regressões e preservação
+
+Os replays nativos confirmaram C1 obrigatório 21/21, C1 completo 26/26, admissão das 20/20 fontes e seleção exata em 27/27 consultas C2 nos modos fallback e híbrido. Foram usados vetores e extrações arquivados. Passaram 27 testes Rust e 133 TypeScript, incluindo revisão temporal da RAM nos três modos, isolamento, operações sem recibo e replay do oracle anterior. Nesse oracle as 13 corretas foram preservadas e os dois erros retidos. O replay final da resposta antiga de f2q-17 foi bloqueado e as duas respostas corrigidas foram aceitas. [Regressões nativas](evidence/phase22g/fidelity/regressions.json) · [Replays das entregas](evidence/phase22g/fidelity/offline-replays.json)
+
+O transporte GUI permanece no 3/3 medido no checkpoint anterior. Esta rodada exercitou a verificação da resposta no caminho de streaming e preservou o fluxo de transporte de aprendizado. As cinco portas de QA ficaram livres, seis bancos sintéticos passaram nas verificações SQLite e os 104 arquivos protegidos mantiveram seus hashes. A execução partiu de `bfde90e4`; código e evidências estão no commit `2d794853`. A cobertura dirigida permite prosseguir com a fase, sem aprovar a memória operacional nem iniciar uma campanha extensa.
