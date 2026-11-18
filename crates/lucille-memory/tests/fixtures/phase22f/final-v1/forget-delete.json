@@ -1,0 +1,67 @@
+{
+  "id": "phase22f-final-v1-forget-delete",
+  "kind": "independent final v1 GUI specification",
+  "scope": "phase22f-v1-forget-x8n",
+  "project": "orvalho",
+  "turns": [
+    {
+      "id": "fv1-forget-t01",
+      "text": "Quando configuro a interface para mim, eu prefiro o tema escuro.",
+      "mode": "chat",
+      "expected_atoms": [
+        "lifecycle_dark_theme_source",
+        "no_premature_persistence"
+      ],
+      "new_session": true
+    },
+    {
+      "id": "fv1-forget-t02",
+      "text": "No tempo livre, eu gosto de criar personagens nos jogos.",
+      "mode": "agent",
+      "expected_atoms": [
+        "lifecycle_character_creation_source",
+        "no_premature_persistence"
+      ],
+      "new_session": true
+    },
+    {
+      "id": "fv1-forget-t03",
+      "text": "Que tema de interface prefiro, e o que eu disse sobre criar personagens em jogos?",
+      "mode": "code",
+      "expected_atoms": [
+        "lifecycle_dark_theme_current",
+        "lifecycle_creation_current"
+      ],
+      "new_session": true
+    },
+    {
+      "id": "fv1-forget-t04",
+      "text": "Não quero que você esqueça minha preferência de tema da interface. Qual tema continua disponível?",
+      "mode": "code",
+      "expected_atoms": [
+        "lifecycle_dark_theme_current"
+      ]
+    },
+    {
+      "id": "fv1-forget-t05",
+      "text": "Por favor, esqueça definitivamente a minha preferência por tema da interface.",
+      "mode": "chat",
+      "expected_atoms": [
+        "theme_deletion_with_bound_proof",
+        "no_premature_persistence"
+      ],
+      "new_session": true
+    },
+    {
+      "id": "fv1-forget-t06",
+      "text": "Please forget my preference for character creation in games for good.",
+      "mode": "agent",
+      "expected_atoms": [
+        "creation_deletion_with_bound_proof",
+        "no_premature_persistence"
+      ],
+      "new_session": true
+    }
+  ],
+  "probes": []
+}

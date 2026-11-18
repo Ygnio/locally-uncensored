@@ -1,0 +1,303 @@
+{
+  "id": "phase22f-final-v1-conversation-main",
+  "kind": "independent final v1 GUI specification",
+  "scope": "phase22f-v1-gui-a7k",
+  "project": "farol",
+  "turns": [
+    {
+      "id": "fv1-main-t01",
+      "text": "O meu computador principal possui 20 GB de RAM. Quero deixar anotado esse dado.",
+      "mode": "code",
+      "expected_atoms": [
+        "primary_20_received",
+        "no_premature_persistence"
+      ],
+      "new_session": true,
+      "review": true
+    },
+    {
+      "id": "fv1-main-t02",
+      "text": "Em outro equipamento, meu notebook de trabalho tem 14 GB de RAM.",
+      "mode": "code",
+      "expected_atoms": [
+        "work_laptop_14_gb",
+        "no_premature_persistence"
+      ],
+      "review": true
+    },
+    {
+      "id": "fv1-main-t03",
+      "text": "Dá para garantir que o meu computador principal ficará livre de travamentos só pela quantidade de RAM?",
+      "mode": "chat",
+      "expected_atoms": [
+        "ram_does_not_entail_stability"
+      ],
+      "new_session": true
+    },
+    {
+      "id": "fv1-main-t04",
+      "text": "Nas respostas do dia a dia, eu gosto de explicações curtas.",
+      "mode": "chat",
+      "expected_atoms": [
+        "own_concise_explanations",
+        "no_premature_persistence"
+      ]
+    },
+    {
+      "id": "fv1-main-t05",
+      "text": "Estou começando um projeto de guia de mirantes para ciclistas.",
+      "mode": "chat",
+      "expected_atoms": [
+        "farol_cyclist_viewpoint_guide",
+        "no_premature_persistence"
+      ],
+      "review": true
+    },
+    {
+      "id": "fv1-main-t06",
+      "text": "Qual é a finalidade do Farol que acabei de descrever?",
+      "mode": "chat",
+      "expected_atoms": [
+        "farol_cyclist_viewpoint_guide"
+      ]
+    },
+    {
+      "id": "fv1-main-t07",
+      "text": "Decidi usar JavaScript como linguagem do meu projeto.",
+      "mode": "agent",
+      "expected_atoms": [
+        "farol_javascript_choice",
+        "no_premature_persistence"
+      ],
+      "new_session": true,
+      "review": true
+    },
+    {
+      "id": "fv1-main-t08",
+      "text": "Só pela decisão de linguagem já dá para concluir que entrei na implementação do projeto?",
+      "mode": "agent",
+      "expected_atoms": [
+        "farol_execution_not_established"
+      ]
+    },
+    {
+      "id": "fv1-main-t09",
+      "text": "Pretendo usar SQLite como banco de dados no projeto.",
+      "mode": "code",
+      "expected_atoms": [
+        "farol_sqlite_planned",
+        "no_premature_persistence"
+      ],
+      "new_session": true,
+      "review": true
+    },
+    {
+      "id": "fv1-main-t10",
+      "text": "Pelo que te contei, o SQLite está em uso no meu projeto ou é um plano?",
+      "mode": "code",
+      "expected_atoms": [
+        "farol_sqlite_planned",
+        "farol_execution_not_established"
+      ]
+    },
+    {
+      "id": "fv1-main-t11",
+      "text": "My own favorite beverage is coffee; in my short story, the narrator says that his favorite beverage is tea.",
+      "mode": "chat",
+      "expected_atoms": [
+        "own_favorite_coffee",
+        "narrator_favorite_tea"
+      ],
+      "new_session": true
+    },
+    {
+      "id": "fv1-main-t12",
+      "text": "Leia somente cecile-voice.txt. Identifique de quem é a preferência de tema registrada nesse material fictício.",
+      "mode": "agent",
+      "expected_atoms": [
+        "cecile_file_read_authority"
+      ],
+      "new_session": true
+    },
+    {
+      "id": "fv1-main-t13",
+      "text": "Abra davi-scene.txt e diga quem está falando sobre criação de personagens. Use o arquivo como fonte dessa observação.",
+      "mode": "code",
+      "expected_atoms": [
+        "davi_file_read_authority"
+      ],
+      "new_session": true
+    },
+    {
+      "id": "fv1-main-t14",
+      "text": "Qual bebida favorita minha consta aqui? O tema de interface daquele material fictício é uma preferência minha?",
+      "mode": "chat",
+      "expected_atoms": [
+        "own_favorite_coffee",
+        "bounded_unknown_theme"
+      ],
+      "new_session": true
+    },
+    {
+      "id": "fv1-main-t15",
+      "text": "Na verdade, meu computador principal agora tem 36 GB de RAM. Os 20 GB descreviam a configuração anterior.",
+      "mode": "agent",
+      "expected_atoms": [
+        "primary_36_gb_current",
+        "no_premature_persistence"
+      ],
+      "new_session": true,
+      "review": true
+    },
+    {
+      "id": "fv1-main-t16",
+      "text": "Compare a RAM atual do computador principal com a RAM atual do notebook de trabalho.",
+      "mode": "agent",
+      "expected_atoms": [
+        "primary_36_gb_current",
+        "work_laptop_14_gb"
+      ]
+    },
+    {
+      "id": "fv1-main-t17",
+      "text": "Se eu disser que há uma Radeon RX 6600 no meu computador principal, isso seria apenas uma hipótese. Existe algum modelo disponível na memória?",
+      "mode": "code",
+      "expected_atoms": [
+        "rx_6600_remains_hypothetical",
+        "bounded_unknown_primary_gpu"
+      ],
+      "new_session": true
+    },
+    {
+      "id": "fv1-main-t18",
+      "text": "Nos RPGs táticos, eu gosto de evolução de personagem.",
+      "mode": "chat",
+      "expected_atoms": [
+        "own_tactical_rpg_progression",
+        "no_premature_persistence"
+      ],
+      "new_session": true
+    },
+    {
+      "id": "fv1-main-t19",
+      "text": "Minha irmã gosta de jogos de estratégia por turnos. Estou contando sobre ela.",
+      "mode": "chat",
+      "expected_atoms": [
+        "sister_strategy_authority"
+      ]
+    },
+    {
+      "id": "fv1-main-t20",
+      "text": "Eu cancelei meu projeto de guia de mirantes.",
+      "mode": "agent",
+      "expected_atoms": [
+        "farol_cancelled",
+        "no_premature_persistence"
+      ],
+      "new_session": true,
+      "review": true
+    },
+    {
+      "id": "fv1-main-t21",
+      "text": "Depois do cancelamento do Farol, é correto dizer que já uso SQLite no projeto?",
+      "mode": "agent",
+      "expected_atoms": [
+        "farol_execution_not_established"
+      ]
+    },
+    {
+      "id": "fv1-main-t22",
+      "text": "O Farol está em andamento agora ou ficou cancelado?",
+      "mode": "code",
+      "expected_atoms": [
+        "farol_cancelled"
+      ],
+      "new_session": true
+    },
+    {
+      "id": "fv1-main-t23",
+      "text": "Minha preferência por explicações continua disponível neste contexto? Quais explicações prefiro?",
+      "mode": "chat",
+      "expected_atoms": [
+        "own_concise_explanations"
+      ],
+      "new_session": true
+    }
+  ],
+  "probes": [
+    {
+      "id": "fv1-main-p01",
+      "text": "Quanto de RAM o computador principal tinha antes da atualização, quanto tem agora e quanto tem meu notebook de trabalho?",
+      "mode": "agent",
+      "expected_atoms": [
+        "primary_20_gb_historical",
+        "primary_36_gb_current",
+        "work_laptop_14_gb"
+      ]
+    },
+    {
+      "id": "fv1-main-p02",
+      "text": "Qual era a finalidade do Farol, que linguagem escolhi, qual banco planejava usar e qual é o estado do projeto agora?",
+      "mode": "code",
+      "expected_atoms": [
+        "farol_cyclist_viewpoint_guide",
+        "farol_javascript_choice",
+        "farol_sqlite_planned",
+        "farol_cancelled"
+      ]
+    },
+    {
+      "id": "fv1-main-p03",
+      "text": "Que placa de vídeo consta para o meu computador principal nos registros desta conversa?",
+      "mode": "agent",
+      "expected_atoms": [
+        "bounded_unknown_primary_gpu"
+      ]
+    },
+    {
+      "id": "fv1-main-p04",
+      "text": "Que tipo de RPG está de acordo com o que eu gosto? Também há alguma informação de que minha irmã goste de RPG tático?",
+      "mode": "chat",
+      "expected_atoms": [
+        "own_tactical_rpg_progression",
+        "bounded_unknown_sister_tactical_rpg"
+      ]
+    },
+    {
+      "id": "fv1-main-p05",
+      "text": "Qual é a minha bebida favorita, e existe informação aqui sobre quanto açúcar eu ponho no café?",
+      "mode": "chat",
+      "expected_atoms": [
+        "own_favorite_coffee",
+        "bounded_unknown_coffee_preparation"
+      ]
+    },
+    {
+      "id": "fv1-main-p06",
+      "text": "Como prefiro que sejam as explicações e o que está disponível sobre meu tema de interface?",
+      "mode": "code",
+      "expected_atoms": [
+        "own_concise_explanations",
+        "bounded_unknown_theme"
+      ]
+    },
+    {
+      "id": "fv1-main-p07-copy",
+      "text": "Quantos GB de RAM estão registrados para o meu notebook de trabalho?",
+      "mode": "chat",
+      "expected_atoms": [
+        "work_laptop_14_gb"
+      ]
+    }
+  ],
+  "fixture_files": [
+    {
+      "name": "cecile-voice.txt",
+      "text": "Trecho de roteiro fictício. Personagem Cecile, em primeira pessoa: “Na tela do meu simulador, eu prefiro o tema escuro.” A fala pertence a Cecile e não descreve o leitor do roteiro."
+    },
+    {
+      "name": "davi-scene.txt",
+      "text": "Trecho de conto fictício narrado por Davi. “Eu gosto de criar personagens quando jogo com os meus amigos.” A primeira pessoa é a de Davi. Esta passagem é material do conto e não uma declaração de quem está usando o aplicativo."
+    }
+  ]
+}

@@ -1,0 +1,947 @@
+{
+  "id": "phase22f-final-c2-v1",
+  "scenarios": [
+    {
+      "id": "screen-print-workstations",
+      "events": [
+        {
+          "action": "learn",
+          "label": "machine-old",
+          "scope": "phase22f-e-mastro",
+          "project": "canteiro",
+          "fact": {
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "46_gb",
+            "temporal": "durable"
+          },
+          "mode": "chat",
+          "text": "Meu computador principal possui 46 GB de RAM para preparar as matrizes de serigrafia."
+        },
+        {
+          "action": "obsolete",
+          "label": "historize-machine",
+          "target": "machine-old"
+        },
+        {
+          "action": "learn",
+          "label": "machine-now",
+          "scope": "phase22f-e-mastro",
+          "project": "canteiro",
+          "fact": {
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "70_gb",
+            "temporal": "durable"
+          },
+          "mode": "code",
+          "text": "Depois da ampliação da oficina, instalei 70 GB de RAM no meu computador principal."
+        },
+        {
+          "action": "learn",
+          "label": "field-laptop",
+          "scope": "phase22f-e-mastro",
+          "project": "canteiro",
+          "fact": {
+            "kind": "hardware",
+            "subject": "device.work_laptop",
+            "property": "ram_capacity",
+            "value": "26_gb",
+            "temporal": "durable"
+          },
+          "mode": "agent",
+          "text": "Para as oficinas itinerantes, meu notebook de trabalho possui 26 GB de RAM instalados."
+        },
+        {
+          "action": "learn",
+          "label": "spare-machine",
+          "scope": "phase22f-e-mastro",
+          "project": "canteiro",
+          "fact": {
+            "kind": "hardware",
+            "subject": "device.other_computer",
+            "property": "ram_capacity",
+            "value": "38_gb",
+            "temporal": "durable"
+          },
+          "mode": "chat",
+          "text": "Meu outro computador tem 38 GB de RAM para tratar as imagens dos cartazes."
+        },
+        {
+          "action": "learn",
+          "label": "gallery-machine",
+          "scope": "phase22f-e-mastro-galeria",
+          "project": "canteiro",
+          "fact": {
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "112_gb",
+            "temporal": "durable"
+          },
+          "mode": "chat",
+          "text": "Neste perfil da galeria, meu computador principal tem 112 GB de RAM instalados."
+        },
+        {
+          "action": "learn",
+          "label": "brinco-machine",
+          "scope": "phase22f-e-mastro",
+          "project": "brinco",
+          "fact": {
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "92_gb",
+            "temporal": "durable"
+          },
+          "mode": "chat",
+          "text": "No contexto de Brinco, meu computador principal tem 92 GB de RAM."
+        }
+      ],
+      "queries": [
+        {
+          "id": "f2q-01",
+          "query": "No inventário da oficina, qual memória RAM instalada entra para o computador principal?",
+          "scope": "phase22f-e-mastro",
+          "project": "canteiro",
+          "mode": "chat",
+          "requires": [
+            "machine-now",
+            "machine-old",
+            "gallery-machine",
+            "brinco-machine"
+          ],
+          "expected": [
+            "machine-now"
+          ],
+          "forbidden": [
+            "machine-old",
+            "gallery-machine",
+            "brinco-machine"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "The authorized main computer has 70 GB installed now."
+          ]
+        },
+        {
+          "id": "f2q-02",
+          "query": "Vou dar uma oficina em outra cidade. Qual é a RAM do meu notebook de trabalho?",
+          "scope": "phase22f-e-mastro",
+          "project": "canteiro",
+          "mode": "agent",
+          "requires": [
+            "field-laptop",
+            "machine-now",
+            "spare-machine",
+            "gallery-machine",
+            "brinco-machine"
+          ],
+          "expected": [
+            "field-laptop"
+          ],
+          "forbidden": [
+            "machine-now",
+            "spare-machine",
+            "gallery-machine",
+            "brinco-machine"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "The work laptop has 26 GB installed."
+          ]
+        },
+        {
+          "id": "f2q-03",
+          "query": "No equipamento de reserva, o outro computador, qual quantidade de RAM eu tenho?",
+          "scope": "phase22f-e-mastro",
+          "project": "canteiro",
+          "mode": "code",
+          "requires": [
+            "spare-machine",
+            "machine-now",
+            "field-laptop",
+            "gallery-machine",
+            "brinco-machine"
+          ],
+          "expected": [
+            "spare-machine"
+          ],
+          "forbidden": [
+            "machine-now",
+            "field-laptop",
+            "gallery-machine",
+            "brinco-machine"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "The other computer has 38 GB installed."
+          ]
+        },
+        {
+          "id": "f2q-04",
+          "query": "Na galeria, confira a capacidade de RAM que consta para o meu computador principal.",
+          "scope": "phase22f-e-mastro-galeria",
+          "project": "canteiro",
+          "mode": "agent",
+          "requires": [
+            "gallery-machine",
+            "machine-now",
+            "brinco-machine"
+          ],
+          "expected": [
+            "gallery-machine"
+          ],
+          "forbidden": [
+            "machine-now",
+            "brinco-machine"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "Only the gallery scope has 112 GB on its primary computer."
+          ]
+        },
+        {
+          "id": "f2q-05",
+          "query": "Para atualizar o cartão de Brinco, que número de RAM eu ponho no computador principal?",
+          "scope": "phase22f-e-mastro",
+          "project": "brinco",
+          "mode": "code",
+          "requires": [
+            "brinco-machine",
+            "machine-now",
+            "gallery-machine"
+          ],
+          "expected": [
+            "brinco-machine"
+          ],
+          "forbidden": [
+            "machine-now",
+            "gallery-machine"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "Only project Brinco has 92 GB on its primary computer."
+          ]
+        },
+        {
+          "id": "f2q-06",
+          "query": "No meu computador principal, qual era a RAM antes da ampliação e quanto está instalado agora?",
+          "scope": "phase22f-e-mastro",
+          "project": "canteiro",
+          "mode": "chat",
+          "requires": [
+            "machine-old",
+            "machine-now",
+            "gallery-machine",
+            "brinco-machine",
+            "field-laptop",
+            "historize-machine"
+          ],
+          "expected": [
+            "machine-old",
+            "machine-now"
+          ],
+          "forbidden": [
+            "gallery-machine",
+            "brinco-machine",
+            "field-laptop"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "The same primary computer previously had 46 GB.",
+            "The same primary computer now has 70 GB."
+          ]
+        },
+        {
+          "id": "f2q-07",
+          "query": "Compare as duas máquinas que levo em conta nas oficinas: a RAM do notebook de trabalho e a do computador principal.",
+          "scope": "phase22f-e-mastro",
+          "project": "canteiro",
+          "mode": "code",
+          "requires": [
+            "field-laptop",
+            "machine-now",
+            "machine-old",
+            "spare-machine",
+            "gallery-machine",
+            "brinco-machine"
+          ],
+          "expected": [
+            "field-laptop",
+            "machine-now"
+          ],
+          "forbidden": [
+            "machine-old",
+            "spare-machine",
+            "gallery-machine",
+            "brinco-machine"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "The work laptop has 26 GB.",
+            "The primary computer has 70 GB now."
+          ]
+        },
+        {
+          "id": "f2q-08",
+          "query": "Consigo saber a RAM do notebook de trabalho da minha colega, e não a do meu?",
+          "scope": "phase22f-e-mastro",
+          "project": "canteiro",
+          "mode": "agent",
+          "requires": [
+            "field-laptop",
+            "machine-now",
+            "spare-machine",
+            "gallery-machine",
+            "brinco-machine"
+          ],
+          "expected": [],
+          "forbidden": [
+            "field-laptop",
+            "machine-now",
+            "spare-machine",
+            "gallery-machine",
+            "brinco-machine"
+          ],
+          "lexical_mandatory": false,
+          "expected_atoms": [
+            "No work-laptop RAM is available for the colleague in this authorized context."
+          ]
+        },
+        {
+          "id": "f2q-09",
+          "query": "Qual era a RAM instalada no meu computador principal nesta sessão?",
+          "scope": "phase22f-e-mastro-empty",
+          "project": "canteiro",
+          "mode": "chat",
+          "requires": [
+            "machine-now",
+            "machine-old",
+            "gallery-machine",
+            "brinco-machine"
+          ],
+          "expected": [],
+          "forbidden": [
+            "machine-now",
+            "machine-old",
+            "gallery-machine",
+            "brinco-machine"
+          ],
+          "lexical_mandatory": false,
+          "expected_atoms": [
+            "No primary computer RAM is available in this empty binding."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accessible-audio-projects",
+      "events": [
+        {
+          "action": "learn",
+          "label": "audio-museum-purpose",
+          "scope": "phase22f-e-biruta",
+          "project": "crivo",
+          "fact": {
+            "kind": "project",
+            "subject": "project.crivo",
+            "property": "description",
+            "value": "iniciei um projeto de roteiros sonoros para um museu tatil",
+            "temporal": "durable"
+          },
+          "mode": "chat",
+          "text": "Iniciei um projeto de roteiros sonoros para um museu tátil."
+        },
+        {
+          "action": "learn",
+          "label": "audio-language-choice",
+          "scope": "phase22f-e-biruta",
+          "project": "crivo",
+          "fact": {
+            "kind": "decision",
+            "subject": "project.crivo",
+            "property": "language",
+            "value": "typescript",
+            "temporal": "durable"
+          },
+          "mode": "code",
+          "text": "Após o piloto das narrativas, escolhi TypeScript como linguagem do meu projeto."
+        },
+        {
+          "action": "learn",
+          "label": "audio-language-running",
+          "scope": "phase22f-e-biruta",
+          "project": "crivo",
+          "fact": {
+            "kind": "fact",
+            "subject": "project.crivo",
+            "property": "language",
+            "value": "rust",
+            "temporal": "in_progress"
+          },
+          "mode": "code",
+          "text": "Para sincronizar as faixas de áudio, estou implementando o meu projeto em Rust."
+        },
+        {
+          "action": "learn",
+          "label": "audio-storage-plan",
+          "scope": "phase22f-e-biruta",
+          "project": "crivo",
+          "fact": {
+            "kind": "decision",
+            "subject": "project.crivo",
+            "property": "database",
+            "value": "mysql",
+            "temporal": "planned"
+          },
+          "mode": "agent",
+          "text": "Para catalogar os depoimentos, planejo usar MySQL como banco de dados do meu projeto."
+        },
+        {
+          "action": "learn",
+          "label": "nacar-database-choice",
+          "scope": "phase22f-e-biruta",
+          "project": "nacar",
+          "fact": {
+            "kind": "decision",
+            "subject": "project.nacar",
+            "property": "database",
+            "value": "postgresql",
+            "temporal": "durable"
+          },
+          "mode": "chat",
+          "text": "Para o projeto Nacar, escolhi PostgreSQL como banco de dados das gravações das entrevistas."
+        },
+        {
+          "action": "learn",
+          "label": "lacre-completed",
+          "scope": "phase22f-e-biruta",
+          "project": "lacre",
+          "fact": {
+            "kind": "project",
+            "subject": "project.lacre",
+            "property": "lifecycle",
+            "value": "completed",
+            "temporal": "completed"
+          },
+          "mode": "chat",
+          "text": "Com a última placa em braile pronta, concluí o meu projeto Lacre."
+        }
+      ],
+      "queries": [
+        {
+          "id": "f2q-10",
+          "query": "No folheto do museu, que finalidade eu devo descrever para o projeto Crivo?",
+          "scope": "phase22f-e-biruta",
+          "project": "crivo",
+          "mode": "chat",
+          "requires": [
+            "audio-museum-purpose",
+            "nacar-database-choice",
+            "lacre-completed"
+          ],
+          "expected": [
+            "audio-museum-purpose"
+          ],
+          "forbidden": [
+            "nacar-database-choice",
+            "lacre-completed"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "Crivo is a project for sound tours or sound scripts for a tactile museum."
+          ]
+        },
+        {
+          "id": "f2q-11",
+          "query": "O que consta como linguagem escolhida para Crivo?",
+          "scope": "phase22f-e-biruta",
+          "project": "crivo",
+          "mode": "agent",
+          "requires": [
+            "audio-language-choice",
+            "audio-language-running",
+            "nacar-database-choice"
+          ],
+          "expected": [
+            "audio-language-choice"
+          ],
+          "forbidden": [
+            "audio-language-running",
+            "nacar-database-choice"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "TypeScript was chosen for Crivo. Choice alone does not establish current execution."
+          ]
+        },
+        {
+          "id": "f2q-12",
+          "query": "Para a sincronização de faixas, qual linguagem está sendo implementada em Crivo?",
+          "scope": "phase22f-e-biruta",
+          "project": "crivo",
+          "mode": "code",
+          "requires": [
+            "audio-language-running",
+            "audio-language-choice",
+            "nacar-database-choice"
+          ],
+          "expected": [
+            "audio-language-running"
+          ],
+          "forbidden": [
+            "audio-language-choice",
+            "nacar-database-choice"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "Work in progress on Crivo uses Rust. Do not claim completion."
+          ]
+        },
+        {
+          "id": "f2q-13",
+          "query": "Qual banco de dados planejei para guardar os depoimentos em Crivo?",
+          "scope": "phase22f-e-biruta",
+          "project": "crivo",
+          "mode": "agent",
+          "requires": [
+            "audio-storage-plan",
+            "nacar-database-choice"
+          ],
+          "expected": [
+            "audio-storage-plan"
+          ],
+          "forbidden": [
+            "nacar-database-choice"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "MySQL is planned for Crivo. The plan does not establish implementation."
+          ]
+        },
+        {
+          "id": "f2q-14",
+          "query": "Na ficha das entrevistas de Nacar, qual foi a minha escolha de banco de dados?",
+          "scope": "phase22f-e-biruta",
+          "project": "nacar",
+          "mode": "chat",
+          "requires": [
+            "nacar-database-choice",
+            "audio-storage-plan"
+          ],
+          "expected": [
+            "nacar-database-choice"
+          ],
+          "forbidden": [
+            "audio-storage-plan"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "PostgreSQL was chosen for Nacar. Preserve decision modality."
+          ]
+        },
+        {
+          "id": "f2q-15",
+          "query": "Já posso marcar o projeto Lacre como concluído ou ainda está pendente?",
+          "scope": "phase22f-e-biruta",
+          "project": "lacre",
+          "mode": "agent",
+          "requires": [
+            "lacre-completed",
+            "audio-museum-purpose",
+            "audio-language-choice"
+          ],
+          "expected": [
+            "lacre-completed"
+          ],
+          "forbidden": [
+            "audio-museum-purpose",
+            "audio-language-choice"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "The authorized Lacre project is completed."
+          ]
+        },
+        {
+          "id": "f2q-16",
+          "query": "Para documentar Crivo, preciso distinguir a linguagem escolhida daquela em implementação. Quais são elas?",
+          "scope": "phase22f-e-biruta",
+          "project": "crivo",
+          "mode": "code",
+          "requires": [
+            "audio-language-choice",
+            "audio-language-running",
+            "nacar-database-choice"
+          ],
+          "expected": [
+            "audio-language-choice",
+            "audio-language-running"
+          ],
+          "forbidden": [
+            "nacar-database-choice"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "TypeScript is the chosen language.",
+            "Rust is the distinct implementation in progress."
+          ]
+        },
+        {
+          "id": "f2q-17",
+          "query": "Compare o banco de dados planejado em Crivo com o banco escolhido em Nacar.",
+          "scope": "phase22f-e-biruta",
+          "project": "crivo",
+          "mode": "agent",
+          "requires": [
+            "audio-storage-plan",
+            "nacar-database-choice"
+          ],
+          "expected": [
+            "audio-storage-plan"
+          ],
+          "forbidden": [
+            "nacar-database-choice"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "MySQL is planned for the authorized Crivo project.",
+            "Explain that the Nacar database is outside the authorization of the current project binding."
+          ]
+        },
+        {
+          "id": "f2q-18",
+          "query": "Que linguagem foi escolhida no projeto Crivo? Estou no contexto de Nacar.",
+          "scope": "phase22f-e-biruta",
+          "project": "nacar",
+          "mode": "code",
+          "requires": [
+            "audio-language-choice",
+            "audio-language-running",
+            "nacar-database-choice"
+          ],
+          "expected": [],
+          "forbidden": [
+            "audio-language-choice",
+            "audio-language-running",
+            "nacar-database-choice"
+          ],
+          "lexical_mandatory": false,
+          "expected_atoms": [
+            "Say Crivo language is unavailable in the Nacar binding without relying on the foreign fact."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "archive-and-personal-preferences",
+      "events": [
+        {
+          "action": "learn",
+          "label": "interface-for-scores",
+          "scope": "phase22f-e-azinhavre",
+          "project": "mistura",
+          "fact": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "interface_theme",
+            "value": "dark",
+            "temporal": "preference"
+          },
+          "mode": "agent",
+          "text": "Prefiro tema escuro na interface do caderno de partituras."
+        },
+        {
+          "action": "learn",
+          "label": "objective-explanations",
+          "scope": "phase22f-e-azinhavre",
+          "project": "mistura",
+          "fact": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "communication_focus",
+            "value": "objective",
+            "temporal": "preference"
+          },
+          "mode": "chat",
+          "text": "Para comparar os preços da gráfica, eu prefiro respostas objetivas."
+        },
+        {
+          "action": "learn",
+          "label": "short-replies",
+          "scope": "phase22f-e-azinhavre",
+          "project": "mistura",
+          "fact": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "communication_style",
+            "value": "concise",
+            "temporal": "preference"
+          },
+          "mode": "code",
+          "text": "No balcão da biblioteca, prefiro respostas curtas para conferir cada ficha."
+        },
+        {
+          "action": "learn",
+          "label": "evening-guitar",
+          "scope": "phase22f-e-azinhavre",
+          "project": "mistura",
+          "fact": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "hobby",
+            "value": "acoustic_guitar",
+            "temporal": "preference"
+          },
+          "mode": "chat",
+          "text": "No ensaio de quinta-feira, gosto de tocar violão acústico."
+        },
+        {
+          "action": "learn",
+          "label": "trails-with-camera",
+          "scope": "phase22f-e-azinhavre",
+          "project": "mistura",
+          "fact": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "outing",
+            "value": "short_trails",
+            "temporal": "preference"
+          },
+          "mode": "chat",
+          "text": "Prefiro trilhas curtas quando levo a câmera para fotografar cogumelos."
+        },
+        {
+          "action": "learn",
+          "label": "glossy-portraits",
+          "scope": "phase22f-e-azinhavre",
+          "project": "mistura",
+          "fact": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "photo_paper",
+            "value": "glossy",
+            "temporal": "preference"
+          },
+          "mode": "agent",
+          "text": "Nas fotos dos retratos do jornal do bairro, prefiro papel brilhante."
+        },
+        {
+          "action": "learn",
+          "label": "clutter-dislike",
+          "scope": "phase22f-e-azinhavre",
+          "project": "mistura",
+          "fact": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "interface_clutter",
+            "value": "negative",
+            "temporal": "preference"
+          },
+          "mode": "chat",
+          "text": "Eu detesto interfaces carregadas no sistema de reservas da sala."
+        },
+        {
+          "action": "learn",
+          "label": "books-for-trains",
+          "scope": "phase22f-e-azinhavre",
+          "project": "mistura",
+          "fact": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "book_genre",
+            "value": "adventure",
+            "temporal": "preference"
+          },
+          "mode": "code",
+          "text": "Gosto de romances de aventura para ler na viagem de trem."
+        },
+        {
+          "action": "delete",
+          "label": "remove-book-preference",
+          "target": "books-for-trains"
+        }
+      ],
+      "queries": [
+        {
+          "id": "f2q-19",
+          "query": "No caderno de partituras, que tema eu prefiro na interface?",
+          "scope": "phase22f-e-azinhavre",
+          "project": "mistura",
+          "mode": "agent",
+          "requires": [
+            "interface-for-scores",
+            "clutter-dislike"
+          ],
+          "expected": [
+            "interface-for-scores"
+          ],
+          "forbidden": [
+            "clutter-dislike"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "The user prefers the dark interface theme."
+          ]
+        },
+        {
+          "id": "f2q-20",
+          "query": "Ao comparar os preços da gráfica, prefiro que as respostas sejam objetivas?",
+          "scope": "phase22f-e-azinhavre",
+          "project": "mistura",
+          "mode": "chat",
+          "requires": [
+            "objective-explanations",
+            "short-replies"
+          ],
+          "expected": [
+            "objective-explanations"
+          ],
+          "forbidden": [
+            "short-replies"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "The user prefers objective answers. Do not infer that objective means short."
+          ]
+        },
+        {
+          "id": "f2q-21",
+          "query": "Qual é minha preferência sobre o tamanho das respostas no balcão da biblioteca?",
+          "scope": "phase22f-e-azinhavre",
+          "project": "mistura",
+          "mode": "code",
+          "requires": [
+            "short-replies",
+            "objective-explanations"
+          ],
+          "expected": [
+            "short-replies"
+          ],
+          "forbidden": [
+            "objective-explanations"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "The user prefers short or concise replies there."
+          ]
+        },
+        {
+          "id": "f2q-22",
+          "query": "Qual instrumento eu gosto de tocar nos ensaios de quinta-feira?",
+          "scope": "phase22f-e-azinhavre",
+          "project": "mistura",
+          "mode": "chat",
+          "requires": [
+            "evening-guitar"
+          ],
+          "expected": [
+            "evening-guitar"
+          ],
+          "forbidden": [],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "The user likes playing the acoustic guitar."
+          ]
+        },
+        {
+          "id": "f2q-23",
+          "query": "Quando saio para fotografar cogumelos, prefiro trilhas de que tipo?",
+          "scope": "phase22f-e-azinhavre",
+          "project": "mistura",
+          "mode": "agent",
+          "requires": [
+            "trails-with-camera"
+          ],
+          "expected": [
+            "trails-with-camera"
+          ],
+          "forbidden": [],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "The user prefers short trails."
+          ]
+        },
+        {
+          "id": "f2q-24",
+          "query": "Nas fotos dos retratos do jornal, que papel eu prefiro?",
+          "scope": "phase22f-e-azinhavre",
+          "project": "mistura",
+          "mode": "code",
+          "requires": [
+            "glossy-portraits"
+          ],
+          "expected": [
+            "glossy-portraits"
+          ],
+          "forbidden": [],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "The user prefers glossy photo paper."
+          ]
+        },
+        {
+          "id": "f2q-25",
+          "query": "O que me incomoda nas interfaces do sistema de reservas?",
+          "scope": "phase22f-e-azinhavre",
+          "project": "mistura",
+          "mode": "chat",
+          "requires": [
+            "clutter-dislike",
+            "interface-for-scores"
+          ],
+          "expected": [
+            "clutter-dislike"
+          ],
+          "forbidden": [
+            "interface-for-scores"
+          ],
+          "lexical_mandatory": true,
+          "expected_atoms": [
+            "The user dislikes cluttered interfaces."
+          ]
+        },
+        {
+          "id": "f2q-26",
+          "query": "Que gênero de romance consta como minha preferência neste momento?",
+          "scope": "phase22f-e-azinhavre",
+          "project": "mistura",
+          "mode": "agent",
+          "requires": [
+            "books-for-trains",
+            "remove-book-preference"
+          ],
+          "expected": [],
+          "forbidden": [
+            "books-for-trains"
+          ],
+          "lexical_mandatory": false,
+          "expected_atoms": [
+            "No current book-genre preference is available in the authorized scope. Do not assert it never existed."
+          ]
+        },
+        {
+          "id": "f2q-27",
+          "query": "Na memória desta sessão, qual instrumento eu gosto de tocar?",
+          "scope": "phase22f-e-azinhavre-empty",
+          "project": "mistura",
+          "mode": "code",
+          "requires": [
+            "evening-guitar"
+          ],
+          "expected": [],
+          "forbidden": [
+            "evening-guitar"
+          ],
+          "lexical_mandatory": false,
+          "expected_atoms": [
+            "No preferred instrument is available in this empty binding. Do not transfer the other profile."
+          ]
+        }
+      ]
+    }
+  ]
+}

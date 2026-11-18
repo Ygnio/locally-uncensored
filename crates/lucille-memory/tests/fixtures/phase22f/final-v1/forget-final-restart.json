@@ -1,0 +1,29 @@
+{
+  "id": "phase22f-final-v1-forget-final-restart",
+  "kind": "independent final v1 GUI specification",
+  "scope": "phase22f-v1-forget-x8n",
+  "project": "orvalho",
+  "turns": [],
+  "probes": [
+    {
+      "id": "fv1-renew-p01",
+      "text": "Que tema de interface está disponível agora, depois do meu novo pedido para guardar a preferência?",
+      "mode": "agent",
+      "expected_atoms": [
+        "lifecycle_dark_theme_current",
+        "new_theme_record_survives_second_restart",
+        "no_liking_transition_from_storage"
+      ]
+    },
+    {
+      "id": "fv1-renew-p02",
+      "text": "Qual preferência sobre criar personagens voltou a ficar registrada neste projeto?",
+      "mode": "code",
+      "expected_atoms": [
+        "lifecycle_creation_current",
+        "new_creation_record_survives_second_restart",
+        "no_liking_transition_from_storage"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "phase22f-final-v1-authoring",
+  "production_code_commit": "a24384a41b2b996ec1275a2e9f4a325d6b6fb124",
+  "last_historical_execution_ended_utc": "2026-11-18T16:16:30.992146+00:00",
+  "authorship_started_after_positive_historical_adjudication": true,
+  "metadata_recorded_utc": "2026-11-18T16:23:31.095759+00:00",
+  "synthetic_source_only": true,
+  "no_model_inference_during_authoring_or_mechanical_preflight": true,
+  "authors": {
+    "extraction_and_retrieval": "Dedicated Codex subagent",
+    "gui_and_forgetting": "Separate dedicated Codex subagent",
+    "faults_and_transport": "Codex implementation lead",
+    "rubric_and_manifest": "Merged and sealed before execution by the implementation lead"
+  },
+  "separation": {
+    "original_historical_fixtures": "Used only for development attestation and unchanged comparisons.",
+    "evaluation_data": "New synthetic statements, projects, queries, fixture texts and state transitions. Known protocol shapes are intentionally retained.",
+    "literal_review": "Review carried out separately from case authorship within the same Codex team. This is not an external double-blind evaluation.",
+    "after_freeze": "Source, models, inputs, expected facts, denominators, thresholds and literal rubric remain fixed."
+  }
+}
