@@ -9,13 +9,13 @@ const repo = realpathSync(process.cwd())
 const root = realpathSync(resolve(repo, '.lucille-qa-runtime/lucille-synthetic-real22f'))
 const bridge = realpathSync(process.argv[2])
 const store = realpathSync(process.argv[3])
-if (bridge !== realpathSync(resolve(repo, '../build/phase22f/real_validation_bridge.exe'))
+if ((bridge !== realpathSync(resolve(repo, '../build/phase22f/real_validation_bridge.exe')) && bridge !== resolve(repo, '../build/phase22g/real_validation_bridge.exe'))
     || !store.startsWith(root + sep)
     || !store.split(sep).at(-1).startsWith('lucille-synthetic-c2-')) throw Error('Isolated F C2 paths required')
 for (const path of [root, store]) {
   if (readFileSync(resolve(path, '.lucille-isolated'), 'utf8') !== 'synthetic-data-only\n') throw Error('Missing QA marker')
 }
-const { request, query_vector } = JSON.parse(readFileSync(0, 'utf8'))
+const { request, query_vector, first_pass_only = false } = JSON.parse(readFileSync(0, 'utf8'))
 const native = data => JSON.parse(execFileSync(bridge, [], {
   input: JSON.stringify(data), encoding: 'utf8', windowsHide: true, env: { ...process.env, LUCILLE_QA_ROOT: store },
 }))
@@ -63,6 +63,7 @@ async function reload() {
 }
 
 async function generate(messages) {
+  if (first_pass_only && generations.length) throw Error("First-pass diagnostic budget exhausted")
   const started = performance.now()
   const payload = { model: 'lucille-real-gemma', messages, temperature: 0, max_tokens: 384, stream: false,
     reasoning_effort: 'none', chat_template_kwargs: { enable_thinking: false } }

@@ -96,6 +96,20 @@ def main(args):
         before = owned.resources()
         if before['PhysicalAvailable'] < inference_ram_floor or before['CommitLimit'] - before['CommitTotal'] < 1024**3:
             raise ValueError('Resource pressure; no new test inference')
+        if kind == 'gemma' and os.environ.get('LUCILLE_G22_BUDGET'):
+            # Shared across broker restarts. Exclusive creation reserves an
+            # attempt before the upstream call, including failed attempts.
+            budget = root / 'reports' / 'g22-call-budget'
+            budget.mkdir(exist_ok=True)
+            for slot in range(12):
+                try:
+                    with (budget / str(slot)).open('x') as ticket:
+                        ticket.write(str(time.time()))
+                    break
+                except FileExistsError:
+                    continue
+            else:
+                raise ValueError('Initial twelve-call Gemma budget exhausted')
         port = 15288 if kind == 'gemma' else 15289
         key = (root / (kind + '.api-key')).read_text(encoding='ascii')
         request = urllib.request.Request(f'http://127.0.0.1:{port}' + endpoint,

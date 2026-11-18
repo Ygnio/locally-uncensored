@@ -52,7 +52,8 @@ def main():
     required={q['id'] for q in frozen if set(q['expected'])==set(q['modes']['fallback']['actual'])}
     required.update(['f1q-06','f1q-19','f1q-22'])
     assert required <= {q['id'] for q in results['c1'] if q['exact']}
-    assert len(results['c1'])==26
+    assert len(results['c1'])==26 and all(q['exact'] for q in results['c1'])
+    assert sum(q['mandatory'] for q in results['c1'])==21
     args.output.write_text(json.dumps(results,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
 
 

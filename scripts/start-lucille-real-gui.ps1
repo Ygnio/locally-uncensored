@@ -1,12 +1,15 @@
-param([Parameter(Mandatory=$true)][string]$QaExe,[ValidateSet('21c','21d','22','22b','22c','22d','22e','22f')][string]$Phase='21c',[switch]$StaticFrontend)
+param([Parameter(Mandatory=$true)][string]$QaExe,[ValidateSet('21c','21d','22','22b','22c','22d','22e','22f')][string]$Phase='21c',[switch]$StaticFrontend,[switch]$Checkpoint22g)
 $ErrorActionPreference='Stop'
 $repo=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $profileName=if($Phase -in @('22','22b','22c','22d','22e','22f')){"lucille-synthetic-full$Phase"}else{'lucille-synthetic-full'}
+if($Checkpoint22g){$profileName='lucille-synthetic-full22g'}
 $root=(Resolve-Path (Join-Path $repo ('.lucille-qa-runtime\'+$profileName))).Path
 $real=(Resolve-Path (Join-Path $repo (".lucille-qa-runtime\lucille-synthetic-real$Phase"))).Path
 foreach($path in @($root,$real)){if([IO.File]::ReadAllText((Join-Path $path '.lucille-isolated')) -ne "synthetic-data-only`n"){throw 'Synthetic marker required'}}
 $exe=(Resolve-Path -LiteralPath $QaExe).Path
-if($Phase -eq '22f'){
+if($Checkpoint22g){
+ if($Phase -ne '22f' -or $exe -ne (Resolve-Path (Join-Path $repo '..\build\phase22g\lucille-full-validation.exe')).Path){throw 'Dedicated 2.2G host and marked 2.2F QA profile required'}
+}elseif($Phase -eq '22f'){
  if($exe -ne (Resolve-Path (Join-Path $repo '..\build\phase22f\lucille-full-validation.exe')).Path){throw 'Dedicated Phase 2.2F host required'}
 }elseif(-not $exe.StartsWith((Resolve-Path (Join-Path $repo '..\build\tauri')).Path+[IO.Path]::DirectorySeparatorChar) -or [IO.Path]::GetFileName($exe) -ne 'lucille-full-validation.exe'){throw 'Dedicated local host required'}
 function Test-OwnListener([int]$Port){return [bool]([System.Net.NetworkInformation.IPGlobalProperties]::GetIPGlobalProperties().GetActiveTcpListeners() | Where-Object Port -eq $Port)}
@@ -21,8 +24,9 @@ try{
  $node=(Get-Command node).Source
  $viteArgs=@('node_modules/vite/bin/vite.js')
  if($StaticFrontend){
-  if($Phase -notin @('22b','22c','22d','22e','22f') -or -not(Test-Path -LiteralPath (Join-Path $repo ("qa-dist-$Phase/index.html")))){throw 'Dedicated static build required'}
-  $viteArgs+='preview'
+  $dist=if($Checkpoint22g){'qa-dist-22g'}else{"qa-dist-$Phase"}
+  if($Phase -notin @('22b','22c','22d','22e','22f') -or -not(Test-Path -LiteralPath (Join-Path $repo ("$dist/index.html")))){throw 'Dedicated static build required'}
+  $viteArgs+=@('preview','--outDir',$dist)
  }
  $viteArgs+=@('--config','vite.lucille-validation.config.ts')
  $vite=Start-Process -FilePath $node -ArgumentList $viteArgs -WorkingDirectory $repo -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $real 'reports\vite.stdout.log') -RedirectStandardError (Join-Path $real 'reports\vite.stderr.log')
