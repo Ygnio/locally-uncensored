@@ -144,12 +144,14 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   const record = (span: string, property: string, value: string, entity?: string, negative = false, choiceOrigin = false, afterRamCorrection = false) => {
     const projectTechnology = entity === 'project.' + snapshot.project && ['language','database'].includes(property)
     const candidates = all.filter(f => (f.property === property || (property==='beverage_preference' && f.property==='favorite_beverage')) && (!entity || f.entity === entity))
-    const recordedChoice = projectTechnology && !execution(span) &&
-      /\b(?:escolheu|decidiu|chose|decided)\b/.test(fold(span)) &&
-      !/\b(?:agora|atualmente|ainda|now|currently|still)\b/.test(fold(span)) &&
-      candidates.some(f => f.value === value && f.validity === 'historical' && f.modality === 'decision' &&
-        requestedHistoricalProjectFact(snapshot.query, f, snapshot.relations))
-    const historical = !afterRamCorrection && (choiceOrigin || past(span) || recordedChoice || projectTechnology && historicalProjectWording(span) || (past(snapshot.query) && !/\b(?:agora|atualmente|now|currently|prefere|prefiro|gosta|gosto|tem|tenho|possui|usa|utiliza|is|are|have|has|prefer|prefers|like|likes|uses)\b/.test(fold(span))))
+    const predicate = fold(span).trim()
+    const recordedProjectHistory = projectTechnology && !execution(span) &&
+      !/\b(?:agora|atualmente|ainda|now|currently|still)\b/.test(predicate) &&
+      candidates.some(f => f.value === value && f.validity === 'historical' &&
+        requestedHistoricalProjectFact(snapshot.query, f, snapshot.relations) &&
+        (f.modality === 'decision' && /\b(?:escolheu|decidiu|chose|decided)\b/.test(predicate) ||
+         f.modality === 'planned' && /^(?:(?:no seu projeto|in your project),\s+)?(?:(?:voce|you)\s+)?(?:planejou usar|planned to use)\b/.test(predicate)))
+    const historical = !afterRamCorrection && (choiceOrigin || past(span) || recordedProjectHistory || projectTechnology && historicalProjectWording(span) || (past(snapshot.query) && !/\b(?:agora|atualmente|now|currently|prefere|prefiro|gosta|gosto|tem|tenho|possui|usa|utiliza|is|are|have|has|prefer|prefers|like|likes|uses)\b/.test(fold(span))))
     const terminalProject = projectTechnology && current.some(f=>f.entity===entity && f.property==='lifecycle' && ['cancelled','completed'].includes(f.modality))
     if (terminalProject && !historical && planned(span) && candidates.some(f=>f.value===value && ['planned','decision'].includes(f.modality))) add('terminal_project_plan_as_current',span)
     const sourceOrigin=choiceOrigin && ['language','database'].includes(property) ? all.filter(f=>f.entity===entity && f.property===property && f.validity==='current_user_statement' && ['decision','planned'].includes(f.modality) && f.evidence.some(e=>['current_user_statement','current_source'].includes(e.role) && technologyRoles(e.text).some(r=>r.role==='origin' && r.value===value) && technologyRoles(e.text).some(r=>r.role==='destination' && r.value===f.value))) : []
@@ -180,7 +182,17 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   }
   // A coordinated predicate owns its modality. A decision about PostgreSQL
   // cannot change the preceding current Python use (or the reverse).
-  const clauses = answerRelationClauses(text)
+  const mixedProjectHistory = projectQuestion && current.some(f =>
+    f.entity === 'project.' + snapshot.project && f.property === 'lifecycle' && f.modality === 'cancelled') &&
+    ['decision', 'planned'].every(modality => all.some(f =>
+      f.entity === 'project.' + snapshot.project && f.validity === 'historical' && f.modality === modality &&
+      requestedHistoricalProjectFact(snapshot.query, f, snapshot.relations)))
+  const clauses = answerRelationClauses(text).flatMap(span => {
+    if (!mixedProjectHistory || !/^\s*(?:(?:voce|you)\s+)?(?:escolheu|decidiu|chose|decided)\b/.test(fold(span))) return [span]
+    // A listed past choice and past plan remain separate from a concluding
+    // present-tense cancellation, whose time adverb does not modify them.
+    return span.split(/,\s+(?=(?:planejou usar|planned to use)\b)|(?:,\s*|\s+)(?:e|and)\s*,?\s+(?=(?:(?:atualmente|agora|currently|now)\s*,?\s+)?(?:o|seu|the|your)\s+(?:projeto|project)\b[^.!?;]{0,50}\b(?:cancelad[ao]|cancelled|canceled)\b)/iu)
+  })
   let favoriteSlotBound=false
   for (const [clauseIndex, span] of clauses.entries()) {
     const q = fold(span)

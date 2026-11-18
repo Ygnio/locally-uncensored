@@ -86,7 +86,8 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
     }
     if (!settled.content.trim() && !completion.toolCalls?.length) check.violations.push({ code: 'empty_answer', span: '', critical: false })
     if (completion.finishReason && completion.finishReason !== 'stop' && !completion.toolCalls?.length) check.violations.push({ code: 'incomplete_answer', span: '', critical: false })
-    if (snapshot.memoryOnly && completion.toolCalls?.length) check.violations.push({code:'unnecessary_memory_tool',span:settled.content,critical:false})
+    const inlineToolCall = /<\|tool_call>|\bcall:[a-z][a-z0-9_]*\s*\{/iu.test(completion.content)
+    if (snapshot.memoryOnly && (completion.toolCalls?.length || inlineToolCall)) check.violations.push({code:'unnecessary_memory_tool',span:settled.content,critical:false})
     const language=answerLanguage(snapshot.query,[...evidence.currentStatements,...evidence.facts])
     if (violatesAnswerLanguage(settled.content,language)) check.violations.push({code:'question_language_mismatch',span:settled.content,critical:false})
     report.verificationMs += check.elapsedMs
@@ -162,7 +163,7 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
       authority_file_inventory:'The tool only observed its requested directory. It has no verified exhaustive binding to the remembered project. State the scoped project lifecycle from memory; do not infer project file absence.',
       authority_stack_transition:'A choice to change technology does not prove an executed replacement. Preserve the decision, with the origin and target in their proper roles.',
       authority_workload_performance:'Capacity does not attest workload suitability. Keep the verified RAM quantity without an assurance about running applications.',
-      unnecessary_memory_tool:'This question requests remembered facts only. Answer using the supplied scoped memory or bounded uncertainty; do not call or narrate tools.',
+      unnecessary_memory_tool:'Answer this memory question using only the scoped records. If the requested record is unavailable, state that directly in one sentence. Leave out inspection plans, tool names, commands, and text that imitates a tool call.',
       question_language_mismatch:'Use the language of the current question unless an explicit valid user language preference overrides it. Preserve factual contents when changing the language.',
       affirmed_unproven_project_execution:'The question asks whether implementation is already occurring. The available evidence only supports a plan or choice. Do not affirm or deny actual execution; state that it is unconfirmed, then distinguish the supported future plan.',
       denied_unproven_project_execution:'A plan also does not prove that implementation is absent. Do not give a categorical yes or no; distinguish unconfirmed current execution from the supported future plan.',

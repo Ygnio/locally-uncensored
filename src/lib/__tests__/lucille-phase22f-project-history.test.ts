@@ -79,6 +79,24 @@ it('uses separate native references for project purpose, past choices, past plan
   expect(check.assertions.map(a=>[a.property,a.references])).toEqual([
     ['description',['description']],['language',['choice']],['database',['plan']],['lifecycle',['cancel']],
   ])
+  for (const reply of [
+    'O assunto do seu projeto era um catálogo de miniaturas. Você escolheu a linguagem Python, planejou usar o banco de dados PostgreSQL e, atualmente, o projeto está cancelado.',
+    'O assunto do seu projeto era um catálogo de miniaturas. Você escolheu a linguagem Python, planejou usar o banco de dados PostgreSQL e o projeto está cancelado agora.',
+  ]) {
+    const rendered = verifyMemoryAnswer(reply,current)
+    expect(rendered.violations).toEqual([])
+    expect(rendered.assertions.map(a=>[a.property,a.references])).toEqual([
+      ['description',['description']],['language',['choice']],['database',['plan']],['lifecycle',['cancel']],
+    ])
+  }
+  for (const wrong of [
+    'O assunto do seu projeto era um catálogo de miniaturas. Atualmente você usa Python. Você planejou usar PostgreSQL. O projeto está cancelado.',
+    'O assunto do seu projeto era um catálogo de miniaturas. Você escolheu Python, planeja usar PostgreSQL e, atualmente, o projeto está cancelado.',
+  ]) expect(verifyMemoryAnswer(wrong,current).violations.some(v=>v.critical)).toBe(true)
+  const priorPlan = 'No seu projeto, você planejou usar o PostgreSQL. Não há registro disponível sobre o banco de dados que seu irmão usa.'
+  expect(verifyMemoryAnswer(priorPlan,snapshot).violations).toEqual([])
+  expect(verifyMemoryAnswer(priorPlan.replace('planejou','planeja'),snapshot).violations.map(v=>v.code))
+    .toContain('terminal_project_plan_as_current')
   const denied = 'O seu projeto era um catálogo de miniaturas. Você não mencionou qual linguagem escolheu nem qual banco planejou, e o projeto está atualmente cancelado.'
   expect(verifyMemoryAnswer(denied,current).violations.map(v=>v.code)).toContain('absence_without_evidence')
   expect(verifyMemoryAnswer(denied,current).violations.map(v=>v.code)).toContain('known_relation_not_used')

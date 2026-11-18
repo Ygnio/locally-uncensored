@@ -117,7 +117,12 @@ export async function withLucilleContext(
   if (facts.some(f => f.validity === 'historical' && f.entity === 'project.' + binding.project && ['planned','decision'].includes(f.modality))) identity.content+='\nDescribe the historical project plan or choice in the past tense. Its state does not establish present intent or execution.'
   const memoryOnly = memoryQuestionNeedsNoTools(query)
   identity.content += '\nEvidence authority: an approved memory supports what its source stated; history supports earlier states; a tool supports only its observed resource and coverage. A directory is not the entire remembered project without an explicit verified binding. A memory deletion or renewal never proves the user stopped or resumed liking something. Preserve each predicate’s modality independently. Current USER question language controls the answer and any repair; Portuguese memory does not require a Portuguese reply to an English question.'
-  if (memoryOnly) identity.content += '\nThis turn requests remembered facts, not external inspection. Answer from scoped memory or bounded uncertainty. Do not call tools or narrate a plan to inspect files.'
+  if (memoryOnly) {
+    identity.content += '\nThis turn requests remembered facts, not external inspection. Answer from scoped memory or bounded uncertainty. Do not call tools or narrate a plan to inspect files.'
+    if (/\b(?:placa de video|graphics card|gpu)\b/.test(query.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()) && !facts.some(f=>f.property==='gpu_model')) {
+      identity.content += '\nThe scoped lookup supplied no graphics card record. State that it is unavailable here rather than inspecting the current machine.'
+    }
+  }
   injected.add(identity)
   injected.add(data)
   if (environment) injected.add(environment)

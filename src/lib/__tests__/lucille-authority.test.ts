@@ -154,6 +154,15 @@ describe('bounded non-destructive intervention and language',()=>{
     const r=await validateLucilleCompletion(wire({...snapshot(),memoryOnly:true}),{content:'Vou listar os arquivos.',toolCalls:[{function:{name:'file_list',arguments:{path:'.'}}}],finishReason:'tool_calls'},regenerate)
     expect(r.completion.toolCalls).toBeUndefined();expect(regenerate).toHaveBeenCalledTimes(1)
   })
+  it('keeps a textual tool-call marker out of a memory-only reply',async()=>{
+    const s={...snapshot([],'Qual placa de vídeo está registrada para meu computador principal?'),memoryOnly:true}
+    const regenerate=vi.fn(async()=>({content:'Não tenho registro disponível da placa de vídeo neste escopo.',finishReason:'stop'}))
+    const raw='Para verificar a placa de vídeo, executarei o comando via shell_execute.\n\n<|tool_call>call:shell_execute{command:"Get-GraphicsAdapter"}<tool_call|>'
+    const r=await validateLucilleCompletion(wire(s),{content:raw,finishReason:'stop'},regenerate)
+    expect(r.report.attempts[0].check.violations.map(v=>v.code)).toContain('unnecessary_memory_tool')
+    expect(r.completion.content).toContain('Não tenho registro')
+    expect(regenerate).toHaveBeenCalledTimes(1)
+  })
   it('keeps an unavailable stored preference distinct from current personal liking during repair',async()=>{
     const s=snapshot([], 'Continua registrada a minha preferência por criação de personagens?')
     const regenerate=vi.fn(async (messages:ChatMessage[])=>{
