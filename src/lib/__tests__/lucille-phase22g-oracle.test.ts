@@ -103,3 +103,15 @@ it('publishes only the verified replacement through the streaming response path'
   expect(chunks).toEqual([retry.delivered])
 })
 
+
+it('checks a named project purpose separately from its choice and an introductory aside', () => {
+  const purpose=fact('purpose','project.lume','description','catalogar cadernos','project_description','current','Criei o projeto Lume para catalogar cadernos.')
+  const snap={scope:'qa',project:'lume',query:'Antes de pintar a moldura, me lembra para que serve o projeto e qual banco eu escolhi?',facts:[...facts,purpose],currentStatements:[]}
+  const correct='O projeto Lume serve para catalogar cadernos. Você escolheu SQLite como banco de dados.'
+  expect(verifyMemoryAnswer(correct,snap).violations).toEqual([])
+  expect(verifyMemoryAnswer('A finalidade do Lume é guardar recibos.',snap).violations.map(v=>v.code)).toContain('unsupported_typed_value')
+  expect(verifyMemoryAnswer(correct,{...snap,facts}).violations.map(v=>v.code)).toContain('unsupported_typed_value')
+  expect(verifyMemoryAnswer('Você escolheu SQLite como banco de dados.',
+    {...snap,query:'Antes de trocar o banco, me lembra qual foi a minha escolha?'}).violations.map(v=>v.code)).toContain('unsupported_historical_state')
+})
+

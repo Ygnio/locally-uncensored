@@ -99,9 +99,9 @@ def main(args):
         if kind == 'gemma' and os.environ.get('LUCILLE_G22_BUDGET'):
             # Shared across broker restarts. Exclusive creation reserves an
             # attempt before the upstream call, including failed attempts.
-            fidelity = os.environ['LUCILLE_G22_BUDGET'] == 'fidelity'
-            limit = 8 if fidelity else 12
-            budget = root / 'reports' / ('g22-fidelity-budget' if fidelity else 'g22-call-budget')
+            campaign = os.environ['LUCILLE_G22_BUDGET']
+            limit, folder = {'continuity': (24, 'g22-continuity-budget'), 'fidelity': (8, 'g22-fidelity-budget')}.get(campaign, (12, 'g22-call-budget'))
+            budget = root / 'reports' / folder
             budget.mkdir(exist_ok=True)
             for slot in range(limit):
                 try:

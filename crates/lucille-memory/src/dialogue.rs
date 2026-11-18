@@ -899,6 +899,16 @@ pub(crate) fn separate_tracks(subject: &str, property: &str, left: &str, right: 
         && ["language", "database"].contains(&property)
         && execution_track(subject, property, left) != execution_track(subject, property, right)
 }
+fn named_project_purpose(source: &str, project: &str) -> bool {
+    let bound = fold(project);
+    ["comecei o projeto ", "iniciei o projeto ", "criei o projeto ",
+     "i started project ", "i created project "].iter()
+        .filter_map(|prefix| source.strip_prefix(prefix))
+        .filter_map(|rest| rest.split_once(' '))
+        .any(|(name, rest)| name == bound && ["para ", "to "].iter().any(|p|
+            rest.strip_prefix(p).is_some_and(|purpose| !purpose.trim().is_empty())))
+}
+
 pub fn extract(text: &str, project: &str) -> Vec<Claim> {
     if !eligible_source(text) {
         return vec![];
@@ -1217,7 +1227,7 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
             }
         }
         if known.is_empty()
-            && any(
+            && (named_project_purpose(&s, project) || any(
                 &s,
                 &[
                     "estou comecando um projeto de ",
@@ -1228,7 +1238,7 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
                     "my project remains a ",
                     "the project remains a ",
                 ],
-            )
+            ))
         {
             let mut c = base(span, Kind::Project, &subject, "description", &s, "durable");
             c.project_hint = Some(project.into());

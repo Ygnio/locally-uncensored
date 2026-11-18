@@ -445,7 +445,7 @@ fn external_header(s: &str) -> bool {
 }
 fn declaration(s: &str) -> bool {
     let ws = words(s);
-    ws.iter().any(|w|member(&w.text,&["eu","i","meu","minha","meus","minhas","my","mim","prefiro","gosto","adoro","curto","detesto","odeio","tenho","quero","preciso","resolvi","estou","planejo","pretendo","decidi","escolhi","iniciei","conclui","atualizei","troquei","volte"]))
+    ws.iter().any(|w|member(&w.text,&["eu","i","meu","minha","meus","minhas","my","mim","prefiro","gosto","adoro","curto","detesto","odeio","tenho","quero","preciso","resolvi","estou","planejo","pretendo","decidi","escolhi","iniciei","comecei","criei","conclui","atualizei","troquei","volte"]))
         || ws.iter().skip_while(|w|member(&w.text,&["o","a","the"])).next().is_some_and(|w|member(&w.text,&["computador","pc","notebook","laptop","desktop","projeto","project"]))
         || ["na verdade", "actually,", "actually "].iter().any(|v|fold(s).starts_with(v))
         // Reuse the existing bounded declarative grammar rather than inventing

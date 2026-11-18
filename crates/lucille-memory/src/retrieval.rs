@@ -315,6 +315,21 @@ pub struct RelationContext {
     pub state: String,
     pub references: Vec<crate::Reference>,
 }
+// Insert the project noun only for a purpose qualified by the bound proper name.
+fn bound_description_query(query: &str, project: &str) -> Option<String> {
+    if query.contains(['"', '“', '”', '`']) { return None; }
+    let mut words: Vec<_> = query.split_whitespace().collect();
+    let at = words.windows(3).position(|w| {
+        ["finalidade", "proposito", "objetivo", "descricao", "assunto"].contains(&fold(w[0]).as_str())
+            && ["do", "da", "de"].contains(&fold(w[1]).as_str())
+            && w[2].starts_with(char::is_uppercase)
+            && fold(w[2].trim_end_matches(['?', '.', ',', '!'])) == fold(project)
+    })?;
+    words[at + 1] = "do";
+    words.insert(at + 2, "projeto");
+    Some(words.join(" "))
+}
+
 // Resolve parallel project qualifiers against this turn's authorized binding.
 fn bound_relations(query: &str, project: &str) -> Vec<QueryRelation> {
     fn qualifier(relation: &QueryRelation) -> Option<&str> {
@@ -325,7 +340,8 @@ fn bound_relations(query: &str, project: &str) -> Vec<QueryRelation> {
         (["em", "in"].contains(&prep.as_str())
             && name.chars().all(|c| c.is_alphanumeric() || c == '-' || c == '_')).then_some(name)
     }
-    let mut relations = query_relations(query);
+    let expanded = bound_description_query(query, project);
+    let mut relations = query_relations(expanded.as_deref().unwrap_or(query));
     if relations.iter().filter_map(qualifier).any(|name| fold(name) == fold(project)) {
         for relation in &mut relations {
             relation.outside_project = qualifier(relation)
@@ -562,9 +578,9 @@ fn requested_project_field(query: &str) -> Option<ProjectField> {
         ProjectTrack::Any
     } else if prefix(&["planej", "pretend", "futur", "intend", "plann"]) || has(&["plan", "plans"]) {
         ProjectTrack::Planned
-    } else if has(&["escolhi", "escolhida", "escolhido", "chosen", "chose", "decidi", "decidiu", "decided", "selected"]) {
+    } else if has(&["escolhi", "escolha", "choice", "escolhida", "escolhido", "chosen", "chose", "decidi", "decidiu", "decided", "selected"]) {
         ProjectTrack::Choice
-    } else if has(&[
+    } else if ["sendo usado", "sendo usada", "sendo utilizado", "sendo utilizada", "being used"].iter().any(|phrase| q.contains(phrase)) || has(&[
         "implementando", "implementacao", "implementada", "implementado", "implementing",
         "implementation", "implemented", "desenvolvendo", "developing", "andamento",
         "usa", "uso", "uses", "utiliza", "using",
@@ -813,6 +829,10 @@ fn database_choice_intent(query: &str) -> bool {
 }
 fn description_intent(query: &str) -> bool {
     let q = fold(query);
+    let purpose_question = q.split_once("para que serve ").is_some_and(|(_, rest)| {
+        let mut words = rest.split(|c: char| !c.is_alphanumeric()).filter(|w| !w.is_empty());
+        words.find(|w| !["o", "meu", "seu", "esse", "este", "aquele"].contains(w)) == Some("projeto")
+    });
     let named_description = [
         "description",
         "descricao",
@@ -828,7 +848,7 @@ fn description_intent(query: &str) -> bool {
     let words = q.split(|c: char| !c.is_alphanumeric()).filter(|w| !w.is_empty()).collect::<Vec<_>>();
     let requested_purpose = words.windows(2).any(|w| matches!(w, ["que" | "qual", "finalidade" | "proposito" | "objetivo"]))
         && words.windows(3).any(|w| w == ["para", "o", "projeto"]);
-    named_description || requested_purpose || words.iter().enumerate().any(|(at, word)| {
+    purpose_question || named_description || requested_purpose || words.iter().enumerate().any(|(at, word)| {
         ["finalidade", "proposito", "objetivo", "tema"].contains(word) && [
             &["do", "projeto"][..],
             &["deste", "projeto"],
@@ -1415,6 +1435,8 @@ pub(crate) fn select(
     policy: &LearningPolicy,
     at: i64,
 ) -> Result<(Vec<Memory>, usize)> {
+    let expanded = bound_description_query(&req.query, &req.project).map(|query| TurnRequest { query, ..req.clone() });
+    let req = expanded.as_ref().unwrap_or(req);
     let relations=bound_relations(&req.query, &req.project);
     if !relations.is_empty(){
         let mut out=Vec::new(); let initial_used=used;
@@ -1756,7 +1778,14 @@ pub(crate) fn select(
 
 #[cfg(test)]
 mod project_comparison_tests {
-    use super::bound_relations;
+    use super::{bound_description_query, bound_relations};
+
+    #[test]
+    fn shorthand_purpose_is_grounded_only_in_the_bound_name() {
+        assert_eq!(bound_description_query("Qual o objetivo da Aurora?", "aurora").as_deref(), Some("Qual o objetivo do projeto Aurora?"));
+        assert!(bound_description_query("Qual o objetivo da Aurora?", "cedro").is_none());
+        assert!(bound_description_query("Qual o objetivo da oficina?", "cedro").is_none());
+    }
 
     #[test]
     fn parallel_database_qualifiers_respect_the_current_binding_in_either_order() {

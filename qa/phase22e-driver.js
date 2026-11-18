@@ -200,9 +200,16 @@ async function run(control) {
     fixture.policy = await manage({ operation: 'learning_policy' }); fixture.initial_metrics = await scoped('learning_metrics')
     for (const turn of plan.turns ?? []) {
       if (turn.new_session) await conversation(turn.mode ?? 'chat')
-      await send(turn.text)
+      const observed = await send(turn.text)
+      if (control.observe_canonical) observed.before_review = await scoped('details')
       if (turn.review) await review()
       if (turn.review_preferences) await review(true)
+      if (control.observe_canonical) {
+        observed.after_review = await scoped('details')
+        observed.deleted = await scoped('deleted')
+        observed.jobs = await scoped('learning_jobs')
+        await progress()
+      }
       if (turn.replay_turn_index !== undefined) {
         const old = fixture.turns[turn.replay_turn_index], user = old.messages.find(m => m.role === 'user')
         await replay({ conversation_id: old.conversation_id, message_id: user.lucilleInteractionId ?? user.id, scope, project, mode: old.mode ?? 'chat', role: 'user', user_text: old.text })

@@ -101,6 +101,15 @@ function mentions(text: string, value: string) {
   return aliases(value).some(v => v.length < 4 ? q.split(/[^a-z0-9]+/).includes(v) : q.includes(v))
 }
 
+function historicalQuestion(query: string): boolean {
+  const normalized = fold(query)
+  const aside = /^antes de ([a-z]+(?:ar|er|ir)\b[^,?!.]{0,90}),\s*(me (?:lembra|diga)\b.*)$/u.exec(normalized)
+  if (aside && !/\b(?:troc|mud|migr|alter|substitu|atualiz|cancel|escolh|decid|inici|implement)|\b(?:projeto|banco|linguagem|computador|memoria)\b/u.test(aside[1])) {
+    return past(aside[2])
+  }
+  return past(query)
+}
+
 function descriptionValue(text: string) {
   return text.trim().replace(/[.!]+$/u, '').replace(/^(?:um|uma|a|an|the)\s+/u, '').replace(/\s+/gu, ' ')
 }
@@ -177,7 +186,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
         (f.modality === 'decision' && (/\b(?:escolheu|decidiu|chose|decided)\b/.test(predicate) ||
           askedChoice === value && deniesProjectChoiceEntailment(span, value)) ||
          f.modality === 'planned' && /^(?:(?:no seu projeto|in your project),\s+)?(?:(?:voce|you)\s+)?(?:planejou usar|planned to use)\b/.test(predicate)))
-    const historical = !afterRamCorrection && (choiceOrigin || past(span) || recordedProjectHistory || projectTechnology && historicalProjectWording(span) || (past(snapshot.query) && !/\b(?:agora|atualmente|now|currently|prefere|prefiro|gosta|gosto|tem|tenho|possui|usa|utiliza|is|are|have|has|prefer|prefers|like|likes|uses)\b/.test(fold(span))))
+    const historical = !afterRamCorrection && (choiceOrigin || past(span) || recordedProjectHistory || projectTechnology && historicalProjectWording(span) || (historicalQuestion(snapshot.query) && !/\b(?:agora|atualmente|now|currently|prefere|prefiro|gosta|gosto|tem|tenho|possui|usa|utiliza|is|are|have|has|prefer|prefers|like|likes|uses)\b/.test(fold(span))))
     const terminalProject = projectTechnology && current.some(f=>f.entity===entity && f.property==='lifecycle' && ['cancelled','completed'].includes(f.modality))
     if (terminalProject && !historical && planned(span) && candidates.some(f=>f.value===value && ['planned','decision'].includes(f.modality))) add('terminal_project_plan_as_current',span)
     const sourceOrigin=choiceOrigin && ['language','database'].includes(property) ? all.filter(f=>f.entity===entity && f.property===property && f.validity==='current_user_statement' && ['decision','planned'].includes(f.modality) && f.evidence.some(e=>['current_user_statement','current_source'].includes(e.role) && technologyRoles(e.text).some(r=>r.role==='origin' && r.value===value) && technologyRoles(e.text).some(r=>r.role==='destination' && r.value===f.value))) : []
@@ -297,10 +306,12 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     const describedPurpose = /\b(?:finalidade|proposito|objetivo|purpose)\b/u.test(query) && /\b(?:projeto|project)\b/u.test(query)
       ? q.trim().match(/^(?:voce (?:deve|pode) descrever (?:a finalidade|o proposito|o objetivo) de|you (?:should|can) describe the purpose (?:of|as))\s+(.+)$/u)
       : null
-    if (describedPurpose || (description || projectDescription) && (descriptionRequested || current.some(f => f.property === 'description' && f.entity === 'project.' + snapshot.project))) {
+    const namedPurpose = q.trim().match(/^(?:a finalidade|o objetivo|o proposito) (?:do|da) ([\p{L}\p{N}_-]+) (?:e|era) (.+)$|^(?:o projeto|projeto) ([\p{L}\p{N}_-]+) serve para (.+)$/u)
+    const boundPurpose = namedPurpose && (namedPurpose[1] ?? namedPurpose[3]) === fold(snapshot.project)
+    if (boundPurpose || describedPurpose || (description || projectDescription) && (descriptionRequested || current.some(f => f.property === 'description' && f.entity === 'project.' + snapshot.project))) {
       const entity = 'project.' + snapshot.project
       const named = description ? description[1] ?? description[3] : projectDescription?.[1] ?? projectDescription?.[2]
-      const value = descriptionValue(describedPurpose?.[1] ?? (description ? description[2] ?? description[4] : projectDescription![3]))
+      const value = descriptionValue((boundPurpose ? namedPurpose[2] ?? namedPurpose[4] : undefined) ?? describedPurpose?.[1] ?? (description ? description[2] ?? description[4] : projectDescription![3]))
       // Compare the entire claimed purpose against the literal source payload.
       // A shared substring cannot ground additions or a different project.
       const proof = current.filter(f => (!named || named === fold(snapshot.project)) &&
@@ -308,7 +319,10 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
         (f.validity === 'current' && f.review === 'reviewed' || f.validity === 'current_user_statement') && f.evidence.some(e => {
           if (e.role !== (f.validity === 'current_user_statement' ? 'current_user_statement' : 'current_source')) return false
           const source = fold(e.text).trim().match(/^(?:estou comecando um projeto de|iniciei um projeto de|i am starting a project(?: about| on| for| to)?|(?:(?:o|meu) )?projeto continua sendo|(?:my|the) project remains)\s+(.+)$/u)
-          return source && value === descriptionValue(source[1])
+          if (source) return value === descriptionValue(source[1])
+          const namedSource = fold(e.text).trim().match(/^(?:(?:comecei|iniciei|criei) o projeto ([\p{L}\p{N}_-]+) para|i (?:started|created) project ([\p{L}\p{N}_-]+) to) (.+)$/u)
+          return namedSource && (namedSource[1] ?? namedSource[2]) === fold(snapshot.project)
+            && value === descriptionValue(namedSource[3])
         }))
       assertions.push({entity,property:'description',value,span,supported:proof.length>0,references:proof.map(f=>f.id)})
       if (!proof.length) add('unsupported_typed_value',span)

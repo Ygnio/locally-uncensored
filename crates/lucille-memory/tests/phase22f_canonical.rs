@@ -964,3 +964,22 @@ fn phase22g_external_roles_cannot_materialize_declarations() {
         assert!(dialogue::extract(source, "atlas").is_empty(), "{source}");
     }
 }
+
+#[test]
+fn explicitly_started_project_binds_purpose_to_the_named_project_and_speaker() {
+    for source in [
+        "Criei o projeto Sargaço para preservar partituras antigas.",
+        "Iniciei o projeto Sargaço para descrever ferramentas locais.",
+        "I started project Sargaço to map abandoned orchards.",
+    ] {
+        let claims = dialogue::extract(source, "sargaco");
+        assert!(claims.iter().any(|c| c.property == "description" && c.subject == "project.sargaco"), "{source}: {claims:?}");
+        assert!(dialogue::extract(source, "aroeira").iter().all(|c| c.property != "description"));
+    }
+    for source in [
+        "A personagem disse: criei o projeto Sargaço para preservar partituras antigas.",
+        "Se eu criasse o projeto Sargaço para preservar partituras antigas, teria apoio.",
+    ] {
+        assert!(dialogue::extract(source, "sargaco").iter().all(|c| c.property != "description"));
+    }
+}

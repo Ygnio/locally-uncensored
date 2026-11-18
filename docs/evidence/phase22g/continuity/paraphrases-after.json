@@ -1,0 +1,231 @@
+[
+  {
+    "query": "Para que serve o meu projeto?",
+    "project": "alfenim",
+    "expected": [
+      "description"
+    ],
+    "forbidden": [],
+    "facts": [],
+    "relations": [],
+    "passed": false
+  },
+  {
+    "query": "Que banco estava escolhido antes e qual é a escolha atual?",
+    "project": "alfenim",
+    "expected": [
+      "sqlite",
+      "postgresql"
+    ],
+    "forbidden": [],
+    "facts": [
+      {
+        "entity": "project.alfenim",
+        "evidence": [
+          {
+            "role": "current_source",
+            "text": "Para guardar as fichas, escolhi SQLite como banco de dados"
+          }
+        ],
+        "facets": [],
+        "id": "c7648331-0b84-f84b-9ebe-2be03ed30e50",
+        "modality": "decision",
+        "project": "alfenim",
+        "property": "database",
+        "review": "reviewed",
+        "scope": "phase22f-continuidade-alfenim",
+        "validity": "historical",
+        "value": "sqlite",
+        "version": 3
+      },
+      {
+        "entity": "project.alfenim",
+        "evidence": [
+          {
+            "role": "current_source",
+            "text": "agora escolhi PostgreSQL"
+          },
+          {
+            "role": "previous_property_link_not_current_value",
+            "text": "Para guardar as fichas, escolhi SQLite como banco de dados"
+          }
+        ],
+        "facets": [],
+        "id": "f249d9df-2e67-8415-154f-042394f85f54",
+        "modality": "decision",
+        "project": "alfenim",
+        "property": "database",
+        "review": "reviewed",
+        "scope": "phase22f-continuidade-alfenim",
+        "validity": "current",
+        "value": "postgresql",
+        "version": 2
+      }
+    ],
+    "relations": [
+      {
+        "actor": "user",
+        "intent": "historical",
+        "query": "Que banco estava escolhido antes",
+        "references": [
+          {
+            "id": "c7648331-0b84-f84b-9ebe-2be03ed30e50",
+            "version": 3
+          },
+          {
+            "id": "f249d9df-2e67-8415-154f-042394f85f54",
+            "version": 2
+          }
+        ],
+        "state": "retrieved"
+      },
+      {
+        "actor": "user",
+        "intent": "choice",
+        "query": "qual é a escolha atual? banco de dados",
+        "references": [
+          {
+            "id": "f249d9df-2e67-8415-154f-042394f85f54",
+            "version": 2
+          }
+        ],
+        "state": "retrieved"
+      }
+    ],
+    "passed": true
+  },
+  {
+    "query": "Qual banco está sendo usado de fato no projeto?",
+    "project": "alfenim",
+    "expected": [],
+    "forbidden": [
+      "sqlite",
+      "postgresql"
+    ],
+    "facts": [],
+    "relations": [],
+    "passed": true
+  },
+  {
+    "query": "Que tema de interface eu prefiro?",
+    "project": "vimeira",
+    "expected": [],
+    "forbidden": [
+      "light",
+      "sepia"
+    ],
+    "facts": [],
+    "relations": [],
+    "passed": true
+  },
+  {
+    "query": "Você lembra minha preferência de bebida?",
+    "project": "vimeira",
+    "expected": [],
+    "forbidden": [
+      "light",
+      "sepia"
+    ],
+    "facts": [],
+    "relations": [],
+    "passed": true
+  },
+  {
+    "query": "Qual foi minha escolha de linguagem?",
+    "project": "vimeira",
+    "expected": [
+      "python"
+    ],
+    "forbidden": [],
+    "facts": [
+      {
+        "entity": "project.vimeira",
+        "evidence": [
+          {
+            "role": "current_source",
+            "text": "Escolhi Python como linguagem do projeto"
+          }
+        ],
+        "facets": [],
+        "id": "c1e824eb-9624-8bac-8c04-a86eeab898b4",
+        "modality": "decision",
+        "project": "vimeira",
+        "property": "language",
+        "review": "reviewed",
+        "scope": "phase22f-continuidade-vimeira",
+        "validity": "current",
+        "value": "python",
+        "version": 2
+      }
+    ],
+    "relations": [],
+    "passed": true
+  },
+  {
+    "query": "Que cor do painel a personagem prefere no conto?",
+    "project": "vimeira",
+    "expected": [],
+    "forbidden": [
+      "light",
+      "sepia"
+    ],
+    "facts": [],
+    "relations": [],
+    "passed": true
+  },
+  {
+    "query": "Compare a linguagem escolhida em Vimeira com a linguagem escolhida em Alfenim.",
+    "project": "vimeira",
+    "expected": [
+      "python"
+    ],
+    "forbidden": [
+      "postgresql",
+      "sqlite"
+    ],
+    "facts": [
+      {
+        "entity": "project.vimeira",
+        "evidence": [
+          {
+            "role": "current_source",
+            "text": "Escolhi Python como linguagem do projeto"
+          }
+        ],
+        "facets": [],
+        "id": "c1e824eb-9624-8bac-8c04-a86eeab898b4",
+        "modality": "decision",
+        "project": "vimeira",
+        "property": "language",
+        "review": "reviewed",
+        "scope": "phase22f-continuidade-vimeira",
+        "validity": "current",
+        "value": "python",
+        "version": 2
+      }
+    ],
+    "relations": [
+      {
+        "actor": "user",
+        "intent": "choice",
+        "query": "Compare a linguagem escolhida em Vimeira",
+        "references": [
+          {
+            "id": "c1e824eb-9624-8bac-8c04-a86eeab898b4",
+            "version": 2
+          }
+        ],
+        "state": "retrieved"
+      },
+      {
+        "actor": "user",
+        "intent": "choice",
+        "outside_project": "Alfenim",
+        "query": "a linguagem escolhida em Alfenim.",
+        "references": [],
+        "state": "unavailable"
+      }
+    ],
+    "passed": true
+  }
+]
