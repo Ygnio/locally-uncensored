@@ -1,0 +1,260 @@
+{
+  "integrity": "ok",
+  "foreign_keys": [],
+  "tables": {
+    "memories": [
+      {
+        "id": "b0452494-6603-8f85-b511-f5738585386b",
+        "scope": "phase22f-continuidade-alfenim",
+        "project": "alfenim",
+        "kind": "project",
+        "state": "active",
+        "content": "Comecei o projeto Alfenim para catalogar matrizes de xilogravura",
+        "fact_key": "project.alfenim.description",
+        "source": "user",
+        "source_id": "69d3af4191284f28f1c5337bd98dca761502f00618d2830e08aa15c31c9c4c1f",
+        "version": 2,
+        "created_at": 1795031430,
+        "updated_at": 1795031432
+      },
+      {
+        "id": "ea493fac-3d8a-e4f1-43ee-e1ddbe6d31a5",
+        "scope": "phase22f-continuidade-alfenim",
+        "project": "alfenim",
+        "kind": "decision",
+        "state": "obsolete",
+        "content": "Projeto alfenim: decidiu usar sqlite como banco de dados.",
+        "fact_key": "project.alfenim.database",
+        "source": "user",
+        "source_id": "69d3af4191284f28f1c5337bd98dca761502f00618d2830e08aa15c31c9c4c1f",
+        "version": 3,
+        "created_at": 1795031430,
+        "updated_at": 1795031449
+      },
+      {
+        "id": "c7299703-6b4e-d3df-e439-8ddfb23e9746",
+        "scope": "phase22f-continuidade-alfenim",
+        "project": "alfenim",
+        "kind": "decision",
+        "state": "active",
+        "content": "Projeto alfenim: decidiu usar postgresql como banco de dados.",
+        "fact_key": "project.alfenim.database",
+        "source": "user",
+        "source_id": "fd28690703aed588e645e0a57e8bc0b1f66146e52b0a292d9888fead28401f03",
+        "version": 2,
+        "created_at": 1795031446,
+        "updated_at": 1795031449
+      }
+    ],
+    "memories_fts": [
+      {
+        "content": "Comecei o projeto Alfenim para catalogar matrizes de xilogravura"
+      },
+      {
+        "content": "Projeto alfenim: decidiu usar sqlite como banco de dados."
+      },
+      {
+        "content": "Projeto alfenim: decidiu usar postgresql como banco de dados."
+      }
+    ],
+    "memories_fts_data": [
+      {
+        "id": 1
+      },
+      {
+        "id": 10
+      },
+      {
+        "id": 137438953473
+      },
+      {
+        "id": 274877906945
+      },
+      {
+        "id": 412316860417
+      },
+      {
+        "id": 549755813889
+      },
+      {
+        "id": 687194767361
+      },
+      {
+        "id": 824633720833
+      },
+      {
+        "id": 962072674305
+      }
+    ],
+    "memories_fts_idx": [
+      {
+        "segid": 1,
+        "pgno": 2
+      },
+      {
+        "segid": 2,
+        "pgno": 2
+      },
+      {
+        "segid": 3,
+        "pgno": 2
+      },
+      {
+        "segid": 4,
+        "pgno": 2
+      },
+      {
+        "segid": 5,
+        "pgno": 2
+      },
+      {
+        "segid": 6,
+        "pgno": 2
+      },
+      {
+        "segid": 7,
+        "pgno": 2
+      }
+    ],
+    "memories_fts_docsize": [
+      {
+        "id": 1
+      },
+      {
+        "id": 2
+      },
+      {
+        "id": 3
+      }
+    ],
+    "memories_fts_config": [
+      {
+        "k": "version",
+        "v": 4
+      }
+    ],
+    "memory_quality": [
+      {
+        "memory_id": "b0452494-6603-8f85-b511-f5738585386b",
+        "subject": "project.alfenim",
+        "property": "description",
+        "value": "comecei o projeto alfenim para catalogar matrizes de xilogravura",
+        "confidence": 0.9,
+        "relevance": 0.8,
+        "temporal": "durable",
+        "expires_at": null,
+        "priority": 1,
+        "replaces_id": null,
+        "replaces_version": null,
+        "facets_json": "[]",
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded|native_source_authority_v2:{\"version\":2,\"message_author\":\"user\",\"statement_author\":\"user\",\"subject\":\"project.alfenim\",\"origin\":\"personal_declaration\",\"source_digest\":\"e6eca8ce64023266f2c2bcf40cf8606111b63e8a23bcb0397bae68c1afbed4cf\",\"evidence_digest\":\"ca61a20ac91936d0ee6b274eb1279f7c029cf96b8e5452b0aa878201b73ab9c8\",\"start\":0,\"end\":64,\"claim_digest\":\"bd478258c01a96d3e16d95dbcb423da907890991a36472c0ff148f6dfe6eea70\"}"
+      },
+      {
+        "memory_id": "ea493fac-3d8a-e4f1-43ee-e1ddbe6d31a5",
+        "subject": "project.alfenim",
+        "property": "database",
+        "value": "sqlite",
+        "confidence": 0.9,
+        "relevance": 0.8,
+        "temporal": "durable",
+        "expires_at": null,
+        "priority": 1,
+        "replaces_id": null,
+        "replaces_version": null,
+        "facets_json": "[]",
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded|native_source_authority_v2:{\"version\":2,\"message_author\":\"user\",\"statement_author\":\"user\",\"subject\":\"project.alfenim\",\"origin\":\"personal_declaration\",\"source_digest\":\"e6eca8ce64023266f2c2bcf40cf8606111b63e8a23bcb0397bae68c1afbed4cf\",\"evidence_digest\":\"47205c05cfe1c6f2e77e62f5c2cfb2c73cf79ef524b735950b3452e625543ffc\",\"start\":66,\"end\":124,\"claim_digest\":\"b51e20e3fbb539989ed97cdb29e80fe2c4caf4067278297a58ef5d41234a4a58\"}"
+      },
+      {
+        "memory_id": "c7299703-6b4e-d3df-e439-8ddfb23e9746",
+        "subject": "project.alfenim",
+        "property": "database",
+        "value": "postgresql",
+        "confidence": 0.9,
+        "relevance": 0.8,
+        "temporal": "durable",
+        "expires_at": null,
+        "priority": 1,
+        "replaces_id": "ea493fac-3d8a-e4f1-43ee-e1ddbe6d31a5",
+        "replaces_version": 2,
+        "facets_json": "[]",
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded|native_source_authority_v2:{\"version\":2,\"message_author\":\"user\",\"statement_author\":\"user\",\"subject\":\"project.alfenim\",\"origin\":\"personal_declaration\",\"source_digest\":\"9567d5cc10961bdf831acffb5d9458bfbf168589f6ee8f39fb69e39aa11fac61\",\"evidence_digest\":\"0e9af29907d921075f35e95cb5c8eac41c327f1c043137b2a70eae1355279aea\",\"start\":78,\"end\":102,\"claim_digest\":\"40d8fef048c15f684fa1a28e030a598a5bfc0100ba6b1b144848fe4b91a854b7\"}"
+      }
+    ],
+    "memory_provenance": [
+      {
+        "memory_id": "b0452494-6603-8f85-b511-f5738585386b",
+        "interaction_id": "69d3af4191284f28f1c5337bd98dca761502f00618d2830e08aa15c31c9c4c1f",
+        "evidence": "Comecei o projeto Alfenim para catalogar matrizes de xilogravura",
+        "at": 1795031430
+      },
+      {
+        "memory_id": "ea493fac-3d8a-e4f1-43ee-e1ddbe6d31a5",
+        "interaction_id": "69d3af4191284f28f1c5337bd98dca761502f00618d2830e08aa15c31c9c4c1f",
+        "evidence": "Para guardar as fichas, escolhi SQLite como banco de dados",
+        "at": 1795031430
+      },
+      {
+        "memory_id": "c7299703-6b4e-d3df-e439-8ddfb23e9746",
+        "interaction_id": "fd28690703aed588e645e0a57e8bc0b1f66146e52b0a292d9888fead28401f03",
+        "evidence": "agora escolhi PostgreSQL",
+        "at": 1795031446
+      }
+    ],
+    "memory_revisions": [
+      {
+        "memory_id": "b0452494-6603-8f85-b511-f5738585386b",
+        "version": 1,
+        "snapshot": "{\"memory\":{\"input\":{\"id\":\"b0452494-6603-8f85-b511-f5738585386b\",\"scope\":\"phase22f-continuidade-alfenim\",\"project\":\"alfenim\",\"kind\":\"project\",\"content\":\"Comecei o projeto Alfenim para catalogar matrizes de xilogravura\",\"fact_key\":\"project.alfenim.description\",\"source\":\"user\",\"source_id\":\"69d3af4191284f28f1c5337bd98dca761502f00618d2830e08aa15c31c9c4c1f\"},\"state\":\"candidate\",\"version\":1,\"created_at\":1795031430,\"updated_at\":1795031430},\"quality\":{\"subject\":\"project.alfenim\",\"property\":\"description\",\"value\":\"comecei o projeto alfenim para catalogar matrizes de xilogravura\",\"confidence\":0.9,\"relevance\":0.8,\"temporal\":\"durable\",\"expires_at\":null,\"priority\":1,\"replaces_id\":null,\"replaces_version\":null,\"facets\":[],\"evidence_rule\":\"llm_v3_grounded:explicit_v3_grounded|native_source_authority_v2:{\\\"version\\\":2,\\\"message_author\\\":\\\"user\\\",\\\"statement_author\\\":\\\"user\\\",\\\"subject\\\":\\\"project.alfenim\\\",\\\"origin\\\":\\\"personal_declaration\\\",\\\"source_digest\\\":\\\"e6eca8ce64023266f2c2bcf40cf8606111b63e8a23bcb0397bae68c1afbed4cf\\\",\\\"evidence_digest\\\":\\\"ca61a20ac91936d0ee6b274eb1279f7c029cf96b8e5452b0aa878201b73ab9c8\\\",\\\"start\\\":0,\\\"end\\\":64,\\\"claim_digest\\\":\\\"bd478258c01a96d3e16d95dbcb423da907890991a36472c0ff148f6dfe6eea70\\\"}\"}}",
+        "at": 1795031432
+      },
+      {
+        "memory_id": "ea493fac-3d8a-e4f1-43ee-e1ddbe6d31a5",
+        "version": 1,
+        "snapshot": "{\"memory\":{\"input\":{\"id\":\"ea493fac-3d8a-e4f1-43ee-e1ddbe6d31a5\",\"scope\":\"phase22f-continuidade-alfenim\",\"project\":\"alfenim\",\"kind\":\"decision\",\"content\":\"Projeto alfenim: decidiu usar sqlite como banco de dados.\",\"fact_key\":\"project.alfenim.database\",\"source\":\"user\",\"source_id\":\"69d3af4191284f28f1c5337bd98dca761502f00618d2830e08aa15c31c9c4c1f\"},\"state\":\"candidate\",\"version\":1,\"created_at\":1795031430,\"updated_at\":1795031430},\"quality\":{\"subject\":\"project.alfenim\",\"property\":\"database\",\"value\":\"sqlite\",\"confidence\":0.9,\"relevance\":0.8,\"temporal\":\"durable\",\"expires_at\":null,\"priority\":1,\"replaces_id\":null,\"replaces_version\":null,\"facets\":[],\"evidence_rule\":\"llm_v3_grounded:explicit_v3_grounded|native_source_authority_v2:{\\\"version\\\":2,\\\"message_author\\\":\\\"user\\\",\\\"statement_author\\\":\\\"user\\\",\\\"subject\\\":\\\"project.alfenim\\\",\\\"origin\\\":\\\"personal_declaration\\\",\\\"source_digest\\\":\\\"e6eca8ce64023266f2c2bcf40cf8606111b63e8a23bcb0397bae68c1afbed4cf\\\",\\\"evidence_digest\\\":\\\"47205c05cfe1c6f2e77e62f5c2cfb2c73cf79ef524b735950b3452e625543ffc\\\",\\\"start\\\":66,\\\"end\\\":124,\\\"claim_digest\\\":\\\"b51e20e3fbb539989ed97cdb29e80fe2c4caf4067278297a58ef5d41234a4a58\\\"}\"}}",
+        "at": 1795031434
+      },
+      {
+        "memory_id": "c7299703-6b4e-d3df-e439-8ddfb23e9746",
+        "version": 1,
+        "snapshot": "{\"memory\":{\"input\":{\"id\":\"c7299703-6b4e-d3df-e439-8ddfb23e9746\",\"scope\":\"phase22f-continuidade-alfenim\",\"project\":\"alfenim\",\"kind\":\"decision\",\"content\":\"Projeto alfenim: decidiu usar postgresql como banco de dados.\",\"fact_key\":\"project.alfenim.database\",\"source\":\"user\",\"source_id\":\"fd28690703aed588e645e0a57e8bc0b1f66146e52b0a292d9888fead28401f03\"},\"state\":\"conflict\",\"version\":1,\"created_at\":1795031446,\"updated_at\":1795031446},\"quality\":{\"subject\":\"project.alfenim\",\"property\":\"database\",\"value\":\"postgresql\",\"confidence\":0.9,\"relevance\":0.8,\"temporal\":\"durable\",\"expires_at\":null,\"priority\":1,\"replaces_id\":\"ea493fac-3d8a-e4f1-43ee-e1ddbe6d31a5\",\"replaces_version\":2,\"facets\":[],\"evidence_rule\":\"llm_v3_grounded:explicit_v3_grounded|native_source_authority_v2:{\\\"version\\\":2,\\\"message_author\\\":\\\"user\\\",\\\"statement_author\\\":\\\"user\\\",\\\"subject\\\":\\\"project.alfenim\\\",\\\"origin\\\":\\\"personal_declaration\\\",\\\"source_digest\\\":\\\"9567d5cc10961bdf831acffb5d9458bfbf168589f6ee8f39fb69e39aa11fac61\\\",\\\"evidence_digest\\\":\\\"0e9af29907d921075f35e95cb5c8eac41c327f1c043137b2a70eae1355279aea\\\",\\\"start\\\":78,\\\"end\\\":102,\\\"claim_digest\\\":\\\"40d8fef048c15f684fa1a28e030a598a5bfc0100ba6b1b144848fe4b91a854b7\\\"}\"}}",
+        "at": 1795031449
+      },
+      {
+        "memory_id": "ea493fac-3d8a-e4f1-43ee-e1ddbe6d31a5",
+        "version": 2,
+        "snapshot": "{\"memory\":{\"input\":{\"id\":\"ea493fac-3d8a-e4f1-43ee-e1ddbe6d31a5\",\"scope\":\"phase22f-continuidade-alfenim\",\"project\":\"alfenim\",\"kind\":\"decision\",\"content\":\"Projeto alfenim: decidiu usar sqlite como banco de dados.\",\"fact_key\":\"project.alfenim.database\",\"source\":\"user\",\"source_id\":\"69d3af4191284f28f1c5337bd98dca761502f00618d2830e08aa15c31c9c4c1f\"},\"state\":\"active\",\"version\":2,\"created_at\":1795031430,\"updated_at\":1795031434},\"quality\":{\"subject\":\"project.alfenim\",\"property\":\"database\",\"value\":\"sqlite\",\"confidence\":0.9,\"relevance\":0.8,\"temporal\":\"durable\",\"expires_at\":null,\"priority\":1,\"replaces_id\":null,\"replaces_version\":null,\"facets\":[],\"evidence_rule\":\"llm_v3_grounded:explicit_v3_grounded|native_source_authority_v2:{\\\"version\\\":2,\\\"message_author\\\":\\\"user\\\",\\\"statement_author\\\":\\\"user\\\",\\\"subject\\\":\\\"project.alfenim\\\",\\\"origin\\\":\\\"personal_declaration\\\",\\\"source_digest\\\":\\\"e6eca8ce64023266f2c2bcf40cf8606111b63e8a23bcb0397bae68c1afbed4cf\\\",\\\"evidence_digest\\\":\\\"47205c05cfe1c6f2e77e62f5c2cfb2c73cf79ef524b735950b3452e625543ffc\\\",\\\"start\\\":66,\\\"end\\\":124,\\\"claim_digest\\\":\\\"b51e20e3fbb539989ed97cdb29e80fe2c4caf4067278297a58ef5d41234a4a58\\\"}\"}}",
+        "at": 1795031449
+      }
+    ],
+    "memory_source_operations": [
+      {
+        "source_id": "69d3af4191284f28f1c5337bd98dca761502f00618d2830e08aa15c31c9c4c1f",
+        "identity_version": 1,
+        "action": "learn",
+        "property": null
+      },
+      {
+        "source_id": "fd28690703aed588e645e0a57e8bc0b1f66146e52b0a292d9888fead28401f03",
+        "identity_version": 1,
+        "action": "learn",
+        "property": null
+      }
+    ],
+    "memory_source_operation_records": [
+      {
+        "source_id": "69d3af4191284f28f1c5337bd98dca761502f00618d2830e08aa15c31c9c4c1f",
+        "record_id": "b0452494-6603-8f85-b511-f5738585386b",
+        "version": 1,
+        "state": "candidate",
+        "effect": "create"
+      },
+      {
+        "source_id": "69d3af4191284f28f1c5337bd98dca761502f00618d2830e08aa15c31c9c4c1f",
+        "record_id": "ea493fac-3d8a-e4f1-43ee-e1ddbe6d31a5",
+        "version": 1,
+        "state": "candidate",
+        "effect": "create"
+      }
+    ]
+  }
+}

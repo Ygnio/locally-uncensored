@@ -1,0 +1,482 @@
+[
+  {
+    "label": "persist-alfenim-restart",
+    "host": {
+      "pid": 14872,
+      "created": "2026-11-18T16:51:10.138639-03:00"
+    },
+    "conversation": "144ecfd0-919d-442a-b905-1f3d176be1ec",
+    "text": "Para eu retomar o trabalho, qual é a finalidade do Alfenim e qual banco ficou escolhido?",
+    "broker_indices": [
+      5
+    ],
+    "ui": [
+      {
+        "id": "a2e0465f-d9fd-472a-bc0d-617079b4fc9f",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "A finalidade do projeto Alfenim é catalogar matrizes de xilogravura. Você escolheu o PostgreSQL como banco de dados.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "project.alfenim",
+                  "property": "description",
+                  "value": "catalogar matrizes de xilogravura",
+                  "span": "A finalidade do projeto Alfenim é catalogar matrizes de xilogravura.",
+                  "supported": true,
+                  "references": [
+                    "b0452494-6603-8f85-b511-f5738585386b"
+                  ]
+                },
+                {
+                  "entity": "project.alfenim",
+                  "property": "database",
+                  "value": "postgresql",
+                  "span": "Você escolheu o PostgreSQL como banco de dados.",
+                  "supported": true,
+                  "references": [
+                    "c7299703-6b4e-d3df-e439-8ddfb23e9746"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 2,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 16.799999982118607
+            },
+            "nativeOperation": {
+              "checkedAtUtc": "2026-11-18T19:51:47.941Z",
+              "source": {
+                "conversation_id": "144ecfd0-919d-442a-b905-1f3d176be1ec",
+                "source_message_id": "1cddc897-476d-49e8-bc8d-88956f2450f2"
+              },
+              "learning": null,
+              "directive": null
+            },
+            "verificationReferences": [],
+            "promptTokens": 1513,
+            "completionTokens": 30
+          }
+        ],
+        "refreshMs": 13.599999994039536,
+        "verificationMs": 16.799999982118607,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "A finalidade do projeto Alfenim é catalogar matrizes de xilogravura. Você escolheu o PostgreSQL como banco de dados."
+      }
+    ],
+    "displayed": "lucille-real-gemma\n\nA finalidade do projeto Alfenim é catalogar matrizes de xilogravura. Você escolheu o PostgreSQL como banco de dados.\n\n1,513 in · 30 out",
+    "message": "A finalidade do projeto Alfenim é catalogar matrizes de xilogravura. Você escolheu o PostgreSQL como banco de dados.",
+    "operation": null,
+    "receipt": null
+  },
+  {
+    "label": "persist-alfenim-seed",
+    "host": {
+      "pid": 13132,
+      "created": "2026-11-18T16:49:44.643973-03:00"
+    },
+    "conversation": "160e0f44-80cb-4a0a-ae00-0bd81d4a17c1",
+    "text": "Comecei o projeto Alfenim para catalogar matrizes de xilogravura. Para guardar as fichas, escolhi SQLite como banco de dados.",
+    "broker_indices": [
+      0,
+      1
+    ],
+    "ui": [
+      {
+        "id": "d3889752-7eb1-47b8-8a1c-1deb2f8b1a39",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "O SQLite é uma excelente escolha para o projeto Alfenim devido à sua simplicidade e eficiência em lidar com dados estruturados. Ele permitirá que você organize as características das matrizes de xilogravura de forma robusta e fácil de consultar.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "project.alfenim",
+                  "property": "database",
+                  "value": "sqlite",
+                  "span": "O SQLite é uma excelente escolha para o projeto Alfenim devido à sua simplicidade e eficiência em lidar com dados estruturados.",
+                  "supported": true,
+                  "references": [
+                    "current-turn-1"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 15.299999982118607
+            },
+            "nativeOperation": {
+              "checkedAtUtc": "2026-11-18T19:50:23.642Z",
+              "source": {
+                "conversation_id": "160e0f44-80cb-4a0a-ae00-0bd81d4a17c1",
+                "source_message_id": "d5a63f2f-f81c-487c-8a03-4f79897f9257"
+              },
+              "learning": null,
+              "directive": null,
+              "status": {
+                "action": "learn",
+                "conversation_id": "160e0f44-80cb-4a0a-ae00-0bd81d4a17c1",
+                "id": "69d3af4191284f28f1c5337bd98dca761502f00618d2830e08aa15c31c9c4c1f",
+                "identity_version": 1,
+                "mode": "chat",
+                "profile": "lucille",
+                "project": "alfenim",
+                "scope": "phase22f-continuidade-alfenim",
+                "source_message_id": "d5a63f2f-f81c-487c-8a03-4f79897f9257",
+                "state": "source_persisted"
+              }
+            },
+            "verificationReferences": [],
+            "promptTokens": 908,
+            "completionTokens": 51
+          }
+        ],
+        "refreshMs": 8.799999982118607,
+        "verificationMs": 15.299999982118607,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "O SQLite é uma excelente escolha para o projeto Alfenim devido à sua simplicidade e eficiência em lidar com dados estruturados. Ele permitirá que você organize as características das matrizes de xilogravura de forma robusta e fácil de consultar."
+      }
+    ],
+    "displayed": "lucille-real-gemma\n\nO SQLite é uma excelente escolha para o projeto Alfenim devido à sua simplicidade e eficiência em lidar com dados estruturados. Ele permitirá que você organize as características das matrizes de xilogravura de forma robusta e fácil de consultar.\n\n908 in · 51 out",
+    "message": "O SQLite é uma excelente escolha para o projeto Alfenim devido à sua simplicidade e eficiência em lidar com dados estruturados. Ele permitirá que você organize as características das matrizes de xilogravura de forma robusta e fácil de consultar.",
+    "operation": {
+      "action": "learn",
+      "conversation_id": "160e0f44-80cb-4a0a-ae00-0bd81d4a17c1",
+      "id": "69d3af4191284f28f1c5337bd98dca761502f00618d2830e08aa15c31c9c4c1f",
+      "identity_version": 1,
+      "mode": "chat",
+      "profile": "lucille",
+      "project": "alfenim",
+      "scope": "phase22f-continuidade-alfenim",
+      "source_message_id": "d5a63f2f-f81c-487c-8a03-4f79897f9257",
+      "state": "completed"
+    },
+    "receipt": {
+      "action": "learn",
+      "conversation_id": "160e0f44-80cb-4a0a-ae00-0bd81d4a17c1",
+      "id": "69d3af4191284f28f1c5337bd98dca761502f00618d2830e08aa15c31c9c4c1f",
+      "identity_version": 1,
+      "mode": "chat",
+      "profile": "lucille",
+      "project": "alfenim",
+      "records": [
+        {
+          "effect": "create",
+          "entity": "project.alfenim",
+          "id": "b0452494-6603-8f85-b511-f5738585386b",
+          "property": "description",
+          "state": "candidate",
+          "value": "comecei o projeto alfenim para catalogar matrizes de xilogravura",
+          "version": 1
+        },
+        {
+          "effect": "create",
+          "entity": "project.alfenim",
+          "id": "ea493fac-3d8a-e4f1-43ee-e1ddbe6d31a5",
+          "property": "database",
+          "state": "candidate",
+          "value": "sqlite",
+          "version": 1
+        }
+      ],
+      "scope": "phase22f-continuidade-alfenim",
+      "source_message_id": "d5a63f2f-f81c-487c-8a03-4f79897f9257",
+      "state": "done"
+    }
+  },
+  {
+    "label": "persist-alfenim-seed",
+    "host": {
+      "pid": 13132,
+      "created": "2026-11-18T16:49:44.643973-03:00"
+    },
+    "conversation": "160e0f44-80cb-4a0a-ae00-0bd81d4a17c1",
+    "text": "Mudei de ideia sobre o banco do Alfenim: antes eu tinha escolhido SQLite, mas agora escolhi PostgreSQL. A migração ainda não começou.",
+    "broker_indices": [
+      2,
+      3,
+      4
+    ],
+    "ui": [
+      {
+        "id": "16888bbd-7514-40fd-9390-89826b72bbae",
+        "status": "blocked",
+        "attempts": [
+          {
+            "rawAnswer": "Você trocou o SQLite pelo PostgreSQL como banco de dados para o projeto Alfenim. A migração para essa nova escolha ainda está planejada para começar.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "project.alfenim",
+                  "property": "database",
+                  "value": "sqlite",
+                  "span": "Você trocou o SQLite pelo PostgreSQL como banco de dados para o projeto Alfenim.",
+                  "supported": false,
+                  "references": []
+                },
+                {
+                  "entity": "project.alfenim",
+                  "property": "database",
+                  "value": "postgresql",
+                  "span": "Você trocou o SQLite pelo PostgreSQL como banco de dados para o projeto Alfenim.",
+                  "supported": true,
+                  "references": [
+                    "current-turn-0"
+                  ]
+                }
+              ],
+              "violations": [
+                {
+                  "code": "unsupported_typed_value",
+                  "span": "Você trocou o SQLite pelo PostgreSQL como banco de dados para o projeto Alfenim.",
+                  "critical": true
+                },
+                {
+                  "code": "unsupported_historical_state",
+                  "span": "Você trocou o SQLite pelo PostgreSQL como banco de dados para o projeto Alfenim.",
+                  "critical": true
+                },
+                {
+                  "code": "authority_stack_transition",
+                  "span": "Você trocou o SQLite pelo PostgreSQL como banco de dados para o projeto Alfenim.",
+                  "critical": true
+                }
+              ],
+              "authority": [
+                {
+                  "span": "Você trocou o SQLite pelo PostgreSQL como banco de dados para o projeto Alfenim.",
+                  "entity": "project.alfenim",
+                  "property": "stack_transition",
+                  "value": "postgresql",
+                  "relation": "transition",
+                  "verdict": "insufficient",
+                  "references": [],
+                  "origins": [],
+                  "reason": "A decision to replace technology is not an executed replacement.",
+                  "critical": true
+                }
+              ],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 1,
+              "elapsedMs": 0.9000000059604645
+            },
+            "nativeOperation": {
+              "checkedAtUtc": "2026-11-18T19:50:38.019Z",
+              "source": {
+                "conversation_id": "160e0f44-80cb-4a0a-ae00-0bd81d4a17c1",
+                "source_message_id": "9205e86b-b26a-4da5-9794-b3db5f954af9"
+              },
+              "learning": null,
+              "directive": null,
+              "status": {
+                "action": "learn",
+                "conversation_id": "160e0f44-80cb-4a0a-ae00-0bd81d4a17c1",
+                "id": "fd28690703aed588e645e0a57e8bc0b1f66146e52b0a292d9888fead28401f03",
+                "identity_version": 1,
+                "mode": "chat",
+                "profile": "lucille",
+                "project": "alfenim",
+                "scope": "phase22f-continuidade-alfenim",
+                "source_message_id": "9205e86b-b26a-4da5-9794-b3db5f954af9",
+                "state": "source_persisted"
+              }
+            },
+            "verificationReferences": [],
+            "promptTokens": 1001,
+            "completionTokens": 33
+          },
+          {
+            "rawAnswer": "Você decidiu substituir o SQLite pelo PostgreSQL no projeto Alfenim. A migração para este novo banco de dados ainda está planejada e não foi iniciada.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "project.alfenim",
+                  "property": "database",
+                  "value": "sqlite",
+                  "span": "Você decidiu substituir o SQLite pelo PostgreSQL no projeto Alfenim.",
+                  "supported": false,
+                  "references": []
+                },
+                {
+                  "entity": "project.alfenim",
+                  "property": "database",
+                  "value": "postgresql",
+                  "span": "Você decidiu substituir o SQLite pelo PostgreSQL no projeto Alfenim.",
+                  "supported": true,
+                  "references": [
+                    "current-turn-0"
+                  ]
+                }
+              ],
+              "violations": [
+                {
+                  "code": "unsupported_typed_value",
+                  "span": "Você decidiu substituir o SQLite pelo PostgreSQL no projeto Alfenim.",
+                  "critical": true
+                },
+                {
+                  "code": "unsupported_historical_state",
+                  "span": "Você decidiu substituir o SQLite pelo PostgreSQL no projeto Alfenim.",
+                  "critical": true
+                }
+              ],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 1,
+              "unsupportedAssertions": 1,
+              "elapsedMs": 0.699999988079071
+            },
+            "nativeOperation": {
+              "checkedAtUtc": "2026-11-18T19:50:40.824Z",
+              "source": {
+                "conversation_id": "160e0f44-80cb-4a0a-ae00-0bd81d4a17c1",
+                "source_message_id": "9205e86b-b26a-4da5-9794-b3db5f954af9"
+              },
+              "learning": null,
+              "directive": null,
+              "status": {
+                "action": "learn",
+                "conversation_id": "160e0f44-80cb-4a0a-ae00-0bd81d4a17c1",
+                "id": "fd28690703aed588e645e0a57e8bc0b1f66146e52b0a292d9888fead28401f03",
+                "identity_version": 1,
+                "mode": "chat",
+                "profile": "lucille",
+                "project": "alfenim",
+                "scope": "phase22f-continuidade-alfenim",
+                "source_message_id": "9205e86b-b26a-4da5-9794-b3db5f954af9",
+                "state": "source_persisted"
+              }
+            },
+            "verificationReferences": [],
+            "promptTokens": 1256,
+            "completionTokens": 33
+          }
+        ],
+        "refreshMs": 45,
+        "verificationMs": 6.9000000059604645,
+        "extraGenerationMs": 2556.5999999940395,
+        "additionalUsage": {
+          "promptTokens": 1256,
+          "completionTokens": 33
+        }
+      }
+    ],
+    "displayed": "lucille-real-gemma\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.\n\nResposta retida na verificação de memória\n1,256 in · 33 out",
+    "message": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+    "operation": {
+      "action": "learn",
+      "conversation_id": "160e0f44-80cb-4a0a-ae00-0bd81d4a17c1",
+      "id": "fd28690703aed588e645e0a57e8bc0b1f66146e52b0a292d9888fead28401f03",
+      "identity_version": 1,
+      "mode": "chat",
+      "profile": "lucille",
+      "project": "alfenim",
+      "scope": "phase22f-continuidade-alfenim",
+      "source_message_id": "9205e86b-b26a-4da5-9794-b3db5f954af9",
+      "state": "completed"
+    },
+    "receipt": null
+  },
+  {
+    "label": "persist-vimeira-new",
+    "host": {
+      "pid": 1336,
+      "created": "2026-11-18T16:51:52.239457-03:00"
+    },
+    "conversation": "afb485ae-24c6-40c2-99e4-8879e9666db4",
+    "text": "Voltando às cores: qual era a minha preferência e qual era a da Dália no conto?",
+    "broker_indices": [
+      6
+    ],
+    "ui": [
+      {
+        "id": "14f7e42d-068f-4ad6-9e8c-28bf2db524c6",
+        "status": "checked",
+        "attempts": [
+          {
+            "rawAnswer": "Você prefere o tema claro na interface, enquanto a Dália prefere o tema sépia no conto.",
+            "check": {
+              "assertions": [
+                {
+                  "entity": "user",
+                  "property": "interface_theme",
+                  "value": "light",
+                  "span": "Você prefere o tema claro na interface",
+                  "supported": true,
+                  "references": [
+                    "9e31eeda-dddc-4563-4fe0-6b5aabca7d66"
+                  ]
+                },
+                {
+                  "entity": "user",
+                  "property": "interface_theme",
+                  "value": "light",
+                  "span": "Você prefere o tema claro na interface",
+                  "supported": true,
+                  "references": [
+                    "9e31eeda-dddc-4563-4fe0-6b5aabca7d66"
+                  ]
+                },
+                {
+                  "entity": "character.dalia",
+                  "property": "fictional_theme",
+                  "value": "sepia",
+                  "span": "a Dália prefere o tema sépia no conto.",
+                  "supported": true,
+                  "references": [
+                    "43748722-43e4-c8e5-2cd2-cb86489c4b94"
+                  ]
+                }
+              ],
+              "violations": [],
+              "authority": [],
+              "uncertain": false,
+              "supportedAssertions": 3,
+              "unsupportedAssertions": 0,
+              "elapsedMs": 14.699999988079071
+            },
+            "nativeOperation": {
+              "checkedAtUtc": "2026-11-18T19:52:28.389Z",
+              "source": {
+                "conversation_id": "afb485ae-24c6-40c2-99e4-8879e9666db4",
+                "source_message_id": "ab37ac48-4465-4f88-abba-e4431c4d9bcb"
+              },
+              "learning": null,
+              "directive": null
+            },
+            "verificationReferences": [],
+            "promptTokens": 1451,
+            "completionTokens": 23
+          }
+        ],
+        "refreshMs": 22.900000005960464,
+        "verificationMs": 14.699999988079071,
+        "extraGenerationMs": 0,
+        "additionalUsage": {
+          "promptTokens": 0,
+          "completionTokens": 0
+        },
+        "verifiedText": "Você prefere o tema claro na interface, enquanto a Dália prefere o tema sépia no conto."
+      }
+    ],
+    "displayed": "lucille-real-gemma\n\nVocê prefere o tema claro na interface, enquanto a Dália prefere o tema sépia no conto.\n\n1,451 in · 23 out",
+    "message": "Você prefere o tema claro na interface, enquanto a Dália prefere o tema sépia no conto.",
+    "operation": null,
+    "receipt": null
+  }
+]

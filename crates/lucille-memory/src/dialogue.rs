@@ -272,6 +272,7 @@ fn eligible_clause(text: &str) -> bool {
             .any(|s| s.trim().len() >= 12 && !s.contains('?'))
 }
 pub fn eligible_source(text: &str) -> bool {
+    if authored_theme(text).is_some() { return true; }
     (12..=1600).contains(&text.len())
         && crate::source_authority::clauses(text).iter().any(|part|
             part.origin == crate::source_authority::Origin::PersonalDeclaration
@@ -909,7 +910,24 @@ fn named_project_purpose(source: &str, project: &str) -> bool {
             rest.strip_prefix(p).is_some_and(|purpose| !purpose.trim().is_empty())))
 }
 
+/// A writer explicitly defining a fictional character is the author of a story fact.
+pub(crate) fn authored_theme(text: &str) -> Option<Claim> {
+    let span = text.trim().trim_end_matches('.').trim_end();
+    if span.len() > 240 { return None; }
+    let s = fold(span);
+    let tail = ["no meu conto, defini que a personagem ", "na minha historia, escrevi que a personagem ",
+                "in my story, i established that the character "].iter().find_map(|p| s.strip_prefix(p))?;
+    let (name, rest) = tail.split_once(' ')?;
+    if name.len() < 2 || name.len() > 40 || !name.chars().all(char::is_alphabetic) { return None; }
+    let color = rest.strip_prefix("prefere o tema ").or_else(||rest.strip_prefix("prefers the theme "))?;
+    let value = match color { "claro" | "light" => "light", "escuro" | "dark" => "dark", "sepia" => "sepia", _ => return None };
+    Some(base(span, Kind::Fact, &format!("character.{name}"), "fictional_theme", value, "durable"))
+}
+
 pub fn extract(text: &str, project: &str) -> Vec<Claim> {
+    if let Some(claim) = authored_theme(text) {
+        return crate::source_authority::attest(text, claim).into_iter().collect();
+    }
     if !eligible_source(text) {
         return vec![];
     }
@@ -1351,7 +1369,7 @@ pub fn extract(text: &str, project: &str) -> Vec<Claim> {
 }
 pub fn normalize(text: &str, scope: &str, project: &str, raw: &str) -> Result<Vec<Claim>> {
     if !eligible_source(text) || raw.len() > 12000
-        || !crate::source_authority::clauses(text).iter().any(|part|
+        || authored_theme(text).is_none() && !crate::source_authority::clauses(text).iter().any(|part|
             part.origin==crate::source_authority::Origin::PersonalDeclaration
                 && eligible_clause(part.text) && project_scope_matches(part.text,project)) {
         return Err("Ineligible V3 source".into());

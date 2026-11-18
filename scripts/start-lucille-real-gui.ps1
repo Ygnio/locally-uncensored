@@ -1,8 +1,9 @@
-param([Parameter(Mandatory=$true)][string]$QaExe,[ValidateSet('21c','21d','22','22b','22c','22d','22e','22f')][string]$Phase='21c',[switch]$StaticFrontend,[switch]$Checkpoint22g)
+param([Parameter(Mandatory=$true)][string]$QaExe,[ValidateSet('21c','21d','22','22b','22c','22d','22e','22f')][string]$Phase='21c',[switch]$StaticFrontend,[switch]$Checkpoint22g,[ValidateSet('a','b')][string]$RetestProfile)
 $ErrorActionPreference='Stop'
 $repo=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $profileName=if($Phase -in @('22','22b','22c','22d','22e','22f')){"lucille-synthetic-full$Phase"}else{'lucille-synthetic-full'}
 if($Checkpoint22g){$profileName='lucille-synthetic-full22g'}
+if($RetestProfile){if(!$Checkpoint22g){throw 'Retest requires the 2.2G host'};$profileName+="-retest-$RetestProfile"}
 $root=(Resolve-Path (Join-Path $repo ('.lucille-qa-runtime\'+$profileName))).Path
 $real=(Resolve-Path (Join-Path $repo (".lucille-qa-runtime\lucille-synthetic-real$Phase"))).Path
 foreach($path in @($root,$real)){if([IO.File]::ReadAllText((Join-Path $path '.lucille-isolated')) -ne "synthetic-data-only`n"){throw 'Synthetic marker required'}}

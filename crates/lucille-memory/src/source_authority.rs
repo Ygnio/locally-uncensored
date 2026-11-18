@@ -739,14 +739,15 @@ pub(crate) fn attest(source: &str, mut c: Claim) -> Option<Claim> {
         return None;
     }
     let candidates = clauses(source);
-    let owned = candidates.iter().find_map(|part| {
+    let authored = crate::dialogue::authored_theme(source).filter(|expected| binding(expected) == binding(&c));
+    let owned = authored.and_then(|_| source.find(&c.evidence)).or_else(|| candidates.iter().find_map(|part| {
         if part.origin != Origin::PersonalDeclaration {
             return None;
         }
         part.text
             .find(&c.evidence)
             .map(|offset| part.span.start + offset)
-    })?;
+    }))?;
     c.authority = Some(SourceAuthority {
         version: SOURCE_AUTHORITY_VERSION,
         message_author: "user".into(),

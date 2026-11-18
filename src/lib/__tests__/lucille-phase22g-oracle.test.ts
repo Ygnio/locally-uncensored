@@ -115,3 +115,39 @@ it('checks a named project purpose separately from its choice and an introductor
     {...snap,query:'Antes de trocar o banco, me lembra qual foi a minha escolha?'}).violations.map(v=>v.code)).toContain('unsupported_historical_state')
 })
 
+
+it('keeps a reviewed fictional theme bound to the named character in a comparison', () => {
+  const own = fact('own', 'user', 'interface_theme', 'light', 'preference', 'current', 'Prefiro o tema claro.')
+  const story = fact('story', 'character.iris', 'fictional_theme', 'sepia', 'fictional_preference', 'current', 'No meu conto, defini que a personagem Íris prefere o tema sépia.')
+  const snapshot = {
+    scope: 'qa', project: 'lume', query: 'Qual tema eu prefiro e qual é o da Íris no conto?',
+    facts: [own, story], currentStatements: [],
+    relations: [own, story].map(f => ({query: 'tema', actor: f.entity, state: 'retrieved', references: [{id:f.id, version:1}]})),
+  }
+  expect(verifyMemoryAnswer('Você prefere o tema claro, enquanto Íris prefere o tema sépia.', snapshot).violations).toEqual([])
+  for (const answer of ['Você prefere o tema sépia. Íris prefere o tema claro.', 'Você prefere o tema claro.', 'Você prefere o tema claro. Íris prefere o tema escuro.']) {
+    expect(verifyMemoryAnswer(answer, snapshot).violations.length).toBeGreaterThan(0)
+  }
+})
+
+it('binds the origin of a revised decision to the same first-person correction', () => {
+  const choice = fact('current-turn-0','project.lume','database','postgresql','decision','current_user_statement','agora escolhi PostgreSQL')
+  choice.version = 0
+  choice.evidence[0].role = 'current_user_statement'
+  choice.evidence.push({role:'adjacent_personal_clause', text:'No Lume, antes eu tinha escolhido SQLite'})
+  const speaker = {message_author:'user' as const,personal:2,quoted:0,external:0,uncertain:0}
+  const snapshot = {scope:'qa',project:'lume',query:'No Lume, antes eu tinha escolhido SQLite, mas agora escolhi PostgreSQL.',facts:[],currentStatements:[choice],sourceAuthority:speaker,sourceIdentity:{conversation_id:'c',source_message_id:'s'}}
+  const answer = 'Você decidiu substituir o SQLite pelo PostgreSQL no projeto Lume.'
+  expect(verifyMemoryAnswer(answer,snapshot).violations).toEqual([])
+  expect(verifyMemoryAnswer(answer.replace('SQLite','MySQL'),snapshot).violations.length).toBeGreaterThan(0)
+  expect(verifyMemoryAnswer(answer,{...snapshot,currentStatements:[{...choice,evidence:[choice.evidence[0]]}]}).violations.length).toBeGreaterThan(0)
+  expect(verifyMemoryAnswer('Você trocou o SQLite pelo PostgreSQL no projeto Lume.',snapshot).violations.length).toBeGreaterThan(0)
+})
+
+it('rechecks both observed decision-update generations with the native source projection', () => {
+  const replay = JSON.parse(readFileSync(dir+'/persistence-retest/decision-replay.json', 'utf8'))
+  for (const attempt of replay.attempts) {
+    const check = verifyMemoryAnswer(attempt.raw, replay.snapshot)
+    expect(check.violations.length === 0 ? 'accepted' : 'blocked').toBe(attempt.expected_after)
+  }
+})

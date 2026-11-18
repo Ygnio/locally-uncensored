@@ -330,6 +330,19 @@ fn bound_description_query(query: &str, project: &str) -> Option<String> {
     Some(words.join(" "))
 }
 
+fn theme_words(query: &str) -> bool {
+    fold(query).split(|c: char| !c.is_alphanumeric()).any(|w| ["tema","cores","cor","theme","color","colour"].contains(&w))
+}
+fn story_actor(query: &str) -> Option<String> {
+    let words: Vec<_> = query.split(|c: char| !c.is_alphabetic()).filter(|w| !w.is_empty()).collect();
+    let in_story = words.iter().any(|w| ["conto","historia","story"].contains(&fold(w).as_str()));
+    let mut names = words.windows(2).filter(|w| {
+        ["personagem","character"].contains(&fold(w[0]).as_str())
+            || in_story && ["da","do"].contains(&fold(w[0]).as_str())
+    }).filter_map(|w| w[1].starts_with(char::is_uppercase).then(||fold(w[1])));
+    let name = names.next()?;
+    names.all(|other| other == name).then(||format!("character.{name}"))
+}
 // Resolve parallel project qualifiers against this turn's authorized binding.
 fn bound_relations(query: &str, project: &str) -> Vec<QueryRelation> {
     fn qualifier(relation: &QueryRelation) -> Option<&str> {
@@ -342,6 +355,16 @@ fn bound_relations(query: &str, project: &str) -> Vec<QueryRelation> {
     }
     let expanded = bound_description_query(query, project);
     let mut relations = query_relations(expanded.as_deref().unwrap_or(query));
+    if theme_words(query) && story_actor(query).is_some() {
+        for relation in &mut relations {
+            if let Some(actor) = story_actor(&relation.query) {
+                relation.actor = actor;
+                relation.query.push_str(" tema");
+            } else if relation.actor == "user" && fold(&relation.query).contains("pref") {
+                relation.query.push_str(" tema de interface");
+            }
+        }
+    }
     if relations.iter().filter_map(qualifier).any(|name| fold(name) == fold(project)) {
         for relation in &mut relations {
             relation.outside_project = qualifier(relation)
@@ -352,6 +375,10 @@ fn bound_relations(query: &str, project: &str) -> Vec<QueryRelation> {
     relations
 }
 fn relation_matches(tx: &Transaction, m: &Memory, r: &QueryRelation) -> Result<bool> {
+    if r.actor.starts_with("character.") {
+        return Ok(r.outside_project.is_none() && quality(tx,&m.input.id)?.is_some_and(|q|
+            q.subject == r.actor && q.property == "fictional_theme"));
+    }
     if r.actor != "user" || r.outside_project.is_some() {
         return Ok(false);
     }
@@ -382,7 +409,7 @@ pub(crate) fn relation_context(
         .into_iter()
         .map(|r| {
             let mut references = Vec::new();
-            if r.actor == "user" {
+            if r.actor == "user" || r.actor.starts_with("character.") {
                 for m in memories {
                     if relation_matches(tx, m, &r)? && eligible_source(tx, m, &r.query, at, false)?
                     {
@@ -1037,6 +1064,11 @@ fn eligible_source(
     {
         return Ok(false);
     }
+    let actor = story_actor(query).filter(|_| theme_words(query));
+    if meta.as_ref().is_some_and(|q| q.property == "fictional_theme") || actor.is_some() {
+        return Ok(!blocked && !historical && theme_words(query)
+            && meta.as_ref().is_some_and(|q| q.property == "fictional_theme" && Some(&q.subject) == actor.as_ref()));
+    }
     if recall(query) || canonical_claim {
         return Ok(true);
     }
@@ -1440,7 +1472,7 @@ pub(crate) fn select(
     let relations=bound_relations(&req.query, &req.project);
     if !relations.is_empty(){
         let mut out=Vec::new(); let initial_used=used;
-        for relation in relations.into_iter().filter(|r|r.actor=="user" && r.outside_project.is_none()) {
+        for relation in relations.into_iter().filter(|r|(r.actor=="user" || r.actor.starts_with("character.")) && r.outside_project.is_none()) {
             let sub=TurnRequest{query:relation.query.clone(),..req.clone()};
             // Keep the real whole-question vector as a global ranking prior.
             // Local actor/modality filters do not claim a new fragment embedding.
@@ -1461,6 +1493,7 @@ pub(crate) fn select(
     let coffee = coffee_preparation_intent(&req.query);
     let database_choice = database_choice_intent(&req.query);
     let slots = preference_slots(&req.query);
+    let fictional_actor = story_actor(&req.query).filter(|_| theme_words(&req.query));
     let identified_ram = identified_ram_intent(&req.query);
     let description = description_intent(&req.query);
     let lifecycle = ["status", "andamento", "conclu", "cancel", "progress"]
@@ -1553,6 +1586,7 @@ pub(crate) fn select(
                 || (description
                     && q.property == "description"
                     && q.subject == format!("project.{}", req.project))
+                || (q.property == "fictional_theme" && fictional_actor.as_ref() == Some(&q.subject))
                 || (m.input.kind == Kind::Preference
                     && slots.contains(&q.property.as_str())
                     && (q.property != "coffee_sugar" || coffee))

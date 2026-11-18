@@ -1,0 +1,132 @@
+{
+  "conversation_id": "new-v",
+  "current_statements": [],
+  "facts": [
+    {
+      "entity": "user",
+      "evidence": [
+        {
+          "role": "current_source",
+          "text": "Para o painel de marés do Vimeira, prefiro o tema claro na interface"
+        }
+      ],
+      "facets": [],
+      "id": "9e31eeda-dddc-4563-4fe0-6b5aabca7d66",
+      "modality": "preference",
+      "project": "vimeira",
+      "property": "interface_theme",
+      "review": "independently_grounded_active",
+      "scope": "phase22f-continuidade-vimeira",
+      "validity": "current",
+      "value": "light",
+      "version": 1
+    },
+    {
+      "entity": "character.dalia",
+      "evidence": [
+        {
+          "role": "current_source",
+          "text": "No meu conto, defini que a personagem Dália prefere o tema sépia"
+        }
+      ],
+      "facets": [],
+      "id": "43748722-43e4-c8e5-2cd2-cb86489c4b94",
+      "modality": "fictional_preference",
+      "project": "vimeira",
+      "property": "fictional_theme",
+      "review": "reviewed",
+      "scope": "phase22f-continuidade-vimeira",
+      "validity": "current",
+      "value": "sepia",
+      "version": 2
+    }
+  ],
+  "identity": {
+    "created_at": 1795031102,
+    "profile": {
+      "description": "Fictional isolated QA identity",
+      "instructions": "Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. Use tools only when the user asks for an external observation or action; remembered facts alone need no external inspection.",
+      "name": "Lucille Synthetic Phase22",
+      "personality": "Concise"
+    },
+    "updated_at": 1795031102,
+    "version": 1
+  },
+  "memories": [
+    {
+      "created_at": 1795031104,
+      "input": {
+        "content": "Para o painel de marés do Vimeira, prefiro o tema claro na interface",
+        "fact_key": "user.interface_theme",
+        "id": "9e31eeda-dddc-4563-4fe0-6b5aabca7d66",
+        "kind": "preference",
+        "project": "vimeira",
+        "scope": "phase22f-continuidade-vimeira",
+        "source": "user",
+        "source_id": "a41cd4e142cb2f23b615bce64c7d245b183f87e463e755657c71036132e9d6c9"
+      },
+      "state": "active",
+      "updated_at": 1795031104,
+      "version": 1
+    },
+    {
+      "created_at": 1795031105,
+      "input": {
+        "content": "No meu conto, defini que a personagem Dália prefere o tema sépia",
+        "fact_key": "character.dalia.fictional_theme",
+        "id": "43748722-43e4-c8e5-2cd2-cb86489c4b94",
+        "kind": "fact",
+        "project": "vimeira",
+        "scope": "phase22f-continuidade-vimeira",
+        "source": "user",
+        "source_id": "dd0c469c4effc7486eb63a12e2871edc3d448eed0a554b43f6627c686b440b32"
+      },
+      "state": "active",
+      "updated_at": 1795031103,
+      "version": 2
+    }
+  ],
+  "message_id": "test-v",
+  "mode": "chat",
+  "project": "vimeira",
+  "references": [
+    {
+      "id": "9e31eeda-dddc-4563-4fe0-6b5aabca7d66",
+      "version": 1
+    },
+    {
+      "id": "43748722-43e4-c8e5-2cd2-cb86489c4b94",
+      "version": 2
+    }
+  ],
+  "relations": [
+    {
+      "actor": "user",
+      "intent": "any",
+      "query": "Voltando às cores: qual era a minha preferência tema de interface",
+      "references": [
+        {
+          "id": "9e31eeda-dddc-4563-4fe0-6b5aabca7d66",
+          "version": 1
+        }
+      ],
+      "state": "retrieved"
+    },
+    {
+      "actor": "character.dalia",
+      "intent": "any",
+      "query": "qual era a da Dália no conto? tema",
+      "references": [
+        {
+          "id": "43748722-43e4-c8e5-2cd2-cb86489c4b94",
+          "version": 2
+        }
+      ],
+      "state": "retrieved"
+    }
+  ],
+  "retrieval_state": "lexical_fresh_snapshot",
+  "scope": "phase22f-continuidade-vimeira",
+  "token_budget": 8192,
+  "used_upper_bound": 3015
+}

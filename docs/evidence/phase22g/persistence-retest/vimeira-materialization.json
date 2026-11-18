@@ -1,0 +1,182 @@
+{
+  "stages": [
+    {
+      "source": "Para o painel de marés do Vimeira, prefiro o tema claro na interface. Escolhi Python como linguagem do projeto.",
+      "method": "llm",
+      "enqueue": {
+        "attempts": 0,
+        "created_at": 1795031102,
+        "error_code": null,
+        "id": "a41cd4e142cb2f23b615bce64c7d245b183f87e463e755657c71036132e9d6c9",
+        "state": "queued",
+        "updated_at": 1795031102
+      },
+      "jobs": [
+        {
+          "attempts": 1,
+          "created_at": 1795031102,
+          "error_code": null,
+          "id": "a41cd4e142cb2f23b615bce64c7d245b183f87e463e755657c71036132e9d6c9",
+          "state": "done",
+          "updated_at": 1795031104
+        }
+      ]
+    },
+    {
+      "source": "No meu conto, defini que a personagem Dália prefere o tema sépia.",
+      "method": "rules",
+      "enqueue": {
+        "attempts": 0,
+        "created_at": 1795031103,
+        "error_code": null,
+        "id": "dd0c469c4effc7486eb63a12e2871edc3d448eed0a554b43f6627c686b440b32",
+        "state": "queued",
+        "updated_at": 1795031103
+      },
+      "jobs": [
+        {
+          "attempts": 1,
+          "created_at": 1795031103,
+          "error_code": null,
+          "id": "dd0c469c4effc7486eb63a12e2871edc3d448eed0a554b43f6627c686b440b32",
+          "state": "done",
+          "updated_at": 1795031105
+        },
+        {
+          "attempts": 1,
+          "created_at": 1795031102,
+          "error_code": null,
+          "id": "a41cd4e142cb2f23b615bce64c7d245b183f87e463e755657c71036132e9d6c9",
+          "state": "done",
+          "updated_at": 1795031104
+        }
+      ]
+    }
+  ],
+  "details": [
+    {
+      "memory": {
+        "created_at": 1795031104,
+        "input": {
+          "content": "Para o painel de marés do Vimeira, prefiro o tema claro na interface",
+          "fact_key": "user.interface_theme",
+          "id": "9e31eeda-dddc-4563-4fe0-6b5aabca7d66",
+          "kind": "preference",
+          "project": "vimeira",
+          "scope": "phase22f-continuidade-vimeira",
+          "source": "user",
+          "source_id": "a41cd4e142cb2f23b615bce64c7d245b183f87e463e755657c71036132e9d6c9"
+        },
+        "state": "active",
+        "updated_at": 1795031104,
+        "version": 1
+      },
+      "provenance": [
+        {
+          "at": 1795031104,
+          "evidence": "Para o painel de marés do Vimeira, prefiro o tema claro na interface",
+          "interaction_id": "a41cd4e142cb2f23b615bce64c7d245b183f87e463e755657c71036132e9d6c9"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded|native_source_authority_v2:{\"version\":2,\"message_author\":\"user\",\"statement_author\":\"user\",\"subject\":\"user\",\"origin\":\"personal_declaration\",\"source_digest\":\"a772a131e9494e900101ddd9e5f36c4a92266a3a77e68f3fdeae3b116d593581\",\"evidence_digest\":\"0751d92c4b330809c094f3d4ac36f581358cb01a4f92a8d99ccdbef0dd451e06\",\"start\":0,\"end\":69,\"claim_digest\":\"3404065f5f1c93238c702d1197c50e13fef17a603398041a6bf197df55b12d37\"}",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "interface_theme",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "user",
+        "temporal": "preference",
+        "value": "light"
+      },
+      "revisions": []
+    },
+    {
+      "memory": {
+        "created_at": 1795031104,
+        "input": {
+          "content": "Projeto vimeira: decidiu usar linguagem python.",
+          "fact_key": "project.vimeira.language",
+          "id": "b3778c3f-7ee1-a534-1ad2-10ade1e92ae7",
+          "kind": "decision",
+          "project": "vimeira",
+          "scope": "phase22f-continuidade-vimeira",
+          "source": "user",
+          "source_id": "a41cd4e142cb2f23b615bce64c7d245b183f87e463e755657c71036132e9d6c9"
+        },
+        "state": "active",
+        "updated_at": 1795031103,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1795031104,
+          "evidence": "Escolhi Python como linguagem do projeto",
+          "interaction_id": "a41cd4e142cb2f23b615bce64c7d245b183f87e463e755657c71036132e9d6c9"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "llm_v3_grounded:explicit_v3_grounded|native_source_authority_v2:{\"version\":2,\"message_author\":\"user\",\"statement_author\":\"user\",\"subject\":\"project.vimeira\",\"origin\":\"personal_declaration\",\"source_digest\":\"a772a131e9494e900101ddd9e5f36c4a92266a3a77e68f3fdeae3b116d593581\",\"evidence_digest\":\"4e63044cc71a68cc407bb23e57f759f6babe5cf7ac011b100a63e3d5410aeecf\",\"start\":71,\"end\":111,\"claim_digest\":\"347c7de627ce9022a29f0fbd053a528581d6d79cbfcd82865d1b74390bbd1554\"}",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "language",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "project.vimeira",
+        "temporal": "durable",
+        "value": "python"
+      },
+      "revisions": [
+        1
+      ]
+    },
+    {
+      "memory": {
+        "created_at": 1795031105,
+        "input": {
+          "content": "No meu conto, defini que a personagem Dália prefere o tema sépia",
+          "fact_key": "character.dalia.fictional_theme",
+          "id": "43748722-43e4-c8e5-2cd2-cb86489c4b94",
+          "kind": "fact",
+          "project": "vimeira",
+          "scope": "phase22f-continuidade-vimeira",
+          "source": "user",
+          "source_id": "dd0c469c4effc7486eb63a12e2871edc3d448eed0a554b43f6627c686b440b32"
+        },
+        "state": "active",
+        "updated_at": 1795031103,
+        "version": 2
+      },
+      "provenance": [
+        {
+          "at": 1795031105,
+          "evidence": "No meu conto, defini que a personagem Dália prefere o tema sépia",
+          "interaction_id": "dd0c469c4effc7486eb63a12e2871edc3d448eed0a554b43f6627c686b440b32"
+        }
+      ],
+      "quality": {
+        "confidence": 0.9,
+        "evidence_rule": "explicit_v3_grounded|native_source_authority_v2:{\"version\":2,\"message_author\":\"user\",\"statement_author\":\"user\",\"subject\":\"character.dalia\",\"origin\":\"personal_declaration\",\"source_digest\":\"5b132e317708d59c7b2c6b2a19dc20dc10dc3b52c3210b0b69544c2eea7b2c35\",\"evidence_digest\":\"44949158056b76b4e6eba4bd9f7873828f6e8b36dd47314a63f20f4cda1fc712\",\"start\":0,\"end\":66,\"claim_digest\":\"54a464a560d5a267b322cc51679081a8fc512ef5c35fd4383e777aa2163424cd\"}",
+        "expires_at": null,
+        "facets": [],
+        "priority": 1,
+        "property": "fictional_theme",
+        "relevance": 0.8,
+        "replaces_id": null,
+        "replaces_version": null,
+        "subject": "character.dalia",
+        "temporal": "durable",
+        "value": "sepia"
+      },
+      "revisions": [
+        1
+      ]
+    }
+  ]
+}
