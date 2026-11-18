@@ -101,6 +101,23 @@ it('removes a premature storage wrapper from an independently verified RAM ackno
   expect(regenerate).not.toHaveBeenCalled()
 })
 
+it('removes a claimed USER storage operation only when the underlying preference is supported', async () => {
+  const evidence = snapshot('chat')
+  evidence.query = 'Quero voltar a registrar minha preferência: eu prefiro café com açúcar.'
+  evidence.currentStatements = [{id:'source',version:0,entity:'user',property:'coffee_sugar',value:'with_sugar',modality:'preference',validity:'current_user_statement',scope:evidence.scope,project:evidence.project,review:'source',facets:[],evidence:[{role:'current_user_statement',text:'eu prefiro café com açúcar.'}]}]
+  const captured = 'Você registrou que prefere café com açúcar.'
+  expect(verifyMemoryAnswer(captured,evidence).violations.map(v=>v.code)).toContain('unconfirmed_memory_mutation')
+  const regenerate = vi.fn()
+  for (const content of [captured, 'Registrado: você prefere café com açúcar.']) {
+    const result = await validateLucilleCompletion(messages(evidence),{content},regenerate)
+    expect(result.completion.content).toBe('Você prefere café com açúcar.')
+    expect(result.report.localizedRepair?.method).toBe('operation_prefix_removal')
+  }
+  expect(regenerate).not.toHaveBeenCalled()
+  expect(verifyMemoryAnswer(captured.replace('com açúcar','sem açúcar'),evidence).violations.map(v=>v.code)).toContain('unsupported_typed_value')
+  expect(verifyMemoryAnswer(captured,{...evidence,query:'Qual é minha preferência em relação ao café?'}).violations).toEqual([])
+})
+
 it('generates a forget confirmation from the app receipt, including a truthful empty deletion', async () => {
   const evidence = snapshot('agent')
   evidence.query='Esqueça de verdade minha preferência por café.'

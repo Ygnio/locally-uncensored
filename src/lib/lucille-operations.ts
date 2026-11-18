@@ -36,6 +36,8 @@ const passiveCompletion = /\b(?:foi|foram|esta|estao|ficou|ficaram|has been|have
 const memoryResult = /\b(?:consta|constam|esta|estao|ficou|ficaram) (?:ja )?(?:na|em) (?:minha |nossa )?memoria\b|\b(?:is|are) (?:already |now )?in (?:my |our )?memory\b/
 const futurePredicate = /\b(?:sera|serao|will be)\s+(?:incluid|registrad|salv|armazenad|atualizad|guardad|memoriza|grav|esquec|remov|included|saved|stored|recorded|updated|forgotten|removed)|\b(?:atualizara|salvarei|memorizarei|registrarei|anotarei|guardarei|armazenarei|gravarei|esquecerei|removerei|vou (?:salvar|memorizar|registrar|guardar|atualizar|esquecer|gravar|remover)|i (?:will |.ll )(?:save|store|remember|record|update|forget|remove))\b/
 const acknowledgmentPrefix = /^(\s*(?:(?:Entendido|Certo|Perfeito|Claro|Sure|Understood|Got it)[,!]\s+)?)(?:(?:Eu\s+)?(?:já\s+)?(?:registrei|anotei|guardei|salvei|gravei|memorizei|armazenei|retive|atualizei|vou (?:salvar|guardar|registrar)|guardarei|registrarei)(?:\s+novamente)?(?:\s+(?:a informaç[ãa]o|o fato|o dado)\s+de)?\s+que|I(?:\s+have|['’]ve)?\s+(?:noted|recorded|saved|stored|registered|memorized|memorised|updated)\s+that)\s+/iu
+const reportedUserStorage = /^(\s*)(?:(voc[eê])\s+(?:j[aá]\s+)?(?:registrou|salvou|memorizou|guardou|gravou|armazenou)(?:\s+novamente)?\s+que|(you)(?:\s+have|['’]ve)?\s+(?:already\s+)?(?:recorded|saved|stored|registered|memorized|memorised)\s+that)\s+/iu
+const operationLabelPrefix = /^(\s*)(?:registrad[oa]|salv[oa]|memorizad[oa]|recorded|saved|stored):\s+/iu
 
 export const forgetRequest = (text: string): boolean => /^(?:(?:por favor|please)[, ]+)?(?:esqueca|forget)\b/.test(fold(text).trim())
 const explicitLearnRequest = (text: string): boolean => {
@@ -65,7 +67,7 @@ function classify(text: string, snapshot: AnswerSnapshot): OperationClaim | unde
   if (processing) return 'processing'
   const candidate = /\b(?:candidata?|candidate|pending review|aguardando revisao|pendente de revisao)\b/.test(q)
   if (candidate && /\b(?:criei|created|entrou|placed|awaits|aguarda|encaminhei|enviei|submitted|ficou|is now)\b/.test(q)) return 'candidate'
-  if (!(elliptical || firstPersonCompletion.test(q) || passiveCompletion.test(q) || memoryResult.test(q))) return
+  if (!(elliptical || firstPersonCompletion.test(q) || passiveCompletion.test(q) || memoryResult.test(q) || memoryRequest && reportedUserStorage.test(text))) return
   if (/removi|apaguei|exclui|esqueci|removid|apagad|excluid|esquecid|removed|deleted|forgot/.test(q)) return 'forget'
   if (candidate) return 'candidate'
   if (/atualizei|atualizad|updated|reativei|reativad|reactivated/.test(q)) return 'update'
@@ -137,10 +139,12 @@ export function renderNativeConfirmation(snapshot: AnswerSnapshot, language: 'pt
 /** Remove only an operation reporting prefix and retain its literal factual
  * complement for re-verification. No paraphrase or fact synthesis. */
 export function neutralOperationPrefix(span: string): string | undefined {
-  const match = acknowledgmentPrefix.exec(span)
+  const match = acknowledgmentPrefix.exec(span) ?? reportedUserStorage.exec(span) ?? operationLabelPrefix.exec(span)
   if (!match) return
   const tail = span.slice(match[0].length)
   if (!tail || /^(?:que|that|n[aã]o\s+(?:registrei|salvei)|not\s+(?:recorded|saved))\b/iu.test(tail)) return
+  const subject = match[2] ?? match[3]
+  if (subject) return match[1] + subject + ' ' + tail
   return match[1] ? match[1] + tail : tail[0].toLocaleUpperCase() + tail.slice(1)
 }
 
