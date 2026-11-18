@@ -1,4 +1,4 @@
-import { authorityClaims as evaluateAuthority, type AuthorityClaim, technologyRoles, requestedMemoryProperties, deniesCapacityGuarantee, answerRelationClauses, externalAssertion, historicalProjectWording, requestsProjectPlan } from './lucille-authority'
+import { authorityClaims as evaluateAuthority, type AuthorityClaim, technologyRoles, requestedMemoryProperties, deniesCapacityGuarantee, answerRelationClauses, externalAssertion, historicalProjectWording, requestsProjectPlan, projectChoiceEntailmentQuery, deniesProjectChoiceEntailment } from './lucille-authority'
 /** Bounded independent checks for typed memory assertions, never a general truth oracle.
  * No model, persistence writer, tools or permissions are reachable in this module.
  */
@@ -105,26 +105,35 @@ function descriptionValue(text: string) {
   return text.trim().replace(/[.!]+$/u, '').replace(/^(?:um|uma|a|an|the)\s+/u, '').replace(/\s+/gu, ' ')
 }
 
-function reportedCapacityDenial(clause: string, start: number, end: number) {
+function hypotheticalCapacityPredicate(suffix: string, terminal: boolean): boolean {
+  const copula = /^\s*(?:(?:de ram|of ram)\s+)?(?:e|is|sao)\s+(?:(?:apenas|somente|so|only|just)\s+)?/u.exec(suffix)
+  if (!copula) return false
+  const complement = suffix.slice(copula[0].length)
+  const falseHypothesis = /^(?:uma hipotese (?:falsa|incorreta)|a false hypothesis|an incorrect hypothesis)\b/u.exec(complement)
+  if (!falseHypothesis) return terminal && /^uma hipotese e nao o dado confirmado\s*[.!?]?$/u.test(complement)
+  const tail = complement.slice(falseHypothesis[0].length).trim()
+  return terminal ? /^[.!?]?$/u.test(tail) : /^(?:[.,;!?]|$)/u.test(tail)
+}
+
+function reportedCapacityDenial(clause: string, start: number, end: number): boolean {
   const prefix = clause.slice(0, start).trim()
   const suffix = clause.slice(end)
   const attributedDenial = /^(?:(?:exatamente|correto|isso mesmo|exactly|right)[,\s]+)?(?:(?:eu|voce)\s+)?nao\s+(?:afirmei|afirmou)\s+que\s+(?:(?:o|meu|seu)\s+)?(?:computador principal|pc principal|notebook de trabalho)\s+(?:tem|tenha|tinha|possui|possua|possuia)$/u.test(prefix) ||
     /^(?:(?:exactly|right)[,\s]+)?(?:i|you)\s+(?:did not|didn't)\s+(?:say|claim|assert)\s+(?:that\s+)?(?:my|your|the)\s+(?:primary computer|work laptop)\s+(?:has|had)$/u.test(prefix)
   if (attributedDenial) return /^\s*(?:de ram|of ram)?\s*(?:[.,;!?]|$)/u.test(suffix)
-  return /^(?:(?:o valor|o numero|the value|the number)\s+(?:de|of))$/u.test(prefix) &&
-    /^\s*(?:de ram|of ram)?\s+(?:e|is)\s+(?:(?:apenas|somente|so|only|just)\s+)?(?:uma hipotese falsa|uma hipotese incorreta|a false hypothesis|an incorrect hypothesis)\s*(?:[.,;!?]|$)/u.test(suffix)
+  return /^(?:o valor|o numero|the value|the number)\s+(?:de|of)$/u.test(prefix) &&
+    hypotheticalCapacityPredicate(suffix, false)
 }
 
-/* A reply can restate an explicitly denied source amount in a coordinated or
- * elliptical clause. Restrict the exemption to that amount's own predicate. */
+/* This restatement can only refer to a denied amount on the bound source device. */
 function restatedCapacityDenial(clause: string, start: number, end: number): boolean {
   const prefix = clause.slice(0, start).trim()
-  const suffix = clause.slice(end).trim()
-  if (/,\s+e\s+os$/u.test(prefix)) {
-    return /^sao\s+(?:apenas|somente|so)\s+uma hipotese falsa[.!?]?$/u.test(suffix)
+  const suffix = clause.slice(end)
+  if (/,\s+descartando a hipotese de$/u.test(prefix)) {
+    return /^\s*(?:de ram)?\s*[.!?]?$/u.test(suffix)
   }
-  return /^(?:(?:exatamente|correto|isso mesmo),\s+)?(?:o valor|o numero)\s+de$/u.test(prefix) &&
-    /^e\s+(?:apenas|somente|so)\s+uma hipotese\s+e\s+nao\s+o dado confirmado[.!?]?$/u.test(suffix)
+  const nominal = /^(?:(?:exatamente|correto|isso mesmo),\s+)?(?:o valor|o numero)\s+de$/u.test(prefix)
+  return (nominal || /,\s+e\s+os$/u.test(prefix)) && hypotheticalCapacityPredicate(suffix, true)
 }
 
 export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): FidelityCheck {
@@ -136,6 +145,8 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   const all = [...snapshot.facts, ...snapshot.currentStatements].filter(f => f.scope === snapshot.scope && f.project === snapshot.project)
   const current = all.filter(f => f.validity !== 'historical')
   const query = fold(snapshot.query)
+  const askedChoice = projectChoiceEntailmentQuery(snapshot.query)
+  if (askedChoice && /^\s*(?:sim|yes)\b/u.test(fold(text))) add('affirmed_unproven_project_execution', text)
   const deniedSourceAmounts = answerRelationClauses(query).flatMap(clause =>
     [...clause.matchAll(/\b(\d+)\s*(?:gb|gib)\b/g)]
       .filter(m => reportedCapacityDenial(clause, m.index!, m.index! + m[0].length))
@@ -161,7 +172,8 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       !/\b(?:agora|atualmente|ainda|now|currently|still)\b/.test(predicate) &&
       candidates.some(f => f.value === value && f.validity === 'historical' &&
         requestedHistoricalProjectFact(snapshot.query, f, snapshot.relations) &&
-        (f.modality === 'decision' && /\b(?:escolheu|decidiu|chose|decided)\b/.test(predicate) ||
+        (f.modality === 'decision' && (/\b(?:escolheu|decidiu|chose|decided)\b/.test(predicate) ||
+          askedChoice === value && deniesProjectChoiceEntailment(span, value)) ||
          f.modality === 'planned' && /^(?:(?:no seu projeto|in your project),\s+)?(?:(?:voce|you)\s+)?(?:planejou usar|planned to use)\b/.test(predicate)))
     const historical = !afterRamCorrection && (choiceOrigin || past(span) || recordedProjectHistory || projectTechnology && historicalProjectWording(span) || (past(snapshot.query) && !/\b(?:agora|atualmente|now|currently|prefere|prefiro|gosta|gosto|tem|tenho|possui|usa|utiliza|is|are|have|has|prefer|prefers|like|likes|uses)\b/.test(fold(span))))
     const terminalProject = projectTechnology && current.some(f=>f.entity===entity && f.property==='lifecycle' && ['cancelled','completed'].includes(f.modality))
@@ -209,6 +221,13 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   for (const [clauseIndex, span] of clauses.entries()) {
     const q = fold(span)
     if(externalAssertion(span))continue
+    if (askedChoice && /\bvoce\s+(?:ja\s+)?(?:comecou|iniciou) a implementar\b/u.test(q) &&
+        !deniesProjectChoiceEntailment(span, askedChoice)) {
+      const entails = /^(?:a\s+)?escolha de \S+\s+(?:prova|comprova|significa|implica|mostra|indica)\s+que\b/u.test(q.trim())
+      const independentlySupported = current.some(f => f.entity === 'project.' + snapshot.project &&
+        ['in_progress', 'current_fact'].includes(f.modality) && ['language', 'lifecycle', 'project_status'].includes(f.property))
+      if (entails || !independentlySupported) add('affirmed_unproven_project_execution', span)
+    }
     const thirdParty=/\b(?:irmao|irma|brother|sister|colega|colleague|amigo|friend)\b/.test(q)
     if(thirdParty && !uncertain(span) && !span.trim().endsWith('?') && /\b(?:typescript|javascript|python|rust|sqlite|postgresql|mysql|\d+\s*(?:gb|gib)|prefere|prefers|gosta|likes)\b/.test(q))add('unsupported_statement_actor',span)
     const operation = verifyOperationClaim(span, snapshot, mentions)
@@ -236,6 +255,11 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     const epistemic = /^(?:nao ha|nao tenho|nao encontrei|nao possuo).{0,35}(?:registros?|informac(?:ao|oes)|evidencias?).{0,40}(?:que (?:confirm|indiqu)|indicando (?:que|se)|confirmando (?:que|se)|sobre se|para (?:confirmar|afirmar))/.test(q.trim()) || /^(?:i (?:do not|don.t|cannot|can.t)|there (?:is|are) no).{0,45}(?:records?|information|evidence).{0,40}(?:confirm|indicat|whether|to say|to determine)/.test(q.trim())
     if (epistemic && !/duvid|doubt|certeza|certain|,\s*(?:e |and |seu |your |o projeto|the project|voce |you )/.test(q)) continue
     if (uncertain(span) && !execution(span) && !completion(span)) continue
+    // Naming an external project to explain its access boundary is not a
+    // factual claim about that project. Keep the exemption sentence-bounded.
+    const scopedLimitation = q.trim().match(/^(?:para o projeto|for (?:the )?project)\s+([a-z0-9_-]+),\s+(?:esta conversa nao tem acesso ao registro autorizado|this conversation cannot access (?:its|the) authorized record)[.!]?$/u)
+    if (scopedLimitation && scopedLimitation[1] !== fold(snapshot.project) &&
+      query.split(/[^a-z0-9_-]+/u).includes(scopedLimitation[1])) continue
     const subject = /\b(?:voce|seus?|suas?|you|your)\b|projeto|project/.test(q)
     const description = q.trim().match(/^(?:(?:o|a)\s+)?(?:tema|assunto|finalidade|proposito|descricao|objetivo)\s+(?:do|deste|desse|do seu)\s+projeto(?:\s+([\p{L}\p{N}_.-]+))?\s+(?:e|era)\s+(.+)$|^(?:the\s+)?(?:topic|subject|purpose|description)\s+of\s+(?:the|this|your)\s+project(?:\s+([\p{L}\p{N}_.-]+))?\s+(?:is|was)\s+(.+)$/u)
     const projectDescription = descriptionRequested
@@ -289,11 +313,15 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     }
     // A bare plan can inherit a project from a verified technology claim.
     // Crossing fields requires explicit coordination and a native plan relation.
-    const impliedPlan = /^(?:(?:para o futuro|futuramente|in the future)[,\s]+)?(?:(?:e|and)\s+)?(?:(?:esta planejad[ao]|planeja|pretende) (?:usar|utilizar)|is planned to use|plans to use|intends to use)\s+(?:(?:a linguagem|o banco(?: de dados)?|the language|the database)\s+)?[a-z0-9]+(?:\s+(?:no futuro|futuramente|in the future))?[.!]?$/.test(q.trim())
+    const impliedPlan = q.trim().match(/^(?:(?:para o futuro|futuramente|in the future)[,\s]+)?(?:(?:e|and)\s+)?(?:(?:esta planejad[ao]|planeja|pretende) (?:usar|utilizar)|is planned to use|plans to use|intends to use)\s+(?:(?:a linguagem|o banco(?: de dados)?|the language|the database)\s+)?[a-z0-9]+(?:\s+(?:como|as)\s+(?:(?:o|the)\s+)?(banco de dados|database))?(?:\s+(?:no futuro|futuramente|in the future))?[.!]?$/u)
     if (subject || projectQuestion || impliedPlan) {
       for (const value of ['typescript', 'javascript', 'python', 'rust', 'sqlite', 'postgresql', 'mysql']) {
         if (!new RegExp('\\b' + value + '\\b').test(q)) continue
         const property = ['sqlite', 'postgresql', 'mysql'].includes(value) ? 'database' : 'language'
+        if (impliedPlan?.[1] && property !== 'database') {
+          add('unsupported_technology_role', span)
+          continue
+        }
         if (!subject && !projectQuestion) {
           const earlier = assertions.filter(a => a.span !== span && a.supported &&
             a.entity === 'project.' + snapshot.project && !violations.some(v => v.span === a.span))
@@ -483,8 +511,18 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       e.role === 'current_user_statement' && descriptionValue(fold(e.text)) === descriptionValue(query)))
   for (const fact of directTechnology) {
     const predicate = fact.modality === 'planned' ? planned : execution
-    if (!assertions.some(a => a.supported && a.references.includes(fact.id) && a.property === fact.property &&
-      a.value === fact.value && predicate(a.span))) add('source_technology_modality_omitted', text, false)
+    const explicit = assertions.filter(a => a.supported && a.references.includes(fact.id) &&
+      a.property === fact.property && a.value === fact.value)
+    const pronominalPlan = fact.modality === 'planned' && explicit.some(a => {
+      // A following sentence can refer back to one supported technology.
+      // The field and any explicit project still have to match the source.
+      if (assertions.some(other => other.span === a.span && other.property === fact.property && other.value !== fact.value)) return false
+      const following = clauses[clauses.indexOf(a.span) + 1] ?? ''
+      const referred = fold(following).trim().match(/^(?:voce\s+)?(?:planeja|pretende)\s+(?:usa|utiliza)-l[oa]\s+como\s+(o banco(?: de dados)?|a linguagem(?: de programacao)?)(?:\s+do\s+(?:seu\s+)?projeto(?:\s+([a-z0-9_-]+))?)?[.!]?$/u)
+      return !!referred && (!referred[2] || referred[2] === fold(snapshot.project)) &&
+        (referred[1].startsWith('o banco') ? 'database' : 'language') === fact.property
+    })
+    if (!explicit.some(a => predicate(a.span)) && !pronominalPlan) add('source_technology_modality_omitted', text, false)
   }
   const authority=evaluateAuthority(text,snapshot)
   for (const claim of authority) if (!['supported','historical','hypothetical','non_memory'].includes(claim.verdict)) add('authority_'+claim.property,claim.span,claim.critical)

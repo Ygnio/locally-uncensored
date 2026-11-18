@@ -21,12 +21,30 @@ export function answerRelationClauses(text:string):string[]{
  return text.split(/(?<=[.!?;\n])\s+|\b(?:mas|por[eé]m|however|but)\b|,?\s+(?:enquanto|whereas|while)\s+(?=n[aã]o (?:h[aá]|tenho|encontrei)(?![\p{L}\p{N}_])|there (?:is|are) no\b|i (?:do not|don.t) (?:know|have)\b)|,?\s+(?=(?:enquanto|whereas|while)\s+(?:(?:a|o|the)\s+)?(?:personage(?:m|ns)|characters?|narrador(?:a)?|narrators?|ferramenta|tool|voc[eê]|you)(?![\p{L}\p{N}_]))|\s+(?=(?:e|and)\s+(?:(?:a|o|the)\s+)?(?:personagem|character|narradora?|narrator|ferramenta|tool|(?:(?:voc[eê]|you)\s+)?(?:decidiu|escolheu|planeja|pretende|usa|utiliza|uses|plans|decided|chose|intends))\b)|\s+(?=(?:embora|although)\b)/iu).slice(0,128)
 }
 
+function nominalLanguageChoice(text: string) {
+  return normalizeEvidenceText(text).trim().match(/^(?:a\s+)?escolha de (typescript|javascript|python|rust)\s+(.+)$/u)
+}
+
+export function projectChoiceEntailmentQuery(query: string): string | undefined {
+  const choice = nominalLanguageChoice(query)
+  return choice && /^(?:prova|comprova|significa|implica) que (?:eu )?(?:comecei|iniciei) a implementar (?:o|meu|este) projeto\?$/u.test(choice[2])
+    ? choice[1] : undefined
+}
+
+export function deniesProjectChoiceEntailment(span: string, value: string): boolean {
+  const choice = nominalLanguageChoice(span)
+  const predicate = choice ? choice[1] === value ? choice[2] : '' : normalizeEvidenceText(span).trim().replace(/^ela\s+/u, '')
+  return /^nao (?:prova|comprova|significa|implica)(?:,\s*por si so,)?\s+que voce (?:ja )?(?:comecou|iniciou) a implementar (?:o|seu|este) projeto[.!]?$/u.test(predicate)
+}
+
 /** Query form that asks for a plan or choice, including a nominal past
  * predicate. Scope and the temporal validity of the record are supplied by SQLite. */
 export function requestsProjectPlan(query: string, fact: MemoryFact): boolean {
   if (!['database','language'].includes(fact.property) || !['planned','decision'].includes(fact.modality)) return false
   const q = normalizeEvidenceText(query)
   if (/\b(?:agora|atualmente|current(?:ly)?|now|still|ainda)\b/.test(q)) return false
+  if (fact.property === 'language' && fact.modality === 'decision' &&
+      ['reviewed', 'reviewed_import'].includes(fact.review) && projectChoiceEntailmentQuery(query) === fact.value) return true
   const field = fact.property === 'database' ? /\b(?:banco|database)\b/ : /\b(?:linguagem|language)\b/
   const relation = fact.modality === 'planned' ? /\b(?:planejad[ao]|planejava|pretendia|planejei|planned|had intended|had planned)\b/ : /\b(?:escolhid[ao]|decidid[ao]|escolhi|decidi|chosen|chose|selected|decided)\b/
   return answerRelationClauses(q).some(clause => field.test(clause) && relation.test(clause) && !/\b(?:irmao|irma|brother|sister|colleague|colega)\b/.test(clause.split(/\b(?:com|versus|vs\.?|against|with|to)\b/u,1)[0]))
@@ -205,7 +223,7 @@ export function projectIndependentSentences(text: string, badSpans: string[], sn
   if (!badSpans.length || /\b(?:ja|already|comecou|started|implementado|implemented|concluido|completed)\b/.test(normalizeEvidenceText(snapshot.query))) return undefined
   // A single matched property cannot certify completeness for two devices or
   // both old/current values. Those requests require the real rewrite path.
-  if (/\b(?:e|and|ambos|both|antes|before|previous|historico|historical)\b/.test(normalizeEvidenceText(snapshot.query))) return undefined
+  if (/\b(?:e|and|ambos|both|antes|before|previous|historico|historical|compare|comparar)\b/.test(normalizeEvidenceText(snapshot.query))) return undefined
   const parts = text.match(/[^.!?]+(?:[.!?]+|$)/g)?.map(s=>s.trim()).filter(Boolean) ?? []
   const removed = parts.filter(s=>badSpans.includes(s))
   if (!removed.length || badSpans.some(s=>!parts.includes(s))) return undefined
