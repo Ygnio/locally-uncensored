@@ -148,6 +148,10 @@ export async function withLucilleContext(
   if (/\b(?:escolha|choice)\b.*\b(?:prova|comprova|prove)\b/iu.test(query)) {
     guidance.push('Name the technology from the question when explaining what that choice proves. Do not infer implementation or an intermediate stage from a technology choice.')
   }
+  const projectStatus = /^\s*(?:como (?:est[aá]|anda|vai)|how (?:is|are)|what is the status of)\s+[^?]{0,80}\b(?:projeto|project)\b/iu.test(query)
+  if (projectStatus && facts.some(f=>f.property==='description' && f.entity==='project.'+binding.project) && !facts.some(f=>f.entity==='project.'+binding.project && f.validity==='current' && (f.property==='lifecycle' || f.modality==='in_progress'))) {
+    guidance.push('Describe the verified purpose directly, for example “the project is for [purpose]”, then state verified planned technologies as plans. The project stage is unconfirmed. A description does not support “is being developed”, “está sendo desenvolvido”, or another claim of implementation progress.')
+  }
   const scopedGuidance: ChatMessage | undefined = guidance.length ? {role:'system',content:guidance.join(' ')} : undefined
   if (scopedGuidance) injected.add(scopedGuidance)
   const result = [identity, ...(environment ? [environment] : []), ...clean.slice(0, at), ...(languageDirective ? [languageDirective] : []), ...(memories.length ? [data] : []), ...(scopedGuidance ? [scopedGuidance] : []), ...clean.slice(at)]
