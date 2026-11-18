@@ -59,11 +59,16 @@ export function technologyRoles(text:string): {value:string;role:'origin'|'desti
   const at=instead>=0 ? instead : verb!.index!+verb![0].length+boundary
   return [...q.matchAll(/\b(?:typescript|javascript|python|rust|sqlite|postgresql|mysql)\b/g)].map(m=>({value:m[0],role:(instead>=0 ? m.index!>at : m.index!<at)?'origin':'destination'}))
 }
+export function asksAboutStoredMemory(query: string): boolean {
+  return /\b(?:continua|ainda)\s+(?:esta\s+)?(?:registrad[ao]|salv[ao]|guardad[ao])\b|\b(?:still (?:saved|stored|recorded)|remains? (?:saved|stored|recorded))\b/.test(normalizeEvidenceText(query))
+}
+
 export function memoryQuestionNeedsNoTools(query: string): boolean {
   const q = normalizeEvidenceText(query)
   // Explicit actions and advice requests retain the ordinary executable roster.
   if (/\b(?:list|read|open|inspect|check|search|write|create|run|execute|send|email|notify|liste|listar|leia|ler|abra|abrir|inspecione|verifique|pesquise|escreva|crie|execute|rode|envie|mande|notifique)\b|\b(?:arquivos?|files?|diretorio|directory|folder|pasta|repository|repositorio)\b/.test(q)) return false
   if (/\b(?:devo|should|recommend|recomenda|melhor|best|how to)\b/.test(q))return false
+  if (asksAboutStoredMemory(query)) return true
   // Native memory directives are not filesystem actions. Keep the ordinary
   // roster only when an external action/resource was explicitly requested above.
   const memoryDirective=/^(?:por favor[, ]+|please[, ]+)?(?:esqueca|forget|memorize|memorise|guarde|registre|lembre|volte a (?:guardar|memorizar|registrar)|quero voltar a registrar|i want to remember|you can remember)\b/.test(q.trim())
@@ -73,7 +78,7 @@ export function memoryQuestionNeedsNoTools(query: string): boolean {
   const personal=/\b(?:meu|minha|meus|minhas|my|our|aquele|aquela|that)\b/.test(q)
   const slots=/linguagem|language|banco|database|\bram\b|\bgpu\b|placa de video|graphics card|notebook|laptop|prefer|objetivo|goal|tema|theme|bebida|drink/.test(q)
   const question=/\b(?:qual|quais|what|which|how much|quanto)\b/.test(q)
-  const choice=/\b(?:escolhi|decidi|chose|choose|decided|planned|planejad)\b/.test(q)
+  const choice=/\b(?:escolhi|decidi|chose|choose|decided|planned|planejad[ao])\b/.test(q)
   const status=/^(?:como esta|how is|what is the status of).{0,70}(?:projeto|project)\b/.test(q.trim())
   return recalled || (slots && question && (personal || choice)) || (personal && status)
 }
@@ -151,6 +156,13 @@ export function authorityClaims(text: string, snapshot: AnswerSnapshot): Authori
         || (at>=0 && /\b(?:might|could|may|pode|podem|podera|poderao|poderia|poderiam|should|estimativa|estimate)\b/.test(q.slice(0,at)))
     }
     const project = /\b(?:projeto|project)\b/.test(q)
+    const stageTransition = /\b(?:avancou|passou|advanced|moved)\s+(?:d[ao] [^,;.!?]{1,40} para|from [^,;.!?]{1,40} to|para|to)\s+(?:(?:a|o|the)\s+)?(definicao tecnica|fase inicial|fase intermediaria|fase final|technical definition|initial phase|intermediate phase|final phase)\b/u
+    const nextStage = project && !epistemic && !hypothetical(stageTransition) ? q.match(stageTransition)?.[1] : undefined
+    if (nextStage) {
+      const entity = 'project.' + snapshot.project
+      const proof = current.filter(f => f.entity === entity && f.property === 'project_stage' && f.value === nextStage)
+      add(span,entity,'project_stage',nextStage,'transition',proof,'A technology choice does not establish a transition to a project stage.',false)
+    }
     if (/\b(?:trocou|migrou|substituiu|swapped|migrated|switched|replaced)\b/.test(q) && !/\b(?:decidiu|decidi|decided|planeja|plans?|pretende|intends?)\b/.test(q) && !epistemic && !hypothetical(/\b(?:trocou|migrou|substituiu|swapped|migrated|switched|replaced)\b/)) {
       for (const target of technologyRoles(span).filter(v=>v.role==='destination')) {
         const property=['mysql','postgresql','sqlite'].includes(target.value)?'database':'language'

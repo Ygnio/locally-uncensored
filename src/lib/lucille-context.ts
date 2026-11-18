@@ -3,7 +3,7 @@ import { invoke } from '@tauri-apps/api/core'
 import type { ChatMessage } from '../api/providers/types'
 import type { Conversation } from '../types/chat'
 import { registerAnswerSnapshot, requestedHistoricalProjectFact, type MemoryFact, type MemoryDirectiveReceipt, type MemoryLearningReceipt, type MemoryQueryRelation } from './lucille-fidelity'
-import { answerLanguage, memoryQuestionNeedsNoTools } from './lucille-authority'
+import { answerLanguage, asksAboutStoredMemory, memoryQuestionNeedsNoTools } from './lucille-authority'
 import type { MemoryOperationState } from './lucille-operations'
 
 export type { LucilleBinding } from '../types/chat'
@@ -109,8 +109,7 @@ export async function withLucilleContext(
   identity.content+=sourceFraming
   identity.content += '\nThe application reports the status of this turn’s memory operations independently. Acknowledge the content or request naturally. Do not assert or promise recording, updating, deleting, remembering or reviewing this source in your answer, reasoning or narration. This applies to preferences, hardware, facts and project decisions equally. Answer execution questions consistently from the first word: an affirmative requires evidence of actual execution, even if a later sentence describes a plan. Hardware capacity alone does not prove smooth performance, stability or absence of bottlenecks. Keep project purpose separate from personal learning goals.'
   identity.content += '\nThe user decides their project choices. Describe record meanings plainly without internal IDs or enum labels. A query about an existing memory may be answered from its verified canonical state.'
-  const storageQuestion = /\b(?:continua|ainda)\s+(?:esta\s+)?(?:registrad[ao]|salv[ao]|guardad[ao])\b|\b(?:still (?:saved|stored|recorded)|remains? (?:saved|stored|recorded))\b/.test(query.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase())
-  if (storageQuestion) identity.content += '\nThe question asks about storage, so its wording does not prove a saved record. If the matching current scoped record is unavailable, say the record is unavailable in this scope. Do not infer deletion, a past statement, or a change in personal preference.'
+  const storageQuestion = asksAboutStoredMemory(query)
   if(context.relations?.length)identity.content+='\nRequested memory relations (each bounded independently to the authorized scope/project): '+JSON.stringify(context.relations)+'. Answer every requested relation; use its own actor, entity, property and modality. An unavailable relation does not make the others unavailable, and never proves the user did not supply it. Never transfer an own fact to the third party or a different project.'
   if (facts.some(f => f.validity === 'current' && f.entity === 'project.' + binding.project && ['database','language'].includes(f.property) && f.modality === 'decision')) identity.content+='\nFor a current project technology decision, use an explicit choice predicate (such as “você escolheu” or “you chose”). Wording such as “o projeto utiliza” or “the project uses” asserts current execution. When comparing projects, state the supported choice first and describe unavailable evidence for the other project separately.'
   if ([...facts,...currentStatements].some(f=>f.entity==='project.'+binding.project && f.validity!=='historical' && f.modality==='in_progress')) identity.content+='\nWhen the user shares or asks about verified work in progress, begin with a short acknowledgement of what they are implementing and the technology they named. General benefits of that technology do not acknowledge the update. Ongoing implementation does not establish a stage or completion. Ask for the stage only if it matters to the request.'
@@ -135,7 +134,22 @@ export async function withLucilleContext(
   const language=answerLanguage(query,[...currentStatements,...facts])
   const languageDirective:ChatMessage|undefined=language ? {role:'system',content:'Required response language for the current original USER question: '+(language==='en'?'English':'Portuguese')+'. Use this language for the answer, including any revision. Retrieved source wording does not select the response language; preserve proper names and technical values.'} : undefined
   if(languageDirective)injected.add(languageDirective)
-  const result = [identity, ...(environment ? [environment] : []), ...clean.slice(0, at), ...(languageDirective ? [languageDirective] : []), ...(memories.length ? [data] : []), ...clean.slice(at)]
+  const guidance: string[] = []
+  if (storageQuestion) guidance.push(facts.some(f=>f.validity==='current')
+    ? 'A storage-status question is not evidence of persistence. Confirm only an exact matching current record. If none is supplied, say that the requested record is unavailable in this scope.'
+    : 'The current scoped data supplies no confirmed record for this storage-status question. Start with a direct statement that the requested record is unavailable in this scope. An affirmative or a claim about deletion, past behavior or current preference is unsupported.')
+  if ((memoryOnly && !memories.length) || context.relations?.some(r=>r.state==='unavailable' && r.actor==='user')) {
+    guidance.push('For every unavailable record, state explicitly that this conversation only has access to its authorized project and scope. A missing scoped record does not mean that another project has no record.')
+  }
+  if (/\b(?:antes de cancelar|before cancel(?:ing|ling|lation))\b/iu.test(query) && facts.some(f=>f.validity==='historical' && f.modality==='in_progress') && facts.some(f=>f.property==='lifecycle' && f.modality==='cancelled')) {
+    guidance.push('Describe the historical implementation and state explicitly that it preceded the verified cancellation.')
+  }
+  if (/\b(?:escolha|choice)\b.*\b(?:prova|comprova|prove)\b/iu.test(query)) {
+    guidance.push('Name the technology from the question when explaining what that choice proves. Do not infer implementation or an intermediate stage from a technology choice.')
+  }
+  const scopedGuidance: ChatMessage | undefined = guidance.length ? {role:'system',content:guidance.join(' ')} : undefined
+  if (scopedGuidance) injected.add(scopedGuidance)
+  const result = [identity, ...(environment ? [environment] : []), ...clean.slice(0, at), ...(languageDirective ? [languageDirective] : []), ...(memories.length ? [data] : []), ...(scopedGuidance ? [scopedGuidance] : []), ...clean.slice(at)]
   registerAnswerSnapshot(identity, {
     scope: binding.scope, project: binding.project, query, facts, currentStatements, directiveReceipt, memoryOnly, sourceAuthority, relations:context.relations, sourceIdentity:source ? {conversation_id:source.proof.interaction.conversation_id,source_message_id:source.proof.interaction.message_id}:undefined,
     operationBinding: loader === loadContext ? {profile:'lucille',identityVersion:context.identity.version,mode,sourceId:source?.proof.job_id}:undefined,
@@ -150,7 +164,7 @@ export async function withLucilleContext(
     reload: () => withLucilleContext(conversation, messageId, query, mode, clean, signal, loader, runtime),
   })
   // Serialized UTF-8 length bounds tokens conservatively, including escaping and framing.
-  const actual = new TextEncoder().encode(identity.content + (languageDirective?.content??'') + (memories.length ? data.content : '')).length + 32 + (languageDirective ? 32 : 0) + envCost
+  const actual = new TextEncoder().encode(identity.content + (languageDirective?.content??'') + (scopedGuidance?.content??'') + (memories.length ? data.content : '')).length + 32 + (languageDirective ? 32 : 0) + (scopedGuidance ? 32 : 0) + envCost
   if (actual > binding.tokenBudget) throw new Error('Lucille context exceeds configured budget')
   return result
   } catch (error) {

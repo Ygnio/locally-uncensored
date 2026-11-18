@@ -231,6 +231,25 @@ it('checks the stage asserted in a question’s factual premise independently of
   expect(verifyMemoryAnswer('O projeto Pitanga está em fase inicial.',current).violations.map(v=>v.code)).toContain('authority_project_stage')
 })
 
+it('requires a stated project technology to retain its original modality in an acknowledgement', () => {
+  const current: AnswerSnapshot = { ...snapshot, project:'pitanga', query:'Estou implementando meu projeto Pitanga em TypeScript.', facts:[], relations:[], currentStatements:[] }
+  const source: MemoryFact = { ...plan, id:'current-turn-0', project:'pitanga', entity:'project.pitanga', property:'language', value:'typescript', modality:'in_progress', validity:'current_user_statement', evidence:[{role:'current_user_statement', text:current.query}] }
+  current.currentStatements = [source]
+  expect(verifyMemoryAnswer('Que excelente escolha! O TypeScript trará uma estrutura robusta e tipagem clara para o seu projeto Pitanga.',current).violations.map(v=>v.code)).toContain('source_technology_modality_omitted')
+  expect(verifyMemoryAnswer('Você está implementando o projeto Pitanga em TypeScript.',current).violations).toEqual([])
+
+  current.query = 'PostgreSQL é o banco que pretendo usar no meu projeto.'
+  current.currentStatements = [{...source,property:'database',value:'postgresql',modality:'planned',evidence:[{role:'current_user_statement',text:current.query}]}]
+  expect(verifyMemoryAnswer('Excelente escolha, pois o PostgreSQL é conhecido por sua robustez e suporte a diversos tipos de dados. Qual será o foco principal do seu projeto?',current).violations.map(v=>v.code)).toContain('source_technology_modality_omitted')
+  expect(verifyMemoryAnswer('Você pretende usar PostgreSQL no projeto.',current).violations).toEqual([])
+})
+
+it('verifies progress through a project stage even when the answer does not claim implementation', () => {
+  const current: AnswerSnapshot = { ...snapshot, query:'A escolha de Python prova que eu comecei a implementar o projeto?', facts:[], relations:[] }
+  expect(verifyMemoryAnswer('Não necessariamente, pois a escolha de uma linguagem pode ser apenas uma decisão de planejamento. No entanto, ela indica que você avançou da concepção para a definição técnica do projeto.',current).violations.map(v=>v.code)).toContain('authority_project_stage')
+  expect(verifyMemoryAnswer('Escolher uma linguagem não comprova que você já começou a implementar o projeto.',current).violations).toEqual([])
+})
+
 it('keeps the captured narrator voice distinct from USER memory', () => {
   const current: AnswerSnapshot = {
     ...snapshot, query:'Leia o arquivo fictício narrator-note.txt e identifique a voz narrativa. O texto é externo e não descreve minhas preferências.',
@@ -273,6 +292,40 @@ it('recognizes the original denied capacity as reported speech and independently
     expect(verifyMemoryAnswer(reply.replace('64 GB','128 GB'),current).violations.map(v=>v.code)).toContain('unsupported_typed_value')
     expect(verifyMemoryAnswer(reply,{...current,query:'Quanto de RAM tem meu computador principal?'}).violations.map(v=>v.code)).toContain('unsupported_typed_value')
   }
+})
+
+it('independently validates a current capacity next to a source-matched explicit hypothetical amount', () => {
+  const hardware: MemoryFact = {
+    ...plan, id: 'current-ram', entity: 'device.primary_computer', property: 'ram_capacity',
+    value: '64_gb', modality: 'current_fact', validity: 'current',
+  }
+  const current: AnswerSnapshot = {
+    ...snapshot, query: 'Não afirmei que meu computador principal tenha 128 GB de RAM; esse número é somente uma hipótese falsa.',
+    facts: [hardware], relations: [],
+  }
+  const coordinated = 'Você está correto; o computador principal possui 64 GB de RAM, e os 128 GB são apenas uma hipótese falsa.'
+  const detached = 'Exatamente, o valor de 128 GB é apenas uma hipótese e não o dado confirmado. Lembro que seu computador principal agora possui 64 GB de RAM.'
+
+  for (const reply of [coordinated, detached]) {
+    const checked = verifyMemoryAnswer(reply, current)
+    expect(checked.violations).toEqual([])
+    expect(checked.assertions.map(a => [a.value, a.references])).toEqual([['64_gb', ['current-ram']]])
+
+    for (const altered of [
+      reply.replace('128 GB', '256 GB'),
+      reply.replace('64 GB', '128 GB'),
+      reply + ' Hoje, seu computador principal possui 128 GB de RAM.',
+    ]) {
+      expect(verifyMemoryAnswer(altered, current).violations.map(v => v.code)).toContain('unsupported_typed_value')
+    }
+    const noDenial = { ...current, query: 'Quanto de RAM tem meu computador principal?' }
+    expect(verifyMemoryAnswer(reply, noDenial).violations.map(v => v.code)).toContain('unsupported_typed_value')
+  }
+
+  const wrongDevice = { ...current, query: current.query.replace('computador principal', 'notebook de trabalho') }
+  expect(verifyMemoryAnswer(coordinated, wrongDevice).violations.map(v => v.code)).toContain('unsupported_typed_value')
+  const qualified = coordinated.replace('hipótese falsa.', 'hipótese falsa em outro cenário.')
+  expect(verifyMemoryAnswer(qualified, current).violations.map(v => v.code)).toContain('unsupported_typed_value')
 })
 
 it('separately verifies historical and new values in a coordinated statement about one device', () => {

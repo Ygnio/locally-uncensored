@@ -115,6 +115,18 @@ function reportedCapacityDenial(clause: string, start: number, end: number) {
     /^\s*(?:de ram|of ram)?\s+(?:e|is)\s+(?:(?:apenas|somente|so|only|just)\s+)?(?:uma hipotese falsa|uma hipotese incorreta|a false hypothesis|an incorrect hypothesis)\s*(?:[.,;!?]|$)/u.test(suffix)
 }
 
+/* A reply can restate an explicitly denied source amount in a coordinated or
+ * elliptical clause. Restrict the exemption to that amount's own predicate. */
+function restatedCapacityDenial(clause: string, start: number, end: number): boolean {
+  const prefix = clause.slice(0, start).trim()
+  const suffix = clause.slice(end).trim()
+  if (/,\s+e\s+os$/u.test(prefix)) {
+    return /^sao\s+(?:apenas|somente|so)\s+uma hipotese falsa[.!?]?$/u.test(suffix)
+  }
+  return /^(?:(?:exatamente|correto|isso mesmo),\s+)?(?:o valor|o numero)\s+de$/u.test(prefix) &&
+    /^e\s+(?:apenas|somente|so)\s+uma hipotese\s+e\s+nao\s+o dado confirmado[.!?]?$/u.test(suffix)
+}
+
 export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): FidelityCheck {
   const began = performance.now(), assertions: MemoryAssertion[] = [], violations: FidelityViolation[] = []
   const add = (code: string, span: string, critical = true) => {
@@ -321,9 +333,12 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       const amountEnd = amountStart + match[0].length
       // The same original USER denial can be acknowledged. No other number in
       // this response borrows that negative or hypothetical modality.
-      if (reportedCapacityDenial(q, amountStart, amountEnd) && deniedSourceAmounts.some(source => {
+      if (deniedSourceAmounts.some(source => {
+        if (source.amount !== match[1]) return false
         const entity = entityIn(q.slice(0, amountStart))
-        return source.amount === match[1] && (!source.entity || !entity || source.entity === entity)
+        if (source.entity && entity && source.entity !== entity) return false
+        return reportedCapacityDenial(q, amountStart, amountEnd) ||
+          !!source.entity && restatedCapacityDenial(q, amountStart, amountEnd)
       })) continue
       const afterRamCorrection = amountStart >= correctionEnd && past(priorRamClause) &&
         /\b\d+\s*(?:gb|gib)\b/u.test(priorRamClause)
@@ -459,6 +474,17 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     if(relation.actor!=='user')continue
     const known=available.filter(f=>relation.references.some(r=>r.id===f.id && r.version===f.version))
     if(known.length && !assertions.some(a=>a.supported && a.references.some(id=>known.some(f=>f.id===id))))add('known_relation_not_used',text,false)
+  }
+  // On a direct technology update, advice or generic praise does not preserve
+  // whether the USER described a plan or work already underway.
+  const directTechnology = current.filter(f => f.validity === 'current_user_statement' &&
+    f.entity === 'project.' + snapshot.project && ['language', 'database'].includes(f.property) &&
+    ['planned', 'in_progress'].includes(f.modality) && f.evidence.some(e =>
+      e.role === 'current_user_statement' && descriptionValue(fold(e.text)) === descriptionValue(query)))
+  for (const fact of directTechnology) {
+    const predicate = fact.modality === 'planned' ? planned : execution
+    if (!assertions.some(a => a.supported && a.references.includes(fact.id) && a.property === fact.property &&
+      a.value === fact.value && predicate(a.span))) add('source_technology_modality_omitted', text, false)
   }
   const authority=evaluateAuthority(text,snapshot)
   for (const claim of authority) if (!['supported','historical','hypothetical','non_memory'].includes(claim.verdict)) add('authority_'+claim.property,claim.span,claim.critical)
