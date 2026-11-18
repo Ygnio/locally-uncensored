@@ -47,3 +47,44 @@ O Gemma registrou **2.285 tokens de entrada, 1.416 de saída e 45,415 s acumulad
 A referência formal permanece em 90% de recall híbrido de extração, C2 16/27, 11 ausências, GUI+C2 54/82 úteis, 60/73 afirmações sustentadas, sete críticas e uma promessa prematura. Materializar as três fontes não demonstra que as 11 consultas passaram. Os critérios originais de 95% de disponibilidade e fidelidade, 100% de fallback obrigatório e zero críticas continuam em vigor.
 
 **Estimativa para a próxima decisão:** dois ciclos curtos de engenharia e um reteste de integração. Primeiro, rastrear f1q-16 e executar as 11 dependências C2 em perfis isolados, reaproveitando as gerações ou embeddings existentes quando correspondam exatamente à entrada. Segundo, testar autoria e modalidade com contraprovas novas e comparar LLM e híbrido com RAM anterior ativa. Por fim, retestar Chat e Code com falha de transporte e observar DOM, job, registro e recibo. Como ordem de grandeza, reservar 1–2 dias de engenharia e até 12 novas chamadas para esse reteste dirigido, sujeito ao resultado offline. O esforço até aprovação operacional ainda é indeterminado. Uma nova campanha longa depende de evidência de resolução das falhas críticas.
+
+## Consolidação funcional de 18 de novembro de 2026
+
+Checkpoint dirigido sobre `3804049`. A avaliação formal 2.2F continua congelada e reprovada. Nesta rodada, a contagem de recuperação corresponde à seleção de referências canônicas, e a contagem de respostas corresponde a gerações registradas no broker local.
+
+| Componente | Anterior | Atual | Situação |
+|---|---|---|---|
+| Fallback C1 | 20/21 obrigatórias | 21/21 obrigatórias e 26/26 exatas | Passou nas consultas congeladas |
+| Preparação C2 | 3 fontes recuperadas isoladamente | 20/20 fontes USER materializadas, 12 revisões explícitas e 2 mudanças de estado confirmadas | 18 índices ativos, 2 históricos ou excluídos fora do índice atual |
+| Recuperação C2 | 11 dependentes pendentes | 27/27 exatas em fallback e híbrido, inclusive as 11 dependentes | 25 referências esperadas em cada modo, zero extras, omissões ou invasões de escopo |
+| Respostas C2 | 11 dependentes pendentes | 9 primeiras gerações, 8 entregas, 5 respostas adequadas e 1 bloqueio | Fidelidade integral pendente |
+| Transporte GUI | 1/3 | 3/3 na aplicação Tauri de QA | Chat, Agent e Code passaram com falha injetada e recibo vinculado ao registro |
+| Atualização de RAM | Substituição falhava com 20 GB já ativos | Rules, LLM e Hybrid passaram com 20 GB históricos e 36 GB atuais após revisão | Passou no caso dirigido com reabertura do banco |
+| Fidelidade com contexto ideal | 13/15 brutas e 2 erros aceitos | Mesmas 13 corretas preservadas e os 2 erros bloqueados | Zero retenções úteis nesses 15 replays |
+
+### Fontes, revisão e recuperação
+
+Em `f1q-16`, a busca de RAM por substring encontrava «ram» dentro do nome de um projeto. Isso tornava ambígua a propriedade que a segunda oração deveria herdar. A decomposição agora reconhece imperativos e perguntas preposicionais, preserva as modalidades de escolha e execução e exige RAM como token. O rastreio compara o binário congelado da F e o bridge da G. [Seleção lexical e filtros](evidence/phase22g/consolidation/c1-trace.json) · [26 consultas](evidence/phase22g/consolidation/c1.json)
+
+Em C2, a preparação reproduziu 20 extrações arquivadas apenas após comparar os pedidos completos. A trilha exercitou o processamento nativo da fonte original, o job, a proveniência, a revisão e a indexação em três bancos independentes. A primeira passagem expôs trocas de finalidade por linguagem, perda do segundo termo de uma comparação e confusão entre preferências. A revisão distinguiu finalidade solicitada, escolha e implementação, os equipamentos nomeados e as dimensões de preferência. O reteste reutilizou as mesmas bases e vetores de consulta. [Preparação, índices e primeira recuperação](evidence/phase22g/consolidation/c2-native.json) · [Referências e fatos do reteste](evidence/phase22g/consolidation/c2-retrieval-final.json)
+
+A atualização de RAM requer vínculo com a fonte USER e correspondência única da propriedade, do dispositivo, do valor anterior ativo e do escopo. Em LLM, uma proposta vazia ou que omitiu o valor atual pode aproveitar a correção explícita validada na fonte. O fluxo preserva a política de revisão e o controle de versão. A regressão verificou a recuperação atual e histórica depois de reabrir o banco. As contraprovas incluem dispositivo diferente, valor anterior divergente, hipótese, negação, fala de personagem e citação de manual. A cobertura determinística atual restringe-se às formulações e relações temporais implementadas. [Testes de operação](../crates/lucille-memory/tests/phase22f_operations.rs)
+
+### Respostas e teto do modelo
+
+As nove respostas reais usaram o contexto da **primeira** recuperação, antes dos últimos ajustes de seleção. Em `f2q-11/12/13/14/19` as entregas responderam à pergunta. Em `10` a geração atribuiu ao projeto uma finalidade deduzida de uma atividade, em `16` omitiu a implementação e em `25` declarou falta de informação sobre uma preferência existente. O verificador reteve `18`, cuja geração afirmava que uma escolha de outro projeto ainda não havia sido definida. Um controle posterior aplicou o verificador atualizado ao texto e aos fatos originais de `10` e rejeitou a finalidade sem suporte. As gerações originais permanecem disponíveis com seus vereditos da época. [Pedidos, respostas brutas e resultados](evidence/phase22g/consolidation/c2-answers.json)
+
+O replay de contexto ideal usa gerações arquivadas a 4.096 tokens. A rodada operacional usa 65.536, Nomic em CPU e a trava de 1 GiB. As diferenças de contexto e as falhas observadas na recuperação impedem atribuir todos os erros ao Gemma. A distinção entre escolha e execução continua uma limitação observada em parte das formulações com contexto ideal. O verificador corrigido preservou as 13 respostas úteis e pediu regeneração para as duas incorretas. Não houve nova geração nesse replay. [Oracle e decisões](evidence/phase22g/consolidation/verifier.json)
+
+As nove gerações C2 consumiram 7.036 tokens de entrada e 208 de saída. Foram necessários 14 embeddings novos na preparação e nas consultas. O monitor do supervisor registrou 64 amostras durante a rodada de respostas. O pico observado de 9.275 MiB representa o consumo de toda a GPU. O consumo de tokens do Codex não foi medido. [Medição da rodada](evidence/phase22g/consolidation/answer-runtime.json)
+
+Para aferir todas as onze respostas dependentes com a recuperação corrigida, faltam, no mínimo, cinco primeiras gerações dirigidas: duas consultas sem geração nesta rodada (15 e 17) e três cujo contexto relevante mudou (10, 16 e 25). A confirmação de repetibilidade ou a medição de regenerações custaria chamadas adicionais. A aprovação integral continua pendente.
+
+
+### Transporte, regressões e encerramento
+
+A aplicação Tauri de QA executou o frontend compilado do projeto com WebView real, perfil full22g e broker exclusivo. Nos três modos a interrupção causou erro visível. Houve um envio USER, um job concluído com uma tentativa de extração e um registro com proveniência por cenário. A observação do recibo ocorreu depois do erro no DOM. Como a conversa só tinha a mensagem de falha, o comando de copiar recusou o texto e nenhum conteúdo foi copiado. Esse resultado mede recuperação do aprendizado depois da falha. A resposta conversacional continuou exibindo o erro original. [GUI, snapshots e recibos](evidence/phase22g/consolidation/gui.json) · [Extrações reais da GUI](evidence/phase22g/consolidation/gui-extraction.json)
+
+Passaram 24 testes Rust em duas suítes e 118 testes TypeScript em sete suítes dirigidas. As 12 chamadas autorizadas foram consumidas: nove respostas C2 e três extrações da GUI, com 8.342 tokens de entrada e 484 de saída no total. Os supervisores registraram a parada solicitada e a identidade dos processos encerrados. As cinco portas de QA ficaram livres. Os quatro bancos sintéticos passaram na integridade SQLite e na verificação de chaves estrangeiras. Os 104 arquivos protegidos coincidiram com os hashes do inventário ao encerrar. [Quota e supervisores](evidence/phase22g/consolidation/quota-closeout.json) · [SQLite](evidence/phase22g/consolidation/sqlite.json) · [Inventário](evidence/phase22g/consolidation/protected.json)
+
+**Decisão.** Manter o PR em rascunho. A recuperação e o transporte atingiram os critérios dirigidos, mas falta demonstrar a qualidade das respostas nas consultas dependentes com a seleção final. Não há recomendação para iniciar a próxima avaliação extensa.
