@@ -92,10 +92,32 @@ def main(args):
         return manifest
 
     def upstream(kind, endpoint, payload):
+        abort = root / 'reports' / 'g22-independent-abort'
+        independent = os.environ.get('LUCILLE_G22_BUDGET') == 'independent'
+        if independent and abort.exists():
+            raise ValueError('Independent campaign interrupted')
         manifest = verify(kind)
         before = owned.resources()
         if before['PhysicalAvailable'] < inference_ram_floor or before['CommitLimit'] - before['CommitTotal'] < 1024**3:
+            if independent: abort.write_text('resource floor', encoding='utf8')
             raise ValueError('Resource pressure; no new test inference')
+        if kind == 'gemma' and os.environ.get('LUCILLE_G22_BUDGET'):
+            # Shared across broker restarts. Exclusive creation reserves an
+            # attempt before the upstream call, including failed attempts.
+            campaign = os.environ['LUCILLE_G22_BUDGET']
+            limit, folder = {'independent': (160, 'g22-independent-budget'), 'temporal': (2, 'g22-temporal-budget'), 'decision': (4, 'g22-decision-budget'), 'persistence': (8, 'g22-persistence-budget'), 'continuity': (24, 'g22-continuity-budget'), 'fidelity': (8, 'g22-fidelity-budget')}.get(campaign, (12, 'g22-call-budget'))
+            budget = root / 'reports' / folder
+            budget.mkdir(exist_ok=True)
+            for slot in range(limit):
+                try:
+                    with (budget / str(slot)).open('x') as ticket:
+                        ticket.write(str(time.time()))
+                    break
+                except FileExistsError:
+                    continue
+            else:
+                if independent: abort.write_text('budget exhausted', encoding='utf8')
+                raise ValueError('Checkpoint Gemma budget exhausted')
         port = 15288 if kind == 'gemma' else 15289
         key = (root / (kind + '.api-key')).read_text(encoding='ascii')
         request = urllib.request.Request(f'http://127.0.0.1:{port}' + endpoint,

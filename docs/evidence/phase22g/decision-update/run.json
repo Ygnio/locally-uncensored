@@ -1,0 +1,61 @@
+{
+  "budget": 4,
+  "tickets": 4,
+  "completed": 4,
+  "usage": {
+    "response": {
+      "calls": 2,
+      "input": 2271,
+      "output": 47
+    },
+    "regeneration": {
+      "calls": 1,
+      "input": 1164,
+      "output": 28
+    },
+    "extraction": {
+      "calls": 1,
+      "input": 453,
+      "output": 135
+    }
+  },
+  "weights": "Gemma4-12B-QAT-Uncensored-HauhauCS-Balanced-Q4_K_M.gguf",
+  "context": "65536",
+  "nomic_gpu_layers": "0",
+  "physical_free_floor": 1073741824,
+  "min_free_bytes": 2208956416,
+  "peak_device_used_mib": 9424,
+  "seconds": 139.29313579999143,
+  "samples": 67,
+  "host": {
+    "lucille-full-validation.exe": "910a5bf78c4a93ff8a4b698f5be627e8e87134660246faa5247db653190213b3",
+    "WebView2Loader.dll": "8427b1fc58ec707813e5c0a51eb5d69397bb333250a7b891be4d3b123f1e0f1c"
+  },
+  "protected_sha256_matches": 104,
+  "ports_closed": [
+    15283,
+    15284,
+    15287,
+    15288,
+    15289
+  ],
+  "qa_servers_stop_verified": true,
+  "sqlite_integrity_and_foreign_keys": [
+    "lucille-synthetic-full22g-retest-decision\\lucille-phase1.sqlite3",
+    "lucille-synthetic-real22f\\g22decision\\lucille-synthetic-c2-history\\synthetic.sqlite3",
+    "lucille-synthetic-real22f\\g22decision\\lucille-synthetic-c2-preparation\\synthetic.sqlite3",
+    "lucille-synthetic-real22f\\g22decisionaudit\\lucille-synthetic-c2-alfenim\\synthetic.sqlite3",
+    "lucille-synthetic-real22f\\g22decisionreg\\lucille-synthetic-c2-accessible-audio-projects\\synthetic.sqlite3",
+    "lucille-synthetic-real22f\\g22decisionreg\\lucille-synthetic-c2-archive-and-personal-preferences\\synthetic.sqlite3",
+    "lucille-synthetic-real22f\\g22decisionreg\\lucille-synthetic-c2-screen-print-workstations\\synthetic.sqlite3"
+  ],
+  "regressions": {
+    "c1_mandatory": 21,
+    "c1_total": 26,
+    "c2": 27,
+    "admission": 20,
+    "rust": 42,
+    "typescript": 138,
+    "typecheck": "passed"
+  }
+}

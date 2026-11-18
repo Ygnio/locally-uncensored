@@ -1,0 +1,109 @@
+[
+  {
+    "label": "real",
+    "answer": "Sua escolha anterior era SQLite, mas você escolheu PostgreSQL para o projeto Alfenim.",
+    "status": "delivered",
+    "violations": [],
+    "assertions": [
+      {
+        "temporality": "historical",
+        "entity": "project.alfenim",
+        "property": "database",
+        "value": "sqlite",
+        "span": "Sua escolha anterior era SQLite, ",
+        "supported": true,
+        "references": [
+          "6134ad66-cb11-c51f-eeb2-cd361ced3d22"
+        ]
+      },
+      {
+        "temporality": "current",
+        "entity": "project.alfenim",
+        "property": "database",
+        "value": "postgresql",
+        "span": " você escolheu PostgreSQL para o projeto Alfenim.",
+        "supported": true,
+        "references": [
+          "1909e496-0cff-e4c6-6c8f-3d84b363a2b9"
+        ]
+      }
+    ]
+  },
+  {
+    "label": "current-marker",
+    "answer": "Sua escolha anterior era SQLite, mas agora você escolheu PostgreSQL para o projeto Alfenim.",
+    "status": "delivered",
+    "violations": [],
+    "assertions": [
+      {
+        "temporality": "historical",
+        "entity": "project.alfenim",
+        "property": "database",
+        "value": "sqlite",
+        "span": "Sua escolha anterior era SQLite, ",
+        "supported": true,
+        "references": [
+          "6134ad66-cb11-c51f-eeb2-cd361ced3d22"
+        ]
+      },
+      {
+        "temporality": "current",
+        "entity": "project.alfenim",
+        "property": "database",
+        "value": "postgresql",
+        "span": " agora você escolheu PostgreSQL para o projeto Alfenim.",
+        "supported": true,
+        "references": [
+          "1909e496-0cff-e4c6-6c8f-3d84b363a2b9"
+        ]
+      }
+    ]
+  },
+  {
+    "label": "reversed",
+    "answer": "Sua escolha anterior era PostgreSQL, mas agora você escolheu SQLite para o projeto Alfenim.",
+    "status": "blocked",
+    "violations": [
+      {
+        "code": "unsupported_typed_value",
+        "span": "Sua escolha anterior era PostgreSQL, ",
+        "critical": true
+      },
+      {
+        "code": "unsupported_typed_value",
+        "span": " agora você escolheu SQLite para o projeto Alfenim.",
+        "critical": true
+      },
+      {
+        "code": "requested_choice_time_missing",
+        "span": "Sua escolha anterior era PostgreSQL, mas agora você escolheu SQLite para o projeto Alfenim.",
+        "critical": false
+      },
+      {
+        "code": "known_relation_not_used",
+        "span": "Sua escolha anterior era PostgreSQL, mas agora você escolheu SQLite para o projeto Alfenim.",
+        "critical": false
+      }
+    ],
+    "assertions": [
+      {
+        "temporality": "historical",
+        "entity": "project.alfenim",
+        "property": "database",
+        "value": "postgresql",
+        "span": "Sua escolha anterior era PostgreSQL, ",
+        "supported": false,
+        "references": []
+      },
+      {
+        "temporality": "current",
+        "entity": "project.alfenim",
+        "property": "database",
+        "value": "sqlite",
+        "span": " agora você escolheu SQLite para o projeto Alfenim.",
+        "supported": false,
+        "references": []
+      }
+    ]
+  }
+]

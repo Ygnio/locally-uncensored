@@ -1,0 +1,119 @@
+{
+  "query": "Na ficha de planejamento, qual era minha escolha anterior de banco e qual vale agora?",
+  "new_conversation": "4650764e-8567-4629-8ddd-9a959fdcb433",
+  "prior_messages": 0,
+  "host": {
+    "pid": 12700,
+    "created": "2026-11-18T17:50:36.306308-03:00"
+  },
+  "injected": [
+    {
+      "id": "1909e496-0cff-e4c6-6c8f-3d84b363a2b9",
+      "version": 2,
+      "kind": "decision",
+      "content": "Projeto alfenim: decidiu usar postgresql como banco de dados.",
+      "entity": "project.alfenim",
+      "property": "database",
+      "value": "postgresql",
+      "modality": "decision",
+      "validity": "current",
+      "scope": "phase22f-continuidade-alfenim",
+      "project": "alfenim",
+      "review": "reviewed",
+      "facets": [],
+      "evidence": [
+        {
+          "role": "current_source",
+          "text": "agora escolhi PostgreSQL"
+        },
+        {
+          "role": "previous_property_link_not_current_value",
+          "text": "Para guardar as fichas, escolhi SQLite como banco de dados"
+        }
+      ]
+    }
+  ],
+  "canonical": [
+    {
+      "id": "1909e496-0cff-e4c6-6c8f-3d84b363a2b9",
+      "state": "active",
+      "version": 2,
+      "subject": "project.alfenim",
+      "property": "database",
+      "value": "postgresql",
+      "replaces_id": "6134ad66-cb11-c51f-eeb2-cd361ced3d22",
+      "replaces_version": 2,
+      "interaction_id": "28205488425740cd8e10e555bd36595178fd9325be421217a55e0ff2a783a8d7",
+      "evidence": "agora escolhi PostgreSQL"
+    },
+    {
+      "id": "6134ad66-cb11-c51f-eeb2-cd361ced3d22",
+      "state": "obsolete",
+      "version": 3,
+      "subject": "project.alfenim",
+      "property": "database",
+      "value": "sqlite",
+      "replaces_id": null,
+      "replaces_version": null,
+      "interaction_id": "8c7583011faf00097b78b8985e46a09a35f0f4d0b5a6bebd9d612bbacdb7fcc0",
+      "evidence": "Para guardar as fichas, escolhi SQLite como banco de dados"
+    }
+  ],
+  "attempts": [
+    {
+      "rawAnswer": "Sua escolha anterior era SQLite, mas você escolheu PostgreSQL para o projeto Alfenim.",
+      "check": {
+        "assertions": [
+          {
+            "temporality": "historical",
+            "entity": "project.alfenim",
+            "property": "database",
+            "value": "sqlite",
+            "span": "Sua escolha anterior era SQLite, ",
+            "supported": true,
+            "references": [
+              "6134ad66-cb11-c51f-eeb2-cd361ced3d22"
+            ]
+          },
+          {
+            "temporality": "current",
+            "entity": "project.alfenim",
+            "property": "database",
+            "value": "postgresql",
+            "span": " você escolheu PostgreSQL para o projeto Alfenim.",
+            "supported": true,
+            "references": [
+              "1909e496-0cff-e4c6-6c8f-3d84b363a2b9"
+            ]
+          }
+        ],
+        "violations": [],
+        "authority": [],
+        "uncertain": false,
+        "supportedAssertions": 2,
+        "unsupportedAssertions": 0,
+        "elapsedMs": 1
+      },
+      "nativeOperation": {
+        "checkedAtUtc": "2026-11-18T20:51:12.696Z",
+        "source": {
+          "conversation_id": "4650764e-8567-4629-8ddd-9a959fdcb433",
+          "source_message_id": "0dda6145-c07c-45d1-9a88-92e1bf685823"
+        },
+        "learning": null,
+        "directive": null
+      },
+      "verificationReferences": [
+        {
+          "id": "6134ad66-cb11-c51f-eeb2-cd361ced3d22",
+          "version": 3
+        }
+      ],
+      "promptTokens": 1362,
+      "completionTokens": 20
+    }
+  ],
+  "verifier": "checked",
+  "dom": "lucille-real-gemma\n\nSua escolha anterior era SQLite, mas você escolheu PostgreSQL para o projeto Alfenim.\n\n1,362 in · 20 out",
+  "final_raw_shown": true
+}

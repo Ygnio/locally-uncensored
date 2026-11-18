@@ -88,7 +88,7 @@ async function run(control) {
           const job=(await scoped('learning_jobs')).find(j=>j.id===jobId)??null
           const proof_read_started_ms=Date.now()-start
           const evidence=await manage({operation:'answer_evidence',request,references:[],claims:[],source:{interaction,job_id:qaPhase==='phase22f'?job?.id??null:null}})
-          operationSnapshots.push({event,observed_at_ms,read_started_ms,read_finished_ms:Date.now()-start,job,learning_receipt:evidence.learning_receipt??null,directive_receipt:evidence.directive_receipt??null,...(qaPhase==='phase22f'?{proof_read_started_ms,source_operation:evidence.source_operation??null}:{})})
+          operationSnapshots.push({event,observed_at_ms,read_started_ms,read_finished_ms:Date.now()-start,...(control.observe_projection ? {current_statements:evidence.current_statements}:{}),job,learning_receipt:evidence.learning_receipt??null,directive_receipt:evidence.directive_receipt??null,...(qaPhase==='phase22f'?{proof_read_started_ms,source_operation:evidence.source_operation??null}:{})})
         }catch(error){operationSnapshots.push({event,observed_at_ms,read_started_ms,read_finished_ms:Date.now()-start,error:String(error)})}
       })
     }
@@ -188,7 +188,7 @@ async function run(control) {
     p.useSettingsStore.getState().updateSettings({ thinkingEnabled: false, maxTokens: 384, temperature: 0 })
     if (!control.resume) {
       let identity; try { identity = await manage({ operation: 'identity' }) } catch { identity = { version: 0 } }
-      await manage({ operation: 'configure_identity', expected_version: identity.version, profile: { name: 'Lucille Synthetic Phase22', description: 'Fictional isolated QA identity', personality: 'Concise', instructions: 'Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. Use tools only when the user asks for an external observation or action; remembered facts alone need no external inspection.' } }, true)
+      await manage({ operation: 'configure_identity', expected_version: identity.version, profile: { name: control.synthetic_identity ?? 'Lucille Synthetic Phase22', description: 'Fictional isolated QA identity', personality: 'Concise', instructions: 'Answer in at most two short sentences in the language of the question. Quietly use relevant contextual data. Preserve planned choices as plans, not completed implementation. Do not invent progress or personal facts; say when current information is unavailable. Use tools only when the user asks for an external observation or action; remembered facts alone need no external inspection.' } }, true)
     }
     await conversation(); await settings()
     await select('Lucille extraction mode', 'llm')
@@ -200,9 +200,16 @@ async function run(control) {
     fixture.policy = await manage({ operation: 'learning_policy' }); fixture.initial_metrics = await scoped('learning_metrics')
     for (const turn of plan.turns ?? []) {
       if (turn.new_session) await conversation(turn.mode ?? 'chat')
-      await send(turn.text)
+      const observed = await send(turn.text)
+      if (control.observe_canonical) observed.before_review = await scoped('details')
       if (turn.review) await review()
       if (turn.review_preferences) await review(true)
+      if (control.observe_canonical) {
+        observed.after_review = await scoped('details')
+        observed.deleted = await scoped('deleted')
+        observed.jobs = await scoped('learning_jobs')
+        await progress()
+      }
       if (turn.replay_turn_index !== undefined) {
         const old = fixture.turns[turn.replay_turn_index], user = old.messages.find(m => m.role === 'user')
         await replay({ conversation_id: old.conversation_id, message_id: user.lucilleInteractionId ?? user.id, scope, project, mode: old.mode ?? 'chat', role: 'user', user_text: old.text })

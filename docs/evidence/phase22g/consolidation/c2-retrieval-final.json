@@ -1,0 +1,1478 @@
+{
+  "summary": {
+    "fallback": {
+      "tp": 25,
+      "fp": 0,
+      "missed": 0,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 27,
+      "measured": 27,
+      "unmeasured_expected": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "recall_planned": 1.0,
+      "passed": true
+    },
+    "hybrid": {
+      "tp": 25,
+      "fp": 0,
+      "missed": 0,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 27,
+      "measured": 27,
+      "unmeasured_expected": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "recall_planned": 1.0,
+      "passed": true
+    }
+  },
+  "rows": [
+    {
+      "id": "f2q-01",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "machine-now"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "machine-now"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "e2e92f61-1c6e-d254-e9dc-f95e3f64836c",
+          "version": 2
+        }
+      ],
+      "facts": [
+        {
+          "entity": "device.primary_computer",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Depois da ampliação da oficina, instalei 70 GB de RAM no meu computador principal"
+            }
+          ],
+          "facets": [],
+          "id": "e2e92f61-1c6e-d254-e9dc-f95e3f64836c",
+          "modality": "current_fact",
+          "project": "canteiro",
+          "property": "ram_capacity",
+          "review": "reviewed",
+          "scope": "phase22f-e-mastro",
+          "validity": "current",
+          "value": "70_gb",
+          "version": 2
+        }
+      ]
+    },
+    {
+      "id": "f2q-02",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "field-laptop"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "field-laptop"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "e97b9cc0-a899-868f-cea6-d9623638bb8a",
+          "version": 2
+        }
+      ],
+      "facts": [
+        {
+          "entity": "device.work_laptop",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Para as oficinas itinerantes, meu notebook de trabalho possui 26 GB de RAM instalados"
+            }
+          ],
+          "facets": [],
+          "id": "e97b9cc0-a899-868f-cea6-d9623638bb8a",
+          "modality": "current_fact",
+          "project": "canteiro",
+          "property": "ram_capacity",
+          "review": "reviewed",
+          "scope": "phase22f-e-mastro",
+          "validity": "current",
+          "value": "26_gb",
+          "version": 2
+        }
+      ]
+    },
+    {
+      "id": "f2q-03",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "spare-machine"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "spare-machine"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "2119f885-09c4-0e90-05c0-10f3d6b9c2b1",
+          "version": 2
+        }
+      ],
+      "facts": [
+        {
+          "entity": "device.other_computer",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Meu outro computador tem 38 GB de RAM para tratar as imagens dos cartazes"
+            }
+          ],
+          "facets": [],
+          "id": "2119f885-09c4-0e90-05c0-10f3d6b9c2b1",
+          "modality": "current_fact",
+          "project": "canteiro",
+          "property": "ram_capacity",
+          "review": "reviewed",
+          "scope": "phase22f-e-mastro",
+          "validity": "current",
+          "value": "38_gb",
+          "version": 2
+        }
+      ]
+    },
+    {
+      "id": "f2q-04",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "gallery-machine"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "gallery-machine"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "07241b31-b400-9e6a-481b-3bc99d7c14e5",
+          "version": 2
+        }
+      ],
+      "facts": [
+        {
+          "entity": "device.primary_computer",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Neste perfil da galeria, meu computador principal tem 112 GB de RAM instalados"
+            }
+          ],
+          "facets": [],
+          "id": "07241b31-b400-9e6a-481b-3bc99d7c14e5",
+          "modality": "current_fact",
+          "project": "canteiro",
+          "property": "ram_capacity",
+          "review": "reviewed",
+          "scope": "phase22f-e-mastro-galeria",
+          "validity": "current",
+          "value": "112_gb",
+          "version": 2
+        }
+      ]
+    },
+    {
+      "id": "f2q-05",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "brinco-machine"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "brinco-machine"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "f2057a7c-e3c7-46d9-7064-57e413dee44d",
+          "version": 2
+        }
+      ],
+      "facts": [
+        {
+          "entity": "device.primary_computer",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "No contexto de Brinco, meu computador principal tem 92 GB de RAM"
+            }
+          ],
+          "facets": [],
+          "id": "f2057a7c-e3c7-46d9-7064-57e413dee44d",
+          "modality": "current_fact",
+          "project": "brinco",
+          "property": "ram_capacity",
+          "review": "reviewed",
+          "scope": "phase22f-e-mastro",
+          "validity": "current",
+          "value": "92_gb",
+          "version": 2
+        }
+      ]
+    },
+    {
+      "id": "f2q-06",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "machine-old",
+            "machine-now"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "machine-now",
+            "machine-old"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "e2e92f61-1c6e-d254-e9dc-f95e3f64836c",
+          "version": 2
+        },
+        {
+          "id": "cf31be8b-2aab-3aa6-ee4c-e7affc058631",
+          "version": 3
+        }
+      ],
+      "facts": [
+        {
+          "entity": "device.primary_computer",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Depois da ampliação da oficina, instalei 70 GB de RAM no meu computador principal"
+            }
+          ],
+          "facets": [],
+          "id": "e2e92f61-1c6e-d254-e9dc-f95e3f64836c",
+          "modality": "current_fact",
+          "project": "canteiro",
+          "property": "ram_capacity",
+          "review": "reviewed",
+          "scope": "phase22f-e-mastro",
+          "validity": "current",
+          "value": "70_gb",
+          "version": 2
+        },
+        {
+          "entity": "device.primary_computer",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Meu computador principal possui 46 GB de RAM para preparar as matrizes de serigrafia"
+            }
+          ],
+          "facets": [],
+          "id": "cf31be8b-2aab-3aa6-ee4c-e7affc058631",
+          "modality": "current_fact",
+          "project": "canteiro",
+          "property": "ram_capacity",
+          "review": "reviewed",
+          "scope": "phase22f-e-mastro",
+          "validity": "historical",
+          "value": "46_gb",
+          "version": 3
+        }
+      ]
+    },
+    {
+      "id": "f2q-07",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "field-laptop",
+            "machine-now"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "field-laptop",
+            "machine-now"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "e97b9cc0-a899-868f-cea6-d9623638bb8a",
+          "version": 2
+        },
+        {
+          "id": "e2e92f61-1c6e-d254-e9dc-f95e3f64836c",
+          "version": 2
+        }
+      ],
+      "facts": [
+        {
+          "entity": "device.work_laptop",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Para as oficinas itinerantes, meu notebook de trabalho possui 26 GB de RAM instalados"
+            }
+          ],
+          "facets": [],
+          "id": "e97b9cc0-a899-868f-cea6-d9623638bb8a",
+          "modality": "current_fact",
+          "project": "canteiro",
+          "property": "ram_capacity",
+          "review": "reviewed",
+          "scope": "phase22f-e-mastro",
+          "validity": "current",
+          "value": "26_gb",
+          "version": 2
+        },
+        {
+          "entity": "device.primary_computer",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Depois da ampliação da oficina, instalei 70 GB de RAM no meu computador principal"
+            }
+          ],
+          "facets": [],
+          "id": "e2e92f61-1c6e-d254-e9dc-f95e3f64836c",
+          "modality": "current_fact",
+          "project": "canteiro",
+          "property": "ram_capacity",
+          "review": "reviewed",
+          "scope": "phase22f-e-mastro",
+          "validity": "current",
+          "value": "70_gb",
+          "version": 2
+        }
+      ]
+    },
+    {
+      "id": "f2q-08",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [],
+      "facts": []
+    },
+    {
+      "id": "f2q-09",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [],
+      "facts": []
+    },
+    {
+      "id": "f2q-10",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "audio-museum-purpose"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "audio-museum-purpose"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "616ad6fb-657f-0af4-f9a4-ec7cd54a84b9",
+          "version": 2
+        }
+      ],
+      "facts": [
+        {
+          "entity": "project.crivo",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Iniciei um projeto de roteiros sonoros para um museu tátil"
+            }
+          ],
+          "facets": [],
+          "id": "616ad6fb-657f-0af4-f9a4-ec7cd54a84b9",
+          "modality": "project_description",
+          "project": "crivo",
+          "property": "description",
+          "review": "reviewed",
+          "scope": "phase22f-e-biruta",
+          "validity": "current",
+          "value": "iniciei um projeto de roteiros sonoros para um museu tatil",
+          "version": 2
+        }
+      ]
+    },
+    {
+      "id": "f2q-11",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "audio-language-choice"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "audio-language-choice"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "f4b39909-1d6c-88f1-d7e2-b0227b2d76bf",
+          "version": 2
+        }
+      ],
+      "facts": [
+        {
+          "entity": "project.crivo",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Após o piloto das narrativas, escolhi TypeScript como linguagem do meu projeto"
+            }
+          ],
+          "facets": [],
+          "id": "f4b39909-1d6c-88f1-d7e2-b0227b2d76bf",
+          "modality": "decision",
+          "project": "crivo",
+          "property": "language",
+          "review": "reviewed",
+          "scope": "phase22f-e-biruta",
+          "validity": "current",
+          "value": "typescript",
+          "version": 2
+        }
+      ]
+    },
+    {
+      "id": "f2q-12",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "audio-language-running"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "audio-language-running"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "a5091dde-3263-0bee-e7da-f240d2e59d5e",
+          "version": 2
+        }
+      ],
+      "facts": [
+        {
+          "entity": "project.crivo",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Para sincronizar as faixas de áudio, estou implementando o meu projeto em Rust"
+            }
+          ],
+          "facets": [],
+          "id": "a5091dde-3263-0bee-e7da-f240d2e59d5e",
+          "modality": "in_progress",
+          "project": "crivo",
+          "property": "language",
+          "review": "reviewed",
+          "scope": "phase22f-e-biruta",
+          "validity": "current",
+          "value": "rust",
+          "version": 2
+        }
+      ]
+    },
+    {
+      "id": "f2q-13",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "audio-storage-plan"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "audio-storage-plan"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "fd2cdf2a-e53d-6630-959c-115975f8e0db",
+          "version": 2
+        }
+      ],
+      "facts": [
+        {
+          "entity": "project.crivo",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Para catalogar os depoimentos, planejo usar MySQL como banco de dados do meu projeto"
+            }
+          ],
+          "facets": [],
+          "id": "fd2cdf2a-e53d-6630-959c-115975f8e0db",
+          "modality": "planned",
+          "project": "crivo",
+          "property": "database",
+          "review": "reviewed",
+          "scope": "phase22f-e-biruta",
+          "validity": "current",
+          "value": "mysql",
+          "version": 2
+        }
+      ]
+    },
+    {
+      "id": "f2q-14",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "nacar-database-choice"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "nacar-database-choice"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "3d0e2845-79a6-a1c6-90a7-9710699d7e2b",
+          "version": 2
+        }
+      ],
+      "facts": [
+        {
+          "entity": "project.nacar",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Para o projeto Nacar, escolhi PostgreSQL como banco de dados das gravações das entrevistas"
+            }
+          ],
+          "facets": [],
+          "id": "3d0e2845-79a6-a1c6-90a7-9710699d7e2b",
+          "modality": "decision",
+          "project": "nacar",
+          "property": "database",
+          "review": "reviewed",
+          "scope": "phase22f-e-biruta",
+          "validity": "current",
+          "value": "postgresql",
+          "version": 2
+        }
+      ]
+    },
+    {
+      "id": "f2q-15",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "lacre-completed"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "lacre-completed"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "985b6436-b321-5e8f-e5ef-da8887202d85",
+          "version": 2
+        }
+      ],
+      "facts": [
+        {
+          "entity": "project.lacre",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Com a última placa em braile pronta, concluí o meu projeto Lacre"
+            }
+          ],
+          "facets": [],
+          "id": "985b6436-b321-5e8f-e5ef-da8887202d85",
+          "modality": "completed",
+          "project": "lacre",
+          "property": "lifecycle",
+          "review": "reviewed",
+          "scope": "phase22f-e-biruta",
+          "validity": "current",
+          "value": "completed",
+          "version": 2
+        }
+      ]
+    },
+    {
+      "id": "f2q-16",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "audio-language-choice",
+            "audio-language-running"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "audio-language-choice",
+            "audio-language-running"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "f4b39909-1d6c-88f1-d7e2-b0227b2d76bf",
+          "version": 2
+        },
+        {
+          "id": "a5091dde-3263-0bee-e7da-f240d2e59d5e",
+          "version": 2
+        }
+      ],
+      "facts": [
+        {
+          "entity": "project.crivo",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Após o piloto das narrativas, escolhi TypeScript como linguagem do meu projeto"
+            }
+          ],
+          "facets": [],
+          "id": "f4b39909-1d6c-88f1-d7e2-b0227b2d76bf",
+          "modality": "decision",
+          "project": "crivo",
+          "property": "language",
+          "review": "reviewed",
+          "scope": "phase22f-e-biruta",
+          "validity": "current",
+          "value": "typescript",
+          "version": 2
+        },
+        {
+          "entity": "project.crivo",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Para sincronizar as faixas de áudio, estou implementando o meu projeto em Rust"
+            }
+          ],
+          "facets": [],
+          "id": "a5091dde-3263-0bee-e7da-f240d2e59d5e",
+          "modality": "in_progress",
+          "project": "crivo",
+          "property": "language",
+          "review": "reviewed",
+          "scope": "phase22f-e-biruta",
+          "validity": "current",
+          "value": "rust",
+          "version": 2
+        }
+      ]
+    },
+    {
+      "id": "f2q-17",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "audio-storage-plan"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "audio-storage-plan"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "fd2cdf2a-e53d-6630-959c-115975f8e0db",
+          "version": 2
+        }
+      ],
+      "facts": [
+        {
+          "entity": "project.crivo",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Para catalogar os depoimentos, planejo usar MySQL como banco de dados do meu projeto"
+            }
+          ],
+          "facets": [],
+          "id": "fd2cdf2a-e53d-6630-959c-115975f8e0db",
+          "modality": "planned",
+          "project": "crivo",
+          "property": "database",
+          "review": "reviewed",
+          "scope": "phase22f-e-biruta",
+          "validity": "current",
+          "value": "mysql",
+          "version": 2
+        }
+      ]
+    },
+    {
+      "id": "f2q-18",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [],
+      "facts": []
+    },
+    {
+      "id": "f2q-19",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "interface-for-scores"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "interface-for-scores"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "079cdbf6-7abf-5352-cdde-4d1fb7093f92",
+          "version": 1
+        }
+      ],
+      "facts": [
+        {
+          "entity": "user",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Prefiro tema escuro na interface do caderno de partituras"
+            }
+          ],
+          "facets": [],
+          "id": "079cdbf6-7abf-5352-cdde-4d1fb7093f92",
+          "modality": "preference",
+          "project": "mistura",
+          "property": "interface_theme",
+          "review": "independently_grounded_active",
+          "scope": "phase22f-e-azinhavre",
+          "validity": "current",
+          "value": "dark",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "id": "f2q-20",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "objective-explanations"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "objective-explanations"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "022c1fa5-cdbb-574f-739a-9047fb8464cd",
+          "version": 1
+        }
+      ],
+      "facts": [
+        {
+          "entity": "user",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Para comparar os preços da gráfica, eu prefiro respostas objetivas"
+            }
+          ],
+          "facets": [],
+          "id": "022c1fa5-cdbb-574f-739a-9047fb8464cd",
+          "modality": "preference",
+          "project": "mistura",
+          "property": "communication_focus",
+          "review": "independently_grounded_active",
+          "scope": "phase22f-e-azinhavre",
+          "validity": "current",
+          "value": "objective",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "id": "f2q-21",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "short-replies"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "short-replies"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "afec5113-0167-35e7-555d-56f44648f342",
+          "version": 1
+        }
+      ],
+      "facts": [
+        {
+          "entity": "user",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "No balcão da biblioteca, prefiro respostas curtas para conferir cada ficha"
+            }
+          ],
+          "facets": [],
+          "id": "afec5113-0167-35e7-555d-56f44648f342",
+          "modality": "preference",
+          "project": "mistura",
+          "property": "communication_style",
+          "review": "independently_grounded_active",
+          "scope": "phase22f-e-azinhavre",
+          "validity": "current",
+          "value": "concise",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "id": "f2q-22",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "evening-guitar"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "evening-guitar"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "2f23df92-09ba-d642-89b5-b2a4a33697f9",
+          "version": 1
+        }
+      ],
+      "facts": [
+        {
+          "entity": "user",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "No ensaio de quinta-feira, gosto de tocar violão acústico"
+            }
+          ],
+          "facets": [],
+          "id": "2f23df92-09ba-d642-89b5-b2a4a33697f9",
+          "modality": "preference",
+          "project": "mistura",
+          "property": "hobby",
+          "review": "independently_grounded_active",
+          "scope": "phase22f-e-azinhavre",
+          "validity": "current",
+          "value": "acoustic_guitar",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "id": "f2q-23",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "trails-with-camera"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "trails-with-camera"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "fb5d2f43-ef0c-4769-832e-32d9beb6bf82",
+          "version": 1
+        }
+      ],
+      "facts": [
+        {
+          "entity": "user",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Prefiro trilhas curtas quando levo a câmera para fotografar cogumelos"
+            }
+          ],
+          "facets": [],
+          "id": "fb5d2f43-ef0c-4769-832e-32d9beb6bf82",
+          "modality": "preference",
+          "project": "mistura",
+          "property": "outing",
+          "review": "independently_grounded_active",
+          "scope": "phase22f-e-azinhavre",
+          "validity": "current",
+          "value": "short_trails",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "id": "f2q-24",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "glossy-portraits"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "glossy-portraits"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "c6f8a4ee-01f8-c349-c7df-7db7c7ae7e8a",
+          "version": 1
+        }
+      ],
+      "facts": [
+        {
+          "entity": "user",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Nas fotos dos retratos do jornal do bairro, prefiro papel brilhante"
+            }
+          ],
+          "facets": [],
+          "id": "c6f8a4ee-01f8-c349-c7df-7db7c7ae7e8a",
+          "modality": "preference",
+          "project": "mistura",
+          "property": "photo_paper",
+          "review": "independently_grounded_active",
+          "scope": "phase22f-e-azinhavre",
+          "validity": "current",
+          "value": "glossy",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "id": "f2q-25",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [
+            "clutter-dislike"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [
+            "clutter-dislike"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [
+        {
+          "id": "f73c7759-7985-9254-1ae5-132f624d2851",
+          "version": 1
+        }
+      ],
+      "facts": [
+        {
+          "entity": "user",
+          "evidence": [
+            {
+              "role": "current_source",
+              "text": "Eu detesto interfaces carregadas no sistema de reservas da sala"
+            }
+          ],
+          "facets": [],
+          "id": "f73c7759-7985-9254-1ae5-132f624d2851",
+          "modality": "preference",
+          "project": "mistura",
+          "property": "interface_clutter",
+          "review": "independently_grounded_active",
+          "scope": "phase22f-e-azinhavre",
+          "validity": "current",
+          "value": "negative",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "id": "f2q-26",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [],
+      "facts": []
+    },
+    {
+      "id": "f2q-27",
+      "modes": {
+        "fallback": {
+          "status": "measured",
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        },
+        "hybrid": {
+          "status": "measured",
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 0,
+          "unsafe_current": 0,
+          "scope_errors": 0,
+          "negative_injection": false
+        }
+      },
+      "references": [],
+      "facts": []
+    }
+  ]
+}

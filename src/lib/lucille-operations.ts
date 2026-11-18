@@ -61,9 +61,10 @@ function classify(text: string, snapshot: AnswerSnapshot): OperationClaim | unde
   const denial = q.match(/\b(?:nao|not|haven.t|didn.t|cannot|can.t|nunca|never)\s+(?:(?:o|a|isso|this|it|yet|been|foi|esta|is|was)\s+){0,3}/)
   const operation = q.search(signalOfMutation)
   if (denial && operation >= denial.index! && operation <= denial.index! + denial[0].length + 2) return
-  const keepInMind = /\b(?:manterei|vou manter|vou levar|levarei)\s+em mente\b|\bi(?: will|.ll) keep (?:that |this |it )?in mind\b/.test(q)
+  const keepInMind = /\b(?:manterei|vou manter|vou levar|levarei)(?:\s+(?:essa|esta|sua|a|essa sua)\s+(?:preferencia|informacao|escolha))?\s+em mente\b|\bi(?: will|.ll) keep (?:that |this |it )?in mind\b/.test(q)
   const conditionalReview = /\b(?:se|if)\b.{0,45}(?:aprovar|aprovad|confirmar|confirm|approve)|(?:apos|after).{0,25}(?:aprovacao|approval)|depende.{0,25}(?:revisao|aprovacao)/.test(q)
-  if ((futurePredicate.test(q) || memoryRequest && keepInMind) && !conditionalReview) return 'promise'
+  const laterContext = /\b(?:proxim[ao]s?|futur[ao]s?|future|next)\s+(?:configuracoes|conversas?|sessoes|vezes|settings|chats?|sessions?|time)\b/.test(q)
+  if ((futurePredicate.test(q) || (memoryRequest || laterContext) && keepInMind) && !conditionalReview) return 'promise'
   if (processing) return 'processing'
   const candidate = /\b(?:candidata?|candidate|pending review|aguardando revisao|pendente de revisao)\b/.test(q)
   if (candidate && /\b(?:criei|created|entrou|placed|awaits|aguarda|encaminhei|enviei|submitted|ficou|is now)\b/.test(q)) return 'candidate'

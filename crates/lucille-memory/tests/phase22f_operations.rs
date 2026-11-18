@@ -269,3 +269,101 @@ fn forget_receipt_is_bound_to_removed_record_version_after_restart() {
         Some(receipt)
     );
 }
+
+#[test]
+fn transport_sources_produce_bound_receipts_after_publication() {
+    for (mode, text, property, value) in [
+        (Mode::Chat, "Minha preferência para as respostas do estudo é por explicações detalhadas.", "communication_style", "detailed"),
+        (Mode::Code, "When I play role-playing games, I like choosing my character class.", "games_class_selection", "positive"),
+    ] {
+        let dir = tempfile::tempdir().unwrap();
+        let mut store = setup(&dir.path().join("transport.sqlite3"), true);
+        let (request, proof) = prepare(&mut store, "persisted-user", text, mode);
+        store.publish_user_turn(proof.clone()).unwrap();
+        let lease = store.claim_learning(now() + 1).unwrap().expect(text);
+        store.complete_learning(&lease, &lease.claims, now() + 2).unwrap();
+        let receipt = learning(&mut store, &request, &proof).expect(text);
+        assert_eq!(receipt["records"][0]["property"], property);
+        assert_eq!(receipt["records"][0]["value"], value);
+        assert_eq!(receipt["records"][0]["state"], "active");
+    }
+}
+
+#[test]
+fn explicit_ram_revision_needs_review_and_preserves_history_in_every_mode() {
+    use lucille_memory::llm::ExtractionMode;
+    let statement = "Na verdade, meu computador principal agora tem 36 GB de RAM. Os 20 GB descreviam a configuração anterior.";
+    for mode in [ExtractionMode::Rules, ExtractionMode::Llm, ExtractionMode::Hybrid] {
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("synthetic.sqlite3");
+        let mut store = setup(&path, true);
+        let (initial, proof) = prepare(&mut store, "initial", "Meu computador principal possui 20 GB de RAM.", Mode::Agent);
+        store.publish_user_turn(proof).unwrap();
+        let lease = store.claim_learning(now()+1).unwrap().unwrap();
+        store.complete_learning(&lease,&lease.claims,now()+2).unwrap();
+        let old = store.list("qa","pitanga").unwrap().pop().unwrap();
+        store.change(&old.input.id,"qa","pitanga",old.version,Action::Approve).unwrap();
+        let mut policy = store.learning_policy().unwrap();
+        policy.extraction_mode = mode;
+        store.set_learning_policy(policy,&permit()).unwrap();
+        let (request, proof) = prepare(&mut store, "revision", statement, Mode::Agent);
+        store.publish_user_turn(proof.clone()).unwrap();
+        assert!(learning(&mut store,&request,&proof).is_none());
+        if let Some(lease) = store.claim_learning(now()+1).unwrap() {
+            store.complete_learning(&lease,&lease.claims,now()+2).unwrap();
+        } else {
+            let lease = store.claim_llm_learning(now()+1).unwrap().unwrap();
+            let archived: Value = serde_json::from_str(include_str!("../../../docs/evidence/phase22g/nominations.json")).unwrap();
+            let row=archived.as_array().unwrap().iter().find(|r|r["id"]=="fv1-main-t15").unwrap();
+            let mut output:Value=serde_json::from_str(row["request"]["output"].as_str().unwrap()).unwrap();
+            output["scope"]="qa".into();
+            output["project"]="pitanga".into();
+            store.complete_llm_learning(&lease,&output.to_string(),now()+2).unwrap();
+        }
+        let change = store.memory_details("qa","pitanga").unwrap().into_iter()
+            .find(|d|d.quality.as_ref().is_some_and(|q|q.value=="36_gb")).expect("current correction");
+        assert_eq!(change.quality.unwrap().replaces_id.as_deref(), Some(old.input.id.as_str()));
+        assert_eq!(change.memory.state,lucille_memory::Status::Conflict);
+        store.change(&change.memory.input.id,"qa","pitanga",change.memory.version,Action::Approve).unwrap();
+        drop(store);
+        let mut store = Store::open(&path).unwrap();
+        for (query,want,forbid) in [
+            ("Qual a RAM atual do meu computador principal?","36_gb","20_gb"),
+            ("Antes da troca, qual era a RAM do meu computador principal?","20_gb","36_gb"),
+        ] {
+            let context=store.context(TurnRequest{query:query.into(),message_id:format!("query-{want}"),..initial.clone()}).unwrap();
+            assert!(context.facts.iter().any(|f|f.value==want));
+            assert!(!context.facts.iter().any(|f|f.value==forbid));
+        }
+    }
+}
+
+#[test]
+fn llm_revision_does_not_infer_values_from_ambiguous_sources() {
+    let dir = tempfile::tempdir().unwrap();
+    let mut store = setup(&dir.path().join("synthetic.sqlite3"), true);
+    let (_, proof) = prepare(&mut store, "first", "Meu computador principal possui 20 GB de RAM.", Mode::Code);
+    store.publish_user_turn(proof).unwrap();
+    let lease = store.claim_learning(now()+1).unwrap().unwrap();
+    store.complete_learning(&lease,&lease.claims,now()+2).unwrap();
+    let old=store.list("qa","pitanga").unwrap().pop().unwrap();
+    store.change(&old.input.id,"qa","pitanga",old.version,Action::Approve).unwrap();
+    let mut policy=store.learning_policy().unwrap();
+    policy.extraction_mode=lucille_memory::llm::ExtractionMode::Llm;
+    store.set_learning_policy(policy,&permit()).unwrap();
+    for (i, s) in [
+        "Na verdade, meu notebook de trabalho agora tem 36 GB de RAM. Antes eram 20 GB.",
+        "Na verdade, meu computador principal agora tem 36 GB de RAM. Antes eram 12 GB.",
+        "Se eu fizesse a troca, meu computador principal teria 36 GB de RAM. Antes eram 20 GB.",
+        "Na verdade, meu computador principal não tem 36 GB de RAM. Antes eram 20 GB.",
+        "O personagem disse: ‘Na verdade, meu computador principal agora tem 36 GB de RAM. Antes eram 20 GB.’",
+        "Meu manual diz: Na verdade, meu computador principal agora tem 36 GB de RAM. Antes eram 20 GB.",
+    ].iter().enumerate() {
+        let (_, proof) = prepare(&mut store, &format!("negative-{i}"),s,Mode::Code);
+        store.publish_user_turn(proof).unwrap();
+        if let Some(lease)=store.claim_llm_learning(now()+1).unwrap() {
+            store.complete_llm_learning(&lease,r#"{"version":3,"scope":"qa","project":"pitanga","claims":[]}"#,now()+2).unwrap();
+        }
+        assert_eq!(store.list("qa","pitanga").unwrap().len(),1,"{s}");
+    }
+}

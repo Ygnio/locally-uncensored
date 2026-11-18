@@ -1,0 +1,283 @@
+# Lucille 2.2G — checkpoint diagnóstico
+
+**Decisão: CONTINUAR, com um próximo ciclo dirigido.** O fallback nativo passou de 17/21 para 20/21 casos obrigatórios. As três fontes que bloquearam 11 consultas C2 passaram a materializar fatos tipados. O Gemma resolveu 13 das 15 perguntas com contexto ideal, mas uma reformulação transformou escolha em uso efetivo. O verificador aceitou os dois erros desse conjunto. O investimento indicado agora é testar materialização e discriminação de relações em casos novos. A reprovação operacional da 2.2F continua definitiva.
+
+## Quanto cabe ao software e ao modelo
+
+| Ocorrência na 2.2F | Último sucesso e primeira falha | Atribuição e confiança |
+| --- | --- | --- |
+| Três preparações C2 | O avaliador enviou a declaração íntegra ao Gemma e recebeu proposta literal válida. O código rejeitou a fonte em `enqueue` antes do job. Os 11 consumidores ficaram sem execução. | **A, alta**. Onze perdas de disponibilidade entre 82 casos têm essa causa comum. São efeitos de três rejeições. |
+| Quatro erros obrigatórios do C1 offline | Registros sintéticos tipados e revisados, seleção exata incorreta, com e sem o serviço de embeddings. | **C, alta**. Nenhuma geração de resposta participa dessa métrica. |
+| Transporte Chat e Code | Ambas as fontes USER sobreviveram. Chat teve proposta válida, job concluído e zero registros. Code preservou a fonte e não teve job nem chamada de extração. | **B em Chat, A na admissão de Code**. Replay nativo e teste com recibo sustentam a atribuição. O transporte GUI completo ainda precisa de reteste. |
+| RAM em `fv1-main-t15` | O broker entregou as duas frases ao extrator em modo LLM. As quatro propostas citaram exclusivamente «Os 20 GB descreviam a configuração anterior». Job concluído sem recibo. As duas respostas conversacionais continham 36 GB e uma declaração de atualização sem respaldo. | **D na nomeação, alta neste caso**. O verificador reteve corretamente as duas respostas. O antigo registro de 20 GB seguiu ativo. Em `fv1-main-t16` o modelo respondeu corretamente 36 e 14 GB, mas o dado persistente continuava desatualizado. |
+| Autoria em `fv1-main-t14` | A resposta identificou o café corretamente e atribuiu ao usuário o tema do material fictício. Só a bebida recebeu vínculo de evidência. A resposta inteira foi exibida. | **E comprovada**, com erro na geração bruta. O caso isolado não mede a capacidade geral do modelo com a fonte ideal. |
+| Persistência em `fv1-forget-t01` | A resposta reconheceu o tema escuro e prometeu mantê-lo para configurações futuras aos 2.684 ms. O job estava na fila. Primeira leitura do recibo aos 7.624 ms. | **E, alta**. A promessa ultrapassou a evidência disponível no momento da exibição. |
+| Respostas retidas | Em `fv1-main-t03`, uma explicação geral sobre fatores de desempenho acionou a regra de desempenho pessoal. Em `fv1-main-t12`, a preferência de Cecile acionou a checagem de valor pessoal. Em `fv1-main-t21`, as duas tentativas afirmaram uso de SQLite após cancelamento. | Retenções indevidas nos dois primeiros exemplos, retenção justificada no terceiro. A perda de utilidade agrega situações diferentes. |
+
+Uma divisão percentual global misturaria consultas não executadas, preparações compartilhadas, respostas e afirmações. A evidência sustenta contagens por etapa e admite causas simultâneas. Em C2, cinco seleções híbridas medidas divergiram do gabarito, incluindo o violão persistido que não chegou à resposta. A matriz por caso traz os textos USER, os resultados esperados e observados e as dependências. O complemento GUI traz tentativas, códigos de verificação e estados de job e recibo observados. [Auditoria](evidence/phase22g/audit.json) · [Extratos GUI](evidence/phase22g/gui-trace.json) · [Propostas originais e hashes das linhas de log](evidence/phase22g/nominations.json)
+
+## Teto prático observado
+
+24 chamadas locais ao mesmo peso e executável da 2.2F, conferidos por SHA-256. O diagnóstico usou contexto de 4.096 tokens, temperatura 0,2, seed 42, máximo de 160 tokens de saída, raciocínio desativado, uma requisição por vez. As entradas couberam integralmente na janela e todas terminaram em `stop`. A 2.2F operacional usava contexto 65.536 e instruções e formatos próprios. O oracle usou fatos sintéticos no prompt, sem SQLite, FTS5 ou Nomic. A adjudicação abaixo é uma leitura semântica das saídas arquivadas pelo autor deste checkpoint.
+
+| Capacidade | Evidência observada | Confiança e limite |
+| --- | --- | --- |
+| Sujeito, autoria fictícia, negação e hipótese | Os seis exemplos de extração preservaram o sentido principal. Três repetições mantiveram a relação. Em x5 e sua repetição, «cheia/carregada» aparece como propriedade e «adoro/detesto» como valor. | Moderada para compreensão nesses exemplos. Com esquema estrito, x5 é parcial nas duas tentativas. O teste em linguagem livre não mede validade do JSON operacional. |
+| Dispositivos e temporalidade | x3 e sua repetição distinguiram portátil, valor antigo e novo do desktop. As perguntas básica, explícita e reformulada sobre RAM atual acertaram. | Moderada no contexto curto. A resposta explicit2 acrescentou uma falsa ausência de histórico apesar dos 48 GB fornecidos. |
+| Escolha, intenção, implementação e uso | x1 e x2 distinguiram os estados. basic3 e explicit3 mantiveram uso desconhecido. variant3 declarou que a escolha provava uso. | Falha de geração demonstrada sob reformulação. Baixa confiança para declarar limitação persistente. |
+| Ausência de dados e isolamento | basic4, explicit4 e variant4 reconheceram falta de dados autorizados sobre Sal. | Moderada no cenário testado. O modelo recebeu somente fatos de Lume, condição diferente de testar um filtro real entre bancos. |
+| Resposta com contexto ideal | Prompt curto **6/6**. Instrução explícita, mesmos fatos e perguntas, **5/6**. Reformulações **2/3**. Total **13/15** respostas integralmente sustentadas. | Amostra pareada pequena. Uma instrução extra não demonstrou ganho. Nenhuma estimativa populacional ou teto absoluto. |
+| Verificador real | O caminho `validateLucilleCompletion` recebeu as 15 saídas e os mesmos fatos em snapshot tipado. Entregou as 15 literalmente na primeira tentativa, incluindo a falsa ausência e a inferência de uso. | **13/13 corretas preservadas, 0/2 incorretas contidas**. Sem omissões pedidas, trocas de autoria, retenções ou confirmações de persistência nessas 15 perguntas. A GUI congelada testa operações e autoria com casos próprios. |
+
+O melhor resultado observado foi 6/6 nas perguntas originais. Ele coexistiu com falhas sob mudanças pequenas de instrução e formulação. Não há base para trocar o modelo principal. O gargalo reproduzido na extração de RAM operacional merece uma comparação de política: em banco vazio, a mesma proposta arquivada criou zero fatos em modo LLM e uma candidata correta de 36 GB em híbrido. Ainda falta testar o conflito, a aprovação e a substituição com a versão antiga já ativa antes de qualquer mudança de política. [Entradas, parâmetros, gabaritos, respostas e uso](evidence/phase22g/benchmark.jsonl) · [Replay do verificador](evidence/phase22g/verifier.json)
+
+## Alterações e efeito medido
+
+- **Admissão e autoria.** O reconhecimento nativo aceita verbos de primeira pessoa já compreendidos pelo extrator. A função diferencia o rótulo «Sistema:» do substantivo em «no sistema de reservas». As três propostas C2 originais, reproduzidas em híbrido, terminaram com job concluído e o fato esperado. Crivo e Nacar ficaram como candidatas e a preferência negativa ficou ativa. Testes adicionais trocaram projeto e banco e incluíram fontes fictícias e condicionais.
+- **Transporte.** A normalização nominal recupera «explicações detalhadas». O classificador de autoria preserva o uso de «play role-playing games» como atividade do usuário. O teste de publicação nativa vinculou os recibos à fonte nos dois modos. O replay da proposta real de Chat, em modo LLM, produziu preferência ativa. O indicador GUI formal de transporte continua em **1/3** até novo teste com falha injetada.
+- **Recuperação.** O tratamento de RAM separa uma pergunta só pelo valor anterior de uma comparação entre passado e presente. A pergunta elíptica herda o dispositivo quando o vínculo é unívoco. A seleção de preferências distingue idioma de estilo e reconhece «escolho». O avaliador original de C1, em bancos sintéticos novos e sem vetor, executou **26/26** consultas. Acertou **25/26**, incluindo **20/21** obrigatórias. Corrigiu f1q-06, f1q-19 e f1q-22 e preservou todas as seleções anteriormente exatas. Em f1q-16 continuou faltando a implementação. Duas tentativas sobre a divisão da pergunta não corrigiram o resultado e foram retiradas. O próximo experimento deve comparar as referências de cada subconsulta antes e depois dos filtros de modalidade.
+- **Verificação.** O teste do texto de `fv1-main-t14` passou de aceitação a violação de autoria. A promessa em `fv1-forget-t01` e uma variante agora acionam a regra de promessa sem confirmação. O controle limitado à resposta corrente continua aceito. Esses testes medem a decisão do verificador. A disponibilidade do texto útil após regeneração na GUI ainda não foi medida.
+
+Os testes direcionados passaram em **24/24 Rust** e **92/92 TypeScript**. O replay nativo falha se perder um caso anteriormente exato de C1 ou qualquer uma das três correções de recuperação. [Resultados nativos](evidence/phase22g/native.json) · [Replay reproduzível](../scripts/replay-lucille-phase22g.py)
+
+## Custo, decisão e trabalho restante
+
+O Gemma registrou **2.285 tokens de entrada, 1.416 de saída e 45,415 s acumulados nas requisições**. A duração exclui inicialização, hashing e testes. O replay do verificador, a auditoria e os replays nativos consumiram zero inferências adicionais. Nenhum modelo foi baixado. Não há medição direta do consumo de tokens do Codex por etapa nem de energia ou pico de VRAM desta rodada. Os picos de hardware registrados na 2.2F pertencem àquela execução.
+
+A referência formal permanece em 90% de recall híbrido de extração, C2 16/27, 11 ausências, GUI+C2 54/82 úteis, 60/73 afirmações sustentadas, sete críticas e uma promessa prematura. Materializar as três fontes não demonstra que as 11 consultas passaram. Os critérios originais de 95% de disponibilidade e fidelidade, 100% de fallback obrigatório e zero críticas continuam em vigor.
+
+**Estimativa para a próxima decisão:** dois ciclos curtos de engenharia e um reteste de integração. Primeiro, rastrear f1q-16 e executar as 11 dependências C2 em perfis isolados, reaproveitando as gerações ou embeddings existentes quando correspondam exatamente à entrada. Segundo, testar autoria e modalidade com contraprovas novas e comparar LLM e híbrido com RAM anterior ativa. Por fim, retestar Chat e Code com falha de transporte e observar DOM, job, registro e recibo. Como ordem de grandeza, reservar 1–2 dias de engenharia e até 12 novas chamadas para esse reteste dirigido, sujeito ao resultado offline. O esforço até aprovação operacional ainda é indeterminado. Uma nova campanha longa depende de evidência de resolução das falhas críticas.
+
+## Consolidação funcional de 18 de novembro de 2026
+
+Checkpoint dirigido sobre `3804049`. A avaliação formal 2.2F continua congelada e reprovada. Nesta rodada, a contagem de recuperação corresponde à seleção de referências canônicas, e a contagem de respostas corresponde a gerações registradas no broker local.
+
+| Componente | Anterior | Atual | Situação |
+|---|---|---|---|
+| Fallback C1 | 20/21 obrigatórias | 21/21 obrigatórias e 26/26 exatas | Passou nas consultas congeladas |
+| Preparação C2 | 3 fontes recuperadas isoladamente | 20/20 fontes USER materializadas, 12 revisões explícitas e 2 mudanças de estado confirmadas | 18 índices ativos, 2 históricos ou excluídos fora do índice atual |
+| Recuperação C2 | 11 dependentes pendentes | 27/27 exatas em fallback e híbrido, inclusive as 11 dependentes | 25 referências esperadas em cada modo, zero extras, omissões ou invasões de escopo |
+| Respostas C2 | 11 dependentes pendentes | 9 primeiras gerações, 8 entregas, 5 respostas adequadas e 1 bloqueio | Fidelidade integral pendente |
+| Transporte GUI | 1/3 | 3/3 na aplicação Tauri de QA | Chat, Agent e Code passaram com falha injetada e recibo vinculado ao registro |
+| Atualização de RAM | Substituição falhava com 20 GB já ativos | Rules, LLM e Hybrid passaram com 20 GB históricos e 36 GB atuais após revisão | Passou no caso dirigido com reabertura do banco |
+| Fidelidade com contexto ideal | 13/15 brutas e 2 erros aceitos | Mesmas 13 corretas preservadas e os 2 erros bloqueados | Zero retenções úteis nesses 15 replays |
+
+### Fontes, revisão e recuperação
+
+Em `f1q-16`, a busca de RAM por substring encontrava «ram» dentro do nome de um projeto. Isso tornava ambígua a propriedade que a segunda oração deveria herdar. A decomposição agora reconhece imperativos e perguntas preposicionais, preserva as modalidades de escolha e execução e exige RAM como token. O rastreio compara o binário congelado da F e o bridge da G. [Seleção lexical e filtros](evidence/phase22g/consolidation/c1-trace.json) · [26 consultas](evidence/phase22g/consolidation/c1.json)
+
+Em C2, a preparação reproduziu 20 extrações arquivadas apenas após comparar os pedidos completos. A trilha exercitou o processamento nativo da fonte original, o job, a proveniência, a revisão e a indexação em três bancos independentes. A primeira passagem expôs trocas de finalidade por linguagem, perda do segundo termo de uma comparação e confusão entre preferências. A revisão distinguiu finalidade solicitada, escolha e implementação, os equipamentos nomeados e as dimensões de preferência. O reteste reutilizou as mesmas bases e vetores de consulta. [Preparação, índices e primeira recuperação](evidence/phase22g/consolidation/c2-native.json) · [Referências e fatos do reteste](evidence/phase22g/consolidation/c2-retrieval-final.json)
+
+A atualização de RAM requer vínculo com a fonte USER e correspondência única da propriedade, do dispositivo, do valor anterior ativo e do escopo. Em LLM, uma proposta vazia ou que omitiu o valor atual pode aproveitar a correção explícita validada na fonte. O fluxo preserva a política de revisão e o controle de versão. A regressão verificou a recuperação atual e histórica depois de reabrir o banco. As contraprovas incluem dispositivo diferente, valor anterior divergente, hipótese, negação, fala de personagem e citação de manual. A cobertura determinística atual restringe-se às formulações e relações temporais implementadas. [Testes de operação](../crates/lucille-memory/tests/phase22f_operations.rs)
+
+### Respostas e teto do modelo
+
+As nove respostas reais usaram o contexto da **primeira** recuperação, antes dos últimos ajustes de seleção. Em `f2q-11/12/13/14/19` as entregas responderam à pergunta. Em `10` a geração atribuiu ao projeto uma finalidade deduzida de uma atividade, em `16` omitiu a implementação e em `25` declarou falta de informação sobre uma preferência existente. O verificador reteve `18`, cuja geração afirmava que uma escolha de outro projeto ainda não havia sido definida. Um controle posterior aplicou o verificador atualizado ao texto e aos fatos originais de `10` e rejeitou a finalidade sem suporte. As gerações originais permanecem disponíveis com seus vereditos da época. [Pedidos, respostas brutas e resultados](evidence/phase22g/consolidation/c2-answers.json)
+
+O replay de contexto ideal usa gerações arquivadas a 4.096 tokens. A rodada operacional usa 65.536, Nomic em CPU e a trava de 1 GiB. As diferenças de contexto e as falhas observadas na recuperação impedem atribuir todos os erros ao Gemma. A distinção entre escolha e execução continua uma limitação observada em parte das formulações com contexto ideal. O verificador corrigido preservou as 13 respostas úteis e pediu regeneração para as duas incorretas. Não houve nova geração nesse replay. [Oracle e decisões](evidence/phase22g/consolidation/verifier.json)
+
+As nove gerações C2 consumiram 7.036 tokens de entrada e 208 de saída. Foram necessários 14 embeddings novos na preparação e nas consultas. O monitor do supervisor registrou 64 amostras durante a rodada de respostas. O pico observado de 9.275 MiB representa o consumo de toda a GPU. O consumo de tokens do Codex não foi medido. [Medição da rodada](evidence/phase22g/consolidation/answer-runtime.json)
+
+Para aferir todas as onze respostas dependentes com a recuperação corrigida, faltam, no mínimo, cinco primeiras gerações dirigidas: duas consultas sem geração nesta rodada (15 e 17) e três cujo contexto relevante mudou (10, 16 e 25). A confirmação de repetibilidade ou a medição de regenerações custaria chamadas adicionais. A aprovação integral continua pendente.
+
+
+### Transporte, regressões e encerramento
+
+A aplicação Tauri de QA executou o frontend compilado do projeto com WebView real, perfil full22g e broker exclusivo. Nos três modos a interrupção causou erro visível. Houve um envio USER, um job concluído com uma tentativa de extração e um registro com proveniência por cenário. A observação do recibo ocorreu depois do erro no DOM. Como a conversa só tinha a mensagem de falha, o comando de copiar recusou o texto e nenhum conteúdo foi copiado. Esse resultado mede recuperação do aprendizado depois da falha. A resposta conversacional continuou exibindo o erro original. [GUI, snapshots e recibos](evidence/phase22g/consolidation/gui.json) · [Extrações reais da GUI](evidence/phase22g/consolidation/gui-extraction.json)
+
+Passaram 24 testes Rust em duas suítes e 118 testes TypeScript em sete suítes dirigidas. As 12 chamadas autorizadas foram consumidas: nove respostas C2 e três extrações da GUI, com 8.342 tokens de entrada e 484 de saída no total. Os supervisores registraram a parada solicitada e a identidade dos processos encerrados. As cinco portas de QA ficaram livres. Os quatro bancos sintéticos passaram na integridade SQLite e na verificação de chaves estrangeiras. Os 104 arquivos protegidos coincidiram com os hashes do inventário ao encerrar. [Quota e supervisores](evidence/phase22g/consolidation/quota-closeout.json) · [SQLite](evidence/phase22g/consolidation/sqlite.json) · [Inventário](evidence/phase22g/consolidation/protected.json)
+
+**Decisão.** Manter o PR em rascunho. A recuperação e o transporte atingiram os critérios dirigidos, mas falta demonstrar a qualidade das respostas nas consultas dependentes com a seleção final. Não há recomendação para iniciar a próxima avaliação extensa.
+
+## Fidelidade com a recuperação corrigida — 18 de novembro de 2026
+
+**Decisão: CONTINUAR na 2.2G.** Das cinco primeiras respostas reais, quatro cumpriram a rubrica congelada. A comparação entre dois projetos expôs uma falha na construção do contexto e uma lacuna no verificador. Depois da correção, tanto a regeneração dirigida quanto uma nova primeira resposta atenderam à rubrica. O resultado final cobre cinco consultas dirigidas. A avaliação formal 2.2F continua reprovada.
+
+| Caso | Primeira resposta operacional | Resultado individual |
+|---|---|---|
+| f2q-10 | Descreveu os roteiros sonoros para um museu tátil | Adequada. Preservou a finalidade de Crivo. |
+| f2q-15 | Informou que Lacre foi concluído, com a última placa em braile pronta | Adequada. O estado concluído e o detalhe constavam na fonte. |
+| f2q-16 | Identificou TypeScript como escolha e Rust como implementação em andamento | Adequada. Respondeu às duas partes e preservou as modalidades. |
+| f2q-17 | Informou o plano de MySQL em Crivo e disse que o registro de Nacar estava indisponível | Incompleta e entregue. Faltou explicar o limite de acesso. Regeneração e novo primeiro passe adequados após a correção. |
+| f2q-25 | Atribuiu ao usuário a preferência negativa sobre interfaces carregadas no sistema de reservas | Adequada. Preservou autoria e polaridade. |
+
+Cada pedido real foi comparado às referências canônicas e à versão, escopo, projeto, modalidade e evidência literal de cada fato injetado. Na primeira rodada houve **4/5 adequadas, uma entrega inadequada e zero respostas corretas bloqueadas**. Com as quatro respostas preservadas e o novo primeiro passe do caso corrigido, o resultado dirigido chegou a **5/5**. [Pedidos e textos integrais](evidence/phase22g/fidelity/first-pass.json) · [Análise por átomo da rubrica](evidence/phase22g/fidelity/rubric-review.json)
+
+### Onde a comparação falhou
+
+A recuperação agregada de f2q-17 selecionou corretamente o plano de Crivo. Ao montar as relações do prompt, o sistema também anexou a mesma referência ao banco *escolhido em Nacar* e marcou essa segunda relação como recuperada. A primeira divergência foi **B — contexto**. O verificador aceitou a omissão do motivo de indisponibilidade, uma falha **D**. A geração não revelou nenhum dado de Nacar. A resposta inicial, por si só, não isola uma limitação de capacidade do Gemma.
+
+O seletor nativo passou a resolver qualificadores paralelos de projeto contra o vínculo autorizado do turno. Na relação externa, o contexto agora identifica o projeto fora de escopo, informa indisponibilidade e fornece zero referências. O verificador exige a explicação do limite nessa comparação. Os testes trocaram os nomes e inverteram o vínculo autorizado, além de testar um qualificador genérico. A correção cobre esse padrão de comparação; formulações muito diferentes ainda precisam de evidência.
+
+### Regeneração e custo
+
+No único caso inadequado, reapresentamos o texto bruto original ao verificador real com o contexto corrigido. A violação registrada foi `missing_project_access_boundary`. A aplicação solicitou uma única regeneração, exibiu a resposta verificada e preservou o plano de MySQL. O teste de streaming confirmou que o consumidor recebe apenas a substituição verificada nesse caminho. Num pedido novo independente, o Gemma explicou a mesma restrição já na primeira resposta. A evidência favorece uma falha de integração. Não houve indicação para gastar a oitava chamada num novo controle ideal. O resultado anterior de 13/15 brutas em contexto ideal de 4.096 tokens continua histórico. [Instrução corretiva, segunda geração e verificação](evidence/phase22g/fidelity/regeneration.json) · [Primeiro passe independente](evidence/phase22g/fidelity/corrected-first-pass.json)
+
+| Inferência nova | Chamadas | Tokens de entrada | Tokens de saída |
+|---|---:|---:|---:|
+| Cinco consultas obrigatórias | 5 | 4.478 | 137 |
+| Regeneração dirigida, 1/1 útil | 1 | 1.312 | 48 |
+| Reteste independente de f2q-17 | 1 | 966 | 49 |
+| **Total** | **7/8** | **6.756** | **234** |
+
+As cinco gerações iniciais levaram entre 1,33 e 2,57 segundos cada no broker local. O Gemma operou com contexto de 65.536 tokens e Nomic em CPU. Nas duas janelas de inferência, o mínimo amostrado de RAM física livre foi de 2.908.344.320 bytes. O pico de memória usada pela GPU inteira foi de 9.299 MiB. O consumo de tokens do Codex não estava disponível. [Duração, recursos, hash do bridge e encerramento](evidence/phase22g/fidelity/run.json)
+
+### Regressões e preservação
+
+Os replays nativos confirmaram C1 obrigatório 21/21, C1 completo 26/26, admissão das 20/20 fontes e seleção exata em 27/27 consultas C2 nos modos fallback e híbrido. Foram usados vetores e extrações arquivados. Passaram 27 testes Rust e 133 TypeScript, incluindo revisão temporal da RAM nos três modos, isolamento, operações sem recibo e replay do oracle anterior. Nesse oracle as 13 corretas foram preservadas e os dois erros retidos. O replay final da resposta antiga de f2q-17 foi bloqueado e as duas respostas corrigidas foram aceitas. [Regressões nativas](evidence/phase22g/fidelity/regressions.json) · [Replays das entregas](evidence/phase22g/fidelity/offline-replays.json)
+
+O transporte GUI permanece no 3/3 medido no checkpoint anterior. Esta rodada exercitou a verificação da resposta no caminho de streaming e preservou o fluxo de transporte de aprendizado. As cinco portas de QA ficaram livres, seis bancos sintéticos passaram nas verificações SQLite e os 104 arquivos protegidos mantiveram seus hashes. A execução partiu de `bfde90e4`; código e evidências estão no commit `2d794853`. A cobertura dirigida permite prosseguir com a fase, sem aprovar a memória operacional nem iniciar uma campanha extensa.
+
+## Generalização e continuidade conversacional — 18 de novembro de 2026
+
+**Decisão — REPROVADO NO CHECKPOINT.** Os dois diálogos foram executados integralmente na GUI. Em dez turnos, oito respostas chegaram ao DOM, sete foram úteis e seis foram completas. Sete das oito entregas foram fiéis. Duas respostas foram bloqueadas; uma delas tinha texto bruto literalmente correto. Houve uma afirmação crítica incorreta após reinício e zero confirmações prematuras de persistência observadas. A disponibilidade de 8/10, a fidelidade de 7/8 entregas e a afirmação crítica reprovam o contrato dirigido. Esses denominadores descrevem exclusivamente as duas conversas.
+
+O commit `11cfa03e` congelou os textos, o gabarito e o orçamento antes da primeira chamada. Cada projeto começou com escopo vazio e identidade sintética na versão 1. Os primeiros quatro turnos compartilharam uma conversa. Para o quinto turno de cada roteiro, o controlador encerrou o host, iniciou outro processo Tauri e abriu uma conversa nova sobre o mesmo banco. Os pedidos desses dois turnos não continham respostas anteriores nem as mensagens USER dos quatro turnos iniciais. [Protocolo congelado](evidence/phase22g/continuity/protocol.json) · [Auditoria dos dez turnos](evidence/phase22g/continuity/turn-audit.json)
+
+| Turno | Operação e expectativa | Resultado observado na GUI | Decisão |
+|---|---|---|---|
+| Alfenim 1 | Aprender finalidade e escolha de SQLite para o catálogo de matrizes de xilogravura | O extrator propôs ambos. Só SQLite foi materializado e aprovado. A resposta reconheceu a catalogação e o banco sem identificar precisamente a finalidade. | Útil, parcial; falha de materialização |
+| Alfenim 2 | Recordar finalidade e banco em uma pergunta indireta | Só SQLite foi recuperado. As duas gerações acertaram o texto com ajuda do histórico. O verificador tratou a frase introdutória como pedido de estado histórico e bloqueou a entrega. | Resposta literalmente correta retida; faltava prova canônica da finalidade |
+| Alfenim 3 | Substituir a escolha anterior por PostgreSQL sem afirmar migração | A revisão tornou PostgreSQL ativo e SQLite obsoleto. A resposta reconheceu a escolha nova. A finalidade repetida vinha da conversa. | Resposta adequada; substituição confirmada |
+| Alfenim 4 | Distinguir as escolhas anterior e atual | Respondeu SQLite antes e PostgreSQL agora. O registro atual injetado continha evidência vinculada da propriedade anterior; o histórico de chat também estava presente. | Resposta adequada; não isola a contribuição do chat |
+| Alfenim 5 | Recuperar finalidade e banco após reinício | Recuperou PostgreSQL, mas afirmou que a finalidade era guardar fichas. Essa era uma atividade de armazenamento. O propósito do projeto era catalogar matrizes. | Incorreta, crítica e entregue |
+| Vimeira 1 | Aprender a preferência por tema claro e a escolha de Python | Os dois fatos ficaram ativos. A primeira geração transformou a escolha em desenvolvimento futuro; a segunda apresentou a preferência como decisão. | Aprendizado confirmado, resposta bloqueada |
+| Vimeira 2 | Manter a preferência por sépia com a personagem Dália | Atribuiu sépia à personagem. A fonte passou pela extração, sem registro pessoal adicional. | Adequada |
+| Vimeira 3 | Distinguir a preferência pessoal e a da personagem | Respondeu claro para o usuário e sépia para Dália. A recuperação não injetou a preferência pessoal ativa. | Resposta correta no diálogo; falhou a comprovação de recordação persistente |
+| Vimeira 4 | Esquecer apenas o tema | O verificador tinha o recibo de exclusão vinculado à fonte e à versão do registro antes de liberar a confirmação. Houve um tombstone e Python permaneceu ativo. | Adequada |
+| Vimeira 5 | Retomar em nova sessão após exclusão | Comunicou a indisponibilidade do tema e a escolha de Python. Apenas Python foi injetado. O tombstone continuou presente. | Adequada e sustentada pela persistência |
+
+As evidências identificam cada mensagem e conversa, o job observado, a proposta literal, os estados antes e depois da revisão, os recibos e as versões. No Alfenim, a versão 2 ativa de PostgreSQL aponta para SQLite, que chegou à versão 3 obsoleta. No Vimeira, reapresentar a fonte original no clone do banco pós-reinício reutilizou o job concluído, preservou o tombstone e manteve Python como único registro. Os prompts e as gerações estão ligados aos turnos por índice na auditoria. [Chamadas integrais](evidence/phase22g/continuity/broker.json) · [Alfenim](evidence/phase22g/continuity/g22c-alfenim-conversation.json) · [Alfenim após reinício](evidence/phase22g/continuity/g22c-alfenim-restart.json) · [Vimeira](evidence/phase22g/continuity/g22c-vimeira-conversation.json) · [Vimeira após reinício](evidence/phase22g/continuity/g22c-vimeira-restart.json) · [Replay de fonte excluída](evidence/phase22g/continuity/source-replay.json)
+
+### Correções e limite da evidência
+
+A primeira falha do Alfenim ocorreu entre a proposta válida do extrator e a materialização da declaração de finalidade. Mais adiante, a pergunta composta associou a finalidade ao banco, e o verificador liberou uma finalidade sem fonte adequada. A correção aceita uma declaração pessoal explícita de criação de projeto quando o nome corresponde ao projeto autorizado. A consulta abreviada de finalidade resolve esse nome antes de dividir a pergunta. O verificador compara a finalidade afirmada à fonte original e distingue um aparte introdutório de uma pergunta sobre o passado. As contraprovas usam outros projetos, fala fictícia, hipótese, vínculo divergente e uma pergunta realmente histórica.
+
+Esses diálogos passaram a ser regressões conhecidas. No replay sem Gemma, a proposta arquivada de Alfenim 1 produziu os dois registros. A resposta original de Alfenim 2 passou com as duas referências corretas. Em Alfenim 5, o seletor recuperou finalidade e banco e o verificador bloqueou a resposta incorreta arquivada. **Não houve uma nova resposta real de Alfenim 5 depois da correção.** A ausência de recuperação em Vimeira 3 também continua pendente em conversação real. [Replay após exposição](evidence/phase22g/continuity/known-replay.json)
+
+As oito paráfrases determinísticas em cópias do banco realmente deixado pela GUI passaram de 5/8 para 7/8. Passaram a distinguir uso efetivo de escolha e a recuperar uma escolha de linguagem expressa por substantivo. O item restante pede uma finalidade que nunca foi gravada no banco original. O replay que parte novamente da fonte mede a correção da escrita; ele não repara retroativamente esse banco. [Antes](evidence/phase22g/continuity/paraphrases.json) · [Depois](evidence/phase22g/continuity/paraphrases-after.json)
+
+O Gemma extrapolou uma atividade no reinício do Alfenim e confundiu preferência, escolha e execução em Vimeira 1. No primeiro caso faltou a finalidade no contexto; no segundo, as duas respostas vieram da mesma pergunta. Não há repetição independente suficiente com contexto ideal para atribuir um teto ao modelo. As demais falhas identificadas são reproduzíveis no software sem inferência adicional.
+
+### Custo, regressões e preservação
+
+Foram 16 das 24 chamadas autorizadas: dez gerações conversacionais, quatro extrações e duas regenerações. O Gemma consumiu 16.494 tokens de entrada e 801 de saída. O supervisor do Gemma registrou 175 segundos de execução, com contexto de 65.536, Nomic em CPU, mínimo observado de 2.005.000.192 bytes de RAM física livre e pico de 9.445 MiB usados pela GPU inteira. Não havia medição de tokens do Codex. Os processos de QA foram encerrados, as cinco portas ficaram livres, a integridade SQLite e as chaves estrangeiras foram verificadas, e 104/104 arquivos protegidos coincidiram com os hashes inventariados. [Medições e hashes](evidence/phase22g/continuity/run.json)
+
+As regressões mantiveram C1 em 21/21 obrigatórias e 26/26 no total, C2 em 27/27 na recuperação nativa em ambos os modos e 20/20 na admissão. Passaram 40 testes Rust, 134 TypeScript e a verificação de tipos. A 2.2F continua congelada e reprovada. Uma avaliação formal inédita ainda não se justifica.
+
+## Reteste dirigido de persistência de 18 de novembro de 2026
+
+**REPROVADO NO CHECKPOINT.** As duas consultas de memória em conversa nova passaram na primeira geração. O verificador reteve uma reformulação correta em outro turno, durante a atualização da escolha de Alfenim. A correção posterior passou no replay das duas gerações desse turno. A execução observada teve quatro turnos de GUI, três respostas entregues, uma retida, zero afirmações críticas entregues e zero confirmações prematuras de gravação. O ponto de partida foi `6ade80b213691a3fc33ca096408a80a293d1fc03`. A fase 2.2F permanece congelada e reprovada.
+
+### Consultas com inferência nova
+
+| Caso | O que entrou no prompt | Resposta exibida na GUI |
+|---|---|---|
+| Alfenim, após fechar o host 13132 e iniciar o host 14872 sobre o mesmo SQLite | Finalidade revisada v2 e escolha de PostgreSQL v2, ambas de `project.alfenim` | “A finalidade do projeto Alfenim é catalogar matrizes de xilogravura. Você escolheu o PostgreSQL como banco de dados.” |
+| Vimeira, primeira conversa do perfil B, host 1336 | `user/interface_theme=light` v1 e `character.dalia/fictional_theme=sepia` v2 | “Você prefere o tema claro na interface, enquanto a Dália prefere o tema sépia no conto.” |
+
+Nos dois pedidos HTTP havia uma mensagem de sistema e uma de usuário, que reunia as referências e a pergunta atual. Não havia mensagens anteriores de usuário ou assistente. Os quatro pares de ID e versão coincidiam com registros já presentes ao abrir o host. Em ambos os casos, o texto bruto coincidiu com a mensagem exibida e o resultado foi `checked`. [Referências e conferência do DOM](evidence/phase22g/persistence-retest/recall-audit.json) · [Pedidos e gerações integrais](evidence/phase22g/persistence-retest/broker.json) · [Decisões por turno](evidence/phase22g/persistence-retest/turns.json)
+
+**Alfenim.** O perfil A começou vazio. Duas declarações pela GUI produziram duas extrações novas. A captura SQLite feita antes do reinício contém três registros, três vínculos de proveniência e quatro revisões. A finalidade passou de candidata v1 a ativa v2. A revisão da escolha ativou PostgreSQL v2, com vínculo explícito a SQLite v2, e tornou SQLite obsoleto v3. O recibo da primeira fonte comprova a criação dos dois candidatos. Na segunda fonte, o trabalho terminou e produziu um conflito. O histórico de aprovação comprova a revisão manual. O sistema não emitiu recibo automático de atualização para esse conflito. A interface não confirmou uma gravação sem recibo. [SQLite antes do reinício](evidence/phase22g/persistence-retest/alfenim-sqlite-before-restart.json) · [Histórico e provas de origem](evidence/phase22g/persistence-retest/origin-and-reviews.json)
+
+**Vimeira.** O perfil B recebeu uma cópia SQLite de um banco sintético criado do zero nesta execução. A proposta arquivada da primeira declaração passou pela ingestão nativa. O tema claro foi promovido pela política de preferências e a escolha de Python teve aprovação manual. Para preparar o fato ficcional, o usuário sintético declarou “No meu conto, defini que a personagem Dália prefere o tema sépia.” A extração por regras produziu um fato sobre a personagem, revisado antes da consulta. A preparação não consumiu inferência. A consulta usou a pergunta original sobre as cores e recuperou os dois titulares corretos. O teste cobre uma definição explícita do autor do conto. A fala atribuída a uma personagem continua sujeita aos filtros de origem. Os seis registros dos dois projetos passaram na conferência do trecho UTF-8 e dos hashes da evidência e da fonte. [Materialização e trabalhos](evidence/phase22g/persistence-retest/vimeira-materialization.json) · [Seleção offline](evidence/phase22g/persistence-retest/vimeira-context-offline.json) · [GUI de Vimeira](evidence/phase22g/persistence-retest/persist-vimeira-new.json)
+
+### Retenções, contraprovas e limite da conclusão
+
+- **Retenção original de Alfenim.** Com a finalidade e a escolha disponíveis, a pergunta “Antes de desenhar a capa...” aceitou a resposta arquivada já na primeira verificação. O mesmo replay bloqueou a falsa finalidade “guardar as fichas”. As regressões com o projeto Lume cobrem finalidade inventada, ausência de prova, escolha anterior, introdução temporal e dois fatos corretos. [Replay de Alfenim](evidence/phase22g/persistence-retest/alfenim-offline.json)
+- **Separação de autoria.** A contraprova inicial aceitou uma troca de cores. Após a correção, o verificador aceitou os dois titulares corretos, bloqueou a inversão, a terceira cor e a omissão da personagem. O teste automatizado também usa Íris. [Contraprovas de Vimeira](evidence/phase22g/persistence-retest/vimeira-counterproofs.json)
+- **Retenção nova na atualização de Alfenim.** O primeiro texto “Você trocou o SQLite pelo PostgreSQL...” permitia interpretar que a substituição já ocorrera. A regeneração explicitou a decisão e que a migração não começou. O verificador reteve as duas. Na segunda tentativa, a projeção do turno provava “agora escolhi PostgreSQL”, mas não incluía a declaração pessoal imediatamente anterior que nomeava SQLite. Após a execução, a projeção passou a preservar essa cláusula com atribuição nativa. O replay do verificador aceitou a decisão reformulada e manteve a contenção da execução não demonstrada. Esse reparo ainda aguarda observação em um novo turno de atualização pela GUI. [Textos reais e projeção do replay](evidence/phase22g/persistence-retest/decision-replay.json)
+- **Teto do Gemma.** As duas consultas decisivas foram corretas com o contexto persistente. A ambiguidade da primeira formulação ocorreu na geração. A retenção da reformulação correta foi reproduzida na construção de evidência e na verificação. Não há falha de geração reproduzível com contexto ideal que justifique atribuir um teto ao modelo.
+
+### Regressões, custo e encerramento
+
+C1 passou em 21/21 obrigatórias e 26/26 totais. C2 passou em 27/27 consultas nos dois modos e admitiu as 20 fontes conhecidas. O replay de esquecimento manteve o tombstone e Python após reapresentar a fonte original. Passaram 42 testes Rust, 137 testes TypeScript e a verificação de tipos. [Resultados por caso](evidence/phase22g/persistence-retest/regressions.json) · [Tombstone e registro sobrevivente](evidence/phase22g/persistence-retest/tombstone-offline.json)
+
+Foram sete das oito chamadas permitidas, com quatro respostas iniciais, duas extrações e uma regeneração. O Gemma consumiu 7.034 tokens de entrada e 439 de saída. O modelo foi `Gemma4-12B-QAT-Uncensored-HauhauCS-Balanced-Q4_K_M.gguf`, com contexto de 65.536. O Nomic usou CPU. O supervisor registrou 223 segundos e 107 amostras, mínimo de 1.851.424.768 bytes de RAM física livre e pico de 9.428 MiB ocupados na GPU inteira. O custo em tokens do Codex não foi medido. As compilações ocorreram com os modelos desligados. O encerramento verificou a identidade dos processos, as cinco portas livres, a integridade e as chaves estrangeiras nos bancos de QA e os hashes de 104/104 arquivos protegidos. [Recursos, orçamento e integridade](evidence/phase22g/persistence-retest/run.json)
+
+## Reteste final dirigido da atualização de Alfenim
+
+**REPROVADO NO CHECKPOINT.** A correção de `46860af8` passou no turno real de atualização. O SQLite preservou a revisão, e a segunda geração chegou ao usuário com a distinção correta entre escolha e execução. Na consulta adicional em uma conversa nova, o Gemma identificou corretamente a escolha anterior e a atual, mas o verificador reteve a resposta. Nos dois turnos houve uma entrega correta, uma retenção indevida, zero afirmações críticas entregues e zero confirmações prematuras de gravação.
+
+### Atualização pela GUI
+
+O perfil sintético `lucille-synthetic-full22g-retest-decision` começou com banco próprio e sem conversas anteriores. A preparação reproduziu a extração arquivada da declaração inicial no armazenamento nativo. Finalidade e SQLite passaram de candidatos v1 a ativos v2 por aprovação explícita. A primeira conversa do perfil usou a GUI Tauri, o backend local do Gemma e o fluxo nativo de aprendizado. [Estado inicial e revisões](evidence/phase22g/decision-update/initial.json)
+
+A fonte USER recebida foi “Mudei de ideia sobre o banco do Alfenim: antes eu tinha escolhido SQLite, mas agora escolhi PostgreSQL. A migração ainda não começou.” O extrator propôs a decisão e a declaração sobre a migração. A normalização materializou uma decisão sobre `project.alfenim/database`. A projeção nativa observada durante o turno vinculou “agora escolhi PostgreSQL” à cláusula pessoal adjacente que nomeava SQLite. O verificador encontrou os dois valores na mesma decisão. [Propostas e pedidos integrais](evidence/phase22g/decision-update/broker.json) · [Projeção, verificações e DOM](evidence/phase22g/decision-update/update.json)
+
+| Tentativa | Texto bruto | Decisão e entrega |
+|---|---|---|
+| Primeira geração | “Entendido, você trocou o SQLite pelo PostgreSQL para o banco do Alfenim. A migração ainda está pendente.” | Retida antes da exibição. “Você trocou” admitia uma substituição já executada. |
+| Regeneração | “Entendido. Você decidiu substituir o SQLite pelo PostgreSQL no projeto Alfenim, embora a migração ainda não tenha sido iniciada.” | Aceita sem violações. O DOM exibiu a reformulação integral. |
+
+Antes da aprovação, SQLite v2 continuava ativo e PostgreSQL v1 estava em conflito. A ação **Approve replacement** foi aplicada à linha e versão do conflito. PostgreSQL v2 passou a ativo e SQLite v3 a histórico, com vínculo à v2 anterior. Restaram três registros, incluindo a finalidade. Os três passaram na verificação de autor, entidade, escopo, trecho UTF-8 e hashes de origem e evidência. O job terminou e a operação da fonte chegou a `completed`. A substituição em conflito não gerou recibo automático de gravação. O evento de revisão na GUI e o histórico transacional comprovam a aprovação manual. A resposta somente reconheceu a escolha. [Estado após revisão](evidence/phase22g/decision-update/after-update.json) · [Auditoria de proveniência](evidence/phase22g/decision-update/origin-audit.json)
+
+### Consulta histórica e causa da retenção
+
+Depois da consulta nativa ao banco, um segundo host abriu uma conversa nova sobre a mesma base. A pergunta foi “Na ficha de planejamento, qual era minha escolha anterior de banco e qual vale agora?”. O prompt continha a decisão atual de PostgreSQL e o vínculo explícito à evidência anterior de SQLite. A verificação complementar recuperou também o ID de SQLite v3. O modelo respondeu “Sua escolha anterior era SQLite, mas você escolheu PostgreSQL para o projeto Alfenim.” O verificador marcou **ambas as afirmações como sustentadas**, mas acrescentou `unsupported_historical_state` à segunda oração. O DOM exibiu a mensagem de retenção. A quarta chamada já havia consumido o orçamento. [Contexto, geração e texto exibido](evidence/phase22g/decision-update/history.json) · [Decisões por turno](evidence/phase22g/decision-update/turns.json)
+
+A primeira falha ocorreu na verificação. A pergunta mista ativou a exigência histórica também para “você escolheu PostgreSQL”. No replay offline do mesmo banco, a resposta original foi retida novamente. Inserir apenas “agora” antes de “você escolheu” permitiu a entrega. Inverter os dois bancos continuou bloqueado. A correção recomendada é atribuir o tempo a cada oração do contraste, exigindo a escolha histórica para a primeira e a escolha atual revisada para a segunda. A contraprova com os valores invertidos deve continuar bloqueada. Esses resultados não sustentam um teto geral do Gemma. [Replay controlado](evidence/phase22g/decision-update/history-replay.json)
+
+### Regressões e encerramento
+
+Antes da inferência, o replay de `decision-replay.json` aceitou a reformulação correta e bloqueou a troca ambígua. Com o projeto Urze e a escolha de Python para Rust, as contraprovas distinguiram decisão, execução, inversão dos valores e ausência de evidência. A verificação passou em 42 testes Rust, 138 testes TypeScript e na checagem de tipos. C1 passou em 21/21 obrigatórias e 26/26 totais. C2 recuperou 27/27 nos dois modos e admitiu as 20 fontes. Os replays de Alfenim e Vimeira recuperaram os fatos e titulares esperados; o tombstone impediu reintrodução e preservou Python. [Resultados das regressões](evidence/phase22g/decision-update/regressions.json) · [Recuperação offline](evidence/phase22g/decision-update/offline-recall.json) · [Esquecimento](evidence/phase22g/decision-update/tombstone-offline.json)
+
+Foram **4/4 chamadas** reais, com uma extração, duas respostas iniciais e uma regeneração. Total do Gemma de **3.888 tokens de entrada e 210 de saída**. O modelo e a quantização foram preservados, com contexto de 65.536 e Nomic em CPU. Em 139 segundos, o supervisor observou mínimo de 2.208.956.416 bytes de RAM física livre e pico de 9.424 MiB utilizados na GPU inteira. O limite preventivo foi de 1 GiB. As compilações terminaram antes do carregamento. A inspeção final verificou a integridade SQLite e as chaves estrangeiras, os 104 hashes protegidos, a identidade dos processos encerrados e as cinco portas livres. A 2.2F permanece congelada. [Recursos, orçamento e integridade](evidence/phase22g/decision-update/run.json)
+
+## Verificação temporal por afirmação
+
+**APROVADO NO CHECKPOINT.** Em conversa nova na GUI Tauri, a primeira geração real repetiu literalmente a resposta histórica que o checkpoint anterior havia retido. O verificador aprovou as duas afirmações, o DOM exibiu o texto integral e nenhuma regeneração foi necessária. O ponto de partida local e remoto foi `7109b58e47764273d83222bb2390948dfc4d22f3`.
+
+### Causa e correção
+
+A segmentação já separava as orações em torno de “mas”. O erro ocorria na verificação de cada valor. A pergunta continha “anterior”, e o verificador voltava a aplicar essa exigência à segunda oração quando faltava uma palavra como “agora”. Em outro caminho, a existência de determinado valor no histórico podia influenciar a interpretação temporal da afirmação. A filtragem por escopo e a consulta complementar por referência já funcionavam. [Auditoria inicial](evidence/phase22g/temporal-claims/auditoria.txt) · [Replay antes da mudança](evidence/phase22g/temporal-claims/before.json)
+
+Para perguntas que contrastam duas versões da escolha de um mesmo banco ou linguagem, a afirmação tipada recebe o papel histórico ou atual antes da comparação com os valores. A oração “você escolheu” pode nomear uma decisão ainda vigente. As verificações exigem concordância de projeto, entidade, propriedade, valor, modalidade e versão. A segmentação também reconhece contrastes coordenados e elipses, como “a anterior era Python e a atual é Rust”. As perguntas exclusivamente históricas, as declarações de atualização e os pedidos que reúnem propriedades diferentes mantêm suas verificações próprias. Uma contraprova adicional expôs a frase isolada “A migração foi executada”. O verificador agora exige evidência de execução para essa afirmação; uma decisão sobre tecnologia é insuficiente. [Replay corrigido](evidence/phase22g/temporal-claims/after.json) · [Casos sintéticos e contextos](evidence/phase22g/temporal-claims/unit-matrix.json)
+
+### Consulta real com Gemma
+
+O perfil Tauri e seu armazenamento de conversas eram novos. A base foi preparada por cópia SQLite da base sintética revisada de Alfenim, preservando IDs, versões, proveniência e vínculo de substituição. A pergunta foi “Na ficha de planejamento, qual era minha escolha anterior de banco e qual vale agora?”. No pedido HTTP havia apenas a mensagem de sistema e a mensagem de usuário com os dados recuperados e a pergunta. O contexto injetado incluía PostgreSQL v2 e a evidência vinculada da escolha anterior de SQLite. [Preparação](evidence/phase22g/temporal-claims/preparation.json) · [Pedido e geração integrais](evidence/phase22g/temporal-claims/broker.json)
+
+> Sua escolha anterior era SQLite, mas você escolheu PostgreSQL para o projeto Alfenim.
+
+| Afirmação | Tempo verificado | Evidência autorizada |
+|---|---|---|
+| “Sua escolha anterior era SQLite” | Histórico | A consulta complementar confirmou o registro obsoleto de SQLite v3, ligado à revisão |
+| “você escolheu PostgreSQL para o projeto Alfenim” | Atual | Decisão ativa de PostgreSQL v2, do mesmo projeto e propriedade |
+
+A primeira tentativa terminou em `checked`, com duas afirmações sustentadas e zero violações. O texto bruto coincidiu com a mensagem do assistente e apareceu integralmente no DOM. Os registros mantiveram seus estados e versões. [Afirmações e referências](evidence/phase22g/temporal-claims/recall.json) · [Observação do DOM](evidence/phase22g/temporal-claims/gui.json)
+
+### Matriz offline
+
+| Resultado em 36 casos dirigidos | Antes | Depois |
+|---|---:|---:|
+| Resposta correta e aceita | 10 | 19 |
+| Resposta correta e bloqueada | 9 | 0 |
+| Resposta incorreta e bloqueada | 16 | 17 |
+| Resposta incorreta e aceita | 1 | 0 |
+
+A aceitação incorreta anterior apresentava Python histórico como escolha atual de Urze. A matriz inclui as duas ordens de apresentação, duas frases, elipse, valores invertidos, histórico inventado, outro projeto ou escopo, plano e execução. Também inclui a introdução de Alfenim 2, a reformulação da atualização, a explicação geral de desempenho e a autoria do tema da personagem. As contagens são de exemplos dirigidos, incluindo variantes de redação. Os controles nativos preservados usam o resultado arquivado como comparação inicial; a consulta histórica de Alfenim foi reproduzida antes e depois nesta execução. [Matriz por resposta](evidence/phase22g/temporal-claims/matrix.json)
+
+### Regressões, recursos e decisão
+
+C1 passou em 21/21 obrigatórias e 26/26 totais. C2 passou em 27/27 nos dois modos e admitiu as 20 fontes. Passaram 42 testes Rust, 139 testes TypeScript e a checagem de tipos. Os replays preservaram a recuperação de Alfenim e Vimeira, o vínculo USER/personagem, o tombstone, a contenção de finalidade inventada e as exigências de recibo para afirmar persistência. [Regressões](evidence/phase22g/temporal-claims/regressions.json) · [Autoria](evidence/phase22g/temporal-claims/vimeira-counterproofs.json) · [Esquecimento](evidence/phase22g/temporal-claims/tombstone-offline.json)
+
+Foi usada **1 das 2 chamadas autorizadas**, com 1.362 tokens de entrada e 20 de saída. O Gemma 4 12B manteve o contexto de 65.536 e o Nomic rodou na CPU. Em 39 amostras ao longo de 81 segundos, a RAM física livre mínima foi de 2.175.852.544 bytes e o pico de uso da GPU inteira foi de 9.427 MiB. A trava preventiva foi de 1 GiB. Os supervisores confirmaram o encerramento dos processos de QA. As cinco portas ficaram livres, a integridade SQLite e as chaves estrangeiras passaram, e os 104 arquivos protegidos mantiveram seus hashes. [Medições e encerramento](evidence/phase22g/temporal-claims/run.json)
+
+A 2.2G está pronta para **preparar uma avaliação independente de generalização**, com casos novos e critérios congelados antes da execução. Este checkpoint dirigido não confere aprovação operacional à memória. A 2.2F segue congelada e reprovada.
+
+## Preparação da avaliação independente
+
+O protocolo registra 40 consultas em oito capacidades, com cinco perfis sintéticos e 51 vínculos de recuperação obrigatórios. A preparação usou zero chamadas ao Gemma. Dois processos Tauri distintos abriram o perfil de ensaio, e os 104 hashes protegidos foram conferidos. A inferência real e a decisão sobre generalização ficam para a campanha posterior, com teto de 160 tentativas. [Protocolo e execução](evidence/phase22g/independent-evaluation/README.md) · [Rubrica](evidence/phase22g/independent-evaluation/rubrica.md) · [Manifesto](evidence/phase22g/independent-evaluation/manifest.json)
+
+## Execução independente congelada — tentativa 01
+
+**INCONCLUSIVO.** O pré-teste passou, mas o supervisor local do Nomic falhou na primeira amostragem de recursos, antes de despachar entradas. As 28 fontes e as 40 consultas ficaram pendentes, com zero tickets Gemma consumidos. As cinco portas ficaram livres e os 104 hashes protegidos conferiram no encerramento. [Relatório, ledger e evidências](evidence/phase22g/independent-run-01/README.md)
+
+## Execução independente congelada — tentativa 02
+
+**INCONCLUSIVO.** Os dois modelos atingiram prontidão. A RAM física livre caiu abaixo do piso de 1 GiB durante a inicialização da interface. A guarda interrompeu a primeira fonte antes do envio; as 40 consultas ficaram pendentes e o consumo foi de 0/160 tentativas Gemma. A primeira tentativa foi preservada. [Relatório, métricas e evidências](evidence/phase22g/independent-run-02/README.md)
+
+## Avaliação independente · tentativa 03
+
+A primeira consulta adjudicada perdeu uma referência obrigatória. A próxima consulta foi interrompida pela guarda de disponibilidade do broker; a RAM permaneceu acima do piso. A tentativa não satisfaz a recuperação exigida e o pontuador registrou matriz incompleta. [Relatório, métricas e evidências](evidence/phase22g/independent-run-03/README.md)

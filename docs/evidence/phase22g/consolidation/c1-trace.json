@@ -1,0 +1,227 @@
+{
+  "phase22f": [
+    {
+      "query": "Diga em Tramela qual linguagem escolhi e em qual estou implementando agora.",
+      "relations": null,
+      "references": [
+        {
+          "id": "8ec29f4a-9f53-5e8e-b42d-efeaec930a47",
+          "version": 2
+        }
+      ],
+      "candidates": [
+        {
+          "id": "633db964-a6a5-51f7-97c2-8e715ed96968",
+          "lexical_rank_bm25": [
+            2,
+            -1.0111801242236026e-06
+          ],
+          "selected": false,
+          "reason": "temporal_entity_intent_or_conflict_filter",
+          "state_temporal_entity_intent_pass": false,
+          "value": "rust"
+        },
+        {
+          "id": "8ec29f4a-9f53-5e8e-b42d-efeaec930a47",
+          "lexical_rank_bm25": [
+            1,
+            -1.2711744748582123
+          ],
+          "selected": true,
+          "reason": "selected_after_all_filters",
+          "state_temporal_entity_intent_pass": true,
+          "value": "javascript"
+        }
+      ]
+    },
+    {
+      "query": "Qual linguagem escolhi?",
+      "relations": null,
+      "references": [
+        {
+          "id": "8ec29f4a-9f53-5e8e-b42d-efeaec930a47",
+          "version": 2
+        }
+      ],
+      "candidates": [
+        {
+          "id": "633db964-a6a5-51f7-97c2-8e715ed96968",
+          "lexical_rank_bm25": null,
+          "selected": false,
+          "reason": "temporal_entity_intent_or_conflict_filter",
+          "state_temporal_entity_intent_pass": false,
+          "value": "rust"
+        },
+        {
+          "id": "8ec29f4a-9f53-5e8e-b42d-efeaec930a47",
+          "lexical_rank_bm25": [
+            1,
+            -1.2711734964928276
+          ],
+          "selected": true,
+          "reason": "selected_after_all_filters",
+          "state_temporal_entity_intent_pass": true,
+          "value": "javascript"
+        }
+      ]
+    },
+    {
+      "query": "Em qual linguagem estou implementando agora?",
+      "relations": null,
+      "references": [
+        {
+          "id": "633db964-a6a5-51f7-97c2-8e715ed96968",
+          "version": 2
+        }
+      ],
+      "candidates": [
+        {
+          "id": "633db964-a6a5-51f7-97c2-8e715ed96968",
+          "lexical_rank_bm25": null,
+          "selected": true,
+          "reason": "selected_after_all_filters",
+          "state_temporal_entity_intent_pass": true,
+          "value": "rust"
+        },
+        {
+          "id": "8ec29f4a-9f53-5e8e-b42d-efeaec930a47",
+          "lexical_rank_bm25": [
+            1,
+            -1.2711734964928276
+          ],
+          "selected": false,
+          "reason": "temporal_entity_intent_or_conflict_filter",
+          "state_temporal_entity_intent_pass": false,
+          "value": "javascript"
+        }
+      ]
+    }
+  ],
+  "phase22g": [
+    {
+      "query": "Diga em Tramela qual linguagem escolhi e em qual estou implementando agora.",
+      "relations": [
+        {
+          "actor": "user",
+          "intent": "choice",
+          "query": "Diga em Tramela qual linguagem escolhi",
+          "references": [
+            {
+              "id": "8ec29f4a-9f53-5e8e-b42d-efeaec930a47",
+              "version": 2
+            }
+          ],
+          "state": "retrieved"
+        },
+        {
+          "actor": "user",
+          "intent": "execution",
+          "query": "em qual estou implementando agora. linguagem",
+          "references": [
+            {
+              "id": "633db964-a6a5-51f7-97c2-8e715ed96968",
+              "version": 2
+            }
+          ],
+          "state": "retrieved"
+        }
+      ],
+      "references": [
+        {
+          "id": "8ec29f4a-9f53-5e8e-b42d-efeaec930a47",
+          "version": 2
+        },
+        {
+          "id": "633db964-a6a5-51f7-97c2-8e715ed96968",
+          "version": 2
+        }
+      ],
+      "candidates": [
+        {
+          "id": "633db964-a6a5-51f7-97c2-8e715ed96968",
+          "lexical_rank_bm25": [
+            2,
+            -1.0111801242236026e-06
+          ],
+          "selected": true,
+          "reason": "selected_after_all_filters",
+          "state_temporal_entity_intent_pass": true,
+          "value": "rust"
+        },
+        {
+          "id": "8ec29f4a-9f53-5e8e-b42d-efeaec930a47",
+          "lexical_rank_bm25": [
+            1,
+            -1.2711744748582123
+          ],
+          "selected": true,
+          "reason": "selected_after_all_filters",
+          "state_temporal_entity_intent_pass": true,
+          "value": "javascript"
+        }
+      ]
+    },
+    {
+      "query": "Qual linguagem escolhi?",
+      "relations": null,
+      "references": [
+        {
+          "id": "8ec29f4a-9f53-5e8e-b42d-efeaec930a47",
+          "version": 2
+        }
+      ],
+      "candidates": [
+        {
+          "id": "633db964-a6a5-51f7-97c2-8e715ed96968",
+          "lexical_rank_bm25": null,
+          "selected": false,
+          "reason": "temporal_entity_intent_or_conflict_filter",
+          "state_temporal_entity_intent_pass": false,
+          "value": "rust"
+        },
+        {
+          "id": "8ec29f4a-9f53-5e8e-b42d-efeaec930a47",
+          "lexical_rank_bm25": [
+            1,
+            -1.2711734964928276
+          ],
+          "selected": true,
+          "reason": "selected_after_all_filters",
+          "state_temporal_entity_intent_pass": true,
+          "value": "javascript"
+        }
+      ]
+    },
+    {
+      "query": "Em qual linguagem estou implementando agora?",
+      "relations": null,
+      "references": [
+        {
+          "id": "633db964-a6a5-51f7-97c2-8e715ed96968",
+          "version": 2
+        }
+      ],
+      "candidates": [
+        {
+          "id": "633db964-a6a5-51f7-97c2-8e715ed96968",
+          "lexical_rank_bm25": null,
+          "selected": true,
+          "reason": "selected_after_all_filters",
+          "state_temporal_entity_intent_pass": true,
+          "value": "rust"
+        },
+        {
+          "id": "8ec29f4a-9f53-5e8e-b42d-efeaec930a47",
+          "lexical_rank_bm25": [
+            1,
+            -1.2711734964928276
+          ],
+          "selected": false,
+          "reason": "temporal_entity_intent_or_conflict_filter",
+          "state_temporal_entity_intent_pass": false,
+          "value": "javascript"
+        }
+      ]
+    }
+  ]
+}

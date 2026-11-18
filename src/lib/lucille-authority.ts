@@ -179,6 +179,13 @@ export function authorityClaims(text: string, snapshot: AnswerSnapshot): Authori
       return /^(?:se|if|talvez|maybe|hipoteticamente|hypothetically)\b/.test(q.trim())
         || (at>=0 && /\b(?:might|could|may|pode|podem|podera|poderao|poderia|poderiam|should|estimativa|estimate)\b/.test(q.slice(0,at)))
     }
+    const completedMigration = /^(?:(?:e|and)\s+)?(?:a migracao (?:ja )?(?:foi|esta) (?:executada|realizada|concluida)|the migration (?:was|is|has been) (?:executed|completed))\b/u
+    if (completedMigration.test(q.trim()) && !epistemic && !hypothetical(completedMigration)) {
+      const entity = 'project.' + snapshot.project
+      const proof = literalEvidence(span, current.filter(f => f.entity === entity &&
+        ['current_fact','completed'].includes(f.modality)))
+      add(span,entity,'migration','completed','transition',proof,'A revised choice does not prove that migration was completed.')
+    }
     const project = /\b(?:projeto|project)\b/.test(q)
     const stageTransition = /\b(?:avancou|passou|advanced|moved)\s+(?:d[ao] [^,;.!?]{1,40} para|from [^,;.!?]{1,40} to|para|to)\s+(?:(?:a|o|the)\s+)?(definicao tecnica|fase inicial|fase intermediaria|fase final|technical definition|initial phase|intermediate phase|final phase)\b/u
     const nextStage = project && !epistemic && !hypothetical(stageTransition) ? q.match(stageTransition)?.[1] : undefined

@@ -93,6 +93,7 @@ pub(crate) fn project(tx: &Transaction, memories: &[Memory]) -> Result<Vec<Conte
             )
             .map_err(db_error)?;
         let modality = match q.temporal.as_str() {
+            _ if q.property == "fictional_theme" && q.subject.starts_with("character.") => "fictional_preference",
             "planned" => "planned",
             "completed" => "completed",
             "cancelled" => "cancelled",
@@ -201,6 +202,7 @@ pub(crate) fn statements(req: &TurnRequest) -> Vec<ContextFact> {
         .enumerate()
         .map(|(i, c)| {
             let modality = match c.temporal.as_str() {
+                _ if c.property == "fictional_theme" && c.subject.starts_with("character.") => "fictional_preference",
                 "planned" => "planned",
                 "completed" => "completed",
                 "cancelled" => "cancelled",
@@ -218,6 +220,29 @@ pub(crate) fn statements(req: &TurnRequest) -> Vec<ContextFact> {
                 _ => "current_fact",
             }
             .into();
+            let mut evidence = vec![FactEvidence {
+                role: "current_user_statement".into(),
+                text: c.evidence.clone(),
+            }];
+            if c.kind == Kind::Decision && ["database", "language"].contains(&c.property.as_str()) {
+                for pair in crate::source_authority::clauses(&req.query).windows(2) {
+                    let (old, new) = (&pair[0], &pair[1]);
+                    let previous = crate::extraction::fold(old.text);
+                    if ["antes eu tinha escolhido ", "antes tinha escolhido ", "antes escolhi ",
+                        "antes eu escolhi ", "i had chosen ", "i previously chose "]
+                        .iter().any(|marker| previous.contains(marker))
+                        && old.origin == crate::source_authority::Origin::PersonalDeclaration
+                        && new.origin == old.origin && new.text == c.evidence
+                        && crate::dialogue::project_scope_matches(old.text, &req.project)
+                    {
+                        evidence.push(FactEvidence {
+                            role: "adjacent_personal_clause".into(),
+                            text: old.text.into(),
+                        });
+                        break;
+                    }
+                }
+            }
             ContextFact {
                 id: format!("current-turn-{i}"),
                 version: 0,
@@ -230,10 +255,7 @@ pub(crate) fn statements(req: &TurnRequest) -> Vec<ContextFact> {
                 project: req.project.clone(),
                 review: "current_turn_not_reviewed_or_persisted".into(),
                 facets: c.facets,
-                evidence: vec![FactEvidence {
-                    role: "current_user_statement".into(),
-                    text: c.evidence,
-                }],
+                evidence,
             }
         })
         .collect()

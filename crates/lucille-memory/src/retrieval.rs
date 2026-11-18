@@ -13,6 +13,8 @@ use std::collections::{HashMap, HashSet};
 /// expands the authorized scope/project or grants evidence to a missing actor.
 #[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
 pub struct QueryRelation {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub outside_project: Option<String>,
     pub query: String,
     pub actor: String,
     pub intent: String,
@@ -32,7 +34,12 @@ fn relation_domains(q: &str) -> Vec<&'static str> {
             "assunto do projeto",
         ),
     ] {
-        if !(description && label == "tema de interface") && words.iter().any(|w| q.contains(w)) {
+        let matches = if label == "RAM" {
+            q.split(|c: char| !c.is_alphanumeric()).any(|token| token == "ram")
+        } else {
+            words.iter().any(|word| q.contains(word))
+        };
+        if matches && !(description && label == "tema de interface") {
             out.push(label)
         }
     }
@@ -88,7 +95,7 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
     let comparison = folded.starts_with("compare ") || named_project.is_some();
     if query.len() > 1600
         || query.contains(['"', '“', '”', '`'])
-        || !(query.contains('?') || comparison)
+        || !(query.contains('?') || comparison || ["diga ", "informe ", "tell me "].iter().any(|p| folded.starts_with(p)))
     {
         return vec![];
     }
@@ -106,7 +113,11 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
         // the coordinating conjunction e and manufacture a relation "Qual".
         let conjunction = ["e", "and", "com", "with", "versus", "vs", "vs."].contains(&word.to_lowercase().as_str());
         let list_comma = word.ends_with(',');
-        if !conjunction && !list_comma {
+        // A contrast can introduce an elliptical second track without a conjunction.
+        let contrast = ["daquela", "daquele"].contains(&word.to_lowercase().as_str())
+            && fold(&query[start..index]).contains("distinguir")
+            && fold(query[index + word.len()..].trim_start()).starts_with("em implementacao");
+        if !conjunction && !list_comma && !contrast {
             continue;
         }
         let boundary = if list_comma { index + word.len() - 1 } else { index };
@@ -189,7 +200,9 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
             .iter().any(|p| preceding.contains(p));
         let explicit_question = head.is_some_and(|w| ["qual", "quais", "what", "which", "quanto", "quantos"].contains(&w.as_str()));
         if assessment && !explicit_question { continue; }
-        if ((conjunction && starts_relation) || explicit_project_list_item || shared_track || separate_lifecycle)
+        let prepositional_question = matches!(words.as_slice(), [p, w, ..]
+            if ["em", "in"].contains(&p.as_str()) && ["qual", "which"].contains(&w.as_str()));
+        if ((conjunction && (starts_relation || prepositional_question)) || explicit_project_list_item || shared_track || separate_lifecycle || contrast)
             && boundary > start && spans.len() < 7 {
             spans.push(query[start..boundary].trim().to_owned());
             start = index + word.len();
@@ -200,6 +213,14 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
     }
     spans.push(query[start..].trim().to_owned());
     let shared = relation_domains(query);
+    // An elliptical RAM conjunct inherits a device only if every explicit
+    // device in the question agrees (e.g. "antes e qual é agora?").
+    let devices: HashSet<_> = spans.iter().filter_map(|s| query_device(s)).collect();
+    let shared_device = if devices.len() == 1 && !implicit_device_comparison(query) {
+        devices.iter().next().copied()
+    } else {
+        None
+    };
     spans
         .into_iter()
         .map(|mut part| {
@@ -212,6 +233,14 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
             if relation_domains(&part).is_empty() && shared.len() == 1 {
                 part.push(' ');
                 part.push_str(shared[0]);
+                if shared[0] == "RAM" && query_device(&part).is_none() && !third_party(&part) {
+                    match shared_device {
+                        Some("device.primary_computer") => part.push_str(" computador principal"),
+                        Some("device.work_laptop") => part.push_str(" notebook de trabalho"),
+                        Some("device.other_computer") => part.push_str(" outro computador"),
+                        _ => {}
+                    }
+                }
             }
             let part_domains = relation_domains(&part);
             if let Some(name) = named_project {
@@ -268,6 +297,7 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
             }
             .into();
             QueryRelation {
+                outside_project: None,
                 query: part,
                 actor,
                 intent,
@@ -277,14 +307,79 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
 }
 #[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
 pub struct RelationContext {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub outside_project: Option<String>,
     pub query: String,
     pub actor: String,
     pub intent: String,
     pub state: String,
     pub references: Vec<crate::Reference>,
 }
+// Insert the project noun only for a purpose qualified by the bound proper name.
+fn bound_description_query(query: &str, project: &str) -> Option<String> {
+    if query.contains(['"', '“', '”', '`']) { return None; }
+    let mut words: Vec<_> = query.split_whitespace().collect();
+    let at = words.windows(3).position(|w| {
+        ["finalidade", "proposito", "objetivo", "descricao", "assunto"].contains(&fold(w[0]).as_str())
+            && ["do", "da", "de"].contains(&fold(w[1]).as_str())
+            && w[2].starts_with(char::is_uppercase)
+            && fold(w[2].trim_end_matches(['?', '.', ',', '!'])) == fold(project)
+    })?;
+    words[at + 1] = "do";
+    words.insert(at + 2, "projeto");
+    Some(words.join(" "))
+}
+
+fn theme_words(query: &str) -> bool {
+    fold(query).split(|c: char| !c.is_alphanumeric()).any(|w| ["tema","cores","cor","theme","color","colour"].contains(&w))
+}
+fn story_actor(query: &str) -> Option<String> {
+    let words: Vec<_> = query.split(|c: char| !c.is_alphabetic()).filter(|w| !w.is_empty()).collect();
+    let in_story = words.iter().any(|w| ["conto","historia","story"].contains(&fold(w).as_str()));
+    let mut names = words.windows(2).filter(|w| {
+        ["personagem","character"].contains(&fold(w[0]).as_str())
+            || in_story && ["da","do"].contains(&fold(w[0]).as_str())
+    }).filter_map(|w| w[1].starts_with(char::is_uppercase).then(||fold(w[1])));
+    let name = names.next()?;
+    names.all(|other| other == name).then(||format!("character.{name}"))
+}
+// Resolve parallel project qualifiers against this turn's authorized binding.
+fn bound_relations(query: &str, project: &str) -> Vec<QueryRelation> {
+    fn qualifier(relation: &QueryRelation) -> Option<&str> {
+        if requested_project_field(&relation.query).is_none() { return None; }
+        let mut words = relation.query.trim_end_matches(['.', '?', '!']).split_whitespace().rev();
+        let name = words.next()?;
+        let prep = fold(words.next()?);
+        (["em", "in"].contains(&prep.as_str())
+            && name.chars().all(|c| c.is_alphanumeric() || c == '-' || c == '_')).then_some(name)
+    }
+    let expanded = bound_description_query(query, project);
+    let mut relations = query_relations(expanded.as_deref().unwrap_or(query));
+    if theme_words(query) && story_actor(query).is_some() {
+        for relation in &mut relations {
+            if let Some(actor) = story_actor(&relation.query) {
+                relation.actor = actor;
+                relation.query.push_str(" tema");
+            } else if relation.actor == "user" && fold(&relation.query).contains("pref") {
+                relation.query.push_str(" tema de interface");
+            }
+        }
+    }
+    if relations.iter().filter_map(qualifier).any(|name| fold(name) == fold(project)) {
+        for relation in &mut relations {
+            relation.outside_project = qualifier(relation)
+                .filter(|name| name.starts_with(char::is_uppercase) && fold(name) != fold(project))
+                .map(str::to_owned);
+        }
+    }
+    relations
+}
 fn relation_matches(tx: &Transaction, m: &Memory, r: &QueryRelation) -> Result<bool> {
-    if r.actor != "user" {
+    if r.actor.starts_with("character.") {
+        return Ok(r.outside_project.is_none() && quality(tx,&m.input.id)?.is_some_and(|q|
+            q.subject == r.actor && q.property == "fictional_theme"));
+    }
+    if r.actor != "user" || r.outside_project.is_some() {
         return Ok(false);
     }
     let Some(q) = quality(tx, &m.input.id)? else {
@@ -306,14 +401,15 @@ fn relation_matches(tx: &Transaction, m: &Memory, r: &QueryRelation) -> Result<b
 pub(crate) fn relation_context(
     tx: &Transaction,
     query: &str,
+    project: &str,
     memories: &[Memory],
     at: i64,
 ) -> Result<Vec<RelationContext>> {
-    query_relations(query)
+    bound_relations(query, project)
         .into_iter()
         .map(|r| {
             let mut references = Vec::new();
-            if r.actor == "user" {
+            if r.actor == "user" || r.actor.starts_with("character.") {
                 for m in memories {
                     if relation_matches(tx, m, &r)? && eligible_source(tx, m, &r.query, at, false)?
                     {
@@ -334,6 +430,7 @@ pub(crate) fn relation_context(
                 }
             }
             Ok(RelationContext {
+                outside_project: r.outside_project,
                 query: r.query,
                 actor: r.actor,
                 intent: r.intent,
@@ -508,9 +605,9 @@ fn requested_project_field(query: &str) -> Option<ProjectField> {
         ProjectTrack::Any
     } else if prefix(&["planej", "pretend", "futur", "intend", "plann"]) || has(&["plan", "plans"]) {
         ProjectTrack::Planned
-    } else if has(&["escolhi", "escolhida", "escolhido", "chosen", "chose", "decidi", "decidiu", "decided", "selected"]) {
+    } else if has(&["escolhi", "escolha", "choice", "escolhida", "escolhido", "chosen", "chose", "decidi", "decidiu", "decided", "selected"]) {
         ProjectTrack::Choice
-    } else if has(&[
+    } else if ["sendo usado", "sendo usada", "sendo utilizado", "sendo utilizada", "being used"].iter().any(|phrase| q.contains(phrase)) || has(&[
         "implementando", "implementacao", "implementada", "implementado", "implementing",
         "implementation", "implemented", "desenvolvendo", "developing", "andamento",
         "usa", "uso", "uses", "utiliza", "using",
@@ -613,6 +710,11 @@ fn coffee_preparation_intent(query: &str) -> bool {
         .iter()
         .any(|w| q.contains(w))
 }
+fn negative_interface_question(query: &str) -> bool {
+    let q = fold(query);
+    q.contains("interface") && ["me incomoda", "nao gosto", "eu detesto", "bothers me", "i dislike"]
+        .iter().any(|phrase| q.contains(phrase))
+}
 fn preference_slots(query: &str) -> Vec<&'static str> {
     let q = crate::relevance::normalize_query(query);
     let mut slots = Vec::new();
@@ -668,6 +770,22 @@ fn preference_slots(query: &str) -> Vec<&'static str> {
             slots.push(property);
         }
     }
+    if negative_interface_question(query) {
+        slots.extend(["interface_clutter", "interface_theme"]);
+    }
+    if slots.contains(&"music_instrument") && (q.contains("tocar") || q.contains("play")) {
+        slots.push("hobby");
+    }
+    if slots.contains(&"communication_focus") {
+        let focus = ["objetiv", "objectiv", "foco", "focus"].iter().any(|stem| q.contains(stem));
+        let length = ["tamanho", "length", "breve", "brief", "concis", "detalh", "detail", "curta"].iter().any(|stem| q.contains(stem));
+        if focus != length {
+            slots.retain(|property| *property != if focus { "communication_style" } else { "communication_focus" });
+        }
+    }
+    if slots.contains(&"outing") && !["papel", "paper", "acabamento", "finish", "impress", "print"].iter().any(|n| q.contains(n)) {
+        slots.retain(|property| *property != "photo_paper");
+    }
     if q.split(|c: char| !c.is_alphanumeric())
         .any(|w| ["idioma", "lingua"].contains(&w))
         || (q.contains("language")
@@ -675,6 +793,13 @@ fn preference_slots(query: &str) -> Vec<&'static str> {
                 .iter()
                 .any(|w| q.contains(w)))
     {
+        // "Idioma das respostas" names a language, not a response style.
+        // Keep both domains when style or another coordinated field is explicit.
+        let words: Vec<_> = q.split(|c: char| !c.is_alphanumeric()).collect();
+        if !words.iter().any(|w| matches!(*w, "e" | "and" | "ou" | "or" | "estilo" | "style" | "foco" | "focus")
+            || ["detalh", "concis", "objetiv", "breve", "curt", "detail", "brief", "short"].iter().any(|s| w.starts_with(s))) {
+            slots.retain(|p| !matches!(*p, "communication_style" | "communication_focus"));
+        }
         slots.push("response_language");
     }
     if slots.contains(&"coffee_sugar")
@@ -731,6 +856,10 @@ fn database_choice_intent(query: &str) -> bool {
 }
 fn description_intent(query: &str) -> bool {
     let q = fold(query);
+    let purpose_question = q.split_once("para que serve ").is_some_and(|(_, rest)| {
+        let mut words = rest.split(|c: char| !c.is_alphanumeric()).filter(|w| !w.is_empty());
+        words.find(|w| !["o", "meu", "seu", "esse", "este", "aquele"].contains(w)) == Some("projeto")
+    });
     let named_description = [
         "description",
         "descricao",
@@ -744,7 +873,9 @@ fn description_intent(query: &str) -> bool {
     .iter()
     .any(|w| q.contains(w));
     let words = q.split(|c: char| !c.is_alphanumeric()).filter(|w| !w.is_empty()).collect::<Vec<_>>();
-    named_description || words.iter().enumerate().any(|(at, word)| {
+    let requested_purpose = words.windows(2).any(|w| matches!(w, ["que" | "qual", "finalidade" | "proposito" | "objetivo"]))
+        && words.windows(3).any(|w| w == ["para", "o", "projeto"]);
+    purpose_question || named_description || requested_purpose || words.iter().enumerate().any(|(at, word)| {
         ["finalidade", "proposito", "objetivo", "tema"].contains(word) && [
             &["do", "projeto"][..],
             &["deste", "projeto"],
@@ -817,7 +948,7 @@ fn eligible_source(
     if named_comparison_project(query).is_some_and(|name| fold(name) != fold(&m.input.project)) {
         return Ok(false);
     }
-    let relations=query_relations(query);
+    let relations=bound_relations(query, &m.input.project);
     if !relations.is_empty(){
         for r in relations {if relation_matches(tx,m,&r)? && eligible_source(tx,m,&r.query,at,canonical_claim)?{return Ok(true)}}
         return Ok(false)
@@ -837,6 +968,17 @@ fn eligible_source(
         return Ok(false);
     }
     let meta = quality(tx, &m.input.id)?;
+    if !historical && meta.as_ref().is_some_and(|q| q.property == "ram_capacity")
+        && historical_intent(query)
+    {
+        let text = crate::relevance::normalize_query(query);
+        let words = text.split(|c: char| !c.is_alphanumeric()).collect::<Vec<_>>();
+        let past = words.iter().any(|w| matches!(*w, "era" | "tinha" | "was" | "had"));
+        let present = words.iter().any(|w| matches!(*w, "agora" | "atual" | "atualmente" | "hoje" | "tem" | "now" | "current" | "today" | "has"));
+        if past && !present {
+            return Ok(false);
+        }
+    }
     // A clear correction in the current user message takes precedence even
     // before the asynchronous extractor has persisted its replacement.
     if let Some(current) = meta.as_ref().filter(|_| !historical) {
@@ -922,6 +1064,11 @@ fn eligible_source(
     {
         return Ok(false);
     }
+    let actor = story_actor(query).filter(|_| theme_words(query));
+    if meta.as_ref().is_some_and(|q| q.property == "fictional_theme") || actor.is_some() {
+        return Ok(!blocked && !historical && theme_words(query)
+            && meta.as_ref().is_some_and(|q| q.property == "fictional_theme" && Some(&q.subject) == actor.as_ref()));
+    }
     if recall(query) || canonical_claim {
         return Ok(true);
     }
@@ -935,7 +1082,14 @@ fn eligible_source(
             return Ok(false);
         }
         if m.input.kind == Kind::Preference {
+            if negative_interface_question(query) && meta.value != "negative" {
+                return Ok(false);
+            }
             let slots = preference_slots(query);
+            if slots.contains(&"music_instrument") && meta.property == "hobby" && meta.value != "acoustic_guitar" {
+                // This legacy hobby value also has a typed musical-instrument representation.
+                return Ok(false);
+            }
             if !slots.is_empty() && !slots.contains(&meta.property.as_str()) {
                 return Ok(false);
             }
@@ -1111,6 +1265,11 @@ fn eligible_source(
             || ["compare", "todos", "all ", "dois computadores"]
                 .iter()
                 .any(|word| q.contains(word));
+        if compare && !implicit_device_comparison(query) && identified_ram_intent(query)
+            && meta.property == "ram_capacity" && query_device(query).is_some_and(|device| device != meta.subject)
+        {
+            return Ok(false);
+        }
         if compare && meta.subject.starts_with("device.") {
             let names = [
                 (
@@ -1308,10 +1467,12 @@ pub(crate) fn select(
     policy: &LearningPolicy,
     at: i64,
 ) -> Result<(Vec<Memory>, usize)> {
-    let relations=query_relations(&req.query);
+    let expanded = bound_description_query(&req.query, &req.project).map(|query| TurnRequest { query, ..req.clone() });
+    let req = expanded.as_ref().unwrap_or(req);
+    let relations=bound_relations(&req.query, &req.project);
     if !relations.is_empty(){
         let mut out=Vec::new(); let initial_used=used;
-        for relation in relations.into_iter().filter(|r|r.actor=="user") {
+        for relation in relations.into_iter().filter(|r|(r.actor=="user" || r.actor.starts_with("character.")) && r.outside_project.is_none()) {
             let sub=TurnRequest{query:relation.query.clone(),..req.clone()};
             // Keep the real whole-question vector as a global ranking prior.
             // Local actor/modality filters do not claim a new fragment embedding.
@@ -1332,6 +1493,7 @@ pub(crate) fn select(
     let coffee = coffee_preparation_intent(&req.query);
     let database_choice = database_choice_intent(&req.query);
     let slots = preference_slots(&req.query);
+    let fictional_actor = story_actor(&req.query).filter(|_| theme_words(&req.query));
     let identified_ram = identified_ram_intent(&req.query);
     let description = description_intent(&req.query);
     let lifecycle = ["status", "andamento", "conclu", "cancel", "progress"]
@@ -1424,6 +1586,7 @@ pub(crate) fn select(
                 || (description
                     && q.property == "description"
                     && q.subject == format!("project.{}", req.project))
+                || (q.property == "fictional_theme" && fictional_actor.as_ref() == Some(&q.subject))
                 || (m.input.kind == Kind::Preference
                     && slots.contains(&q.property.as_str())
                     && (q.property != "coffee_sugar" || coffee))
@@ -1645,4 +1808,32 @@ pub(crate) fn select(
         }
     }
     Ok((out, used))
+}
+
+#[cfg(test)]
+mod project_comparison_tests {
+    use super::{bound_description_query, bound_relations};
+
+    #[test]
+    fn shorthand_purpose_is_grounded_only_in_the_bound_name() {
+        assert_eq!(bound_description_query("Qual o objetivo da Aurora?", "aurora").as_deref(), Some("Qual o objetivo do projeto Aurora?"));
+        assert!(bound_description_query("Qual o objetivo da Aurora?", "cedro").is_none());
+        assert!(bound_description_query("Qual o objetivo da oficina?", "cedro").is_none());
+    }
+
+    #[test]
+    fn parallel_database_qualifiers_respect_the_current_binding_in_either_order() {
+        let query = "Compare o banco planejado em Aurora com o banco escolhido em Cedro.";
+        for (project, expected) in [
+            ("aurora", [None, Some("Cedro")]),
+            ("cedro", [Some("Aurora"), None]),
+        ] {
+            let relations = bound_relations(query, project);
+            let targets: Vec<_> = relations.iter().map(|r| r.outside_project.as_deref()).collect();
+            assert_eq!(targets, expected);
+        }
+        let generic = bound_relations("Compare o banco planejado em Aurora com o banco escolhido em produção.", "aurora");
+        assert_eq!(generic.len(), 2);
+        assert!(generic.iter().all(|r| r.outside_project.is_none()));
+    }
 }

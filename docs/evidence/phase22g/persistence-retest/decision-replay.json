@@ -1,0 +1,77 @@
+{
+  "method": "Offline post-run native reprojection and verifier replay",
+  "snapshot": {
+    "scope": "phase22f-continuidade-alfenim",
+    "project": "alfenim",
+    "query": "Mudei de ideia sobre o banco do Alfenim: antes eu tinha escolhido SQLite, mas agora escolhi PostgreSQL. A migração ainda não começou.",
+    "facts": [],
+    "currentStatements": [
+      {
+        "entity": "project.alfenim",
+        "evidence": [
+          {
+            "role": "current_user_statement",
+            "text": "agora escolhi PostgreSQL"
+          },
+          {
+            "role": "adjacent_personal_clause",
+            "text": "Mudei de ideia sobre o banco do Alfenim: antes eu tinha escolhido SQLite"
+          }
+        ],
+        "facets": [],
+        "id": "current-turn-0",
+        "modality": "decision",
+        "project": "alfenim",
+        "property": "database",
+        "review": "current_turn_not_reviewed_or_persisted",
+        "scope": "phase22f-continuidade-alfenim",
+        "validity": "current_user_statement",
+        "value": "postgresql",
+        "version": 0
+      }
+    ],
+    "sourceIdentity": {
+      "conversation_id": "160e0f44-80cb-4a0a-ae00-0bd81d4a17c1",
+      "source_message_id": "9205e86b-b26a-4da5-9794-b3db5f954af9"
+    }
+  },
+  "attempts": [
+    {
+      "raw": "Você trocou o SQLite pelo PostgreSQL como banco de dados para o projeto Alfenim. A migração para essa nova escolha ainda está planejada para começar.",
+      "live_violations": [
+        {
+          "code": "unsupported_typed_value",
+          "span": "Você trocou o SQLite pelo PostgreSQL como banco de dados para o projeto Alfenim.",
+          "critical": true
+        },
+        {
+          "code": "unsupported_historical_state",
+          "span": "Você trocou o SQLite pelo PostgreSQL como banco de dados para o projeto Alfenim.",
+          "critical": true
+        },
+        {
+          "code": "authority_stack_transition",
+          "span": "Você trocou o SQLite pelo PostgreSQL como banco de dados para o projeto Alfenim.",
+          "critical": true
+        }
+      ],
+      "expected_after": "blocked"
+    },
+    {
+      "raw": "Você decidiu substituir o SQLite pelo PostgreSQL no projeto Alfenim. A migração para este novo banco de dados ainda está planejada e não foi iniciada.",
+      "live_violations": [
+        {
+          "code": "unsupported_typed_value",
+          "span": "Você decidiu substituir o SQLite pelo PostgreSQL no projeto Alfenim.",
+          "critical": true
+        },
+        {
+          "code": "unsupported_historical_state",
+          "span": "Você decidiu substituir o SQLite pelo PostgreSQL no projeto Alfenim.",
+          "critical": true
+        }
+      ],
+      "expected_after": "accepted"
+    }
+  ]
+}

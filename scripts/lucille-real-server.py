@@ -9,6 +9,7 @@ import ctypes as c
 from ctypes import wintypes as w
 import hashlib
 import json
+import os
 from pathlib import Path
 import socket
 import secrets
@@ -102,7 +103,7 @@ def serve(args):
         command[command.index('--batch-size')+1]='2048'
         command[command.index('--ubatch-size')+1]='2048'
         command += ['--ctx-size', '2048', '--gpu-layers', '0', '--embeddings', '--pooling', 'mean', '--embd-normalize', '-1']
-    env = dict(__import__('os').environ)
+    env = os.environ.copy()
     if args.disable_cuda_graphs:
         env['GGML_CUDA_DISABLE_GRAPHS'] = '1'
     for key, folder in [('APPDATA', 'roaming'), ('LOCALAPPDATA', 'local'),
@@ -133,6 +134,9 @@ def serve(args):
                         sample['gpu_csv'] = None
                     log.write(json.dumps(sample) + '\n')
                     log.flush()
+                    if os.environ.get('LUCILLE_G22_BUDGET') == 'independent' and sample['PhysicalAvailable'] < 1024**3:
+                        (report / 'g22-independent-abort').write_text('physical RAM floor', encoding='utf8')
+                        break
                     severe = sample['PhysicalAvailable'] < 512 * 1024**2 or sample['CommitLimit'] - sample['CommitTotal'] < 1024**3
                     pressure = pressure + 1 if severe else 0
                     if stop.exists() or pressure >= 3:

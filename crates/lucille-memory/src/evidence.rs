@@ -175,7 +175,12 @@ fn preference_value(descriptor: &[&str], target: &[&str]) -> Option<(&'static st
     } else {
         target
     };
-    match target {
+    // The complement of a nominal preference can be introduced by "por".
+    match target.strip_prefix(&["por"]).unwrap_or(target) {
+        ["explicacoes" | "respostas", "detalhadas"] | ["detailed", "explanations" | "answers"] =>
+            Some(("communication_style", "detailed")),
+        ["explicacoes" | "respostas", "concisas" | "curtas"] | ["concise" | "short", "answers"] =>
+            Some(("communication_style", "concise")),
         ["light", "theme"] | ["tema", "claro"] => Some(("interface_theme", "light")),
         ["dark", "theme"] | ["tema", "escuro"] => Some(("interface_theme", "dark")),
         ["portugues" | "portuguese"]

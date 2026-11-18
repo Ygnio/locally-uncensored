@@ -1,0 +1,72 @@
+[
+  {
+    "id": "2b77e8e1-2a89-32a1-2975-efef7e26db0a",
+    "property": "description",
+    "value": "comecei o projeto alfenim para catalogar matrizes de xilogravura",
+    "state": "active",
+    "version": 2,
+    "replaces": null,
+    "source_job": "8c7583011faf00097b78b8985e46a09a35f0f4d0b5a6bebd9d612bbacdb7fcc0",
+    "source_sha256": "e6eca8ce64023266f2c2bcf40cf8606111b63e8a23bcb0397bae68c1afbed4cf",
+    "evidence": "Comecei o projeto Alfenim para catalogar matrizes de xilogravura",
+    "evidence_digest_and_byte_range_verified": true,
+    "history": [
+      {
+        "operation": "create",
+        "version": 1
+      },
+      {
+        "operation": "approve",
+        "version": 2
+      }
+    ]
+  },
+  {
+    "id": "6134ad66-cb11-c51f-eeb2-cd361ced3d22",
+    "property": "database",
+    "value": "sqlite",
+    "state": "obsolete",
+    "version": 3,
+    "replaces": null,
+    "source_job": "8c7583011faf00097b78b8985e46a09a35f0f4d0b5a6bebd9d612bbacdb7fcc0",
+    "source_sha256": "e6eca8ce64023266f2c2bcf40cf8606111b63e8a23bcb0397bae68c1afbed4cf",
+    "evidence": "Para guardar as fichas, escolhi SQLite como banco de dados",
+    "evidence_digest_and_byte_range_verified": true,
+    "history": [
+      {
+        "operation": "create",
+        "version": 1
+      },
+      {
+        "operation": "approve",
+        "version": 2
+      },
+      {
+        "operation": "obsolete",
+        "version": 3
+      }
+    ]
+  },
+  {
+    "id": "1909e496-0cff-e4c6-6c8f-3d84b363a2b9",
+    "property": "database",
+    "value": "postgresql",
+    "state": "active",
+    "version": 2,
+    "replaces": "6134ad66-cb11-c51f-eeb2-cd361ced3d22",
+    "source_job": "28205488425740cd8e10e555bd36595178fd9325be421217a55e0ff2a783a8d7",
+    "source_sha256": "9567d5cc10961bdf831acffb5d9458bfbf168589f6ee8f39fb69e39aa11fac61",
+    "evidence": "agora escolhi PostgreSQL",
+    "evidence_digest_and_byte_range_verified": true,
+    "history": [
+      {
+        "operation": "create",
+        "version": 1
+      },
+      {
+        "operation": "approve",
+        "version": 2
+      }
+    ]
+  }
+]

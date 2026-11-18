@@ -1,0 +1,221 @@
+[
+  {
+    "id": "f2q-10",
+    "atoms": [
+      "Crivo is a project for sound tours or sound scripts for a tactile museum."
+    ],
+    "query": "No folheto do museu, que finalidade eu devo descrever para o projeto Crivo?",
+    "reviewed_context": [
+      {
+        "id": "616ad6fb-657f-0af4-f9a4-ec7cd54a84b9",
+        "version": 2,
+        "kind": "project",
+        "content": "Iniciei um projeto de roteiros sonoros para um museu tátil",
+        "entity": "project.crivo",
+        "property": "description",
+        "value": "iniciei um projeto de roteiros sonoros para um museu tatil",
+        "modality": "project_description",
+        "validity": "current",
+        "scope": "phase22f-e-biruta",
+        "project": "crivo",
+        "review": "reviewed",
+        "facets": [],
+        "evidence": [
+          {
+            "role": "current_source",
+            "text": "Iniciei um projeto de roteiros sonoros para um museu tátil"
+          }
+        ]
+      }
+    ],
+    "labels": [
+      "audio-museum-purpose"
+    ],
+    "adequate": true,
+    "status": "delivered",
+    "raw_equals_delivered": true,
+    "prompt_tokens": 776,
+    "completion_tokens": 21,
+    "latency_ms": 1961.5156999999997
+  },
+  {
+    "id": "f2q-15",
+    "atoms": [
+      "The authorized Lacre project is completed."
+    ],
+    "query": "Já posso marcar o projeto Lacre como concluído ou ainda está pendente?",
+    "reviewed_context": [
+      {
+        "id": "985b6436-b321-5e8f-e5ef-da8887202d85",
+        "version": 2,
+        "kind": "project",
+        "content": "Com a última placa em braile pronta, concluí o meu projeto Lacre",
+        "entity": "project.lacre",
+        "property": "lifecycle",
+        "value": "completed",
+        "modality": "completed",
+        "validity": "current",
+        "scope": "phase22f-e-biruta",
+        "project": "lacre",
+        "review": "reviewed",
+        "facets": [],
+        "evidence": [
+          {
+            "role": "current_source",
+            "text": "Com a última placa em braile pronta, concluí o meu projeto Lacre"
+          }
+        ]
+      }
+    ],
+    "labels": [
+      "lacre-completed"
+    ],
+    "adequate": true,
+    "status": "delivered",
+    "raw_equals_delivered": true,
+    "prompt_tokens": 754,
+    "completion_tokens": 34,
+    "latency_ms": 1973.9741
+  },
+  {
+    "id": "f2q-16",
+    "atoms": [
+      "TypeScript is the chosen language.",
+      "Rust is the distinct implementation in progress."
+    ],
+    "query": "Para documentar Crivo, preciso distinguir a linguagem escolhida daquela em implementação. Quais são elas?",
+    "reviewed_context": [
+      {
+        "id": "f4b39909-1d6c-88f1-d7e2-b0227b2d76bf",
+        "version": 2,
+        "kind": "decision",
+        "content": "Projeto crivo: decidiu usar linguagem typescript.",
+        "entity": "project.crivo",
+        "property": "language",
+        "value": "typescript",
+        "modality": "decision",
+        "validity": "current",
+        "scope": "phase22f-e-biruta",
+        "project": "crivo",
+        "review": "reviewed",
+        "facets": [],
+        "evidence": [
+          {
+            "role": "current_source",
+            "text": "Após o piloto das narrativas, escolhi TypeScript como linguagem do meu projeto"
+          }
+        ]
+      },
+      {
+        "id": "a5091dde-3263-0bee-e7da-f240d2e59d5e",
+        "version": 2,
+        "kind": "fact",
+        "content": "Para sincronizar as faixas de áudio, estou implementando o meu projeto em Rust",
+        "entity": "project.crivo",
+        "property": "language",
+        "value": "rust",
+        "modality": "in_progress",
+        "validity": "current",
+        "scope": "phase22f-e-biruta",
+        "project": "crivo",
+        "review": "reviewed",
+        "facets": [],
+        "evidence": [
+          {
+            "role": "current_source",
+            "text": "Para sincronizar as faixas de áudio, estou implementando o meu projeto em Rust"
+          }
+        ]
+      }
+    ],
+    "labels": [
+      "audio-language-choice",
+      "audio-language-running"
+    ],
+    "adequate": true,
+    "status": "delivered",
+    "raw_equals_delivered": true,
+    "prompt_tokens": 1237,
+    "completion_tokens": 35,
+    "latency_ms": 2567.9909
+  },
+  {
+    "id": "f2q-17",
+    "atoms": [
+      "MySQL is planned for the authorized Crivo project.",
+      "Explain that the Nacar database is outside the authorization of the current project binding."
+    ],
+    "query": "Compare o banco de dados planejado em Crivo com o banco escolhido em Nacar.",
+    "reviewed_context": [
+      {
+        "id": "fd2cdf2a-e53d-6630-959c-115975f8e0db",
+        "version": 2,
+        "kind": "decision",
+        "content": "Projeto crivo: planeja usar mysql como banco de dados.",
+        "entity": "project.crivo",
+        "property": "database",
+        "value": "mysql",
+        "modality": "planned",
+        "validity": "current",
+        "scope": "phase22f-e-biruta",
+        "project": "crivo",
+        "review": "reviewed",
+        "facets": [],
+        "evidence": [
+          {
+            "role": "current_source",
+            "text": "Para catalogar os depoimentos, planejo usar MySQL como banco de dados do meu projeto"
+          }
+        ]
+      }
+    ],
+    "labels": [
+      "audio-storage-plan"
+    ],
+    "adequate": false,
+    "status": "delivered",
+    "raw_equals_delivered": true,
+    "prompt_tokens": 960,
+    "completion_tokens": 33,
+    "latency_ms": 2160.5460000000003
+  },
+  {
+    "id": "f2q-25",
+    "atoms": [
+      "The user dislikes cluttered interfaces."
+    ],
+    "query": "O que me incomoda nas interfaces do sistema de reservas?",
+    "reviewed_context": [
+      {
+        "id": "f73c7759-7985-9254-1ae5-132f624d2851",
+        "version": 1,
+        "kind": "preference",
+        "content": "Eu detesto interfaces carregadas no sistema de reservas da sala",
+        "entity": "user",
+        "property": "interface_clutter",
+        "value": "negative",
+        "modality": "preference",
+        "validity": "current",
+        "scope": "phase22f-e-azinhavre",
+        "project": "mistura",
+        "review": "independently_grounded_active",
+        "facets": [],
+        "evidence": [
+          {
+            "role": "current_source",
+            "text": "Eu detesto interfaces carregadas no sistema de reservas da sala"
+          }
+        ]
+      }
+    ],
+    "labels": [
+      "clutter-dislike"
+    ],
+    "adequate": true,
+    "status": "delivered",
+    "raw_equals_delivered": true,
+    "prompt_tokens": 751,
+    "completion_tokens": 14,
+    "latency_ms": 1330.3974
+  }
+]

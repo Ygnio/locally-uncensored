@@ -72,7 +72,7 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
     let check = verifyMemoryAnswer(settled.content, evidence)
     const verificationReferences: { id: string; version: number }[] = []
     if (snapshot.refresh && check.violations.some(v => ['unsupported_typed_value','absence_without_evidence'].includes(v.code))) {
-      const proposed=[...memoryAbsenceFields(settled.content,evidence),...check.assertions.filter(a=>!a.supported && a.entity!=='unspecified' && !['ram_capacity_ratio','ram_capacity_delta','goal_target','description'].includes(a.property)).map(a=>({entity:a.entity,property:a.property,value:a.value}))]
+      const proposed=[...memoryAbsenceFields(settled.content,evidence),...check.assertions.filter(a=>!a.supported && a.entity!=='unspecified' && !['ram_capacity_ratio','ram_capacity_delta','goal_target','description','fictional_theme'].includes(a.property)).map(a=>({entity:a.entity,property:a.property,value:a.value}))]
       const fields=[...new Map(proposed.map(a=>[a.entity+'|'+a.property+'|'+a.value,a])).values()].slice(0,16)
       if (fields.length) {
         const began = performance.now(), confirmed = await snapshot.refresh(fields)
@@ -178,6 +178,7 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
       terminal_project_plan_as_current:'The retrieved plan preceded the project’s terminal state. State the earlier plan in the past tense; preserve separately what is unavailable about the other person or project.',
       unproven_project_progress:'Describe the verified purpose directly, then state the known plans. Say implementation progress is unconfirmed if relevant. Do not start with “está sendo desenvolvido” or “is being developed”; those phrases assert progress.',
       unproven_completion:'There is no supported completion claim. Preserve the actual known plan, decision or state and make uncertainty about completion explicit.',
+      missing_project_access_boundary:'Keep the authorized fact and explain explicitly that this conversation cannot access the other named project. Do not infer whether that project has a record.',
       known_relation_not_used:'Answer each requested relation independently, keeping the supported own information even when a third-party or another relation is unavailable.',
       unsupported_statement_actor:'No personal USER fact can support this third-party claim. Keep the own information and bound uncertainty separately for the other actor.',
       absence_without_evidence:'No relevant retrieval does not mean the user never decided or supplied the fact. Limit uncertainty to what is not available.',

@@ -1,0 +1,141 @@
+[
+  {
+    "key": "f2q-10",
+    "status": "delivered",
+    "violations": [],
+    "relations": [],
+    "delivered": "Você deve descrever que o projeto consiste em roteiros sonoros para um museu tátil."
+  },
+  {
+    "key": "f2q-15",
+    "status": "delivered",
+    "violations": [],
+    "relations": [],
+    "delivered": "Sim, você já pode marcá-lo como concluído. Você mencionou que o projeto Lacre foi finalizado com a última placa em braile pronta."
+  },
+  {
+    "key": "f2q-16",
+    "status": "delivered",
+    "violations": [],
+    "relations": [
+      {
+        "actor": "user",
+        "intent": "choice",
+        "query": "Para documentar Crivo, preciso distinguir a linguagem escolhida",
+        "references": [
+          {
+            "id": "f4b39909-1d6c-88f1-d7e2-b0227b2d76bf",
+            "version": 2
+          }
+        ],
+        "state": "retrieved"
+      },
+      {
+        "actor": "user",
+        "intent": "execution",
+        "query": "em implementação. Quais são elas? linguagem",
+        "references": [
+          {
+            "id": "a5091dde-3263-0bee-e7da-f240d2e59d5e",
+            "version": 2
+          }
+        ],
+        "state": "retrieved"
+      }
+    ],
+    "delivered": "Você escolheu TypeScript como a linguagem do projeto Crivo. Atualmente, você está implementando o projeto em Rust para sincronizar as faixas de áudio."
+  },
+  {
+    "key": "f2q-17",
+    "status": "blocked",
+    "violations": [
+      "missing_project_access_boundary"
+    ],
+    "relations": [
+      {
+        "actor": "user",
+        "intent": "planned",
+        "query": "Compare o banco de dados planejado em Crivo",
+        "references": [
+          {
+            "id": "fd2cdf2a-e53d-6630-959c-115975f8e0db",
+            "version": 2
+          }
+        ],
+        "state": "retrieved"
+      },
+      {
+        "actor": "user",
+        "intent": "choice",
+        "outside_project": "Nacar",
+        "query": "o banco escolhido em Nacar.",
+        "references": [],
+        "state": "unavailable"
+      }
+    ],
+    "delivered": ""
+  },
+  {
+    "key": "f2q-25",
+    "status": "delivered",
+    "violations": [],
+    "relations": [],
+    "delivered": "Você detesta interfaces carregadas no sistema de reservas da sala."
+  },
+  {
+    "key": "regeneration",
+    "status": "delivered",
+    "violations": [],
+    "relations": [
+      {
+        "actor": "user",
+        "intent": "planned",
+        "query": "Compare o banco de dados planejado em Crivo",
+        "references": [
+          {
+            "id": "fd2cdf2a-e53d-6630-959c-115975f8e0db",
+            "version": 2
+          }
+        ],
+        "state": "retrieved"
+      },
+      {
+        "actor": "user",
+        "intent": "choice",
+        "outside_project": "Nacar",
+        "query": "o banco escolhido em Nacar.",
+        "references": [],
+        "state": "unavailable"
+      }
+    ],
+    "delivered": "O banco de dados planejado para o projeto Crivo é o MySQL. Quanto ao banco escolhido em Nacar, esta conversa só tem acesso ao projeto e escopo autorizados, portanto não possui o registro de Nacar."
+  },
+  {
+    "key": "corrected-first-pass",
+    "status": "delivered",
+    "violations": [],
+    "relations": [
+      {
+        "actor": "user",
+        "intent": "planned",
+        "query": "Compare o banco de dados planejado em Crivo",
+        "references": [
+          {
+            "id": "fd2cdf2a-e53d-6630-959c-115975f8e0db",
+            "version": 2
+          }
+        ],
+        "state": "retrieved"
+      },
+      {
+        "actor": "user",
+        "intent": "choice",
+        "outside_project": "Nacar",
+        "query": "o banco escolhido em Nacar.",
+        "references": [],
+        "state": "unavailable"
+      }
+    ],
+    "delivered": "Para o projeto Crivo, o banco de dados planejado é o MySQL. Quanto ao banco escolhido em Nacar, esta conversa só tem acesso ao projeto e escopo autorizados, e não há registro disponível para Nacar."
+  }
+]

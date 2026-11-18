@@ -1,0 +1,113 @@
+{
+  "identity": "Lucille Synthetic Phase22",
+  "profile": "lucille-synthetic-full22g",
+  "mode": "chat",
+  "budget": "13 expected (10 replies + 3 extractions). Queries, fictional source or directive may also enqueue extraction. Reserve capacity for at most one regeneration per turn; absolute shared ceiling 24.",
+  "authorization": "Literal USER only. Native LLM policy, versioned explicit review. No extra seeds. No sharing between projects, old deletions cannot be replayed as active.",
+  "restart": "Stop and relaunch Tauri after turn four of each dialogue. New conversation with same binding, persisted QA database, no old messages.",
+  "rubric": "Useful = answers the user with grounded information. Complete = all specified atoms; faithful = every personal assertion supported with correct actor, time and modality. Recall needs canonical references; conversational repetition alone cannot pass persistence. Error/blocked unavailable; no premature operation claim. 95% availability and fidelity plus all essential state transitions, zero critical or false blocks. Continue observing even when a precondition fails.",
+  "scenarios": [
+    {
+      "project": "alfenim",
+      "scope": "phase22f-continuidade-alfenim",
+      "turns": [
+        {
+          "text": "Comecei o projeto Alfenim para catalogar matrizes de xilogravura. Para guardar as fichas, escolhi SQLite como banco de dados.",
+          "before": "empty",
+          "after": "purpose + SQLite decision active after review",
+          "answer": "Acknowledge purpose and choice; no execution or unreceipted storage.",
+          "expected_calls": 2,
+          "review": true,
+          "review_preferences": false
+        },
+        {
+          "text": "Antes de desenhar a capa, me lembra para que serve esse projeto e qual banco eu escolhi?",
+          "before": "purpose + SQLite active",
+          "after": "unchanged",
+          "answer": "Both cataloguing woodcut matrices and SQLite choice, backed by references.",
+          "expected_calls": 1,
+          "review": false,
+          "review_preferences": false
+        },
+        {
+          "text": "Mudei de ideia sobre o banco do Alfenim: antes eu tinha escolhido SQLite, mas agora escolhi PostgreSQL. A migração ainda não começou.",
+          "before": "SQLite current",
+          "after": "PostgreSQL current after review; SQLite historical",
+          "answer": "Acknowledge revised choice without claiming migration or premature completion.",
+          "expected_calls": 2,
+          "review": true,
+          "review_preferences": false
+        },
+        {
+          "text": "Na ficha de planejamento, qual era minha escolha anterior de banco e qual vale agora?",
+          "before": "old historical and new current",
+          "after": "unchanged",
+          "answer": "SQLite previously chosen, PostgreSQL now chosen. No execution.",
+          "expected_calls": 1,
+          "review": false,
+          "review_preferences": false
+        },
+        {
+          "text": "Para eu retomar o trabalho, qual é a finalidade do Alfenim e qual banco ficou escolhido?",
+          "before": "new host and conversation",
+          "after": "unchanged",
+          "answer": "Purpose and PostgreSQL from persisted references without older messages.",
+          "expected_calls": 1,
+          "review": false,
+          "review_preferences": false
+        }
+      ]
+    },
+    {
+      "project": "vimeira",
+      "scope": "phase22f-continuidade-vimeira",
+      "turns": [
+        {
+          "text": "Para o painel de marés do Vimeira, prefiro o tema claro na interface. Escolhi Python como linguagem do projeto.",
+          "before": "empty",
+          "after": "own light theme and Python choice active after applicable review",
+          "answer": "Acknowledge both, no invented execution or receipt.",
+          "expected_calls": 2,
+          "review": true,
+          "review_preferences": true
+        },
+        {
+          "text": "Mudando de assunto, no conto que estou revisando a personagem Dália prefere um painel em sépia.",
+          "before": "own light + Python",
+          "after": "unchanged; no own sepia",
+          "answer": "Keep sepia with fictional Dália, no attribution to user.",
+          "expected_calls": 1,
+          "review": false,
+          "review_preferences": false
+        },
+        {
+          "text": "Voltando às cores: qual era a minha preferência e qual era a da Dália no conto?",
+          "before": "own light canonical; Dália only in session",
+          "after": "unchanged",
+          "answer": "Own light from canonical memory; sepia explicitly from character in conversation.",
+          "expected_calls": 1,
+          "review": false,
+          "review_preferences": false
+        },
+        {
+          "text": "Esqueça minha preferência de tema.",
+          "before": "own light active + Python active",
+          "after": "theme tombstoned; Python active",
+          "answer": "Only forget own theme. Completion requires bound directive receipt.",
+          "expected_calls": 1,
+          "review": false,
+          "review_preferences": false
+        },
+        {
+          "text": "O que você ainda sabe sobre minha preferência de tema e a linguagem que escolhi para o Vimeira?",
+          "before": "new host and conversation with tombstone",
+          "after": "tombstone persists and Python remains active",
+          "answer": "No removed color or new color. Explain unavailable theme and report Python from surviving canonical record.",
+          "expected_calls": 1,
+          "review": false,
+          "review_preferences": false
+        }
+      ]
+    }
+  ]
+}

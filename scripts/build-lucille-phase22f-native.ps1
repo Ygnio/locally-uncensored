@@ -1,4 +1,4 @@
-param()
+param([switch]$Checkpoint22g)
 $ErrorActionPreference='Stop'
 $repo=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $qa=(Resolve-Path (Join-Path $repo '.lucille-qa-runtime\lucille-synthetic-real22f')).Path
@@ -7,7 +7,8 @@ $ports=[Net.NetworkInformation.IPGlobalProperties]::GetIPGlobalProperties().GetA
 if($ports | Where-Object Port -in @(15283,15284,15287,15288,15289)){throw 'Close the isolated runtime before compiling'}
 $manifest=Join-Path $repo 'src-tauri\Cargo.toml'
 $target=Join-Path (Resolve-Path (Join-Path $repo '..\build')).Path 'phase22f-tauri'
-$artifacts=(Resolve-Path (Join-Path $repo '..\build\phase22f')).Path
+$artifactFolder=if($Checkpoint22g){'phase22g'}else{'phase22f'}
+$artifacts=(Resolve-Path (Join-Path $repo ("..\build\$artifactFolder"))).Path
 $sha=([Security.Cryptography.SHA256]::Create())
 function Digest([byte[]]$Bytes){[Convert]::ToHexString($sha.ComputeHash($Bytes)).ToLowerInvariant()}
 $encoding=[Text.UTF8Encoding]::new($false)
@@ -16,7 +17,8 @@ $originalText=$encoding.GetString($original)
 $libraryTypes='crate-type = ["staticlib", "cdylib", "rlib"]'
 if([regex]::Matches($originalText,[regex]::Escape($libraryTypes)).Count -ne 1){throw 'Unexpected native crate-type declaration'}
 $qaManifest=$encoding.GetBytes($originalText.Replace($libraryTypes,'crate-type = ["rlib"]'))
-$receipt=Join-Path $qa 'reports\native-build-contract.json'
+$receiptName=if($Checkpoint22g){'consolidation-g-build.json'}else{'native-build-contract.json'}
+$receipt=Join-Path $qa ("reports\$receiptName")
 if(Test-Path -LiteralPath $receipt){throw 'Retain the previous QA build record before another build'}
 $pendingOriginal=Join-Path $qa 'reports\native-cargo-manifest-pending.toml'
 if(Test-Path -LiteralPath $pendingOriginal){throw 'An interrupted build retained the original Cargo manifest in QA reports'}

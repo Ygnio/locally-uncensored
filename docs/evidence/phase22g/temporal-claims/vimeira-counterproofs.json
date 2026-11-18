@@ -1,0 +1,185 @@
+[
+  {
+    "answer": "Você prefere o tema claro. No conto, Dália prefere o tema sépia.",
+    "status": "delivered",
+    "check": {
+      "assertions": [
+        {
+          "entity": "user",
+          "property": "interface_theme",
+          "value": "light",
+          "span": "Você prefere o tema claro.",
+          "supported": true,
+          "references": [
+            "9e31eeda-dddc-4563-4fe0-6b5aabca7d66"
+          ]
+        },
+        {
+          "entity": "user",
+          "property": "interface_theme",
+          "value": "light",
+          "span": "Você prefere o tema claro.",
+          "supported": true,
+          "references": [
+            "9e31eeda-dddc-4563-4fe0-6b5aabca7d66"
+          ]
+        },
+        {
+          "entity": "character.dalia",
+          "property": "fictional_theme",
+          "value": "sepia",
+          "span": "No conto, Dália prefere o tema sépia.",
+          "supported": true,
+          "references": [
+            "43748722-43e4-c8e5-2cd2-cb86489c4b94"
+          ]
+        }
+      ],
+      "violations": [],
+      "authority": [],
+      "uncertain": false,
+      "supportedAssertions": 3,
+      "unsupportedAssertions": 0,
+      "elapsedMs": 46.41579999999999
+    }
+  },
+  {
+    "answer": "Você prefere o tema sépia. No conto, Dália prefere o tema claro.",
+    "status": "blocked",
+    "check": {
+      "assertions": [
+        {
+          "entity": "user",
+          "property": "interface_theme",
+          "value": "sepia",
+          "span": "Você prefere o tema sépia.",
+          "supported": false,
+          "references": []
+        },
+        {
+          "entity": "character.dalia",
+          "property": "fictional_theme",
+          "value": "light",
+          "span": "No conto, Dália prefere o tema claro.",
+          "supported": false,
+          "references": []
+        }
+      ],
+      "violations": [
+        {
+          "code": "unsupported_theme_attribution",
+          "span": "Você prefere o tema sépia.",
+          "critical": true
+        },
+        {
+          "code": "unsupported_theme_attribution",
+          "span": "No conto, Dália prefere o tema claro.",
+          "critical": true
+        },
+        {
+          "code": "known_relation_not_used",
+          "span": "Você prefere o tema sépia. No conto, Dália prefere o tema claro.",
+          "critical": false
+        }
+      ],
+      "authority": [],
+      "uncertain": false,
+      "supportedAssertions": 0,
+      "unsupportedAssertions": 2,
+      "elapsedMs": 35.56860000000006
+    }
+  },
+  {
+    "answer": "Você prefere o tema claro. No conto, Dália prefere o tema escuro.",
+    "status": "blocked",
+    "check": {
+      "assertions": [
+        {
+          "entity": "user",
+          "property": "interface_theme",
+          "value": "light",
+          "span": "Você prefere o tema claro.",
+          "supported": true,
+          "references": [
+            "9e31eeda-dddc-4563-4fe0-6b5aabca7d66"
+          ]
+        },
+        {
+          "entity": "user",
+          "property": "interface_theme",
+          "value": "light",
+          "span": "Você prefere o tema claro.",
+          "supported": true,
+          "references": [
+            "9e31eeda-dddc-4563-4fe0-6b5aabca7d66"
+          ]
+        },
+        {
+          "entity": "character.dalia",
+          "property": "fictional_theme",
+          "value": "dark",
+          "span": "No conto, Dália prefere o tema escuro.",
+          "supported": false,
+          "references": []
+        }
+      ],
+      "violations": [
+        {
+          "code": "unsupported_theme_attribution",
+          "span": "No conto, Dália prefere o tema escuro.",
+          "critical": true
+        },
+        {
+          "code": "known_relation_not_used",
+          "span": "Você prefere o tema claro. No conto, Dália prefere o tema escuro.",
+          "critical": false
+        }
+      ],
+      "authority": [],
+      "uncertain": false,
+      "supportedAssertions": 2,
+      "unsupportedAssertions": 1,
+      "elapsedMs": 41.34770000000003
+    }
+  },
+  {
+    "answer": "Você prefere o tema claro.",
+    "status": "blocked",
+    "check": {
+      "assertions": [
+        {
+          "entity": "user",
+          "property": "interface_theme",
+          "value": "light",
+          "span": "Você prefere o tema claro.",
+          "supported": true,
+          "references": [
+            "9e31eeda-dddc-4563-4fe0-6b5aabca7d66"
+          ]
+        },
+        {
+          "entity": "user",
+          "property": "interface_theme",
+          "value": "light",
+          "span": "Você prefere o tema claro.",
+          "supported": true,
+          "references": [
+            "9e31eeda-dddc-4563-4fe0-6b5aabca7d66"
+          ]
+        }
+      ],
+      "violations": [
+        {
+          "code": "known_relation_not_used",
+          "span": "Você prefere o tema claro.",
+          "critical": false
+        }
+      ],
+      "authority": [],
+      "uncertain": false,
+      "supportedAssertions": 2,
+      "unsupportedAssertions": 0,
+      "elapsedMs": 32.108999999999924
+    }
+  }
+]

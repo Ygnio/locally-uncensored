@@ -605,8 +605,9 @@ impl Store {
             let (text, mode) = input.as_ref().ok_or("Missing LLM source")?;
             grounded = crate::llm::validate(&text, &scope, &project, json)?
                 .into_iter().filter_map(|c|crate::source_authority::attest(text,c)).collect();
-            if mode == "hybrid" {
+            if mode == "hybrid" || (mode == "llm" && grounded.is_empty()) {
                 for c in verified.iter().cloned().filter(|c|crate::source_authority::independently_interpreted(c,&project)).filter_map(|c|crate::source_authority::attest(text,c)) {
+                    if mode == "llm" && !explicit_ram_revision(&tx, lease, text, &c, at)? { continue; }
                     if !grounded.iter().any(|v| {
                         v.fingerprint() == c.fingerprint()
                             && v.temporal == c.temporal
@@ -825,6 +826,46 @@ fn job_row(r: &rusqlite::Row<'_>) -> rusqlite::Result<Job> {
         updated_at: r.get(4)?,
         error_code: r.get(5)?,
     })
+}
+// A missing nomination may recover only an explicit replacement of an existing
+// active RAM value. The new assertion still passes native provenance and review.
+fn explicit_ram_revision(tx: &Transaction, lease: &Lease, source: &str, claim: &Claim, at: i64) -> Result<bool> {
+    if !claim.correction || claim.kind != Kind::Hardware || claim.property != "ram_capacity"
+        || !claim.subject.starts_with("device.") || claim.subject == "device.unspecified" {
+        return Ok(false);
+    }
+    let text = fold(source);
+    let Some((current, history)) = text.trim_end_matches('.').split_once('.') else { return Ok(false) };
+    let body = ["na verdade, ", "corrigindo, ", "corrigindo: "].iter()
+        .find_map(|prefix| current.strip_prefix(prefix));
+    let Some((device, capacity)) = body.and_then(|s| s.split_once(" agora ")) else { return Ok(false) };
+    let expected_subject = match device {
+        "meu computador principal" | "meu pc principal" => "device.primary_computer",
+        "meu notebook de trabalho" => "device.work_laptop",
+        "meu outro computador" => "device.other_computer",
+        _ => return Ok(false),
+    };
+    let words: Vec<_> = capacity.split_whitespace().collect();
+    let ["tem" | "possui", value, "gb", "de", "ram"] = words.as_slice() else { return Ok(false) };
+    if current != fold(&claim.evidence) || claim.subject != expected_subject ||
+        claim.value != format!("{value}_gb") {
+        return Ok(false);
+    }
+    let words: Vec<_> = history.split_whitespace().collect();
+    let old = match words.as_slice() {
+        ["os", old, "gb", "descreviam", "a", "configuracao", "anterior"]
+        | ["antes", "eram", old, "gb"] => old,
+        _ => return Ok(false),
+    };
+    let Ok(amount) = old.parse::<u16>() else { return Ok(false) };
+    let prior = format!("{amount}_gb");
+    if prior == claim.value { return Ok(false) }
+    tx.query_row(
+        "SELECT COUNT(*)=1 AND MIN(q.value)=?4 FROM memories m JOIN memory_quality q ON m.id=q.memory_id
+         WHERE m.scope=?1 AND m.project=?2 AND q.subject=?3 AND q.property='ram_capacity'
+         AND m.state='active' AND (q.expires_at IS NULL OR q.expires_at>?5)",
+        params![lease.scope, lease.project, claim.subject, prior, at], |row| row.get(0)
+    ).map_err(db_error)
 }
 fn ingest(
     tx: &Transaction,

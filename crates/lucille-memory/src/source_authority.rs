@@ -105,6 +105,7 @@ fn role_tag(s: &str) -> bool {
         "assistant",
         "tool",
         "system",
+        "sistema",
         "developer",
         "usuario",
         "assistente",
@@ -315,7 +316,7 @@ fn fictional_role(s: &str) -> bool {
         .filter_map(|w| s.find(w))
         .min()
         .unwrap_or(s.len());
-    let prefix = &s[..first_relation];
+    let prefix = s[..first_relation].replace("play role-playing games", "").replace("play roleplaying games", "");
     [
         "como personagem",
         "como narrador",
@@ -444,7 +445,7 @@ fn external_header(s: &str) -> bool {
 }
 fn declaration(s: &str) -> bool {
     let ws = words(s);
-    ws.iter().any(|w|member(&w.text,&["eu","i","meu","minha","meus","minhas","my","mim","prefiro","gosto","adoro","curto","detesto","odeio","tenho","quero","preciso","resolvi","estou","planejo","pretendo","decidi","conclui","atualizei","troquei","volte"]))
+    ws.iter().any(|w|member(&w.text,&["eu","i","meu","minha","meus","minhas","my","mim","prefiro","gosto","adoro","curto","detesto","odeio","tenho","quero","preciso","resolvi","estou","planejo","pretendo","decidi","escolhi","iniciei","comecei","criei","conclui","atualizei","troquei","volte"]))
         || ws.iter().skip_while(|w|member(&w.text,&["o","a","the"])).next().is_some_and(|w|member(&w.text,&["computador","pc","notebook","laptop","desktop","projeto","project"]))
         || ["na verdade", "actually,", "actually "].iter().any(|v|fold(s).starts_with(v))
         // Reuse the existing bounded declarative grammar rather than inventing
@@ -738,14 +739,15 @@ pub(crate) fn attest(source: &str, mut c: Claim) -> Option<Claim> {
         return None;
     }
     let candidates = clauses(source);
-    let owned = candidates.iter().find_map(|part| {
+    let authored = crate::dialogue::authored_theme(source).filter(|expected| binding(expected) == binding(&c));
+    let owned = authored.and_then(|_| source.find(&c.evidence)).or_else(|| candidates.iter().find_map(|part| {
         if part.origin != Origin::PersonalDeclaration {
             return None;
         }
         part.text
             .find(&c.evidence)
             .map(|offset| part.span.start + offset)
-    })?;
+    }))?;
     c.authority = Some(SourceAuthority {
         version: SOURCE_AUTHORITY_VERSION,
         message_author: "user".into(),

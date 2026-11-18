@@ -27,7 +27,7 @@ export interface AnswerSnapshot {
 }
 export interface SourceSpeakerSummary { message_author:'user';personal:number;external:number;quoted:number;uncertain:number }
 export interface MemoryQueryRelation {
-  query:string;actor:string;intent?:string;state:string;references:{id:string;version:number}[]
+  query:string;actor:string;intent?:string;outside_project?:string;state:string;references:{id:string;version:number}[]
 }
 export interface MemoryLearningReceipt {
   id:string;action:'learn';state:'done';scope:string;project:string;conversation_id:string;source_message_id:string
@@ -40,6 +40,7 @@ export interface MemoryDirectiveReceipt {
   records?:{id:string;version:number;state:'deleted';effect:'delete'}[]
 }
 export interface MemoryAssertion {
+  temporality?: "current" | "historical"
   entity: string; property: string; value: string; span: string; supported: boolean; references: string[]
 }
 export interface FidelityViolation { code: string; span: string; critical: boolean }
@@ -75,7 +76,7 @@ export function memoryAbsenceFields(text:string,snapshot:AnswerSnapshot):{entity
 const execution = (text: string) => /\besta (?:sendo )?(?:desenvolvid|desenvolvendo|implementad|implementando|usando|utilizando|estudando)|\bja (?:usa|utiliza|implementou|iniciou|comecou|esta)\b|(?:is|are) (?:already |currently )?(?:being developed|developing|implemented|using|building|studying)|already (?:implemented|started|using)|em (?:execucao|andamento)|in progress|\bunderway\b|(?:foi |is )?(?:escrito em|written in|built with)|\b(?:usa|utiliza)(?!-)\b|\b(?:runs on|roda em)\b|(?:projeto|project).*(?: e em | is in |foi feito em|based on)|(?:desenvolvido|implemented|developed) (?:em|in|with)/.test(fold(text))
 const completion = (text: string) => /\b(?:concluiu|conclui|terminei|finalizei|terminou|finalizou|concluido|concluida|completed|finished)\b|ja (?:concluido|pronto|finalizado)|(?:is|esta|foi|was) (?:already |ja )?(?:complete|finished|pronto|concluido)|parabens.{0,40}(?:concluir|conclusao)|congratulations.{0,40}(?:completing|finishing)/.test(fold(text))
 const planned = (text: string) => /planej|pretend|\bplan(?:ned|ning|s)?\b|\bplanos?\b|\b(?:usaria|utilizaria)\b|intend|want to|quero |vai (?:usar|fazer|desenvolver)|will (?:use|develop)|would use/.test(fold(text))
-const past = (text: string) => /\b(?:antes|anteriores?|anteriormente|antigamente|previous|previously|formerly|historical|historico)\b|used to/.test(fold(text))
+const past = (text: string) => /\b(?:antes|anterior(?:es)?|anteriormente|antigamente|previous|previously|formerly|historical|historico)\b|used to/.test(fold(text))
 function entityIn(text: string): string | undefined {
   const q = fold(text), found: { index: number; entity: string }[] = []
   for (const [pattern, entity] of [
@@ -99,6 +100,23 @@ function aliases(value: string) {
 function mentions(text: string, value: string) {
   const q = fold(text)
   return aliases(value).some(v => v.length < 4 ? q.split(/[^a-z0-9]+/).includes(v) : q.includes(v))
+}
+
+function historicalQuestion(query: string): boolean {
+  const normalized = fold(query)
+  const aside = /^antes de ([a-z]+(?:ar|er|ir)\b[^,?!.]{0,90}),\s*(me (?:lembra|diga)\b.*)$/u.exec(normalized)
+  if (aside && !/\b(?:troc|mud|migr|alter|substitu|atualiz|cancel|escolh|decid|inici|implement)|\b(?:projeto|banco|linguagem|computador|memoria)\b/u.test(aside[1])) {
+    return past(aside[2])
+  }
+  return past(query)
+}
+
+// A question about both versions has no single default historical frame.
+function contrastsChoices(query: string): boolean {
+  return (query.includes('?') || /^(?:me (?:lembra|diga)|lembre|compare|tell me|remind me)\b/u.test(query)) &&
+    /\b(?:escolh\w*|decisao|decidi\w*|choice|chosen|chose|selected|decision)\b/u.test(query) &&
+    (historicalQuestion(query) || /\b(?:era|was|former)\b/u.test(query)) &&
+    /\b(?:agora|atual(?:mente)?|hoje|now|current(?:ly)?|today|passou a ser)\b/u.test(query)
 }
 
 function descriptionValue(text: string) {
@@ -155,7 +173,8 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   const descriptionRequested = /\b(?:tema|assunto|finalidade|proposito|descricao|objetivo)\s+(?:do|deste|desse|do seu|do meu)\s+projeto\b|\b(?:topic|subject|purpose|description)\s+of\s+(?:the|this|your|my)\s+project\b/.test(query)
   const personalQuestion = /\b(?:meu|minha|meus|minhas|my|our|aquele|aquela|aqueles|aquelas|that)\b|pref|gosto|lembra|remember/.test(query) || (/\b(?:eu|i)\b/.test(query) && /tenho|tomo|bebo|gosto|escolhi|decidi|conclui|terminei|finalizei|have|drink|chose|choose|decided|like|prefer/.test(query))
   const preferenceQuestion = personalQuestion && /pref|gost|favorit|tema|theme|interface|bebida|beverage|respost|answer|repl|explain|cafe|coffee|idioma|language|jogo|game|character|personag|classe/.test(query)
-  const projectQuestion = personalQuestion && /projeto|project|linguagem|language|banco|database/.test(query)
+  const contrastProperty = askedProperties.length === 1 && ['language','database'].includes(askedProperties[0]) && contrastsChoices(query) ? askedProperties[0] : undefined
+  const projectQuestion = (personalQuestion || !!contrastProperty) && /projeto|project|linguagem|language|banco|database/.test(query)
   if (/^\s*(?:sim|yes)\b/.test(fold(text)) && projectQuestion && execution(query)) {
     const values = ['typescript','javascript','python','rust','sqlite','postgresql','mysql'].filter(value => new RegExp('\\b'+value+'\\b').test(query))
     const actual=current.filter(f => f.entity === 'project.'+snapshot.project && ['in_progress','current_fact'].includes(f.modality))
@@ -164,6 +183,11 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     if (!proof) add('affirmed_unproven_project_execution',text)
   }
   if (/^\s*(?:nao|no)\s*[,!.](?:\s|$)/.test(fold(text)) && projectQuestion && execution(query) && !/significa|quer dizer|\bmeans?\b|implies/.test(query) && !current.some(f=>f.entity==='project.'+snapshot.project && f.property==='lifecycle' && ['cancelled','completed'].includes(f.modality)))add('denied_unproven_project_execution',text)
+  // The native proof may end at the current-choice clause. Recover an explicit
+  // former choice only from the immediately adjoining, same-speaker correction.
+  const directCorrection = snapshot.sourceIdentity
+    ? fold(snapshot.query).match(/\b(?<prior>(?:antes (?:eu )?(?:tinha escolhido|escolhi)|i (?:had chosen|previously chose)) (?<former>\w+)),?\s+(?:mas |but )?(?<present>(?:agora (?:eu )?escolhi|now i (?:choose|chose)) (?<current>\w+))(?=[.!;]|$)/u)?.groups
+    : null
   const record = (span: string, property: string, value: string, entity?: string, negative = false, choiceOrigin = false, afterRamCorrection = false) => {
     const projectTechnology = entity === 'project.' + snapshot.project && ['language','database'].includes(property)
     const candidates = all.filter(f => (f.property === property || (property==='beverage_preference' && f.property==='favorite_beverage')) && (!entity || f.entity === entity))
@@ -177,17 +201,31 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
         (f.modality === 'decision' && (/\b(?:escolheu|decidiu|chose|decided)\b/.test(predicate) ||
           askedChoice === value && deniesProjectChoiceEntailment(span, value)) ||
          f.modality === 'planned' && /^(?:(?:no seu projeto|in your project),\s+)?(?:(?:voce|you)\s+)?(?:planejou usar|planned to use)\b/.test(predicate)))
-    const historical = !afterRamCorrection && (choiceOrigin || past(span) || recordedProjectHistory || projectTechnology && historicalProjectWording(span) || (past(snapshot.query) && !/\b(?:agora|atualmente|now|currently|prefere|prefiro|gosta|gosto|tem|tenho|possui|usa|utiliza|is|are|have|has|prefer|prefers|like|likes|uses)\b/.test(fold(span))))
+    const correctionFact = directCorrection && projectTechnology && current.find(f =>
+      f.validity === 'current_user_statement' && f.entity === entity && f.property === property &&
+      f.modality === 'decision' && f.value === directCorrection.current &&
+      f.evidence.some(e => e.role === 'current_user_statement' && fold(e.text) === directCorrection.present) &&
+      f.evidence.some(e => e.role === 'adjacent_personal_clause' && fold(e.text).endsWith(directCorrection.prior)))
+    const roles = correctionFact && /\b(?:decidiu|decided|escolheu|chose)\b/u.test(predicate) ? technologyRoles(span) : []
+    const boundChoice = directCorrection && roles.length === 2 &&
+      roles.some(r => r.role === 'origin' && r.value === directCorrection.former) &&
+      roles.some(r => r.role === 'destination' && r.value === directCorrection.current)
+    // Derive the requested version from the assertion before consulting values.
+    // A past-tense choice verb alone describes a decision that may still hold.
+    const localTime: MemoryAssertion['temporality'] = projectTechnology && property === contrastProperty
+      ? (past(span) || historicalProjectWording(span) || /\b(?:era|was|former)\b/u.test(predicate) ? 'historical' : 'current')
+      : undefined
+    const historical = localTime ? localTime === 'historical' : !(boundChoice && !choiceOrigin) && !afterRamCorrection && (choiceOrigin || past(span) || recordedProjectHistory || projectTechnology && historicalProjectWording(span) || (historicalQuestion(snapshot.query) && !/\b(?:agora|atualmente|now|currently|prefere|prefiro|gosta|gosto|tem|tenho|possui|usa|utiliza|is|are|have|has|prefer|prefers|like|likes|uses)\b/.test(fold(span))))
     const terminalProject = projectTechnology && current.some(f=>f.entity===entity && f.property==='lifecycle' && ['cancelled','completed'].includes(f.modality))
     if (terminalProject && !historical && planned(span) && candidates.some(f=>f.value===value && ['planned','decision'].includes(f.modality))) add('terminal_project_plan_as_current',span)
     const sourceOrigin=choiceOrigin && ['language','database'].includes(property) ? all.filter(f=>f.entity===entity && f.property===property && f.validity==='current_user_statement' && ['decision','planned'].includes(f.modality) && f.evidence.some(e=>['current_user_statement','current_source'].includes(e.role) && technologyRoles(e.text).some(r=>r.role==='origin' && r.value===value) && technologyRoles(e.text).some(r=>r.role==='destination' && r.value===f.value))) : []
     const ambiguousNegative=negative && !entity && new Set(candidates.map(f=>f.entity)).size>1
-    const matching = [...sourceOrigin,...candidates.filter(f => !ambiguousNegative && (negative ? f.value !== value && f.validity !== 'historical' : (f.value === value && (f.validity !== 'historical' || historical)) || (historical && property==='ram_capacity' && /^\d+_gb$/.test(value) && f.evidence.some(e=>{
+    const matching = [...(boundChoice && choiceOrigin && correctionFact ? [correctionFact] : []),...sourceOrigin,...candidates.filter(f => (!localTime || (f.validity === localTime && f.modality === 'decision')) && !ambiguousNegative && (negative ? f.value !== value && f.validity !== 'historical' : (f.value === value && (f.validity !== 'historical' || historical)) || (historical && property==='ram_capacity' && /^\d+_gb$/.test(value) && f.evidence.some(e=>{
       if(e.role!=='previous_property_link_not_current_value')return false
       const amounts=[...fold(e.text).matchAll(/\b(\d+)\s*(?:gb|gib)\b/g)]
       return amounts.length===1 && amounts[0][1]+'_gb'===value
     }))))]
-    const assertion = { entity: entity ?? matching[0]?.entity ?? 'unspecified', property, value, span, supported: matching.length > 0, references: matching.map(f => f.id) }
+    const assertion = { temporality: localTime, entity: entity ?? matching[0]?.entity ?? 'unspecified', property, value, span, supported: matching.length > 0, references: matching.map(f => f.id) }
     assertions.push(assertion)
     if (!assertion.supported) { add('unsupported_typed_value', span); return }
     const earlierMention=/\b(?:mencionou|disse|informou|mentioned|said|told)\b/.test(fold(span)) && !/antes de|before the/.test(fold(span)) && matching.some(f=>f.validity==='current' && f.evidence.some(e=>e.role==='current_source') && (planned(span) || !['planned','hypothesis'].includes(f.modality)))
@@ -213,7 +251,12 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     ['decision', 'planned'].every(modality => all.some(f =>
       f.entity === 'project.' + snapshot.project && f.validity === 'historical' && f.modality === modality &&
       requestedHistoricalProjectFact(snapshot.query, f, snapshot.relations)))
-  const clauses = answerRelationClauses(text).flatMap(span => {
+  const storyThemes = current.filter(f => f.property === 'fictional_theme' && f.entity.startsWith('character.'))
+  const clauses = answerRelationClauses(text).flatMap(span => storyThemes.length
+    ? span.split(/,?\s+(?:enquanto(?:\s+que)?|whereas|while|e|and)\s+/iu)
+    : [span]).flatMap(span => contrastProperty
+    ? span.split(/(?:,\s*|\s+(?:e|and)\s+)(?=(?:(?:a|o|the)\s+)?(?:agora|atual(?:mente)?|anterior(?:mente)?|antes|hoje|passou a ser|now|currently|current|previous(?:ly)?|formerly)\b|[\p{L}\p{N}_-]+\s+(?:[ée]\s+(?:a|o)\s+(?:atual|anterior)|(?:is|was)\s+the\s+(?:current|previous))\b)/iu)
+    : [span]).flatMap(span => {
     if (!mixedProjectHistory || !/^\s*(?:(?:voce|you)\s+)?(?:escolheu|decidiu|chose|decided)\b/.test(fold(span))) return [span]
     // A listed past choice and past plan remain separate from a concluding
     // present-tense cancellation, whose time adverb does not modify them.
@@ -222,6 +265,21 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   let favoriteSlotBound=false
   for (const [clauseIndex, span] of clauses.entries()) {
     const q = fold(span)
+    const named = storyThemes.find(f => q.split(/[^a-z0-9]+/u).includes(f.entity.slice('character.'.length)))
+    if (storyThemes.length) {
+      const colors = q.match(/\b(?:clar[oa]|light|escur[oa]|dark|sepia)\b/gu) ?? []
+      const owner = named?.entity ?? (/\b(?:voce|sua|seu|you|your)\b/u.test(q) ? 'user' : undefined)
+      if (colors.length && owner) {
+        const property = named ? 'fictional_theme' : 'interface_theme'
+        for (const color of colors) {
+          const value = /^(?:clar[oa]|light)$/u.test(color) ? 'light' : color === 'sepia' ? 'sepia' : 'dark'
+          const fact = current.find(f => f.entity === owner && f.property === property && f.value === value)
+          const supported = !!fact && !uncertain(span) && !/\b(?:nao|not|nunca|never)\b/u.test(q)
+          assertions.push({entity:owner,property,value,span,supported,references:supported && fact ? [fact.id] : []})
+          if (!supported) add('unsupported_theme_attribution', span)
+        }
+      }
+    }
     if(externalAssertion(span))continue
     if (askedChoice && /\bvoce\s+(?:ja\s+)?(?:comecou|iniciou) a implementar\b/u.test(q) &&
         !deniesProjectChoiceEntailment(span, askedChoice)) {
@@ -232,6 +290,33 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     }
     const thirdParty=/\b(?:irmao|irma|brother|sister|colega|colleague|amigo|friend)\b/.test(q)
     if(thirdParty && !uncertain(span) && !span.trim().endsWith('?') && /\b(?:typescript|javascript|python|rust|sqlite|postgresql|mysql|\d+\s*(?:gb|gib)|prefere|prefers|gosta|likes)\b/.test(q))add('unsupported_statement_actor',span)
+    // Naming a fictional or quoted source does not bind its preference to
+    // the USER. A positive identity claim needs an independent personal value.
+    const externalPreference = /\b(?:fictici[oa]|ficcional|narrador[a]?|personagem|fictional|narrator|character)\b/.test(q)
+      && /\b(?:e (?:uma |a )?(?:preferencia sua|sua preferencia)|is (?:a preference of yours|your preference))\b/.test(q)
+    if (externalPreference && !/\b(?:nao|not|talvez|maybe)\b/.test(q) && !span.trim().endsWith('?') &&
+        !current.some(f => f.entity === 'user' && f.modality === 'preference' && mentions(span, f.value))) {
+      add('unsupported_statement_actor', span)
+    }
+    // A choice (or plan) does not entail execution. Check the requested
+    // technology track, even when the answer uses a project name or pronoun.
+    const entails = /\b(?:escolha|decisao|plano|choice|decision|plan)\b[^.!?;]{0,80}\b(?:prova|comprova|implica|significa|proves|implies|means)\b/
+    const choiceQuestion = entails.test(query) && execution(query)
+    if (!span.endsWith('?') && ((entails.test(q) && execution(q) && !/\b(?:nao|not|never)\b/.test(q)) ||
+        (choiceQuestion && /^(?:sim|yes)\b/.test(q.trim())))) {
+      const field = /\b(?:banco|database|sgbd)\b/.test(q+' '+query) ? 'database' :
+        /\b(?:linguagem|language)\b/.test(q+' '+query) ? 'language' : undefined
+      const choices = current.filter(f => f.entity === 'project.'+snapshot.project && f.property === field &&
+        ['decision','planned'].includes(f.modality))
+      if (choices.length && !choices.every(c => current.some(f => f.entity===c.entity && f.property===c.property &&
+          f.value===c.value && ['in_progress','current_fact'].includes(f.modality)))) add('affirmed_unproven_project_execution',span)
+    }
+    if (/\b(?:nao ha|nao temos|no|no available)\s+(?:evidencias?|registros?|dados|evidence|records?|data)\b/.test(q) &&
+        past(q) && /\b(?:memoria|ram|memory)\b/.test(q)) {
+      const device = entityIn(span) ?? (/\bdesktop\b/.test(q) ? 'device.primary_computer' : undefined)
+      if (device && all.some(f=>f.entity===device && f.property==='ram_capacity' && f.validity==='historical'))
+        add('absence_without_evidence',span)
+    }
     const operation = verifyOperationClaim(span, snapshot, mentions)
     if (operation.code) add(operation.code, span)
     if (operation.completedForget && !/(?:,?\s+e|\band)\s+(?:voce|seu|sua|you|your)\b/.test(q)) continue
@@ -267,10 +352,15 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     const projectDescription = descriptionRequested
       ? q.trim().match(/^(?:(?:o seu|o|seu)\s+projeto(?:\s+([\p{L}\p{N}_.-]+))?\s+era|(?:your|the)\s+project(?:\s+([\p{L}\p{N}_.-]+))?\s+was)\s+(.+)$/u)
       : null
-    if ((description || projectDescription) && (descriptionRequested || current.some(f => f.property === 'description' && f.entity === 'project.' + snapshot.project))) {
+    const describedPurpose = /\b(?:finalidade|proposito|objetivo|purpose)\b/u.test(query) && /\b(?:projeto|project)\b/u.test(query)
+      ? q.trim().match(/^(?:voce (?:deve|pode) descrever (?:a finalidade|o proposito|o objetivo) de|you (?:should|can) describe the purpose (?:of|as))\s+(.+)$/u)
+      : null
+    const namedPurpose = q.trim().match(/^(?:a finalidade|o objetivo|o proposito) (?:do|da) ([\p{L}\p{N}_-]+) (?:e|era) (.+)$|^(?:o projeto|projeto) ([\p{L}\p{N}_-]+) serve para (.+)$/u)
+    const boundPurpose = namedPurpose && (namedPurpose[1] ?? namedPurpose[3]) === fold(snapshot.project)
+    if (boundPurpose || describedPurpose || (description || projectDescription) && (descriptionRequested || current.some(f => f.property === 'description' && f.entity === 'project.' + snapshot.project))) {
       const entity = 'project.' + snapshot.project
       const named = description ? description[1] ?? description[3] : projectDescription?.[1] ?? projectDescription?.[2]
-      const value = descriptionValue(description ? description[2] ?? description[4] : projectDescription![3])
+      const value = descriptionValue((boundPurpose ? namedPurpose[2] ?? namedPurpose[4] : undefined) ?? describedPurpose?.[1] ?? (description ? description[2] ?? description[4] : projectDescription![3]))
       // Compare the entire claimed purpose against the literal source payload.
       // A shared substring cannot ground additions or a different project.
       const proof = current.filter(f => (!named || named === fold(snapshot.project)) &&
@@ -278,12 +368,20 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
         (f.validity === 'current' && f.review === 'reviewed' || f.validity === 'current_user_statement') && f.evidence.some(e => {
           if (e.role !== (f.validity === 'current_user_statement' ? 'current_user_statement' : 'current_source')) return false
           const source = fold(e.text).trim().match(/^(?:estou comecando um projeto de|iniciei um projeto de|i am starting a project(?: about| on| for| to)?|(?:(?:o|meu) )?projeto continua sendo|(?:my|the) project remains)\s+(.+)$/u)
-          return source && value === descriptionValue(source[1])
+          if (source) return value === descriptionValue(source[1])
+          const namedSource = fold(e.text).trim().match(/^(?:(?:comecei|iniciei|criei) o projeto ([\p{L}\p{N}_-]+) para|i (?:started|created) project ([\p{L}\p{N}_-]+) to) (.+)$/u)
+          return namedSource && (namedSource[1] ?? namedSource[2]) === fold(snapshot.project)
+            && value === descriptionValue(namedSource[3])
         }))
       assertions.push({entity,property:'description',value,span,supported:proof.length>0,references:proof.map(f=>f.id)})
       if (!proof.length) add('unsupported_typed_value',span)
     }
-    if (!deniesCapacityGuarantee(span) && (subject || personalQuestion) && /ram|memoria|memory|computador|computer|notebook|laptop/.test(fold(text)+' '+query) && /fluidez|(?:experiencia|desempenho|multitarefas?|navegacao|produtividade|desenvolvimento|execucao|tarefas?).{0,25}\bfluid[ao]s?\b|sem (?:grandes )?gargalos|sem travamentos|mais estavel|maior estabilidade|no bottlenecks|smooth performance|more stable|will run smoothly/.test(q) && !/\b(?:pode|poderia|talvez|depende|estimativa|might|could|may|depends|estimate)\b/.test(q)) {
+    // A general causal explanation about performance does not assert a
+    // measured outcome on the USER's machine.
+    const generalFactors = /^(?:outros fatores|fatores como|other factors)\b/.test(q.trim()) &&
+      /\b(?:influenciam|afetam|influence|affect)\b/.test(q) &&
+      !/\b(?:seu|sua|voce|your|you|garante|guarantees|sempre|always)\b/.test(q)
+    if (!generalFactors && !deniesCapacityGuarantee(span) && (subject || personalQuestion) && /ram|memoria|memory|computador|computer|notebook|laptop/.test(fold(text)+' '+query) && /fluidez|(?:experiencia|desempenho|multitarefas?|navegacao|produtividade|desenvolvimento|execucao|tarefas?).{0,25}\bfluid[ao]s?\b|sem (?:grandes )?gargalos|sem travamentos|mais estavel|maior estabilidade|no bottlenecks|smooth performance|more stable|will run smoothly/.test(q) && !/\b(?:pode|poderia|talvez|depende|estimativa|might|could|may|depends|estimate)\b/.test(q)) {
       const source=current.some(f=>f.evidence.some(e=>e.role!=='previous_property_link_not_current_value' && fold(e.text).includes(q.trim())))
       if(!source)add('unproven_personal_performance',span,false)
     }
@@ -427,7 +525,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       for (const property of ['coffee_sugar', 'interface_theme', 'communication_style', 'response_language', 'favorite_beverage', 'communication_focus']) {
         const domain = q + ' ' + query
         if (property === 'coffee_sugar' && !/cafe|coffee|acucar|sugar/.test(domain)) continue
-        if (property === 'interface_theme' && !/interface|tema|theme|modo|display|aparencia/.test(domain)) continue
+        if (property === 'interface_theme' && (named || !/interface|tema|theme|modo|display|aparencia/.test(domain))) continue
         if (['communication_style', 'communication_focus'].includes(property) && !/respost|explica|communicat|comunic|answer|repl|explan/.test(domain)) continue
         if (property === 'response_language' && !/idioma|lingua|convers|speak|falar|respond in|language/.test(domain)) continue
         if (property === 'favorite_beverage' && !/bebida|beverage|drink|cha|tea/.test(domain)) continue
@@ -490,6 +588,16 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     }
     if (subject && /\b(?:20\d\d)\b/.test(q) && /projeto|project|computador|computer/.test(q) && !current.some(f => mentions(span, f.value) && /date|data|year/.test(f.property))) add('unsupported_personal_date', span)
   }
+  if (contrastProperty) {
+    const decisions = all.filter(f => f.entity === 'project.' + snapshot.project &&
+      f.property === contrastProperty && f.modality === 'decision')
+    for (const time of ['historical', 'current'] as const) {
+      const known = decisions.some(f => f.validity === time || time === 'historical' &&
+        f.evidence.some(e => e.role === 'previous_property_link_not_current_value'))
+      if (known && !assertions.some(a => a.property === contrastProperty && a.temporality === time && a.supported))
+        add('requested_choice_time_missing', text, false)
+    }
+  }
   const foreignActor = /\b(?:irmao|irma|brother|sister|colega|colleague|amigo|friend)\b/.test(query)
   const askedEntity = entityIn(snapshot.query)
   const generalProjectStatus = projectQuestion && /como esta|como anda|how is|status of/.test(query) && !/linguagem|language|banco|database/.test(query)
@@ -501,7 +609,21 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       preferenceQuestion ? f.entity === 'user' && f.modality === 'preference' : false))
   if (personalQuestion && relevantKnown && uncertain(text) && assertions.length === 0) add('known_information_not_used', text, false)
   for(const relation of snapshot.relations??[]) {
-    if(relation.actor!=='user')continue
+    if(relation.actor!=='user' && !storyThemes.some(f => f.entity === relation.actor))continue
+    if (relation.outside_project && relation.state === 'unavailable') {
+      const answer = fold(text)
+      const boundary = /(?:fora|outside|beyond).{0,48}(?:escopo|scope|acesso|access|autoriz)|(?:\bsem|\bnao (?:tenho|tem|temos|possuo)|\bno(?=\s+access)|\bwithout|\bcannot|\bcan't|\bnot authorized).{0,32}(?:acesso|acessar|access|autoriz|permission)|(?:acesso|access|autoriz|escopo|scope|consultar).{0,45}(?:apenas|somente|restrit|limit|only)|(?:apenas|somente|so|only).{0,45}(?:acesso|acessar|consultar|access|autoriz)/u
+      const project = fold(relation.outside_project)
+      const onlyExternal = snapshot.relations?.filter(r => r.outside_project).length === 1
+      const explainsBoundary = answer.split(/[.!?\n]+/u).some(sentence => {
+        const identifiesProject = sentence.split(/[^\p{L}\p{N}_-]+/u).includes(project)
+          || (onlyExternal && /\b(?:outro projeto|other project)\b/u.test(sentence))
+        return identifiesProject && boundary.test(sentence)
+      })
+      if (!explainsBoundary) {
+        add('missing_project_access_boundary', text, false)
+      }
+    }
     const known=available.filter(f=>relation.references.some(r=>r.id===f.id && r.version===f.version))
     if(known.length && !assertions.some(a=>a.supported && a.references.some(id=>known.some(f=>f.id===id))))add('known_relation_not_used',text,false)
   }
