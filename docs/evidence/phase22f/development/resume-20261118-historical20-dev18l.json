@@ -1,0 +1,118 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_historical_regression_after_fix",
+  "date": "2026-11-18",
+  "run_label": "dev18lseries-historical20",
+  "production_code_commit": "faa71ace496620831cc6547db9722a54909a863b",
+  "scope": "phase22c-final-historical-series",
+  "project": "candeia",
+  "execution_complete": true,
+  "passed": true,
+  "coverage": {
+    "source_turns_planned": 20,
+    "source_turns_observed": 20,
+    "probes_planned": 10,
+    "probes_observed": 10,
+    "checked": 29,
+    "regenerated": 1,
+    "blocked": 0,
+    "not_executed": 0
+  },
+  "literal_metrics": {
+    "useful_responses": 30,
+    "planned_responses": 30,
+    "useful_probes": 10,
+    "planned_probes": 10,
+    "retained_atoms": 32,
+    "planned_atoms": 32,
+    "supported_delivered_claims": 24,
+    "delivered_claims": 24,
+    "critical_delivered_claims": 0,
+    "premature_completed_write_claims": 0,
+    "unverified_agent_notes_displayed": 0,
+    "cross_project_value_leaks": 0
+  },
+  "earliest_native_probe_retrieval": {
+    "tp": 10,
+    "fp": 1,
+    "missed": 0,
+    "expected_references": 10,
+    "precision": 0.9090909090909091,
+    "recall": 1,
+    "out_of_binding_references": 0,
+    "extra_reference": {
+      "ordinal": 23,
+      "property": "games_turn_strategy",
+      "verified_user_source_ordinal": 5,
+      "strict_gold_includes_reference": false,
+      "injected_by_earliest_audit": true,
+      "later_verifier_references": 0
+    }
+  },
+  "native_source_audit": {
+    "completed_source_jobs": 10,
+    "active_records": 11,
+    "verified_exact_user_origin_proofs": 11,
+    "pending_vectors": 0,
+    "tombstones": 0,
+    "duplicate_active_keys": 0,
+    "critical_writes": 0,
+    "critical_promotions": 0,
+    "supplemental_distinct_source_relations": { "tp": 11, "fp": 0, "missed": 0, "denominator": 11 },
+    "method": "Verify that each accepted distinct relation has evidence from the exact USER source. The separate original retrieval denominator remains 10."
+  },
+  "observations": [
+    {
+      "ordinal": 5,
+      "detail": "The displayed response faithfully acknowledged the current USER preference. The source job completed and created a turn-based strategy record with exact USER proof."
+    },
+    {
+      "ordinal": 6,
+      "detail": "The reply presented TypeScript and PostgreSQL as plans, matching the source and the two native records. Its first display made no completed-write claim.",
+      "first_display_ms": 2424,
+      "receipt_proof_read_finished_ms": 7938
+    },
+    {
+      "ordinal": 21,
+      "detail": "The initial unsupported progress wording stayed out of the DOM. The displayed regeneration preserved the description and both planned technologies."
+    },
+    {
+      "ordinal": 23,
+      "detail": "The extra strategy reference supports the reply and counts as one false positive under the unchanged probe gold."
+    }
+  ],
+  "latency_ms": {
+    "generation": { "samples": 30, "p50": 2915.5, "p95": 6170, "max": 7195 },
+    "extraction_wait": { "samples": 30, "p50": 735, "p95": 5506, "max": 5561 }
+  },
+  "comparison": {
+    "original_22e_h20": {
+      "useful": { "measured": 28, "planned": 30 },
+      "useful_probes": { "measured": 9, "planned": 10 },
+      "retained": { "measured": 28, "planned": 32 },
+      "fidelity": { "supported": 11, "delivered": 11 },
+      "critical_delivered_claims": 0,
+      "earliest_native_retrieval": { "tp": 10, "fp": 0, "missed": 0 },
+      "published_audit_sha256": "5fb349fcffbdb01558458acf8664ba10c62dbac198426e6c0eab390ed94caecc"
+    },
+    "failed_dev18k_h20": {
+      "useful": { "measured": 29, "planned": 30 },
+      "useful_probes": { "measured": 10, "planned": 10 },
+      "retained": { "measured": 31, "planned": 32 },
+      "fidelity": { "supported": 20, "delivered": 23 },
+      "critical_delivered_claims": 2,
+      "earliest_native_retrieval": { "tp": 10, "fp": 0, "missed": 0 },
+      "published_audit_sha256": "1636616fcc3f45f5b5240979860aea841ed1330e362b74ee2ef77f0ed72ebb9f"
+    }
+  },
+  "sha256": {
+    "original_fixture": "e94a9c8ea7671a90f165fae2c85422512b745184eabd767bdcf7f164c6b2892a",
+    "development_manifest": "cf13e579b9d8f291c7237308db680a72c7528218c6bd4e9b092fb69bfa3650a1",
+    "bootstrap": "3aa3634b7bed59ee4e05097b5c67b9b4ad79e4fdfaa2185d900e28bdf220371a",
+    "raw": "727c58980676705b3c31f066efbf2d5d0122fa27d07b18fc8df1c957f58c08ff",
+    "outcome": "9ddf092c1e8513f76a408702ce502ced46fae9be59acd66044647f99586bf610",
+    "independent_review": "74f2b4bdd0efd3fa4e4412deb423fa313641560e8ea64606c7c4647bb47d92ce",
+    "execution_log": "f02dcfc8e698c5ec6386775e28bc902233941712f928ee8c9802e17c5c5e716a"
+  },
+  "disposition": "The original H20 regression passed independent review. This establishes the gate for H50 within the same known longitudinal series."
+}
