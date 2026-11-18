@@ -100,7 +100,7 @@ def main(args):
             # Shared across broker restarts. Exclusive creation reserves an
             # attempt before the upstream call, including failed attempts.
             campaign = os.environ['LUCILLE_G22_BUDGET']
-            limit, folder = {'decision': (4, 'g22-decision-budget'), 'persistence': (8, 'g22-persistence-budget'), 'continuity': (24, 'g22-continuity-budget'), 'fidelity': (8, 'g22-fidelity-budget')}.get(campaign, (12, 'g22-call-budget'))
+            limit, folder = {'temporal': (2, 'g22-temporal-budget'), 'decision': (4, 'g22-decision-budget'), 'persistence': (8, 'g22-persistence-budget'), 'continuity': (24, 'g22-continuity-budget'), 'fidelity': (8, 'g22-fidelity-budget')}.get(campaign, (12, 'g22-call-budget'))
             budget = root / 'reports' / folder
             budget.mkdir(exist_ok=True)
             for slot in range(limit):

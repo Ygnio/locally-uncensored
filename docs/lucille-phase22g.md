@@ -223,3 +223,45 @@ A primeira falha ocorreu na verificação. A pergunta mista ativou a exigência 
 Antes da inferência, o replay de `decision-replay.json` aceitou a reformulação correta e bloqueou a troca ambígua. Com o projeto Urze e a escolha de Python para Rust, as contraprovas distinguiram decisão, execução, inversão dos valores e ausência de evidência. A verificação passou em 42 testes Rust, 138 testes TypeScript e na checagem de tipos. C1 passou em 21/21 obrigatórias e 26/26 totais. C2 recuperou 27/27 nos dois modos e admitiu as 20 fontes. Os replays de Alfenim e Vimeira recuperaram os fatos e titulares esperados; o tombstone impediu reintrodução e preservou Python. [Resultados das regressões](evidence/phase22g/decision-update/regressions.json) · [Recuperação offline](evidence/phase22g/decision-update/offline-recall.json) · [Esquecimento](evidence/phase22g/decision-update/tombstone-offline.json)
 
 Foram **4/4 chamadas** reais, com uma extração, duas respostas iniciais e uma regeneração. Total do Gemma de **3.888 tokens de entrada e 210 de saída**. O modelo e a quantização foram preservados, com contexto de 65.536 e Nomic em CPU. Em 139 segundos, o supervisor observou mínimo de 2.208.956.416 bytes de RAM física livre e pico de 9.424 MiB utilizados na GPU inteira. O limite preventivo foi de 1 GiB. As compilações terminaram antes do carregamento. A inspeção final verificou a integridade SQLite e as chaves estrangeiras, os 104 hashes protegidos, a identidade dos processos encerrados e as cinco portas livres. A 2.2F permanece congelada. [Recursos, orçamento e integridade](evidence/phase22g/decision-update/run.json)
+
+## Verificação temporal por afirmação
+
+**APROVADO NO CHECKPOINT.** Em conversa nova na GUI Tauri, a primeira geração real repetiu literalmente a resposta histórica que o checkpoint anterior havia retido. O verificador aprovou as duas afirmações, o DOM exibiu o texto integral e nenhuma regeneração foi necessária. O ponto de partida local e remoto foi `7109b58e47764273d83222bb2390948dfc4d22f3`.
+
+### Causa e correção
+
+A segmentação já separava as orações em torno de “mas”. O erro ocorria na verificação de cada valor. A pergunta continha “anterior”, e o verificador voltava a aplicar essa exigência à segunda oração quando faltava uma palavra como “agora”. Em outro caminho, a existência de determinado valor no histórico podia influenciar a interpretação temporal da afirmação. A filtragem por escopo e a consulta complementar por referência já funcionavam. [Auditoria inicial](evidence/phase22g/temporal-claims/auditoria.txt) · [Replay antes da mudança](evidence/phase22g/temporal-claims/before.json)
+
+Para perguntas que contrastam duas versões da escolha de um mesmo banco ou linguagem, a afirmação tipada recebe o papel histórico ou atual antes da comparação com os valores. A oração “você escolheu” pode nomear uma decisão ainda vigente. As verificações exigem concordância de projeto, entidade, propriedade, valor, modalidade e versão. A segmentação também reconhece contrastes coordenados e elipses, como “a anterior era Python e a atual é Rust”. As perguntas exclusivamente históricas, as declarações de atualização e os pedidos que reúnem propriedades diferentes mantêm suas verificações próprias. Uma contraprova adicional expôs a frase isolada “A migração foi executada”. O verificador agora exige evidência de execução para essa afirmação; uma decisão sobre tecnologia é insuficiente. [Replay corrigido](evidence/phase22g/temporal-claims/after.json) · [Casos sintéticos e contextos](evidence/phase22g/temporal-claims/unit-matrix.json)
+
+### Consulta real com Gemma
+
+O perfil Tauri e seu armazenamento de conversas eram novos. A base foi preparada por cópia SQLite da base sintética revisada de Alfenim, preservando IDs, versões, proveniência e vínculo de substituição. A pergunta foi “Na ficha de planejamento, qual era minha escolha anterior de banco e qual vale agora?”. No pedido HTTP havia apenas a mensagem de sistema e a mensagem de usuário com os dados recuperados e a pergunta. O contexto injetado incluía PostgreSQL v2 e a evidência vinculada da escolha anterior de SQLite. [Preparação](evidence/phase22g/temporal-claims/preparation.json) · [Pedido e geração integrais](evidence/phase22g/temporal-claims/broker.json)
+
+> Sua escolha anterior era SQLite, mas você escolheu PostgreSQL para o projeto Alfenim.
+
+| Afirmação | Tempo verificado | Evidência autorizada |
+|---|---|---|
+| “Sua escolha anterior era SQLite” | Histórico | A consulta complementar confirmou o registro obsoleto de SQLite v3, ligado à revisão |
+| “você escolheu PostgreSQL para o projeto Alfenim” | Atual | Decisão ativa de PostgreSQL v2, do mesmo projeto e propriedade |
+
+A primeira tentativa terminou em `checked`, com duas afirmações sustentadas e zero violações. O texto bruto coincidiu com a mensagem do assistente e apareceu integralmente no DOM. Os registros mantiveram seus estados e versões. [Afirmações e referências](evidence/phase22g/temporal-claims/recall.json) · [Observação do DOM](evidence/phase22g/temporal-claims/gui.json)
+
+### Matriz offline
+
+| Resultado em 36 casos dirigidos | Antes | Depois |
+|---|---:|---:|
+| Resposta correta e aceita | 10 | 19 |
+| Resposta correta e bloqueada | 9 | 0 |
+| Resposta incorreta e bloqueada | 16 | 17 |
+| Resposta incorreta e aceita | 1 | 0 |
+
+A aceitação incorreta anterior apresentava Python histórico como escolha atual de Urze. A matriz inclui as duas ordens de apresentação, duas frases, elipse, valores invertidos, histórico inventado, outro projeto ou escopo, plano e execução. Também inclui a introdução de Alfenim 2, a reformulação da atualização, a explicação geral de desempenho e a autoria do tema da personagem. As contagens são de exemplos dirigidos, incluindo variantes de redação. Os controles nativos preservados usam o resultado arquivado como comparação inicial; a consulta histórica de Alfenim foi reproduzida antes e depois nesta execução. [Matriz por resposta](evidence/phase22g/temporal-claims/matrix.json)
+
+### Regressões, recursos e decisão
+
+C1 passou em 21/21 obrigatórias e 26/26 totais. C2 passou em 27/27 nos dois modos e admitiu as 20 fontes. Passaram 42 testes Rust, 139 testes TypeScript e a checagem de tipos. Os replays preservaram a recuperação de Alfenim e Vimeira, o vínculo USER/personagem, o tombstone, a contenção de finalidade inventada e as exigências de recibo para afirmar persistência. [Regressões](evidence/phase22g/temporal-claims/regressions.json) · [Autoria](evidence/phase22g/temporal-claims/vimeira-counterproofs.json) · [Esquecimento](evidence/phase22g/temporal-claims/tombstone-offline.json)
+
+Foi usada **1 das 2 chamadas autorizadas**, com 1.362 tokens de entrada e 20 de saída. O Gemma 4 12B manteve o contexto de 65.536 e o Nomic rodou na CPU. Em 39 amostras ao longo de 81 segundos, a RAM física livre mínima foi de 2.175.852.544 bytes e o pico de uso da GPU inteira foi de 9.427 MiB. A trava preventiva foi de 1 GiB. Os supervisores confirmaram o encerramento dos processos de QA. As cinco portas ficaram livres, a integridade SQLite e as chaves estrangeiras passaram, e os 104 arquivos protegidos mantiveram seus hashes. [Medições e encerramento](evidence/phase22g/temporal-claims/run.json)
+
+A 2.2G está pronta para **preparar uma avaliação independente de generalização**, com casos novos e critérios congelados antes da execução. Este checkpoint dirigido não confere aprovação operacional à memória. A 2.2F segue congelada e reprovada.

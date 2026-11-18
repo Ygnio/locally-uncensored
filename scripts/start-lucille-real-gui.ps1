@@ -1,4 +1,4 @@
-param([Parameter(Mandatory=$true)][string]$QaExe,[ValidateSet('21c','21d','22','22b','22c','22d','22e','22f')][string]$Phase='21c',[switch]$StaticFrontend,[switch]$Checkpoint22g,[ValidateSet('a','b','decision')][string]$RetestProfile)
+param([Parameter(Mandatory=$true)][string]$QaExe,[ValidateSet('21c','21d','22','22b','22c','22d','22e','22f')][string]$Phase='21c',[switch]$StaticFrontend,[switch]$Checkpoint22g,[ValidateSet('a','b','decision','temporal')][string]$RetestProfile)
 $ErrorActionPreference='Stop'
 $repo=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $profileName=if($Phase -in @('22','22b','22c','22d','22e','22f')){"lucille-synthetic-full$Phase"}else{'lucille-synthetic-full'}

@@ -1,0 +1,272 @@
+{
+  "baseline": "7109b58e",
+  "method": "Same test snapshots against Git baseline and corrected verifier. Native Alfenim history before/after replayed this run. For preserved Alfenim/Vimeira controls the baseline is their archived native result. Counts are directed examples, including surface variants.",
+  "matrix": {
+    "before": {
+      "correct_accepted": 10,
+      "correct_blocked": 9,
+      "incorrect_accepted": 1,
+      "incorrect_blocked": 16
+    },
+    "after": {
+      "correct_accepted": 19,
+      "correct_blocked": 0,
+      "incorrect_accepted": 0,
+      "incorrect_blocked": 17
+    }
+  },
+  "rows": [
+    {
+      "label": "contraste",
+      "answer": "Sua escolha anterior era Python, mas você escolheu Rust para o projeto Urze.",
+      "correct": true,
+      "before": false,
+      "after": true
+    },
+    {
+      "label": "contraste",
+      "answer": "Você escolheu Rust. Sua escolha anterior era Python.",
+      "correct": true,
+      "before": false,
+      "after": true
+    },
+    {
+      "label": "contraste",
+      "answer": "Antes escolheu Python e escolheu Rust para o projeto Urze.",
+      "correct": true,
+      "before": false,
+      "after": true
+    },
+    {
+      "label": "contraste",
+      "answer": "A anterior era Python e a atual é Rust.",
+      "correct": true,
+      "before": false,
+      "after": true
+    },
+    {
+      "label": "contraste",
+      "answer": "A escolha era Python, mas passou a ser Rust.",
+      "correct": true,
+      "before": false,
+      "after": true
+    },
+    {
+      "label": "contraste",
+      "answer": "Antes, Python. Hoje, Rust.",
+      "correct": true,
+      "before": false,
+      "after": true
+    },
+    {
+      "label": "contraste",
+      "answer": "Python era a escolha anterior e Rust é a atual.",
+      "correct": true,
+      "before": false,
+      "after": true
+    },
+    {
+      "label": "pergunta somente histórica",
+      "answer": "Minha escolha anterior era Python.",
+      "correct": true,
+      "before": true,
+      "after": true
+    },
+    {
+      "label": "contraprova",
+      "answer": "Sua escolha anterior era Rust, mas você escolheu Python para o projeto Urze.",
+      "correct": false,
+      "before": false,
+      "after": false
+    },
+    {
+      "label": "contraprova",
+      "answer": "A escolha atual é Python.",
+      "correct": false,
+      "before": true,
+      "after": false
+    },
+    {
+      "label": "contraprova",
+      "answer": "Você escolheu Rust.",
+      "correct": false,
+      "before": false,
+      "after": false
+    },
+    {
+      "label": "contraprova",
+      "answer": "Sua escolha anterior era Python, mas o projeto Urze já está implementado em Rust.",
+      "correct": false,
+      "before": false,
+      "after": false
+    },
+    {
+      "label": "contraprova",
+      "answer": "O projeto Urze migrou de Python para Rust.",
+      "correct": false,
+      "before": false,
+      "after": false
+    },
+    {
+      "label": "contraprova",
+      "answer": "Sua escolha anterior era Python e a atual é Rust. A migração foi executada.",
+      "correct": false,
+      "before": false,
+      "after": false
+    },
+    {
+      "label": "contraprova",
+      "answer": "Sua escolha anterior era JavaScript, mas você escolheu Rust.",
+      "correct": false,
+      "before": false,
+      "after": false
+    },
+    {
+      "label": "contraprova",
+      "answer": "Sua escolha anterior era Python, mas você escolheu Rust para o projeto Amora.",
+      "correct": false,
+      "before": false,
+      "after": false
+    },
+    {
+      "label": "outro escopo",
+      "answer": "Sua escolha anterior era Python, mas você escolheu Rust.",
+      "correct": false,
+      "before": false,
+      "after": false
+    },
+    {
+      "label": "outra entidade",
+      "answer": "Sua escolha anterior era Python, mas você escolheu Rust.",
+      "correct": false,
+      "before": false,
+      "after": false
+    },
+    {
+      "label": "modalidade de plano",
+      "answer": "Sua escolha anterior era Python, mas você escolheu Rust.",
+      "correct": false,
+      "before": false,
+      "after": false
+    },
+    {
+      "label": "execução com prova",
+      "answer": "Sua escolha anterior era Python e a atual é Rust. A migração foi executada.",
+      "correct": true,
+      "before": false,
+      "after": true
+    },
+    {
+      "label": "atualização arquivada",
+      "answer": "Você trocou o SQLite pelo PostgreSQL como banco de dados para o projeto Alfenim. A migração para essa nova escolha ainda está planejada para começar.",
+      "correct": false,
+      "before": false,
+      "after": false
+    },
+    {
+      "label": "atualização arquivada",
+      "answer": "Você decidiu substituir o SQLite pelo PostgreSQL no projeto Alfenim. A migração para este novo banco de dados ainda está planejada e não foi iniciada.",
+      "correct": true,
+      "before": true,
+      "after": true
+    },
+    {
+      "label": "explicação geral arquivada",
+      "answer": "Não, a quantidade de RAM sozinha não garante a ausência de travamentos. Outros fatores, como a velocidade do processador, o desempenho do SSD/HD e a otimização do software também influenciam diretamente a fluidez do sistema.",
+      "correct": true,
+      "before": true,
+      "after": true
+    },
+    {
+      "label": "explicação geral arquivada",
+      "answer": "Não, a quantidade de RAM sozinha não garante a ausência de travamentos. Outros fatores, como a velocidade do processador, o desempenho do SSD e a otimização do software também influenciam diretamente a fluidez do sistema.",
+      "correct": true,
+      "before": true,
+      "after": true
+    },
+    {
+      "label": "replay nativo da consulta histórica",
+      "answer": "Sua escolha anterior era SQLite, mas você escolheu PostgreSQL para o projeto Alfenim.",
+      "correct": true,
+      "before": false,
+      "after": true
+    },
+    {
+      "label": "replay nativo da consulta histórica",
+      "answer": "Sua escolha anterior era SQLite, mas agora você escolheu PostgreSQL para o projeto Alfenim.",
+      "correct": true,
+      "before": true,
+      "after": true
+    },
+    {
+      "label": "replay nativo da consulta histórica",
+      "answer": "Sua escolha anterior era PostgreSQL, mas agora você escolheu SQLite para o projeto Alfenim.",
+      "correct": false,
+      "before": false,
+      "after": false
+    },
+    {
+      "label": "Alfenim 2",
+      "answer": "O projeto Alfenim serve para catalogar matrizes de xilogravura. Você escolheu o SQLite como banco de dados para guardar as fichas.",
+      "correct": true,
+      "before": true,
+      "after": true
+    },
+    {
+      "label": "Alfenim 4",
+      "answer": "Na ficha de planejamento, sua escolha anterior era o SQLite, mas agora você escolheu o PostgreSQL.",
+      "correct": true,
+      "before": true,
+      "after": true
+    },
+    {
+      "label": "Alfenim 5",
+      "answer": "A finalidade do Alfenim é guardar as fichas. Você escolheu o PostgreSQL como banco de dados.",
+      "correct": false,
+      "before": false,
+      "after": false
+    },
+    {
+      "label": "alfenim sem histórico",
+      "answer": "A finalidade do projeto Alfenim é catalogar matrizes de xilogravura. Você escolheu o PostgreSQL como banco de dados.",
+      "correct": true,
+      "before": true,
+      "after": true
+    },
+    {
+      "label": "vimeira sem histórico",
+      "answer": "Você prefere o tema claro na interface, enquanto a Dália prefere o tema sépia no conto.",
+      "correct": true,
+      "before": true,
+      "after": true
+    },
+    {
+      "label": "titular do tema",
+      "answer": "Você prefere o tema claro. No conto, Dália prefere o tema sépia.",
+      "correct": true,
+      "before": true,
+      "after": true
+    },
+    {
+      "label": "titular do tema",
+      "answer": "Você prefere o tema sépia. No conto, Dália prefere o tema claro.",
+      "correct": false,
+      "before": false,
+      "after": false
+    },
+    {
+      "label": "titular do tema",
+      "answer": "Você prefere o tema claro. No conto, Dália prefere o tema escuro.",
+      "correct": false,
+      "before": false,
+      "after": false
+    },
+    {
+      "label": "titular do tema",
+      "answer": "Você prefere o tema claro.",
+      "correct": false,
+      "before": false,
+      "after": false
+    }
+  ]
+}

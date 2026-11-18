@@ -40,6 +40,7 @@ export interface MemoryDirectiveReceipt {
   records?:{id:string;version:number;state:'deleted';effect:'delete'}[]
 }
 export interface MemoryAssertion {
+  temporality?: "current" | "historical"
   entity: string; property: string; value: string; span: string; supported: boolean; references: string[]
 }
 export interface FidelityViolation { code: string; span: string; critical: boolean }
@@ -110,6 +111,14 @@ function historicalQuestion(query: string): boolean {
   return past(query)
 }
 
+// A question about both versions has no single default historical frame.
+function contrastsChoices(query: string): boolean {
+  return (query.includes('?') || /^(?:me (?:lembra|diga)|lembre|compare|tell me|remind me)\b/u.test(query)) &&
+    /\b(?:escolh\w*|decisao|decidi\w*|choice|chosen|chose|selected|decision)\b/u.test(query) &&
+    (historicalQuestion(query) || /\b(?:era|was|former)\b/u.test(query)) &&
+    /\b(?:agora|atual(?:mente)?|hoje|now|current(?:ly)?|today|passou a ser)\b/u.test(query)
+}
+
 function descriptionValue(text: string) {
   return text.trim().replace(/[.!]+$/u, '').replace(/^(?:um|uma|a|an|the)\s+/u, '').replace(/\s+/gu, ' ')
 }
@@ -164,7 +173,8 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   const descriptionRequested = /\b(?:tema|assunto|finalidade|proposito|descricao|objetivo)\s+(?:do|deste|desse|do seu|do meu)\s+projeto\b|\b(?:topic|subject|purpose|description)\s+of\s+(?:the|this|your|my)\s+project\b/.test(query)
   const personalQuestion = /\b(?:meu|minha|meus|minhas|my|our|aquele|aquela|aqueles|aquelas|that)\b|pref|gosto|lembra|remember/.test(query) || (/\b(?:eu|i)\b/.test(query) && /tenho|tomo|bebo|gosto|escolhi|decidi|conclui|terminei|finalizei|have|drink|chose|choose|decided|like|prefer/.test(query))
   const preferenceQuestion = personalQuestion && /pref|gost|favorit|tema|theme|interface|bebida|beverage|respost|answer|repl|explain|cafe|coffee|idioma|language|jogo|game|character|personag|classe/.test(query)
-  const projectQuestion = personalQuestion && /projeto|project|linguagem|language|banco|database/.test(query)
+  const contrastProperty = askedProperties.length === 1 && ['language','database'].includes(askedProperties[0]) && contrastsChoices(query) ? askedProperties[0] : undefined
+  const projectQuestion = (personalQuestion || !!contrastProperty) && /projeto|project|linguagem|language|banco|database/.test(query)
   if (/^\s*(?:sim|yes)\b/.test(fold(text)) && projectQuestion && execution(query)) {
     const values = ['typescript','javascript','python','rust','sqlite','postgresql','mysql'].filter(value => new RegExp('\\b'+value+'\\b').test(query))
     const actual=current.filter(f => f.entity === 'project.'+snapshot.project && ['in_progress','current_fact'].includes(f.modality))
@@ -200,17 +210,22 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     const boundChoice = directCorrection && roles.length === 2 &&
       roles.some(r => r.role === 'origin' && r.value === directCorrection.former) &&
       roles.some(r => r.role === 'destination' && r.value === directCorrection.current)
-    const historical = !(boundChoice && !choiceOrigin) && !afterRamCorrection && (choiceOrigin || past(span) || recordedProjectHistory || projectTechnology && historicalProjectWording(span) || (historicalQuestion(snapshot.query) && !/\b(?:agora|atualmente|now|currently|prefere|prefiro|gosta|gosto|tem|tenho|possui|usa|utiliza|is|are|have|has|prefer|prefers|like|likes|uses)\b/.test(fold(span))))
+    // Derive the requested version from the assertion before consulting values.
+    // A past-tense choice verb alone describes a decision that may still hold.
+    const localTime: MemoryAssertion['temporality'] = projectTechnology && property === contrastProperty
+      ? (past(span) || historicalProjectWording(span) || /\b(?:era|was|former)\b/u.test(predicate) ? 'historical' : 'current')
+      : undefined
+    const historical = localTime ? localTime === 'historical' : !(boundChoice && !choiceOrigin) && !afterRamCorrection && (choiceOrigin || past(span) || recordedProjectHistory || projectTechnology && historicalProjectWording(span) || (historicalQuestion(snapshot.query) && !/\b(?:agora|atualmente|now|currently|prefere|prefiro|gosta|gosto|tem|tenho|possui|usa|utiliza|is|are|have|has|prefer|prefers|like|likes|uses)\b/.test(fold(span))))
     const terminalProject = projectTechnology && current.some(f=>f.entity===entity && f.property==='lifecycle' && ['cancelled','completed'].includes(f.modality))
     if (terminalProject && !historical && planned(span) && candidates.some(f=>f.value===value && ['planned','decision'].includes(f.modality))) add('terminal_project_plan_as_current',span)
     const sourceOrigin=choiceOrigin && ['language','database'].includes(property) ? all.filter(f=>f.entity===entity && f.property===property && f.validity==='current_user_statement' && ['decision','planned'].includes(f.modality) && f.evidence.some(e=>['current_user_statement','current_source'].includes(e.role) && technologyRoles(e.text).some(r=>r.role==='origin' && r.value===value) && technologyRoles(e.text).some(r=>r.role==='destination' && r.value===f.value))) : []
     const ambiguousNegative=negative && !entity && new Set(candidates.map(f=>f.entity)).size>1
-    const matching = [...(boundChoice && choiceOrigin && correctionFact ? [correctionFact] : []),...sourceOrigin,...candidates.filter(f => !ambiguousNegative && (negative ? f.value !== value && f.validity !== 'historical' : (f.value === value && (f.validity !== 'historical' || historical)) || (historical && property==='ram_capacity' && /^\d+_gb$/.test(value) && f.evidence.some(e=>{
+    const matching = [...(boundChoice && choiceOrigin && correctionFact ? [correctionFact] : []),...sourceOrigin,...candidates.filter(f => (!localTime || (f.validity === localTime && f.modality === 'decision')) && !ambiguousNegative && (negative ? f.value !== value && f.validity !== 'historical' : (f.value === value && (f.validity !== 'historical' || historical)) || (historical && property==='ram_capacity' && /^\d+_gb$/.test(value) && f.evidence.some(e=>{
       if(e.role!=='previous_property_link_not_current_value')return false
       const amounts=[...fold(e.text).matchAll(/\b(\d+)\s*(?:gb|gib)\b/g)]
       return amounts.length===1 && amounts[0][1]+'_gb'===value
     }))))]
-    const assertion = { entity: entity ?? matching[0]?.entity ?? 'unspecified', property, value, span, supported: matching.length > 0, references: matching.map(f => f.id) }
+    const assertion = { temporality: localTime, entity: entity ?? matching[0]?.entity ?? 'unspecified', property, value, span, supported: matching.length > 0, references: matching.map(f => f.id) }
     assertions.push(assertion)
     if (!assertion.supported) { add('unsupported_typed_value', span); return }
     const earlierMention=/\b(?:mencionou|disse|informou|mentioned|said|told)\b/.test(fold(span)) && !/antes de|before the/.test(fold(span)) && matching.some(f=>f.validity==='current' && f.evidence.some(e=>e.role==='current_source') && (planned(span) || !['planned','hypothesis'].includes(f.modality)))
@@ -239,6 +254,8 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   const storyThemes = current.filter(f => f.property === 'fictional_theme' && f.entity.startsWith('character.'))
   const clauses = answerRelationClauses(text).flatMap(span => storyThemes.length
     ? span.split(/,?\s+(?:enquanto(?:\s+que)?|whereas|while|e|and)\s+/iu)
+    : [span]).flatMap(span => contrastProperty
+    ? span.split(/(?:,\s*|\s+(?:e|and)\s+)(?=(?:(?:a|o|the)\s+)?(?:agora|atual(?:mente)?|anterior(?:mente)?|antes|hoje|passou a ser|now|currently|current|previous(?:ly)?|formerly)\b|[\p{L}\p{N}_-]+\s+(?:[ée]\s+(?:a|o)\s+(?:atual|anterior)|(?:is|was)\s+the\s+(?:current|previous))\b)/iu)
     : [span]).flatMap(span => {
     if (!mixedProjectHistory || !/^\s*(?:(?:voce|you)\s+)?(?:escolheu|decidiu|chose|decided)\b/.test(fold(span))) return [span]
     // A listed past choice and past plan remain separate from a concluding
@@ -570,6 +587,16 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       if (execution(span) && matching.every(f=>!['current_fact','in_progress'].includes(f.modality))) add('plan_or_decision_as_execution',span)
     }
     if (subject && /\b(?:20\d\d)\b/.test(q) && /projeto|project|computador|computer/.test(q) && !current.some(f => mentions(span, f.value) && /date|data|year/.test(f.property))) add('unsupported_personal_date', span)
+  }
+  if (contrastProperty) {
+    const decisions = all.filter(f => f.entity === 'project.' + snapshot.project &&
+      f.property === contrastProperty && f.modality === 'decision')
+    for (const time of ['historical', 'current'] as const) {
+      const known = decisions.some(f => f.validity === time || time === 'historical' &&
+        f.evidence.some(e => e.role === 'previous_property_link_not_current_value'))
+      if (known && !assertions.some(a => a.property === contrastProperty && a.temporality === time && a.supported))
+        add('requested_choice_time_missing', text, false)
+    }
   }
   const foreignActor = /\b(?:irmao|irma|brother|sister|colega|colleague|amigo|friend)\b/.test(query)
   const askedEntity = entityIn(snapshot.query)
