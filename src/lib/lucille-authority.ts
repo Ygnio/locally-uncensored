@@ -33,7 +33,7 @@ export function projectChoiceEntailmentQuery(query: string): string | undefined 
 
 export function deniesProjectChoiceEntailment(span: string, value: string): boolean {
   const choice = nominalLanguageChoice(span)
-  const predicate = choice ? choice[1] === value ? choice[2] : '' : normalizeEvidenceText(span).trim().replace(/^ela\s+/u, '')
+  const predicate = choice ? choice[1] === value ? choice[2] : '' : normalizeEvidenceText(span).trim().replace(/^(?:ela|escolher (?:a|uma) linguagem)\s+/u, '')
   return /^nao (?:prova|comprova|significa|implica)(?:,\s*por si so,)?\s+que voce (?:ja )?(?:comecou|iniciou) a implementar (?:o|seu|este) projeto[.!]?$/u.test(predicate)
 }
 
