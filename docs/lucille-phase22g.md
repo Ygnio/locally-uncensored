@@ -269,3 +269,7 @@ A 2.2G está pronta para **preparar uma avaliação independente de generalizaç
 ## Preparação da avaliação independente
 
 O protocolo registra 40 consultas em oito capacidades, com cinco perfis sintéticos e 51 vínculos de recuperação obrigatórios. A preparação usou zero chamadas ao Gemma. Dois processos Tauri distintos abriram o perfil de ensaio, e os 104 hashes protegidos foram conferidos. A inferência real e a decisão sobre generalização ficam para a campanha posterior, com teto de 160 tentativas. [Protocolo e execução](evidence/phase22g/independent-evaluation/README.md) · [Rubrica](evidence/phase22g/independent-evaluation/rubrica.md) · [Manifesto](evidence/phase22g/independent-evaluation/manifest.json)
+
+## Execução independente congelada — tentativa 01
+
+**INCONCLUSIVO.** O pré-teste passou, mas o supervisor local do Nomic falhou na primeira amostragem de recursos, antes de despachar entradas. As 28 fontes e as 40 consultas ficaram pendentes, com zero tickets Gemma consumidos. As cinco portas ficaram livres e os 104 hashes protegidos conferiram no encerramento. [Relatório, ledger e evidências](evidence/phase22g/independent-run-01/README.md)
