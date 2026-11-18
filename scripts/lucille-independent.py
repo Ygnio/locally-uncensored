@@ -21,7 +21,9 @@ from phase22f_evaluation import QA_ROOT, controller_lock, digest, module, read, 
 
 SUITE = ROOT / 'docs/evidence/phase22g/independent-evaluation'
 REPORTS = QA_ROOT / 'reports'
-RUN = QA_ROOT / 'independent-v1'
+CASE_FREEZE = '8b09ba6647961e9dee731010795b446add1ea2fc'
+ARCHIVE_COMMIT = '500d4ed57f050b343af24fe526019518d4c9ee08'
+RUN = QA_ROOT / 'independent-v2'
 PORTS = (15283,15284,15287,15288,15289)
 PROFILES = tuple('i'+str(i) for i in range(1,6))
 MARKER = b'synthetic-data-only\n'
@@ -135,7 +137,17 @@ def integrity():
 def frozen(commit):
     require(bool(re.fullmatch('[0-9a-f]{40}',commit)),'Full freeze commit required')
     rel=SUITE.relative_to(ROOT).as_posix()
-    raw=subprocess.check_output(['git','show',commit+':'+rel+'/manifest.json'],cwd=ROOT)
+    subprocess.run(['git','merge-base','--is-ancestor',ARCHIVE_COMMIT,commit],cwd=ROOT,check=True)
+    require(commit!=ARCHIVE_COMMIT,'Attempt 02 executor anchor required')
+    # Only the report, attempt registration and the three QA files may differ.
+    allowed=('docs/lucille-phase22g.md','docs/evidence/phase22g/independent-run-01',
+             'docs/evidence/phase22g/independent-attempt-02','scripts/lucille-real-server.py',
+             'scripts/lucille-independent.py','qa/independent_startup_test.py')
+    subprocess.run(['git','diff','--quiet',CASE_FREEZE,commit,'--','.',
+                    *[':(exclude)'+p for p in allowed]],cwd=ROOT,check=True)
+    subprocess.run(['git','diff','--quiet',ARCHIVE_COMMIT,commit,'--',
+                    'docs/evidence/phase22g/independent-run-01'],cwd=ROOT,check=True)
+    raw=subprocess.check_output(['git','show',CASE_FREEZE+':'+rel+'/manifest.json'],cwd=ROOT)
     manifest=json.loads(raw)
     require(manifest==read(SUITE/'manifest.json'),'Manifest differs from Git anchor')
     require(set(f.name for f in SUITE.iterdir())==set(manifest['sha256'])|{'manifest.json'},'Suite membership changed')
@@ -147,7 +159,22 @@ def frozen(commit):
     return manifest
 
 
+def verify_first_attempt():
+    archive=QA_ROOT/'independent-v1'
+    public=ROOT/'docs/evidence/phase22g/independent-run-01'
+    for name in ('start.json','closure.json','audit.json'):
+        original=json.loads(subprocess.check_output(
+            ['git','show',ARCHIVE_COMMIT+':'+(public/name).relative_to(ROOT).as_posix()],cwd=ROOT))
+        require(original==read(public/name),'Published first attempt changed: '+name)
+        if name!='audit.json':
+            require(original==read(archive/name),'Local first attempt changed: '+name)
+    for name,expected in read(public/'audit.json')['private_raw_sha256'].items():
+        folder=archive if name=='interruption.json' else archive/'retained-runtime'
+        require(digest(folder/name)==expected,'First attempt evidence changed: '+name)
+
+
 def environment():
+    verify_first_attempt()
     require((QA_ROOT/'.lucille-isolated').read_bytes()==MARKER,'Bad QA root')
     require(not any(port_open(n) for n in PORTS),'QA listener occupied')
     require(not any(profile(p).exists() for p in PROFILES),'Campaign profile already exists')
@@ -227,7 +254,7 @@ def lifecycle(operation):
 def dispatch(run, i, sources, replay, initialize):
     campaign_guard()
     require(not BUDGET.exists() or len(list(BUDGET.iterdir()))<160,'Budget fully reserved')
-    label='g22ie-'+i['id']+('-replay' if replay else '')
+    label='g22ie2-'+i['id']+('-replay' if replay else '')
     require(not list(REPORTS.glob('driver-'+label+'-*.json')), 'Stage previously exposed')
     send_control(run,label,control_for(i,sources,replay,initialize))
     deadline=time.monotonic()+480
@@ -284,7 +311,7 @@ def campaign(commit):
     with controller_lock(scope):
         require(environment()==read(SUITE/'runtime-lock.json'),'Runtime lock mismatch')
         RUN.mkdir(exist_ok=False)
-        write(RUN/'start.json',dict(freeze=commit,application=contract['application_commit'],states=states))
+        write(RUN/'start.json',dict(freeze=CASE_FREEZE,executor_commit=commit,attempt=2,application=contract['application_commit'],states=states))
         control=REPORTS/'control.json'; previous=control.read_bytes()
         try:
             control.write_text('{}',encoding='utf8')
