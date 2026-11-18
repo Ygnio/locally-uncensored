@@ -32,7 +32,12 @@ fn relation_domains(q: &str) -> Vec<&'static str> {
             "assunto do projeto",
         ),
     ] {
-        if !(description && label == "tema de interface") && words.iter().any(|w| q.contains(w)) {
+        let matches = if label == "RAM" {
+            q.split(|c: char| !c.is_alphanumeric()).any(|token| token == "ram")
+        } else {
+            words.iter().any(|word| q.contains(word))
+        };
+        if matches && !(description && label == "tema de interface") {
             out.push(label)
         }
     }
@@ -88,7 +93,7 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
     let comparison = folded.starts_with("compare ") || named_project.is_some();
     if query.len() > 1600
         || query.contains(['"', '“', '”', '`'])
-        || !(query.contains('?') || comparison)
+        || !(query.contains('?') || comparison || ["diga ", "informe ", "tell me "].iter().any(|p| folded.starts_with(p)))
     {
         return vec![];
     }
@@ -106,7 +111,11 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
         // the coordinating conjunction e and manufacture a relation "Qual".
         let conjunction = ["e", "and", "com", "with", "versus", "vs", "vs."].contains(&word.to_lowercase().as_str());
         let list_comma = word.ends_with(',');
-        if !conjunction && !list_comma {
+        // A contrast can introduce an elliptical second track without a conjunction.
+        let contrast = ["daquela", "daquele"].contains(&word.to_lowercase().as_str())
+            && fold(&query[start..index]).contains("distinguir")
+            && fold(query[index + word.len()..].trim_start()).starts_with("em implementacao");
+        if !conjunction && !list_comma && !contrast {
             continue;
         }
         let boundary = if list_comma { index + word.len() - 1 } else { index };
@@ -189,7 +198,9 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
             .iter().any(|p| preceding.contains(p));
         let explicit_question = head.is_some_and(|w| ["qual", "quais", "what", "which", "quanto", "quantos"].contains(&w.as_str()));
         if assessment && !explicit_question { continue; }
-        if ((conjunction && starts_relation) || explicit_project_list_item || shared_track || separate_lifecycle)
+        let prepositional_question = matches!(words.as_slice(), [p, w, ..]
+            if ["em", "in"].contains(&p.as_str()) && ["qual", "which"].contains(&w.as_str()));
+        if ((conjunction && (starts_relation || prepositional_question)) || explicit_project_list_item || shared_track || separate_lifecycle || contrast)
             && boundary > start && spans.len() < 7 {
             spans.push(query[start..boundary].trim().to_owned());
             start = index + word.len();
@@ -629,6 +640,11 @@ fn coffee_preparation_intent(query: &str) -> bool {
         .iter()
         .any(|w| q.contains(w))
 }
+fn negative_interface_question(query: &str) -> bool {
+    let q = fold(query);
+    q.contains("interface") && ["me incomoda", "nao gosto", "eu detesto", "bothers me", "i dislike"]
+        .iter().any(|phrase| q.contains(phrase))
+}
 fn preference_slots(query: &str) -> Vec<&'static str> {
     let q = crate::relevance::normalize_query(query);
     let mut slots = Vec::new();
@@ -683,6 +699,22 @@ fn preference_slots(query: &str) -> Vec<&'static str> {
         if nouns.iter().any(|n| q.contains(n)) {
             slots.push(property);
         }
+    }
+    if negative_interface_question(query) {
+        slots.extend(["interface_clutter", "interface_theme"]);
+    }
+    if slots.contains(&"music_instrument") && (q.contains("tocar") || q.contains("play")) {
+        slots.push("hobby");
+    }
+    if slots.contains(&"communication_focus") {
+        let focus = ["objetiv", "objectiv", "foco", "focus"].iter().any(|stem| q.contains(stem));
+        let length = ["tamanho", "length", "breve", "brief", "concis", "detalh", "detail", "curta"].iter().any(|stem| q.contains(stem));
+        if focus != length {
+            slots.retain(|property| *property != if focus { "communication_style" } else { "communication_focus" });
+        }
+    }
+    if slots.contains(&"outing") && !["papel", "paper", "acabamento", "finish", "impress", "print"].iter().any(|n| q.contains(n)) {
+        slots.retain(|property| *property != "photo_paper");
     }
     if q.split(|c: char| !c.is_alphanumeric())
         .any(|w| ["idioma", "lingua"].contains(&w))
@@ -767,7 +799,9 @@ fn description_intent(query: &str) -> bool {
     .iter()
     .any(|w| q.contains(w));
     let words = q.split(|c: char| !c.is_alphanumeric()).filter(|w| !w.is_empty()).collect::<Vec<_>>();
-    named_description || words.iter().enumerate().any(|(at, word)| {
+    let requested_purpose = words.windows(2).any(|w| matches!(w, ["que" | "qual", "finalidade" | "proposito" | "objetivo"]))
+        && words.windows(3).any(|w| w == ["para", "o", "projeto"]);
+    named_description || requested_purpose || words.iter().enumerate().any(|(at, word)| {
         ["finalidade", "proposito", "objetivo", "tema"].contains(word) && [
             &["do", "projeto"][..],
             &["deste", "projeto"],
@@ -969,7 +1003,14 @@ fn eligible_source(
             return Ok(false);
         }
         if m.input.kind == Kind::Preference {
+            if negative_interface_question(query) && meta.value != "negative" {
+                return Ok(false);
+            }
             let slots = preference_slots(query);
+            if slots.contains(&"music_instrument") && meta.property == "hobby" && meta.value != "acoustic_guitar" {
+                // This legacy hobby value also has a typed musical-instrument representation.
+                return Ok(false);
+            }
             if !slots.is_empty() && !slots.contains(&meta.property.as_str()) {
                 return Ok(false);
             }
@@ -1145,6 +1186,11 @@ fn eligible_source(
             || ["compare", "todos", "all ", "dois computadores"]
                 .iter()
                 .any(|word| q.contains(word));
+        if compare && !implicit_device_comparison(query) && identified_ram_intent(query)
+            && meta.property == "ram_capacity" && query_device(query).is_some_and(|device| device != meta.subject)
+        {
+            return Ok(false);
+        }
         if compare && meta.subject.starts_with("device.") {
             let names = [
                 (

@@ -75,7 +75,7 @@ export function memoryAbsenceFields(text:string,snapshot:AnswerSnapshot):{entity
 const execution = (text: string) => /\besta (?:sendo )?(?:desenvolvid|desenvolvendo|implementad|implementando|usando|utilizando|estudando)|\bja (?:usa|utiliza|implementou|iniciou|comecou|esta)\b|(?:is|are) (?:already |currently )?(?:being developed|developing|implemented|using|building|studying)|already (?:implemented|started|using)|em (?:execucao|andamento)|in progress|\bunderway\b|(?:foi |is )?(?:escrito em|written in|built with)|\b(?:usa|utiliza)(?!-)\b|\b(?:runs on|roda em)\b|(?:projeto|project).*(?: e em | is in |foi feito em|based on)|(?:desenvolvido|implemented|developed) (?:em|in|with)/.test(fold(text))
 const completion = (text: string) => /\b(?:concluiu|conclui|terminei|finalizei|terminou|finalizou|concluido|concluida|completed|finished)\b|ja (?:concluido|pronto|finalizado)|(?:is|esta|foi|was) (?:already |ja )?(?:complete|finished|pronto|concluido)|parabens.{0,40}(?:concluir|conclusao)|congratulations.{0,40}(?:completing|finishing)/.test(fold(text))
 const planned = (text: string) => /planej|pretend|\bplan(?:ned|ning|s)?\b|\bplanos?\b|\b(?:usaria|utilizaria)\b|intend|want to|quero |vai (?:usar|fazer|desenvolver)|will (?:use|develop)|would use/.test(fold(text))
-const past = (text: string) => /\b(?:antes|anteriores?|anteriormente|antigamente|previous|previously|formerly|historical|historico)\b|used to/.test(fold(text))
+const past = (text: string) => /\b(?:antes|anterior(?:es)?|anteriormente|antigamente|previous|previously|formerly|historical|historico)\b|used to/.test(fold(text))
 function entityIn(text: string): string | undefined {
   const q = fold(text), found: { index: number; entity: string }[] = []
   for (const [pattern, entity] of [
@@ -240,6 +240,25 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
         !current.some(f => f.entity === 'user' && f.modality === 'preference' && mentions(span, f.value))) {
       add('unsupported_statement_actor', span)
     }
+    // A choice (or plan) does not entail execution. Check the requested
+    // technology track, even when the answer uses a project name or pronoun.
+    const entails = /\b(?:escolha|decisao|plano|choice|decision|plan)\b[^.!?;]{0,80}\b(?:prova|comprova|implica|significa|proves|implies|means)\b/
+    const choiceQuestion = entails.test(query) && execution(query)
+    if (!span.endsWith('?') && ((entails.test(q) && execution(q) && !/\b(?:nao|not|never)\b/.test(q)) ||
+        (choiceQuestion && /^(?:sim|yes)\b/.test(q.trim())))) {
+      const field = /\b(?:banco|database|sgbd)\b/.test(q+' '+query) ? 'database' :
+        /\b(?:linguagem|language)\b/.test(q+' '+query) ? 'language' : undefined
+      const choices = current.filter(f => f.entity === 'project.'+snapshot.project && f.property === field &&
+        ['decision','planned'].includes(f.modality))
+      if (choices.length && !choices.every(c => current.some(f => f.entity===c.entity && f.property===c.property &&
+          f.value===c.value && ['in_progress','current_fact'].includes(f.modality)))) add('affirmed_unproven_project_execution',span)
+    }
+    if (/\b(?:nao ha|nao temos|no|no available)\s+(?:evidencias?|registros?|dados|evidence|records?|data)\b/.test(q) &&
+        past(q) && /\b(?:memoria|ram|memory)\b/.test(q)) {
+      const device = entityIn(span) ?? (/\bdesktop\b/.test(q) ? 'device.primary_computer' : undefined)
+      if (device && all.some(f=>f.entity===device && f.property==='ram_capacity' && f.validity==='historical'))
+        add('absence_without_evidence',span)
+    }
     const operation = verifyOperationClaim(span, snapshot, mentions)
     if (operation.code) add(operation.code, span)
     if (operation.completedForget && !/(?:,?\s+e|\band)\s+(?:voce|seu|sua|you|your)\b/.test(q)) continue
@@ -275,10 +294,13 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     const projectDescription = descriptionRequested
       ? q.trim().match(/^(?:(?:o seu|o|seu)\s+projeto(?:\s+([\p{L}\p{N}_.-]+))?\s+era|(?:your|the)\s+project(?:\s+([\p{L}\p{N}_.-]+))?\s+was)\s+(.+)$/u)
       : null
-    if ((description || projectDescription) && (descriptionRequested || current.some(f => f.property === 'description' && f.entity === 'project.' + snapshot.project))) {
+    const describedPurpose = /\b(?:finalidade|proposito|objetivo|purpose)\b/u.test(query) && /\b(?:projeto|project)\b/u.test(query)
+      ? q.trim().match(/^(?:voce (?:deve|pode) descrever (?:a finalidade|o proposito|o objetivo) de|you (?:should|can) describe the purpose (?:of|as))\s+(.+)$/u)
+      : null
+    if (describedPurpose || (description || projectDescription) && (descriptionRequested || current.some(f => f.property === 'description' && f.entity === 'project.' + snapshot.project))) {
       const entity = 'project.' + snapshot.project
       const named = description ? description[1] ?? description[3] : projectDescription?.[1] ?? projectDescription?.[2]
-      const value = descriptionValue(description ? description[2] ?? description[4] : projectDescription![3])
+      const value = descriptionValue(describedPurpose?.[1] ?? (description ? description[2] ?? description[4] : projectDescription![3]))
       // Compare the entire claimed purpose against the literal source payload.
       // A shared substring cannot ground additions or a different project.
       const proof = current.filter(f => (!named || named === fold(snapshot.project)) &&
@@ -291,7 +313,12 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       assertions.push({entity,property:'description',value,span,supported:proof.length>0,references:proof.map(f=>f.id)})
       if (!proof.length) add('unsupported_typed_value',span)
     }
-    if (!deniesCapacityGuarantee(span) && (subject || personalQuestion) && /ram|memoria|memory|computador|computer|notebook|laptop/.test(fold(text)+' '+query) && /fluidez|(?:experiencia|desempenho|multitarefas?|navegacao|produtividade|desenvolvimento|execucao|tarefas?).{0,25}\bfluid[ao]s?\b|sem (?:grandes )?gargalos|sem travamentos|mais estavel|maior estabilidade|no bottlenecks|smooth performance|more stable|will run smoothly/.test(q) && !/\b(?:pode|poderia|talvez|depende|estimativa|might|could|may|depends|estimate)\b/.test(q)) {
+    // A general causal explanation about performance does not assert a
+    // measured outcome on the USER's machine.
+    const generalFactors = /^(?:outros fatores|fatores como|other factors)\b/.test(q.trim()) &&
+      /\b(?:influenciam|afetam|influence|affect)\b/.test(q) &&
+      !/\b(?:seu|sua|voce|your|you|garante|guarantees|sempre|always)\b/.test(q)
+    if (!generalFactors && !deniesCapacityGuarantee(span) && (subject || personalQuestion) && /ram|memoria|memory|computador|computer|notebook|laptop/.test(fold(text)+' '+query) && /fluidez|(?:experiencia|desempenho|multitarefas?|navegacao|produtividade|desenvolvimento|execucao|tarefas?).{0,25}\bfluid[ao]s?\b|sem (?:grandes )?gargalos|sem travamentos|mais estavel|maior estabilidade|no bottlenecks|smooth performance|more stable|will run smoothly/.test(q) && !/\b(?:pode|poderia|talvez|depende|estimativa|might|could|may|depends|estimate)\b/.test(q)) {
       const source=current.some(f=>f.evidence.some(e=>e.role!=='previous_property_link_not_current_value' && fold(e.text).includes(q.trim())))
       if(!source)add('unproven_personal_performance',span,false)
     }

@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { it, expect } from 'vitest'
 import type { ChatMessage } from '../../api/providers/types'
 import { validateLucilleCompletion, MemoryAnswerBlocked } from '../lucille-answer'
-import { registerAnswerSnapshot, type MemoryFact } from '../lucille-fidelity'
+import { verifyMemoryAnswer, registerAnswerSnapshot, type MemoryFact } from '../lucille-fidelity'
 
 const dir = 'docs/evidence/phase22g'
 const cases = readFileSync(dir+'/benchmark.jsonl','utf8').trim().split('\n').map(line => JSON.parse(line))
@@ -40,7 +40,29 @@ it('replays oracle generations through the production completion verifier', asyn
   if (process.env.LUCILLE_REPLAY_OUTPUT) {
     writeFileSync(process.env.LUCILLE_REPLAY_OUTPUT,JSON.stringify(results,null,2)+'\n',{flag:'wx'})
   } else {
-    expect(results).toEqual(JSON.parse(readFileSync(dir+'/verifier.json','utf8')))
+    expect(results).toEqual(JSON.parse(readFileSync(dir+'/consolidation/verifier.json','utf8')))
   }
+})
+
+
+it('uses the property and temporal track of independently reviewed evidence', () => {
+  const snapshot = { scope:'qa',project:'lume',query:'O banco escolhido já está em uso?',facts,currentStatements:[] }
+  const codes=(answer:string, data=facts)=>verifyMemoryAnswer(answer,{...snapshot,facts:data}).violations.map(v=>v.code)
+  expect(codes('A decisão sobre o banco implica que Lume já o utiliza.')).toContain('affirmed_unproven_project_execution')
+  const initial = JSON.parse(readFileSync(dir+'/consolidation/c2-native.json','utf8')).queries.find((q:{id:string})=>q.id==='f2q-10')
+  const generated = JSON.parse(readFileSync(dir+'/consolidation/c2-answers.json','utf8')).find((q:{id:string})=>q.id===initial.id)
+  const raw = generated.generations[0].response.choices[0].message.content
+  const observed = {scope:initial.context.facts[0].scope, project:initial.context.facts[0].project,
+    facts:initial.context.facts, query:initial.query, currentStatements:[]}
+  expect(verifyMemoryAnswer(raw,observed).violations.map(v=>v.code)).toContain('unsupported_typed_value')
+  const purpose = {...snapshot, query:'Que finalidade devo descrever para o projeto Lume?'}
+  expect(verifyMemoryAnswer('Você deve descrever a finalidade de organizar um coral.',purpose).violations.map(v=>v.code)).toContain('unsupported_typed_value')
+  const description = fact('purpose','project.lume','description','organizar um coral','project_description','current','Iniciei um projeto de organizar um coral.')
+  expect(verifyMemoryAnswer('Você deve descrever a finalidade de organizar um coral.',{...purpose,facts:[description]}).violations).toEqual([])
+  const usage = fact('used','project.lume','database','sqlite','current_fact','current','Lume utiliza SQLite em produção.')
+  expect(codes('Lume utiliza SQLite.',[...facts,usage])).not.toContain('affirmed_unproven_project_execution')
+  expect(codes('O plano não prova que Lume já utiliza o banco.')).not.toContain('affirmed_unproven_project_execution')
+  expect(codes('Não temos registros sobre a RAM anterior do computador principal.')).toContain('absence_without_evidence')
+  expect(codes('Não temos registros sobre a RAM anterior do notebook de trabalho.')).not.toContain('absence_without_evidence')
 })
 
