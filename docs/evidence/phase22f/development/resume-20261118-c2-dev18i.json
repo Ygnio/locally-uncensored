@@ -1,0 +1,129 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_c2_independent_literal_delta",
+  "label": "dev18i",
+  "source_commit": "918039d45a6cd8a51cd5e823dd0e8291976e4f69",
+  "freeze_sha256": "3824a81630bfa72f88f56bd01675ab513ff688403a2859ee394b08c71a822473",
+  "raw_sha256": "2009e748fa303cd2fccede8f74a969b984610214ce8647330276aac6db80c7ac",
+  "dataset_sha256": "083b2fe71f6d4cdfb10d5dfc01443b9b664b6c42df58e8c57aca6fb7e143df08",
+  "original_retrieval_sha256": "1f65d2ed629655abf98fd2c4e23493f668ea1e04c1f8f8f95c88c7f806e3c372",
+  "comparison": {
+    "label": "dev18h",
+    "literal_audit_sha256": "5974a8492bab4a9d82658dc91e7c9dbf31ca38d31b2534fa58d643ab230332e0",
+    "raw_sha256": "3ef3f50997e125c0b4dccbba9431224675d196620f4b9bb411a0131012bfe0f8"
+  },
+  "scoring": "Same known Chat corpus and predeclared dev18h literal adaptation. All 29 outputs and raw attempts were reviewed. Full request keeps the two unavailable comparison facts. This audit covers development C2 only.",
+  "answer_counts": {
+    "delivered": 28,
+    "blocked": 1,
+    "not_executed": 0,
+    "infrastructure_failure": 0,
+    "evaluator_failure": 0
+  },
+  "literal_metrics": {
+    "useful": {
+      "observed": 28,
+      "planned": 29
+    },
+    "semantic_atoms": {
+      "observed": 36,
+      "planned": 39
+    },
+    "full_request": {
+      "observed": 36,
+      "planned": 41
+    },
+    "delivered_propositions": {
+      "supported": 44,
+      "unsupported": 0,
+      "critical": 0
+    },
+    "raw_critical_propositions": 0
+  },
+  "ranking": {
+    "fts5": {
+      "planned": 29,
+      "measured": 29,
+      "tp": 30,
+      "fp": 0,
+      "missed": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "nomic": {
+      "planned": 29,
+      "measured": 29,
+      "tp": 26,
+      "fp": 0,
+      "missed": 4,
+      "precision": 1.0,
+      "recall": 0.8666666666666667
+    },
+    "hybrid": {
+      "planned": 29,
+      "measured": 29,
+      "tp": 30,
+      "fp": 0,
+      "missed": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "fallback": {
+      "planned": 29,
+      "measured": 29,
+      "tp": 30,
+      "fp": 0,
+      "missed": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    }
+  },
+  "zero_wrong_scope_or_unsafe_current_by_mode": true,
+  "mandatory_fallback": {
+    "planned": 20,
+    "exact": 20,
+    "physical_endpoint_unavailable": false
+  },
+  "retrieval_passed": true,
+  "resolved": {
+    "er-015": {
+      "delivered": "Não há nenhum registro confirmado sobre sua preferência por criação de personagens neste escopo. Esta conversa tem acesso apenas ao projeto e escopo autorizados.",
+      "restored_atom": "bounded_no_current_creation",
+      "native_tombstones_observed": 1,
+      "current_facts_injected": 0
+    },
+    "er-022": {
+      "delivered": "Não há registro disponível sobre o banco planejado no projeto Jatobá nesta conversa. Esta conversa só tem acesso ao seu projeto e escopo autorizados.",
+      "restored_atom": "jatoba_unavailable_in_binding"
+    },
+    "er-023": {
+      "delivered": "O projeto Jatobá planeja usar PostgreSQL como banco de dados. Para o projeto Pitanga, não há registro disponível nesta conversa, que possui acesso apenas ao projeto e escopo autorizados.",
+      "restored_atom": "pitanga_unavailable_in_binding"
+    },
+    "er-027": {
+      "delivered": "Você estava implementando o projeto Cedrinho em Rust. Isso ocorreu antes do projeto ser oficialmente cancelado.",
+      "restored_atom": "cedrinho_cancelled"
+    }
+  },
+  "er-014": {
+    "status": "blocked",
+    "raw_attempts_with_identical_content": 2,
+    "raw_answer": "O tema do projeto é um catálogo de miniaturas. Você escolheu Python como linguagem e planeja usar PostgreSQL como banco de dados.",
+    "omitted_delivered_atoms": [
+      "miniature_catalogue_purpose",
+      "python_chosen",
+      "postgresql_planned"
+    ],
+    "injected_fields": [
+      "description",
+      "language",
+      "database"
+    ],
+    "verified_fields": [
+      "description",
+      "language"
+    ],
+    "violation": "known_relation_not_used",
+    "literal_observation": "Both attempts correctly expressed purpose, language choice and database plan. The verifier withheld the answers after it missed the database plan in the coordinated clause."
+  }
+}
