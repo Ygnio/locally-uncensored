@@ -1,0 +1,204 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_c2_independent_literal_audit",
+  "label": "dev18h",
+  "source_commit": "683a5440f2f46177541de38710bc0b5dc23ea49c",
+  "source_head": "683a5440f2f46177541de38710bc0b5dc23ea49c",
+  "freeze_sha256": "ce5e7f3dd8bf9acd80759aaef093227eb5e968fa07abe0fe1d2711508194a823",
+  "raw_sha256": "3ef3f50997e125c0b4dccbba9431224675d196620f4b9bb411a0131012bfe0f8",
+  "dataset_sha256": "083b2fe71f6d4cdfb10d5dfc01443b9b664b6c42df58e8c57aca6fb7e143df08",
+  "dataset": "crates/lucille-memory/tests/fixtures/phase22f/development/known-retrieval-annotations.json",
+  "original_retrieval_corpus": "crates/lucille-memory/tests/fixtures/phase22e/final-v1/retrieval.json",
+  "original_retrieval_sha256": "1f65d2ed629655abf98fd2c4e23493f668ea1e04c1f8f8f95c88c7f806e3c372",
+  "scoring_lock": {
+    "basis": "crates/lucille-memory/tests/fixtures/phase22e/final-v1/answer-rubric.json",
+    "basis_sha256": "6342e0eae103e3b96a1b2ab64eaf1c9798fe24c5c6bebfa92c0169e87a0e4f19",
+    "method": "The reviewer fixed the semantic gold and denominators before reading dev18h replies. The literal pass evaluated actual answers and raw attempts against authorized canonical evidence, separately from verifier verdicts.",
+    "useful_denominator": "All 29 planned queries, including blocked queries.",
+    "semantic_atom_denominator": "All 39 planned semantic atoms. Each row gives its retained atoms and any omitted atom.",
+    "full_request_denominator": "All 39 semantic atoms plus the two unavailable comparison facts requested across bindings.",
+    "delivered_fidelity_denominator": "All distinct contextual factual propositions actually delivered, including bounded absence claims. Raw claims are scored separately.",
+    "unavailable_full_request_parts": {
+      "er-018": "The brother’s database outside the authorized evidence.",
+      "er-023": "The Pitanga database outside the Jatobá binding."
+    },
+    "binding_limit_credit": "The er-022 and er-023 limit atoms require the answer to identify the project binding as the reason.",
+    "source_scope": "Known er-* retrieval questions, all in Chat. The old 2.2E D score uses 22 different ea-* prompts and mode bindings and retains its original denominator. No final holdout, historical execution or GUI result is scored here."
+  },
+  "coverage": {
+    "planned_queries": 29,
+    "preparations_measured": 17,
+    "index_events_measured": 16,
+    "answer_attempts": 30,
+    "answers": {
+      "delivered": 28,
+      "blocked": 1,
+      "not_executed": 0,
+      "infrastructure_failure": 0,
+      "evaluator_failure": 0
+    }
+  },
+  "retention": {
+    "useful": {
+      "observed": 28,
+      "planned": 29
+    },
+    "semantic_atoms": {
+      "observed": 35,
+      "planned": 39
+    },
+    "full_request": {
+      "observed": 35,
+      "planned": 41
+    },
+    "delivered_propositions": {
+      "supported": 39,
+      "unsupported": 0,
+      "critical": 0
+    },
+    "raw_critical_propositions": 2
+  },
+  "ranking": {
+    "fts5": {
+      "tp": 30,
+      "fp": 0,
+      "missed": 0,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "recall_planned": 1.0,
+      "passed": true
+    },
+    "nomic": {
+      "tp": 26,
+      "fp": 0,
+      "missed": 4,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 1.0,
+      "recall": 0.8666666666666667,
+      "recall_planned": 0.8666666666666667,
+      "passed": true
+    },
+    "hybrid": {
+      "tp": 30,
+      "fp": 0,
+      "missed": 0,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "recall_planned": 1.0,
+      "passed": true
+    },
+    "fallback": {
+      "tp": 30,
+      "fp": 0,
+      "missed": 0,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "recall_planned": 1.0,
+      "passed": true
+    }
+  },
+  "mandatory_fallback": {
+    "planned": 20,
+    "exact": 20,
+    "physical_endpoint_unavailable": false
+  },
+  "retrieval_passed": true,
+  "final_artifacts": {
+    "bridge_verified": true,
+    "saved_model_pin_verified": true
+  },
+  "final_attestation_error": null,
+  "er-015": {
+    "native_preparation": {
+      "status": "measured",
+      "tombstone_kind": "preference",
+      "tombstones_observed": 1
+    },
+    "retrieved_current_records": 0,
+    "context_facts_per_attempt": [
+      0,
+      0
+    ],
+    "completed_native_operation_per_attempt": [
+      false,
+      false
+    ],
+    "raw_attempts": [
+      {
+        "raw_answer": "Sim, a sua preferência por criação de personagens está registrada. No momento, não há um registro específico disponível para detalhar essa preferência neste escopo.",
+        "critical_verifier_codes": [
+          "unconfirmed_memory_mutation",
+          "unsupported_typed_value"
+        ]
+      },
+      {
+        "raw_answer": "Sim, a sua preferência por criação de personagens continua registrada. Não há nenhuma mudança recente que indique que essa preferência tenha sido alterada.",
+        "critical_verifier_codes": [
+          "unsupported_typed_value"
+        ]
+      }
+    ],
+    "delivered": "",
+    "comparison": {
+      "prior_label": "dev18e",
+      "prior_raw_sha256": "2f643d9151045338ac3807028c0aff0f098f1fbe7a277f3b8063ba6f495036c2",
+      "same_requests_and_raw_answers": true,
+      "old_22e_ea_015": "Delivered a bounded answer in a partial store without a tested tombstone.",
+      "other_changes": "Only er-016 changed its delivered wording. Its bounded absence remained useful and supported."
+    }
+  },
+  "rows": [
+    {"id": "er-001", "status": "delivered", "useful": true, "retained_atoms": ["primary_64_current"], "supported_delivered_claims": 1},
+    {"id": "er-002", "status": "delivered", "useful": true, "retained_atoms": ["primary_64_current"], "supported_delivered_claims": 1},
+    {"id": "er-003", "status": "delivered", "useful": true, "retained_atoms": ["work_12_current"], "supported_delivered_claims": 1},
+    {"id": "er-004", "status": "delivered", "useful": true, "retained_atoms": ["primary_64_current", "work_12_current"], "supported_delivered_claims": 2},
+    {"id": "er-005", "status": "delivered", "useful": true, "retained_atoms": ["primary_48_historical", "primary_64_current"], "supported_delivered_claims": 2},
+    {"id": "er-006", "status": "delivered", "useful": true, "retained_atoms": ["primary_64_current", "reject_primary_128"], "supported_delivered_claims": 2},
+    {"id": "er-007", "status": "delivered", "useful": true, "retained_atoms": ["miniature_catalogue_purpose"], "supported_delivered_claims": 2},
+    {"id": "er-008", "status": "delivered", "useful": true, "retained_atoms": ["python_chosen"], "supported_delivered_claims": 1},
+    {"id": "er-009", "status": "delivered", "useful": true, "retained_atoms": ["postgresql_planned"], "supported_delivered_claims": 1},
+    {"id": "er-010", "status": "delivered", "useful": true, "retained_atoms": ["coffee_without_sugar"], "supported_delivered_claims": 1},
+    {"id": "er-011", "status": "delivered", "useful": true, "retained_atoms": ["class_selection_positive"], "supported_delivered_claims": 1},
+    {"id": "er-012", "status": "delivered", "useful": true, "retained_atoms": ["favorite_tea"], "supported_delivered_claims": 1},
+    {"id": "er-013", "status": "delivered", "useful": true, "retained_atoms": ["primary_64_current", "postgresql_planned"], "supported_delivered_claims": 2},
+    {"id": "er-014", "status": "delivered", "useful": true, "retained_atoms": ["miniature_catalogue_purpose", "python_chosen", "postgresql_planned"], "supported_delivered_claims": 3},
+    {"id": "er-015", "status": "blocked", "useful": false, "retained_atoms": [], "supported_delivered_claims": 0, "omitted_atom": "bounded_no_current_creation", "omission_reason": "Blocked after two raw assertions that the deleted preference remained recorded."},
+    {"id": "er-016", "status": "delivered", "useful": true, "retained_atoms": ["bounded_unknown_gpu"], "supported_delivered_claims": 1},
+    {"id": "er-017", "status": "delivered", "useful": true, "retained_atoms": ["bounded_unknown_brother"], "supported_delivered_claims": 1},
+    {"id": "er-018", "status": "delivered", "useful": true, "retained_atoms": ["postgresql_planned", "bounded_unknown_brother"], "supported_delivered_claims": 2},
+    {"id": "er-019", "status": "delivered", "useful": true, "retained_atoms": ["other_scope_primary_24"], "supported_delivered_claims": 1},
+    {"id": "er-020", "status": "delivered", "useful": true, "retained_atoms": ["bounded_no_current_coffee"], "supported_delivered_claims": 1},
+    {"id": "er-021", "status": "delivered", "useful": true, "retained_atoms": ["mysql_chosen"], "supported_delivered_claims": 1},
+    {"id": "er-022", "status": "delivered", "useful": true, "retained_atoms": [], "supported_delivered_claims": 1, "omitted_atom": "jatoba_unavailable_in_binding", "omission_reason": "Useful bounded unavailability. The answer does not identify the project binding as the limit."},
+    {"id": "er-023", "status": "delivered", "useful": true, "retained_atoms": ["postgresql_planned"], "supported_delivered_claims": 2, "omitted_atom": "pitanga_unavailable_in_binding", "omission_reason": "Useful partial comparison. The answer does not identify the project binding as the limit."},
+    {"id": "er-024", "status": "delivered", "useful": true, "retained_atoms": ["typescript_in_progress"], "supported_delivered_claims": 1},
+    {"id": "er-025", "status": "delivered", "useful": true, "retained_atoms": ["rust_planned_future"], "supported_delivered_claims": 1},
+    {"id": "er-026", "status": "delivered", "useful": true, "retained_atoms": ["typescript_in_progress", "rust_planned_future"], "supported_delivered_claims": 2},
+    {"id": "er-027", "status": "delivered", "useful": true, "retained_atoms": ["rust_historical_in_progress"], "supported_delivered_claims": 1, "omitted_atom": "cedrinho_cancelled", "omission_reason": "Historical Rust in progress is correct. Cancellation is not stated."},
+    {"id": "er-028", "status": "delivered", "useful": true, "retained_atoms": ["cedrinho_cancelled"], "supported_delivered_claims": 2},
+    {"id": "er-029", "status": "delivered", "useful": true, "retained_atoms": ["bounded_unknown_birth_date"], "supported_delivered_claims": 1}
+  ]
+}
