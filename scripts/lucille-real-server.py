@@ -133,6 +133,9 @@ def serve(args):
                         sample['gpu_csv'] = None
                     log.write(json.dumps(sample) + '\n')
                     log.flush()
+                    if os.environ.get('LUCILLE_G22_BUDGET') == 'independent' and sample['PhysicalAvailable'] < 1024**3:
+                        (report / 'g22-independent-abort').write_text('physical RAM floor', encoding='utf8')
+                        break
                     severe = sample['PhysicalAvailable'] < 512 * 1024**2 or sample['CommitLimit'] - sample['CommitTotal'] < 1024**3
                     pressure = pressure + 1 if severe else 0
                     if stop.exists() or pressure >= 3:

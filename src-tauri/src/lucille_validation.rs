@@ -83,6 +83,12 @@ pub fn run() {
             "lucille-synthetic-full22g-retest-b",
             "lucille-synthetic-full22g-retest-decision",
             "lucille-synthetic-full22g-retest-temporal",
+            "lucille-synthetic-full22g-retest-i1",
+            "lucille-synthetic-full22g-retest-i2",
+            "lucille-synthetic-full22g-retest-i3",
+            "lucille-synthetic-full22g-retest-i4",
+            "lucille-synthetic-full22g-retest-i5",
+            "lucille-synthetic-full22g-retest-smoke",
         ]
         .iter()
         .any(|n| root.file_name().is_some_and(|v| v == *n)),
@@ -154,7 +160,7 @@ pub fn run() {
                 tauri::WebviewUrl::External("http://127.0.0.1:15283".parse().unwrap()),
             )
             .title(
-                if matches!(root.file_name().and_then(|v| v.to_str()), Some("lucille-synthetic-full22g" | "lucille-synthetic-full22g-retest-a" | "lucille-synthetic-full22g-retest-b" | "lucille-synthetic-full22g-retest-decision" | "lucille-synthetic-full22g-retest-temporal")) {
+                if matches!(root.file_name().and_then(|v| v.to_str()), Some("lucille-synthetic-full22g" | "lucille-synthetic-full22g-retest-a" | "lucille-synthetic-full22g-retest-b" | "lucille-synthetic-full22g-retest-decision" | "lucille-synthetic-full22g-retest-temporal" | "lucille-synthetic-full22g-retest-i1" | "lucille-synthetic-full22g-retest-i2" | "lucille-synthetic-full22g-retest-i3" | "lucille-synthetic-full22g-retest-i4" | "lucille-synthetic-full22g-retest-i5")) {
                     "Lucille Phase 2.2G - FULL application - synthetic ONLY"
                 } else if root.file_name().is_some_and(|v|v=="lucille-synthetic-full22f") {
                     "Lucille Phase 2.2F - FULL application - synthetic ONLY"

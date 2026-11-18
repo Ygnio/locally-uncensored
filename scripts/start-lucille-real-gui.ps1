@@ -1,4 +1,4 @@
-param([Parameter(Mandatory=$true)][string]$QaExe,[ValidateSet('21c','21d','22','22b','22c','22d','22e','22f')][string]$Phase='21c',[switch]$StaticFrontend,[switch]$Checkpoint22g,[ValidateSet('a','b','decision','temporal')][string]$RetestProfile)
+param([Parameter(Mandatory=$true)][string]$QaExe,[ValidateSet('21c','21d','22','22b','22c','22d','22e','22f')][string]$Phase='21c',[switch]$StaticFrontend,[switch]$Checkpoint22g,[ValidateSet('a','b','decision','temporal','i1','i2','i3','i4','i5','smoke')][string]$RetestProfile)
 $ErrorActionPreference='Stop'
 $repo=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $profileName=if($Phase -in @('22','22b','22c','22d','22e','22f')){"lucille-synthetic-full$Phase"}else{'lucille-synthetic-full'}
@@ -15,8 +15,12 @@ if($Checkpoint22g){
 }elseif(-not $exe.StartsWith((Resolve-Path (Join-Path $repo '..\build\tauri')).Path+[IO.Path]::DirectorySeparatorChar) -or [IO.Path]::GetFileName($exe) -ne 'lucille-full-validation.exe'){throw 'Dedicated local host required'}
 function Test-OwnListener([int]$Port){return [bool]([System.Net.NetworkInformation.IPGlobalProperties]::GetIPGlobalProperties().GetActiveTcpListeners() | Where-Object Port -eq $Port)}
 foreach($port in @(15283,15287)){if(Test-OwnListener $port){throw "Own GUI port $port occupied"}}
+if($RetestProfile -eq 'smoke'){
+ foreach($port in @(15284,15288,15289)){if(Test-OwnListener $port){throw 'Offline inspection requires closed model and broker ports'}}
+}else{
 $pin=Invoke-RestMethod http://127.0.0.1:15284/lucille/embedding-manifest
 if($pin.simulation -ne $false){throw 'Real broker required'}
+}
 $saved=@{};$names=@('LUCILLE_REAL_VALIDATION_CONTRACT','LUCILLE_PHASE1_ROOT','APPDATA','LOCALAPPDATA','USERPROFILE','TEMP','TMP','WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS')
 foreach($name in $names){$saved[$name]=[Environment]::GetEnvironmentVariable($name,'Process')}
 function Record-Process($process){$p=Get-CimInstance Win32_Process -Filter "ProcessId=$($process.Id)";return @{pid=$p.ProcessId;executable=$p.ExecutablePath;created=$p.CreationDate;command=$p.CommandLine}}
