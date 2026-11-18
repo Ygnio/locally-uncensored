@@ -151,3 +151,26 @@ it('rechecks both observed decision-update generations with the native source pr
     expect(check.violations.length === 0 ? 'accepted' : 'blocked').toBe(attempt.expected_after)
   }
 })
+
+it('distinguishes a language decision from implementation on a separate project', () => {
+  const previous = 'antes eu tinha escolhido Python'
+  const present = 'agora escolhi Rust'
+  const current = fact('current-turn-0','project.urze','language','rust','decision','current_user_statement', present)
+  current.scope = 'qa'
+  current.project = 'urze'
+  current.version = 0
+  current.evidence = [{role:'current_user_statement',text:present},{role:'adjacent_personal_clause',text:previous}]
+  const snap = {scope:'qa',project:'urze',query:`No projeto Urze, ${previous}, mas ${present}.`,facts:[],currentStatements:[current],sourceIdentity:{conversation_id:'fresh',source_message_id:'update'}}
+  const accepted = 'Você decidiu substituir Python por Rust no projeto Urze.'
+  expect(verifyMemoryAnswer(accepted,snap).violations).toEqual([])
+  const status = {...snap, query:'A migração já começou?', currentStatements:[], facts:[{...current,validity:'current',version:2}]}
+  expect(verifyMemoryAnswer('Não há evidência de que o projeto Urze esteja em desenvolvimento.',status).violations).toEqual([])
+  expect(verifyMemoryAnswer('O projeto Urze não está em desenvolvimento.',status).violations.length).toBeGreaterThan(0)
+  for (const answer of [
+    'Você trocou Python por Rust no projeto Urze.',
+    'Você decidiu substituir Rust por Python no projeto Urze.',
+    'Você decidiu substituir TypeScript por Rust no projeto Urze.',
+    'O projeto Urze já está implementado em Rust.',
+    'O projeto Urze não está em desenvolvimento.',
+  ]) expect(verifyMemoryAnswer(answer,snap).violations.length, answer).toBeGreaterThan(0)
+})

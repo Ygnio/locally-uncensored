@@ -88,7 +88,7 @@ async function run(control) {
           const job=(await scoped('learning_jobs')).find(j=>j.id===jobId)??null
           const proof_read_started_ms=Date.now()-start
           const evidence=await manage({operation:'answer_evidence',request,references:[],claims:[],source:{interaction,job_id:qaPhase==='phase22f'?job?.id??null:null}})
-          operationSnapshots.push({event,observed_at_ms,read_started_ms,read_finished_ms:Date.now()-start,job,learning_receipt:evidence.learning_receipt??null,directive_receipt:evidence.directive_receipt??null,...(qaPhase==='phase22f'?{proof_read_started_ms,source_operation:evidence.source_operation??null}:{})})
+          operationSnapshots.push({event,observed_at_ms,read_started_ms,read_finished_ms:Date.now()-start,...(control.observe_projection ? {current_statements:evidence.current_statements}:{}),job,learning_receipt:evidence.learning_receipt??null,directive_receipt:evidence.directive_receipt??null,...(qaPhase==='phase22f'?{proof_read_started_ms,source_operation:evidence.source_operation??null}:{})})
         }catch(error){operationSnapshots.push({event,observed_at_ms,read_started_ms,read_finished_ms:Date.now()-start,error:String(error)})}
       })
     }

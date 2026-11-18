@@ -1,0 +1,181 @@
+[
+  {
+    "stage": "update",
+    "source": "Mudei de ideia sobre o banco do Alfenim: antes eu tinha escolhido SQLite, mas agora escolhi PostgreSQL. A migração ainda não começou.",
+    "host": {
+      "pid": 6816,
+      "created": "2026-11-18T17:19:24.481362-03:00"
+    },
+    "conversation": "c9a30de5-1df3-43d8-9b2a-a3e2a3a349c5",
+    "verifier": "regenerated",
+    "attempts": [
+      {
+        "raw": "Entendido, você trocou o SQLite pelo PostgreSQL para o banco do Alfenim. A migração ainda está pendente.",
+        "violations": [
+          {
+            "code": "unsupported_typed_value",
+            "span": "Entendido, você trocou o SQLite pelo PostgreSQL para o banco do Alfenim.",
+            "critical": true
+          },
+          {
+            "code": "unsupported_historical_state",
+            "span": "Entendido, você trocou o SQLite pelo PostgreSQL para o banco do Alfenim.",
+            "critical": true
+          },
+          {
+            "code": "authority_stack_transition",
+            "span": "Entendido, você trocou o SQLite pelo PostgreSQL para o banco do Alfenim.",
+            "critical": true
+          }
+        ],
+        "assertions": [
+          {
+            "entity": "project.alfenim",
+            "property": "database",
+            "value": "sqlite",
+            "span": "Entendido, você trocou o SQLite pelo PostgreSQL para o banco do Alfenim.",
+            "supported": false,
+            "references": []
+          },
+          {
+            "entity": "project.alfenim",
+            "property": "database",
+            "value": "postgresql",
+            "span": "Entendido, você trocou o SQLite pelo PostgreSQL para o banco do Alfenim.",
+            "supported": true,
+            "references": [
+              "current-turn-0"
+            ]
+          }
+        ]
+      },
+      {
+        "raw": "Entendido. Você decidiu substituir o SQLite pelo PostgreSQL no projeto Alfenim, embora a migração ainda não tenha sido iniciada.",
+        "violations": [],
+        "assertions": [
+          {
+            "entity": "project.alfenim",
+            "property": "database",
+            "value": "sqlite",
+            "span": "Você decidiu substituir o SQLite pelo PostgreSQL no projeto Alfenim,",
+            "supported": true,
+            "references": [
+              "current-turn-0"
+            ]
+          },
+          {
+            "entity": "project.alfenim",
+            "property": "database",
+            "value": "postgresql",
+            "span": "Você decidiu substituir o SQLite pelo PostgreSQL no projeto Alfenim,",
+            "supported": true,
+            "references": [
+              "current-turn-0"
+            ]
+          }
+        ]
+      }
+    ],
+    "displayed": "lucille-real-gemma\n\nEntendido. Você decidiu substituir o SQLite pelo PostgreSQL no projeto Alfenim, embora a migração ainda não tenha sido iniciada.\n\nResposta revisada com a memória atual\n1,164 in · 28 out",
+    "message": "Entendido. Você decidiu substituir o SQLite pelo PostgreSQL no projeto Alfenim, embora a migração ainda não tenha sido iniciada.",
+    "operation": {
+      "action": "learn",
+      "conversation_id": "c9a30de5-1df3-43d8-9b2a-a3e2a3a349c5",
+      "id": "28205488425740cd8e10e555bd36595178fd9325be421217a55e0ff2a783a8d7",
+      "identity_version": 1,
+      "mode": "chat",
+      "profile": "lucille",
+      "project": "alfenim",
+      "scope": "phase22f-continuidade-alfenim",
+      "source_message_id": "a44fdeef-ae9d-4181-bbb3-658f85f45e05",
+      "state": "completed"
+    },
+    "learning_receipt": null,
+    "current_projections": [
+      [
+        {
+          "entity": "project.alfenim",
+          "evidence": [
+            {
+              "role": "current_user_statement",
+              "text": "agora escolhi PostgreSQL"
+            },
+            {
+              "role": "adjacent_personal_clause",
+              "text": "Mudei de ideia sobre o banco do Alfenim: antes eu tinha escolhido SQLite"
+            }
+          ],
+          "facets": [],
+          "id": "current-turn-0",
+          "modality": "decision",
+          "project": "alfenim",
+          "property": "database",
+          "review": "current_turn_not_reviewed_or_persisted",
+          "scope": "phase22f-continuidade-alfenim",
+          "validity": "current_user_statement",
+          "value": "postgresql",
+          "version": 0
+        }
+      ]
+    ],
+    "reviews": [
+      {
+        "id": "1909e496-0cff-e4c6-6c8f-3d84b363a2b9",
+        "version": 1,
+        "scope": "phase22f-continuidade-alfenim",
+        "project": "alfenim",
+        "action": "Approve replacement"
+      }
+    ]
+  },
+  {
+    "stage": "history",
+    "source": "Na ficha de planejamento, qual era minha escolha anterior de banco e qual vale agora?",
+    "host": {
+      "pid": 17384,
+      "created": "2026-11-18T17:20:15.661712-03:00"
+    },
+    "conversation": "2c4383a0-1ae7-4676-b690-2cfaf40c4f54",
+    "verifier": "blocked",
+    "attempts": [
+      {
+        "raw": "Sua escolha anterior era SQLite, mas você escolheu PostgreSQL para o projeto Alfenim.",
+        "violations": [
+          {
+            "code": "unsupported_historical_state",
+            "span": " você escolheu PostgreSQL para o projeto Alfenim.",
+            "critical": true
+          }
+        ],
+        "assertions": [
+          {
+            "entity": "project.alfenim",
+            "property": "database",
+            "value": "sqlite",
+            "span": "Sua escolha anterior era SQLite, ",
+            "supported": true,
+            "references": [
+              "6134ad66-cb11-c51f-eeb2-cd361ced3d22"
+            ]
+          },
+          {
+            "entity": "project.alfenim",
+            "property": "database",
+            "value": "postgresql",
+            "span": " você escolheu PostgreSQL para o projeto Alfenim.",
+            "supported": true,
+            "references": [
+              "1909e496-0cff-e4c6-6c8f-3d84b363a2b9"
+            ]
+          }
+        ]
+      }
+    ],
+    "displayed": "lucille-real-gemma\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.\n\nResposta retida na verificação de memória\n1,362 in · 20 out",
+    "message": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+    "operation": null,
+    "learning_receipt": null,
+    "current_projections": [],
+    "reviews": []
+  }
+]
