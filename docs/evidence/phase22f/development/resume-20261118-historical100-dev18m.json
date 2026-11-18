@@ -1,0 +1,128 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_historical_regression",
+  "date": "2026-11-18",
+  "run_label": "dev18mseries-historical100",
+  "production_code_commit": "67fc54b6ab7b901e0a0813aad00f0a5f6661ced7",
+  "scope": "phase22c-final-historical-series",
+  "project": "candeia",
+  "execution_complete": true,
+  "passed": false,
+  "coverage": {
+    "source_turns_planned": 100,
+    "source_turns_observed": 100,
+    "probes_planned": 10,
+    "probes_observed": 10,
+    "checked": 109,
+    "regenerated": 1,
+    "blocked": 0,
+    "transport_failures": 0,
+    "not_executed": 0
+  },
+  "literal_metrics": {
+    "useful_responses": 110,
+    "planned_responses": 110,
+    "useful_probes": 10,
+    "planned_probes": 10,
+    "retained_atoms": 112,
+    "planned_atoms": 112,
+    "supported_delivered_claims": 26,
+    "delivered_claims": 28,
+    "fidelity": 0.9285714285714286,
+    "critical_delivered_claims": 1,
+    "premature_completed_write_claims": 1,
+    "unverified_agent_notes_displayed": 0,
+    "cross_project_values_delivered": 0,
+    "deleted_records_delivered_as_current": 0
+  },
+  "earliest_native_probe_retrieval": {
+    "tp": 10,
+    "fp": 1,
+    "missed": 0,
+    "expected_references": 10,
+    "precision": 0.9090909090909091,
+    "recall": 1,
+    "out_of_binding_references": 0,
+    "obsolete_or_deleted_references": 0,
+    "extra_reference": { "ordinal": 106, "property": "games_turn_strategy", "legitimate_same_project_source": true, "strict_gold_includes_reference": false }
+  },
+  "native_state": {
+    "same_scope_handoff_from_h50": true,
+    "scope_before": { "memories": 19, "extraction_jobs": 16, "memory_tombstones": 0, "retrieval_audit": 88 },
+    "scope_after": { "memories": 22, "extraction_jobs": 26, "memory_tombstones": 2, "retrieval_audit": 199 },
+    "candeia_active_records": 11,
+    "candeia_obsolete_records": 3,
+    "candeia_exact_user_origin_proofs": 14,
+    "candeia2_preceding_records_unchanged": 8,
+    "pending_vectors": 0,
+    "duplicate_active_keys": 0
+  },
+  "memory_lifecycle": {
+    "ambiguous_39gb_source_41": { "device_assigned_in_reply": false, "native_record_effects": 0 },
+    "forget_source_86": { "exact_source_directive_receipt_before_display": true, "matching_tombstones": 2 },
+    "replay_source_87_of_11": { "existing_job_done": true, "canonical_unchanged": true, "tombstones_unchanged": true },
+    "post_forget_plain_source_91": { "native_record_effects": 0 },
+    "replay_source_93_of_86": { "directive_already_processed": true, "canonical_unchanged": true, "tombstones_unchanged": true },
+    "reintroduced_preference_probe_102": { "initial_native_references": 1, "active_version": 2, "old_deleted_versions_injected": 0 }
+  },
+  "findings": [
+    {
+      "ordinal": 92,
+      "kind": "critical_delivered_premature_confirmation",
+      "detail": "The USER requested that the preference be recorded again. The first response was withheld. The next response told the USER the recording had already happened, although the verifier had no receipt and the job remained queued in both subsequent reads.",
+      "first_attempt_violation": "unconfirmed_memory_mutation",
+      "rendered_attempt": 2,
+      "first_display_ms": 21261,
+      "queued_without_receipt_at_ms": [21392, 21475],
+      "first_completed_receipt_observed_ms": 25405,
+      "receipt_candidate_version": 1,
+      "later_reviewed_version": 2
+    },
+    {
+      "ordinal": 101,
+      "kind": "grounded_project_status",
+      "detail": "The first checked reply retained the project purpose, Rust as a decision, and PostgreSQL as a plan. It made no unsupported progress claim.",
+      "retained_atoms": 3
+    },
+    {
+      "ordinal": 110,
+      "kind": "noncritical_ambiguous_absence",
+      "detail": "The reply did not explicitly limit the claimed absence to its authorized conversation. The original 2.2E answer had the same ambiguity. No foreign project value was injected or displayed."
+    }
+  ],
+  "latency_ms": {
+    "generation": { "samples": 110, "p50": 6855.5, "p95": 12083, "max": 21449 },
+    "extraction_wait": { "samples": 110, "p50": 733.5, "p95": 4234, "max": 5286 }
+  },
+  "original_22e_h100": {
+    "useful_responses": 110,
+    "planned_responses": 110,
+    "useful_probes": 10,
+    "planned_probes": 10,
+    "retained_atoms": 112,
+    "planned_atoms": 112,
+    "supported_delivered_claims": 25,
+    "delivered_claims": 26,
+    "fidelity": 0.9615384615384616,
+    "critical_delivered_claims": 0,
+    "premature_completed_write_claims": 0,
+    "earliest_native_retrieval": { "tp": 10, "fp": 1, "missed": 0 },
+    "published_audit_sha256": "7bcb0840497a39652fbc57fd067217bca6afb776f9cc1ee7d10d5a8499a9bdfc",
+    "raw_sha256": "c5f78e869154f0bb4f91e563f7dcaad31d9513dda563f2c923daecc0451d46a8"
+  },
+  "sha256": {
+    "original_fixture": "256d80c1a9046b0e27c06f257fcb9dca4d50afdb3e70ddb5ec3773a919e986fb",
+    "development_manifest": "d12c7f62de5ba0a121f8a71498fa303354dd78d9de0a2f63524631aa663601dd",
+    "preceding_h20_h50_checkpoint": "0267e84f3e6d4bfee1153cade5da3ad72694be5a9fab995aa82634add0959585",
+    "raw": "79ce4458a42a3ea48ec3adf4ff48cf090a8642560c9281350207e3ce5bd0107d",
+    "outcome": "29127fff0291d11966f9b93a4c44976578385c91e24d8dc50ab62f15e7b29900",
+    "independent_review": "67d458bdc0128eb42005dcbd686d393cd024372b91ce9a42150be50c49fbc777",
+    "execution_log": "43116862e93d6225bcafd149538af3f71ae9d317520fe998112c145e5a5eb2f6",
+    "archived_control": "fffec409305cd4b2dd370159f666e8a35e3b3570844a3bae0aff9abf9249fb8f",
+    "archived_profile_manifest": "ad5a631e90878525971e7b99a6d569050f29c8ba6adaf5ee847bb4aedab41c57",
+    "archived_profile_sqlite": "1598f5144de4b3874b4d1cd9073b314ef1bb47080c525da2fa6e8314119459e5",
+    "archived_profile_shm": "c14f0e588b74d4d32aa0c03d31c581011de17f4512705a61eb10443a64763404",
+    "archived_profile_wal": "08daff21df9e7254bfbe3bc8ff01edd67a6b97d080eff4d530ad1500e0caa598"
+  },
+  "disposition": "The observed run failed delivered fidelity and the zero critical and premature confirmation requirements. The original availability and atom criteria were retained. This known-series result blocks the unseen final evaluation."
+}
