@@ -1,0 +1,114 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_gui_dev18k_speaker_followup",
+  "date": "2026-11-18",
+  "source_head": "5492a4ebfef84fed57aac07b5ebd20adbde589c2",
+  "freeze_sha256": "e5e29183499d1b01cd2dac7f6811ea2e9a6326dc8c2092df4dbe4d4f8976776b",
+  "native_gui_sha256": "f41dadfb8ede3d7951bc3cca43b638ab09c5bbeb9500befabb3c19b2749f2f8c",
+  "report_sha256": "bf741762c35a352426e0ddf65f6eb558947922d6996df18dd71b8eb7b5809ef7",
+  "fixture_sha256": "9457b1eb9976f6c99b3a663bb2a3968b68b5868a6947ff32c5653b4e8a06f229",
+  "original_jatoba_fixture_sha256": "38d9aa62d68eb21c0dcdf02a59c582af0a4af839fbd5e117c17a2420b2c3a7b2",
+  "focused_run": {
+    "case": "gm-t09",
+    "same_original_source_and_atoms": true,
+    "fresh_synthetic_session": true,
+    "real_inference": true,
+    "source": "My own favourite beverage is tea; the narrator in my story says his favourite beverage is coffee.",
+    "raw_generation": "Your favorite beverage is tea, while the narrator's favorite is coffee.",
+    "verified_display": "Your favorite beverage is tea, while the narrator's favorite is coffee.",
+    "paint_observed_ms": 2365,
+    "terminal_fidelity": "checked",
+    "typed_user_assertions": [
+      {
+        "entity": "user",
+        "property": "favorite_beverage",
+        "value": "tea",
+        "supported": true
+      }
+    ],
+    "violations": [],
+    "transport_failure": false,
+    "availability": {
+      "useful": 1,
+      "planned": 1
+    },
+    "completeness": {
+      "covered": 2,
+      "planned": 2,
+      "covered_atoms": [
+        "favorite_tea",
+        "foreign_narrator_not_user"
+      ]
+    }
+  },
+  "native_author_proof": {
+    "initial_memory_count": 0,
+    "first_content": {
+      "observation_ms": [
+        2364,
+        2399
+      ],
+      "job_state": "queued",
+      "source_state": "source_persisted",
+      "learning_receipt_present": false
+    },
+    "terminal": {
+      "observation_ms": [
+        6601,
+        6612
+      ],
+      "job_state": "done",
+      "source_state": "completed",
+      "binding_and_version_verified": true,
+      "receipt": {
+        "entity": "user",
+        "property": "favorite_beverage",
+        "value": "tea",
+        "effect": "create",
+        "state": "active",
+        "version": 1
+      }
+    },
+    "final_scope_memory_count": 1,
+    "final_history_by_event": [
+      {
+        "count": 1,
+        "state": "auto_promote"
+      },
+      {
+        "count": 1,
+        "state": "create"
+      }
+    ],
+    "final_provenance_count": 1,
+    "coffee_or_external_candidate_or_promotion_observed": false
+  },
+  "specific_qualifier_regression": {
+    "implementation_commit": "6eececbe59d2e0ab4df594ef19cac86302dd42a5",
+    "replayed_dev18j_raw_answers": [
+      "You prefer tea, while the narrator in your story prefers coffee.",
+      "Your favorite beverage is tea, while the narrator in your story prefers coffee."
+    ],
+    "fresh_reply_contains_in_your_story": false,
+    "interpretation": "The regression test replays the exact two older phrases with \"in your story\". Fresh real inference used a different, accurate attribution to the narrator."
+  },
+  "combined_known_A": {
+    "base_evidence_sha256": "65eb7e01fd941e9a6356b8b283695b806933c9ab613afd8e25b661ea348ebe31",
+    "base_source_head": "bf1e039e3a27a1a785c7ae84d0970a4ed8e32717",
+    "focused_source_head": "5492a4ebfef84fed57aac07b5ebd20adbde589c2",
+    "interpretation": "The combined view uses independent known development executions. It retains 24 useful base replies and substitutes the focused result for the single unavailable base reply. The underlying base result is unchanged. The separate Copy run is outside these counts.",
+    "availability": {
+      "useful": 25,
+      "planned": 25
+    },
+    "expected_atom_completeness": {
+      "covered": 49,
+      "planned": 49
+    },
+    "full_request_completeness": {
+      "covered": 49,
+      "requested": 50
+    },
+    "bounded_unavailable_part": "The Jatoba database requested by go-p03 was unavailable in the authorized Pitanga binding."
+  }
+}
