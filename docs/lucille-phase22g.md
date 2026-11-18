@@ -277,3 +277,7 @@ O protocolo registra 40 consultas em oito capacidades, com cinco perfis sintéti
 ## Execução independente congelada — tentativa 02
 
 **INCONCLUSIVO.** Os dois modelos atingiram prontidão. A RAM física livre caiu abaixo do piso de 1 GiB durante a inicialização da interface. A guarda interrompeu a primeira fonte antes do envio; as 40 consultas ficaram pendentes e o consumo foi de 0/160 tentativas Gemma. A primeira tentativa foi preservada. [Relatório, métricas e evidências](evidence/phase22g/independent-run-02/README.md)
+
+## Avaliação independente · tentativa 03
+
+A primeira consulta adjudicada perdeu uma referência obrigatória. A próxima consulta foi interrompida pela guarda de disponibilidade do broker; a RAM permaneceu acima do piso. A tentativa não satisfaz a recuperação exigida e o pontuador registrou matriz incompleta. [Relatório, métricas e evidências](evidence/phase22g/independent-run-03/README.md)
