@@ -265,3 +265,7 @@ C1 passou em 21/21 obrigatórias e 26/26 totais. C2 passou em 27/27 nos dois mod
 Foi usada **1 das 2 chamadas autorizadas**, com 1.362 tokens de entrada e 20 de saída. O Gemma 4 12B manteve o contexto de 65.536 e o Nomic rodou na CPU. Em 39 amostras ao longo de 81 segundos, a RAM física livre mínima foi de 2.175.852.544 bytes e o pico de uso da GPU inteira foi de 9.427 MiB. A trava preventiva foi de 1 GiB. Os supervisores confirmaram o encerramento dos processos de QA. As cinco portas ficaram livres, a integridade SQLite e as chaves estrangeiras passaram, e os 104 arquivos protegidos mantiveram seus hashes. [Medições e encerramento](evidence/phase22g/temporal-claims/run.json)
 
 A 2.2G está pronta para **preparar uma avaliação independente de generalização**, com casos novos e critérios congelados antes da execução. Este checkpoint dirigido não confere aprovação operacional à memória. A 2.2F segue congelada e reprovada.
+
+## Preparação da avaliação independente
+
+O protocolo registra 40 consultas em oito capacidades, com cinco perfis sintéticos e 51 vínculos de recuperação obrigatórios. A preparação usou zero chamadas ao Gemma. Dois processos Tauri distintos abriram o perfil de ensaio, e os 104 hashes protegidos foram conferidos. A inferência real e a decisão sobre generalização ficam para a campanha posterior, com teto de 160 tentativas. [Protocolo e execução](evidence/phase22g/independent-evaluation/README.md) · [Rubrica](evidence/phase22g/independent-evaluation/rubrica.md) · [Manifesto](evidence/phase22g/independent-evaluation/manifest.json)

@@ -1,0 +1,51 @@
+{
+  "application_commit": "97c3f31a187bd10e40b74122f15c40fe7500c2be",
+  "qa_commit": "614a736260f1b5f294897646011fa72fd801e50f",
+  "measured": {
+    "offline_tests_passed": 5,
+    "structural_steps": 68,
+    "queries": 40,
+    "source_facts": 30,
+    "mandatory_pairs": 51,
+    "profile_restarts_in_offline_rehearsal": 10,
+    "protected_hashes_verified": 104,
+    "smoke": {
+      "real_hosts": [
+        {
+          "pid": 17384,
+          "created": "2026-11-18T18:04:57.752994-03:00"
+        },
+        {
+          "pid": 13896,
+          "created": "2026-11-18T18:05:31.545621-03:00"
+        }
+      ],
+      "dispatched_user_turns": 0,
+      "broker_available": false,
+      "final_ports_closed": [
+        15283,
+        15284,
+        15287,
+        15288,
+        15289
+      ]
+    },
+    "campaign_queries_sent": 0,
+    "new_gemma_calls": 0
+  },
+  "tests": [
+    "Contrato de entradas e rejeição de autorização contaminada",
+    "Rejeição de histórico na primeira geração sintética",
+    "Agregação incluindo 38/40, incompleto e falha crítica",
+    "Percurso completo em transporte temporário simulado",
+    "Parada na primeira etapa e preservação de 67 pendências"
+  ],
+  "preparation_fixes": [
+    "Perfil Tauri e seleção de identidade sintética por participante",
+    "Tratamento de SQLite ainda não criado no primeiro acesso",
+    "Limpeza do controle anterior antes de mudar de perfil",
+    "Reserva atômica de tentativas e interrupção persistente por recursos",
+    "Deduplicação da precisão por ID e versão e preservação da cobertura por fato"
+  ],
+  "scope": "Sem inferência. Ensaio de transporte em memória e inspeção de WebView real sem envio de entradas. Validou-se a leitura do esquema SQLite em um perfil sintético anterior."
+}

@@ -1,0 +1,27 @@
+{
+  "protected": 104,
+  "models": {
+    "gemma": {
+      "model": "HauhauCS/Gemma4-12B-QAT-Uncensored-HauhauCS-Balanced",
+      "revision": "ae8045ac2bd216293ca49a3065da2c942dde4b68",
+      "fingerprint": "59656d7494d6376ca97e9e20b64ea2e16cd97f12ec6d47bfccba91cb785b5134",
+      "context_tokens": 65536
+    },
+    "nomic": {
+      "model": "nomic-ai/nomic-embed-text-v1.5",
+      "revision": "0188c9bf409793f810680a5a431e7b899c46104c",
+      "fingerprint": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "dimension": 768,
+      "normalization": "layer_norm_then_l2",
+      "pooling": "mean",
+      "document_prefix": "search_document: ",
+      "query_prefix": "search_query: ",
+      "context_tokens": 2048,
+      "index_version": 5
+    }
+  },
+  "runtime_sha256": "d629481a5c60518afd6679b3fcb9e428a98523628470ed3b88d5261b0df712cb",
+  "host_sha256": "af623a93725db2a63c8bbe4ba1d2f3f2df3c2ab8d789ee3d7ea811939355c159",
+  "loader_sha256": "8427b1fc58ec707813e5c0a51eb5d69397bb333250a7b891be4d3b123f1e0f1c",
+  "frontend_sha256": "e3822eb7a5f40281b64406e1bd43027be4c6d8e1937695fd7854313e604b4c3e"
+}
