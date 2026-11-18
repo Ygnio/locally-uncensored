@@ -273,3 +273,7 @@ O protocolo registra 40 consultas em oito capacidades, com cinco perfis sintéti
 ## Execução independente congelada — tentativa 01
 
 **INCONCLUSIVO.** O pré-teste passou, mas o supervisor local do Nomic falhou na primeira amostragem de recursos, antes de despachar entradas. As 28 fontes e as 40 consultas ficaram pendentes, com zero tickets Gemma consumidos. As cinco portas ficaram livres e os 104 hashes protegidos conferiram no encerramento. [Relatório, ledger e evidências](evidence/phase22g/independent-run-01/README.md)
+
+## Execução independente congelada — tentativa 02
+
+**INCONCLUSIVO.** Os dois modelos atingiram prontidão. A RAM física livre caiu abaixo do piso de 1 GiB durante a inicialização da interface. A guarda interrompeu a primeira fonte antes do envio; as 40 consultas ficaram pendentes e o consumo foi de 0/160 tentativas Gemma. A primeira tentativa foi preservada. [Relatório, métricas e evidências](evidence/phase22g/independent-run-02/README.md)
