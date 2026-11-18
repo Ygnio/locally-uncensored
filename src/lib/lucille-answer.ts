@@ -72,7 +72,7 @@ export async function validateLucilleCompletion<T extends MemoryCompletion>(
     let check = verifyMemoryAnswer(settled.content, evidence)
     const verificationReferences: { id: string; version: number }[] = []
     if (snapshot.refresh && check.violations.some(v => ['unsupported_typed_value','absence_without_evidence'].includes(v.code))) {
-      const proposed=[...memoryAbsenceFields(settled.content,evidence),...check.assertions.filter(a=>!a.supported && a.entity!=='unspecified' && !['ram_capacity_ratio','ram_capacity_delta','goal_target'].includes(a.property)).map(a=>({entity:a.entity,property:a.property,value:a.value}))]
+      const proposed=[...memoryAbsenceFields(settled.content,evidence),...check.assertions.filter(a=>!a.supported && a.entity!=='unspecified' && !['ram_capacity_ratio','ram_capacity_delta','goal_target','description'].includes(a.property)).map(a=>({entity:a.entity,property:a.property,value:a.value}))]
       const fields=[...new Map(proposed.map(a=>[a.entity+'|'+a.property+'|'+a.value,a])).values()].slice(0,16)
       if (fields.length) {
         const began = performance.now(), confirmed = await snapshot.refresh(fields)

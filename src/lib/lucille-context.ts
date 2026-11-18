@@ -2,8 +2,8 @@ import { verifiedEnvironment, VERIFIED_EXECUTION_POLICY, operationalCodePrompt, 
 import { invoke } from '@tauri-apps/api/core'
 import type { ChatMessage } from '../api/providers/types'
 import type { Conversation } from '../types/chat'
-import { registerAnswerSnapshot, type MemoryFact, type MemoryDirectiveReceipt, type MemoryLearningReceipt, type MemoryQueryRelation } from './lucille-fidelity'
-import { answerLanguage, memoryQuestionNeedsNoTools, requestsProjectPlan } from './lucille-authority'
+import { registerAnswerSnapshot, requestedHistoricalProjectFact, type MemoryFact, type MemoryDirectiveReceipt, type MemoryLearningReceipt, type MemoryQueryRelation } from './lucille-fidelity'
+import { answerLanguage, memoryQuestionNeedsNoTools } from './lucille-authority'
 import type { MemoryOperationState } from './lucille-operations'
 
 export type { LucilleBinding } from '../types/chat'
@@ -84,7 +84,7 @@ export async function withLucilleContext(
     seen.add(memory.input.id)
     return true
   })
-  const permitFact = (f: MemoryFact) => f.scope === binding.scope && f.project === binding.project && (f.validity === 'current' || f.validity === 'historical' && (history || f.entity === 'project.' + binding.project && requestsProjectPlan(query, f)))
+  const permitFact = (f: MemoryFact) => f.scope === binding.scope && f.project === binding.project && (f.validity === 'current' || f.validity === 'historical' && (history || f.entity === 'project.' + binding.project && requestedHistoricalProjectFact(query, f, context.relations)))
   const typedFacts = context.facts ?? []
   const facts = typedFacts.filter(f => permitFact(f) && retained.some(m => m.input.id === f.id && m.version === f.version))
   // A canonical row withheld by the typed temporal projection must not return
@@ -113,7 +113,7 @@ export async function withLucilleContext(
   if (storageQuestion) identity.content += '\nThe question asks about storage, so its wording does not prove a saved record. If the matching current scoped record is unavailable, say the record is unavailable in this scope. Do not infer deletion, a past statement, or a change in personal preference.'
   if(context.relations?.length)identity.content+='\nRequested memory relations (each bounded independently to the authorized scope/project): '+JSON.stringify(context.relations)+'. Answer every requested relation; use its own actor, entity, property and modality. An unavailable relation does not make the others unavailable, and never proves the user did not supply it. Never transfer an own fact to the third party or a different project.'
   if (facts.some(f => f.validity === 'current' && f.entity === 'project.' + binding.project && ['database','language'].includes(f.property) && f.modality === 'decision')) identity.content+='\nFor a current project technology decision, use an explicit choice predicate (such as “você escolheu” or “you chose”). Wording such as “o projeto utiliza” or “the project uses” asserts current execution. When comparing projects, state the supported choice first and describe unavailable evidence for the other project separately.'
-  if ([...facts,...currentStatements].some(f=>f.entity==='project.'+binding.project && f.validity!=='historical' && f.modality==='in_progress')) identity.content+='\nEvidence of ongoing implementation does not establish its stage. Ask an open question if that detail matters.'
+  if ([...facts,...currentStatements].some(f=>f.entity==='project.'+binding.project && f.validity!=='historical' && f.modality==='in_progress')) identity.content+='\nAcknowledge the verified action or technology now in progress when it is the subject of the turn. Evidence of ongoing implementation does not establish its stage. Ask an open question if that detail matters.'
   if (facts.some(f => f.validity === 'historical' && f.entity === 'project.' + binding.project && ['planned','decision'].includes(f.modality))) identity.content+='\nDescribe the historical project plan or choice in the past tense. Its state does not establish present intent or execution.'
   const memoryOnly = memoryQuestionNeedsNoTools(query)
   identity.content += '\nEvidence authority: an approved memory supports what its source stated; history supports earlier states; a tool supports only its observed resource and coverage. A directory is not the entire remembered project without an explicit verified binding. A memory deletion or renewal never proves the user stopped or resumed liking something. Preserve each predicate’s modality independently. Current USER question language controls the answer and any repair; Portuguese memory does not require a Portuguese reply to an English question.'

@@ -71,7 +71,7 @@ export function memoryQuestionNeedsNoTools(query: string): boolean {
   if (/(?:^|[.!;\n]\s*|,\s*)(?:por favor[, ]+)?(?:guarde|salve|registre|memorize)\s+(?:esta informacao|essa informacao|a correcao|este dado|esse dado|isso)(?=\s*(?:[.!;\n]|$))/.test(q.trim())) return true
   const recalled=/\b(?:lembra|recorda|remember|recall)\b/.test(q)
   const personal=/\b(?:meu|minha|meus|minhas|my|our|aquele|aquela|that)\b/.test(q)
-  const slots=/linguagem|language|banco|database|\bram\b|notebook|laptop|prefer|objetivo|goal|tema|theme|bebida|drink/.test(q)
+  const slots=/linguagem|language|banco|database|\bram\b|\bgpu\b|placa de video|graphics card|notebook|laptop|prefer|objetivo|goal|tema|theme|bebida|drink/.test(q)
   const question=/\b(?:qual|quais|what|which|how much|quanto)\b/.test(q)
   const choice=/\b(?:escolhi|decidi|chose|choose|decided|planned|planejad)\b/.test(q)
   const status=/^(?:como esta|how is|what is the status of).{0,70}(?:projeto|project)\b/.test(q.trim())

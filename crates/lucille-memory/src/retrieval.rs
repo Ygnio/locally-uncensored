@@ -72,6 +72,16 @@ fn named_comparison_project(query: &str) -> Option<&str> {
         && fold(command.trim_start()).starts_with("compare "))
         .then_some(name)
 }
+fn project_lifecycle_question(query: &str) -> bool {
+    let folded = fold(query);
+    let words = folded
+        .split(|c: char| !c.is_alphanumeric())
+        .filter(|w| !w.is_empty())
+        .collect::<Vec<_>>();
+    matches!(words.as_slice(),
+        ["como", "esta" | "anda", "o" | "meu" | "este" | "esse", "projeto", ..]
+        | ["how", "is", "the" | "my" | "this", "project", ..])
+}
 pub fn query_relations(query: &str) -> Vec<QueryRelation> {
     let folded = fold(query);
     let named_project = named_comparison_project(query);
@@ -150,11 +160,17 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
             .contains(&w.as_str())
         });
         let preceding_domains = relation_domains(&query[start..boundary]);
+        let project_field_head = |word: &str| [
+            "linguagem", "language", "banco", "database", "tema", "assunto", "finalidade", "proposito",
+        ].contains(&word);
         let explicit_project_list_item = list_comma
             && preceding_domains.iter().any(|d| ["linguagem", "banco de dados", "assunto do projeto"].contains(d))
-            && head.is_some_and(|w| [
-                "linguagem", "language", "banco", "database", "tema", "assunto", "finalidade", "proposito",
-            ].contains(&w.as_str()));
+            && (head.is_some_and(|w| project_field_head(w))
+                || matches!(words.as_slice(), [prefix, field, ..]
+                    if ["que", "qual", "what", "which"].contains(&prefix.as_str()) && project_field_head(field)));
+        let separate_lifecycle = conjunction
+            && preceding_domains.iter().any(|d| ["linguagem", "banco de dados", "assunto do projeto"].contains(d))
+            && project_lifecycle_question(tail);
         let shared_track = conjunction
             && preceding_domains.iter().any(|d| ["linguagem", "banco de dados"].contains(d))
             && ((comparison && head.is_some_and(|w| [
@@ -173,7 +189,7 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
             .iter().any(|p| preceding.contains(p));
         let explicit_question = head.is_some_and(|w| ["qual", "quais", "what", "which", "quanto", "quantos"].contains(&w.as_str()));
         if assessment && !explicit_question { continue; }
-        if ((conjunction && starts_relation) || explicit_project_list_item || shared_track)
+        if ((conjunction && starts_relation) || explicit_project_list_item || shared_track || separate_lifecycle)
             && boundary > start && spans.len() < 7 {
             spans.push(query[start..boundary].trim().to_owned());
             start = index + word.len();
@@ -301,6 +317,15 @@ pub(crate) fn relation_context(
                 for m in memories {
                     if relation_matches(tx, m, &r)? && eligible_source(tx, m, &r.query, at, false)?
                     {
+                        // A lifecycle marker may contextualize a plan or choice,
+                        // but it cannot establish the requested technology.
+                        if requested_project_field(&r.query).is_some_and(|field|
+                            matches!(field.track, ProjectTrack::Planned | ProjectTrack::Choice)
+                                || field.property == "description")
+                            && quality(tx, &m.input.id)?.is_some_and(|meta| meta.property == "lifecycle")
+                        {
+                            continue;
+                        }
                         references.push(crate::Reference {
                             id: m.input.id.clone(),
                             version: m.version,
@@ -476,9 +501,10 @@ fn requested_project_field(query: &str) -> Option<ProjectField> {
         (true, false, false) => "database",
         (false, true, false) => "language",
         (false, false, true) => "description",
+        (false, false, false) if project_lifecycle_question(query) => "lifecycle",
         _ => return None,
     };
-    let track = if property == "description" {
+    let track = if ["description", "lifecycle"].contains(&property) {
         ProjectTrack::Any
     } else if prefix(&["planej", "pretend", "futur", "intend", "plann"]) || has(&["plan", "plans"]) {
         ProjectTrack::Planned
@@ -1166,7 +1192,9 @@ fn eligible_source(
     {
         return Ok(false);
     }
-    if meta.as_ref().is_some_and(|q| q.temporal == "completed") && !any_completed_intent(&q) {
+    if meta.as_ref().is_some_and(|q| q.temporal == "completed")
+        && !any_completed_intent(&q) && !project_lifecycle_question(query)
+    {
         return Ok(false);
     }
     Ok(true)

@@ -52,6 +52,58 @@ it('checks the entire captured project description, choice, and plan against thr
     .toContain('unsupported_typed_value')
 })
 
+it('uses separate native references for project purpose, past choices, past plan and current cancellation', async () => {
+  const query = 'Qual era o assunto do meu projeto, que linguagem escolhi, qual banco planejei e como está o projeto agora?'
+  const description: MemoryFact = {
+    ...plan,id:'description',property:'description',modality:'project_description',validity:'current',
+    value:'estou comecando um projeto de catalogo de miniaturas',
+    evidence:[{role:'current_source',text:'Estou começando um projeto de catálogo de miniaturas'}],
+  }
+  const choice: MemoryFact = {
+    ...plan,id:'choice',property:'language',modality:'decision',value:'python',
+    evidence:[{role:'current_source',text:'A linguagem que escolhi para o meu projeto é Python'}],
+  }
+  const facts = [description,choice,plan,cancelled]
+  const relationQueries = [
+    'Qual era o assunto do meu projeto', 'que linguagem escolhi projeto',
+    'qual banco planejei projeto', 'como está o projeto agora?',
+  ]
+  const relations = facts.map((fact,index)=>({
+    query:relationQueries[index],actor:'user',intent:['any','choice','planned','any'][index],state:'retrieved',
+    references:[{id:fact.id,version:fact.version}],
+  }))
+  const current: AnswerSnapshot = {...snapshot, query, facts, relations}
+  const correct = 'O seu projeto era um catálogo de miniaturas. Você escolheu Python. Você pretendia usar PostgreSQL antes do cancelamento. O projeto foi cancelado.'
+  const check = verifyMemoryAnswer(correct,current)
+  expect(check.violations).toEqual([])
+  expect(check.assertions.map(a=>[a.property,a.references])).toEqual([
+    ['description',['description']],['language',['choice']],['database',['plan']],['lifecycle',['cancel']],
+  ])
+  const denied = 'O seu projeto era um catálogo de miniaturas. Você não mencionou qual linguagem escolheu nem qual banco planejou, e o projeto está atualmente cancelado.'
+  expect(verifyMemoryAnswer(denied,current).violations.map(v=>v.code)).toContain('absence_without_evidence')
+  expect(verifyMemoryAnswer(denied,current).violations.map(v=>v.code)).toContain('known_relation_not_used')
+  for (const wrong of [correct.replace('pretendia usar','está usando'), correct.replace('escolheu Python','implementa em Python')]) {
+    expect(verifyMemoryAnswer(wrong,current).violations.some(v=>v.critical)).toBe(true)
+  }
+  const conversation = {id:'mixed-history',lucille:{profile:'lucille' as const,scope:'qa',project:'jatoba',tokenBudget:8192}}
+  const references = facts.map(({id,version})=>({id,version}))
+  const memories: LucilleTurnContext['memories'] = facts.map(f=>({
+    input:{id:f.id,scope:f.scope,project:f.project,kind:'project',content:f.evidence[0].text,
+      fact_key:f.entity+'.'+f.property,source:'user',source_id:'source-'+f.id},
+    state:'active',version:f.version,created_at:1,updated_at:1,
+  }))
+  const context: LucilleTurnContext = {conversation_id:conversation.id,message_id:'answer',scope:'qa',project:'jatoba',
+    mode:'code',token_budget:8192,used_upper_bound:600,retrieval_state:'known',
+    identity:{profile:{name:'QA',description:'',personality:'',instructions:''},version:1,created_at:1,updated_at:1},
+    references,memories,facts,relations}
+  const original: ChatMessage[] = [{role:'user',content:query}]
+  const wire = await withLucilleContext(conversation,'answer',query,'code',original,undefined,async()=>context)
+  expect(answerSnapshot(wire)?.facts.map(f=>[f.id,f.validity])).toEqual(facts.map(f=>[f.id,f.validity]))
+  const swapped = {...context,relations:relations.map((r,index)=>index===2?{...r,references:[{id:plan.id,version:99}]}:r)}
+  const stale = await withLucilleContext(conversation,'answer',query,'code',original,undefined,async()=>swapped)
+  expect(answerSnapshot(stale)?.facts.map(f=>f.id)).not.toContain('plan')
+})
+
 it('treats the exact prior Code output as a current-plan error without attaching the brother’s verb to the own plan', () => {
   const first = 'O banco planejado para o seu projeto Jatoba é o PostgreSQL, enquanto não há registro disponível sobre o banco que seu irmão usa.'
   const second = 'Você planeja usar o PostgreSQL no seu projeto, mas não há registro sobre qual banco de dados o seu irmão usa.'
@@ -185,4 +237,35 @@ it('binds the relative work-notebook description to its own typed RAM slot', () 
   expect(ok.violations).toEqual([])
   expect(ok.assertions.map(a=>a.entity)).toEqual(['device.work_laptop'])
   expect(verifyMemoryAnswer('O notebook que você usa para trabalhar possui 48 GB de RAM.',current).violations.map(v=>v.code)).toContain('unsupported_typed_value')
+})
+
+it('recognizes the original denied capacity as reported speech and independently verifies the current amount', () => {
+  const hardware: MemoryFact={...plan,id:'current-ram',entity:'device.primary_computer',property:'ram_capacity',value:'64_gb',modality:'current_fact',validity:'current'}
+  const current: AnswerSnapshot={...snapshot,query:'Não afirmei que meu computador principal tenha 128 GB de RAM; esse número é somente uma hipótese falsa.',facts:[hardware],relations:[]}
+  const replies=[
+    'Você está correto; o valor de 128 GB é apenas uma hipótese falsa, enquanto o fato atual confirmado é que seu computador principal possui 64 GB de RAM.',
+    'Exatamente, você não afirmou que o computador principal tem 128 GB de RAM; esse valor é apenas uma hipótese falsa. De acordo com a memória atualizada, ele possui 64 GB de RAM.',
+  ]
+  for (const reply of replies) {
+    const checked=verifyMemoryAnswer(reply,current)
+    expect(checked.violations).toEqual([])
+    expect(checked.assertions.map(a=>[a.value,a.references])).toEqual([['64_gb',['current-ram']]])
+    expect(verifyMemoryAnswer(reply.replace('64 GB','128 GB'),current).violations.map(v=>v.code)).toContain('unsupported_typed_value')
+    expect(verifyMemoryAnswer(reply,{...current,query:'Quanto de RAM tem meu computador principal?'}).violations.map(v=>v.code)).toContain('unsupported_typed_value')
+  }
+})
+
+it('separately verifies historical and new values in a coordinated statement about one device', () => {
+  const previous: MemoryFact={...plan,id:'past-ram',entity:'device.primary_computer',property:'ram_capacity',value:'48_gb',modality:'current_fact'}
+  const current: AnswerSnapshot={
+    ...snapshot,query:'Quanto de RAM tinha antes meu computador principal e quanto ficou depois da correção?',
+    facts:[previous,{...previous,id:'current-ram',value:'64_gb',validity:'current'},{...previous,id:'work-ram',entity:'device.work_laptop',value:'12_gb',validity:'current'}],relations:[],
+  }
+  const reply = 'Antes da correção, seu computador principal tinha 48 GB de RAM e, depois da correção, ele passou a ter 64 GB.'
+  const checked=verifyMemoryAnswer(reply,current)
+  expect(checked.violations).toEqual([])
+  expect(checked.assertions.map(a=>[a.value,a.references])).toEqual([['48_gb',['past-ram']],['64_gb',['current-ram']]])
+  expect(verifyMemoryAnswer(reply.replace('ter 64','ter 12'),current).violations.map(v=>v.code)).toContain('unsupported_typed_value')
+  const foreign=reply.replace('ele passou a ter 64','o notebook de trabalho passou a ter 12')
+  expect(verifyMemoryAnswer(foreign,current).violations.map(v=>v.code)).toContain('unsupported_ram_correction_device')
 })

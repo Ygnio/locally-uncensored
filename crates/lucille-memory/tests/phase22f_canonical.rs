@@ -494,6 +494,42 @@ fn purpose_query_recovers_the_canonical_project_description_without_a_vector() {
 }
 
 #[test]
+fn a_current_lifecycle_question_keeps_each_earlier_project_field_in_its_own_relation() {
+    let (_root, mut store) = open(ExtractionMode::Rules);
+    for (id, text) in [
+        ("purpose", "Estou começando um projeto de catálogo de miniaturas."),
+        ("choice", "A linguagem que escolhi para o meu projeto é Python."),
+        ("plan", "PostgreSQL é o banco que pretendo usar no meu projeto."),
+        ("cancel", "Eu cancelei meu projeto de catálogo."),
+    ] {
+        learn_reviewed(&mut store, id, text);
+    }
+    let query = "Qual era o assunto do meu projeto, que linguagem escolhi, qual banco planejei e como está o projeto agora?";
+    let query_request = request(query);
+    let context = store.context(query_request.clone()).unwrap();
+    for (property, modality, validity, position) in [
+        ("description", "project_description", "current", 0),
+        ("language", "decision", "historical", 1),
+        ("database", "planned", "historical", 2),
+        ("lifecycle", "cancelled", "current", 3),
+    ] {
+        let fact = context.facts.iter().find(|fact| fact.property == property).unwrap();
+        assert_eq!((&*fact.modality, &*fact.validity), (modality, validity));
+        assert_eq!(context.relations[position].references.len(), 1);
+        let reference = &context.relations[position].references[0];
+        assert_eq!((&reference.id, reference.version), (&fact.id, fact.version));
+    }
+    assert_eq!(context.relations.len(), 4);
+    let refreshed = store.answer_evidence(&query_request, &context.references).unwrap();
+    assert_eq!(refreshed.facts.len(), 4, "The pre-delivery read preserves all four typed relations");
+    for field in ["language", "database"] {
+        assert!(refreshed.facts.iter().any(|f| f.property == field && f.validity == "historical"));
+    }
+    assert!(!store.context(request("Que banco meu projeto usa atualmente?")).unwrap().facts.iter().any(|f|
+        ["language", "database"].contains(&f.property.as_str()) && f.validity != "historical"));
+}
+
+#[test]
 fn cancellation_qualifies_a_prior_plan_without_transferring_it_to_the_brother() {
     let (_root, mut store) = open(ExtractionMode::Rules);
     learn_reviewed(

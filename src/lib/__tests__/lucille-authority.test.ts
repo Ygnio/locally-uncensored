@@ -145,6 +145,10 @@ describe('bounded non-destructive intervention and language',()=>{
     expect(memoryQuestionNeedsNoTools('Meu computador tem 48 GB de RAM. Guarde esta informação.')).toBe(true)
     expect(memoryQuestionNeedsNoTools(correction+' Escreva o resultado no arquivo de inventário.')).toBe(false)
   })
+  it('uses stored hardware evidence for graphics-card recall and retains explicit inspection',()=>{
+    expect(memoryQuestionNeedsNoTools('Qual placa de vídeo está registrada para meu computador principal?')).toBe(true)
+    expect(memoryQuestionNeedsNoTools('Inspecione meu computador e verifique qual placa de vídeo está instalada.')).toBe(false)
+  })
   it('an unnecessary memory-only tool request is repaired before any dispatch',async()=>{
     const regenerate=vi.fn(async():Promise<MemoryCompletion>=>({content:'Você decidiu usar Rust.',finishReason:'stop'}))
     const r=await validateLucilleCompletion(wire({...snapshot(),memoryOnly:true}),{content:'Vou listar os arquivos.',toolCalls:[{function:{name:'file_list',arguments:{path:'.'}}}],finishReason:'tool_calls'},regenerate)
