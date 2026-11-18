@@ -277,7 +277,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     }
     // A bare plan can inherit a project from a verified technology claim.
     // Crossing fields requires explicit coordination and a native plan relation.
-    const impliedPlan = /^(?:(?:para o futuro|futuramente|in the future)[,\s]+)?(?:(?:e|and)\s+)?(?:esta planejad[ao] usar|planeja usar|pretende usar|is planned to use|plans to use|intends to use)\s+(?:(?:a linguagem|o banco(?: de dados)?|the language|the database)\s+)?[a-z0-9]+(?:\s+(?:no futuro|futuramente|in the future))?[.!]?$/.test(q.trim())
+    const impliedPlan = /^(?:(?:para o futuro|futuramente|in the future)[,\s]+)?(?:(?:e|and)\s+)?(?:(?:esta planejad[ao]|planeja|pretende) (?:usar|utilizar)|is planned to use|plans to use|intends to use)\s+(?:(?:a linguagem|o banco(?: de dados)?|the language|the database)\s+)?[a-z0-9]+(?:\s+(?:no futuro|futuramente|in the future))?[.!]?$/.test(q.trim())
     if (subject || projectQuestion || impliedPlan) {
       for (const value of ['typescript', 'javascript', 'python', 'rust', 'sqlite', 'postgresql', 'mysql']) {
         if (!new RegExp('\\b' + value + '\\b').test(q)) continue

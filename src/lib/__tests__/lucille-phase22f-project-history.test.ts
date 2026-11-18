@@ -167,7 +167,7 @@ it('injects a historical typed plan for the requested relation and never reintro
   expect(current.some(m=>m.content.includes('Raw PostgreSQL text'))).toBe(false)
 })
 
-it('checks each independently requested technology in the two captured Pitanga replies', () => {
+it('checks each independently requested technology in the captured Pitanga replies', () => {
   const progress: MemoryFact = { ...plan, id:'progress', project:'pitanga', entity:'project.pitanga', property:'language', value:'typescript', modality:'in_progress', validity:'current' }
   const future: MemoryFact = { ...progress, id:'future', value:'rust', modality:'planned' }
   const current: AnswerSnapshot = {
@@ -179,6 +179,7 @@ it('checks each independently requested technology in the two captured Pitanga r
   }
   const replies = [
     'Você está implementando o projeto Pitanga em TypeScript. Para o futuro, está planejado usar a linguagem Rust.',
+    'Você está implementando o projeto Pitanga em TypeScript. Para o futuro, está planejado utilizar a linguagem Rust.',
     'Você está implementando o projeto Pitanga em TypeScript e planeja usar Rust no futuro.',
   ]
   for (const reply of replies) {
@@ -189,6 +190,7 @@ it('checks each independently requested technology in the two captured Pitanga r
   }
   expect(verifyMemoryAnswer('Você está implementando o projeto Pitanga em TypeScript. Ana planeja usar Rust.',current).violations.map(v=>v.code)).toContain('known_relation_not_used')
   expect(verifyMemoryAnswer('Você está implementando o projeto Pitanga em TypeScript. Planeja usar Rust no Jatobá.',current).violations.map(v=>v.code)).toContain('known_relation_not_used')
+  expect(verifyMemoryAnswer('Você está implementando o projeto Pitanga em TypeScript. Para o futuro, está planejado utilizar a linguagem Rust no Jatobá.',current).violations.map(v=>v.code)).toContain('known_relation_not_used')
 })
 
 it('grounds the one retry in the chosen database and keeps the cross-project uncertainty', async () => {
