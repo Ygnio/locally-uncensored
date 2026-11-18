@@ -622,6 +622,55 @@ fn frozen_seven_relations_materialize_with_original_evidence_in_every_mode() {
 }
 
 #[test]
+fn fronted_game_favorite_is_available_before_display_and_commits_to_its_own_slot() {
+    let source = "Entre os jogos, os de estratégia por turnos são os meus favoritos.";
+    for mode in modes() {
+        let (_root, mut store) = open(mode.clone());
+        let prepared = store
+            .begin_user_turn(input("strategy-source", source))
+            .unwrap();
+        let projected = prepared["current_statements"].as_array().unwrap();
+        assert_eq!(projected.len(), 1, "{mode:?}: {prepared}");
+        let current = &projected[0];
+        assert_eq!(current["entity"], "user");
+        assert_eq!(current["property"], "games_turn_strategy");
+        assert_eq!(current["value"], "positive");
+        assert_eq!(current["validity"], "current_user_statement");
+        assert_eq!(current["version"], 0);
+        assert!(store.memory_details(SCOPE, PROJECT).unwrap().is_empty());
+        let proof = serde_json::from_value(prepared["proof"].clone()).unwrap();
+        store.publish_user_turn(proof).unwrap();
+        complete(&mut store, &nomination(source, "preference"));
+
+        let details = store.memory_details(SCOPE, PROJECT).unwrap();
+        assert_eq!(details.len(), 1, "{mode:?}: {details:?}");
+        let detail = &details[0];
+        assert_eq!(detail.memory.state, Status::Active);
+        assert_eq!(detail.memory.version, 1);
+        let quality = detail.quality.as_ref().unwrap();
+        assert_eq!(quality.subject, "user");
+        assert_eq!(quality.property, "games_turn_strategy");
+        assert_eq!(quality.value, "positive");
+        assert_eq!(quality.temporal, "preference");
+        assert_eq!(
+            detail.provenance[0].evidence.trim_end_matches('.'),
+            source.trim_end_matches('.')
+        );
+    }
+
+    for text in [
+        "Nos jogos, os de estratégia por turnos são os favoritos do meu irmão.",
+        "Uma personagem disse: entre os jogos, os de estratégia por turnos são os meus favoritos.",
+        "Entre os jogos, os de estratégia por turnos são os meus favoritos?",
+        "Não é verdade que, entre os jogos, os de estratégia por turnos são os meus favoritos.",
+        "Entre os filmes, os de estratégia por turnos são os meus favoritos.",
+        "Entre os jogos, os de estratégia por turnos com classes são os meus favoritos.",
+    ] {
+        assert!(dialogue::extract(text, PROJECT).is_empty(), "{text}");
+    }
+}
+
+#[test]
 fn relation_paraphrases_preserve_value_modality_and_device() {
     for (text, subject, property, value, temporal) in [
         (

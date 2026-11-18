@@ -168,7 +168,9 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     const projectTechnology = entity === 'project.' + snapshot.project && ['language','database'].includes(property)
     const candidates = all.filter(f => (f.property === property || (property==='beverage_preference' && f.property==='favorite_beverage')) && (!entity || f.entity === entity))
     const predicate = fold(span).trim()
-    const recordedProjectHistory = projectTechnology && !execution(span) &&
+    const startingWithTechnology = projectTechnology && !planned(span) && /\b(?:esta|estao|is|are)\s+(?:iniciando|comecando|starting)\b[^.!?;]{1,110}\b(?:usando|utilizando|using)\b/u.test(predicate)
+    const claimsExecution = execution(span) || startingWithTechnology
+    const recordedProjectHistory = projectTechnology && !claimsExecution &&
       !/\b(?:agora|atualmente|ainda|now|currently|still)\b/.test(predicate) &&
       candidates.some(f => f.value === value && f.validity === 'historical' &&
         requestedHistoricalProjectFact(snapshot.query, f, snapshot.relations) &&
@@ -198,8 +200,8 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     }
     if (!choiceOrigin && /decidiu|escolheu|decided|chosen|selected/.test(fold(span)) && !matching.some(f => f.modality === 'decision')) add('unproven_decision', span)
     if (matching.every(f => f.modality === 'cancelled') && !/cancel/.test(fold(span))) add('cancelled_as_current', span)
-    if (!choiceOrigin && entity?.startsWith('project.') && ['language','database'].includes(property) && execution(span) && !matching.some(f => ['in_progress', 'current_fact'].includes(f.modality))) add('plan_or_decision_as_execution', span)
-    if (!historical && execution(span) && entity === 'project.' + snapshot.project && current.some(f => f.entity === entity && f.property === 'lifecycle' && ['cancelled', 'completed'].includes(f.modality))) add('terminal_project_as_execution', span)
+    if (!choiceOrigin && entity?.startsWith('project.') && ['language','database'].includes(property) && claimsExecution && !matching.some(f => ['in_progress', 'current_fact'].includes(f.modality))) add('plan_or_decision_as_execution', span)
+    if (!historical && claimsExecution && entity === 'project.' + snapshot.project && current.some(f => f.entity === entity && f.property === 'lifecycle' && ['cancelled', 'completed'].includes(f.modality))) add('terminal_project_as_execution', span)
     if (completion(span) && !matching.some(f => f.modality === 'completed')) add('unproven_completion', span)
     if (!choiceOrigin && !historical && !planned(span) && !execution(span) && matching.every(f => ['planned', 'hypothesis'].includes(f.modality)) && !planned(snapshot.query)) add('modality_omitted', span, false)
     if (matching.every(f => f.modality === 'hypothesis') && !/talvez|pode ser|might|maybe|hipot|possib/.test(fold(span))) add('hypothesis_as_fact', span)
@@ -456,7 +458,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       }
       const denied = /nao (?:gosta|prefere|curte)|don.t (?:like|prefer)|does not (?:like|prefer)/.test(q)
       if (/rpg/.test(q) && /tatic|tactic/.test(q)) record(span, 'games_tactics', denied ? 'negative' : 'positive', 'user')
-      if (/estrategia por turnos|turn.based strategy/.test(q)) record(span, 'games_turn_strategy', denied ? 'negative' : 'positive', 'user')
+      if (/estrategias? por turnos|turn.based strateg(?:y|ies)/.test(q)) record(span, 'games_turn_strategy', denied ? 'negative' : 'positive', 'user')
       if (/criacao de personagens|criar personagens|character creation|creating characters/.test(q)) record(span, 'games_character_creation', denied ? 'negative' : 'positive', 'user')
       if (/escolh.*classe|choos.*class|class selection/.test(q)) record(span, 'games_class_selection', denied ? 'negative' : 'positive', 'user')
       if (/interface|tela|screen/.test(q) && /poluid|clutter|carregad/.test(q)) record(span, 'interface_clutter', /detest|odeia|dislike|nao (?:gosta|curte|prefere)/.test(q) ? 'negative' : 'positive', 'user')

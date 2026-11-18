@@ -67,6 +67,7 @@ fn preference_descriptor(words: &[&str]) -> bool {
                     "favourite",
                 ]
                 .contains(w)
+                    || matches!((*word, *w), ("meus", "favoritos") | ("minhas", "favoritas"))
             })
             && (matches!(
                 prefix,
@@ -192,9 +193,9 @@ fn preference_value(descriptor: &[&str], target: &[&str]) -> Option<(&'static st
         {
             Some(("response_language", "pt"))
         }
-        ["jogos", "de", "estrategia", "por", "turnos"] | ["turn", "based", "strategy", "games"] => {
-            Some(("games_turn_strategy", "positive"))
-        }
+        ["jogos", "de", "estrategia", "por", "turnos"]
+        | ["entre", "os", "jogos", "os" | "jogos", "de", "estrategia", "por", "turnos"]
+        | ["turn", "based", "strategy", "games"] => Some(("games_turn_strategy", "positive")),
         ["cafe" | "coffee", preparation, "acucar" | "sugar"] => match *preparation {
             "sem" | "without" => Some(("coffee_sugar", "without_sugar")),
             "com" | "with" => Some(("coffee_sugar", "with_sugar")),

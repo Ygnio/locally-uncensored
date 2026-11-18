@@ -112,6 +112,20 @@ it('checks the entire captured project description, choice, and plan against thr
     .toContain('unsupported_typed_value')
 })
 
+it('does not infer current technology use from starting a project with a separate plan', () => {
+  const query = 'Estou começando um projeto de controle de luminosidade. Quero usar TypeScript e PostgreSQL.'
+  const sourceEvidence = [{role:'current_user_statement',text:'Quero usar TypeScript e PostgreSQL.'}]
+  const database: MemoryFact = {...plan,id:'current-turn-2',version:0,validity:'current_user_statement',evidence:sourceEvidence}
+  const language: MemoryFact = {...database,id:'current-turn-1',property:'language',value:'typescript'}
+  const current: AnswerSnapshot = {...snapshot,query,facts:[],currentStatements:[language,database],relations:[]}
+  const captured = 'Você está iniciando um projeto de controle de luminosidade utilizando TypeScript e PostgreSQL.'
+  expect(verifyMemoryAnswer(captured,current).violations.map(v=>v.code)).toContain('plan_or_decision_as_execution')
+  const explicitPlan = 'Seu projeto é para controle de luminosidade. Você planeja usar TypeScript e PostgreSQL nesse projeto.'
+  expect(verifyMemoryAnswer(explicitPlan,current).violations).toEqual([])
+  const verifiedProgress = {...current,currentStatements:current.currentStatements.map(f=>({...f,modality:'in_progress'}))}
+  expect(verifyMemoryAnswer(captured,verifiedProgress).violations).toEqual([])
+})
+
 it('uses separate native references for project purpose, past choices, past plan and current cancellation', async () => {
   const query = 'Qual era o assunto do meu projeto, que linguagem escolhi, qual banco planejei e como está o projeto agora?'
   const description: MemoryFact = {
