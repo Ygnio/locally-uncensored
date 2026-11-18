@@ -1,0 +1,50 @@
+{
+  "id": "phase22f-dev-forget-delete",
+  "project": "jatoba",
+  "kind": "known development only; original E texts/golds",
+  "turns": [
+    {
+      "id": "gm-t01",
+      "text": "Para mim, a escolha da classe do personagem é uma das coisas de que gosto nos jogos.",
+      "new_session": true,
+      "mode": "chat",
+      "expected_atoms": [
+        "truthful_source_acknowledgement"
+      ],
+      "scenario": "own_class_source"
+    },
+    {
+      "id": "gm-t02",
+      "text": "Na minha xícara de café da tarde, prefiro o café sem açúcar.",
+      "new_session": true,
+      "mode": "chat",
+      "expected_atoms": [
+        "truthful_source_acknowledgement"
+      ],
+      "scenario": "own_coffee_source"
+    },
+    {
+      "id": "gm-t13",
+      "text": "Esqueça de verdade minha preferência pela escolha de classe nos jogos.",
+      "new_session": true,
+      "mode": "chat",
+      "expected_atoms": [
+        "class_delete_effective",
+        "old_class_replay_no_revival"
+      ],
+      "scenario": "forget_class"
+    },
+    {
+      "id": "gm-t16",
+      "text": "Esqueça de verdade como eu prefiro o açúcar no café.",
+      "new_session": true,
+      "mode": "agent",
+      "expected_atoms": [
+        "coffee_delete_effective",
+        "old_coffee_replay_no_revival"
+      ],
+      "scenario": "forget_coffee"
+    }
+  ],
+  "probes": []
+}

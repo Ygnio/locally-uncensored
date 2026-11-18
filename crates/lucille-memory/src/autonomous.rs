@@ -8,7 +8,7 @@ use crate::{
 use rusqlite::{params, OptionalExtension, TransactionBehavior};
 /// Bounded imperative grammar. Unknown, conditional and quoted commands do not act.
 pub(crate) fn forget_property(text: &str) -> Option<&'static str> {
-    if text.trim_start().starts_with(['"', '\'', '`']) || text.contains('?') {
+    if text.contains(['"', '\'', '`', '“', '”', '‘', '’', '«', '»', '?']) {
         return None;
     }
     let s = fold(text);
@@ -23,6 +23,7 @@ pub(crate) fn forget_property(text: &str) -> Option<&'static str> {
     } else {
         &words[..]
     };
+    let body = body.strip_prefix(&["actually"]).unwrap_or(body);
     if !body
         .first()
         .is_some_and(|w| ["esqueca", "forget"].contains(w))
@@ -30,6 +31,14 @@ pub(crate) fn forget_property(text: &str) -> Option<&'static str> {
         return None;
     }
     let body = &body[1..];
+    // Emphasis modifies the imperative. It does not expand the target vocabulary.
+    let body = body
+        .strip_prefix(&["de", "verdade"])
+        .or_else(|| body.strip_prefix(&["realmente"]))
+        .or_else(|| body.strip_prefix(&["definitivamente"]))
+        .or_else(|| body.strip_prefix(&["for", "good"]))
+        .unwrap_or(body);
+    let body = body.strip_suffix(&["for", "good"]).unwrap_or(body);
     const WORDS: &[&str] = &[
         "minha",
         "meu",
@@ -72,7 +81,9 @@ pub(crate) fn forget_property(text: &str) -> Option<&'static str> {
         "personagens",
         "escolher",
         "escolho",
+        "escolha",
         "seleciono",
+        "selecionar",
         "que",
         "eu",
         "where",
@@ -118,12 +129,19 @@ pub(crate) fn forget_property(text: &str) -> Option<&'static str> {
         "of",
         "in",
     ];
-    if body.is_empty() || body.iter().any(|w| !WORDS.contains(w)) {
+    let has = |ws: &[&str]| body.iter().any(|w| ws.contains(w));
+    let coffee = has(&["cafe", "coffee"]);
+    let coffee_preparation = coffee && has(&["acucar", "sugar"]);
+    const PREPARATION_WORDS: &[&str] = &["como", "prefiro", "acucar", "how", "prefer", "sugar"];
+    if body.is_empty()
+        || body.iter().any(|w| {
+            !(WORDS.contains(w) || coffee_preparation && PREPARATION_WORDS.contains(w))
+        })
+    {
         return None;
     }
-    let has = |ws: &[&str]| body.iter().any(|w| ws.contains(w));
     let mut fields = Vec::new();
-    if has(&["cafe", "coffee"]) {
+    if coffee {
         fields.push("coffee_sugar")
     }
     if has(&["idioma", "language"]) && has(&["preferido", "preferred"]) {
@@ -159,7 +177,8 @@ pub(crate) fn forget_property(text: &str) -> Option<&'static str> {
     {
         fields.push("games_character_creation")
     }
-    if has(&["classe", "classes", "class"]) && has(&["escolher", "escolho", "seleciono", "selecao", "choose", "select", "selection"])
+    if has(&["classe", "classes", "class"])
+        && has(&["escolher", "escolho", "escolha", "seleciono", "selecionar", "selecao", "choose", "select", "selection"])
     {
         fields.push("games_class_selection")
     }
@@ -268,6 +287,10 @@ impl Store {
             tx.execute("INSERT INTO history(memory_id,record_id,operation,version,at) VALUES(NULL,?1,'delete',?2,?3)",params![memory.input.id,memory.version+1,at]).map_err(db_error)?;
         }
         tx.execute("INSERT INTO extraction_jobs(id,conversation_id,message_id,scope,project,mode,state,evidence_json,created_at,updated_at,next_at) VALUES(?1,?2,?3,?4,?5,?6,'done','[]',?7,?7,?7)",params![id,input.conversation_id,input.message_id,input.scope,input.project,types::label(&input.mode),at]).map_err(db_error)?;
+        crate::source_operations::reserve(&tx, &id, Some(property))?;
+        for memory in &memories {
+            crate::source_operations::record(&tx, &id, &memory.input.id, memory.version + 1, "deleted", "delete")?;
+        }
         tx.execute(
             "INSERT INTO history(memory_id,record_id,operation,version,at) VALUES(NULL,?1,?2,1,?3)",
             params![

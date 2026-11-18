@@ -1,0 +1,332 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_c2_second_attempt",
+  "raw_sha256": "32738d0159b2616f1389c2d6d0ff23414ccf9974428dd625e2e2b89beebea6fd",
+  "freeze_sha256": "0a0f5b226db492053cd02503b4025354b5fe2e46b8dff7379b5399fce30dcec0",
+  "dataset_sha256": "083b2fe71f6d4cdfb10d5dfc01443b9b664b6c42df58e8c57aca6fb7e143df08",
+  "track": "c2",
+  "planned_queries": 29,
+  "preparations_measured": 17,
+  "index_events_measured": 16,
+  "ranking": {
+    "fts5": {
+      "tp": 30,
+      "fp": 0,
+      "missed": 0,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "recall_planned": 1.0,
+      "passed": true
+    },
+    "nomic": {
+      "tp": 26,
+      "fp": 0,
+      "missed": 4,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 1.0,
+      "recall": 0.8666666666666667,
+      "recall_planned": 0.8666666666666667,
+      "passed": true
+    },
+    "hybrid": {
+      "tp": 30,
+      "fp": 0,
+      "missed": 0,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "recall_planned": 1.0,
+      "passed": true
+    },
+    "fallback": {
+      "tp": 30,
+      "fp": 0,
+      "missed": 0,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "recall_planned": 1.0,
+      "passed": true
+    }
+  },
+  "answers": {
+    "planned": 29,
+    "counts": {
+      "delivered": 28,
+      "blocked": 1,
+      "not_executed": 0,
+      "infrastructure_failure": 0,
+      "evaluator_failure": 0
+    },
+    "literal_review_required": true
+  },
+  "fallback": {
+    "planned": 20,
+    "exact": 20,
+    "physical_endpoint_unavailable": false
+  },
+  "rows": [
+    {
+      "id": "er-001",
+      "text": "Qual a RAM atual do meu computador principal?",
+      "status": "delivered",
+      "reply": "Seu computador principal tem 64 GB de RAM.",
+      "violations": [],
+      "latency_ms": 1921.6982
+    },
+    {
+      "id": "er-002",
+      "text": "Quantos gigabytes de memória há no meu PC principal?",
+      "status": "delivered",
+      "reply": "Seu computador principal tem 64 GB de RAM.",
+      "violations": [],
+      "latency_ms": 1768.9023
+    },
+    {
+      "id": "er-003",
+      "text": "Quanto de RAM tem o notebook de trabalho que eu utilizo?",
+      "status": "delivered",
+      "reply": "O notebook de trabalho que você utiliza tem 12 GB de RAM.",
+      "violations": [],
+      "latency_ms": 1828.732
+    },
+    {
+      "id": "er-004",
+      "text": "Compare a RAM do computador principal com a do notebook de trabalho.",
+      "status": "delivered",
+      "reply": "O computador principal possui 64 GB de RAM, enquanto o notebook de trabalho tem 12 GB.",
+      "violations": [],
+      "latency_ms": 2589.0037
+    },
+    {
+      "id": "er-005",
+      "text": "Qual era a RAM do computador principal antes e qual é agora?",
+      "status": "delivered",
+      "reply": "Antes, o computador principal tinha 48 GB de RAM. Agora, ele possui 64 GB.",
+      "violations": [],
+      "latency_ms": 2624.4604
+    },
+    {
+      "id": "er-006",
+      "text": "Meu computador principal tem 128 GB de RAM ou há outra capacidade registrada?",
+      "status": "delivered",
+      "reply": "Seu computador principal tem 64 GB de RAM registrados. Não há registro de 128 GB no momento.",
+      "violations": [],
+      "latency_ms": 2343.6724000000004
+    },
+    {
+      "id": "er-007",
+      "text": "Qual é o assunto do catálogo do projeto que estou começando?",
+      "status": "delivered",
+      "reply": "O assunto do catálogo é miniaturas. Você está começando este projeto agora.",
+      "violations": [],
+      "latency_ms": 1961.4207
+    },
+    {
+      "id": "er-008",
+      "text": "Que linguagem escolhi para o meu projeto?",
+      "status": "delivered",
+      "reply": "Você escolheu Python como a linguagem para o seu projeto Jatoba.",
+      "violations": [],
+      "latency_ms": 1823.388
+    },
+    {
+      "id": "er-009",
+      "text": "Qual banco de dados eu pretendo usar no projeto?",
+      "status": "delivered",
+      "reply": "Você planeja usar o PostgreSQL como banco de dados no projeto jatoba.",
+      "violations": [],
+      "latency_ms": 1879.0308999999997
+    },
+    {
+      "id": "er-010",
+      "text": "Como prefiro meu café da tarde?",
+      "status": "delivered",
+      "reply": "Você prefere seu café da tarde sem açúcar.",
+      "violations": [],
+      "latency_ms": 1753.1105
+    },
+    {
+      "id": "er-011",
+      "text": "O que eu gosto na escolha de classes dos jogos?",
+      "status": "delivered",
+      "reply": "Você gosta de jogos em que a escolha da classe do personagem fica com você.",
+      "violations": [],
+      "latency_ms": 1917.0683000000001
+    },
+    {
+      "id": "er-012",
+      "text": "Qual é a minha bebida favorita?",
+      "status": "delivered",
+      "reply": "A sua bebida favorita é o chá.",
+      "violations": [],
+      "latency_ms": 1580.8509
+    },
+    {
+      "id": "er-013",
+      "text": "Qual a RAM do meu computador principal e qual banco planejei para o projeto?",
+      "status": "delivered",
+      "reply": "Seu computador principal tem 64 GB de RAM. Para o projeto jatoba, você planejou usar o PostgreSQL como banco de dados.",
+      "violations": [],
+      "latency_ms": 2867.4156999999996
+    },
+    {
+      "id": "er-014",
+      "text": "Qual é o tema do projeto, a linguagem escolhida e o banco planejado?",
+      "status": "delivered",
+      "reply": "O tema do projeto é um catálogo de miniaturas. Você escolheu a linguagem Python e planeja usar o banco de dados PostgreSQL.",
+      "violations": [],
+      "latency_ms": 2908.6949999999997
+    },
+    {
+      "id": "er-015",
+      "text": "Continua registrada a minha preferência por criação de personagens?",
+      "status": "blocked",
+      "reply": "",
+      "violations": [
+        "unconfirmed_memory_mutation",
+        "unsupported_typed_value"
+      ],
+      "latency_ms": 4454.9949
+    },
+    {
+      "id": "er-016",
+      "text": "Qual placa de vídeo está registrada no meu computador principal?",
+      "status": "delivered",
+      "reply": "Não há nenhum registro disponível sobre a placa de vídeo do seu computador principal.",
+      "violations": [],
+      "latency_ms": 1655.1340999999998
+    },
+    {
+      "id": "er-017",
+      "text": "Qual é a RAM do computador principal do meu irmão?",
+      "status": "delivered",
+      "reply": "Não há nenhum registro disponível sobre a RAM do computador principal do seu irmão.",
+      "violations": [],
+      "latency_ms": 1684.7343
+    },
+    {
+      "id": "er-018",
+      "text": "Compare o banco planejado para o meu projeto e o banco do meu irmão.",
+      "status": "delivered",
+      "reply": "Para o seu projeto Jatoba, você planeja usar o PostgreSQL como banco de dados. Não há registro disponível sobre o banco de dados do seu irmão.",
+      "violations": [],
+      "latency_ms": 2459.8537
+    },
+    {
+      "id": "er-019",
+      "text": "Qual RAM consta para o meu computador principal?",
+      "status": "delivered",
+      "reply": "O seu computador principal conta com 24 GB de RAM.",
+      "violations": [],
+      "latency_ms": 1752.2041
+    },
+    {
+      "id": "er-020",
+      "text": "Você lembra como eu prefiro o café?",
+      "status": "delivered",
+      "reply": "Não há nenhum registro disponível sobre a sua preferência de café na memória.",
+      "violations": [],
+      "latency_ms": 1654.4684
+    },
+    {
+      "id": "er-021",
+      "text": "Qual banco de dados escolhi no projeto Pitanga?",
+      "status": "delivered",
+      "reply": "Você escolheu o MySQL como banco de dados para o projeto Pitanga.",
+      "violations": [],
+      "latency_ms": 1992.8770000000002
+    },
+    {
+      "id": "er-022",
+      "text": "Qual banco está planejado no projeto Jatobá?",
+      "status": "delivered",
+      "reply": "Não há registro disponível sobre qual banco está planejado no projeto Jatobá.",
+      "violations": [],
+      "latency_ms": 1672.4128
+    },
+    {
+      "id": "er-023",
+      "text": "Compare o banco deste projeto Jatobá com o do projeto Pitanga.",
+      "status": "delivered",
+      "reply": "O projeto Jatobá planeja usar PostgreSQL como banco de dados. Não há informações disponíveis sobre o banco de dados do projeto Pitanga.",
+      "violations": [],
+      "latency_ms": 2392.9120000000003
+    },
+    {
+      "id": "er-024",
+      "text": "Em qual linguagem estou implementando o projeto Pitanga?",
+      "status": "delivered",
+      "reply": "Você está implementando o projeto Pitanga em TypeScript.",
+      "violations": [],
+      "latency_ms": 1613.8798
+    },
+    {
+      "id": "er-025",
+      "text": "Qual linguagem pretendo usar futuramente no projeto Pitanga?",
+      "status": "delivered",
+      "reply": "Você planeja usar a linguagem Rust no projeto Pitanga.",
+      "violations": [],
+      "latency_ms": 1736.8617
+    },
+    {
+      "id": "er-026",
+      "text": "No Pitanga, compare a linguagem em implementação com a planejada para o futuro.",
+      "status": "delivered",
+      "reply": "Atualmente, você está implementando o projeto Pitanga em TypeScript. Para o futuro, você planeja utilizar a linguagem Rust.",
+      "violations": [],
+      "latency_ms": 2653.3369
+    },
+    {
+      "id": "er-027",
+      "text": "Antes de cancelar o projeto Cedrinho, em qual linguagem eu estava implementando?",
+      "status": "delivered",
+      "reply": "Você estava implementando o projeto Cedrinho em Rust.",
+      "violations": [],
+      "latency_ms": 1778.4537
+    },
+    {
+      "id": "er-028",
+      "text": "Qual linguagem está em execução agora no projeto Cedrinho?",
+      "status": "delivered",
+      "reply": "Não há informações disponíveis sobre a linguagem específica do projeto Cedrinho. O registro atual indica apenas que o projeto foi cancelado.",
+      "violations": [],
+      "latency_ms": 2160.4391
+    },
+    {
+      "id": "er-029",
+      "text": "Qual é a minha data de nascimento?",
+      "status": "delivered",
+      "reply": "Não há nenhum registro disponível sobre a sua data de nascimento.",
+      "violations": [],
+      "latency_ms": 1575.1435999999999
+    }
+  ],
+  "audit_limits": [
+    "Availability ceiling is 28 of 29 delivered, not a final metric.",
+    "er-018 and er-023 delivered an own scoped answer and bounded uncertainty for the other requested relation.",
+    "er-015 was blocked after the proposed reply claimed storage of the deleted preference. No false storage claim was delivered.",
+    "No final holdout or historical result is represented."
+  ]
+}

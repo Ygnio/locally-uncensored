@@ -1,0 +1,19 @@
+{
+  "id": "phase22f-dev-known-pitanga-agent-copy",
+  "kind": "supplemental known regression replay for copy-handler observation; no post-answer review so the real reply remains active for Copy",
+  "project": "pitanga",
+  "turns": [
+    {
+      "id": "go-t01",
+      "text": "No meu projeto Pitanga, o banco que escolhi é MySQL.",
+      "new_session": true,
+      "mode": "agent",
+      "expected_atoms": [
+        "mysql_choice_received",
+        "no_premature_persistence"
+      ],
+      "scenario": "other_project_database"
+    }
+  ],
+  "probes": []
+}

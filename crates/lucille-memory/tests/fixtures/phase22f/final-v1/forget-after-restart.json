@@ -1,0 +1,37 @@
+{
+  "id": "phase22f-final-v1-forget-after-restart",
+  "kind": "independent final v1 GUI specification",
+  "scope": "phase22f-v1-forget-x8n",
+  "project": "orvalho",
+  "turns": [],
+  "probes": [
+    {
+      "id": "fv1-forget-p01",
+      "text": "Minha preferência de tema da interface ainda está registrada neste contexto?",
+      "mode": "code",
+      "expected_atoms": [
+        "theme_current_record_absent",
+        "no_liking_transition_from_storage"
+      ]
+    },
+    {
+      "id": "fv1-forget-p02",
+      "text": "O que continua disponível sobre minha preferência por criação de personagens em jogos?",
+      "mode": "chat",
+      "expected_atoms": [
+        "creation_current_record_absent",
+        "no_liking_transition_from_storage"
+      ]
+    }
+  ],
+  "replay_persisted_sources": [
+    {
+      "text": "Quando configuro a interface para mim, eu prefiro o tema escuro.",
+      "mode": "chat"
+    },
+    {
+      "text": "No tempo livre, eu gosto de criar personagens nos jogos.",
+      "mode": "agent"
+    }
+  ]
+}

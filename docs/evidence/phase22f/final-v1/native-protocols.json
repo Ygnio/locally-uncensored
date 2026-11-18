@@ -1,0 +1,463 @@
+{
+  "freeze_sha256": "df31e4c48a7d295fb93410caa635d719be06302bf2b71db6f228002147652537",
+  "stages": {
+    "faults": {
+      "artifact": "final22f-faults-faults.json",
+      "sha256": "cd40f0ccc368abda3088173e79f9e9b44abea31cf9d6d18827b0d94ce3e9006c",
+      "passed": true,
+      "initial_and_final_artifacts_attested": true,
+      "counts": {
+        "planned": 7,
+        "measured": 7,
+        "product_failure": 0,
+        "evaluator_failure": 0,
+        "infrastructure_failure": 0,
+        "not_executed": 0,
+        "invalid_result": 0
+      },
+      "outcome": [
+        {
+          "case": "cancel-chat",
+          "protocol": "prepared_cancel",
+          "mode": "chat",
+          "status": "measured",
+          "native_step_observations_utc": {
+            "prepare": "2026-11-18T16:45:04.836Z",
+            "cancel": "2026-11-18T16:45:06.836Z",
+            "replay": "2026-11-18T16:45:08.843Z",
+            "retry": "2026-11-18T16:45:10.832Z",
+            "missing": "2026-11-18T16:45:12.832Z",
+            "details": "2026-11-18T16:45:16.837Z"
+          },
+          "jobs_after": [
+            {
+              "state": "cancelled",
+              "attempts": 0,
+              "lease_present": false,
+              "lease_deadline_present": false
+            }
+          ],
+          "same_job_on_replay_and_retry": true,
+          "retained_records": 0,
+          "cancelled": true,
+          "unbound_source_ignored": true,
+          "assistant_source_rejected": true
+        },
+        {
+          "case": "cancel-agent",
+          "protocol": "prepared_cancel",
+          "mode": "agent",
+          "status": "measured",
+          "native_step_observations_utc": {
+            "prepare": "2026-11-18T16:45:18.831Z",
+            "cancel": "2026-11-18T16:45:20.829Z",
+            "replay": "2026-11-18T16:45:22.836Z",
+            "retry": "2026-11-18T16:45:24.836Z",
+            "missing": "2026-11-18T16:45:26.841Z",
+            "details": "2026-11-18T16:45:30.834Z"
+          },
+          "jobs_after": [
+            {
+              "state": "cancelled",
+              "attempts": 0,
+              "lease_present": false,
+              "lease_deadline_present": false
+            }
+          ],
+          "same_job_on_replay_and_retry": true,
+          "retained_records": 0,
+          "cancelled": true,
+          "unbound_source_ignored": true,
+          "assistant_source_rejected": true
+        },
+        {
+          "case": "cancel-code",
+          "protocol": "prepared_cancel",
+          "mode": "code",
+          "status": "measured",
+          "native_step_observations_utc": {
+            "prepare": "2026-11-18T16:45:32.840Z",
+            "cancel": "2026-11-18T16:45:34.835Z",
+            "replay": "2026-11-18T16:45:36.838Z",
+            "retry": "2026-11-18T16:45:38.829Z",
+            "missing": "2026-11-18T16:45:40.830Z",
+            "details": "2026-11-18T16:45:44.824Z"
+          },
+          "jobs_after": [
+            {
+              "state": "cancelled",
+              "attempts": 0,
+              "lease_present": false,
+              "lease_deadline_present": false
+            }
+          ],
+          "same_job_on_replay_and_retry": true,
+          "retained_records": 0,
+          "cancelled": true,
+          "unbound_source_ignored": true,
+          "assistant_source_rejected": true
+        },
+        {
+          "case": "source-order",
+          "protocol": "ordered_sources",
+          "mode": "chat",
+          "status": "measured",
+          "native_step_observations_utc": {
+            "prepare-0": "2026-11-18T16:45:46.850Z",
+            "prepare-1": "2026-11-18T16:45:48.838Z",
+            "newer": "2026-11-18T16:45:50.845Z",
+            "before": "2026-11-18T16:45:56.824Z",
+            "older": "2026-11-18T16:45:58.837Z",
+            "after": "2026-11-18T16:46:04.851Z"
+          },
+          "jobs_after": [
+            {
+              "state": "done",
+              "attempts": 1,
+              "lease_present": false,
+              "lease_deadline_present": false
+            },
+            {
+              "state": "done",
+              "attempts": 1,
+              "lease_present": false,
+              "lease_deadline_present": false
+            }
+          ],
+          "before": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "interface_theme",
+            "value": "light",
+            "state": "active",
+            "version": 1
+          },
+          "after": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "interface_theme",
+            "value": "light",
+            "state": "active",
+            "version": 1
+          },
+          "same_current_record_and_version": true,
+          "provenance_matches_newer_source": true,
+          "publish_order_attested": true
+        },
+        {
+          "case": "cancel-live-lease",
+          "protocol": "leased_cancel",
+          "mode": "chat",
+          "status": "measured",
+          "native_step_observations_utc": {
+            "cancel": "2026-11-18T16:46:10.839Z",
+            "before-late": "2026-11-18T16:46:16.826Z",
+            "late": "2026-11-18T16:46:18.833Z",
+            "after-late": "2026-11-18T16:46:20.830Z"
+          },
+          "jobs_after": [
+            {
+              "state": "cancelled",
+              "attempts": 1,
+              "lease_present": false,
+              "lease_deadline_present": false
+            }
+          ],
+          "jobs_at_interruption": [
+            {
+              "state": "running",
+              "attempts": 1,
+              "lease_present": true,
+              "lease_deadline_present": true
+            }
+          ],
+          "same_original_job": true,
+          "real_gemma_response_before_late_submission_utc": "2026-11-18T16:46:15.679913+00:00",
+          "actual_gemma_response_sec": 6.841199899994535,
+          "late_completion_accepted": false,
+          "before_and_after_late_attempt_equal": true,
+          "materialized_facts": []
+        },
+        {
+          "case": "restart-live-lease",
+          "protocol": "restart",
+          "mode": "chat",
+          "status": "measured",
+          "native_step_observations_utc": {
+            "before-late": "2026-11-18T16:47:02.517Z",
+            "late": "2026-11-18T16:47:04.510Z",
+            "after-late": "2026-11-18T16:47:06.502Z"
+          },
+          "jobs_after": [
+            {
+              "state": "done",
+              "attempts": 2,
+              "lease_present": false,
+              "lease_deadline_present": false
+            }
+          ],
+          "jobs_at_interruption": [
+            {
+              "state": "running",
+              "attempts": 1,
+              "lease_present": true,
+              "lease_deadline_present": true
+            }
+          ],
+          "same_original_job": true,
+          "real_gemma_response_before_late_submission_utc": "2026-11-18T16:46:31.474792+00:00",
+          "actual_gemma_response_sec": 6.634090999985347,
+          "late_completion_accepted": false,
+          "before_and_after_late_attempt_equal": true,
+          "materialized_facts": [
+            {
+              "kind": "preference",
+              "subject": "user",
+              "property": "communication_style",
+              "value": "detailed",
+              "state": "active",
+              "version": 1
+            },
+            {
+              "kind": "preference",
+              "subject": "user",
+              "property": "favorite_beverage",
+              "value": "tea",
+              "state": "active",
+              "version": 1
+            },
+            {
+              "kind": "preference",
+              "subject": "user",
+              "property": "interface_theme",
+              "value": "light",
+              "state": "active",
+              "version": 1
+            },
+            {
+              "kind": "preference",
+              "subject": "user",
+              "property": "games_turn_strategy",
+              "value": "positive",
+              "state": "active",
+              "version": 1
+            }
+          ],
+          "owned_host_image_and_creation_verified": true,
+          "new_process_and_models_reattested": true,
+          "unique_fact_keys": 4,
+          "exact_user_provenance_for_all_facts": true
+        },
+        {
+          "case": "sqlite-write-lock",
+          "protocol": "sqlite_busy",
+          "mode": "chat",
+          "status": "measured",
+          "native_step_observations_utc": {
+            "after-busy": "2026-11-18T16:47:12.503Z"
+          },
+          "writer_lock_rejected": true,
+          "native_error_is_database_operation_failure": true,
+          "retained_records": 0,
+          "no_queued_source_verified_by_runner": true
+        }
+      ]
+    },
+    "transport": {
+      "artifact": "final22f-transport-transport.json",
+      "sha256": "c947c329c2bf19fd14ac53a66a3d9fa99ee0cec02213d08686e54403e775b93b",
+      "passed": false,
+      "initial_and_final_artifacts_attested": true,
+      "counts": {
+        "planned": 3,
+        "measured": 1,
+        "product_failure": 2,
+        "evaluator_failure": 0,
+        "infrastructure_failure": 0,
+        "not_executed": 0,
+        "invalid_result": 0
+      },
+      "outcome": [
+        {
+          "mode": "chat",
+          "status": "product_failure",
+          "error": "Recovered fact does not match the typed gold for this source",
+          "observed": {
+            "error_painted": true,
+            "first_error_paint_ms": 9923,
+            "error_observed_utc": "2026-11-18T16:47:33.106Z",
+            "exact_user_before_and_after": true,
+            "canonical_records": 0,
+            "observed_learning_receipt_snapshots": 0,
+            "final_typed_facts": [],
+            "expected": {
+              "kind": "preference",
+              "subject": "user",
+              "property": "communication_style",
+              "value": "detailed"
+            },
+            "jobs": [
+              {
+                "count": 1,
+                "state": "done"
+              }
+            ],
+            "terminal_read_finished_ms": 45075,
+            "source_operation_state": "completed",
+            "only_error_assistant_content": true
+          }
+        },
+        {
+          "mode": "agent",
+          "status": "measured",
+          "first_error_observed_utc": "2026-11-18T16:48:51.061Z",
+          "first_error_paint_ms": 37905,
+          "first_receipt_read_started_ms": 72979,
+          "first_receipt_read_ms": 72992,
+          "last_receipt_read_ms": 72992,
+          "single_exact_user_before_and_after": true,
+          "one_done_job": true,
+          "receipt_exactly_bound": true,
+          "receipt_after_error": true,
+          "native_provenance_matches_exact_source": true,
+          "canonical": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "interface_theme",
+            "value": "light",
+            "state": "active",
+            "version": 1
+          }
+        },
+        {
+          "mode": "code",
+          "status": "product_failure",
+          "error": "Recovered fact does not match the typed gold for this source",
+          "observed": {
+            "error_painted": true,
+            "first_error_paint_ms": 9887,
+            "error_observed_utc": "2026-11-18T16:49:45.176Z",
+            "exact_user_before_and_after": true,
+            "canonical_records": 0,
+            "observed_learning_receipt_snapshots": 0,
+            "final_typed_facts": [],
+            "expected": {
+              "kind": "preference",
+              "subject": "user",
+              "property": "games_class_selection",
+              "value": "positive"
+            },
+            "jobs": [],
+            "terminal_read_finished_ms": 10811,
+            "source_operation_state": null,
+            "only_error_assistant_content": true
+          }
+        }
+      ]
+    },
+    "physical_fallback": {
+      "artifact": "final22f-c1-off-c1-offline.json",
+      "sha256": "baea375e5f1e30c34ca96cccdbb01f2ce6bbaeec489efe2e1dda024a0c2487ea",
+      "passed": false,
+      "initial_and_final_artifacts_attested": true,
+      "outcome": {
+        "mandatory_exact": 17,
+        "mandatory_planned": 21,
+        "all_queries": 26,
+        "observed_queries": 26,
+        "physical_endpoint_unavailable": true,
+        "nomic_loopback_port_closed": true,
+        "broker_or_embedding_calls": 0,
+        "ranking": {
+          "tp": 21,
+          "fp": 2,
+          "missed": 2,
+          "unsafe_current": 1,
+          "scope_errors": 0,
+          "negative_injection": 0,
+          "planned": 26,
+          "measured": 26,
+          "unmeasured_expected": 0,
+          "precision": 0.9130434782608695,
+          "recall": 0.9130434782608695,
+          "recall_planned": 0.9130434782608695,
+          "passed": false
+        },
+        "same_lexical_result_as_logical_fallback": 26,
+        "exceptions": [
+          {
+            "case": "f1q-06",
+            "mandatory": true,
+            "status": "measured",
+            "expected": [
+              "ram-main-before"
+            ],
+            "actual": [
+              "ram-main-current",
+              "ram-main-before"
+            ],
+            "forbidden": [
+              "ram-main-current"
+            ]
+          },
+          {
+            "case": "f1q-16",
+            "mandatory": true,
+            "status": "measured",
+            "expected": [
+              "tramela-language-choice",
+              "tramela-language-running"
+            ],
+            "actual": [
+              "tramela-language-choice"
+            ],
+            "forbidden": []
+          },
+          {
+            "case": "f1q-19",
+            "mandatory": true,
+            "status": "measured",
+            "expected": [
+              "pt-responses"
+            ],
+            "actual": [
+              "explained-in-detail",
+              "pt-responses"
+            ],
+            "forbidden": []
+          },
+          {
+            "case": "f1q-22",
+            "mandatory": true,
+            "status": "measured",
+            "expected": [
+              "light-interface"
+            ],
+            "actual": [],
+            "forbidden": []
+          }
+        ]
+      }
+    }
+  },
+  "physical_fallback_lifecycle": [
+    {
+      "stage": "final22f-nomic-off",
+      "status": "execution_complete",
+      "exit": 0,
+      "at": "2026-11-18T16:50:20.983653+00:00"
+    },
+    {
+      "stage": "final22f-c1-off",
+      "status": "metric_gate_failed",
+      "exit": 1,
+      "at": "2026-11-18T16:50:30.278660+00:00"
+    },
+    {
+      "stage": "final22f-nomic-return",
+      "status": "execution_complete",
+      "exit": 0,
+      "at": "2026-11-18T16:50:35.402811+00:00"
+    }
+  ]
+}

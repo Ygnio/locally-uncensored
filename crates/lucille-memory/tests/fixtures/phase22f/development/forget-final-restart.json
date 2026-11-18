@@ -1,0 +1,28 @@
+{
+  "id": "phase22f-dev-forget-final-restart",
+  "project": "jatoba",
+  "kind": "known development only; original E texts/golds",
+  "turns": [],
+  "probes": [
+    {
+      "id": "gm-p08",
+      "text": "Como eu prefiro o café depois que pedi para voltar a guardar essa informação?",
+      "mode": "agent",
+      "expected_atoms": [
+        "coffee_without_sugar",
+        "renewed_memory_not_liking_transition"
+      ],
+      "scenario": "coffee_after_delete_and_reintroduction"
+    },
+    {
+      "id": "gm-p09",
+      "text": "Qual é minha preferência sobre escolha de classe nos jogos, após o pedido para voltar a guardar?",
+      "mode": "code",
+      "expected_atoms": [
+        "class_selection_positive",
+        "renewed_memory_not_liking_transition"
+      ],
+      "scenario": "class_after_delete_and_reintroduction"
+    }
+  ]
+}

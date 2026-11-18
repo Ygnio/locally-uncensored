@@ -1,0 +1,247 @@
+{
+  "phase": "2.2F",
+  "classification": "known development replay with fresh local inference",
+  "freeze_kind": "development",
+  "source_head": "fc58cfcffe9e22e03236e7eb31a3d4676089dd1d",
+  "private_artifact_sha256": {
+    "development_freeze": "2ebbdc19b4dabb89465fbb7573a6cce9889a13ded9c4f8b18aa9c9eb11efad92",
+    "extraction_report": "e0c29280dab46a00b63aae6052b7162c0aa17dcfed89162b6154a8a463b683f0",
+    "extraction_raw": "c1826c4fb575e5601121663e772bb391463078efcf9f2254235efe8f4db30014",
+    "retrieval_report": "5e96c1f325b6dcde161aa4a2928594280d5e855fa0ef65ef1ffde960ce96d246"
+  },
+  "extraction": {
+    "dataset_sha256": "600da0fcd4ce70bdd534eeee09ed830219c0088958b582432440b53d49160745",
+    "real_gemma_responses": 10,
+    "invalid_raw_outputs": 0,
+    "phase_e_recovery_ids": [
+      "ex-001",
+      "ex-006",
+      "ex-007",
+      "ex-013",
+      "ex-015",
+      "ex-017",
+      "ex-018"
+    ],
+    "by_mode": {
+      "rules": {
+        "tp": 8,
+        "fp": 0,
+        "missed": 0,
+        "active_correct": 4,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "planned": 10,
+        "measured": 10,
+        "not_executed": 0,
+        "native_failed": 0,
+        "origin_violations": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "promotion_precision": 1.0,
+        "passed": true,
+        "record_states": {
+          "active": 4,
+          "candidate": 4
+        }
+      },
+      "llm": {
+        "tp": 8,
+        "fp": 0,
+        "missed": 0,
+        "active_correct": 4,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "planned": 10,
+        "measured": 10,
+        "not_executed": 0,
+        "native_failed": 0,
+        "origin_violations": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "promotion_precision": 1.0,
+        "passed": true,
+        "record_states": {
+          "active": 4,
+          "candidate": 4
+        }
+      },
+      "hybrid": {
+        "tp": 8,
+        "fp": 0,
+        "missed": 0,
+        "active_correct": 4,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "planned": 10,
+        "measured": 10,
+        "not_executed": 0,
+        "native_failed": 0,
+        "origin_violations": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "promotion_precision": 1.0,
+        "passed": true,
+        "record_states": {
+          "active": 4,
+          "candidate": 4
+        }
+      }
+    },
+    "authority_and_seed_diagnostics": {
+      "dx-031": {
+        "raw_claims": 1,
+        "native_records": {
+          "rules": [],
+          "llm": [],
+          "hybrid": []
+        }
+      },
+      "dx-032": {
+        "raw_claims": 1,
+        "native_records": {
+          "rules": [],
+          "llm": [],
+          "hybrid": []
+        }
+      },
+      "c-ram-seed": {
+        "raw_claims": 1,
+        "native_records": {
+          "rules": [
+            {
+              "state": "candidate",
+              "subject": "device.primary_computer",
+              "property": "ram_capacity",
+              "value": "48_gb",
+              "temporal": "durable"
+            }
+          ],
+          "llm": [
+            {
+              "state": "candidate",
+              "subject": "device.primary_computer",
+              "property": "ram_capacity",
+              "value": "48_gb",
+              "temporal": "durable"
+            }
+          ],
+          "hybrid": [
+            {
+              "state": "candidate",
+              "subject": "device.primary_computer",
+              "property": "ram_capacity",
+              "value": "48_gb",
+              "temporal": "durable"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "retrieval_c1": {
+    "dataset_sha256": "083b2fe71f6d4cdfb10d5dfc01443b9b664b6c42df58e8c57aca6fb7e143df08",
+    "state_origin": "reviewed typed synthetic fixture restored into native Store",
+    "preparations_measured": 17,
+    "indices_measured": 16,
+    "broker_calls": {
+      "/lucille/embedding-manifest": 1,
+      "/v1/embeddings": 43
+    },
+    "by_mode": {
+      "fts5": {
+        "tp": 30,
+        "fp": 0,
+        "missed": 0,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "planned": 29,
+        "measured": 29,
+        "unmeasured_expected": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "recall_planned": 1.0,
+        "passed": true
+      },
+      "nomic": {
+        "tp": 27,
+        "fp": 0,
+        "missed": 3,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "planned": 29,
+        "measured": 29,
+        "unmeasured_expected": 0,
+        "precision": 1.0,
+        "recall": 0.9,
+        "recall_planned": 0.9,
+        "passed": true
+      },
+      "hybrid": {
+        "tp": 30,
+        "fp": 0,
+        "missed": 0,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "planned": 29,
+        "measured": 29,
+        "unmeasured_expected": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "recall_planned": 1.0,
+        "passed": true
+      },
+      "fallback": {
+        "tp": 30,
+        "fp": 0,
+        "missed": 0,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "planned": 29,
+        "measured": 29,
+        "unmeasured_expected": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "recall_planned": 1.0,
+        "passed": true
+      }
+    },
+    "nomic_only_missed_labels": {
+      "er-005": [
+        "primary-before"
+      ],
+      "er-010": [
+        "coffee"
+      ],
+      "er-014": [
+        "purpose"
+      ]
+    },
+    "mandatory_fallback": {
+      "planned": 20,
+      "exact": 20,
+      "physical_endpoint_unavailable": false
+    },
+    "fallback_condition": "query vector omitted while Nomic was online",
+    "answer_generation_measured": false,
+    "artifacts_verified_initial": {
+      "bridge_verified": true,
+      "saved_model_pin_verified": true
+    },
+    "artifacts_verified_final": {
+      "bridge_verified": true,
+      "saved_model_pin_verified": true
+    },
+    "known_evaluator_passed": true
+  },
+  "limitations": [
+    "The evaluated sources and expected results were known during development.",
+    "C1 validates retrieval over reviewed typed records. End-to-end extraction-to-answer coverage belongs to C2."
+  ]
+}

@@ -1,0 +1,768 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_resume_first_attempt",
+  "date": "2026-11-18",
+  "source_head": "f8398f9fa9062e0e32c9303233ea382a58f73671",
+  "known_freeze_sha256": "0729e7c3acf21e89d0f0a4008a56ae243d0347e26675dd2266f293dcd079e705",
+  "gui": {
+    "jatoba": {
+      "planned": 19,
+      "completed": 2,
+      "useful": 2,
+      "interrupted": 1,
+      "not_executed": 16,
+      "raw_artifact_sha256": "1c6d2663f177e671f35a8a1cb29c8ce1938348d88f4c95eae00f75370c1172dc",
+      "completed_turns": [
+        {
+          "mode": "code",
+          "source": "Meu computador principal está com 48 GB de RAM instalada. Guarde esta informação.",
+          "raw_answer": "Entendido. Guardei a informação de que seu computador principal possui 48 GB de RAM instalados.",
+          "delivered": "Entendido. Seu computador principal possui 48 GB de RAM instalados.",
+          "first_verified_paint_ms": 5375,
+          "precommit_native_read_ms": [
+            5418,
+            5439
+          ],
+          "precommit_job": "queued",
+          "precommit_receipt": "absent",
+          "receipt_observation_ms": [
+            9333,
+            9344
+          ],
+          "receipt_exact_source_and_mode_verified": true,
+          "receipt_job": "done",
+          "receipt_record": {
+            "entity": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "48_gb",
+            "effect": "create",
+            "state": "candidate",
+            "version": 1
+          },
+          "state_after_explicit_review": "active",
+          "version_after_explicit_review": 2,
+          "first_generation_violations": [
+            "unconfirmed_memory_mutation"
+          ],
+          "localized_repair": "operation_prefix_removal"
+        },
+        {
+          "mode": "chat",
+          "source": "No notebook que uso para trabalhar, tenho 12 GB de RAM. Guarde esta informação.",
+          "raw_answer": "Entendido. Guardei a informação de que o seu notebook de trabalho possui 12 GB de RAM.",
+          "delivered": "Entendido. O seu notebook de trabalho possui 12 GB de RAM.",
+          "first_verified_paint_ms": 3051,
+          "precommit_native_read_ms": [
+            3161,
+            3178
+          ],
+          "precommit_job": "queued",
+          "precommit_receipt": "absent",
+          "receipt_observation_ms": [
+            7320,
+            7330
+          ],
+          "receipt_exact_source_and_mode_verified": true,
+          "receipt_job": "done",
+          "receipt_record": {
+            "entity": "device.work_laptop",
+            "property": "ram_capacity",
+            "value": "12_gb",
+            "effect": "create",
+            "state": "candidate",
+            "version": 1
+          },
+          "state_after_explicit_review": "active",
+          "version_after_explicit_review": 2,
+          "first_generation_violations": [
+            "unconfirmed_memory_mutation"
+          ],
+          "localized_repair": "operation_prefix_removal"
+        }
+      ],
+      "first_interrupted_turn": {
+        "mode": "agent",
+        "source": "Corrigindo o dado do computador principal: agora ele possui 64 GB de RAM, não mais os 48 GB. Guarde a correção.",
+        "gemma_latency_seconds": 5.484515200005262,
+        "gemma_response_finish_reason": "tool_calls",
+        "requested_tool": "file_write",
+        "observed_tool_state": "pending_approval",
+        "delivered": "",
+        "error": "Error: Timeout: real generation",
+        "native_state_at_fidelity_check": "source_persisted",
+        "sqlite_job_state_on_later_read": "cancelled",
+        "sqlite_job_attempts_on_later_read": 0,
+        "broker_ndjson_record_without_newline_sha256": "3a4fe7ed49ca292cd2dd3ba56e41b087e7c9d1c71cf1c653d34ec322374f417f",
+        "finding": "O Gemma interpretou o pedido de guardar a correção como escrita de arquivo e ficou aguardando aprovação. O turno excedeu o limite de espera da GUI."
+      }
+    },
+    "pitanga": {
+      "planned": 6,
+      "completed": 0,
+      "useful": 0,
+      "raw_artifact_sha256": "6f7819ef5a37a1dda7385f6a0b75648f719ce32e7fef7cec7483319ca551e174",
+      "stored_messages_on_first_turn_attempt": 0,
+      "error": "Error: Timeout: real generation"
+    },
+    "pitanga_copy": {
+      "planned": 1,
+      "completed": 0,
+      "useful": 0,
+      "raw_artifact_sha256": "a2acc7b299dea9c92efcd32b0d400f096d07af35a97757f4ea7736e9cb064bce",
+      "stored_messages_on_first_turn_attempt": 0,
+      "error": "Error: Timeout: real generation",
+      "copy_observed": false
+    }
+  },
+  "fault_protocols": {
+    "counts": {
+      "planned": 7,
+      "measured": 3,
+      "product_failure": 0,
+      "evaluator_failure": 3,
+      "infrastructure_failure": 1,
+      "not_executed": 0,
+      "invalid_result": 0
+    },
+    "raw_artifact_sha256": "23c7d6132f801cb58a6ef3e619cdf563d39df5ab82157c596a59900a4f49a553",
+    "cases": [
+      {
+        "case": "final-e-cancel-chat",
+        "protocol": "prepared_cancel",
+        "status": "measured"
+      },
+      {
+        "case": "final-e-cancel-agent",
+        "protocol": "prepared_cancel",
+        "status": "measured"
+      },
+      {
+        "case": "final-e-cancel-code",
+        "protocol": "prepared_cancel",
+        "status": "measured"
+      },
+      {
+        "case": "final-e-source-order",
+        "protocol": "ordered_sources",
+        "status": "infrastructure_failure",
+        "error": "Scoped native worker did not settle"
+      },
+      {
+        "case": "final-e-cancel-lease",
+        "protocol": "leased_cancel",
+        "status": "evaluator_failure",
+        "error": "Whole QA report unavailable within timeout: driver-dev18a-fault-final-e-cancel-lease-prepared.json"
+      },
+      {
+        "case": "final-e-restart-lease",
+        "protocol": "restart",
+        "status": "evaluator_failure",
+        "error": "Whole QA report unavailable within timeout: driver-dev18a-fault-final-e-restart-lease-prepared.json"
+      },
+      {
+        "case": "sqlite-busy",
+        "protocol": "sqlite_busy",
+        "status": "evaluator_failure",
+        "error": "Whole QA report unavailable within timeout: driver-dev18a-fault-sqlite-busy-blocked-fault.json"
+      }
+    ]
+  },
+  "transport": {
+    "counts": {
+      "planned": 3,
+      "measured": 0,
+      "product_failure": 0,
+      "evaluator_failure": 3,
+      "infrastructure_failure": 0,
+      "not_executed": 0,
+      "invalid_result": 0
+    },
+    "raw_artifact_sha256": "182d896e013f9f7f0affce73be49b3c29c3b014398ae3a690fad2392a481dd35",
+    "cases": [
+      {
+        "mode": "chat",
+        "status": "evaluator_failure",
+        "stage": "broker_outage",
+        "error": "Whole QA report unavailable within timeout: driver-dev18a-trans-chat-transport-progress.json"
+      },
+      {
+        "mode": "agent",
+        "status": "evaluator_failure",
+        "stage": "broker_outage",
+        "error": "Whole QA report unavailable within timeout: driver-dev18a-trans-agent-transport-progress.json"
+      },
+      {
+        "mode": "code",
+        "status": "evaluator_failure",
+        "stage": "broker_outage",
+        "error": "Whole QA report unavailable within timeout: driver-dev18a-trans-code-transport-progress.json"
+      }
+    ]
+  },
+  "c2": {
+    "raw_artifact_sha256": "be56df3fb8a65792b22f16ffdc73c1ad217e4591698b626fe1168e442cfde4ad",
+    "attestation_error": null,
+    "preparation": [
+      {
+        "label": "purpose",
+        "action": "learn",
+        "status": "measured"
+      },
+      {
+        "label": "language-choice",
+        "action": "learn",
+        "status": "measured"
+      },
+      {
+        "label": "database-plan",
+        "action": "learn",
+        "status": "measured"
+      },
+      {
+        "label": "primary-before",
+        "action": "learn",
+        "status": "measured"
+      },
+      {
+        "label": "work-ram",
+        "action": "learn",
+        "status": "measured"
+      },
+      {
+        "label": "primary-now",
+        "action": "learn",
+        "status": "measured"
+      },
+      {
+        "label": "coffee",
+        "action": "learn",
+        "status": "measured"
+      },
+      {
+        "label": "classes",
+        "action": "learn",
+        "status": "measured"
+      },
+      {
+        "label": "favorite",
+        "action": "learn",
+        "status": "measured"
+      },
+      {
+        "label": "deleted-creation",
+        "action": "learn",
+        "status": "measured"
+      },
+      {
+        "label": "delete-deleted-creation",
+        "action": "delete",
+        "status": "measured"
+      },
+      {
+        "label": "other-database",
+        "action": "learn",
+        "status": "measured"
+      },
+      {
+        "label": "actual-language",
+        "action": "learn",
+        "status": "measured"
+      },
+      {
+        "label": "future-language",
+        "action": "learn",
+        "status": "measured"
+      },
+      {
+        "label": "other-scope-ram",
+        "action": "learn",
+        "status": "measured"
+      },
+      {
+        "label": "cancelled-language",
+        "action": "learn",
+        "status": "measured"
+      },
+      {
+        "label": "cancelled-state",
+        "action": "learn",
+        "status": "measured"
+      }
+    ],
+    "index_events_measured": 16,
+    "ranking": {
+      "fts5": {
+        "tp": 30,
+        "fp": 0,
+        "missed": 0,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "planned": 29,
+        "measured": 29,
+        "unmeasured_expected": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "recall_planned": 1.0,
+        "passed": true
+      },
+      "nomic": {
+        "tp": 26,
+        "fp": 0,
+        "missed": 4,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "planned": 29,
+        "measured": 29,
+        "unmeasured_expected": 0,
+        "precision": 1.0,
+        "recall": 0.8666666666666667,
+        "recall_planned": 0.8666666666666667,
+        "passed": true
+      },
+      "hybrid": {
+        "tp": 30,
+        "fp": 0,
+        "missed": 0,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "planned": 29,
+        "measured": 29,
+        "unmeasured_expected": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "recall_planned": 1.0,
+        "passed": true
+      },
+      "fallback": {
+        "tp": 30,
+        "fp": 0,
+        "missed": 0,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "planned": 29,
+        "measured": 29,
+        "unmeasured_expected": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "recall_planned": 1.0,
+        "passed": true
+      }
+    },
+    "mandatory_fallback": {
+      "planned": 20,
+      "exact": 20,
+      "physical_endpoint_unavailable": false
+    },
+    "retrieval_passed": true,
+    "answer_delivery": {
+      "planned": 29,
+      "counts": {
+        "delivered": 27,
+        "blocked": 2,
+        "not_executed": 0,
+        "infrastructure_failure": 0,
+        "evaluator_failure": 0
+      },
+      "literal_review_required": true
+    },
+    "maximum_useful_availability": 0.9310344827586207,
+    "literal_review_required": true,
+    "incomplete_requested_parts": [
+      {
+        "query": "er-014",
+        "part": "tema do catálogo, linguagem escolhida e banco planejado",
+        "status": "whole_answer_blocked"
+      },
+      {
+        "query": "er-015",
+        "part": "situação atual do registro da preferência excluída",
+        "status": "whole_answer_blocked"
+      },
+      {
+        "query": "er-018",
+        "part": "banco do irmão",
+        "status": "unavailable_in_scoped_sources"
+      },
+      {
+        "query": "er-023",
+        "part": "banco do projeto Pitanga na pergunta vinculada a Jatobá",
+        "status": "unavailable_in_scoped_sources"
+      }
+    ],
+    "queries": [
+      {
+        "id": "er-001",
+        "source": "Qual a RAM atual do meu computador principal?",
+        "expected_hybrid_records": [
+          "primary-now"
+        ],
+        "actual_hybrid_records": [
+          "primary-now"
+        ],
+        "status": "delivered",
+        "delivered": "Seu computador principal tem 64 GB de RAM."
+      },
+      {
+        "id": "er-002",
+        "source": "Quantos gigabytes de memória há no meu PC principal?",
+        "expected_hybrid_records": [
+          "primary-now"
+        ],
+        "actual_hybrid_records": [
+          "primary-now"
+        ],
+        "status": "delivered",
+        "delivered": "Seu computador principal tem 64 GB de RAM."
+      },
+      {
+        "id": "er-003",
+        "source": "Quanto de RAM tem o notebook de trabalho que eu utilizo?",
+        "expected_hybrid_records": [
+          "work-ram"
+        ],
+        "actual_hybrid_records": [
+          "work-ram"
+        ],
+        "status": "delivered",
+        "delivered": "O notebook de trabalho que você utiliza tem 12 GB de RAM."
+      },
+      {
+        "id": "er-004",
+        "source": "Compare a RAM do computador principal com a do notebook de trabalho.",
+        "expected_hybrid_records": [
+          "primary-now",
+          "work-ram"
+        ],
+        "actual_hybrid_records": [
+          "primary-now",
+          "work-ram"
+        ],
+        "status": "delivered",
+        "delivered": "O computador principal possui 64 GB de RAM, enquanto o notebook de trabalho tem 12 GB."
+      },
+      {
+        "id": "er-005",
+        "source": "Qual era a RAM do computador principal antes e qual é agora?",
+        "expected_hybrid_records": [
+          "primary-before",
+          "primary-now"
+        ],
+        "actual_hybrid_records": [
+          "primary-now",
+          "primary-before"
+        ],
+        "status": "delivered",
+        "delivered": "Antes, o computador principal tinha 48 GB de RAM. Agora, ele possui 64 GB."
+      },
+      {
+        "id": "er-006",
+        "source": "Meu computador principal tem 128 GB de RAM ou há outra capacidade registrada?",
+        "expected_hybrid_records": [
+          "primary-now"
+        ],
+        "actual_hybrid_records": [
+          "primary-now"
+        ],
+        "status": "delivered",
+        "delivered": "Seu computador principal tem 64 GB de RAM registrados. Não há registro de 128 GB no momento."
+      },
+      {
+        "id": "er-007",
+        "source": "Qual é o assunto do catálogo do projeto que estou começando?",
+        "expected_hybrid_records": [
+          "purpose"
+        ],
+        "actual_hybrid_records": [
+          "purpose"
+        ],
+        "status": "delivered",
+        "delivered": "O assunto do catálogo é miniaturas. Você está começando este projeto agora."
+      },
+      {
+        "id": "er-008",
+        "source": "Que linguagem escolhi para o meu projeto?",
+        "expected_hybrid_records": [
+          "language-choice"
+        ],
+        "actual_hybrid_records": [
+          "language-choice"
+        ],
+        "status": "delivered",
+        "delivered": "Você escolheu Python como a linguagem para o seu projeto Jatoba."
+      },
+      {
+        "id": "er-009",
+        "source": "Qual banco de dados eu pretendo usar no projeto?",
+        "expected_hybrid_records": [
+          "database-plan"
+        ],
+        "actual_hybrid_records": [
+          "database-plan"
+        ],
+        "status": "delivered",
+        "delivered": "Você planeja usar o PostgreSQL como banco de dados no projeto jatoba."
+      },
+      {
+        "id": "er-010",
+        "source": "Como prefiro meu café da tarde?",
+        "expected_hybrid_records": [
+          "coffee"
+        ],
+        "actual_hybrid_records": [
+          "coffee"
+        ],
+        "status": "delivered",
+        "delivered": "Você prefere seu café da tarde sem açúcar."
+      },
+      {
+        "id": "er-011",
+        "source": "O que eu gosto na escolha de classes dos jogos?",
+        "expected_hybrid_records": [
+          "classes"
+        ],
+        "actual_hybrid_records": [
+          "classes"
+        ],
+        "status": "delivered",
+        "delivered": "Você gosta de jogos em que a escolha da classe do personagem fica com você."
+      },
+      {
+        "id": "er-012",
+        "source": "Qual é a minha bebida favorita?",
+        "expected_hybrid_records": [
+          "favorite"
+        ],
+        "actual_hybrid_records": [
+          "favorite"
+        ],
+        "status": "delivered",
+        "delivered": "A sua bebida favorita é o chá."
+      },
+      {
+        "id": "er-013",
+        "source": "Qual a RAM do meu computador principal e qual banco planejei para o projeto?",
+        "expected_hybrid_records": [
+          "primary-now",
+          "database-plan"
+        ],
+        "actual_hybrid_records": [
+          "primary-now",
+          "database-plan"
+        ],
+        "status": "delivered",
+        "delivered": "Seu computador principal tem 64 GB de RAM. Para o projeto jatoba, você planejou usar o PostgreSQL como banco de dados."
+      },
+      {
+        "id": "er-014",
+        "source": "Qual é o tema do projeto, a linguagem escolhida e o banco planejado?",
+        "expected_hybrid_records": [
+          "purpose",
+          "language-choice",
+          "database-plan"
+        ],
+        "actual_hybrid_records": [
+          "purpose",
+          "language-choice",
+          "database-plan"
+        ],
+        "status": "blocked",
+        "delivered": "",
+        "attempts": [
+          {
+            "raw_answer": "O tema do projeto é um catálogo de miniaturas. Você escolheu a linguagem Python e planeja usar o banco de dados PostgreSQL.",
+            "violations": [
+              "known_relation_not_used"
+            ]
+          },
+          {
+            "raw_answer": "O tema do projeto é um catálogo de miniaturas. Você escolheu a linguagem Python e planeja usar o banco de dados PostgreSQL.",
+            "violations": [
+              "known_relation_not_used"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "er-015",
+        "source": "Continua registrada a minha preferência por criação de personagens?",
+        "expected_hybrid_records": [],
+        "actual_hybrid_records": [],
+        "status": "blocked",
+        "delivered": "",
+        "attempts": [
+          {
+            "raw_answer": "Sim, a sua preferência por criação de personagens continua registrada. Não há nenhuma mudança recente que indique que você deixou de gostar disso.",
+            "violations": [
+              "unsupported_typed_value",
+              "authority_preference_transition"
+            ]
+          },
+          {
+            "raw_answer": "Sim, a sua preferência por criação de personagens continua registrada.",
+            "violations": [
+              "unsupported_typed_value"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "er-016",
+        "source": "Qual placa de vídeo está registrada no meu computador principal?",
+        "expected_hybrid_records": [],
+        "actual_hybrid_records": [],
+        "status": "delivered",
+        "delivered": "Não há nenhum registro disponível sobre a placa de vídeo do seu computador principal."
+      },
+      {
+        "id": "er-017",
+        "source": "Qual é a RAM do computador principal do meu irmão?",
+        "expected_hybrid_records": [],
+        "actual_hybrid_records": [],
+        "status": "delivered",
+        "delivered": "Não há nenhum registro disponível sobre a RAM do computador principal do seu irmão."
+      },
+      {
+        "id": "er-018",
+        "source": "Compare o banco planejado para o meu projeto e o banco do meu irmão.",
+        "expected_hybrid_records": [
+          "database-plan"
+        ],
+        "actual_hybrid_records": [
+          "database-plan"
+        ],
+        "status": "delivered",
+        "delivered": "Para o seu projeto Jatoba, você planeja usar o PostgreSQL como banco de dados. Não há registro disponível sobre o banco de dados do seu irmão."
+      },
+      {
+        "id": "er-019",
+        "source": "Qual RAM consta para o meu computador principal?",
+        "expected_hybrid_records": [
+          "other-scope-ram"
+        ],
+        "actual_hybrid_records": [
+          "other-scope-ram"
+        ],
+        "status": "delivered",
+        "delivered": "O seu computador principal conta com 24 GB de RAM."
+      },
+      {
+        "id": "er-020",
+        "source": "Você lembra como eu prefiro o café?",
+        "expected_hybrid_records": [],
+        "actual_hybrid_records": [],
+        "status": "delivered",
+        "delivered": "Não há nenhum registro disponível sobre a sua preferência de café na memória."
+      },
+      {
+        "id": "er-021",
+        "source": "Qual banco de dados escolhi no projeto Pitanga?",
+        "expected_hybrid_records": [
+          "other-database"
+        ],
+        "actual_hybrid_records": [
+          "other-database"
+        ],
+        "status": "delivered",
+        "delivered": "Você escolheu o MySQL como banco de dados para o projeto Pitanga."
+      },
+      {
+        "id": "er-022",
+        "source": "Qual banco está planejado no projeto Jatobá?",
+        "expected_hybrid_records": [],
+        "actual_hybrid_records": [],
+        "status": "delivered",
+        "delivered": "Não há registro disponível sobre qual banco está planejado no projeto Jatobá."
+      },
+      {
+        "id": "er-023",
+        "source": "Compare o banco deste projeto Jatobá com o do projeto Pitanga.",
+        "expected_hybrid_records": [
+          "database-plan"
+        ],
+        "actual_hybrid_records": [
+          "database-plan"
+        ],
+        "status": "delivered",
+        "delivered": "O projeto Jatobá planeja usar PostgreSQL como banco de dados. Não há informações disponíveis sobre o banco de dados do projeto Pitanga."
+      },
+      {
+        "id": "er-024",
+        "source": "Em qual linguagem estou implementando o projeto Pitanga?",
+        "expected_hybrid_records": [
+          "actual-language"
+        ],
+        "actual_hybrid_records": [
+          "actual-language"
+        ],
+        "status": "delivered",
+        "delivered": "Você está implementando o projeto Pitanga em TypeScript."
+      },
+      {
+        "id": "er-025",
+        "source": "Qual linguagem pretendo usar futuramente no projeto Pitanga?",
+        "expected_hybrid_records": [
+          "future-language"
+        ],
+        "actual_hybrid_records": [
+          "future-language"
+        ],
+        "status": "delivered",
+        "delivered": "Você planeja usar a linguagem Rust no projeto Pitanga."
+      },
+      {
+        "id": "er-026",
+        "source": "No Pitanga, compare a linguagem em implementação com a planejada para o futuro.",
+        "expected_hybrid_records": [
+          "actual-language",
+          "future-language"
+        ],
+        "actual_hybrid_records": [
+          "actual-language",
+          "future-language"
+        ],
+        "status": "delivered",
+        "delivered": "Atualmente, você está implementando o projeto Pitanga em TypeScript. Para o futuro, você planeja utilizar a linguagem Rust."
+      },
+      {
+        "id": "er-027",
+        "source": "Antes de cancelar o projeto Cedrinho, em qual linguagem eu estava implementando?",
+        "expected_hybrid_records": [
+          "cancelled-language",
+          "cancelled-state"
+        ],
+        "actual_hybrid_records": [
+          "cancelled-language",
+          "cancelled-state"
+        ],
+        "status": "delivered",
+        "delivered": "Você estava implementando o projeto Cedrinho em Rust."
+      },
+      {
+        "id": "er-028",
+        "source": "Qual linguagem está em execução agora no projeto Cedrinho?",
+        "expected_hybrid_records": [
+          "cancelled-state"
+        ],
+        "actual_hybrid_records": [
+          "cancelled-state"
+        ],
+        "status": "delivered",
+        "delivered": "Não há informações disponíveis sobre a linguagem específica do projeto Cedrinho. O registro atual indica apenas que o projeto foi cancelado."
+      },
+      {
+        "id": "er-029",
+        "source": "Qual é a minha data de nascimento?",
+        "expected_hybrid_records": [],
+        "actual_hybrid_records": [],
+        "status": "delivered",
+        "delivered": "Não há nenhum registro disponível sobre a sua data de nascimento."
+      }
+    ],
+    "finding": "A recuperação híbrida cobriu os 30 fatos. O verificador reteve a resposta correta sobre o tema de projeto e protegeu contra a afirmação incorreta de que a preferência excluída ainda estava registrada."
+  },
+  "scope_of_evidence": "Casos conhecidos de desenvolvimento. A disponibilidade útil de C2 fica abaixo da meta de 95% mesmo se todas as respostas entregues passarem na revisão literal."
+}

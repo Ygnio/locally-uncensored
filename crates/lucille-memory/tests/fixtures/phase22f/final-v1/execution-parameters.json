@@ -1,0 +1,54 @@
+{
+  "id": "phase22f-final-v1-execution-parameters",
+  "novel_corpus": true,
+  "orchestration_sha256": "be5f13c11052b92bc35772c1dfd983dfbba164adbd250de0a6a2751288544e9a",
+  "literal_aggregation_sha256": "60b11c8f5bf604a63b78829402cc93dbd2ca6639fcafcd8298b782f26de0cd26",
+  "production_code_commit": "a24384a41b2b996ec1275a2e9f4a325d6b6fb124",
+  "historical_development": {
+    "label": "dev18nseries",
+    "manifest_sha256": "60e075a755178b687a37ece3ac782d95b45c5e69366a8b689dcc8e3497d0ed49",
+    "segments": {
+      "20": {
+        "outcome_sha256": "91a158aaa9ddfc90d0ec8ca79177254756ee8a92e24c75240966a3b7626950e6",
+        "raw_sha256": "f857518365e56ac2b8c5e23956ab643110f8e821639ea0f66817736f0ac5eea7",
+        "adjudication_sha256": "edd07e647554714f5c56787f4663bd9674d9e89edf2355f0e457d7477655137e"
+      },
+      "50": {
+        "outcome_sha256": "a8599e4c209c102a0fd9351f5fd0ab50108633b840c22b2bb414fa1bc569243e",
+        "raw_sha256": "6e4c0465ca7e084afbfa61358fd77bc1c120d1ec8856ed406b5b2c7e1905feff",
+        "adjudication_sha256": "3f4edad2e95a14c0f460b6564689ed2ad8945b7e522eef33f19d3905df3b4649"
+      },
+      "100": {
+        "outcome_sha256": "ff90600e25c3134ac84e11a754e933e7dfa3528e5e80fd1dd00cbe71c3e8887d",
+        "raw_sha256": "112a30dbefb5ff13d8ff72be47425066a4061e8cc924ac5b30049d5cee450437",
+        "adjudication_sha256": "c24f74d06fec860f89a908eab026a141829ac477c55ae47e7f0ccc64cbd917da"
+      }
+    }
+  },
+  "gemma_context": 65536,
+  "nomic": {
+    "execution": "cpu",
+    "dimensions": 768,
+    "context": 2048
+  },
+  "physical_memory_admission_mib": 1024,
+  "emergency_supervisors_enabled": true,
+  "thresholds": {
+    "extraction_precision": 0.95,
+    "extraction_recall": 0.8,
+    "hybrid_retrieval_precision": 0.9,
+    "hybrid_retrieval_recall": 0.8,
+    "mandatory_lexical_fallback_recall": 1,
+    "delivered_fidelity": 0.95,
+    "useful_availability": 0.95,
+    "answer_completeness": 0.95,
+    "critical_unfounded_writes": 0,
+    "critical_unfounded_promotions": 0,
+    "critical_delivered_assertions": 0,
+    "premature_confirmations": 0,
+    "critical_attribution_violations": 0,
+    "deleted_memory_replays": 0,
+    "duplicate_retry_or_restart_effects": 0,
+    "per_mode_promotion_precision_existing_evaluator": 0.99
+  }
+}

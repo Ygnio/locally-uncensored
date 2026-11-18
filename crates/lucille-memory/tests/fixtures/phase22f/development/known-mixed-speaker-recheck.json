@@ -1,0 +1,21 @@
+{
+  "id": "phase22f-known-mixed-speaker-recheck",
+  "kind": "known development only; unchanged source and atoms",
+  "source_fixture": "crates/lucille-memory/tests/fixtures/phase22f/development/known-jatoba.json",
+  "source_fixture_sha256": "38d9aa62d68eb21c0dcdf02a59c582af0a4af839fbd5e117c17a2420b2c3a7b2",
+  "project": "jatoba",
+  "turns": [
+    {
+      "id": "gm-t09",
+      "text": "My own favourite beverage is tea; the narrator in my story says his favourite beverage is coffee.",
+      "new_session": true,
+      "mode": "chat",
+      "expected_atoms": [
+        "favorite_tea",
+        "foreign_narrator_not_user"
+      ],
+      "scenario": "mixed_own_narrator_en"
+    }
+  ],
+  "probes": []
+}

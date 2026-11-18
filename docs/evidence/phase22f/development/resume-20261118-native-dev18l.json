@@ -1,0 +1,221 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_native_revalidation",
+  "label": "dev18l",
+  "source_commit": "faa71ace496620831cc6547db9722a54909a863b",
+  "freeze_sha256": "b0d412b144770d6d6c6c49e45ae0a10f996e5c0e152abc2ac9ceb9bce018ce31",
+  "bridge_sha256": "141ba3e4ba3d9fdae22e19379e6ac6569ecb4eb2d0894d374780208a45863d46",
+  "a_extraction": {
+    "raw_sha256": "e0c29280dab46a00b63aae6052b7162c0aa17dcfed89162b6154a8a463b683f0",
+    "dataset_sha256": "600da0fcd4ce70bdd534eeee09ed830219c0088958b582432440b53d49160745",
+    "cases": 10,
+    "literal_origin_rubric": true,
+    "invalid_raw_outputs": 0,
+    "modes": {
+      "rules": {
+        "planned": 10,
+        "measured": 10,
+        "tp": 8,
+        "fp": 0,
+        "missed": 0,
+        "active_correct": 4,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "origin_violations": 0,
+        "scope_errors": 0,
+        "native_failed": 0,
+        "not_executed": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "promotion_precision": 1.0,
+        "passed": true
+      },
+      "llm": {
+        "planned": 10,
+        "measured": 10,
+        "tp": 8,
+        "fp": 0,
+        "missed": 0,
+        "active_correct": 4,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "origin_violations": 0,
+        "scope_errors": 0,
+        "native_failed": 0,
+        "not_executed": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "promotion_precision": 1.0,
+        "passed": true
+      },
+      "hybrid": {
+        "planned": 10,
+        "measured": 10,
+        "tp": 8,
+        "fp": 0,
+        "missed": 0,
+        "active_correct": 4,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "origin_violations": 0,
+        "scope_errors": 0,
+        "native_failed": 0,
+        "not_executed": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "promotion_precision": 1.0,
+        "passed": true
+      }
+    }
+  },
+  "c1_canonical_retrieval": {
+    "raw_sha256": "e0572fba06a4ddc3c3d034e5cd18ffeaa195b1144f6663b808c60712becc6b50",
+    "dataset_sha256": "083b2fe71f6d4cdfb10d5dfc01443b9b664b6c42df58e8c57aca6fb7e143df08",
+    "query_denominator": 29,
+    "ranking": {
+      "fts5": {
+        "measured": 29,
+        "tp": 30,
+        "fp": 0,
+        "missed": 0,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "nomic": {
+        "measured": 29,
+        "tp": 27,
+        "fp": 0,
+        "missed": 3,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "precision": 1.0,
+        "recall": 0.9
+      },
+      "hybrid": {
+        "measured": 29,
+        "tp": 30,
+        "fp": 0,
+        "missed": 0,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "fallback": {
+        "measured": 29,
+        "tp": 30,
+        "fp": 0,
+        "missed": 0,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      }
+    },
+    "mandatory_fallback": {
+      "planned": 20,
+      "exact": 20,
+      "physical_endpoint_unavailable": false
+    },
+    "retrieval_passed": true
+  },
+  "c2_learning_and_response": {
+    "raw_sha256": "2e1329efa0df6aae36dcbfab8720bf4bfc143b7a892286202642506df7c00421",
+    "dataset_sha256": "083b2fe71f6d4cdfb10d5dfc01443b9b664b6c42df58e8c57aca6fb7e143df08",
+    "query_denominator": 29,
+    "ranking": {
+      "fts5": {
+        "measured": 29,
+        "tp": 30,
+        "fp": 0,
+        "missed": 0,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "nomic": {
+        "measured": 29,
+        "tp": 26,
+        "fp": 0,
+        "missed": 4,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "precision": 1.0,
+        "recall": 0.8666666666666667
+      },
+      "hybrid": {
+        "measured": 29,
+        "tp": 30,
+        "fp": 0,
+        "missed": 0,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "fallback": {
+        "measured": 29,
+        "tp": 30,
+        "fp": 0,
+        "missed": 0,
+        "unsafe_current": 0,
+        "scope_errors": 0,
+        "negative_injection": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      }
+    },
+    "mandatory_fallback": {
+      "planned": 20,
+      "exact": 20,
+      "physical_endpoint_unavailable": false
+    },
+    "retrieval_passed": true,
+    "preparations_measured": 17,
+    "index_events_measured": 16,
+    "literal_equivalence": {
+      "prior_label": "dev18j",
+      "prior_raw_sha256": "fa7e119599368d606bfc9453dc7151f47d402f6ecc32d9e5f7c8b1c14ab4cf08",
+      "prior_literal_audit_sha256": "301004a56dd840c9bc2080eb6e32297e97685790a145ee233ebe3bf3223833a7",
+      "identical": {
+        "delivered_utf8_texts": 29,
+        "raw_completion_utf8_texts": 29,
+        "answer_statuses": 29,
+        "non_timing_verifier_checks": 29,
+        "typed_context_facts": 29,
+        "retrieval_label_sequences_in_every_mode": 29
+      },
+      "metrics": {
+        "useful": {
+          "observed": 29,
+          "planned": 29
+        },
+        "semantic_atoms": {
+          "observed": 39,
+          "planned": 39
+        },
+        "full_request": {
+          "observed": 39,
+          "planned": 41
+        },
+        "delivered_propositions": {
+          "supported": 47,
+          "unsupported": 0,
+          "critical": 0
+        },
+        "raw_critical_propositions": 0
+      }
+    }
+  },
+  "scope": "Fresh known A, C1 and C2 bridge evidence. The fallback results exercise lexical retrieval with the query vector absent. Physical Nomic endpoint loss was measured earlier and was not repeated in dev18l."
+}

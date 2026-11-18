@@ -18,14 +18,53 @@ export const normalizeEvidenceText = (text: string) => text.normalize('NFD').rep
 /** Keep explicit contrasting subjects separate; relative game features are not
  * new speakers. This is response attribution, never permission to learn. */
 export function answerRelationClauses(text:string):string[]{
- return text.split(/(?<=[.!?;\n])\s+|\b(?:mas|por[eé]m|however|but)\b|,?\s+(?=(?:enquanto|whereas|while)\s+(?:(?:a|o|the)\s+)?(?:personage(?:m|ns)|characters?|narrador(?:a)?|narrators?|ferramenta|tool|voc[eê]|you)(?![\p{L}\p{N}_]))|\s+(?=(?:e|and)\s+(?:(?:a|o|the)\s+)?(?:personagem|character|narradora?|narrator|ferramenta|tool|(?:(?:voc[eê]|you)\s+)?(?:decidiu|escolheu|planeja|pretende|usa|utiliza|uses|plans|decided|chose|intends))\b)|\s+(?=(?:embora|although)\b)/iu).slice(0,128)
+ return text.split(/(?<=[.!?;\n])\s+|\b(?:mas|por[eé]m|however|but)\b|,?\s+(?:enquanto|whereas|while)\s+(?=n[aã]o (?:h[aá]|tenho|encontrei)(?![\p{L}\p{N}_])|there (?:is|are) no\b|i (?:do not|don.t) (?:know|have)\b)|,?\s+(?=(?:enquanto|whereas|while)\s+(?:(?:a|o|the)\s+)?(?:personage(?:m|ns)|characters?|narrador(?:a)?|narrators?|ferramenta|tool|voc[eê]|you)(?![\p{L}\p{N}_]))|\s+(?=(?:e|and)\s+(?:(?:a|o|the)\s+)?(?:personagem|character|narradora?|narrator|ferramenta|tool|(?:(?:voc[eê]|you)\s+)?(?:decidiu|escolheu|planeja|pretende|usa|utiliza|uses|plans|decided|chose|intends))\b)|\s+(?=(?:embora|although)\b)/iu).slice(0,128)
+}
+
+function nominalLanguageChoice(text: string) {
+  return normalizeEvidenceText(text).trim().match(/^(?:a\s+)?escolha de (typescript|javascript|python|rust)\s+(.+)$/u)
+}
+
+export function projectChoiceEntailmentQuery(query: string): string | undefined {
+  const choice = nominalLanguageChoice(query)
+  return choice && /^(?:prova|comprova|significa|implica) que (?:eu )?(?:comecei|iniciei) a implementar (?:o|meu|este) projeto\?$/u.test(choice[2])
+    ? choice[1] : undefined
+}
+
+export function deniesProjectChoiceEntailment(span: string, value: string): boolean {
+  const choice = nominalLanguageChoice(span)
+  const predicate = choice ? choice[1] === value ? choice[2] : '' : normalizeEvidenceText(span).trim().replace(/^(?:ela|escolher (?:a|uma) linguagem)\s+/u, '')
+  return /^nao (?:prova|comprova|significa|implica)(?:,\s*por si so,)?\s+que voce (?:ja )?(?:comecou|iniciou) a implementar (?:o|seu|este) projeto[.!]?$/u.test(predicate)
+}
+
+/** Query form that asks for a plan or choice, including a nominal past
+ * predicate. Scope and the temporal validity of the record are supplied by SQLite. */
+export function requestsProjectPlan(query: string, fact: MemoryFact): boolean {
+  if (!['database','language'].includes(fact.property) || !['planned','decision'].includes(fact.modality)) return false
+  const q = normalizeEvidenceText(query)
+  if (/\b(?:agora|atualmente|current(?:ly)?|now|still|ainda)\b/.test(q)) return false
+  if (fact.property === 'language' && fact.modality === 'decision' &&
+      ['reviewed', 'reviewed_import'].includes(fact.review) && projectChoiceEntailmentQuery(query) === fact.value) return true
+  const field = fact.property === 'database' ? /\b(?:banco|database)\b/ : /\b(?:linguagem|language)\b/
+  const relation = fact.modality === 'planned' ? /\b(?:planejad[ao]|planejava|pretendia|planejei|planned|had intended|had planned)\b/ : /\b(?:escolhid[ao]|decidid[ao]|escolhi|decidi|chosen|chose|selected|decided)\b/
+  return answerRelationClauses(q).some(clause => field.test(clause) && relation.test(clause) && !/\b(?:irmao|irma|brother|sister|colleague|colega)\b/.test(clause.split(/\b(?:com|versus|vs\.?|against|with|to)\b/u,1)[0]))
+}
+
+export function historicalProjectWording(span: string): boolean {
+  return /\b(?:planejava|pretendia|tinha (?:planejado|escolhido|decidido)|havia (?:planejado|escolhido|decidido)|had (?:planned|intended|chosen|selected|decided)|used to (?:plan|intend))\b|\b(?:planejad[ao]|escolhid[ao]|decidid[ao]|planned|chosen|selected)\b[^,;.!?]{0,65}\b(?:era|foi|was)\b|\b(?:era|foi|was)\b[^,;.!?]{0,65}\b(?:planejad[ao]|escolhid[ao]|decidid[ao]|planned|chosen|selected)\b/.test(normalizeEvidenceText(span))
 }
 /** An explicitly named fictional/document/tool subject is not the USER.
  * A later personal subject remains a personal claim and cannot borrow this exemption. */
 export function externalAssertion(span:string):boolean{
  const q=normalizeEvidenceText(span).trim().replace(/^(?:e|and|enquanto|while|whereas)\s+/,'')
- const anchor=q.match(/^(?:(?:a|o|the)\s+)?(?:narrador(?:a)?|narrator|personagem|character|ferramenta|tool|documento|document|log|texto|text)\b/)
- return !!anchor && !/\b(?:voce|seu|sua|seus|suas|you|your|usuario|user)\b/.test(q.slice(anchor[0].length))
+ const anchor=q.match(/^(?:(?:a|o|the)\s+)?(voz narrativa|narrative voice|narrador(?:a)?|narrator|personagem|character|ferramenta|tool|documento|document|log|texto|text)\b/)
+ if (!anchor) return false
+ const tail = q.slice(anchor[0].length)
+ // Possession of the story locates the narrator. It is not a second actor.
+ const predicate = /^(?:voz narrativa|narrative voice|narrador(?:a)?|narrator)$/u.test(anchor[1])
+   ? tail.replace(/^\s+(?:in your story|no seu conto|na sua historia)\b/u, '')
+   : tail
+ return !/\b(?:voce|seu|sua|seus|suas|you|your|usuario|user)\b/.test(predicate)
 }
 export function deniesCapacityGuarantee(text: string): boolean {
   const q=normalizeEvidenceText(text)
@@ -44,20 +83,26 @@ export function technologyRoles(text:string): {value:string;role:'origin'|'desti
   const at=instead>=0 ? instead : verb!.index!+verb![0].length+boundary
   return [...q.matchAll(/\b(?:typescript|javascript|python|rust|sqlite|postgresql|mysql)\b/g)].map(m=>({value:m[0],role:(instead>=0 ? m.index!>at : m.index!<at)?'origin':'destination'}))
 }
+export function asksAboutStoredMemory(query: string): boolean {
+  return /\b(?:continua|ainda)\s+(?:esta\s+)?(?:registrad[ao]|salv[ao]|guardad[ao])\b|\b(?:still (?:saved|stored|recorded)|remains? (?:saved|stored|recorded))\b/.test(normalizeEvidenceText(query))
+}
+
 export function memoryQuestionNeedsNoTools(query: string): boolean {
   const q = normalizeEvidenceText(query)
   // Explicit actions and advice requests retain the ordinary executable roster.
   if (/\b(?:list|read|open|inspect|check|search|write|create|run|execute|send|email|notify|liste|listar|leia|ler|abra|abrir|inspecione|verifique|pesquise|escreva|crie|execute|rode|envie|mande|notifique)\b|\b(?:arquivos?|files?|diretorio|directory|folder|pasta|repository|repositorio)\b/.test(q)) return false
   if (/\b(?:devo|should|recommend|recomenda|melhor|best|how to)\b/.test(q))return false
+  if (asksAboutStoredMemory(query)) return true
   // Native memory directives are not filesystem actions. Keep the ordinary
   // roster only when an external action/resource was explicitly requested above.
   const memoryDirective=/^(?:por favor[, ]+|please[, ]+)?(?:esqueca|forget|memorize|memorise|guarde|registre|lembre|volte a (?:guardar|memorizar|registrar)|quero voltar a registrar|i want to remember|you can remember)\b/.test(q.trim())
   if (memoryDirective && /preferenc|preference|memori|memory/.test(q)) return true
+  if (/(?:^|[.!;\n]\s*|,\s*)(?:por favor[, ]+)?(?:guarde|salve|registre|memorize)\s+(?:esta informacao|essa informacao|a correcao|este dado|esse dado|isso)(?=\s*(?:[.!;\n]|$))/.test(q.trim())) return true
   const recalled=/\b(?:lembra|recorda|remember|recall)\b/.test(q)
   const personal=/\b(?:meu|minha|meus|minhas|my|our|aquele|aquela|that)\b/.test(q)
-  const slots=/linguagem|language|banco|database|\bram\b|notebook|laptop|prefer|objetivo|goal|tema|theme|bebida|drink/.test(q)
+  const slots=/linguagem|language|banco|database|\bram\b|\bgpu\b|placa de video|graphics card|notebook|laptop|prefer|objetivo|goal|tema|theme|bebida|drink/.test(q)
   const question=/\b(?:qual|quais|what|which|how much|quanto)\b/.test(q)
-  const choice=/\b(?:escolhi|decidi|chose|choose|decided|planned|planejad)\b/.test(q)
+  const choice=/\b(?:escolhi|decidi|chose|choose|decided|planned|planejad[ao])\b/.test(q)
   const status=/^(?:como esta|how is|what is the status of).{0,70}(?:projeto|project)\b/.test(q.trim())
   return recalled || (slots && question && (personal || choice)) || (personal && status)
 }
@@ -104,6 +149,8 @@ function literalEvidence(span: string, facts: MemoryFact[]) {
   return facts.filter(f => f.evidence.some(e => e.role !== 'previous_property_link_not_current_value' && normalizeEvidenceText(e.text).replace(/[.!?]+$/, '').trim() === literal))
 }
 
+const implementationStage = /^(?:voce (?:esta|se encontra)|you are|(?:o projeto|the project)(?:\s+[\p{L}\p{N}_-]+){0,3}\s+(?:esta|is))\s+(no (?:inicio(?: ou no meio)?|meio|fim) da implementacao|em fase (?:inicial|intermediaria|final)|in the (?:early stages|middle|final stages) of implementation|in the (?:initial|intermediate|final) phase)\b/u
+
 /** Finite high-risk relations, separate from surface value extraction. */
 export function authorityClaims(text: string, snapshot: AnswerSnapshot): AuthorityClaim[] {
   const facts = [...snapshot.facts, ...snapshot.currentStatements].filter(f => f.scope === snapshot.scope && f.project === snapshot.project)
@@ -115,6 +162,14 @@ export function authorityClaims(text: string, snapshot: AnswerSnapshot): Authori
   for (const span of answerRelationClauses(text).filter(s=>s.trim())) {
     if(externalAssertion(span))continue
     const q = normalizeEvidenceText(span)
+    // A factive lead-in makes a claim even when the main clause asks a question.
+    const presupposition = q.match(/^\s*(?:como|since|given that)\s+([^,]+),/u)
+    const stage = (presupposition?.[1] ?? (span.trim().endsWith('?') ? '' : q.trim())).match(implementationStage)?.[1]
+    if (stage) {
+      const entity = 'project.' + snapshot.project
+      const proof = current.filter(f => f.entity === entity && f.property === 'project_stage' && f.value === stage)
+      add(presupposition ? span.slice(0,presupposition[0].length) : span,entity,'project_stage',stage,'state',proof,'Evidence of implementation does not establish its stage.',false)
+    }
     if (span.trim().endsWith('?')) continue
     const epistemic = /nao (?:ha|tenho).{0,35}(?:confirmacao|evidencia)|no (?:confirmation|evidence)|(?:not|isn.t|nao).{0,18}(?:confirmed|confirmado)|cannot confirm|nao (?:implica|significa|comprova)|does not (?:mean|imply|prove)|doesn.t (?:mean|imply|prove)/.test(q)
     const hypothetical = (predicate:RegExp) => {
@@ -125,6 +180,13 @@ export function authorityClaims(text: string, snapshot: AnswerSnapshot): Authori
         || (at>=0 && /\b(?:might|could|may|pode|podem|podera|poderao|poderia|poderiam|should|estimativa|estimate)\b/.test(q.slice(0,at)))
     }
     const project = /\b(?:projeto|project)\b/.test(q)
+    const stageTransition = /\b(?:avancou|passou|advanced|moved)\s+(?:d[ao] [^,;.!?]{1,40} para|from [^,;.!?]{1,40} to|para|to)\s+(?:(?:a|o|the)\s+)?(definicao tecnica|fase inicial|fase intermediaria|fase final|technical definition|initial phase|intermediate phase|final phase)\b/u
+    const nextStage = project && !epistemic && !hypothetical(stageTransition) ? q.match(stageTransition)?.[1] : undefined
+    if (nextStage) {
+      const entity = 'project.' + snapshot.project
+      const proof = current.filter(f => f.entity === entity && f.property === 'project_stage' && f.value === nextStage)
+      add(span,entity,'project_stage',nextStage,'transition',proof,'A technology choice does not establish a transition to a project stage.',false)
+    }
     if (/\b(?:trocou|migrou|substituiu|swapped|migrated|switched|replaced)\b/.test(q) && !/\b(?:decidiu|decidi|decided|planeja|plans?|pretende|intends?)\b/.test(q) && !epistemic && !hypothetical(/\b(?:trocou|migrou|substituiu|swapped|migrated|switched|replaced)\b/)) {
       for (const target of technologyRoles(span).filter(v=>v.role==='destination')) {
         const property=['mysql','postgresql','sqlite'].includes(target.value)?'database':'language'
@@ -167,7 +229,7 @@ export function projectIndependentSentences(text: string, badSpans: string[], sn
   if (!badSpans.length || /\b(?:ja|already|comecou|started|implementado|implemented|concluido|completed)\b/.test(normalizeEvidenceText(snapshot.query))) return undefined
   // A single matched property cannot certify completeness for two devices or
   // both old/current values. Those requests require the real rewrite path.
-  if (/\b(?:e|and|ambos|both|antes|before|previous|historico|historical)\b/.test(normalizeEvidenceText(snapshot.query))) return undefined
+  if (/\b(?:e|and|ambos|both|antes|before|previous|historico|historical|compare|comparar)\b/.test(normalizeEvidenceText(snapshot.query))) return undefined
   const parts = text.match(/[^.!?]+(?:[.!?]+|$)/g)?.map(s=>s.trim()).filter(Boolean) ?? []
   const removed = parts.filter(s=>badSpans.includes(s))
   if (!removed.length || badSpans.some(s=>!parts.includes(s))) return undefined

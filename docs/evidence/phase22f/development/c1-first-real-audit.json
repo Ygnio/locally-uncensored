@@ -1,0 +1,1855 @@
+{
+  "id": "phase22f-development-c1-first-real-audit",
+  "kind": "known_development",
+  "result": "failed",
+  "method": "Revisão da primeira C1 com o bridge F e Nomic real. O Store restaurou registros revisados sintéticos e as consultas usaram a recuperação nativa. Recontagem com os golds originais da 2.2E e leitura SQLite somente leitura.",
+  "freeze": {
+    "source_head": "8c5cba8c118f9782891f30023eb0a50b1abcd066",
+    "production_code_commit": "8c5cba8c118f9782891f30023eb0a50b1abcd066",
+    "bridge_sha256": "5a2e539b448cb4f2a8142f09161ceda5501208f13fd274773e95e86773153048",
+    "gui_artifacts_required": false,
+    "embedding_pin_preflight_verified": true,
+    "initial_final_saved_pin_and_bridge_verified": true
+  },
+  "original_artifacts": {
+    "devf0-c1-c1.json": {
+      "sha256": "983cb7f46ea55db27ba26d8062f94e526117514ce014af68999f5c12c36d4851",
+      "bytes": 1610094
+    },
+    "devf0-c1-c1-progress.ndjson": {
+      "sha256": "c6551daacbe55578efa676abe37f086158a09d2e499170b145c8947ba11df145",
+      "bytes": 942128
+    },
+    "development-freeze-bridge1.json": {
+      "sha256": "86df0aab8b967da7ecc8fa636c9a82a582d5f83140446f411743acf489d37a38",
+      "bytes": 567141
+    },
+    "phase22f-devf0-c1.log": {
+      "sha256": "e46326a4df4f94e1428443172aaf05c51270112f41e6275870a03e3c61bde6c6",
+      "bytes": 3306
+    },
+    "retrieval.json": {
+      "sha256": "1f65d2ed629655abf98fd2c4e23493f668ea1e04c1f8f8f95c88c7f806e3c372",
+      "bytes": 20179
+    },
+    "known-retrieval-annotations.json": {
+      "sha256": "083b2fe71f6d4cdfb10d5dfc01443b9b664b6c42df58e8c57aca6fb7e143df08",
+      "bytes": 2856
+    }
+  },
+  "preservation": {
+    "original_query_and_gold_verified": 29,
+    "planned_expected_atoms": 30,
+    "corpus_mutated": false
+  },
+  "preparation": {
+    "planned": 17,
+    "verified": 17,
+    "restored_reviewed_seeds": 16,
+    "confirmed_tombstone_operation": 1,
+    "active_indexed": 14,
+    "without_current_index": [
+      "primary-before",
+      "deleted-creation"
+    ],
+    "sqlite": {
+      "schema": 6,
+      "quick_check": "ok",
+      "integrity_check": "ok",
+      "foreign_key_errors": 0,
+      "tombstones": 1,
+      "active_vectors": 14
+    }
+  },
+  "metrics": {
+    "fts5": {
+      "tp": 27,
+      "fp": 2,
+      "missed": 3,
+      "unsafe_current": 2,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 0.9310344827586207,
+      "recall": 0.9,
+      "recall_planned": 0.9,
+      "passed": false
+    },
+    "nomic": {
+      "tp": 24,
+      "fp": 2,
+      "missed": 6,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 0.9230769230769231,
+      "recall": 0.8,
+      "recall_planned": 0.8,
+      "passed": true
+    },
+    "hybrid": {
+      "tp": 29,
+      "fp": 4,
+      "missed": 1,
+      "unsafe_current": 2,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 0.8787878787878788,
+      "recall": 0.9666666666666667,
+      "recall_planned": 0.9666666666666667,
+      "passed": false
+    },
+    "fallback": {
+      "tp": 27,
+      "fp": 2,
+      "missed": 3,
+      "unsafe_current": 2,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 0.9310344827586207,
+      "recall": 0.9,
+      "recall_planned": 0.9,
+      "passed": false
+    }
+  },
+  "mandatory_fallback": {
+    "planned": 20,
+    "exact": 16,
+    "physical_endpoint_unavailable": false,
+    "measured": 20,
+    "failed_cases": [
+      "er-014",
+      "er-024",
+      "er-025",
+      "er-026"
+    ]
+  },
+  "model_observations": {
+    "model": "Nomic Embed Text v1.5 F16",
+    "index_version": 5,
+    "dimension": 768,
+    "context_tokens": 2048,
+    "real_embedding_calls": 43,
+    "embed_prompt_tokens": 1137,
+    "aggregate_embedding_request_latency_seconds": 5.62139599994407,
+    "generation_calls": 0,
+    "minimum_similarity": 0.6,
+    "single_intent_semantic_margin": 0.04
+  },
+  "conclusion": {
+    "evaluator_or_preparation_failure_observed": false,
+    "product_or_mode_mismatch_cases": 8,
+    "ranking": "O híbrido ficou abaixo da precisão mínima de 90%, embora tenha superado o recall mínimo de 80%. Duas referências de modalidade proibida foram injetadas. Nenhuma injeção em consulta de gold vazio e nenhum vazamento de escopo foram observados.",
+    "fallback": "O fallback acertou 16 das 20 consultas obrigatórias. A execução suprimiu o vetor de consulta com o serviço Nomic disponível. A evidência de desligamento físico pertence a uma rodada separada.",
+    "scope": "A rodada mede a recuperação conhecida a partir de relações sintéticas revisadas, com evidência de SQLite e índice. A aprendizagem, a resposta final e a GUI estão fora da cobertura C1."
+  },
+  "mismatches": [
+    {
+      "id": "er-005",
+      "query": "Qual era a RAM do computador principal antes e qual é agora?",
+      "category": "ram_history",
+      "expected": [
+        "primary-before",
+        "primary-now"
+      ],
+      "forbidden": [
+        "other-scope-ram"
+      ],
+      "mandatory_lexical": false,
+      "classification": "semantic_only_index_boundary",
+      "finding": "O modo Nomic usa somente vetores de registros ativos. A versão obsoleta de 48 GB estava validada no SQLite, sem vetor. FTS5, híbrido e fallback recuperaram a versão histórica e a atual. A cláusula elíptica de agora aparece como indisponível na trilha relacional, embora o contexto contenha os 64 GB atuais.",
+      "modes": {
+        "fts5": {
+          "actual": [
+            "primary-now",
+            "primary-before"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 0,
+          "forbidden_injections": 0,
+          "relations": [
+            {
+              "query": "Qual era a RAM do computador principal antes",
+              "actor": "user",
+              "intent": "historical",
+              "state": "retrieved"
+            },
+            {
+              "query": "qual é agora? RAM",
+              "actor": "user",
+              "intent": "any",
+              "state": "unavailable"
+            }
+          ],
+          "relevant_trace": [
+            {
+              "label": "primary-before",
+              "state": "obsolete",
+              "property": "ram_capacity",
+              "value": "48_gb",
+              "temporal": "durable",
+              "selected": true,
+              "reported_trace_gate": false,
+              "bm25_rank": null,
+              "lexical_coverage": 0.6,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "primary-now",
+              "state": "active",
+              "property": "ram_capacity",
+              "value": "64_gb",
+              "temporal": "durable",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.6,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": null
+        },
+        "nomic": {
+          "actual": [
+            "primary-now"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 1,
+          "forbidden_injections": 0,
+          "relations": [
+            {
+              "query": "Qual era a RAM do computador principal antes",
+              "actor": "user",
+              "intent": "historical",
+              "state": "retrieved"
+            },
+            {
+              "query": "qual é agora? RAM",
+              "actor": "user",
+              "intent": "any",
+              "state": "unavailable"
+            }
+          ],
+          "relevant_trace": [
+            {
+              "label": "primary-before",
+              "state": "obsolete",
+              "property": "ram_capacity",
+              "value": "48_gb",
+              "temporal": "durable",
+              "selected": false,
+              "reported_trace_gate": false,
+              "bm25_rank": null,
+              "lexical_coverage": 0.6,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "not_current"
+            },
+            {
+              "label": "primary-now",
+              "state": "active",
+              "property": "ram_capacity",
+              "value": "64_gb",
+              "temporal": "durable",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.6,
+              "cosine": 0.71688664818056,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": 0.71688664818056
+        },
+        "hybrid": {
+          "actual": [
+            "primary-now",
+            "primary-before"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 0,
+          "forbidden_injections": 0,
+          "relations": [
+            {
+              "query": "Qual era a RAM do computador principal antes",
+              "actor": "user",
+              "intent": "historical",
+              "state": "retrieved"
+            },
+            {
+              "query": "qual é agora? RAM",
+              "actor": "user",
+              "intent": "any",
+              "state": "unavailable"
+            }
+          ],
+          "relevant_trace": [
+            {
+              "label": "primary-before",
+              "state": "obsolete",
+              "property": "ram_capacity",
+              "value": "48_gb",
+              "temporal": "durable",
+              "selected": true,
+              "reported_trace_gate": false,
+              "bm25_rank": null,
+              "lexical_coverage": 0.6,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "primary-now",
+              "state": "active",
+              "property": "ram_capacity",
+              "value": "64_gb",
+              "temporal": "durable",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.6,
+              "cosine": 0.71688664818056,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": 0.71688664818056
+        },
+        "fallback": {
+          "actual": [
+            "primary-now",
+            "primary-before"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 0,
+          "forbidden_injections": 0,
+          "relations": [
+            {
+              "query": "Qual era a RAM do computador principal antes",
+              "actor": "user",
+              "intent": "historical",
+              "state": "retrieved"
+            },
+            {
+              "query": "qual é agora? RAM",
+              "actor": "user",
+              "intent": "any",
+              "state": "unavailable"
+            }
+          ],
+          "relevant_trace": [
+            {
+              "label": "primary-before",
+              "state": "obsolete",
+              "property": "ram_capacity",
+              "value": "48_gb",
+              "temporal": "durable",
+              "selected": true,
+              "reported_trace_gate": false,
+              "bm25_rank": null,
+              "lexical_coverage": 0.6,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "primary-now",
+              "state": "active",
+              "property": "ram_capacity",
+              "value": "64_gb",
+              "temporal": "durable",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.6,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": null
+        }
+      }
+    },
+    {
+      "id": "er-010",
+      "query": "Como prefiro meu café da tarde?",
+      "category": "coffee",
+      "expected": [
+        "coffee"
+      ],
+      "forbidden": [
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "deleted-creation"
+      ],
+      "mandatory_lexical": true,
+      "classification": "semantic_only_threshold",
+      "finding": "A preferência de café estava ativa e elegível. O cosseno ficou abaixo do limiar 0,60 no modo Nomic. FTS5, híbrido e fallback recuperaram a preferência.",
+      "modes": {
+        "fts5": {
+          "actual": [
+            "coffee"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "forbidden_injections": 0,
+          "relations": [],
+          "relevant_trace": [
+            {
+              "label": "coffee",
+              "state": "active",
+              "property": "coffee_sugar",
+              "value": "without_sugar",
+              "temporal": "preference",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 1.0,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": null
+        },
+        "nomic": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 1,
+          "forbidden_injections": 0,
+          "relations": [],
+          "relevant_trace": [
+            {
+              "label": "coffee",
+              "state": "active",
+              "property": "coffee_sugar",
+              "value": "without_sugar",
+              "temporal": "preference",
+              "selected": false,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 1.0,
+              "cosine": 0.5697486631224911,
+              "semantic_threshold_pass": false,
+              "reason": "threshold_margin_rank_diversity_or_budget"
+            }
+          ],
+          "reported_full_query_semantic_margin": 0.5697486631224911
+        },
+        "hybrid": {
+          "actual": [
+            "coffee"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "forbidden_injections": 0,
+          "relations": [],
+          "relevant_trace": [
+            {
+              "label": "coffee",
+              "state": "active",
+              "property": "coffee_sugar",
+              "value": "without_sugar",
+              "temporal": "preference",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 1.0,
+              "cosine": 0.5697486631224911,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": 0.5697486631224911
+        },
+        "fallback": {
+          "actual": [
+            "coffee"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "forbidden_injections": 0,
+          "relations": [],
+          "relevant_trace": [
+            {
+              "label": "coffee",
+              "state": "active",
+              "property": "coffee_sugar",
+              "value": "without_sugar",
+              "temporal": "preference",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 1.0,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": null
+        }
+      }
+    },
+    {
+      "id": "er-014",
+      "query": "Qual é o tema do projeto, a linguagem escolhida e o banco planejado?",
+      "category": "three_properties",
+      "expected": [
+        "purpose",
+        "language-choice",
+        "database-plan"
+      ],
+      "forbidden": [
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "deleted-creation"
+      ],
+      "mandatory_lexical": true,
+      "classification": "product_compound_relation_eligibility",
+      "finding": "O seletor conservou tema e linguagem no mesmo segmento de escolha, antes de separar o banco. A descrição canônica com BM25 apareceu como inelegível em todos os modos. O Nomic também perdeu o banco, apesar de ele superar o limiar na trilha da pergunta completa. A trilha não separa o motivo interno da seleção semântica desse último registro.",
+      "modes": {
+        "fts5": {
+          "actual": [
+            "language-choice",
+            "database-plan"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 1,
+          "forbidden_injections": 0,
+          "relations": [
+            {
+              "query": "Qual é o tema do projeto, a linguagem escolhida",
+              "actor": "user",
+              "intent": "choice",
+              "state": "retrieved"
+            },
+            {
+              "query": "o banco planejado? projeto",
+              "actor": "user",
+              "intent": "any",
+              "state": "retrieved"
+            }
+          ],
+          "relevant_trace": [
+            {
+              "label": "purpose",
+              "state": "active",
+              "property": "description",
+              "value": "estou comecando um projeto de catalogo de miniaturas",
+              "temporal": "durable",
+              "selected": false,
+              "reported_trace_gate": false,
+              "bm25_rank": 3,
+              "lexical_coverage": 0.16666666666666666,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "temporal_entity_intent_or_conflict_filter"
+            },
+            {
+              "label": "database-plan",
+              "state": "active",
+              "property": "database",
+              "value": "postgresql",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 2,
+              "lexical_coverage": 0.3333333333333333,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "language-choice",
+              "state": "active",
+              "property": "language",
+              "value": "python",
+              "temporal": "durable",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.3333333333333333,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": null
+        },
+        "nomic": {
+          "actual": [
+            "language-choice"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 2,
+          "forbidden_injections": 0,
+          "relations": [
+            {
+              "query": "Qual é o tema do projeto, a linguagem escolhida",
+              "actor": "user",
+              "intent": "choice",
+              "state": "retrieved"
+            },
+            {
+              "query": "o banco planejado? projeto",
+              "actor": "user",
+              "intent": "any",
+              "state": "retrieved"
+            }
+          ],
+          "relevant_trace": [
+            {
+              "label": "purpose",
+              "state": "active",
+              "property": "description",
+              "value": "estou comecando um projeto de catalogo de miniaturas",
+              "temporal": "durable",
+              "selected": false,
+              "reported_trace_gate": false,
+              "bm25_rank": 3,
+              "lexical_coverage": 0.16666666666666666,
+              "cosine": 0.562411117193863,
+              "semantic_threshold_pass": false,
+              "reason": "temporal_entity_intent_or_conflict_filter"
+            },
+            {
+              "label": "database-plan",
+              "state": "active",
+              "property": "database",
+              "value": "postgresql",
+              "temporal": "planned",
+              "selected": false,
+              "reported_trace_gate": true,
+              "bm25_rank": 2,
+              "lexical_coverage": 0.3333333333333333,
+              "cosine": 0.624104970645864,
+              "semantic_threshold_pass": true,
+              "reason": "threshold_margin_rank_diversity_or_budget"
+            },
+            {
+              "label": "language-choice",
+              "state": "active",
+              "property": "language",
+              "value": "python",
+              "temporal": "durable",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.3333333333333333,
+              "cosine": 0.6223581620854759,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": 0.0017468085603881134
+        },
+        "hybrid": {
+          "actual": [
+            "language-choice",
+            "database-plan"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 1,
+          "forbidden_injections": 0,
+          "relations": [
+            {
+              "query": "Qual é o tema do projeto, a linguagem escolhida",
+              "actor": "user",
+              "intent": "choice",
+              "state": "retrieved"
+            },
+            {
+              "query": "o banco planejado? projeto",
+              "actor": "user",
+              "intent": "any",
+              "state": "retrieved"
+            }
+          ],
+          "relevant_trace": [
+            {
+              "label": "purpose",
+              "state": "active",
+              "property": "description",
+              "value": "estou comecando um projeto de catalogo de miniaturas",
+              "temporal": "durable",
+              "selected": false,
+              "reported_trace_gate": false,
+              "bm25_rank": 3,
+              "lexical_coverage": 0.16666666666666666,
+              "cosine": 0.562411117193863,
+              "semantic_threshold_pass": false,
+              "reason": "temporal_entity_intent_or_conflict_filter"
+            },
+            {
+              "label": "database-plan",
+              "state": "active",
+              "property": "database",
+              "value": "postgresql",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 2,
+              "lexical_coverage": 0.3333333333333333,
+              "cosine": 0.624104970645864,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "language-choice",
+              "state": "active",
+              "property": "language",
+              "value": "python",
+              "temporal": "durable",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.3333333333333333,
+              "cosine": 0.6223581620854759,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": 0.0017468085603881134
+        },
+        "fallback": {
+          "actual": [
+            "language-choice",
+            "database-plan"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 1,
+          "forbidden_injections": 0,
+          "relations": [
+            {
+              "query": "Qual é o tema do projeto, a linguagem escolhida",
+              "actor": "user",
+              "intent": "choice",
+              "state": "retrieved"
+            },
+            {
+              "query": "o banco planejado? projeto",
+              "actor": "user",
+              "intent": "any",
+              "state": "retrieved"
+            }
+          ],
+          "relevant_trace": [
+            {
+              "label": "purpose",
+              "state": "active",
+              "property": "description",
+              "value": "estou comecando um projeto de catalogo de miniaturas",
+              "temporal": "durable",
+              "selected": false,
+              "reported_trace_gate": false,
+              "bm25_rank": 3,
+              "lexical_coverage": 0.16666666666666666,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "temporal_entity_intent_or_conflict_filter"
+            },
+            {
+              "label": "database-plan",
+              "state": "active",
+              "property": "database",
+              "value": "postgresql",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 2,
+              "lexical_coverage": 0.3333333333333333,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "language-choice",
+              "state": "active",
+              "property": "language",
+              "value": "python",
+              "temporal": "durable",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.3333333333333333,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": null
+        }
+      }
+    },
+    {
+      "id": "er-018",
+      "query": "Compare o banco planejado para o meu projeto e o banco do meu irmão.",
+      "category": "mixed_actor_comparison",
+      "expected": [
+        "database-plan"
+      ],
+      "forbidden": [
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "deleted-creation"
+      ],
+      "mandatory_lexical": true,
+      "classification": "product_same_project_unrequested_property",
+      "finding": "Nomic e híbrido injetaram Python junto de PostgreSQL, pois a linguagem do próprio projeto passou na seleção da parte autorizada sobre banco. A parte sobre o irmão ficou indisponível e nenhuma referência foi atribuída a ele.",
+      "modes": {
+        "fts5": {
+          "actual": [
+            "database-plan"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "forbidden_injections": 0,
+          "relations": [
+            {
+              "query": "Compare o banco planejado para o meu projeto",
+              "actor": "user",
+              "intent": "any",
+              "state": "retrieved"
+            },
+            {
+              "query": "o banco do meu irmão. projeto",
+              "actor": "third_party",
+              "intent": "any",
+              "state": "unavailable"
+            }
+          ],
+          "relevant_trace": [
+            {
+              "label": "database-plan",
+              "state": "active",
+              "property": "database",
+              "value": "postgresql",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.4,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "language-choice",
+              "state": "active",
+              "property": "language",
+              "value": "python",
+              "temporal": "durable",
+              "selected": false,
+              "reported_trace_gate": true,
+              "bm25_rank": 3,
+              "lexical_coverage": 0.2,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "threshold_margin_rank_diversity_or_budget"
+            }
+          ],
+          "reported_full_query_semantic_margin": null
+        },
+        "nomic": {
+          "actual": [
+            "database-plan",
+            "language-choice"
+          ],
+          "tp": 1,
+          "fp": 1,
+          "missed": 0,
+          "forbidden_injections": 0,
+          "relations": [
+            {
+              "query": "Compare o banco planejado para o meu projeto",
+              "actor": "user",
+              "intent": "any",
+              "state": "retrieved"
+            },
+            {
+              "query": "o banco do meu irmão. projeto",
+              "actor": "third_party",
+              "intent": "any",
+              "state": "unavailable"
+            }
+          ],
+          "relevant_trace": [
+            {
+              "label": "database-plan",
+              "state": "active",
+              "property": "database",
+              "value": "postgresql",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.4,
+              "cosine": 0.6773149446889958,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "language-choice",
+              "state": "active",
+              "property": "language",
+              "value": "python",
+              "temporal": "durable",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 3,
+              "lexical_coverage": 0.2,
+              "cosine": 0.6044953526766822,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": 0.07281959201231358
+        },
+        "hybrid": {
+          "actual": [
+            "database-plan",
+            "language-choice"
+          ],
+          "tp": 1,
+          "fp": 1,
+          "missed": 0,
+          "forbidden_injections": 0,
+          "relations": [
+            {
+              "query": "Compare o banco planejado para o meu projeto",
+              "actor": "user",
+              "intent": "any",
+              "state": "retrieved"
+            },
+            {
+              "query": "o banco do meu irmão. projeto",
+              "actor": "third_party",
+              "intent": "any",
+              "state": "unavailable"
+            }
+          ],
+          "relevant_trace": [
+            {
+              "label": "database-plan",
+              "state": "active",
+              "property": "database",
+              "value": "postgresql",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.4,
+              "cosine": 0.6773149446889958,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "language-choice",
+              "state": "active",
+              "property": "language",
+              "value": "python",
+              "temporal": "durable",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 3,
+              "lexical_coverage": 0.2,
+              "cosine": 0.6044953526766822,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": 0.07281959201231358
+        },
+        "fallback": {
+          "actual": [
+            "database-plan"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "forbidden_injections": 0,
+          "relations": [
+            {
+              "query": "Compare o banco planejado para o meu projeto",
+              "actor": "user",
+              "intent": "any",
+              "state": "retrieved"
+            },
+            {
+              "query": "o banco do meu irmão. projeto",
+              "actor": "third_party",
+              "intent": "any",
+              "state": "unavailable"
+            }
+          ],
+          "relevant_trace": [
+            {
+              "label": "database-plan",
+              "state": "active",
+              "property": "database",
+              "value": "postgresql",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.4,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "language-choice",
+              "state": "active",
+              "property": "language",
+              "value": "python",
+              "temporal": "durable",
+              "selected": false,
+              "reported_trace_gate": true,
+              "bm25_rank": 3,
+              "lexical_coverage": 0.2,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "threshold_margin_rank_diversity_or_budget"
+            }
+          ],
+          "reported_full_query_semantic_margin": null
+        }
+      }
+    },
+    {
+      "id": "er-023",
+      "query": "Compare o banco deste projeto Jatobá com o do projeto Pitanga.",
+      "category": "cross_project_partial",
+      "expected": [
+        "database-plan"
+      ],
+      "forbidden": [
+        "other-database",
+        "actual-language",
+        "future-language",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state",
+        "deleted-creation"
+      ],
+      "mandatory_lexical": true,
+      "classification": "product_same_project_unrequested_property",
+      "finding": "Nomic e híbrido injetaram Python do Jatobá junto do banco correto. O banco do Pitanga permaneceu indisponível no vínculo e nenhuma referência de outro projeto foi injetada.",
+      "modes": {
+        "fts5": {
+          "actual": [
+            "database-plan"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "forbidden_injections": 0,
+          "relations": [
+            {
+              "query": "Compare o banco deste projeto Jatobá",
+              "actor": "user",
+              "intent": "any",
+              "state": "retrieved"
+            },
+            {
+              "query": "o do projeto Pitanga. banco de dados",
+              "actor": "user",
+              "intent": "any",
+              "state": "unavailable"
+            }
+          ],
+          "relevant_trace": [
+            {
+              "label": "database-plan",
+              "state": "active",
+              "property": "database",
+              "value": "postgresql",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.3333333333333333,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "language-choice",
+              "state": "active",
+              "property": "language",
+              "value": "python",
+              "temporal": "durable",
+              "selected": false,
+              "reported_trace_gate": true,
+              "bm25_rank": 3,
+              "lexical_coverage": 0.16666666666666666,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "threshold_margin_rank_diversity_or_budget"
+            }
+          ],
+          "reported_full_query_semantic_margin": null
+        },
+        "nomic": {
+          "actual": [
+            "database-plan",
+            "language-choice"
+          ],
+          "tp": 1,
+          "fp": 1,
+          "missed": 0,
+          "forbidden_injections": 0,
+          "relations": [
+            {
+              "query": "Compare o banco deste projeto Jatobá",
+              "actor": "user",
+              "intent": "any",
+              "state": "retrieved"
+            },
+            {
+              "query": "o do projeto Pitanga. banco de dados",
+              "actor": "user",
+              "intent": "any",
+              "state": "unavailable"
+            }
+          ],
+          "relevant_trace": [
+            {
+              "label": "database-plan",
+              "state": "active",
+              "property": "database",
+              "value": "postgresql",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.3333333333333333,
+              "cosine": 0.728183748949766,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "language-choice",
+              "state": "active",
+              "property": "language",
+              "value": "python",
+              "temporal": "durable",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 3,
+              "lexical_coverage": 0.16666666666666666,
+              "cosine": 0.6669667179884706,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": 0.06121703096129538
+        },
+        "hybrid": {
+          "actual": [
+            "database-plan",
+            "language-choice"
+          ],
+          "tp": 1,
+          "fp": 1,
+          "missed": 0,
+          "forbidden_injections": 0,
+          "relations": [
+            {
+              "query": "Compare o banco deste projeto Jatobá",
+              "actor": "user",
+              "intent": "any",
+              "state": "retrieved"
+            },
+            {
+              "query": "o do projeto Pitanga. banco de dados",
+              "actor": "user",
+              "intent": "any",
+              "state": "unavailable"
+            }
+          ],
+          "relevant_trace": [
+            {
+              "label": "database-plan",
+              "state": "active",
+              "property": "database",
+              "value": "postgresql",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.3333333333333333,
+              "cosine": 0.728183748949766,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "language-choice",
+              "state": "active",
+              "property": "language",
+              "value": "python",
+              "temporal": "durable",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 3,
+              "lexical_coverage": 0.16666666666666666,
+              "cosine": 0.6669667179884706,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": 0.06121703096129538
+        },
+        "fallback": {
+          "actual": [
+            "database-plan"
+          ],
+          "tp": 1,
+          "fp": 0,
+          "missed": 0,
+          "forbidden_injections": 0,
+          "relations": [
+            {
+              "query": "Compare o banco deste projeto Jatobá",
+              "actor": "user",
+              "intent": "any",
+              "state": "retrieved"
+            },
+            {
+              "query": "o do projeto Pitanga. banco de dados",
+              "actor": "user",
+              "intent": "any",
+              "state": "unavailable"
+            }
+          ],
+          "relevant_trace": [
+            {
+              "label": "database-plan",
+              "state": "active",
+              "property": "database",
+              "value": "postgresql",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.3333333333333333,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "language-choice",
+              "state": "active",
+              "property": "language",
+              "value": "python",
+              "temporal": "durable",
+              "selected": false,
+              "reported_trace_gate": true,
+              "bm25_rank": 3,
+              "lexical_coverage": 0.16666666666666666,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "threshold_margin_rank_diversity_or_budget"
+            }
+          ],
+          "reported_full_query_semantic_margin": null
+        }
+      }
+    },
+    {
+      "id": "er-024",
+      "query": "Em qual linguagem estou implementando o projeto Pitanga?",
+      "category": "actual_implementation",
+      "expected": [
+        "actual-language"
+      ],
+      "forbidden": [
+        "future-language"
+      ],
+      "mandatory_lexical": true,
+      "classification": "product_modality_gate",
+      "finding": "TypeScript em implementação e Rust planejado passaram no filtro nativo. FTS5, híbrido e fallback injetaram ambos, com Rust proibido pelo gold da pergunta de execução. As modalidades dos registros continuaram tipadas corretamente. O modo Nomic não selecionou nenhum dos dois, mesmo com ambos acima de 0,60 na trilha. Como a consulta simples admitiu dois candidatos da mesma propriedade, a diferença entre os dois primeiros cossenos foi 0.0263, abaixo da margem de seleção 0,04.",
+      "modes": {
+        "fts5": {
+          "actual": [
+            "future-language",
+            "actual-language"
+          ],
+          "tp": 1,
+          "fp": 1,
+          "missed": 0,
+          "forbidden_injections": 1,
+          "relations": [],
+          "relevant_trace": [
+            {
+              "label": "future-language",
+              "state": "active",
+              "property": "language",
+              "value": "rust",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 2,
+              "lexical_coverage": 0.2,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "actual-language",
+              "state": "active",
+              "property": "language",
+              "value": "typescript",
+              "temporal": "in_progress",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.6,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": null
+        },
+        "nomic": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 1,
+          "forbidden_injections": 0,
+          "relations": [],
+          "relevant_trace": [
+            {
+              "label": "future-language",
+              "state": "active",
+              "property": "language",
+              "value": "rust",
+              "temporal": "planned",
+              "selected": false,
+              "reported_trace_gate": true,
+              "bm25_rank": 2,
+              "lexical_coverage": 0.2,
+              "cosine": 0.7877611821931837,
+              "semantic_threshold_pass": true,
+              "reason": "threshold_margin_rank_diversity_or_budget"
+            },
+            {
+              "label": "actual-language",
+              "state": "active",
+              "property": "language",
+              "value": "typescript",
+              "temporal": "in_progress",
+              "selected": false,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.6,
+              "cosine": 0.8140924769216927,
+              "semantic_threshold_pass": true,
+              "reason": "threshold_margin_rank_diversity_or_budget"
+            }
+          ],
+          "reported_full_query_semantic_margin": 0.026331294728509036
+        },
+        "hybrid": {
+          "actual": [
+            "future-language",
+            "actual-language"
+          ],
+          "tp": 1,
+          "fp": 1,
+          "missed": 0,
+          "forbidden_injections": 1,
+          "relations": [],
+          "relevant_trace": [
+            {
+              "label": "future-language",
+              "state": "active",
+              "property": "language",
+              "value": "rust",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 2,
+              "lexical_coverage": 0.2,
+              "cosine": 0.7877611821931837,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "actual-language",
+              "state": "active",
+              "property": "language",
+              "value": "typescript",
+              "temporal": "in_progress",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.6,
+              "cosine": 0.8140924769216927,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": 0.026331294728509036
+        },
+        "fallback": {
+          "actual": [
+            "future-language",
+            "actual-language"
+          ],
+          "tp": 1,
+          "fp": 1,
+          "missed": 0,
+          "forbidden_injections": 1,
+          "relations": [],
+          "relevant_trace": [
+            {
+              "label": "future-language",
+              "state": "active",
+              "property": "language",
+              "value": "rust",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 2,
+              "lexical_coverage": 0.2,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "actual-language",
+              "state": "active",
+              "property": "language",
+              "value": "typescript",
+              "temporal": "in_progress",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.6,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": null
+        }
+      }
+    },
+    {
+      "id": "er-025",
+      "query": "Qual linguagem pretendo usar futuramente no projeto Pitanga?",
+      "category": "future_language",
+      "expected": [
+        "future-language"
+      ],
+      "forbidden": [
+        "actual-language"
+      ],
+      "mandatory_lexical": true,
+      "classification": "product_modality_gate",
+      "finding": "Os dois registros também passaram no filtro da pergunta sobre linguagem futura. FTS5, híbrido e fallback injetaram TypeScript em execução como referência extra proibida. O modo Nomic não selecionou nenhum dos dois, mesmo com ambos acima de 0,60 na trilha. Como a consulta simples admitiu dois candidatos da mesma propriedade, a diferença entre os dois primeiros cossenos foi 0.0135, abaixo da margem de seleção 0,04.",
+      "modes": {
+        "fts5": {
+          "actual": [
+            "future-language",
+            "actual-language"
+          ],
+          "tp": 1,
+          "fp": 1,
+          "missed": 0,
+          "forbidden_injections": 1,
+          "relations": [],
+          "relevant_trace": [
+            {
+              "label": "future-language",
+              "state": "active",
+              "property": "language",
+              "value": "rust",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.6666666666666666,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "actual-language",
+              "state": "active",
+              "property": "language",
+              "value": "typescript",
+              "temporal": "in_progress",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 2,
+              "lexical_coverage": 0.16666666666666666,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": null
+        },
+        "nomic": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 1,
+          "forbidden_injections": 0,
+          "relations": [],
+          "relevant_trace": [
+            {
+              "label": "future-language",
+              "state": "active",
+              "property": "language",
+              "value": "rust",
+              "temporal": "planned",
+              "selected": false,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.6666666666666666,
+              "cosine": 0.7672569357411516,
+              "semantic_threshold_pass": true,
+              "reason": "threshold_margin_rank_diversity_or_budget"
+            },
+            {
+              "label": "actual-language",
+              "state": "active",
+              "property": "language",
+              "value": "typescript",
+              "temporal": "in_progress",
+              "selected": false,
+              "reported_trace_gate": true,
+              "bm25_rank": 2,
+              "lexical_coverage": 0.16666666666666666,
+              "cosine": 0.7537200059614266,
+              "semantic_threshold_pass": true,
+              "reason": "threshold_margin_rank_diversity_or_budget"
+            }
+          ],
+          "reported_full_query_semantic_margin": 0.013536929779724982
+        },
+        "hybrid": {
+          "actual": [
+            "future-language",
+            "actual-language"
+          ],
+          "tp": 1,
+          "fp": 1,
+          "missed": 0,
+          "forbidden_injections": 1,
+          "relations": [],
+          "relevant_trace": [
+            {
+              "label": "future-language",
+              "state": "active",
+              "property": "language",
+              "value": "rust",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.6666666666666666,
+              "cosine": 0.7672569357411516,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "actual-language",
+              "state": "active",
+              "property": "language",
+              "value": "typescript",
+              "temporal": "in_progress",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 2,
+              "lexical_coverage": 0.16666666666666666,
+              "cosine": 0.7537200059614266,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": 0.013536929779724982
+        },
+        "fallback": {
+          "actual": [
+            "future-language",
+            "actual-language"
+          ],
+          "tp": 1,
+          "fp": 1,
+          "missed": 0,
+          "forbidden_injections": 1,
+          "relations": [],
+          "relevant_trace": [
+            {
+              "label": "future-language",
+              "state": "active",
+              "property": "language",
+              "value": "rust",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 1,
+              "lexical_coverage": 0.6666666666666666,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "actual-language",
+              "state": "active",
+              "property": "language",
+              "value": "typescript",
+              "temporal": "in_progress",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": 2,
+              "lexical_coverage": 0.16666666666666666,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": null
+        }
+      }
+    },
+    {
+      "id": "er-026",
+      "query": "No Pitanga, compare a linguagem em implementação com a planejada para o futuro.",
+      "category": "plan_vs_execution",
+      "expected": [
+        "actual-language",
+        "future-language"
+      ],
+      "forbidden": [
+        "purpose",
+        "language-choice",
+        "database-plan",
+        "primary-before",
+        "work-ram",
+        "primary-now",
+        "coffee",
+        "classes",
+        "favorite",
+        "deleted-creation",
+        "other-scope-ram",
+        "cancelled-language",
+        "cancelled-state"
+      ],
+      "mandatory_lexical": true,
+      "classification": "product_lexical_compound_coverage",
+      "finding": "A pergunta usa o nome do projeto e retoma linguagem na segunda parte por elipse. A trilha não mostrou decomposição. Os dois registros passaram no filtro, mas nenhum teve BM25 ou cobertura lexical para a formulação. A seleção com vetor recuperou ambos; FTS5 e fallback perderam os dois. A fixture usa conteúdo válido de importação revisada com a redação original e não reproduz a renderização do materializador C2.",
+      "modes": {
+        "fts5": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 2,
+          "forbidden_injections": 0,
+          "relations": [],
+          "relevant_trace": [
+            {
+              "label": "future-language",
+              "state": "active",
+              "property": "language",
+              "value": "rust",
+              "temporal": "planned",
+              "selected": false,
+              "reported_trace_gate": true,
+              "bm25_rank": null,
+              "lexical_coverage": 0.0,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "threshold_margin_rank_diversity_or_budget"
+            },
+            {
+              "label": "actual-language",
+              "state": "active",
+              "property": "language",
+              "value": "typescript",
+              "temporal": "in_progress",
+              "selected": false,
+              "reported_trace_gate": true,
+              "bm25_rank": null,
+              "lexical_coverage": 0.0,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "threshold_margin_rank_diversity_or_budget"
+            }
+          ],
+          "reported_full_query_semantic_margin": null
+        },
+        "nomic": {
+          "actual": [
+            "future-language",
+            "actual-language"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 0,
+          "forbidden_injections": 0,
+          "relations": [],
+          "relevant_trace": [
+            {
+              "label": "future-language",
+              "state": "active",
+              "property": "language",
+              "value": "rust",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": null,
+              "lexical_coverage": 0.0,
+              "cosine": 0.7498265013394496,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "actual-language",
+              "state": "active",
+              "property": "language",
+              "value": "typescript",
+              "temporal": "in_progress",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": null,
+              "lexical_coverage": 0.0,
+              "cosine": 0.748449148061367,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": 0.001377353278082638
+        },
+        "hybrid": {
+          "actual": [
+            "future-language",
+            "actual-language"
+          ],
+          "tp": 2,
+          "fp": 0,
+          "missed": 0,
+          "forbidden_injections": 0,
+          "relations": [],
+          "relevant_trace": [
+            {
+              "label": "future-language",
+              "state": "active",
+              "property": "language",
+              "value": "rust",
+              "temporal": "planned",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": null,
+              "lexical_coverage": 0.0,
+              "cosine": 0.7498265013394496,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            },
+            {
+              "label": "actual-language",
+              "state": "active",
+              "property": "language",
+              "value": "typescript",
+              "temporal": "in_progress",
+              "selected": true,
+              "reported_trace_gate": true,
+              "bm25_rank": null,
+              "lexical_coverage": 0.0,
+              "cosine": 0.748449148061367,
+              "semantic_threshold_pass": true,
+              "reason": "selected_after_all_filters"
+            }
+          ],
+          "reported_full_query_semantic_margin": 0.001377353278082638
+        },
+        "fallback": {
+          "actual": [],
+          "tp": 0,
+          "fp": 0,
+          "missed": 2,
+          "forbidden_injections": 0,
+          "relations": [],
+          "relevant_trace": [
+            {
+              "label": "future-language",
+              "state": "active",
+              "property": "language",
+              "value": "rust",
+              "temporal": "planned",
+              "selected": false,
+              "reported_trace_gate": true,
+              "bm25_rank": null,
+              "lexical_coverage": 0.0,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "threshold_margin_rank_diversity_or_budget"
+            },
+            {
+              "label": "actual-language",
+              "state": "active",
+              "property": "language",
+              "value": "typescript",
+              "temporal": "in_progress",
+              "selected": false,
+              "reported_trace_gate": true,
+              "bm25_rank": null,
+              "lexical_coverage": 0.0,
+              "cosine": null,
+              "semantic_threshold_pass": false,
+              "reason": "threshold_margin_rank_diversity_or_budget"
+            }
+          ],
+          "reported_full_query_semantic_margin": null
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,351 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_gui_dev18i",
+  "date": "2026-11-18",
+  "status": "quality_gates_incomplete",
+  "source_head": "918039d45a6cd8a51cd5e823dd0e8291976e4f69",
+  "freeze_sha256": "3824a81630bfa72f88f56bd01675ab513ff688403a2859ee394b08c71a822473",
+  "real_inference": true,
+  "later_code_replays_credited_as_inference": false,
+  "counts": {
+    "jatoba": {
+      "planned_seed_turns": 11,
+      "planned_probes": 8,
+      "executed_requests": 19,
+      "reply_status_counts": {
+        "checked": 13,
+        "regenerated": 1,
+        "blocked": 3,
+        "tool_reply": 2
+      },
+      "transport_failures": 0
+    },
+    "pitanga": {
+      "planned_seed_turns": 3,
+      "planned_probes": 3,
+      "executed_requests": 6,
+      "reply_status_counts": {
+        "checked": 4,
+        "regenerated": 2
+      },
+      "transport_failures": 0
+    },
+    "availability_upper_bound": {
+      "useful_at_most": 22,
+      "planned": 25
+    },
+    "expected_atoms_upper_bound": {
+      "covered_at_most": 43,
+      "planned": 49
+    },
+    "full_request_upper_bound": {
+      "covered_at_most": 43,
+      "planned": 50
+    }
+  },
+  "significant_misses": [
+    {
+      "case": "gm-t08",
+      "mode": "chat",
+      "status": "blocked",
+      "raw_attempts": [
+        {
+          "text": "Excelente escolha, pois o PostgreSQL é conhecido por sua robustez e suporte a diversos tipos de dados. Qual será o foco principal do seu projeto?",
+          "violation_codes": [
+            "source_technology_modality_omitted"
+          ]
+        },
+        {
+          "text": "Excelente escolha, pois o PostgreSQL é conhecido por sua robustez e suporte a diversos tipos de dados. Você planeja utilizá-lo como o banco de dados do seu projeto Jatoba.",
+          "violation_codes": [
+            "source_technology_modality_omitted"
+          ]
+        }
+      ],
+      "delivered": "Error: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+      "finding": "Both attempts were withheld. The retry stated the PostgreSQL plan with a pronoun whose verified antecedent was in the prior sentence. The guard still reported a missing modality."
+    },
+    {
+      "case": "gm-t12",
+      "mode": "code",
+      "status": "blocked",
+      "raw_attempts": [
+        {
+          "text": "Obrigado pela correção. Registrei que o seu computador principal possui 64 GB de RAM, descartando a hipótese de 128 GB.",
+          "violation_codes": [
+            "unconfirmed_memory_mutation",
+            "unsupported_typed_value"
+          ]
+        },
+        {
+          "text": "Exatamente, o valor de 128 GB é apenas uma hipótese falsa. O dado confirmado para o seu computador principal é de 64 GB de RAM.",
+          "violation_codes": [
+            "unsupported_typed_value"
+          ]
+        }
+      ],
+      "delivered": "Error: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+      "finding": "Both attempts were withheld. The first asserted premature persistence. Both described 128 GB as rejected or hypothetical, which the verifier counted as a positive capacity."
+    },
+    {
+      "case": "gm-p04",
+      "mode": "chat",
+      "status": "blocked",
+      "raw_attempts": [
+        {
+          "text": "A escolha de Python prova que você escolheu a linguagem de programação para o projeto. Ela não prova, por si só, que você começou a implementar o projeto.",
+          "violation_codes": [
+            "unsupported_typed_value"
+          ]
+        },
+        {
+          "text": "A escolha de Python não prova que você começou a implementar o projeto. De acordo com as memórias, o projeto jatoba está atualmente no estado \"cancelled\".",
+          "violation_codes": [
+            "unsupported_typed_value"
+          ]
+        }
+      ],
+      "delivered": "Error: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+      "finding": "Both attempts were withheld. Native retrieval contained the historical Python decision and current cancellation at version 2 in both attempts. The frontend did not authorize use of the nominal historical choice."
+    },
+    {
+      "case": "go-p03",
+      "mode": "chat",
+      "status": "checked",
+      "raw_attempts": [
+        {
+          "text": "Você escolheu o MySQL como banco de dados para o projeto Pitanga. Para o projeto Jatobá, esta conversa não tem acesso ao registro autorizado.",
+          "violation_codes": [
+            "unsupported_project_entity"
+          ]
+        }
+      ],
+      "delivered": "Você escolheu o MySQL como banco de dados para o projeto Pitanga.",
+      "localized_repair_methods": [
+        "independent_sentence_projection"
+      ],
+      "finding": "The verified MySQL choice was displayed. The available answer omitted scoped unavailability for Jatoba after the guard flagged the project name in that clause. No foreign database was displayed."
+    }
+  ],
+  "other_exact_observations": [
+    {
+      "case": "gm-p03",
+      "mode": "code",
+      "status": "checked",
+      "raw_attempts": [
+        {
+          "text": "O assunto do seu projeto era um catálogo de miniaturas. Você escolheu a linguagem Python, planejou usar o banco de dados PostgreSQL e o projeto está cancelado agora.",
+          "violation_codes": []
+        }
+      ],
+      "delivered": "O assunto do seu projeto era um catálogo de miniaturas. Você escolheu a linguagem Python, planejou usar o banco de dados PostgreSQL e o projeto está cancelado agora."
+    },
+    {
+      "case": "gm-p05",
+      "mode": "agent",
+      "status": "checked",
+      "raw_attempts": [
+        {
+          "text": "Não há um registro de placa de vídeo disponível na memória para o seu computador principal.",
+          "violation_codes": []
+        }
+      ],
+      "delivered": "Não há um registro de placa de vídeo disponível na memória para o seu computador principal."
+    },
+    {
+      "case": "gm-p06",
+      "mode": "code",
+      "status": "checked",
+      "raw_attempts": [
+        {
+          "text": "No seu projeto, você planejou usar o PostgreSQL, enquanto não há registro disponível sobre o banco que seu irmão usa.",
+          "violation_codes": []
+        }
+      ],
+      "delivered": "No seu projeto, você planejou usar o PostgreSQL, enquanto não há registro disponível sobre o banco que seu irmão usa."
+    },
+    {
+      "case": "go-t02",
+      "mode": "code",
+      "status": "regenerated",
+      "raw_attempts": [
+        {
+          "text": "Que excelente escolha! O TypeScript trará uma estrutura robusta e tipagem clara para o seu projeto Pitanga.",
+          "violation_codes": [
+            "source_technology_modality_omitted"
+          ]
+        },
+        {
+          "text": "Você está implementando o projeto Pitanga utilizando TypeScript para garantir uma estrutura robusta e tipagem clara.",
+          "violation_codes": []
+        }
+      ],
+      "delivered": "Você está implementando o projeto Pitanga utilizando TypeScript para garantir uma estrutura robusta e tipagem clara.",
+      "finding": "The retry acknowledged current TypeScript implementation. It also attributed a motivation for the technology without a matching source."
+    },
+    {
+      "case": "go-p02",
+      "mode": "agent",
+      "status": "regenerated",
+      "raw_attempts": [
+        {
+          "text": "Você está implementando o projeto Pitanga em TypeScript. Para o futuro, está planejada a utilização da linguagem Rust.",
+          "violation_codes": [
+            "known_relation_not_used"
+          ]
+        },
+        {
+          "text": "Você está implementando o projeto Pitanga em TypeScript. Para o futuro, está planejado usar a linguagem Rust.",
+          "violation_codes": []
+        }
+      ],
+      "delivered": "Você está implementando o projeto Pitanga em TypeScript. Para o futuro, está planejado usar a linguagem Rust.",
+      "finding": "The first attempt used a nominal Rust-plan phrase the matcher missed. The retry displayed both modalities."
+    }
+  ],
+  "native_state": {
+    "jatoba_ordering": [
+      {
+        "case": "gm-t03",
+        "display_observed_ms": 5348,
+        "queued_without_receipt_read_ms": [
+          5348,
+          5386
+        ],
+        "terminal_read_ms": [
+          9951,
+          9961
+        ],
+        "source_receipt_records": [
+          {
+            "value": "48_gb",
+            "state": "candidate",
+            "version": 1,
+            "effect": "create"
+          }
+        ]
+      },
+      {
+        "case": "gm-t04",
+        "display_observed_ms": 2760,
+        "queued_without_receipt_read_ms": [
+          2759,
+          2791
+        ],
+        "terminal_read_ms": [
+          6538,
+          6552
+        ],
+        "source_receipt_records": [
+          {
+            "value": "12_gb",
+            "state": "candidate",
+            "version": 1,
+            "effect": "create"
+          }
+        ]
+      },
+      {
+        "case": "gm-t05",
+        "display_observed_ms": 7311,
+        "queued_without_receipt_read_ms": [
+          7311,
+          7347
+        ],
+        "terminal_read_ms": [
+          13213,
+          13223
+        ],
+        "source_receipt_records": []
+      },
+      {
+        "case": "gm-t19",
+        "display_observed_ms": 2093,
+        "queued_without_receipt_read_ms": [
+          2092,
+          2120
+        ],
+        "terminal_read_ms": [
+          6080,
+          6091
+        ],
+        "source_receipt_records": [
+          {
+            "value": "cancelled",
+            "state": "candidate",
+            "version": 1,
+            "effect": "create"
+          }
+        ]
+      }
+    ],
+    "ram_review": {
+      "action": "Approve replacement",
+      "submitted_version": 1,
+      "replacement_binds_48_gb_version": 2
+    },
+    "jatoba_after_review": {
+      "48_gb": {
+        "state": "obsolete",
+        "version": 3,
+        "temporal": "durable"
+      },
+      "12_gb": {
+        "state": "active",
+        "version": 2,
+        "temporal": "durable"
+      },
+      "64_gb": {
+        "state": "active",
+        "version": 2,
+        "temporal": "durable"
+      },
+      "cancelled": {
+        "state": "active",
+        "version": 2,
+        "temporal": "cancelled"
+      }
+    },
+    "pitanga_after_review": {
+      "mysql": {
+        "state": "active",
+        "version": 2,
+        "temporal": "durable"
+      },
+      "typescript": {
+        "state": "active",
+        "version": 2,
+        "temporal": "in_progress"
+      },
+      "rust": {
+        "state": "active",
+        "version": 2,
+        "temporal": "planned"
+      }
+    }
+  },
+  "copy": {
+    "jatoba": {
+      "sha256": "c82cad60a3e4c0074343e52661a2d30f29f00024c9c3a3604d780a67fd983d2b",
+      "status": "payload_observed",
+      "payload_matches_verified_text": true,
+      "document_focused": false,
+      "system_clipboard_written": false
+    },
+    "separate_pitanga": {
+      "sha256": "eda3554ca18b8716ec2e07cf7121dd47f29a55c0dc1d142cea64f00e9ce379a5",
+      "status": "payload_observed",
+      "payload_matches_verified_text": true,
+      "document_focused": false,
+      "system_clipboard_written": false,
+      "planned_requests": 1,
+      "executed_requests": 1,
+      "driver_sha256": "affcc2026cdd3c693fe10035701b12f0ae376d926254866d01553e468d04a61c"
+    }
+  },
+  "raw_sha256": {
+    "jatoba": "705276699967072454d76b153572540c51c224b24419b3a30f91d51ba477c882",
+    "pitanga": "582092bbd5308da08bd2a286cb1640979162386b1c53c8e85c07970d4ad1aa4d",
+    "sequence": "a514b45f60a5f254f6774f3171ecf3d2043fe21bfc318bd12e97628de4a834ff"
+  }
+}

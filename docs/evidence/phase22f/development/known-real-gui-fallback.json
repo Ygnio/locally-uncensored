@@ -1,0 +1,88 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_gui_fallback",
+  "planned": 3,
+  "completed": 3,
+  "freeze_sha256": "ab030f3e3e885177bf6e580c6b96e7777b1d488b0bbc52ac1266c6535d9a76dc",
+  "stages": [
+    {
+      "stage": "devf2-nomic-stop",
+      "exit": 0,
+      "began": "2026-11-11T13:35:55.781566+00:00",
+      "finished": "2026-11-11T13:35:57.419379+00:00"
+    },
+    {
+      "stage": "devf2-fallback-off",
+      "exit": 0,
+      "began": "2026-11-11T13:35:57.420266+00:00",
+      "finished": "2026-11-11T13:36:10.305924+00:00"
+    },
+    {
+      "stage": "devf2-nomic-resume",
+      "exit": 0,
+      "began": "2026-11-11T13:36:10.307088+00:00",
+      "finished": "2026-11-11T13:36:15.436533+00:00"
+    },
+    {
+      "stage": "devf2-fallback-on",
+      "exit": 0,
+      "began": "2026-11-11T13:36:15.437452+00:00",
+      "finished": "2026-11-11T13:36:26.373348+00:00"
+    }
+  ],
+  "nomic_off_attestation": "Controller obtained explicit loopback refusal before the off query. The Nomic stop and restart were distinct owned stages.",
+  "seed_review": {
+    "state": "active",
+    "version": 2,
+    "property": "ram_capacity",
+    "value": "48_gb"
+  },
+  "entries": {
+    "seed": {
+      "artifact_sha256": "daf01852deda5d0ec17d43eaeeecba127237f13a0f5e34b56b72665114e36223",
+      "mode": "chat",
+      "source": "No computador principal que uso há 48 GB de RAM.",
+      "delivered": "Entendido. Você tem 48 GB de RAM no seu computador principal.",
+      "first_dom_ms": 116,
+      "verified_text_matches": true,
+      "transport_failure": false,
+      "reviewed_seed_references": 0,
+      "proof_matches_seed": false,
+      "active_version": 2,
+      "scoped_current_vectors": 0
+    },
+    "off": {
+      "artifact_sha256": "d4d652eb1362e8a0baca540b304ab9388524cdb070d3d47a2e4f1b8c84f5049d",
+      "mode": "chat",
+      "source": "Quantos gigabytes de RAM tem meu PC principal? Responda só a quantidade.",
+      "delivered": "48 GB.",
+      "first_dom_ms": 113,
+      "verified_text_matches": true,
+      "transport_failure": false,
+      "reviewed_seed_references": 1,
+      "proof_matches_seed": true,
+      "active_version": 2,
+      "scoped_current_vectors": 1
+    },
+    "on": {
+      "artifact_sha256": "78683859c90daa5078f00de873540ea997bd101041078c76e6d6854e82ea4fd2",
+      "mode": "chat",
+      "source": "Quantos gigabytes de RAM tem meu PC principal? Responda só a quantidade.",
+      "delivered": "48 GB.",
+      "first_dom_ms": 117,
+      "verified_text_matches": true,
+      "transport_failure": false,
+      "reviewed_seed_references": 1,
+      "proof_matches_seed": true,
+      "active_version": 2,
+      "scoped_current_vectors": 1
+    }
+  },
+  "copy": {
+    "status": "payload_observed",
+    "payload_matches_verified": true,
+    "system_clipboard_written": false,
+    "verified_text": "48 GB.",
+    "artifact_sha256": "6243d62f2e6cf116ad00d78f9d07e2ac0120d13d657ebb8fbdd652f06f2c0ecd"
+  }
+}

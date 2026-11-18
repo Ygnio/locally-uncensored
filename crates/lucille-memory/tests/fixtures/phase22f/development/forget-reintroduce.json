@@ -1,0 +1,32 @@
+{
+  "id": "phase22f-dev-forget-reintroduce",
+  "project": "jatoba",
+  "kind": "known development only; original E texts/golds",
+  "turns": [
+    {
+      "id": "gm-t15",
+      "text": "Volte a guardar esta preferência minha: gosto de jogos em que posso escolher a classe do personagem.",
+      "new_session": true,
+      "mode": "agent",
+      "expected_atoms": [
+        "class_memory_renewal_received",
+        "no_liking_transition_inferred"
+      ],
+      "scenario": "class_reintroduction",
+      "review_preferences": true
+    },
+    {
+      "id": "gm-t18",
+      "text": "Volte a guardar: no café da tarde, eu prefiro sem açúcar.",
+      "new_session": true,
+      "mode": "code",
+      "expected_atoms": [
+        "coffee_memory_renewal_received",
+        "no_liking_transition_inferred"
+      ],
+      "scenario": "coffee_reintroduction",
+      "review_preferences": true
+    }
+  ],
+  "probes": []
+}

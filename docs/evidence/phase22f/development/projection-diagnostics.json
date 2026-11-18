@@ -1,0 +1,111 @@
+{
+  "kind": "known-2.2e-native-projection-diagnosis",
+  "stage": "2.2f-development",
+  "purpose": {
+    "id": "ea-008",
+    "query": "Qual é a finalidade do projeto de catálogo que comecei?",
+    "existing_sources": [
+      {
+        "label": "purpose",
+        "text": "Estou começando um projeto de catálogo de miniaturas.",
+        "seed_status": "completed"
+      }
+    ],
+    "preflight": "not_executed",
+    "generations": 0,
+    "frozen_error": "Error: Native reference/actor/temporal validation rejected known context",
+    "concrete_cause": "The scoped and reviewed project description existed. The former description_intent accepted description/assunto/purpose but not the Portuguese purpose noun finalidade in a project relation. eligible_source rejected the selected description before generation.",
+    "fix": "Recognize a bounded Portuguese purpose-of-project relation and use the same intent for canonical lexical selection and compound-relation identification. No ranking or authority threshold changes."
+  },
+  "cancelled_plan": {
+    "id": "gm-p06",
+    "query": "Compare o banco planejado no meu projeto com o banco que meu irmão usa.",
+    "previous_attempts": [
+      {
+        "raw": "O banco planejado para o seu projeto Jatoba é o PostgreSQL, enquanto não há registro disponível sobre o banco que seu irmão usa.",
+        "application_violations": [
+          {
+            "code": "plan_or_decision_as_execution",
+            "span": "O banco planejado para o seu projeto Jatoba é o PostgreSQL, enquanto não há registro disponível sobre o banco que seu irmão usa.",
+            "critical": true
+          },
+          {
+            "code": "terminal_project_as_execution",
+            "span": "O banco planejado para o seu projeto Jatoba é o PostgreSQL, enquanto não há registro disponível sobre o banco que seu irmão usa.",
+            "critical": true
+          }
+        ],
+        "native_before_exposure": {
+          "checked_at_utc": "2026-11-04T23:44:59.793Z",
+          "learning_receipt": null,
+          "directive_receipt": null
+        }
+      },
+      {
+        "raw": "Você planeja usar o PostgreSQL no seu projeto, mas não há registro sobre qual banco de dados o seu irmão usa.",
+        "application_violations": [],
+        "native_before_exposure": {
+          "checked_at_utc": "2026-11-04T23:45:04.048Z",
+          "learning_receipt": null,
+          "directive_receipt": null
+        }
+      }
+    ],
+    "native_payloads_observed": [
+      {
+        "archived_broker_line_sha256": "f7651d4717884fe21dcc7c87ebcf0ac7744a1200b2a78fc0343981335e8caa38",
+        "project_relations": [
+          {
+            "entity": "project.jatoba",
+            "property": "database",
+            "value": "postgresql",
+            "modality": "planned",
+            "validity": "current"
+          },
+          {
+            "entity": "project.jatoba",
+            "property": "lifecycle",
+            "value": "cancelled",
+            "modality": "cancelled",
+            "validity": "current"
+          }
+        ]
+      },
+      {
+        "archived_broker_line_sha256": "1ee2d7d07aeaa44d76416ae4b45ce628b7bf6a7af352eb729682bff826f61721",
+        "project_relations": [
+          {
+            "entity": "project.jatoba",
+            "property": "database",
+            "value": "postgresql",
+            "modality": "planned",
+            "validity": "current"
+          },
+          {
+            "entity": "project.jatoba",
+            "property": "lifecycle",
+            "value": "cancelled",
+            "modality": "cancelled",
+            "validity": "current"
+          }
+        ]
+      }
+    ],
+    "concrete_causes": [
+      "Native context_facts::project marked only technical execution records historical after terminal project status. The preceding database plan was injected as validity=current alongside current lifecycle cancelled.",
+      "The first response joined its own planning relation with an independent absence statement introduced by enquanto. The verifier treated the embedded brother-owned usa as execution of the PostgreSQL plan.",
+      "The regenerated present-tense planeja was not execution by the lexical verifier, and the native plan was still tagged current, so that false current modality passed."
+    ],
+    "native_fix": "For an approved terminal lifecycle, project language/database plans and decisions grounded in an earlier original source remain recoverable as historical facts with unchanged modality and record version. Prefer native source reservation order over approval time, with timestamp fallback for preexisting records lacking job provenance."
+  },
+  "phase22e_artifacts": [
+    {
+      "name": "retrieval-answer-literal-audit.json",
+      "sha256": "31d180842c465ea04395b32446025a7859ce4c106e18983044726c74bd8ba5e3"
+    },
+    {
+      "name": "gui-main-literal-audit.json",
+      "sha256": "3b81a01cc4d9aeefbfc5d487ea5c15479975613bdabc0c4ff82efeff81e9242f"
+    }
+  ]
+}

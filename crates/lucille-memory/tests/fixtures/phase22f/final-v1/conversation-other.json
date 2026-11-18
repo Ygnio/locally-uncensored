@@ -1,0 +1,96 @@
+{
+  "id": "phase22f-final-v1-conversation-other",
+  "kind": "independent final v1 GUI specification",
+  "scope": "phase22f-v1-gui-a7k",
+  "project": "vereda",
+  "turns": [
+    {
+      "id": "fv1-other-t01",
+      "text": "Para o projeto Vereda, eu escolhi MySQL como banco de dados.",
+      "mode": "agent",
+      "expected_atoms": [
+        "vereda_mysql_choice",
+        "no_premature_persistence"
+      ],
+      "new_session": true,
+      "review": true
+    },
+    {
+      "id": "fv1-other-t02",
+      "text": "Estou implementando meu projeto Vereda em TypeScript.",
+      "mode": "code",
+      "expected_atoms": [
+        "vereda_typescript_implementation",
+        "no_premature_persistence"
+      ],
+      "new_session": true,
+      "review": true
+    },
+    {
+      "id": "fv1-other-t03",
+      "text": "Futuramente, pretendo usar Rust como linguagem no projeto Vereda.",
+      "mode": "chat",
+      "expected_atoms": [
+        "vereda_rust_future_intent",
+        "no_premature_persistence"
+      ],
+      "new_session": true,
+      "review": true
+    },
+    {
+      "id": "fv1-other-t04",
+      "text": "Escolher MySQL já comprova que coloquei esse banco em uso no projeto Vereda?",
+      "mode": "chat",
+      "expected_atoms": [
+        "vereda_mysql_use_not_established"
+      ]
+    },
+    {
+      "id": "fv1-other-t05",
+      "text": "Que bebida favorita minha está disponível no contexto do Vereda?",
+      "mode": "agent",
+      "expected_atoms": [
+        "bounded_unknown_vereda_beverage"
+      ],
+      "new_session": true
+    },
+    {
+      "id": "fv1-other-t06",
+      "text": "Para a interface, eu prefiro o tema escuro.",
+      "mode": "chat",
+      "expected_atoms": [
+        "vereda_dark_interface",
+        "no_premature_persistence"
+      ],
+      "new_session": true
+    }
+  ],
+  "probes": [
+    {
+      "id": "fv1-other-p01",
+      "text": "Qual tecnologia estou usando para implementar o Vereda e qual pretendo usar futuramente?",
+      "mode": "code",
+      "expected_atoms": [
+        "vereda_typescript_implementation",
+        "vereda_rust_future_intent"
+      ]
+    },
+    {
+      "id": "fv1-other-p02",
+      "text": "Compare o banco que escolhi para o projeto Vereda com o banco que eu planejava usar no projeto Farol.",
+      "mode": "chat",
+      "expected_atoms": [
+        "vereda_mysql_choice",
+        "farol_database_unavailable_within_vereda"
+      ]
+    },
+    {
+      "id": "fv1-other-p03",
+      "text": "Que tema de interface prefiro neste projeto?",
+      "mode": "agent",
+      "expected_atoms": [
+        "vereda_dark_interface"
+      ]
+    }
+  ]
+}

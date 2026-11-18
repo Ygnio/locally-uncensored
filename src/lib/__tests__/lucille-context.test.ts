@@ -31,6 +31,23 @@ describe('Lucille shared Chat/Agent adapter', () => {
     expect(await withLucilleContext({ id: 'native' }, 'm', 'q', 'chat', messages, undefined, loader)).toBe(messages)
     expect(loader).not.toHaveBeenCalled()
   })
+  it('keeps an unconfirmed storage question scoped and preserves the original USER text', async () => {
+    const context = { ...fixture(), memories: [], references: [] }
+    const question: ChatMessage = { role: 'user', content: 'Continua registrada a minha preferência por criação de personagens?' }
+    const payload = await withLucilleContext(conversation, 'synthetic-message', question.content, 'chat', [question], undefined, async () => context)
+    expect(payload.at(-1)).toBe(question)
+    expect(payload.at(-2)?.content).toContain('no confirmed record for this storage-status question')
+    expect(payload.at(-2)?.content).toContain('unavailable in this scope')
+  })
+  it('supplies a verified project purpose independently of an unknown implementation stage', async () => {
+    const context = fixture()
+    context.facts = [{id:'fixture',version:2,entity:'project.synthetic-a',property:'description',value:'painel de iluminação',modality:'project_description',validity:'current',scope:context.scope,project:context.project,review:'reviewed',facets:[],evidence:[{role:'current_source',text:'Estou começando um projeto de painel de iluminação.'}]}]
+    const question: ChatMessage = { role: 'user', content: 'Como está ficando aquele projeto?' }
+    const payload = await withLucilleContext(conversation, 'synthetic-message', question.content, 'chat', [question], undefined, async () => context)
+    expect(payload.at(-1)).toBe(question)
+    expect(payload.at(-2)?.content).toContain('Describe the verified purpose directly')
+    expect(payload.at(-2)?.content).toContain('The project stage is unconfirmed')
+  })
   it.each(['chat', 'agent'] as const)('loads identity independently of history in %s', async mode => {
     const ctx = fixture(); ctx.mode = mode
     const result = await withLucilleContext(conversation, 'synthetic-message', 'telescope', mode, messages, undefined, async () => ctx)

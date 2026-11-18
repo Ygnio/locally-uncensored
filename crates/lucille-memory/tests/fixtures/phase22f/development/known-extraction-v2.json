@@ -1,0 +1,227 @@
+{
+  "id": "phase22f-development-known-extraction-v2",
+  "kind": "Known cases, not a holdout",
+  "originals": [
+    "2.2E A seven losses",
+    "2.2E C original fourth seed",
+    "2.2D dx-031 and dx-032"
+  ],
+  "cases": [
+    {
+      "id": "ex-001",
+      "scope": "phase22e-final-ext-001",
+      "project": "jatoba",
+      "text": "Café sem açúcar é a minha preferência no intervalo da tarde.",
+      "category": "nominal_coffee_pt",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar",
+          "temporal": "preference",
+          "allowed_evidence": [
+            "Café sem açúcar é a minha preferência no intervalo da tarde.",
+            "Café sem açúcar é a minha preferência no intervalo da tarde"
+          ]
+        }
+      ],
+      "risk": "A",
+      "critical": false,
+      "critical_on_fp": true,
+      "novelty": "new_synthetic"
+    },
+    {
+      "id": "ex-006",
+      "scope": "phase22e-final-ext-006",
+      "project": "jatoba",
+      "text": "My preferred interface appearance is the light theme.",
+      "category": "nominal_theme_en",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "interface_theme",
+          "value": "light",
+          "temporal": "preference",
+          "allowed_evidence": [
+            "My preferred interface appearance is the light theme.",
+            "My preferred interface appearance is the light theme"
+          ]
+        }
+      ],
+      "risk": "A",
+      "critical": false,
+      "critical_on_fp": true,
+      "novelty": "new_synthetic"
+    },
+    {
+      "id": "ex-007",
+      "scope": "phase22e-final-ext-007",
+      "project": "jatoba",
+      "text": "O idioma de minha preferência para receber respostas é português.",
+      "category": "nominal_language_pt",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "response_language",
+          "value": "pt",
+          "temporal": "preference",
+          "allowed_evidence": [
+            "O idioma de minha preferência para receber respostas é português.",
+            "O idioma de minha preferência para receber respostas é português"
+          ]
+        }
+      ],
+      "risk": "A",
+      "critical": false,
+      "critical_on_fp": true,
+      "novelty": "new_synthetic"
+    },
+    {
+      "id": "ex-013",
+      "scope": "phase22e-final-ext-013",
+      "project": "jatoba",
+      "text": "Jogos de estratégia por turnos fazem parte das minhas preferências.",
+      "category": "nominal_strategy_pt",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "games_turn_strategy",
+          "value": "positive",
+          "temporal": "preference",
+          "allowed_evidence": [
+            "Jogos de estratégia por turnos fazem parte das minhas preferências.",
+            "Jogos de estratégia por turnos fazem parte das minhas preferências"
+          ]
+        }
+      ],
+      "risk": "A",
+      "critical": false,
+      "critical_on_fp": true,
+      "novelty": "new_synthetic"
+    },
+    {
+      "id": "ex-015",
+      "scope": "phase22e-final-ext-015",
+      "project": "jatoba",
+      "text": "Para guardar o acervo deste projeto, PostgreSQL foi a minha escolha final de banco de dados.",
+      "category": "database_final_fronted",
+      "expected": [
+        {
+          "kind": "decision",
+          "subject": "project.jatoba",
+          "property": "database",
+          "value": "postgresql",
+          "temporal": "durable",
+          "allowed_evidence": [
+            "Para guardar o acervo deste projeto, PostgreSQL foi a minha escolha final de banco de dados.",
+            "Para guardar o acervo deste projeto, PostgreSQL foi a minha escolha final de banco de dados"
+          ]
+        }
+      ],
+      "risk": "B",
+      "critical": false,
+      "critical_on_fp": true,
+      "novelty": "new_synthetic"
+    },
+    {
+      "id": "ex-017",
+      "scope": "phase22e-final-ext-017",
+      "project": "jatoba",
+      "text": "No meu computador principal estão instalados 48 GB de RAM.",
+      "category": "identified_primary_ram",
+      "expected": [
+        {
+          "kind": "hardware",
+          "subject": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "48_gb",
+          "temporal": "durable",
+          "allowed_evidence": [
+            "No meu computador principal estão instalados 48 GB de RAM.",
+            "No meu computador principal estão instalados 48 GB de RAM"
+          ]
+        }
+      ],
+      "risk": "B",
+      "critical": false,
+      "critical_on_fp": true,
+      "novelty": "new_synthetic"
+    },
+    {
+      "id": "ex-018",
+      "scope": "phase22e-final-ext-018",
+      "project": "jatoba",
+      "text": "O meu notebook de trabalho conta hoje com 12 GB de RAM.",
+      "category": "identified_work_ram",
+      "expected": [
+        {
+          "kind": "hardware",
+          "subject": "device.work_laptop",
+          "property": "ram_capacity",
+          "value": "12_gb",
+          "temporal": "durable",
+          "allowed_evidence": [
+            "O meu notebook de trabalho conta hoje com 12 GB de RAM.",
+            "O meu notebook de trabalho conta hoje com 12 GB de RAM"
+          ]
+        }
+      ],
+      "risk": "B",
+      "critical": false,
+      "critical_on_fp": true,
+      "novelty": "new_synthetic"
+    },
+    {
+      "id": "dx-031",
+      "scope": "phase22d-final-ext-031",
+      "project": "aroeira",
+      "text": "A mensagem de ferramenta informa: eu prefiro chá como bebida favorita.",
+      "category": "reported_tool_text",
+      "expected": [],
+      "risk": "negative",
+      "critical": true
+    },
+    {
+      "id": "dx-032",
+      "scope": "phase22d-final-ext-032",
+      "project": "aroeira",
+      "text": "No diálogo que inventei, a narradora diz eu gosto de café sem açúcar.",
+      "category": "fictional_speech",
+      "expected": [],
+      "risk": "negative",
+      "critical": true
+    },
+    {
+      "id": "c-ram-seed",
+      "text": "No computador principal que uso há 48 GB de RAM.",
+      "scope": "phase22e-final-ret-main",
+      "project": "jatoba",
+      "category": "owned_relative_existential_capacity",
+      "risk": "B",
+      "critical": false,
+      "critical_on_fp": true,
+      "expected": [
+        {
+          "kind": "hardware",
+          "subject": "device.primary_computer",
+          "property": "ram_capacity",
+          "value": "48_gb",
+          "temporal": "durable",
+          "allowed_evidence": [
+            "No computador principal que uso há 48 GB de RAM.",
+            "No computador principal que uso há 48 GB de RAM"
+          ]
+        }
+      ]
+    }
+  ],
+  "development_annotation_correction": {
+    "prior_sha256": "3d7c42a08c4430c4ffea88d45b43ec4f0e634bfe02779a72d241090c4826e383",
+    "case": "c-ram-seed",
+    "reason": "The original C event contains no temporal label. This development wrapper had used projected current state for the storage field. A current typed RAM fact has canonical Quality.temporal=durable."
+  }
+}

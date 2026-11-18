@@ -1,0 +1,356 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_resume_protocols",
+  "date": "2026-11-18",
+  "run_label": "dev18d",
+  "production_code_commit": "df9c6c9b48e4e19d3f9b454950aaa56e23db58ad",
+  "development_freeze_sha256": "0a0f5b226db492053cd02503b4025354b5fe2e46b8dff7379b5399fce30dcec0",
+  "protocol_dataset_sha256": "e97a67a53cd67aeba9ef0ea3db91635b0dd884d7ba6fc6b47e30b890fc68c6cf",
+  "faults": {
+    "counts": {
+      "planned": 7,
+      "measured": 7,
+      "product_failure": 0,
+      "evaluator_failure": 0,
+      "infrastructure_failure": 0,
+      "not_executed": 0,
+      "invalid_result": 0
+    },
+    "passed": true,
+    "raw_artifact_sha256": "e58f6d0ca16cb071ccb5ab357bd71be8e948bad7c53a434a3138b2593c8b1469",
+    "initial_and_final_artifacts_attested": true,
+    "cases": [
+      {
+        "case": "final-e-cancel-chat",
+        "protocol": "prepared_cancel",
+        "mode": "chat",
+        "status": "measured",
+        "jobs_after": [
+          {
+            "state": "cancelled",
+            "attempts": 0,
+            "lease_present": false,
+            "lease_deadline_present": false
+          }
+        ],
+        "retained_records": 0,
+        "same_job_on_replay_and_retry": true,
+        "unbound_source_ignored": true,
+        "assistant_source_rejected": true
+      },
+      {
+        "case": "final-e-cancel-agent",
+        "protocol": "prepared_cancel",
+        "mode": "agent",
+        "status": "measured",
+        "jobs_after": [
+          {
+            "state": "cancelled",
+            "attempts": 0,
+            "lease_present": false,
+            "lease_deadline_present": false
+          }
+        ],
+        "retained_records": 0,
+        "same_job_on_replay_and_retry": true,
+        "unbound_source_ignored": true,
+        "assistant_source_rejected": true
+      },
+      {
+        "case": "final-e-cancel-code",
+        "protocol": "prepared_cancel",
+        "mode": "code",
+        "status": "measured",
+        "jobs_after": [
+          {
+            "state": "cancelled",
+            "attempts": 0,
+            "lease_present": false,
+            "lease_deadline_present": false
+          }
+        ],
+        "retained_records": 0,
+        "same_job_on_replay_and_retry": true,
+        "unbound_source_ignored": true,
+        "assistant_source_rejected": true
+      },
+      {
+        "case": "final-e-source-order",
+        "protocol": "ordered_sources",
+        "mode": "chat",
+        "status": "measured",
+        "published_order": [
+          "newer_source",
+          "older_source"
+        ],
+        "jobs_after": [
+          {
+            "state": "done",
+            "attempts": 1,
+            "lease_present": false,
+            "lease_deadline_present": false
+          },
+          {
+            "state": "done",
+            "attempts": 1,
+            "lease_present": false,
+            "lease_deadline_present": false
+          }
+        ],
+        "current_value_before_older": "without_sugar",
+        "current_value_after_older": "without_sugar",
+        "current_version": 1,
+        "same_current_record_and_version": true
+      },
+      {
+        "case": "final-e-cancel-lease",
+        "protocol": "leased_cancel",
+        "mode": "chat",
+        "status": "measured",
+        "jobs_at_interruption": [
+          {
+            "state": "running",
+            "attempts": 1,
+            "lease_present": true,
+            "lease_deadline_present": true
+          }
+        ],
+        "jobs_after": [
+          {
+            "state": "cancelled",
+            "attempts": 1,
+            "lease_present": false,
+            "lease_deadline_present": false
+          }
+        ],
+        "late_completion_accepted": false,
+        "state_unchanged_by_late_reply": true,
+        "scoped_gemma_response": {
+          "latency_seconds": 7.569464900007006,
+          "completed_utc": "2026-11-18T13:02:32.794636+00:00"
+        },
+        "records_after": []
+      },
+      {
+        "case": "final-e-restart-lease",
+        "protocol": "restart",
+        "mode": "chat",
+        "status": "measured",
+        "jobs_at_interruption": [
+          {
+            "state": "running",
+            "attempts": 1,
+            "lease_present": true,
+            "lease_deadline_present": true
+          }
+        ],
+        "jobs_after": [
+          {
+            "state": "done",
+            "attempts": 2,
+            "lease_present": false,
+            "lease_deadline_present": false
+          }
+        ],
+        "late_completion_accepted": false,
+        "state_unchanged_by_late_reply": true,
+        "scoped_gemma_response": {
+          "latency_seconds": 7.658975800004555,
+          "completed_utc": "2026-11-18T13:02:48.894523+00:00"
+        },
+        "records_after": [
+          {
+            "property": "games_class_selection",
+            "value": "positive",
+            "state": "active",
+            "version": 1
+          },
+          {
+            "property": "interface_theme",
+            "value": "dark",
+            "state": "active",
+            "version": 1
+          },
+          {
+            "property": "coffee_sugar",
+            "value": "without_sugar",
+            "state": "active",
+            "version": 1
+          },
+          {
+            "property": "response_language",
+            "value": "pt",
+            "state": "active",
+            "version": 1
+          }
+        ],
+        "verified_owned_host_replaced": true,
+        "restarted_host_attested": true
+      },
+      {
+        "case": "sqlite-busy",
+        "protocol": "sqlite_busy",
+        "mode": "chat",
+        "status": "measured",
+        "writer_lock_refused_native_prepare": true,
+        "rejection_message": "Lucille database operation failed",
+        "no_job_while_locked": true,
+        "retained_records_after_rollback": 0
+      }
+    ]
+  },
+  "transport": {
+    "counts": {
+      "planned": 3,
+      "measured": 3,
+      "product_failure": 0,
+      "evaluator_failure": 0,
+      "infrastructure_failure": 0,
+      "not_executed": 0,
+      "invalid_result": 0
+    },
+    "passed": true,
+    "raw_artifact_sha256": "c737ed3ad062c598b54fecd735983feb0af76e72fb41e897ce0014509003f4f3",
+    "initial_and_final_artifacts_attested": true,
+    "cases": [
+      {
+        "mode": "chat",
+        "status": "measured",
+        "exact_single_user_source_preserved": true,
+        "error_painted_ms": 9919,
+        "terminal_receipt_read_ms": [
+          45523,
+          45533
+        ],
+        "receipt_exact_source_identity_mode_scope_record_version_verified": true,
+        "canonical": {
+          "subject": "user",
+          "property": "coffee_sugar",
+          "value": "without_sugar",
+          "state": "active",
+          "version": 1
+        },
+        "final_metrics": {
+          "jobs": [
+            {
+              "count": 1,
+              "state": "done"
+            }
+          ],
+          "memories": [
+            {
+              "count": 1,
+              "state": "active"
+            }
+          ],
+          "provenance_rows": 1,
+          "current_vectors": 1,
+          "pending_vectors": 0
+        }
+      },
+      {
+        "mode": "agent",
+        "status": "measured",
+        "exact_single_user_source_preserved": true,
+        "error_painted_ms": 37912,
+        "terminal_receipt_read_ms": [
+          73790,
+          73805
+        ],
+        "receipt_exact_source_identity_mode_scope_record_version_verified": true,
+        "canonical": {
+          "subject": "user",
+          "property": "interface_theme",
+          "value": "dark",
+          "state": "active",
+          "version": 1
+        },
+        "final_metrics": {
+          "jobs": [
+            {
+              "count": 1,
+              "state": "done"
+            }
+          ],
+          "memories": [
+            {
+              "count": 1,
+              "state": "active"
+            }
+          ],
+          "provenance_rows": 1,
+          "current_vectors": 1,
+          "pending_vectors": 0
+        }
+      },
+      {
+        "mode": "code",
+        "status": "measured",
+        "exact_single_user_source_preserved": true,
+        "error_painted_ms": 9917,
+        "terminal_receipt_read_ms": [
+          48116,
+          48126
+        ],
+        "receipt_exact_source_identity_mode_scope_record_version_verified": true,
+        "canonical": {
+          "subject": "user",
+          "property": "games_class_selection",
+          "value": "positive",
+          "state": "active",
+          "version": 1
+        },
+        "final_metrics": {
+          "jobs": [
+            {
+              "count": 1,
+              "state": "done"
+            }
+          ],
+          "memories": [
+            {
+              "count": 1,
+              "state": "active"
+            }
+          ],
+          "provenance_rows": 1,
+          "current_vectors": 1,
+          "pending_vectors": 0
+        }
+      }
+    ]
+  },
+  "prior_attempt_preserved": {
+    "dev18a-fault-faults.json": {
+      "sha256": "23c7d6132f801cb58a6ef3e619cdf563d39df5ab82157c596a59900a4f49a553",
+      "counts": {
+        "planned": 7,
+        "measured": 3,
+        "product_failure": 0,
+        "evaluator_failure": 3,
+        "infrastructure_failure": 1,
+        "not_executed": 0,
+        "invalid_result": 0
+      }
+    },
+    "dev18a-trans-transport.json": {
+      "sha256": "182d896e013f9f7f0affce73be49b3c29c3b014398ae3a690fad2392a481dd35",
+      "counts": {
+        "planned": 3,
+        "measured": 0,
+        "product_failure": 0,
+        "evaluator_failure": 3,
+        "infrastructure_failure": 0,
+        "not_executed": 0,
+        "invalid_result": 0
+      }
+    }
+  },
+  "limits": [
+    "Os dez protocolos são casos conhecidos de desenvolvimento e foram medidos no host sintético da Fase 2.2F.",
+    "As provas de lease referem-se a uma resposta real do Gemma localizada por escopo e fonte após a marca inicial do log. O executor não preservou correlação exclusiva à requisição em voo no instante da interrupção.",
+    "O transporte mede o erro exibido e a persistência verificável após a reconexão. A rodada não mede uma nova resposta textual entregue ao usuário após o erro.",
+    "Os tempos do recibo mostram o intervalo observado da leitura e o momento do commit pode preceder a leitura.",
+    "Aprovação final e resultados C2 ficam fora deste artefato."
+  ]
+}

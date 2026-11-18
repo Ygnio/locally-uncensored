@@ -1,0 +1,106 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_historical_regression",
+  "date": "2026-11-18",
+  "run_label": "dev18lseries-historical50",
+  "production_code_commit": "faa71ace496620831cc6547db9722a54909a863b",
+  "scope": "phase22c-final-historical-series",
+  "project": "candeia2",
+  "execution_complete": true,
+  "formal_thresholds_passed": true,
+  "progression_allowed": false,
+  "coverage": {
+    "source_turns_planned": 50,
+    "source_turns_observed": 50,
+    "probes_planned": 8,
+    "probes_observed": 8,
+    "checked": 57,
+    "blocked": 1,
+    "not_executed": 0
+  },
+  "literal_metrics": {
+    "useful_responses": 57,
+    "planned_responses": 58,
+    "availability": 0.9827586206896551,
+    "useful_probes": 7,
+    "planned_probes": 8,
+    "retained_atoms": 57,
+    "planned_atoms": 60,
+    "completeness": 0.95,
+    "supported_delivered_claims": 14,
+    "delivered_claims": 14,
+    "critical_delivered_claims": 0,
+    "premature_completed_write_claims": 0,
+    "unverified_agent_notes_displayed": 0,
+    "cross_project_value_leaks": 0
+  },
+  "earliest_native_probe_retrieval": {
+    "tp": 8,
+    "fp": 0,
+    "missed": 0,
+    "expected_references": 8,
+    "precision": 1,
+    "recall": 1,
+    "out_of_binding_references": 0
+  },
+  "native_source_audit": {
+    "starting_candeia2_records": 0,
+    "completed_candeia2_source_jobs": 6,
+    "active_candeia2_records": 8,
+    "verified_exact_user_origin_proofs": 8,
+    "prior_candeia_records_verified_unchanged": 11,
+    "pending_vectors": 0,
+    "tombstones": 0,
+    "duplicate_active_keys": 0,
+    "critical_writes": 0,
+    "critical_promotions": 0,
+    "supplemental_distinct_source_relations": { "tp": 8, "fp": 0, "missed": 0, "denominator": 8 },
+    "method": "The scope state matched the H20 outcome at entry. Native IDs, versions, state, keys, content and source IDs confirmed that the prior candeia records stayed unchanged. All candeia2 records resolved to their own exact USER sources."
+  },
+  "observations": [
+    {
+      "ordinal": 51,
+      "probe": 1,
+      "detail": "The earliest native audit injected all three expected references. Both raw replies asserted current development without supporting evidence and were withheld. The blocked reply lost the project-description atom and both planned-technology atoms.",
+      "raw_attempts_withheld": 2,
+      "expected_references": 3,
+      "initial_references_matched": 3,
+      "planned_atoms": 3,
+      "retained_atoms": 0
+    },
+    {
+      "ordinal": 57,
+      "probe": 7,
+      "detail": "The English reply indicated that the foreign project's database was unavailable in the conversation's authorized binding. The foreign project still had its planned PostgreSQL record and no foreign reference was injected."
+    }
+  ],
+  "latency_ms": {
+    "generation": { "samples": 58, "p50": 4563.5, "p95": 7435, "max": 7809 },
+    "extraction_wait": { "samples": 58, "p50": 730.5, "p95": 4725, "max": 5293 }
+  },
+  "original_22e_h50": {
+    "useful_responses": 58,
+    "planned_responses": 58,
+    "useful_probes": 8,
+    "planned_probes": 8,
+    "retained_atoms": 60,
+    "planned_atoms": 60,
+    "supported_delivered_claims": 14,
+    "delivered_claims": 14,
+    "critical_delivered_claims": 0,
+    "earliest_native_retrieval": { "tp": 8, "fp": 0, "missed": 0 },
+    "first_probe_useful": true,
+    "published_audit_sha256": "5fb349fcffbdb01558458acf8664ba10c62dbac198426e6c0eab390ed94caecc",
+    "raw_sha256": "955b7812c7688dd2c7ad6c006ba01154b5f7b6a62d4341393675135c84b761f3"
+  },
+  "sha256": {
+    "original_fixture": "b244780d91caaffea0dbbce86f597c3ef66b2303dc64aad34e2adc76d243ee66",
+    "development_manifest": "cf13e579b9d8f291c7237308db680a72c7528218c6bd4e9b092fb69bfa3650a1",
+    "preceding_h20_outcome": "9ddf092c1e8513f76a408702ce502ced46fae9be59acd66044647f99586bf610",
+    "raw": "7a5c35c3fdf4b4e5556d89f70220ec107cec1604bdc797528505f923363efc78",
+    "outcome": "e7bdf06cda83128762386af831880822f40db9d03f6c2cbeef1403aabb992192",
+    "independent_review": "2f80ce6edb7ecf795117146acb6a9fdf64cd67a24c57e9a64340d974274d9ccb",
+    "execution_log": "6d882a166596c5cc4e6df18c2598182945234b2ec33afdcd64f5df5562992ea3"
+  },
+  "disposition": "Formal H50 thresholds were met. The loss of the first probe relative to the original 2.2E run requires repair and revalidation before advancing. H100 was not executed in this series."
+}

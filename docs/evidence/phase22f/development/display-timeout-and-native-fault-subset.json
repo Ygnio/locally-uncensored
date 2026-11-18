@@ -1,0 +1,87 @@
+{
+  "kind": "known_development_display_timeout_and_independent_native_checks",
+  "phase": "2.2F",
+  "event": {
+    "source": "Windows System",
+    "provider": "Display",
+    "event_id": 4101,
+    "utc": "2026-11-11T13:38:44.0139563Z",
+    "description": "Windows recorded nvlddmkm stopped responding and recovered.",
+    "boot_utc_after_event": "2026-11-11T12:59:05.5000000Z",
+    "reboot_on_this_event": false
+  },
+  "samples": {
+    "last_before": {
+      "utc": "2026-11-11T13:38:35.6101414Z",
+      "available_mib": 2185,
+      "committed_bytes": 18846928896,
+      "commit_limit": 34312937472,
+      "gpu_csv_mib": "0, 9222, 12288, 97"
+    },
+    "first_after": {
+      "utc": "2026-11-11T13:38:46.5617030Z",
+      "available_mib": 1937,
+      "committed_bytes": 19202514944,
+      "commit_limit": 34312937472,
+      "gpu_csv_mib": "No devices were found"
+    },
+    "lowest_available_mib_in_resumed_segment": 1258,
+    "preventive_ram_floor_mib": 1024,
+    "sample_log_sha256": "25b046e515de90f7348dad952c7ae86a4af93bdcbd8e8a66d0b499c40cbef972"
+  },
+  "models": {
+    "gemma": {
+      "exit_code": 3221226505,
+      "runtime_observation": "CUDA error: unknown error",
+      "private_process_manifest_sha256": "df24ea66b0c8c9807215cff56161651f89348c3498b60a58b5ca6a0d08e0fcb2",
+      "private_runtime_log_sha256": "1d8ff674286a7397aba8f68224531160f5b1cd88d8175649c9c8f63a7e595dc1"
+    },
+    "nomic": {
+      "exit_code": 3221226505,
+      "runtime_observation": "CUDA error: unknown error",
+      "private_process_manifest_sha256": "9bbb937bde0230e2c3024522aa7bb442d0e61c1b593eef8738533db59bbf4f38",
+      "private_runtime_log_sha256": "9d7e52aeb1535ac83eebad724bb27f6a3cef28f0b10a64c0be4f6d47ba636636"
+    }
+  },
+  "stage": {
+    "scheduler_disposition": {
+      "at_utc": "2026-11-11T13:41:07.3177135Z",
+      "remaining": [
+        "devf2-fault",
+        "devf2-trans",
+        "devf2-c2"
+      ],
+      "cause": "Display event 4101 and both owned model processes exited with CUDA errors",
+      "running": "devf2-pitanga",
+      "controllers_stopped": 2
+    },
+    "interrupted_jatoba_completed": 9,
+    "interrupted_pitanga_completed": 0,
+    "independent_native_subset_only": true
+  },
+  "cpu_faults": {
+    "cases": {
+      "final-e-cancel-chat": "measured",
+      "final-e-cancel-agent": "measured",
+      "final-e-cancel-code": "measured",
+      "final-e-source-order": "not_executed",
+      "final-e-cancel-lease": "not_executed",
+      "final-e-restart-lease": "not_executed",
+      "sqlite-busy": "measured"
+    },
+    "reported_counts": {
+      "planned": 7,
+      "measured": 4,
+      "product_failure": 0,
+      "evaluator_failure": 0,
+      "infrastructure_failure": 0,
+      "not_executed": 3,
+      "invalid_result": 0
+    },
+    "native_host_verified": true,
+    "model_live_pins_verified": false,
+    "raw_sha256": "c666d1eedf1c6beb81c86e2f47d8ed5638e55992f001b74c67561e37c010b4d9",
+    "scope": "Only pre-inference cancellation and synthetic SQLite write-lock protocols were eligible."
+  },
+  "finding": "The event and runtime exits are contemporaneous. The record does not identify the trigger of the display timeout."
+}

@@ -1,0 +1,34 @@
+{
+  "id": "phase22f-final-v1-conversation-empty",
+  "kind": "independent final v1 GUI specification",
+  "scope": "phase22f-v1-empty-q4p",
+  "project": "farol",
+  "turns": [],
+  "probes": [
+    {
+      "id": "fv1-empty-p01",
+      "text": "Qual finalidade do projeto Farol está disponível neste contexto?",
+      "mode": "chat",
+      "expected_atoms": [
+        "bounded_unknown_homonymous_farol_purpose"
+      ]
+    },
+    {
+      "id": "fv1-empty-p02",
+      "text": "O que consta aqui sobre a RAM do meu computador principal e a quantidade de açúcar que prefiro no café?",
+      "mode": "agent",
+      "expected_atoms": [
+        "bounded_unknown_empty_primary_ram",
+        "bounded_unknown_coffee_preparation"
+      ]
+    },
+    {
+      "id": "fv1-empty-p03",
+      "text": "Que linguagem usei para implementar este projeto, segundo os registros desta conversa?",
+      "mode": "code",
+      "expected_atoms": [
+        "bounded_unknown_empty_implementation_language"
+      ]
+    }
+  ]
+}

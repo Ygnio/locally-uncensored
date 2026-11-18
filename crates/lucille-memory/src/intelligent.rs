@@ -238,7 +238,12 @@ pub(crate) fn before_change(tx: &Transaction, m: &Memory, action: &Action) -> Re
     }
     if matches!(action, Action::Approve) {
         if let Some(q) = quality(tx, &m.input.id)? {
-            if let (Some(id), Some(version)) = (q.replaces_id, q.replaces_version) {
+            let contextual_correction = q.evidence_rule.contains(crate::evidence::CONTEXTUAL_RAM_CORRECTION_RULE);
+            let replacement = q.replaces_id.zip(q.replaces_version);
+            if contextual_correction && replacement.is_none() {
+                return Err("Replacement source changed; review again".into());
+            }
+            if let Some((id, version)) = replacement {
                 let prior = tx
                     .query_row(
                         &format!(
@@ -249,6 +254,9 @@ pub(crate) fn before_change(tx: &Transaction, m: &Memory, action: &Action) -> Re
                     )
                     .optional()
                     .map_err(db_error)?;
+                if contextual_correction && !prior.as_ref().is_some_and(|p| p.state == crate::Status::Active && p.version == version) {
+                    return Err("Replacement source changed; review again".into());
+                }
                 if let Some(prior) = prior {
                     if prior.state != crate::Status::Obsolete {
                         if prior.version != version {
@@ -429,6 +437,7 @@ impl Store {
             return Err("Learning queue is full".into());
         }
         tx.execute("INSERT OR IGNORE INTO extraction_jobs(id,conversation_id,message_id,scope,project,mode,state,evidence_json,created_at,updated_at,next_at) VALUES(?1,?2,?3,?4,?5,?6,'queued',?7,?8,?8,?8)",params![id,input.conversation_id,input.message_id,input.scope,input.project,types::label(&input.mode),serde_json::to_string(&claims).map_err(|_|"Invalid evidence")?,now()]).map_err(db_error)?;
+        crate::source_operations::reserve(&tx, &id, None)?;
         if deferred {
             tx.execute(
                 "UPDATE extraction_jobs SET next_at=?2,lease_token=?3,lease_until=?4 WHERE id=?1",
@@ -866,6 +875,21 @@ fn ingest(
     }
     crate::source_authority::rebind(c, &mut resolved);
     let c = &resolved;
+    if let Some((device, _, previous)) = crate::evidence::contextual_ram_replacement(&c.evidence) {
+        let expected = format!("{previous}_gb");
+        let prior: Option<String> = tx.query_row(
+            "SELECT CASE WHEN COUNT(*)=1 THEN MIN(q.value) END
+             FROM memories m JOIN memory_quality q ON q.memory_id=m.id
+             WHERE m.scope=?1 AND m.project=?2 AND m.state='active'
+               AND q.subject=?3 AND q.property='ram_capacity'
+               AND (q.expires_at IS NULL OR q.expires_at>?4)",
+            params![lease.scope, lease.project, device, at],
+            |r| r.get(0),
+        ).map_err(db_error)?;
+        if prior.as_deref() != Some(expected.as_str()) {
+            return Ok(());
+        }
+    }
     // Order by original source reservation, not by extraction completion time.
     // A slow older job cannot overwrite a later source for the same temporal track.
     let newer: bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM memories m JOIN memory_quality q ON q.memory_id=m.id JOIN memory_provenance p ON p.memory_id=m.id JOIN extraction_jobs newer ON newer.id=p.interaction_id JOIN extraction_jobs incoming ON incoming.id=?1 WHERE m.scope=?2 AND m.project=?3 AND m.state IN ('active','candidate','conflict') AND q.subject=?4 AND q.property=?5 AND newer.rowid>incoming.rowid AND (?6=0 OR (q.temporal IN ('in_progress','current','completed','cancelled'))=?7))",params![lease.id,lease.scope,lease.project,c.subject,c.property,c.subject.starts_with("project.") && ["language","database"].contains(&c.property.as_str()),crate::dialogue::execution_track(&c.subject,&c.property,&c.temporal)],|r|r.get(0)).map_err(db_error)?;
@@ -940,6 +964,9 @@ fn ingest(
                 .map_err(db_error)?;
                 put_quality(tx, &memory.input.id, &q)?;
                 tx.execute("INSERT INTO history(memory_id,record_id,operation,version,at) VALUES(?1,?1,'update',?2,?3)",params![memory.input.id,memory.version+1,at]).map_err(db_error)?;
+                if matches!(memory.state, crate::Status::Active | crate::Status::Candidate) {
+                    crate::source_operations::record(tx, &lease.id, &memory.input.id, memory.version + 1, &types::label(&memory.state), "update")?;
+                }
             }
         }
         provenance(tx, &memory.input.id, lease, c, at)?;
@@ -1022,6 +1049,9 @@ fn ingest(
         params![id, at],
     )
     .map_err(db_error)?;
+    if state != "conflict" {
+        crate::source_operations::record(tx, &lease.id, &id, 1, state, if auto_replace { "update" } else { "create" })?;
+    }
     Ok(())
 }
 fn provenance(tx: &Transaction, id: &str, lease: &Lease, c: &Claim, at: i64) -> Result<()> {

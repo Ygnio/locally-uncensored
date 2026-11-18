@@ -1,0 +1,2360 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_resume_third_attempt",
+  "date": "2026-11-18",
+  "source_head": "fec2a717057b212cca86048b78cecce471d6146a",
+  "known_freeze_sha256": "4d5d02015173ee2fddecf1ad655be8035d645b7991b2f09dd7c256458ff4a686",
+  "stages": {
+    "jatoba": {
+      "planned_turns": 19,
+      "completed_turns": 19,
+      "planned_response_atoms": 38,
+      "observed_outcomes": {
+        "checked": 15,
+        "regenerated": 2,
+        "blocked": 2
+      },
+      "observations": [
+        {
+          "case": "gm-t03",
+          "source": "Meu computador principal está com 48 GB de RAM instalada. Guarde esta informação.",
+          "mode": "code",
+          "predeclared_atoms": [
+            "primary_48_source_received",
+            "no_premature_persistence"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 5626,
+          "delivered": "Entendido. Seu computador principal possui 48 GB de RAM instalados.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": "operation_prefix_removal",
+              "attempts": [
+                {
+                  "raw_answer": "Entendido. Guardei a informação de que seu computador principal possui 48 GB de RAM instalados.",
+                  "violation_codes": [
+                    "unconfirmed_memory_mutation"
+                  ]
+                }
+              ]
+            }
+          ],
+          "generation_ms": 5680,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                143,
+                168
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                5626,
+                5648
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "source_persisted",
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                5680,
+                5708
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "processing",
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                10122,
+                10133
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "operation_state": "completed",
+              "receipt_records": [
+                {
+                  "entity": "device.primary_computer",
+                  "property": "ram_capacity",
+                  "value": "48_gb",
+                  "state": "candidate",
+                  "version": 1,
+                  "effect": "create"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case": "gm-t04",
+          "source": "No notebook que uso para trabalhar, tenho 12 GB de RAM. Guarde esta informação.",
+          "mode": "chat",
+          "predeclared_atoms": [
+            "work_12_source_received",
+            "no_premature_persistence"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 2772,
+          "delivered": "Entendido. O seu notebook de trabalho possui 12 GB de RAM.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": "operation_prefix_removal",
+              "attempts": [
+                {
+                  "raw_answer": "Entendido. Guardei a informação de que o seu notebook de trabalho possui 12 GB de RAM.",
+                  "violation_codes": [
+                    "unconfirmed_memory_mutation"
+                  ]
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2921,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                131,
+                204
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                2772,
+                2807
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "source_persisted",
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                2921,
+                2936
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "processing",
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                6577,
+                6589
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "operation_state": "completed",
+              "receipt_records": [
+                {
+                  "entity": "device.work_laptop",
+                  "property": "ram_capacity",
+                  "value": "12_gb",
+                  "state": "candidate",
+                  "version": 1,
+                  "effect": "create"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case": "gm-t05",
+          "source": "Corrigindo o dado do computador principal: agora ele possui 64 GB de RAM, não mais os 48 GB. Guarde a correção.",
+          "mode": "agent",
+          "predeclared_atoms": [
+            "primary_64_correction_received",
+            "no_premature_persistence"
+          ],
+          "outcome": "regenerated",
+          "display_observed_ms": 7402,
+          "delivered": "O computador principal agora possui 64 GB de RAM.",
+          "generations": [
+            {
+              "status": "regenerated",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "Entendido. Guardei a correção: o computador principal agora possui 64 GB de RAM.",
+                  "violation_codes": [
+                    "unconfirmed_memory_mutation"
+                  ]
+                },
+                {
+                  "raw_answer": "O computador principal agora possui 64 GB de RAM.",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 7458,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                135,
+                229
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                7402,
+                7470
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "source_persisted",
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                7470,
+                7505
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "processing",
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                11912,
+                11926
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "operation_state": "completed",
+              "receipt_records": []
+            }
+          ]
+        },
+        {
+          "case": "gm-t06",
+          "source": "Estou começando um projeto de catálogo de miniaturas.",
+          "mode": "chat",
+          "predeclared_atoms": [
+            "miniature_catalogue_source_received",
+            "no_premature_persistence"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 2646,
+          "delivered": "Que excelente iniciativa! Qual será o foco principal do seu catálogo, como o tipo de miniaturas ou a organização das informações?",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "Que excelente iniciativa! Qual será o foco principal do seu catálogo, como o tipo de miniaturas ou a organização das informações?",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2657,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                126,
+                181
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                2645,
+                2678
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "source_persisted",
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                2678,
+                2696
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "processing",
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                6576,
+                6587
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "operation_state": "completed",
+              "receipt_records": [
+                {
+                  "entity": "project.jatoba",
+                  "property": "description",
+                  "value": "estou comecando um projeto de catalogo de miniaturas",
+                  "state": "candidate",
+                  "version": 1,
+                  "effect": "create"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case": "gm-t07",
+          "source": "A linguagem que escolhi para o meu projeto é Python.",
+          "mode": "code",
+          "predeclared_atoms": [
+            "python_choice_received",
+            "no_premature_persistence"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 5152,
+          "delivered": "Ótima escolha. O Python é excelente pela sua versatilidade e legibilidade.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "Ótima escolha. O Python é excelente pela sua versatilidade e legibilidade.",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 5195,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                121,
+                174
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                5152,
+                5195
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "source_persisted",
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                5195,
+                5216
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "processing",
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                9913,
+                9925
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "operation_state": "completed",
+              "receipt_records": [
+                {
+                  "entity": "project.jatoba",
+                  "property": "language",
+                  "value": "python",
+                  "state": "candidate",
+                  "version": 1,
+                  "effect": "create"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case": "gm-t08",
+          "source": "PostgreSQL é o banco que pretendo usar no meu projeto.",
+          "mode": "chat",
+          "predeclared_atoms": [
+            "postgresql_plan_received",
+            "no_premature_persistence"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 2904,
+          "delivered": "Excelente escolha, pois o PostgreSQL é conhecido por sua robustez e suporte a diversos tipos de dados. Qual será o foco principal do seu projeto?",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "Excelente escolha, pois o PostgreSQL é conhecido por sua robustez e suporte a diversos tipos de dados. Qual será o foco principal do seu projeto?",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2937,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                129,
+                184
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                2903,
+                2938
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "source_persisted",
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                2938,
+                2960
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "processing",
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                7944,
+                7958
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "operation_state": "completed",
+              "receipt_records": [
+                {
+                  "entity": "project.jatoba",
+                  "property": "database",
+                  "value": "postgresql",
+                  "state": "candidate",
+                  "version": 1,
+                  "effect": "create"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case": "gm-t09",
+          "source": "My own favourite beverage is tea; the narrator in my story says his favourite beverage is coffee.",
+          "mode": "chat",
+          "predeclared_atoms": [
+            "favorite_tea",
+            "foreign_narrator_not_user"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 2644,
+          "delivered": "Your favorite beverage is tea, while the narrator's favorite is coffee.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "Your favorite beverage is tea, while the narrator's favorite is coffee.",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2655,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                120,
+                189
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                2643,
+                2678
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "source_persisted",
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                2678,
+                2703
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "source_persisted",
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                6606,
+                6617
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "operation_state": "completed",
+              "receipt_records": [
+                {
+                  "entity": "user",
+                  "property": "favorite_beverage",
+                  "value": "tea",
+                  "state": "active",
+                  "version": 1,
+                  "effect": "create"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case": "gm-t10",
+          "source": "Leia apenas o arquivo fictício persona-note.txt e diga a quem pertencem as preferências descritas; é material de uma personagem, não uma declaração minha.",
+          "mode": "agent",
+          "predeclared_atoms": [
+            "persona_file_read_with_receipt",
+            "foreign_file_not_user"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 11566,
+          "delivered": "As preferências descritas pertencem à personagem Mira.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "",
+                  "violation_codes": []
+                }
+              ]
+            },
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "As preferências descritas pertencem à personagem Mira.",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 11572,
+          "observed_tools": [
+            {
+              "tool": "file_read",
+              "state": "completed"
+            }
+          ],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                127,
+                190
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                11565,
+                11587
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                11587,
+                11600
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                11600,
+                11611
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                12298,
+                12311
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            }
+          ]
+        },
+        {
+          "case": "gm-t11",
+          "source": "Leia o arquivo fictício narrator-note.txt e identifique a voz narrativa. O texto é externo e não descreve minhas preferências.",
+          "mode": "code",
+          "predeclared_atoms": [
+            "narrator_file_read_with_receipt",
+            "foreign_file_not_user"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 17396,
+          "delivered": "A voz narrativa é a de um narrador que prefere a interface com tema claro e gosta de criar personagens nos jogos.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "",
+                  "violation_codes": []
+                }
+              ]
+            },
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "",
+                  "violation_codes": []
+                }
+              ]
+            },
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "A voz narrativa é a de um narrador que prefere a interface com tema claro e gosta de criar personagens nos jogos.",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 17487,
+          "observed_tools": [
+            {
+              "tool": "file_list",
+              "state": "completed"
+            },
+            {
+              "tool": "file_read",
+              "state": "completed"
+            }
+          ],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                126,
+                183
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                17396,
+                17430
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                17430,
+                17448
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                17448,
+                17459
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                17487,
+                17498
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                18210,
+                18222
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            }
+          ]
+        },
+        {
+          "case": "gm-t12",
+          "source": "Não afirmei que meu computador principal tenha 128 GB de RAM; esse número é somente uma hipótese falsa.",
+          "mode": "code",
+          "predeclared_atoms": [
+            "reject_primary_128"
+          ],
+          "outcome": "regenerated",
+          "display_observed_ms": 9786,
+          "delivered": "Exatamente, você não afirmou que o computador principal tem 128 GB de RAM; esse valor é apenas uma hipótese falsa. O dado atual confirmado é de 64 GB de RAM.",
+          "generations": [
+            {
+              "status": "regenerated",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "Você está correto; o computador principal possui 64 GB de RAM, e os 128 GB são apenas uma hipótese falsa.",
+                  "violation_codes": [
+                    "unsupported_typed_value"
+                  ]
+                },
+                {
+                  "raw_answer": "Exatamente, você não afirmou que o computador principal tem 128 GB de RAM; esse valor é apenas uma hipótese falsa. O dado atual confirmado é de 64 GB de RAM.",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 9965,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                121,
+                158
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                9786,
+                9816
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                9965,
+                9979
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                10703,
+                10715
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            }
+          ]
+        },
+        {
+          "case": "gm-t19",
+          "source": "Eu cancelei meu projeto de catálogo.",
+          "mode": "chat",
+          "predeclared_atoms": [
+            "cancellation_received",
+            "no_premature_persistence"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 2063,
+          "delivered": "Entendido. Você cancelou o seu projeto de catálogo.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "Entendido. Você cancelou o seu projeto de catálogo.",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2163,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                123,
+                194
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                2062,
+                2092
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "source_persisted",
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                2163,
+                2178
+              ],
+              "job_state": "running",
+              "job_attempts": 1,
+              "operation_state": "processing",
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                5807,
+                5819
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "operation_state": "completed",
+              "receipt_records": [
+                {
+                  "entity": "project.jatoba",
+                  "property": "lifecycle",
+                  "value": "cancelled",
+                  "state": "candidate",
+                  "version": 1,
+                  "effect": "create"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case": "gm-p01",
+          "source": "Compare a RAM atual do meu computador principal e a do notebook de trabalho.",
+          "mode": "chat",
+          "predeclared_atoms": [
+            "primary_64_current",
+            "work_12_current"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 3463,
+          "delivered": "O seu computador principal possui 64 GB de RAM, enquanto o notebook de trabalho tem 12 GB.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "O seu computador principal possui 64 GB de RAM, enquanto o notebook de trabalho tem 12 GB.",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3687,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                121,
+                175
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                3462,
+                3491
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "source_persisted",
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                3687,
+                3701
+              ],
+              "job_state": "running",
+              "job_attempts": 1,
+              "operation_state": "processing",
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                5455,
+                5467
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "operation_state": "completed",
+              "receipt_records": []
+            }
+          ]
+        },
+        {
+          "case": "gm-p02",
+          "source": "Quanto de RAM tinha antes meu computador principal e quanto ficou depois da correção?",
+          "mode": "agent",
+          "predeclared_atoms": [
+            "primary_48_historical",
+            "primary_64_current"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 4264,
+          "delivered": "Antes da correção, seu computador principal tinha 48 GB de RAM e, depois da correção, ele passou a ter 64 GB.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "Antes da correção, seu computador principal tinha 48 GB de RAM e, depois da correção, ele passou a ter 64 GB.",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 4447,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                120,
+                172
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                4263,
+                4293
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                4447,
+                4457
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                5167,
+                5177
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            }
+          ]
+        },
+        {
+          "case": "gm-p03",
+          "source": "Qual era o assunto do meu projeto, que linguagem escolhi, qual banco planejei e como está o projeto agora?",
+          "mode": "code",
+          "predeclared_atoms": [
+            "miniature_catalogue_purpose",
+            "python_chosen",
+            "postgresql_planned",
+            "jatoba_cancelled"
+          ],
+          "outcome": "blocked",
+          "display_observed_ms": null,
+          "delivered": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+          "generations": [
+            {
+              "status": "blocked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "O assunto do seu projeto era um catálogo de miniaturas. Você escolheu a linguagem Python, planejou usar o banco de dados PostgreSQL e, atualmente, o projeto está cancelado.",
+                  "violation_codes": [
+                    "terminal_project_plan_as_current",
+                    "unsupported_typed_value",
+                    "known_relation_not_used"
+                  ]
+                },
+                {
+                  "raw_answer": "O assunto do seu projeto era um catálogo de miniaturas. Você escolheu a linguagem Python, planejou usar o banco de dados PostgreSQL e o projeto está cancelado agora.",
+                  "violation_codes": [
+                    "terminal_project_plan_as_current",
+                    "unsupported_typed_value",
+                    "known_relation_not_used"
+                  ]
+                }
+              ]
+            }
+          ],
+          "generation_ms": 12975,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                120,
+                161
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                12904,
+                12932
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                12975,
+                12987
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                13697,
+                13714
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            }
+          ]
+        },
+        {
+          "case": "gm-p04",
+          "source": "A escolha de Python prova que eu comecei a implementar o projeto?",
+          "mode": "chat",
+          "predeclared_atoms": [
+            "python_chosen",
+            "no_implementation_evidence"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 3150,
+          "delivered": "Não necessariamente, pois a escolha de uma linguagem pode ser apenas uma decisão de planejamento. No entanto, ela indica que você avançou da concepção para a definição técnica do projeto.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "Não necessariamente, pois a escolha de uma linguagem pode ser apenas uma decisão de planejamento. No entanto, ela indica que você avançou da concepção para a definição técnica do projeto.",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3186,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                124,
+                184
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                3149,
+                3186
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                3186,
+                3203
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                3925,
+                3937
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            }
+          ]
+        },
+        {
+          "case": "gm-p05",
+          "source": "Qual placa de vídeo está registrada para meu computador principal?",
+          "mode": "agent",
+          "predeclared_atoms": [
+            "bounded_unknown_gpu"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": null,
+          "delivered": "Para verificar a placa de vídeo, executarei o comando `Get-GraphicsAdapter` via shell_execute.\n\ncall:shell_execute{command:<|\"|>Get-GraphicsAdapter | Select-Object Name<|\"|>}",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "Para verificar a placa de vídeo, executarei o comando `Get-GraphicsAdapter` via shell_execute.\n\n<|tool_call>call:shell_execute{command:<|\"|>Get-GraphicsAdapter | Select-Object Name<|\"|>}<tool_call|>",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 4974,
+          "observed_tools": [],
+          "tool_marker_dom_observations": [
+            {
+              "at_ms": 4865,
+              "visible_fragment": "call:shell_execute{command:<|\"|>Get-GraphicsAdapter | Select-Object Name<|\"|>}"
+            },
+            {
+              "at_ms": 4889,
+              "visible_fragment": "call:shell_execute{command:<|\"|>Get-GraphicsAdapter | Select-Object Name<|\"|>}"
+            }
+          ],
+          "verified_text_equals_stored_content": false,
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                127,
+                190
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                4864,
+                4891
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                4974,
+                4984
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                5712,
+                5724
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            }
+          ]
+        },
+        {
+          "case": "gm-p06",
+          "source": "Compare o banco planejado no meu projeto com o banco que meu irmão usa.",
+          "mode": "code",
+          "predeclared_atoms": [
+            "postgresql_planned",
+            "bounded_unknown_brother"
+          ],
+          "outcome": "blocked",
+          "display_observed_ms": null,
+          "delivered": "\n\nError: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+          "generations": [
+            {
+              "status": "blocked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "O banco planejado para o seu projeto Jatoba é o PostgreSQL, enquanto não há registro disponível sobre o banco que seu irmão usa.",
+                  "violation_codes": [
+                    "terminal_project_plan_as_current",
+                    "unsupported_typed_value",
+                    "known_relation_not_used"
+                  ]
+                },
+                {
+                  "raw_answer": "No seu projeto, você planejou usar o PostgreSQL. Não há registro disponível sobre o banco de dados que seu irmão usa.",
+                  "violation_codes": [
+                    "terminal_project_plan_as_current",
+                    "unsupported_typed_value",
+                    "known_relation_not_used"
+                  ]
+                }
+              ]
+            }
+          ],
+          "generation_ms": 10759,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                118,
+                167
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                10523,
+                10554
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                10759,
+                10773
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                11473,
+                11487
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            }
+          ]
+        },
+        {
+          "case": "gm-p07",
+          "source": "Meu computador principal tem 128 GB de RAM?",
+          "mode": "chat",
+          "predeclared_atoms": [
+            "primary_64_current",
+            "reject_primary_128"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 2398,
+          "delivered": "Não, seu computador principal possui 64 GB de RAM.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "Não, seu computador principal possui 64 GB de RAM.",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2412,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                122,
+                170
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                2398,
+                2431
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                2431,
+                2444
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                3133,
+                3143
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            }
+          ]
+        },
+        {
+          "case": "gm-p10",
+          "source": "Qual é minha bebida favorita e qual preferência de tema de interface está disponível para mim?",
+          "mode": "chat",
+          "predeclared_atoms": [
+            "favorite_tea",
+            "bounded_unknown_interface_theme"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 2725,
+          "delivered": "Sua bebida favorita é chá. Não há nenhuma preferência de tema de interface disponível registrada no momento.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "Sua bebida favorita é chá. Não há nenhuma preferência de tema de interface disponível registrada no momento.",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 2905,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                121,
+                165
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                2725,
+                2750
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                2905,
+                2915
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                3617,
+                3629
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            }
+          ]
+        }
+      ],
+      "raw_artifact_sha256": "da5aeef8c458c9d0328b5fd314048187f7322e938435dd93f39629e99c5e8021",
+      "plan_sha256": "38d9aa62d68eb21c0dcdf02a59c582af0a4af839fbd5e117c17a2420b2c3a7b2",
+      "useful_response_count_upper_bound": 16,
+      "bounded_fidelity_exceptions_and_omissions": [
+        {
+          "case": "gm-t05",
+          "finding": "A resposta confirmou o valor atual de 64 GB sem afirmar que o gravou. A aprovação GUI da substituição consta da trilha, mas falta um registro de recibo vinculado à fonte da correção."
+        },
+        {
+          "case": "gm-t06",
+          "finding": "A resposta fez uma pergunta sobre o foco do catálogo e citou tipos de miniaturas como exemplo. A finalidade canônica foi aprendida e revisada."
+        },
+        {
+          "case": "gm-t08",
+          "finding": "A resposta elogiou PostgreSQL como escolha sem dizer explicitamente que seu uso era planejado. O registro nativo preservou a modalidade de plano."
+        },
+        {
+          "case": "gm-p03",
+          "missing_atoms": [
+            "miniature_catalogue_purpose",
+            "python_chosen",
+            "postgresql_planned",
+            "jatoba_cancelled"
+          ],
+          "finding": "As duas respostas brutas continham o tema, a escolha de Python, o plano de PostgreSQL e o cancelamento. O verificador aplicou o marcador atual do cancelamento à frase toda e reteve a resposta."
+        },
+        {
+          "case": "gm-p04",
+          "missing_atoms": [
+            "python_chosen"
+          ],
+          "finding": "A resposta distinguiu decisão de implementação, mas omitiu Python e inferiu avanço da concepção para a definição técnica sem fonte dessa transição."
+        },
+        {
+          "case": "gm-p05",
+          "missing_atoms": [
+            "bounded_unknown_gpu"
+          ],
+          "finding": "A interface exibiu a intenção de inspecionar a GPU e o marcador bruto do modelo como texto. O turno não contém chamada de ferramenta, recibo de execução, resultado de inspeção nem modelo de GPU. A resposta pedida era de disponibilidade na memória."
+        },
+        {
+          "case": "gm-p06",
+          "missing_atoms": [
+            "postgresql_planned",
+            "bounded_unknown_brother"
+          ],
+          "finding": "A primeira tentativa tratou o plano como atual. A segunda usou o plano histórico e disse que o banco do irmão estava indisponível, mas o verificador reteve essa formulação também."
+        }
+      ]
+    },
+    "pitanga": {
+      "planned_turns": 6,
+      "completed_turns": 6,
+      "planned_response_atoms": 11,
+      "observed_outcomes": {
+        "checked": 5,
+        "regenerated": 1,
+        "blocked": 0
+      },
+      "observations": [
+        {
+          "case": "go-t01",
+          "source": "No meu projeto Pitanga, o banco que escolhi é MySQL.",
+          "mode": "agent",
+          "predeclared_atoms": [
+            "mysql_choice_received",
+            "no_premature_persistence"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 5941,
+          "delivered": "Entendido. O banco de dados escolhido para o projeto Pitanga é o MySQL.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": "operation_prefix_removal",
+              "attempts": [
+                {
+                  "raw_answer": "Entendido. Registrei que o banco de dados escolhido para o projeto Pitanga é o MySQL.",
+                  "violation_codes": [
+                    "unconfirmed_memory_mutation"
+                  ]
+                }
+              ]
+            }
+          ],
+          "generation_ms": 5968,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                123,
+                187
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                5941,
+                5968
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "source_persisted",
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                5968,
+                5990
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "processing",
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                10395,
+                10407
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "operation_state": "completed",
+              "receipt_records": [
+                {
+                  "entity": "project.pitanga",
+                  "property": "database",
+                  "value": "mysql",
+                  "state": "candidate",
+                  "version": 1,
+                  "effect": "create"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case": "go-t02",
+          "source": "Estou implementando meu projeto Pitanga em TypeScript.",
+          "mode": "code",
+          "predeclared_atoms": [
+            "typescript_execution_received",
+            "no_premature_persistence"
+          ],
+          "outcome": "regenerated",
+          "display_observed_ms": 10439,
+          "delivered": "O TypeScript traz uma robustez incrível para projetos de médio e grande porte. Como está o progresso atual da implementação do projeto Pitanga?",
+          "generations": [
+            {
+              "status": "regenerated",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "Que excelente escolha! O TypeScript traz uma robustez incrível para projetos de médio e grande porte.\n\nComo você está no início ou no meio da implementação, gostaria de saber: qual é o objetivo principal do **Projeto Pitanga** (ex: um app web, uma biblioteca, um sistema de backend)?",
+                  "violation_codes": [
+                    "authority_project_stage"
+                  ]
+                },
+                {
+                  "raw_answer": "O TypeScript traz uma robustez incrível para projetos de médio e grande porte. Como está o progresso atual da implementação do projeto Pitanga?",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 10557,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                123,
+                179
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                10439,
+                10470
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "source_persisted",
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                10557,
+                10571
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "processing",
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                14746,
+                14756
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "operation_state": "completed",
+              "receipt_records": [
+                {
+                  "entity": "project.pitanga",
+                  "property": "language",
+                  "value": "typescript",
+                  "state": "candidate",
+                  "version": 1,
+                  "effect": "create"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case": "go-t03",
+          "source": "Futuramente, pretendo usar Rust no meu projeto Pitanga.",
+          "mode": "chat",
+          "predeclared_atoms": [
+            "rust_plan_received",
+            "no_premature_persistence"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 3086,
+          "delivered": "É uma excelente escolha para ganhar performance e segurança de memória. Você pretende migrar partes específicas ou o projeto inteiro para Rust?",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "É uma excelente escolha para ganhar performance e segurança de memória. Você pretende migrar partes específicas ou o projeto inteiro para Rust?",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3150,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                119,
+                173
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                3085,
+                3117
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "source_persisted",
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                3150,
+                3169
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "processing",
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                7360,
+                7371
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "operation_state": "completed",
+              "receipt_records": [
+                {
+                  "entity": "project.pitanga",
+                  "property": "language",
+                  "value": "rust",
+                  "state": "candidate",
+                  "version": 1,
+                  "effect": "create"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case": "go-p01",
+          "source": "Qual banco escolhi no Pitanga?",
+          "mode": "code",
+          "predeclared_atoms": [
+            "mysql_chosen"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 5324,
+          "delivered": "Você escolheu o MySQL como banco de dados para o projeto Pitanga.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "Você escolheu o MySQL como banco de dados para o projeto Pitanga.",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 5414,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                119,
+                168
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                5324,
+                5361
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                5414,
+                5426
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                6139,
+                6151
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            }
+          ]
+        },
+        {
+          "case": "go-p02",
+          "source": "Que linguagem estou implementando no Pitanga e qual está planejada para o futuro?",
+          "mode": "agent",
+          "predeclared_atoms": [
+            "typescript_in_progress",
+            "rust_planned_future"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 6339,
+          "delivered": "Você está implementando o projeto Pitanga em TypeScript e planeja usar Rust no futuro.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "Você está implementando o projeto Pitanga em TypeScript e planeja usar Rust no futuro.",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 6432,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                129,
+                194
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                6339,
+                6361
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                6432,
+                6443
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                7152,
+                7171
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            }
+          ]
+        },
+        {
+          "case": "go-p03",
+          "source": "Compare o banco do Pitanga com o banco do projeto Jatobá.",
+          "mode": "chat",
+          "predeclared_atoms": [
+            "mysql_chosen",
+            "jatoba_unavailable_in_binding"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 3305,
+          "delivered": "Você escolheu o MySQL como banco de dados para o projeto Pitanga. Para o projeto Jatobá, não há registro disponível sobre qual banco de dados foi escolhido.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": null,
+              "attempts": [
+                {
+                  "raw_answer": "Você escolheu o MySQL como banco de dados para o projeto Pitanga. Para o projeto Jatobá, não há registro disponível sobre qual banco de dados foi escolhido.",
+                  "violation_codes": []
+                }
+              ]
+            }
+          ],
+          "generation_ms": 3413,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                119,
+                173
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                3304,
+                3332
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                3413,
+                3422
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                4127,
+                4138
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            }
+          ]
+        }
+      ],
+      "raw_artifact_sha256": "a8345e72d667fdbcb89f22b7ebfe6d55e3930b7668c0f08755545c78fea68687",
+      "plan_sha256": "8bba4471988683f9b5af46d5277f26c9c25ee5e22a387b772bfaa88b502ffb8e",
+      "bounded_fidelity_exceptions_and_omissions": [
+        {
+          "case": "go-t02",
+          "missing_atoms": [
+            "typescript_execution_received"
+          ],
+          "finding": "O verificador rejeitou uma fase de implementação sem fonte. A saída entregue falou de benefícios de TypeScript e perguntou pelo progresso, sem ligar explicitamente TypeScript à implementação atual."
+        },
+        {
+          "case": "go-t03",
+          "finding": "Rust aparece como intenção em uma pergunta sobre possível migração. A resposta elogia uma escolha, enquanto o registro distingue plano de uso atual."
+        },
+        {
+          "case": "go-p03",
+          "unavailable_requested_part": "banco de Jatobá no vínculo de Pitanga",
+          "finding": "A resposta recuperou a escolha de MySQL em Pitanga e deu uma limitação adequada para o outro projeto. O fato solicitado do outro projeto permanece indisponível para completude."
+        }
+      ]
+    },
+    "pitanga_copy": {
+      "planned_turns": 1,
+      "completed_turns": 1,
+      "planned_response_atoms": 2,
+      "observed_outcomes": {
+        "checked": 1,
+        "regenerated": 0,
+        "blocked": 0
+      },
+      "observations": [
+        {
+          "case": "go-t01",
+          "source": "No meu projeto Pitanga, o banco que escolhi é MySQL.",
+          "mode": "agent",
+          "predeclared_atoms": [
+            "mysql_choice_received",
+            "no_premature_persistence"
+          ],
+          "outcome": "checked",
+          "display_observed_ms": 5911,
+          "delivered": "Entendido. O banco de dados escolhido para o projeto Pitanga é o MySQL.",
+          "generations": [
+            {
+              "status": "checked",
+              "localized_repair": "operation_prefix_removal",
+              "attempts": [
+                {
+                  "raw_answer": "Entendido. Registrei que o banco de dados escolhido para o projeto Pitanga é o MySQL.",
+                  "violation_codes": [
+                    "unconfirmed_memory_mutation"
+                  ]
+                }
+              ]
+            }
+          ],
+          "generation_ms": 5927,
+          "observed_tools": [],
+          "native_observations": [
+            {
+              "event": "assistant_created",
+              "read_window_ms": [
+                127,
+                190
+              ],
+              "job_state": null,
+              "job_attempts": null,
+              "operation_state": null,
+              "receipt_records": []
+            },
+            {
+              "event": "assistant_content",
+              "read_window_ms": [
+                5911,
+                5935
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "source_persisted",
+              "receipt_records": []
+            },
+            {
+              "event": "generation_terminal",
+              "read_window_ms": [
+                5935,
+                5960
+              ],
+              "job_state": "queued",
+              "job_attempts": 0,
+              "operation_state": "processing",
+              "receipt_records": []
+            },
+            {
+              "event": "learning_terminal",
+              "read_window_ms": [
+                10375,
+                10385
+              ],
+              "job_state": "done",
+              "job_attempts": 1,
+              "operation_state": "completed",
+              "receipt_records": [
+                {
+                  "entity": "project.pitanga",
+                  "property": "database",
+                  "value": "mysql",
+                  "state": "candidate",
+                  "version": 1,
+                  "effect": "create"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "raw_artifact_sha256": "4e3cb6c1f913661b8175b8afe190c248e3419ad48abe17c5adad66c4a8786343",
+      "plan_sha256": "180145b401ce6ee8627daa36b960de6850d39fc1f7286e36540e940fbb8b3366",
+      "copy_result": {
+        "status": "payload_observed",
+        "payload_matches_verified_text": true,
+        "clipboard_written": false,
+        "verified_payload": "Entendido. O banco de dados escolhido para o projeto Pitanga é o MySQL.",
+        "raw_copy_artifact_sha256": "a26688c98b46ff84b029725f30c276307bc87c53e8a2d251f27fe05008cee9a9"
+      }
+    }
+  },
+  "native_read_only": {
+    "schema": 6,
+    "quick_check": "ok",
+    "foreign_key_check": "ok",
+    "canonical_rows": [
+      {
+        "project": "jatoba",
+        "state": "active",
+        "version": 2,
+        "entity": "project.jatoba",
+        "property": "database",
+        "value": "postgresql",
+        "temporal": "planned",
+        "replaces_version": null,
+        "receipt_record_count": 1
+      },
+      {
+        "project": "jatoba",
+        "state": "active",
+        "version": 2,
+        "entity": "project.jatoba",
+        "property": "description",
+        "value": "estou comecando um projeto de catalogo de miniaturas",
+        "temporal": "durable",
+        "replaces_version": null,
+        "receipt_record_count": 1
+      },
+      {
+        "project": "jatoba",
+        "state": "active",
+        "version": 1,
+        "entity": "user",
+        "property": "favorite_beverage",
+        "value": "tea",
+        "temporal": "preference",
+        "replaces_version": null,
+        "receipt_record_count": 1
+      },
+      {
+        "project": "jatoba",
+        "state": "active",
+        "version": 2,
+        "entity": "project.jatoba",
+        "property": "language",
+        "value": "python",
+        "temporal": "durable",
+        "replaces_version": null,
+        "receipt_record_count": 1
+      },
+      {
+        "project": "jatoba",
+        "state": "active",
+        "version": 2,
+        "entity": "project.jatoba",
+        "property": "lifecycle",
+        "value": "cancelled",
+        "temporal": "cancelled",
+        "replaces_version": null,
+        "receipt_record_count": 1
+      },
+      {
+        "project": "jatoba",
+        "state": "active",
+        "version": 2,
+        "entity": "device.work_laptop",
+        "property": "ram_capacity",
+        "value": "12_gb",
+        "temporal": "durable",
+        "replaces_version": null,
+        "receipt_record_count": 1
+      },
+      {
+        "project": "jatoba",
+        "state": "obsolete",
+        "version": 3,
+        "entity": "device.primary_computer",
+        "property": "ram_capacity",
+        "value": "48_gb",
+        "temporal": "durable",
+        "replaces_version": null,
+        "receipt_record_count": 1
+      },
+      {
+        "project": "jatoba",
+        "state": "active",
+        "version": 2,
+        "entity": "device.primary_computer",
+        "property": "ram_capacity",
+        "value": "64_gb",
+        "temporal": "durable",
+        "replaces_version": 2,
+        "receipt_record_count": 0
+      },
+      {
+        "project": "pitanga",
+        "state": "active",
+        "version": 2,
+        "entity": "project.pitanga",
+        "property": "database",
+        "value": "mysql",
+        "temporal": "durable",
+        "replaces_version": null,
+        "receipt_record_count": 1
+      },
+      {
+        "project": "pitanga",
+        "state": "active",
+        "version": 2,
+        "entity": "project.pitanga",
+        "property": "language",
+        "value": "rust",
+        "temporal": "planned",
+        "replaces_version": null,
+        "receipt_record_count": 1
+      },
+      {
+        "project": "pitanga",
+        "state": "active",
+        "version": 2,
+        "entity": "project.pitanga",
+        "property": "language",
+        "value": "typescript",
+        "temporal": "in_progress",
+        "replaces_version": null,
+        "receipt_record_count": 1
+      }
+    ]
+  },
+  "evaluation_limit": "Casos de desenvolvimento conhecidos. A execução chegou ao fim nos dois projetos e na cópia. As lacunas de fidelidade, disponibilidade e completude seguem abertas."
+}

@@ -1,0 +1,30 @@
+{
+  "id": "phase22f-known-e-retrieval-contract",
+  "kind": "Known development replay. Original E source text, questions, and golds are read unchanged. Typed annotations specify canonical preparation and do not substitute any C2 source.",
+  "known_replay": {
+    "corpus": "crates/lucille-memory/tests/fixtures/phase22e/final-v1/retrieval.json",
+    "scenario": "known-e-retrieval",
+    "facts": {
+      "purpose": {"kind":"project","subject":"project.jatoba","property":"description","value":"estou comecando um projeto de catalogo de miniaturas","temporal":"durable"},
+      "language-choice": {"kind":"decision","subject":"project.jatoba","property":"language","value":"python","temporal":"durable"},
+      "database-plan": {"kind":"decision","subject":"project.jatoba","property":"database","value":"postgresql","temporal":"planned"},
+      "primary-before": {"kind":"hardware","subject":"device.primary_computer","property":"ram_capacity","value":"48_gb","temporal":"durable"},
+      "work-ram": {"kind":"hardware","subject":"device.work_laptop","property":"ram_capacity","value":"12_gb","temporal":"durable"},
+      "primary-now": {"kind":"hardware","subject":"device.primary_computer","property":"ram_capacity","value":"64_gb","temporal":"durable"},
+      "coffee": {"kind":"preference","subject":"user","property":"coffee_sugar","value":"without_sugar","temporal":"preference"},
+      "classes": {"kind":"preference","subject":"user","property":"games_class_selection","value":"positive","temporal":"preference"},
+      "favorite": {"kind":"preference","subject":"user","property":"favorite_beverage","value":"tea","temporal":"preference"},
+      "deleted-creation": {"kind":"preference","subject":"user","property":"games_character_creation","value":"positive","temporal":"preference"},
+      "other-database": {"kind":"decision","subject":"project.pitanga","property":"database","value":"mysql","temporal":"durable"},
+      "actual-language": {"kind":"fact","subject":"project.pitanga","property":"language","value":"typescript","temporal":"in_progress","fact_key":"project.pitanga.language.execution"},
+      "future-language": {"kind":"decision","subject":"project.pitanga","property":"language","value":"rust","temporal":"planned"},
+      "other-scope-ram": {"kind":"hardware","subject":"device.primary_computer","property":"ram_capacity","value":"24_gb","temporal":"durable"},
+      "cancelled-language": {"kind":"fact","subject":"project.cedrinho","property":"language","value":"rust","temporal":"in_progress","fact_key":"project.cedrinho.language.execution"},
+      "cancelled-state": {"kind":"project","subject":"project.cedrinho","property":"lifecycle","value":"cancelled","temporal":"cancelled"}
+    },
+    "canonical_states": {
+      "primary-before": {"state":"obsolete"},
+      "primary-now": {"replaces":"primary-before"}
+    }
+  }
+}

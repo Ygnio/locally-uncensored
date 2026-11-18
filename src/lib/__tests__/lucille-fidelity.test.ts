@@ -3,6 +3,14 @@ import { verifyMemoryAnswer, answerSnapshot, registerAnswerSnapshot, type Answer
 const fact = (changes: Partial<MemoryFact> = {}): MemoryFact => ({ id: 'fact-1', version: 2, entity: 'project.atlas', property: 'language', value: 'rust', modality: 'planned', validity: 'current', scope: 'test', project: 'atlas', review: 'reviewed', facets: [], evidence: [{ role: 'current_source', text: 'Planejo usar Rust.' }], ...changes })
 const snapshot = (facts: MemoryFact[] = [fact()], query = 'Como está meu projeto?'): AnswerSnapshot => ({ scope: 'test', project: 'atlas', query, facts, currentStatements: [] })
 describe('independent typed memory answer checks', () => {
+  it('requires its own evidence for a plural strategy preference in a tactical RPG reply', () => {
+    const query = 'Que tipo de RPG combina com o meu gosto?'
+    const tactical = fact({entity:'user',property:'games_tactics',value:'positive',modality:'preference'})
+    const strategy = fact({id:'strategy',entity:'user',property:'games_turn_strategy',value:'positive',modality:'preference'})
+    const reply = 'Você prefere jogos que permitam estratégias por turnos.'
+    expect(verifyMemoryAnswer(reply,snapshot([tactical],query)).violations.map(v=>v.code)).toContain('unsupported_typed_value')
+    expect(verifyMemoryAnswer(reply,snapshot([tactical,strategy],query)).assertions.map(a=>a.references)).toEqual([['strategy']])
+  })
   it('distinguishes earlier speech about a still-current plan from prior execution',()=>{
     const s=snapshot([fact({value:'typescript',evidence:[{role:'current_source',text:'Quero usar TypeScript.'}]})],'No meu projeto, eu uso Rust.')
     expect(verifyMemoryAnswer('Você mencionou anteriormente que usaria TypeScript.',s).violations).toEqual([])

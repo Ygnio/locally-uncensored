@@ -1,0 +1,127 @@
+{
+  "protected": {
+    "total": 104,
+    "matched": 104,
+    "unavailable": 0,
+    "mismatch_or_unavailable": 0,
+    "by_group": {
+      "installed_program": {
+        "total": 42,
+        "matched": 42
+      },
+      "existing_ai": {
+        "total": 62,
+        "matched": 62
+      }
+    }
+  },
+  "model_weights": {
+    "gemma": {
+      "bytes": 7381381760,
+      "sha256": "59656d7494d6376ca97e9e20b64ea2e16cd97f12ec6d47bfccba91cb785b5134",
+      "matched": true
+    },
+    "nomic": {
+      "bytes": 274290560,
+      "sha256": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "matched": true
+    }
+  },
+  "runtime": {
+    "bytes": 9216,
+    "sha256": "d629481a5c60518afd6679b3fcb9e428a98523628470ed3b88d5261b0df712cb",
+    "matched": true,
+    "dlls_planned": 54,
+    "dlls_matched": 54
+  },
+  "closed_ports": {
+    "15283": "closed",
+    "15284": "closed",
+    "15287": "closed",
+    "15288": "closed",
+    "15289": "closed"
+  },
+  "qa_sqlite": {
+    "schema": 6,
+    "integrity": [
+      [
+        "ok"
+      ]
+    ],
+    "foreign_key_errors": 0,
+    "identity_version": 1,
+    "states": [
+      [
+        "active",
+        40
+      ],
+      [
+        "obsolete",
+        3
+      ]
+    ],
+    "tombstones": 4
+  },
+  "samples_final": {
+    "samples": 127,
+    "first_utc": "2026-11-18T16:27:58.0736048Z",
+    "last_utc": "2026-11-18T16:51:02.2897358Z",
+    "min_available_mib": 1857,
+    "peak_commit_mib": 19762.23,
+    "min_commit_headroom_mib": 12961.14,
+    "peak_pages_per_second": 2411,
+    "peak_cpu_percent": 100,
+    "peak_gpu_used_mib": 9402,
+    "peak_gpu_percent": 100,
+    "peak_pagefile_current_mib": 629,
+    "peak_native_working_set_bytes": 63578112,
+    "peak_gui_webview_working_set_bytes": 553349120,
+    "peak_gemma_working_set_bytes": 7882235904,
+    "peak_nomic_working_set_bytes": 768122880,
+    "resource_pressure_refusals": 0,
+    "inference": {
+      "gemma": {
+        "completed": 179,
+        "p50_seconds": 3.754,
+        "p95_seconds": 5.9253,
+        "token_usage_available": 179,
+        "prompt_tokens": 232030,
+        "completion_tokens": 11344
+      },
+      "nomic": {
+        "completed": 172,
+        "p50_seconds": 0.1042,
+        "p95_seconds": 0.2624,
+        "token_usage_available": 172,
+        "prompt_tokens": 5357,
+        "completion_tokens": 0
+      }
+    }
+  },
+  "logs": {
+    "real-broker-calls.ndjson": {
+      "sha256": "2d318e5934ca6cd0789960125459ba6d33041ec5bd09f97be7acdc09da75bf8c",
+      "usable_rows": 3100,
+      "invalid_rows": 0
+    },
+    "real-broker-errors.ndjson": {
+      "sha256": "69b1f7c86c579c058af5924cdeb4d3b2eb2670c82031a779f4191be57cc791ef",
+      "usable_rows": 69,
+      "invalid_rows": 0
+    }
+  },
+  "private_closeout_sha256": "5cd99b250013901d6e7d0b824de1aeeef6397db493aebd59a29ac2319adda08a",
+  "owned_shutdown": {
+    "isolated_gui_stop": true,
+    "owned_runtime_stop": true,
+    "sampler_stop": true,
+    "hoptodesk_process_count_before": 4,
+    "hoptodesk_process_count_after": 4,
+    "hoptodesk_same_identifiers": true,
+    "display4101_audit_readable": true,
+    "display4101_since_sampler_start": 0,
+    "sampler_started_utc": "2026-11-18T12:13:07.1508917Z",
+    "ended_utc": "2026-11-18T16:52:36.8954793Z"
+  },
+  "owned_shutdown_sha256": "cf3dac54b6fd0a41f1c4e70de0faa6ea22e1aefacc4e3a3ee03e624290b390f9"
+}

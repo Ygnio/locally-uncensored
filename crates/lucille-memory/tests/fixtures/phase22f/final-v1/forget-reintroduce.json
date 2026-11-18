@@ -1,0 +1,43 @@
+{
+  "id": "phase22f-final-v1-forget-reintroduce",
+  "kind": "independent final v1 GUI specification",
+  "scope": "phase22f-v1-forget-x8n",
+  "project": "orvalho",
+  "turns": [
+    {
+      "id": "fv1-renew-t01",
+      "text": "Que preferência de tema da interface e de criação de personagens está disponível aqui agora?",
+      "mode": "chat",
+      "expected_atoms": [
+        "no_theme_revival_after_exact_replay",
+        "no_creation_revival_after_exact_replay"
+      ],
+      "new_session": true
+    },
+    {
+      "id": "fv1-renew-t02",
+      "text": "Volte a guardar esta preferência minha: na interface, eu prefiro o tema escuro.",
+      "mode": "agent",
+      "expected_atoms": [
+        "new_theme_source_not_old_revival",
+        "no_liking_transition_from_storage",
+        "no_premature_persistence"
+      ],
+      "new_session": true,
+      "review_preferences": true
+    },
+    {
+      "id": "fv1-renew-t03",
+      "text": "Quero voltar a registrar minha preferência: eu gosto de criar personagens nos jogos.",
+      "mode": "code",
+      "expected_atoms": [
+        "new_creation_source_not_old_revival",
+        "no_liking_transition_from_storage",
+        "no_premature_persistence"
+      ],
+      "new_session": true,
+      "review_preferences": true
+    }
+  ],
+  "probes": []
+}

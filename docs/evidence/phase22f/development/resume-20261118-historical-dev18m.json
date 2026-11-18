@@ -1,0 +1,106 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_historical_regression_revalidation",
+  "date": "2026-11-18",
+  "series_label": "dev18mseries",
+  "production_code_commit": "67fc54b6ab7b901e0a0813aad00f0a5f6661ced7",
+  "scope": "phase22c-final-historical-series",
+  "sha256": {
+    "development_manifest": "d12c7f62de5ba0a121f8a71498fa303354dd78d9de0a2f63524631aa663601dd",
+    "native_gui": "3cf885c9bd9505245110a441c1f14f45b1b983addf9f6785395a0e4a05ce39d9",
+    "bridge": "141ba3e4ba3d9fdae22e19379e6ac6569ecb4eb2d0894d374780208a45863d46",
+    "native_build_contract": "8a6ef9d8007fc0f62785c7c1f50fb4fcc4ec788f846a85969c57b82cf035e422",
+    "fresh_isolated_bootstrap": "e50b6dca55d42a0079d56746aabded0f1cb38bb518edc9e500cae553877ba91b",
+    "archived_22e_h20_h50_audit": "5fb349fcffbdb01558458acf8664ba10c62dbac198426e6c0eab390ed94caecc"
+  },
+  "verification": {
+    "typescript_cases_passed": 760,
+    "typescript_cases_total": 760,
+    "typescript_suites_passed": 195,
+    "typescript_suites_total": 195,
+    "typescript_report_sha256": "c2074a1068f8aec35a3467228d74ea386946c5b586bbadc849944b4329f80706",
+    "typescript_output_sha256": "98188500404eb60c6df3dbd7b353e17987709bafc735702a4ce402bde81e9524",
+    "typecheck_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lint_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "production_build_output_sha256": "c95789cad77fcb9de3fe7922c10f305fcb37017b9698ec6fe5e436c5bf4e811f",
+    "isolated_frontend_build_output_sha256": "accc70f9bf3b05da8a30f1fd68cf5a5547cd66bb1136bda5e2cdf2deb3b06471"
+  },
+  "segments": {
+    "20": {
+      "project": "candeia",
+      "execution_complete": true,
+      "independent_advancement_gate_passed": true,
+      "coverage": { "source_turns": 20, "probes": 10, "checked": 30, "blocked": 0 },
+      "useful": { "measured": 30, "planned": 30, "useful_probes": 10 },
+      "completeness": { "retained_atoms": 32, "planned_atoms": 32 },
+      "fidelity": { "supported_claims": 24, "delivered_claims": 24, "critical_delivered": 0 },
+      "earliest_native_retrieval": { "tp": 10, "fp": 1, "missed": 0, "precision": 0.9090909090909091, "recall": 1 },
+      "native_state_before": { "memories": 0, "extraction_jobs": 0, "memory_tombstones": 0, "retrieval_audit": 0 },
+      "native_state_after": { "memories": 11, "extraction_jobs": 10, "memory_tombstones": 0, "retrieval_audit": 30 },
+      "native_source_audit": { "exact_user_origin_proofs": 11, "supplemental_expected_relations": 11, "duplicate_active_keys": 0, "pending_vectors": 0 },
+      "prior_dev18l": {
+        "identical_terminal_rows": 24,
+        "all_10_earliest_probe_projections_match": true,
+        "reported_useful": 30,
+        "reported_retained_atoms": 32,
+        "status_probe_21_attempts_before": 2,
+        "status_probe_21_attempts_after": 1,
+        "review_sha256": "74f2b4bdd0efd3fa4e4412deb423fa313641560e8ea64606c7c4647bb47d92ce"
+      },
+      "original_22e": { "useful": 28, "planned": 30, "retained_atoms": 28, "planned_atoms": 32, "supported_claims": 11, "delivered_claims": 11, "retrieval": { "tp": 10, "fp": 0, "missed": 0 } },
+      "observations": "The first checked status reply preserved the project purpose and both planned technologies. The turn-based strategy preference in the RPG probe had exact same-project USER proof and remains an extra reference under the original gold.",
+      "latency_ms": { "generation_p50": 2903, "generation_p95": 4985, "extraction_wait_p50": 733, "extraction_wait_p95": 5240 },
+      "sha256": {
+        "original_fixture": "e94a9c8ea7671a90f165fae2c85422512b745184eabd767bdcf7f164c6b2892a",
+        "raw": "909f3bde0dffcaeaf49fb4ceb79b037858856ff606b2df5b737370293e90f14c",
+        "outcome": "90302d6a1f04fb31ad9fe8170930cfd261759d6a03d35f6de8275c0fe2550684",
+        "independent_review": "3594497438f7b5140a124e9ed4e9ef83b74103f3fb826e8d77410a7755f5bab7",
+        "execution_log": "a12be7cbc17629d06993fbb94f94bf39489db3c00bb295835cbe96230222c8f6"
+      }
+    },
+    "50": {
+      "project": "candeia2",
+      "execution_complete": true,
+      "independent_advancement_gate_passed": true,
+      "coverage": { "source_turns": 50, "probes": 8, "checked": 58, "blocked": 0 },
+      "useful": { "measured": 58, "planned": 58, "useful_probes": 8 },
+      "completeness": { "retained_atoms": 60, "planned_atoms": 60 },
+      "fidelity": { "supported_claims": 17, "delivered_claims": 17, "critical_delivered": 0 },
+      "earliest_native_retrieval": { "tp": 8, "fp": 0, "missed": 0, "precision": 1, "recall": 1 },
+      "native_state_before": { "memories": 11, "extraction_jobs": 10, "memory_tombstones": 0, "retrieval_audit": 30 },
+      "native_state_after": { "memories": 19, "extraction_jobs": 16, "memory_tombstones": 0, "retrieval_audit": 88 },
+      "native_source_audit": { "starting_candeia2_records": 0, "preceding_candeia_records_unchanged": 11, "exact_user_origin_proofs": 8, "supplemental_expected_relations": 8, "duplicate_active_keys": 0, "pending_vectors": 0 },
+      "prior_dev18l": {
+        "identical_terminal_rows": 49,
+        "all_8_earliest_probe_projections_match": true,
+        "reported_useful": 57,
+        "reported_retained_atoms": 57,
+        "status_probe_51_atoms_before": 0,
+        "status_probe_51_atoms_after": 3,
+        "status_probe_51_attempts_before": 2,
+        "status_probe_51_attempts_after": 1,
+        "review_sha256": "2f80ce6edb7ecf795117146acb6a9fdf64cd67a24c57e9a64340d974274d9ccb"
+      },
+      "original_22e": { "useful": 58, "planned": 58, "retained_atoms": 60, "planned_atoms": 60, "supported_claims": 14, "delivered_claims": 14, "retrieval": { "tp": 8, "fp": 0, "missed": 0 } },
+      "observations": "The first checked status reply restored all three lost atoms and matched the original 2.2E substance. The answer about the other project explicitly qualified its absence to the authorized scope, with zero foreign reference injection.",
+      "latency_ms": { "generation_p50": 4429, "generation_p95": 7245, "extraction_wait_p50": 732, "extraction_wait_p95": 4474 },
+      "sha256": {
+        "original_fixture": "b244780d91caaffea0dbbce86f597c3ef66b2303dc64aad34e2adc76d243ee66",
+        "raw": "2d232053b127305e6ac4faf1aeca6df30f9fa5c03c975829b58f5d9b6b5b5182",
+        "outcome": "8ab6feb00d9f9289ee674cafbe8f06c056a435f57093186bbc01c695b99d9398",
+        "independent_review": "690e4ff5227728a7be9a8676dbcc1c756e3c5cd236507e5f36af9072491e9cc3",
+        "execution_log": "37e8549d5fa7d14af0e2e6570daa9c6092a9eec8909839f34e14d0e8299e7291"
+      }
+    }
+  },
+  "shared_safeguards": {
+    "identity_policy_scope_counts_attested": true,
+    "scope_state_chain_20_to_50_attested": true,
+    "premature_confirmation_claims": 0,
+    "out_of_binding_initial_refs": 0,
+    "out_of_binding_delivered_values": 0,
+    "critical_writes_or_promotions": 0,
+    "duplicate_active_keys": 0
+  },
+  "coverage_limit": "This checkpoint records the two accepted known segments H20 and H50. The supplemental native facts are source-based diagnostics. Original retrieval facts and final unseen evaluation have independent denominators."
+}

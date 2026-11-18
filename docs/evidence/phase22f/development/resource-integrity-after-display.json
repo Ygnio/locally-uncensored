@@ -1,0 +1,177 @@
+{
+  "protected": {
+    "total": 104,
+    "matched": 104,
+    "unavailable": 0,
+    "mismatch_or_unavailable": 0,
+    "by_group": {
+      "installed_program": {
+        "total": 42,
+        "matched": 42
+      },
+      "existing_ai": {
+        "total": 62,
+        "matched": 62
+      }
+    }
+  },
+  "model_weights": {
+    "gemma": {
+      "bytes": 7381381760,
+      "sha256": "59656d7494d6376ca97e9e20b64ea2e16cd97f12ec6d47bfccba91cb785b5134",
+      "matched": true
+    },
+    "nomic": {
+      "bytes": 274290560,
+      "sha256": "f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb",
+      "matched": true
+    }
+  },
+  "runtime": {
+    "bytes": 9216,
+    "sha256": "d629481a5c60518afd6679b3fcb9e428a98523628470ed3b88d5261b0df712cb",
+    "matched": true,
+    "dlls_planned": 54,
+    "dlls_matched": 54
+  },
+  "closed_ports": {
+    "15283": "closed",
+    "15284": "closed",
+    "15287": "closed",
+    "15288": "closed",
+    "15289": "closed"
+  },
+  "qa_sqlite": {
+    "schema": 6,
+    "integrity": [
+      [
+        "ok"
+      ]
+    ],
+    "foreign_key_errors": 0,
+    "identity_version": 1,
+    "states": [
+      [
+        "active",
+        11
+      ]
+    ],
+    "tombstones": 4
+  },
+  "samples_all": {
+    "samples": 473,
+    "first_utc": "2026-11-11T11:47:44.0453608Z",
+    "last_utc": "2026-11-11T13:45:02.7970185Z",
+    "min_available_mib": 1258,
+    "peak_commit_mib": 19469.76,
+    "min_commit_headroom_mib": 13253.61,
+    "peak_pages_per_second": 141576,
+    "peak_cpu_percent": 100,
+    "peak_gpu_used_mib": 9299,
+    "peak_gpu_percent": 98,
+    "peak_pagefile_current_mib": 612,
+    "peak_native_working_set_bytes": 64872448,
+    "peak_gui_webview_working_set_bytes": 483102720,
+    "peak_gemma_working_set_bytes": 7900598272,
+    "peak_nomic_working_set_bytes": 934293504,
+    "resource_pressure_refusals": 20,
+    "inference": {
+      "gemma": {
+        "completed": 80,
+        "p50_seconds": 3.7293,
+        "p95_seconds": 6.0099,
+        "token_usage_available": 80,
+        "prompt_tokens": 114062,
+        "completion_tokens": 5136
+      },
+      "nomic": {
+        "completed": 144,
+        "p50_seconds": 0.1042,
+        "p95_seconds": 0.3273,
+        "token_usage_available": 144,
+        "prompt_tokens": 4134,
+        "completion_tokens": 0
+      }
+    }
+  },
+  "samples_runtime": {
+    "samples": 305,
+    "first_utc": "2026-11-11T12:17:50.9418574Z",
+    "last_utc": "2026-11-11T13:45:02.7970185Z",
+    "min_available_mib": 1258,
+    "peak_commit_mib": 19469.76,
+    "min_commit_headroom_mib": 13253.61,
+    "peak_pages_per_second": 140478,
+    "peak_cpu_percent": 100,
+    "peak_gpu_used_mib": 9299,
+    "peak_gpu_percent": 98,
+    "peak_pagefile_current_mib": 612,
+    "peak_native_working_set_bytes": 64872448,
+    "peak_gui_webview_working_set_bytes": 483102720,
+    "peak_gemma_working_set_bytes": 7900598272,
+    "peak_nomic_working_set_bytes": 934293504,
+    "resource_pressure_refusals": 20,
+    "inference": {
+      "gemma": {
+        "completed": 78,
+        "p50_seconds": 3.7293,
+        "p95_seconds": 6.8866,
+        "token_usage_available": 78,
+        "prompt_tokens": 113189,
+        "completion_tokens": 4957
+      },
+      "nomic": {
+        "completed": 144,
+        "p50_seconds": 0.1042,
+        "p95_seconds": 0.3273,
+        "token_usage_available": 144,
+        "prompt_tokens": 4134,
+        "completion_tokens": 0
+      }
+    }
+  },
+  "samples_final": null,
+  "sampler_segments": [
+    {
+      "disposition": "interrupted_reboot",
+      "sha256": "9d7f2902f9a7d19f2e214db5c093d5acd81370d0029fbf9a4f4e58a2883007e0",
+      "usable_rows": 382,
+      "invalid_rows": 0
+    },
+    {
+      "disposition": "owned_sampler_stopped",
+      "sha256": "25b046e515de90f7348dad952c7ae86a4af93bdcbd8e8a66d0b499c40cbef972",
+      "usable_rows": 91,
+      "invalid_rows": 0
+    }
+  ],
+  "post_reboot_observations": [
+    {
+      "no_listener": [
+        15283,
+        15284,
+        15287,
+        15288,
+        15289
+      ],
+      "boot_utc": "2026-11-11T12:59:05.5000000Z",
+      "windows_event_1001": true,
+      "stop_code": "0x00000116",
+      "record_disposition": "Interrupted by host reboot; retained original manifests without a graceful stop record",
+      "next_stage": "devf1-forget-delete",
+      "completed_gui_stage": "devf1-pitanga"
+    }
+  ],
+  "logs": {
+    "real-broker-calls.ndjson": {
+      "sha256": "f22cd0684b054691e9942049699733191476a5b1cb0fdb2e35f6e472b4b6bc9b",
+      "usable_rows": 224,
+      "invalid_rows": 0
+    },
+    "real-broker-errors.ndjson": {
+      "sha256": "392bd7803d9cee151a2ae620493f527c93b232e92f52f6a0daf90551af1072aa",
+      "usable_rows": 33,
+      "invalid_rows": 0
+    }
+  }
+}

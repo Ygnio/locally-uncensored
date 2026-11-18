@@ -1,0 +1,120 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_c2_independent_literal_closure",
+  "label": "dev18j",
+  "source_commit": "bf1e039e3a27a1a785c7ae84d0970a4ed8e32717",
+  "freeze_sha256": "34ef8b109fc955a7695d8131fe4ea9609bcf95fccc32a2c955b315898442101c",
+  "raw_sha256": "fa7e119599368d606bfc9453dc7151f47d402f6ecc32d9e5f7c8b1c14ab4cf08",
+  "dataset_sha256": "083b2fe71f6d4cdfb10d5dfc01443b9b664b6c42df58e8c57aca6fb7e143df08",
+  "original_retrieval_sha256": "1f65d2ed629655abf98fd2c4e23493f668ea1e04c1f8f8f95c88c7f806e3c372",
+  "comparison": {
+    "label": "dev18i",
+    "literal_audit_sha256": "33a6e42291af33be309f0eeac9525e85b4c082e337b1c9387200a89aab37ea6e",
+    "raw_sha256": "2009e748fa303cd2fccede8f74a969b984610214ce8647330276aac6db80c7ac"
+  },
+  "scoring": "Independent literal review of actual replies and raw attempts against the unchanged known Chat rubric. Full request retains the two unavailable comparison facts. This evidence covers development C2 only.",
+  "coverage": {
+    "preparations_measured": 17,
+    "index_events_measured": 16,
+    "planned_queries": 29,
+    "raw_attempts_reviewed": 29,
+    "answer_counts": {
+      "delivered": 29,
+      "blocked": 0,
+      "not_executed": 0,
+      "infrastructure_failure": 0,
+      "evaluator_failure": 0
+    }
+  },
+  "literal_metrics": {
+    "useful": {
+      "observed": 29,
+      "planned": 29
+    },
+    "semantic_atoms": {
+      "observed": 39,
+      "planned": 39
+    },
+    "full_request": {
+      "observed": 39,
+      "planned": 41
+    },
+    "delivered_propositions": {
+      "supported": 47,
+      "unsupported": 0,
+      "critical": 0
+    },
+    "raw_critical_propositions": 0
+  },
+  "ranking": {
+    "fts5": {
+      "measured": 29,
+      "tp": 30,
+      "fp": 0,
+      "missed": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "nomic": {
+      "measured": 29,
+      "tp": 26,
+      "fp": 0,
+      "missed": 4,
+      "precision": 1.0,
+      "recall": 0.8666666666666667
+    },
+    "hybrid": {
+      "measured": 29,
+      "tp": 30,
+      "fp": 0,
+      "missed": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "fallback": {
+      "measured": 29,
+      "tp": 30,
+      "fp": 0,
+      "missed": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    }
+  },
+  "unsafe_current_wrong_scope_and_negative_injections_by_mode": 0,
+  "mandatory_fallback": {
+    "planned": 20,
+    "exact": 20,
+    "physical_endpoint_unavailable": false
+  },
+  "retrieval_passed": true,
+  "er-014": {
+    "attempts": 1,
+    "delivered": "O tema do projeto é um catálogo de miniaturas. Você escolheu Python como linguagem e planeja usar PostgreSQL como banco de dados.",
+    "same_text_as_both_blocked_dev18i_attempts": true,
+    "verified": [
+      {
+        "property": "description",
+        "value": "catalogo de miniaturas"
+      },
+      {
+        "property": "language",
+        "value": "python"
+      },
+      {
+        "property": "database",
+        "value": "postgresql"
+      }
+    ],
+    "restored_semantic_atoms": [
+      "miniature_catalogue_purpose",
+      "python_chosen",
+      "postgresql_planned"
+    ]
+  },
+  "unchanged_resolved_slots": {
+    "er-015": "Bounded absence after one measured tombstone and zero injected current facts.",
+    "er-022": "The authorized binding explains why the foreign project database is unavailable.",
+    "er-023": "The own database plan is retained beside explicit project-binding limits. No foreign database is supplied.",
+    "er-027": "Rust implementation is historical and explicitly preceded project cancellation."
+  }
+}

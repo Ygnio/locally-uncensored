@@ -1,0 +1,117 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_historical_regression",
+  "date": "2026-11-18",
+  "run_label": "dev18kseries-historical20",
+  "production_code_commit": "5492a4ebfef84fed57aac07b5ebd20adbde589c2",
+  "scope": "phase22c-final-historical-series",
+  "project": "candeia",
+  "execution_complete": true,
+  "passed": false,
+  "coverage": {
+    "source_turns_planned": 20,
+    "source_turns_observed": 20,
+    "probes_planned": 10,
+    "probes_observed": 10,
+    "checked": 28,
+    "regenerated": 1,
+    "blocked": 1,
+    "not_executed": 0
+  },
+  "literal_metrics": {
+    "useful_responses": 29,
+    "planned_responses": 30,
+    "useful_probes": 10,
+    "planned_probes": 10,
+    "retained_atoms": 31,
+    "planned_atoms": 32,
+    "supported_delivered_claims": 20,
+    "delivered_claims": 23,
+    "critical_delivered_claims": 2,
+    "critical_delivered_turns": 1,
+    "premature_completed_write_claims": 0,
+    "unverified_agent_notes_displayed": 0,
+    "cross_project_value_leaks": 0
+  },
+  "earliest_native_probe_retrieval": {
+    "tp": 10,
+    "fp": 0,
+    "missed": 0,
+    "expected_references": 10,
+    "precision": 1,
+    "recall": 1,
+    "out_of_binding_references": 0,
+    "method": "Earliest audit row bound to the exact probe conversation and assistant message. Each initial reference was resolved by native record ID and version."
+  },
+  "native_source_audit": {
+    "completed_source_jobs": 10,
+    "active_records": 10,
+    "verified_exact_user_origin_proofs": 10,
+    "pending_vectors": 0,
+    "tombstones": 0,
+    "duplicate_active_keys": 0,
+    "critical_writes": 0,
+    "critical_promotions": 0,
+    "supplemental_distinct_source_relations": {
+      "tp": 10,
+      "fp": 0,
+      "missed": 1,
+      "denominator": 11,
+      "missed_source_turn": 5,
+      "method": "Source-bound diagnostic of distinct accepted relations. The original fixture labels probe retrieval and supplies no exhaustive extraction gold."
+    }
+  },
+  "findings": [
+    {
+      "ordinal": 5,
+      "kind": "false_block_and_missing_extraction",
+      "detail": "Both raw render candidates faithfully acknowledged the source's explicit preference for turn-based strategy. The verifier withheld both. The completed job produced no canonical record or learning receipt."
+    },
+    {
+      "ordinal": 6,
+      "kind": "critical_delivered_modality_shift",
+      "detail": "One checked reply presented TypeScript and PostgreSQL as being used. The source and both native relations identify planned use.",
+      "critical_predicates": 2,
+      "first_display_ms": 2300,
+      "receipt_proof_read_finished_ms": 7956,
+      "claimed_completed_write": false
+    },
+    {
+      "ordinal": 23,
+      "kind": "additional_preference_without_new_session_evidence",
+      "detail": "The requested tactical RPG recommendation was supported. The added turn-based strategy preference had an earlier legitimate USER source, while this probe had no canonical reference for it."
+    }
+  ],
+  "latency_ms": {
+    "generation": { "samples": 30, "p50": 3170, "p95": 5944, "max": 6948 },
+    "extraction_wait": { "samples": 30, "p50": 735.5, "p95": 5284, "max": 5565 }
+  },
+  "original_22e_h20": {
+    "published_audit_sha256": "5fb349fcffbdb01558458acf8664ba10c62dbac198426e6c0eab390ed94caecc",
+    "raw_sha256": "73300430e09d4ab47f5c717bc94fa99647f1ec7c31a0f0a80c2568b5dba8aa46",
+    "useful_responses": 28,
+    "planned_responses": 30,
+    "useful_probes": 9,
+    "planned_probes": 10,
+    "retained_atoms": 28,
+    "planned_atoms": 32,
+    "supported_delivered_claims": 11,
+    "delivered_claims": 11,
+    "critical_delivered_claims": 0,
+    "earliest_native_retrieval": { "tp": 10, "fp": 0, "missed": 0 }
+  },
+  "sha256": {
+    "original_fixture": "e94a9c8ea7671a90f165fae2c85422512b745184eabd767bdcf7f164c6b2892a",
+    "development_manifest": "95bc7113686c2aed5c71e36f1bebe5d2b782f317cace70798d0207f3fc67b64e",
+    "raw": "7f609bca93d2c11e34079697719d488ebde3cea5b5064ebf798077a81c5048ec",
+    "outcome": "ec9263030f07f1827d1d9ab148080db9b619084916570614b400cf2b4ab92d64",
+    "independent_review": "598e27472e06706dd52c6411c642ec28c60ba08cc8557d2facb0cf6944157fcf",
+    "execution_log": "cdd7fbd3f6384b6eaa93a521ae93e276378458c9cce3112be6e0fe945f8d951f",
+    "archived_control": "816bea68fa6b4c57a92a34bb838dfb5db87fc1a1dddcadc2141145a9cd4f551d",
+    "archived_profile_manifest": "0e2add5ad911aa1b2667f2fd22a7dd42c7abfc394c5615f0a16acbdb2a775abb",
+    "archived_profile_sqlite": "36b5ff2828d756fc52e09a1e1746ba17426f387e3c0ca28d4931a528a100f796",
+    "archived_profile_shm": "aebe387ee21c0c51f9f6652b34da3cb1b39d947ea1087173d1502e0bf0468fe3",
+    "archived_profile_wal": "b564ca447fa50c0bc7887416ff40cf774a475802cd69c28b189427ac4db2c539"
+  },
+  "disposition": "The measured H20 regression failed delivered fidelity and the zero critical claims gate. H50 and H100 were not executed in this series. The failed synthetic profile, manifest, raw report and adjudication were archived."
+}

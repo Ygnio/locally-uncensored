@@ -1,0 +1,442 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_historical_regression_revalidation",
+  "date": "2026-11-18",
+  "series_label": "dev18nseries",
+  "production_code_commit": "a24384a41b2b996ec1275a2e9f4a325d6b6fb124",
+  "scope": "phase22c-final-historical-series",
+  "complete": true,
+  "passed": true,
+  "segments": {
+    "20": {
+      "project": "candeia",
+      "execution_complete": true,
+      "independent_advancement_gate_passed": true,
+      "source_turns": 20,
+      "probes": 10,
+      "status_counts": {
+        "checked": 30
+      },
+      "useful": {
+        "observed": 30,
+        "planned": 30
+      },
+      "completeness": {
+        "retained": 32,
+        "planned": 32
+      },
+      "literal_fidelity": {
+        "supported": 24,
+        "delivered": 24,
+        "critical": 0,
+        "premature": 0
+      },
+      "earliest_native_retrieval": {
+        "tp": 10,
+        "fp": 1,
+        "fn": 0,
+        "precision": 0.9090909090909091,
+        "recall": 1
+      },
+      "scope_before": {
+        "memories": 0,
+        "extraction_jobs": 0,
+        "memory_tombstones": 0,
+        "retrieval_audit": 0
+      },
+      "scope_after": {
+        "memories": 11,
+        "extraction_jobs": 10,
+        "memory_tombstones": 0,
+        "retrieval_audit": 30
+      },
+      "exact_natively_attested_user_sources": 11,
+      "preceding_other_project_records_unchanged": 0,
+      "dev18m_comparison": {
+        "review_sha256": "3594497438f7b5140a124e9ed4e9ef83b74103f3fb826e8d77410a7755f5bab7",
+        "raw_sha256": "909f3bde0dffcaeaf49fb4ceb79b037858856ff606b2df5b737370293e90f14c",
+        "identical_terminal_rows": 25,
+        "changed_ordinals": [
+          11,
+          17,
+          20,
+          22,
+          23
+        ],
+        "compared_rows": 30,
+        "all_10_earliest_probe_projections_match": true
+      },
+      "original_22e": {
+        "useful": 28,
+        "retained_atoms": 28,
+        "supported_claims": 11,
+        "delivered_claims": 11,
+        "earliest_native_retrieval": {
+          "true_positive": 10,
+          "false_positive": 0,
+          "missed": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "latency_ms": {
+        "generation": {
+          "samples": 30,
+          "p50": 2899.5,
+          "p95": 4693,
+          "max": 5980
+        },
+        "extraction_wait": {
+          "samples": 30,
+          "p50": 731.0,
+          "p95": 5027,
+          "max": 5574
+        }
+      },
+      "sha256": {
+        "fixture": "e94a9c8ea7671a90f165fae2c85422512b745184eabd767bdcf7f164c6b2892a",
+        "raw": "f857518365e56ac2b8c5e23956ab643110f8e821639ea0f66817736f0ac5eea7",
+        "outcome": "91a158aaa9ddfc90d0ec8ca79177254756ee8a92e24c75240966a3b7626950e6",
+        "independent_review": "edd07e647554714f5c56787f4663bd9674d9e89edf2355f0e457d7477655137e",
+        "execution_log": "36ab5b2a38d8de0cd9fcc03ea6581d0d0bd615fb07e3f686ba8f385786bbd9f8"
+      }
+    },
+    "50": {
+      "project": "candeia2",
+      "execution_complete": true,
+      "independent_advancement_gate_passed": true,
+      "source_turns": 50,
+      "probes": 8,
+      "status_counts": {
+        "checked": 58
+      },
+      "useful": {
+        "observed": 58,
+        "planned": 58
+      },
+      "completeness": {
+        "retained": 60,
+        "planned": 60
+      },
+      "literal_fidelity": {
+        "supported": 17,
+        "delivered": 17,
+        "critical": 0,
+        "premature": 0
+      },
+      "earliest_native_retrieval": {
+        "tp": 8,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "scope_before": {
+        "memories": 11,
+        "extraction_jobs": 10,
+        "memory_tombstones": 0,
+        "retrieval_audit": 30
+      },
+      "scope_after": {
+        "memories": 19,
+        "extraction_jobs": 16,
+        "memory_tombstones": 0,
+        "retrieval_audit": 88
+      },
+      "exact_natively_attested_user_sources": 8,
+      "preceding_other_project_records_unchanged": 11,
+      "dev18m_comparison": {
+        "review_sha256": "690e4ff5227728a7be9a8676dbcc1c756e3c5cd236507e5f36af9072491e9cc3",
+        "raw_sha256": "2d232053b127305e6ac4faf1aeca6df30f9fa5c03c975829b58f5d9b6b5b5182",
+        "identical_terminal_rows": 52,
+        "changed_ordinals": [
+          5,
+          23,
+          35,
+          41,
+          44,
+          57
+        ],
+        "compared_rows": 58,
+        "all_eight_earliest_probe_projections_match": true
+      },
+      "original_22e": {
+        "useful": 58,
+        "retained_atoms": 60,
+        "supported_claims": 14,
+        "delivered_claims": 14,
+        "earliest_native_retrieval": {
+          "true_positive": 8,
+          "false_positive": 0,
+          "missed": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "latency_ms": {
+        "generation": {
+          "samples": 58,
+          "p50": 4306.0,
+          "p95": 7043,
+          "max": 7254
+        },
+        "extraction_wait": {
+          "samples": 58,
+          "p50": 730.0,
+          "p95": 4474,
+          "max": 5791
+        }
+      },
+      "sha256": {
+        "fixture": "b244780d91caaffea0dbbce86f597c3ef66b2303dc64aad34e2adc76d243ee66",
+        "raw": "6e4c0465ca7e084afbfa61358fd77bc1c120d1ec8856ed406b5b2c7e1905feff",
+        "outcome": "a8599e4c209c102a0fd9351f5fd0ab50108633b840c22b2bb414fa1bc569243e",
+        "independent_review": "3f4edad2e95a14c0f460b6564689ed2ad8945b7e522eef33f19d3905df3b4649",
+        "execution_log": "32eb8caef9af6dcf439ed1ed8b8792b581125763084f9cdeaa97be033b3773ca"
+      }
+    },
+    "100": {
+      "project": "candeia",
+      "execution_complete": true,
+      "independent_advancement_gate_passed": true,
+      "source_turns": 100,
+      "probes": 10,
+      "status_counts": {
+        "checked": 110
+      },
+      "useful": {
+        "observed": 110,
+        "planned": 110
+      },
+      "completeness": {
+        "retained": 112,
+        "planned": 112
+      },
+      "literal_fidelity": {
+        "supported": 26,
+        "delivered": 27,
+        "critical": 0,
+        "premature": 0
+      },
+      "earliest_native_retrieval": {
+        "tp": 10,
+        "fp": 1,
+        "fn": 0,
+        "precision": 0.9090909090909091,
+        "recall": 1
+      },
+      "scope_before": {
+        "memories": 19,
+        "extraction_jobs": 16,
+        "memory_tombstones": 0,
+        "retrieval_audit": 88
+      },
+      "scope_after": {
+        "memories": 22,
+        "extraction_jobs": 26,
+        "memory_tombstones": 2,
+        "retrieval_audit": 198
+      },
+      "exact_natively_attested_user_sources": 14,
+      "preceding_other_project_records_unchanged": 8,
+      "dev18m_comparison": {
+        "review_sha256": "67d458bdc0128eb42005dcbd686d393cd024372b91ce9a42150be50c49fbc777",
+        "raw_sha256": "79ce4458a42a3ea48ec3adf4ff48cf090a8642560c9281350207e3ce5bd0107d",
+        "compared_rows": 110,
+        "identical_terminal_rows": 25,
+        "changed_ordinals": [
+          1,
+          4,
+          6,
+          7,
+          8,
+          9,
+          10,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          32,
+          33,
+          34,
+          36,
+          37,
+          39,
+          40,
+          42,
+          43,
+          44,
+          45,
+          46,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          63,
+          64,
+          66,
+          67,
+          68,
+          69,
+          70,
+          72,
+          73,
+          74,
+          75,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          87,
+          88,
+          89,
+          90,
+          92,
+          93,
+          94,
+          96,
+          97,
+          99,
+          100,
+          101,
+          102,
+          106,
+          110
+        ],
+        "all_earliest_probe_projections_match": true
+      },
+      "original_22e": {
+        "useful": 110,
+        "retained_atoms": 112,
+        "supported_claims": 25,
+        "delivered_claims": 26,
+        "earliest_native_retrieval": {
+          "tp": 10,
+          "fp": 1,
+          "missed": 0,
+          "precision": 0.9090909090909091,
+          "recall": 1.0,
+          "cross_project_refs": 0,
+          "noncurrent_refs": 0,
+          "irrelevant_or_fenced_leakage": 0
+        }
+      },
+      "latency_ms": {
+        "generation": {
+          "samples": 110,
+          "p50": 6502.0,
+          "p95": 12146,
+          "max": 13478
+        },
+        "extraction_wait": {
+          "samples": 110,
+          "p50": 730.5,
+          "p95": 3412,
+          "max": 4767
+        }
+      },
+      "sha256": {
+        "fixture": "256d80c1a9046b0e27c06f257fcb9dca4d50afdb3e70ddb5ec3773a919e986fb",
+        "raw": "112a30dbefb5ff13d8ff72be47425066a4061e8cc924ac5b30049d5cee450437",
+        "outcome": "ff90600e25c3134ac84e11a754e933e7dfa3528e5e80fd1dd00cbe71c3e8887d",
+        "independent_review": "c24f74d06fec860f89a908eab026a141829ac477c55ae47e7f0ccc64cbd917da",
+        "execution_log": "7ee07d301e6a8f8dd52d6db44ddaf8b07b8d2e7e636a6d18d42c1eb40951597e"
+      }
+    }
+  },
+  "total": {
+    "useful_responses": 198,
+    "planned_responses": 198,
+    "retained_atoms": 204,
+    "planned_atoms": 204,
+    "supported_delivered_claims": 67,
+    "delivered_claims": 68
+  },
+  "stage_gates_sha256": {
+    "label": "dev18nseries",
+    "manifest_sha256": "60e075a755178b687a37ece3ac782d95b45c5e69366a8b689dcc8e3497d0ed49",
+    "segments": {
+      "20": {
+        "outcome_sha256": "91a158aaa9ddfc90d0ec8ca79177254756ee8a92e24c75240966a3b7626950e6",
+        "raw_sha256": "f857518365e56ac2b8c5e23956ab643110f8e821639ea0f66817736f0ac5eea7",
+        "adjudication_sha256": "edd07e647554714f5c56787f4663bd9674d9e89edf2355f0e457d7477655137e"
+      },
+      "50": {
+        "outcome_sha256": "a8599e4c209c102a0fd9351f5fd0ab50108633b840c22b2bb414fa1bc569243e",
+        "raw_sha256": "6e4c0465ca7e084afbfa61358fd77bc1c120d1ec8856ed406b5b2c7e1905feff",
+        "adjudication_sha256": "3f4edad2e95a14c0f460b6564689ed2ad8945b7e522eef33f19d3905df3b4649"
+      },
+      "100": {
+        "outcome_sha256": "ff90600e25c3134ac84e11a754e933e7dfa3528e5e80fd1dd00cbe71c3e8887d",
+        "raw_sha256": "112a30dbefb5ff13d8ff72be47425066a4061e8cc924ac5b30049d5cee450437",
+        "adjudication_sha256": "c24f74d06fec860f89a908eab026a141829ac477c55ae47e7f0ccc64cbd917da"
+      }
+    }
+  },
+  "native_lifecycle": {
+    "qualified_tombstones": 2,
+    "stable_old_learning_replay": true,
+    "stable_old_forget_replay": true,
+    "ambiguous_ram_without_canonical_effect": true,
+    "regular_restatement_after_forget_without_canonical_effect": true,
+    "corrected_explicit_relearning_turn_92": {
+      "first_display_ms": 10704,
+      "first_completed_receipt_observed_ms": 14939,
+      "completed_write_claim_delivered": false,
+      "reintroduced_candidate_version": 1,
+      "later_active_probe_version": 2
+    },
+    "old_cross_project_absence_ambiguity_persists": true,
+    "duplicate_effects": 0,
+    "foreign_values_injected_or_delivered": 0
+  },
+  "verify": {
+    "typescript_cases_passed": 761,
+    "typescript_suites_passed": 195,
+    "sha256": {
+      "typescript_report": "1c96b5012d075c09d655537c23c2d368498451e9caa2cdb4122794397eb899a9",
+      "typescript_output": "c13b99e0f5049fc5b2d3ad1ed24f58da066ddf5b01d2ad0edcd2212e254e9262",
+      "typecheck_output": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lint_output": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "production_build_output": "bd3b367155b7191c1cdee36aacbed57a7b2785dbb2be66cc030e84af374434a1",
+      "isolated_frontend_build_output": "e0b2a35d139047b9993d948146a825bb01ec35666e4e1736ea763c6bb9d2d14c"
+    }
+  },
+  "sha256": {
+    "development_manifest": "60e075a755178b687a37ece3ac782d95b45c5e69366a8b689dcc8e3497d0ed49",
+    "native_gui": "3cf885c9bd9505245110a441c1f14f45b1b983addf9f6785395a0e4a05ce39d9",
+    "bridge": "141ba3e4ba3d9fdae22e19379e6ac6569ecb4eb2d0894d374780208a45863d46",
+    "native_build_contract": "8a6ef9d8007fc0f62785c7c1f50fb4fcc4ec788f846a85969c57b82cf035e422",
+    "isolated_bootstrap": "0532d7e032f9ba9ea1769b58a371e4cffa345b1c67c6ccc1ca46ca24f6a74614",
+    "archived_prior_dev18m_h100_failure": "7f0fd4c23b19fc5f948e24a0131612de53820e348b0e8eeda1578e1f1c6ca6b6"
+  },
+  "coverage_limit": "Known original 20 / 50 / 100 with the same scopes, identity and ordering. The final evaluation uses its own inputs and denominators."
+}

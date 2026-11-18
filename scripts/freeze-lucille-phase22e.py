@@ -10,6 +10,8 @@ import hashlib
 import json
 import re
 from pathlib import Path
+from runpy import run_path
+import sqlite3
 import subprocess
 
 
@@ -30,13 +32,14 @@ def validate_identity_fixture(fixture):
     assert policy.get('extraction_mode') in ['rules', 'llm', 'hybrid'], 'Final native extraction policy is missing'
 
 
-def main(a):
+def main(a, phase='22e'):
     repo=Path(__file__).resolve().parents[1]
     root=Path(a.root).resolve(strict=True)
-    assert root==repo/'.lucille-qa-runtime/lucille-synthetic-real22e'
+    assert phase in ('22e','22f')
+    assert root==repo/'.lucille-qa-runtime'/('lucille-synthetic-real'+phase)
     assert (root/'.lucille-isolated').read_bytes()==b'synthetic-data-only\n'
     output=Path(a.output).resolve()
-    allowed=repo/'crates/lucille-memory/tests/fixtures/phase22e'
+    allowed=repo/'crates/lucille-memory/tests/fixtures'/('phase'+phase)
     assert output.is_relative_to(root/'reports') if a.kind=='development' else output.is_relative_to(allowed)
     assert not output.exists(),'Never overwrite a freeze'
     corpora={}
@@ -64,33 +67,66 @@ def main(a):
         assert a.identity,'Final requires an actual completed native GUI identity/policy fixture'
     pin=json.loads((root/'reports/real-public-pin.json').read_text(encoding='utf-8'))
     assert pin['simulation'] is False and pin['memory_protocol']==3
-    static=repo/'qa-dist-22e'
-    assert (static/'.lucille-static-build').read_bytes()==b'synthetic-data-only\n'
-    gui=repo.parent/'build/tauri/x86_64-pc-windows-msvc/debug/lucille-full-validation.exe'
-    bridge=repo.parent/'build/memory/debug/examples/real_validation_bridge.exe'
+    static=repo/('qa-dist-'+phase)
+    gui, bridge=run_path(str(repo/'qa/phase22e-artifact-check.py'))['artifact_paths'](repo,phase)
+    if a.without_gui:
+        assert phase=='22f' and a.kind=='development', 'A final freeze requires the native GUI and frontend'
+        gui_hash, frontend = None, {}
+    else:
+        assert (static/'.lucille-static-build').read_bytes()==b'synthetic-data-only\n'
+        gui_hash=digest(gui)
+        frontend={p.relative_to(static).as_posix():digest(p) for p in sorted(static.rglob('*')) if p.is_file()}
     fixture=json.loads(Path(a.identity).read_text(encoding='utf-8')) if a.identity else None
     if a.kind=='final':validate_identity_fixture(fixture)
-    data=dict(id='phase22e-'+a.kind+'-'+a.label,kind=a.kind,
+    schema=5
+    if phase=='22f':
+        db_root=repo/'.lucille-qa-runtime/lucille-synthetic-full22f'
+        assert (db_root/'.lucille-isolated').read_bytes()==b'synthetic-data-only\n'
+        database=db_root/'lucille-phase1.sqlite3'
+        if database.is_file():
+            with sqlite3.connect(database.as_uri()+'?mode=ro',uri=True) as db:
+                db.execute('pragma query_only=on')
+                schema=db.execute('select max(version) from schema_migrations').fetchone()[0]
+        else:
+            assert a.kind=='development','Final freeze requires native schema observation'
+            schema=None
+    data=dict(id='phase'+phase+'-'+a.kind+'-'+a.label,kind=a.kind,
         created_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
-        base='92f75a0d661fa9804b468e55b3760090b47bdd66',
+        base='b8b1d0e255c29e912edf7f6d18e9c48ac11dfcd1' if phase=='22f' else '92f75a0d661fa9804b468e55b3760090b47bdd66',
         source_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip(),
         production_code_commit=a.production_commit,source_sha256_lf=sources,
         corpus_sha256=corpora,extraction_corpus=a.extraction,retrieval_corpus=a.retrieval,
-        bridge_sha256=digest(bridge),native_gui_sha256=digest(gui),
-        frontend_sha256={p.relative_to(static).as_posix():digest(p) for p in sorted(static.rglob('*')) if p.is_file()},
-        model_pin=pin,schema_version=5,representation_version=5,index_version=5,atomic_protocol=3,
+        bridge_sha256=digest(bridge),native_gui_sha256=gui_hash,
+        frontend_sha256=frontend,
+        model_pin=pin,schema_version=schema,representation_version=5,index_version=5,atomic_protocol=3,
         source_authority_version=int(re.search(r'pub const SOURCE_AUTHORITY_VERSION: u32 = (\d+);',(repo/'crates/lucille-memory/src/source_authority.rs').read_text(encoding='utf-8')).group(1)),
         identity=fixture.get('identity') if fixture else None,policy=fixture.get('policy') if fixture else None,
         evaluation_contract='No source/prompt/policy/parameter/corpus/ranking changes during execution; actual raw generations, all fidelity reports, displayed text and usefulness are separate.')
+    if phase=='22f':
+        data['native_local_dependencies_sha256'] = {} if a.without_gui else {
+            p.name:digest(p) for p in sorted(gui.parent.glob('*.dll')) if p.is_file()}
+        if not a.without_gui:
+            build_contract=root/'reports/native-build-contract.json'
+            build=json.loads(build_contract.read_text(encoding='utf-8-sig'))
+            assert build['artifacts_sha256']=={gui.name:gui_hash,**data['native_local_dependencies_sha256']}
+            assert build['base_manifest_sha256']==digest(repo/'src-tauri/Cargo.toml')
+            assert build['identifier']=='dev.ygnio.lucille.phase16'
+            assert build['tauri_config_sha256']==digest(repo/'src-tauri/tauri.lucille-validation.conf.json')
+            data['native_build_contract'] = build
+            data['native_build_contract_sha256'] = digest(build_contract)
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_bytes((json.dumps(data,ensure_ascii=False,indent=2)+'\n').encode('utf-8'))
     print(json.dumps(dict(kind=a.kind,source_files=len(sources),corpora=len(corpora),sha256=digest(output))))
 
 
-if __name__=='__main__':
+def cli(phase='22e'):
     p=argparse.ArgumentParser()
     for name in ['root','output','label','extraction','retrieval','production-commit']:p.add_argument('--'+name,required=True)
     p.add_argument('--corpus',action='append',required=True)
     p.add_argument('--kind',choices=['development','final'],required=True)
     p.add_argument('--identity')
-    main(p.parse_args())
+    p.add_argument('--without-gui',action='store_true',help='Seal independent Phase 2.2F development stages before the GUI build is available.')
+    main(p.parse_args(),phase)
+
+
+if __name__=='__main__':cli()

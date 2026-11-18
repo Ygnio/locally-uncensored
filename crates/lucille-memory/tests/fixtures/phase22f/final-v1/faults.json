@@ -1,0 +1,125 @@
+{
+  "id": "phase22f-final-v1-native-faults",
+  "kind": "synthetic novel USER sources for known failure protocols",
+  "cases": [
+    {
+      "id": "cancel-chat",
+      "type": "prepared_cancel",
+      "mode": "chat",
+      "project": "andorinha",
+      "text": "Nas minhas leituras, prefiro receber explicações detalhadas."
+    },
+    {
+      "id": "cancel-agent",
+      "type": "prepared_cancel",
+      "mode": "agent",
+      "project": "andorinha",
+      "text": "For my app interface, I prefer the light theme."
+    },
+    {
+      "id": "cancel-code",
+      "type": "prepared_cancel",
+      "mode": "code",
+      "project": "andorinha",
+      "text": "Eu prefiro chá como minha bebida favorita."
+    },
+    {
+      "id": "source-order",
+      "type": "ordered_sources",
+      "project": "andorinha",
+      "mode": "chat",
+      "texts": [
+        "Para a interface que uso nas aulas, eu prefiro o tema escuro.",
+        "Mudei minha preferência: na interface que uso nas aulas, agora prefiro o tema claro."
+      ],
+      "expected": {
+        "kind": "preference",
+        "subject": "user",
+        "property": "interface_theme",
+        "value": "light"
+      }
+    },
+    {
+      "id": "cancel-live-lease",
+      "type": "leased_cancel",
+      "mode": "chat",
+      "project": "andorinha",
+      "text": "Eu prefiro respostas curtas. Minha bebida favorita é chá. Nos jogos, gosto de criar personagens. Para a interface, eu prefiro o modo claro."
+    },
+    {
+      "id": "restart-live-lease",
+      "type": "restart",
+      "mode": "chat",
+      "project": "andorinha",
+      "text": "I prefer detailed explanations. My favorite beverage is tea. For my interface I prefer the light theme. I like turn-based strategy games.",
+      "expected": [
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "communication_style",
+          "value": "detailed"
+        },
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "favorite_beverage",
+          "value": "tea"
+        },
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "interface_theme",
+          "value": "light"
+        },
+        {
+          "kind": "preference",
+          "subject": "user",
+          "property": "games_turn_strategy",
+          "value": "positive"
+        }
+      ]
+    },
+    {
+      "id": "sqlite-write-lock",
+      "type": "sqlite_busy",
+      "mode": "chat",
+      "project": "andorinha",
+      "text": "No meu café da manhã, prefiro tomar café com açúcar."
+    }
+  ],
+  "transport": [
+    {
+      "mode": "chat",
+      "project": "garca",
+      "text": "Minha preferência para as respostas do estudo é por explicações detalhadas.",
+      "expected": {
+        "kind": "preference",
+        "subject": "user",
+        "property": "communication_style",
+        "value": "detailed"
+      }
+    },
+    {
+      "mode": "agent",
+      "project": "garca",
+      "text": "Na interface do caderno digital, prefiro o modo claro.",
+      "expected": {
+        "kind": "preference",
+        "subject": "user",
+        "property": "interface_theme",
+        "value": "light"
+      }
+    },
+    {
+      "mode": "code",
+      "project": "garca",
+      "text": "When I play role-playing games, I like choosing my character class.",
+      "expected": {
+        "kind": "preference",
+        "subject": "user",
+        "property": "games_class_selection",
+        "value": "positive"
+      }
+    }
+  ]
+}

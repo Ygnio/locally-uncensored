@@ -1,0 +1,362 @@
+{
+  "id": "phase22f-development-c1-ranking-archived-replay",
+  "kind": "known_development_replay",
+  "recorded_utc": "2026-11-11T12:37:40.043999+00:00",
+  "method": "Replay das 29 consultas e dos golds originais da 2.2E com um novo banco sintético e o bridge recompilado. Cada entrada Nomic da primeira C1 foi reaplicada apenas à mesma representação ou consulta, conferida pela chave de texto integral.",
+  "coverage": {
+    "planned_queries": 29,
+    "mode_slots_measured": 116,
+    "expected_atoms_per_mode": 30,
+    "seed_events_verified": 17,
+    "old_queries_and_golds_verified": 29,
+    "sqlite": {
+      "schema": 6,
+      "quick_check": "ok",
+      "tombstones": 1,
+      "active_vectors": 14
+    }
+  },
+  "version": {
+    "replay_source_commit": "65a3c3d4aa2815f899e3791ce35008fad9c1e4ba",
+    "retrieval_source_sha256": "c72bae0be1d95fe2c85e7679f77735b3a557d5763a41cc1aed12d6d556af549a",
+    "replay_bridge_sha256": "1f0b1c03e47632f625fa63cb9decc98994ee04a4adaf12526135a3bc2c21d9b6",
+    "first_real_bridge_sha256": "5a2e539b448cb4f2a8142f09161ceda5501208f13fd274773e95e86773153048"
+  },
+  "hashes": {
+    "replay_raw": {
+      "name": "dev-dry-c1-ranking-610b5373.json",
+      "sha256": "b45d422c718153e5e7761d447507fe291a9959283261b70309b61ab8984f5828"
+    },
+    "first_real_raw": {
+      "name": "devf0-c1-c1.json",
+      "sha256": "983cb7f46ea55db27ba26d8062f94e526117514ce014af68999f5c12c36d4851"
+    },
+    "first_real_freeze": {
+      "name": "development-freeze-bridge1.json",
+      "sha256": "86df0aab8b967da7ecc8fa636c9a82a582d5f83140446f411743acf489d37a38"
+    },
+    "original_gold": {
+      "name": "retrieval.json",
+      "sha256": "1f65d2ed629655abf98fd2c4e23493f668ea1e04c1f8f8f95c88c7f806e3c372"
+    },
+    "known_annotations": {
+      "name": "known-retrieval-annotations.json",
+      "sha256": "083b2fe71f6d4cdfb10d5dfc01443b9b664b6c42df58e8c57aca6fb7e143df08"
+    },
+    "original_broker_archive": {
+      "name": "real-broker-calls.ndjson",
+      "sha256": "a395451f7f1259bf9805ee02d9d04a310cef8e1d5a76fbcc5f425d59c81cb801",
+      "prefix_bytes": 791050
+    }
+  },
+  "vectors": {
+    "model": "Nomic Embed Text v1.5 F16",
+    "dimension": 768,
+    "index_version": 5,
+    "real_archived_vectors_reused": 43,
+    "documents": 14,
+    "queries": 29,
+    "new_embedding_calls": 0,
+    "new_gemma_calls": 0
+  },
+  "first_real_comparison": {
+    "hybrid": {
+      "tp": 29,
+      "fp": 4,
+      "missed": 1,
+      "unsafe_current": 2,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 0.8787878787878788,
+      "recall": 0.9666666666666667,
+      "recall_planned": 0.9666666666666667,
+      "passed": false
+    },
+    "mandatory_fallback": {
+      "planned": 20,
+      "exact": 16,
+      "physical_endpoint_unavailable": false
+    }
+  },
+  "metrics": {
+    "fts5": {
+      "tp": 30,
+      "fp": 0,
+      "missed": 0,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "recall_planned": 1.0,
+      "passed": true
+    },
+    "nomic": {
+      "tp": 27,
+      "fp": 0,
+      "missed": 3,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 1.0,
+      "recall": 0.9,
+      "recall_planned": 0.9,
+      "passed": true
+    },
+    "hybrid": {
+      "tp": 30,
+      "fp": 0,
+      "missed": 0,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "recall_planned": 1.0,
+      "passed": true
+    },
+    "fallback": {
+      "tp": 30,
+      "fp": 0,
+      "missed": 0,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "recall_planned": 1.0,
+      "passed": true
+    }
+  },
+  "mandatory_fallback": {
+    "planned": 20,
+    "exact": 20,
+    "failed": [],
+    "physically_offline_test_credit": false
+  },
+  "changed_query_injections": {
+    "er-014": {
+      "fts5": {
+        "before": [
+          "language-choice",
+          "database-plan"
+        ],
+        "after": [
+          "purpose",
+          "language-choice",
+          "database-plan"
+        ]
+      },
+      "nomic": {
+        "before": [
+          "language-choice"
+        ],
+        "after": [
+          "language-choice",
+          "database-plan"
+        ]
+      },
+      "hybrid": {
+        "before": [
+          "language-choice",
+          "database-plan"
+        ],
+        "after": [
+          "purpose",
+          "language-choice",
+          "database-plan"
+        ]
+      },
+      "fallback": {
+        "before": [
+          "language-choice",
+          "database-plan"
+        ],
+        "after": [
+          "purpose",
+          "language-choice",
+          "database-plan"
+        ]
+      }
+    },
+    "er-018": {
+      "nomic": {
+        "before": [
+          "database-plan",
+          "language-choice"
+        ],
+        "after": [
+          "database-plan"
+        ]
+      },
+      "hybrid": {
+        "before": [
+          "database-plan",
+          "language-choice"
+        ],
+        "after": [
+          "database-plan"
+        ]
+      }
+    },
+    "er-023": {
+      "nomic": {
+        "before": [
+          "database-plan",
+          "language-choice"
+        ],
+        "after": [
+          "database-plan"
+        ]
+      },
+      "hybrid": {
+        "before": [
+          "database-plan",
+          "language-choice"
+        ],
+        "after": [
+          "database-plan"
+        ]
+      }
+    },
+    "er-024": {
+      "fts5": {
+        "before": [
+          "future-language",
+          "actual-language"
+        ],
+        "after": [
+          "actual-language"
+        ]
+      },
+      "nomic": {
+        "before": [],
+        "after": [
+          "actual-language"
+        ]
+      },
+      "hybrid": {
+        "before": [
+          "future-language",
+          "actual-language"
+        ],
+        "after": [
+          "actual-language"
+        ]
+      },
+      "fallback": {
+        "before": [
+          "future-language",
+          "actual-language"
+        ],
+        "after": [
+          "actual-language"
+        ]
+      }
+    },
+    "er-025": {
+      "fts5": {
+        "before": [
+          "future-language",
+          "actual-language"
+        ],
+        "after": [
+          "future-language"
+        ]
+      },
+      "nomic": {
+        "before": [],
+        "after": [
+          "future-language"
+        ]
+      },
+      "hybrid": {
+        "before": [
+          "future-language",
+          "actual-language"
+        ],
+        "after": [
+          "future-language"
+        ]
+      },
+      "fallback": {
+        "before": [
+          "future-language",
+          "actual-language"
+        ],
+        "after": [
+          "future-language"
+        ]
+      }
+    },
+    "er-026": {
+      "fts5": {
+        "before": [],
+        "after": [
+          "actual-language",
+          "future-language"
+        ]
+      },
+      "fallback": {
+        "before": [],
+        "after": [
+          "actual-language",
+          "future-language"
+        ]
+      }
+    }
+  },
+  "residual": [
+    {
+      "id": "er-005",
+      "mode": "nomic",
+      "expected": [
+        "primary-before",
+        "primary-now"
+      ],
+      "actual": [
+        "primary-now"
+      ],
+      "reason": "A versão obsoleta de 48 GB fica sem vetor ativo."
+    },
+    {
+      "id": "er-010",
+      "mode": "nomic",
+      "expected": [
+        "coffee"
+      ],
+      "actual": [],
+      "reason": "O cosseno da preferência de café ficou abaixo do limiar 0,60."
+    },
+    {
+      "id": "er-014",
+      "mode": "nomic",
+      "expected": [
+        "purpose",
+        "language-choice",
+        "database-plan"
+      ],
+      "actual": [
+        "language-choice",
+        "database-plan"
+      ],
+      "reason": "O cosseno da descrição do projeto ficou abaixo do limiar 0,60."
+    }
+  ],
+  "interpretation": "FTS5, híbrido e fallback recuperaram os 30 fatos esperados sem extras. Os casos obrigatórios de fallback ficaram exatos nos 20 previstos. O replay usa vetores reais já gravados e não mede nova inferência, desligamento físico, GUI ou a avaliação inédita final."
+}

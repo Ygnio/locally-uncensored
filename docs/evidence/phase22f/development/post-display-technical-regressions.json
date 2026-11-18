@@ -1,0 +1,179 @@
+{
+  "kind": "development_post_display_technical_regressions",
+  "phase": "2.2F",
+  "production_code_commit": "f8398f9fa9062e0e32c9303233ea382a58f73671",
+  "freeze_sha256": "0729e7c3acf21e89d0f0a4008a56ae243d0347e26675dd2266f293dcd079e705",
+  "artifacts": {
+    "native_gui_sha256": "09d4b0c027eab473c186797b5c9075f37fd584f5a5812f1fe96de2221b0a5563",
+    "bridge_sha256": "e6587ce8d0f41ebe116eaa8f5cbc0377a4d402faffa55f4999a9909e385342cd",
+    "native_local_dependencies_sha256": {
+      "WebView2Loader.dll": "8427b1fc58ec707813e5c0a51eb5d69397bb333250a7b891be4d3b123f1e0f1c"
+    },
+    "frontend_files": 934,
+    "frontend_inventory_sha256": "8e923338e5da133718fff9d5a5808438e6704d501b0050080ae28c313e849c2d",
+    "schema_version": 6
+  },
+  "tests": {
+    "rust": {
+      "passed": 166,
+      "log_sha256": "a5bdae0ba4dfee2cda61cb6b25595a6d0cfa84c221afe3f9baa2ca99caea6fd3"
+    },
+    "typescript": {
+      "passed": 741,
+      "files": 66,
+      "report_sha256": "f00689c4f3285512f48f0aecd6b02dcbb40876e8a226fe9c76e48d66a6f682f0"
+    },
+    "typecheck": "passed",
+    "lint": "passed",
+    "builds": {
+      "production_frontend": {
+        "status": "passed",
+        "log_sha256": "6c24bca0ec587e86b13c11bc2d1a3b17a4d4bff1ca02e1b5d0d0780fddd795b6"
+      },
+      "validation_frontend": {
+        "status": "passed",
+        "log_sha256": "1bc9f61fac8dd35af674316201c075a8dba4eb6c0034a2a8676a74117f16525c"
+      },
+      "native_host": {
+        "status": "passed",
+        "log_sha256": "682b4da66eb792d9ac48c29aba62abc4567e89ec49097f8521e24989c0f0d789"
+      }
+    }
+  },
+  "original_a_replay": {
+    "modes": {
+      "rules": {
+        "tp": 20,
+        "fp": 0,
+        "missed": 0,
+        "active_correct": 14,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "origin_violations": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "promotion_precision": 1.0
+      },
+      "llm": {
+        "tp": 20,
+        "fp": 0,
+        "missed": 0,
+        "active_correct": 14,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "origin_violations": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "promotion_precision": 1.0
+      },
+      "hybrid": {
+        "tp": 20,
+        "fp": 0,
+        "missed": 0,
+        "active_correct": 14,
+        "active_wrong": 0,
+        "critical_writes": 0,
+        "scope_errors": 0,
+        "origin_violations": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "promotion_precision": 1.0
+      }
+    },
+    "denominator": {
+      "sources": 40,
+      "native_evaluations": 120
+    },
+    "old_origin_negative_rows": {
+      "dx-031": {
+        "rules": {
+          "quick_check": "ok",
+          "schema": 6,
+          "jobs": [],
+          "records": []
+        },
+        "llm": {
+          "quick_check": "ok",
+          "schema": 6,
+          "jobs": [],
+          "records": []
+        },
+        "hybrid": {
+          "quick_check": "ok",
+          "schema": 6,
+          "jobs": [],
+          "records": []
+        }
+      },
+      "dx-032": {
+        "rules": {
+          "quick_check": "ok",
+          "schema": 6,
+          "jobs": [],
+          "records": []
+        },
+        "llm": {
+          "quick_check": "ok",
+          "schema": 6,
+          "jobs": [],
+          "records": []
+        },
+        "hybrid": {
+          "quick_check": "ok",
+          "schema": 6,
+          "jobs": [],
+          "records": []
+        }
+      }
+    },
+    "ram_seed": {
+      "quick_check": "ok",
+      "schema": 6,
+      "jobs": [
+        [
+          "done",
+          1,
+          null
+        ]
+      ],
+      "records": [
+        [
+          "candidate",
+          1,
+          "device.primary_computer",
+          "ram_capacity",
+          "48_gb",
+          "durable"
+        ]
+      ]
+    },
+    "private_replay_sha256": "ea70101cfb1d2ce5aa46688970e3c227b2cf2bddaf5240aaf4eeec72895a0c76"
+  },
+  "known_c1_physical_offline": {
+    "ranking": {
+      "tp": 30,
+      "fp": 0,
+      "missed": 0,
+      "unsafe_current": 0,
+      "scope_errors": 0,
+      "negative_injection": 0,
+      "planned": 29,
+      "measured": 29,
+      "unmeasured_expected": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "recall_planned": 1.0,
+      "passed": true
+    },
+    "nomic_loopback_port_closed": true,
+    "mandatory_fallback": {
+      "planned": 20,
+      "exact": 20,
+      "physical_endpoint_unavailable": true
+    },
+    "private_artifact_sha256": "c65c86d75474ff8c404ac1376c2b9dc42b1d03f8a859ecc8e4335ec8af8432ae"
+  },
+  "limits": "Archived proposals and CPU-only recovery on known development cases. Fresh inference and the frozen final evaluation remain pending."
+}

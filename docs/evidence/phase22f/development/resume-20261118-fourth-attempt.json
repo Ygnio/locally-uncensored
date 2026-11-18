@@ -1,0 +1,395 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_resume_fourth_attempt",
+  "date": "2026-11-18",
+  "status": "known_conversation_gate_incomplete",
+  "dev18g": {
+    "source_head": "592e4b35a58c415c2719afe1389608b36212180e",
+    "known_freeze_sha256": "687c83442815cb5dbbade42cd4571da7b5f9c7a22dddc09d8581dc4c2573fc60",
+    "real_inference": true,
+    "planned_main_replies": 25,
+    "completed_main_requests": 25,
+    "main_replies_with_terminal_text": 24,
+    "maximum_useful_reply_rate": 0.96,
+    "maximum_atom_completeness": {
+      "covered_at_most": 46,
+      "planned": 49
+    },
+    "quality_note": "These upper bounds count the observed gap in go-t02 and both missing facts in go-p02. Useful replies and covered atoms require literal adjudication.",
+    "jatoba": {
+      "planned_seed_turns": 11,
+      "planned_probes": 8,
+      "completed_requests": 19,
+      "planned_response_atoms": 38,
+      "observed_reply_status_counts": {
+        "checked": 14,
+        "regenerated": 3,
+        "tool_response": 2
+      },
+      "observed_transport_failures": 0,
+      "ram_and_review": {
+        "ordered_native_observations": [
+          {
+            "case": "gm-t03",
+            "mode": "code",
+            "status": "checked",
+            "delivered": "Entendido. Seu computador principal possui 48 GB de RAM instalados.",
+            "attempt_violation_codes": [
+              [
+                "unconfirmed_memory_mutation"
+              ]
+            ],
+            "display_observed_ms": 5505,
+            "content_native_read_ms": [
+              5505,
+              5542
+            ],
+            "job_at_content": "queued",
+            "receipt_at_content": false,
+            "terminal_native_read_ms": [
+              9902,
+              9915
+            ],
+            "terminal_job": "done",
+            "terminal_operation": "completed",
+            "source_identity_version": 1,
+            "source_mode_scope_project_matched": true,
+            "source_receipt_records": [
+              {
+                "value": "48_gb",
+                "effect": "create",
+                "state": "candidate",
+                "version": 1
+              }
+            ]
+          },
+          {
+            "case": "gm-t04",
+            "mode": "chat",
+            "status": "checked",
+            "delivered": "Entendido. O seu notebook de trabalho possui 12 GB de RAM.",
+            "attempt_violation_codes": [
+              [
+                "unconfirmed_memory_mutation"
+              ]
+            ],
+            "display_observed_ms": 3290,
+            "content_native_read_ms": [
+              3290,
+              3325
+            ],
+            "job_at_content": "queued",
+            "receipt_at_content": false,
+            "terminal_native_read_ms": [
+              7359,
+              7370
+            ],
+            "terminal_job": "done",
+            "terminal_operation": "completed",
+            "source_identity_version": 1,
+            "source_mode_scope_project_matched": true,
+            "source_receipt_records": [
+              {
+                "value": "12_gb",
+                "effect": "create",
+                "state": "candidate",
+                "version": 1
+              }
+            ]
+          },
+          {
+            "case": "gm-t05",
+            "mode": "agent",
+            "status": "regenerated",
+            "delivered": "O computador principal agora possui 64 GB de RAM.",
+            "attempt_violation_codes": [
+              [
+                "unconfirmed_memory_mutation"
+              ],
+              []
+            ],
+            "display_observed_ms": 7330,
+            "content_native_read_ms": [
+              7329,
+              7353
+            ],
+            "job_at_content": "queued",
+            "receipt_at_content": false,
+            "terminal_native_read_ms": [
+              12650,
+              12661
+            ],
+            "terminal_job": "done",
+            "terminal_operation": "completed",
+            "source_identity_version": 1,
+            "source_mode_scope_project_matched": true,
+            "source_receipt_records": []
+          }
+        ],
+        "review_action": "Approve replacement",
+        "review_submitted_version": 1,
+        "replacement_refers_to_48_gb_version": 2,
+        "replacement_source_receipt_after_review": false,
+        "native_record_state_after_review": {
+          "48_gb": {
+            "state": "obsolete",
+            "version": 3
+          },
+          "12_gb": {
+            "state": "active",
+            "version": 2
+          },
+          "64_gb": {
+            "state": "active",
+            "version": 2
+          }
+        }
+      },
+      "cancellation_commit_order": {
+        "case": "gm-t19",
+        "mode": "chat",
+        "status": "checked",
+        "delivered": "Entendido. Você cancelou o seu projeto de catálogo.",
+        "attempt_violation_codes": [
+          []
+        ],
+        "display_observed_ms": 2068,
+        "content_native_read_ms": [
+          2068,
+          2098
+        ],
+        "job_at_content": "queued",
+        "receipt_at_content": false,
+        "terminal_native_read_ms": [
+          5793,
+          5804
+        ],
+        "terminal_job": "done",
+        "terminal_operation": "completed",
+        "source_identity_version": 1,
+        "source_mode_scope_project_matched": true,
+        "source_receipt_records": [
+          {
+            "value": "cancelled",
+            "effect": "create",
+            "state": "candidate",
+            "version": 1
+          }
+        ]
+      },
+      "probe_observations": [
+        {
+          "case": "gm-p01",
+          "mode": "chat",
+          "status": "checked",
+          "delivered": "O seu computador principal possui 64 GB de RAM, enquanto o notebook de trabalho tem 12 GB.",
+          "attempt_violation_codes": [
+            []
+          ]
+        },
+        {
+          "case": "gm-p02",
+          "mode": "agent",
+          "status": "checked",
+          "delivered": "Antes da correção, seu computador principal tinha 48 GB de RAM e, depois da correção, ele passou a ter 64 GB.",
+          "attempt_violation_codes": [
+            []
+          ]
+        },
+        {
+          "case": "gm-p03",
+          "mode": "code",
+          "status": "checked",
+          "delivered": "O assunto do seu projeto era um catálogo de miniaturas. Você escolheu a linguagem Python, planejou usar o banco de dados PostgreSQL e, atualmente, o projeto está cancelado.",
+          "attempt_violation_codes": [
+            []
+          ]
+        },
+        {
+          "case": "gm-p04",
+          "mode": "chat",
+          "status": "regenerated",
+          "delivered": "Não, a escolha de Python indica apenas a linguagem selecionada, não necessariamente que a implementação começou. Como você cancelou o projeto de catálogo, a implementação pode não ter avançado além do planejamento inicial.",
+          "attempt_violation_codes": [
+            [
+              "unsupported_typed_value"
+            ],
+            []
+          ],
+          "quality_note": "The second sentence adds speculation about when implementation may have stopped."
+        },
+        {
+          "case": "gm-p05",
+          "mode": "agent",
+          "status": "checked",
+          "delivered": "Não há registro de uma placa de vídeo específica para o seu computador principal na memória atual.",
+          "attempt_violation_codes": [
+            []
+          ],
+          "native_tool_execution_observed": false,
+          "tool_marker_delivered": false
+        },
+        {
+          "case": "gm-p06",
+          "mode": "code",
+          "status": "checked",
+          "delivered": "No seu projeto, você planejou usar o PostgreSQL como banco de dados. No entanto, não há registro disponível sobre qual banco de dados o seu irmão usa.",
+          "attempt_violation_codes": [
+            []
+          ],
+          "quality_note": "The answer distinguishes the confirmed historical plan from the unavailable fact about a third party."
+        },
+        {
+          "case": "gm-p07",
+          "mode": "chat",
+          "status": "checked",
+          "delivered": "Não, seu computador principal possui 64 GB de RAM.",
+          "attempt_violation_codes": [
+            []
+          ]
+        },
+        {
+          "case": "gm-p10",
+          "mode": "chat",
+          "status": "checked",
+          "delivered": "Sua bebida favorita é chá. Não há nenhuma preferência de tema de interface disponível no momento.",
+          "attempt_violation_codes": [
+            []
+          ]
+        }
+      ]
+    },
+    "pitanga": {
+      "planned_seed_turns": 3,
+      "planned_probes": 3,
+      "completed_requests": 6,
+      "planned_response_atoms": 11,
+      "observed_reply_status_counts": {
+        "checked": 5,
+        "blocked": 1
+      },
+      "observed_transport_failures": 0,
+      "separate_project_within_same_synthetic_scope": true,
+      "native_approved_facts": [
+        {
+          "value": "mysql",
+          "temporal": "durable",
+          "state": "active",
+          "version": 2
+        },
+        {
+          "value": "typescript",
+          "temporal": "in_progress",
+          "state": "active",
+          "version": 2
+        },
+        {
+          "value": "rust",
+          "temporal": "planned",
+          "state": "active",
+          "version": 2
+        }
+      ],
+      "go_t02_quality": "The displayed reply praised TypeScript and asked follow-up questions. It omitted the already stated in-progress relation.",
+      "blocked_probe": {
+        "case": "go-p02",
+        "mode": "agent",
+        "status": "blocked",
+        "raw_initial_and_retry": [
+          "Você está implementando o projeto Pitanga em TypeScript. Para o futuro, está planejado utilizar a linguagem Rust.",
+          "Você está implementando o projeto Pitanga em TypeScript. Para o futuro, está planejado utilizar a linguagem Rust."
+        ],
+        "violation_code_each_attempt": "known_relation_not_used",
+        "recognized_language_assertions_each_attempt": [
+          [
+            "typescript"
+          ],
+          [
+            "typescript"
+          ]
+        ],
+        "verified_answer_delivered": false,
+        "cause": "The matcher recognized the active TypeScript relation and missed the supported Rust plan with \"utilizar\"."
+      },
+      "cross_project_probe": {
+        "case": "go-p03",
+        "mode": "chat",
+        "status": "checked",
+        "delivered": "Você escolheu o MySQL como banco de dados para o projeto Pitanga. Para o projeto Jatobá, não há registro disponível sobre qual banco de dados foi escolhido.",
+        "attempt_violation_codes": [
+          []
+        ]
+      }
+    },
+    "separate_pitanga_copy": {
+      "planned_requests": 1,
+      "completed_requests": 1,
+      "fresh_synthetic_scope": true,
+      "handler_payload_observed": true,
+      "payload_matches_verified_answer": true,
+      "verified_answer": "Entendido. O banco de dados escolhido para o projeto Pitanga é o MySQL.",
+      "document_focused": false,
+      "system_clipboard_written": false
+    },
+    "evidence_sha256": {
+      "controller_sequence": "e7df1da2c6893bef9b26b0a2d441ab8e9ef5355c638e4d98ff0398fc25f8d318",
+      "jatoba": "25d86ecd2d1b37b2d5c769e0b9ef9f5fb1ef1651aa56217eb286e62ddf693e65",
+      "pitanga": "851cea04fb2a7cb508883fda36d6bec19611f70c10205b5637cbcfda9dcaba94",
+      "pitanga_copy_driver": "ae04f1c4cd752f236e0b01ed12824b112bd5c817e85f4ca963bccdb886be1220",
+      "pitanga_copy_handler": "bd04c12fdf28696edea2336fced6ac97f835072f6f875c1205d20625b9426f83"
+    }
+  },
+  "h20_interrupted": {
+    "planned": {
+      "turns": 20,
+      "probes": 10
+    },
+    "observed": {
+      "turns": 7,
+      "probes": 0
+    },
+    "observed_reply_status_counts": {
+      "checked": 6,
+      "blocked": 1
+    },
+    "observed_transport_failures": 0,
+    "interruption_reason": "The controller stopped the run during development to address the Pitanga false block.",
+    "started_utc": "2026-11-18T13:39:58.600154+00:00",
+    "stopped_utc": "2026-11-18T13:43:41.902869+00:00",
+    "process_exit_code": 4294967295,
+    "execution_complete": false,
+    "checks_at_interruption": {
+      "identity": false,
+      "policy": true,
+      "scope": true,
+      "counts": false
+    },
+    "scope_counts_before": {
+      "memories": 0,
+      "extraction_jobs": 0,
+      "memory_tombstones": 0,
+      "retrieval_audit": 0
+    },
+    "scope_counts_after": {
+      "memories": 8,
+      "extraction_jobs": 7,
+      "memory_tombstones": 0,
+      "retrieval_audit": 8
+    },
+    "source_head": "953187e232c555769276c874b6d38a14379e0221",
+    "fixture_sha256": "e94a9c8ea7671a90f165fae2c85422512b745184eabd767bdcf7f164c6b2892a",
+    "manifest_sha256": "9b9438ecd1eae0c4640cb795657f4a9128053b4659961f03ae75d0335aef14f0",
+    "controller_log_sha256": "634db15c8085e1e446141f33b71cde29145b31714eddc95b1b1e1c285e3bc03c",
+    "final_artifact_sha256": null,
+    "evidence_sha256": {
+      "outcome": "55ddce51c76bbdda951f57fe3f2316f1a182ff803473d9d621119661dd6d69a2",
+      "partial_turns": "1effabdb5f40e4002ef74e0b060912ce10f6169cc782cbd201721621da9d5986",
+      "start_record": "e9c62ce35a13ba5a20a6f44f4ee0863e52b35f290d16233947220881ed2f07bd",
+      "archive_record": "6282860f70865df7c8c52102a23918233bb396348b08a5ce4281c08d9b17b83f",
+      "controller_configuration": "1557040072e0eacef7d78d5af50625a56cad543170002044d12f6bb773fe05f1",
+      "archived_database": "d3eed70279fec6d11afa86067602ef758650900e077690fdb5b4fcf640acfd3b",
+      "archived_shared_memory": "e3457dc4ca47beaffc84501bea4ea564cc0d0f27c7c9eb26a7126502bff9be76",
+      "archived_write_ahead_log": "a03ccbe9b030b01bcb992ffc346d3088e5bd3ff08b410b5cf8574298c897c6a3"
+    }
+  }
+}

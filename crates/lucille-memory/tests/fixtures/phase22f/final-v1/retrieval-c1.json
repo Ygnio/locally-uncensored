@@ -1,0 +1,815 @@
+{
+  "id": "phase22f-final-c1-v1",
+  "scenarios": [
+    {
+      "id": "design-workstations",
+      "events": [
+        {
+          "action": "seed",
+          "label": "ram-main-before",
+          "scope": "phase22f-e-velame",
+          "project": "fecho",
+          "fact": {
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "36_gb",
+            "temporal": "durable",
+            "content": "Antes da troca de pentes, eu tinha 36 GB de RAM instalados no computador principal."
+          },
+          "state": "obsolete"
+        },
+        {
+          "action": "seed",
+          "label": "ram-main-current",
+          "scope": "phase22f-e-velame",
+          "project": "fecho",
+          "fact": {
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "52_gb",
+            "temporal": "durable",
+            "content": "Computador principal do estúdio: 52 GB de RAM instalados para tocar amostras de som."
+          },
+          "replaces": "ram-main-before"
+        },
+        {
+          "action": "seed",
+          "label": "ram-work",
+          "scope": "phase22f-e-velame",
+          "project": "fecho",
+          "fact": {
+            "kind": "hardware",
+            "subject": "device.work_laptop",
+            "property": "ram_capacity",
+            "value": "20_gb",
+            "temporal": "durable",
+            "content": "O notebook de trabalho tem 20 GB de RAM instalados e acompanha as visitas técnicas."
+          }
+        },
+        {
+          "action": "seed",
+          "label": "ram-spare",
+          "scope": "phase22f-e-velame",
+          "project": "fecho",
+          "fact": {
+            "kind": "hardware",
+            "subject": "device.other_computer",
+            "property": "ram_capacity",
+            "value": "10_gb",
+            "temporal": "durable",
+            "content": "O outro computador tem 10 GB de RAM para operar o leitor de partituras."
+          }
+        },
+        {
+          "action": "seed",
+          "label": "annex-main",
+          "scope": "phase22f-e-velame-annex",
+          "project": "fecho",
+          "fact": {
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "76_gb",
+            "temporal": "durable",
+            "content": "Neste perfil de anexo, o computador principal tem 76 GB de RAM."
+          }
+        },
+        {
+          "action": "seed",
+          "label": "papoula-main",
+          "scope": "phase22f-e-velame",
+          "project": "papoula",
+          "fact": {
+            "kind": "hardware",
+            "subject": "device.primary_computer",
+            "property": "ram_capacity",
+            "value": "88_gb",
+            "temporal": "durable",
+            "content": "No projeto Papoula, o meu computador principal tem 88 GB de RAM."
+          }
+        }
+      ],
+      "queries": [
+        {
+          "id": "f1q-01",
+          "query": "Vou abrir o painel de inventário: qual a capacidade instalada de RAM do meu computador principal?",
+          "scope": "phase22f-e-velame",
+          "project": "fecho",
+          "mode": "chat",
+          "requires": [
+            "ram-main-current",
+            "ram-main-before",
+            "annex-main",
+            "papoula-main"
+          ],
+          "expected": [
+            "ram-main-current"
+          ],
+          "forbidden": [
+            "ram-main-before",
+            "annex-main",
+            "papoula-main"
+          ],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-02",
+          "query": "Para as visitas, quantos gigabytes de RAM há no notebook de trabalho?",
+          "scope": "phase22f-e-velame",
+          "project": "fecho",
+          "mode": "agent",
+          "requires": [
+            "ram-work",
+            "ram-main-current",
+            "ram-spare",
+            "annex-main",
+            "papoula-main"
+          ],
+          "expected": [
+            "ram-work"
+          ],
+          "forbidden": [
+            "ram-main-current",
+            "ram-spare",
+            "annex-main",
+            "papoula-main"
+          ],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-03",
+          "query": "Que quantidade de RAM consta para o outro computador que deixo como reserva?",
+          "scope": "phase22f-e-velame",
+          "project": "fecho",
+          "mode": "code",
+          "requires": [
+            "ram-spare",
+            "ram-main-current",
+            "ram-work",
+            "annex-main",
+            "papoula-main"
+          ],
+          "expected": [
+            "ram-spare"
+          ],
+          "forbidden": [
+            "ram-main-current",
+            "ram-work",
+            "annex-main",
+            "papoula-main"
+          ],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-04",
+          "query": "Na ficha deste anexo, o que consta como RAM do meu PC principal?",
+          "scope": "phase22f-e-velame-annex",
+          "project": "fecho",
+          "mode": "chat",
+          "requires": [
+            "annex-main",
+            "ram-main-current",
+            "papoula-main"
+          ],
+          "expected": [
+            "annex-main"
+          ],
+          "forbidden": [
+            "ram-main-current",
+            "papoula-main"
+          ],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-05",
+          "query": "No inventário autorizado de Papoula, indique a RAM instalada no computador principal.",
+          "scope": "phase22f-e-velame",
+          "project": "papoula",
+          "mode": "code",
+          "requires": [
+            "papoula-main",
+            "annex-main",
+            "ram-main-current"
+          ],
+          "expected": [
+            "papoula-main"
+          ],
+          "forbidden": [
+            "annex-main",
+            "ram-main-current"
+          ],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-06",
+          "query": "Antes da troca de pentes, qual era a capacidade de RAM instalada no computador principal?",
+          "scope": "phase22f-e-velame",
+          "project": "fecho",
+          "mode": "agent",
+          "requires": [
+            "ram-main-before",
+            "ram-main-current",
+            "annex-main",
+            "papoula-main"
+          ],
+          "expected": [
+            "ram-main-before"
+          ],
+          "forbidden": [
+            "ram-main-current",
+            "annex-main",
+            "papoula-main"
+          ],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-07",
+          "query": "No computador principal, qual era a RAM anterior e qual é a instalada agora?",
+          "scope": "phase22f-e-velame",
+          "project": "fecho",
+          "mode": "chat",
+          "requires": [
+            "ram-main-before",
+            "ram-main-current",
+            "annex-main",
+            "papoula-main",
+            "ram-work"
+          ],
+          "expected": [
+            "ram-main-before",
+            "ram-main-current"
+          ],
+          "forbidden": [
+            "annex-main",
+            "papoula-main",
+            "ram-work"
+          ],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-08",
+          "query": "Na lista das máquinas, qual o SSD no computador principal?",
+          "scope": "phase22f-e-velame",
+          "project": "fecho",
+          "mode": "chat",
+          "requires": [
+            "ram-main-before",
+            "ram-main-current",
+            "ram-work",
+            "ram-spare",
+            "annex-main",
+            "papoula-main"
+          ],
+          "expected": [],
+          "forbidden": [
+            "ram-main-before",
+            "ram-main-current",
+            "ram-work",
+            "ram-spare",
+            "annex-main",
+            "papoula-main"
+          ],
+          "lexical_mandatory": false
+        },
+        {
+          "id": "f1q-09",
+          "query": "Qual a RAM do computador principal da minha irmã que trabalha comigo?",
+          "scope": "phase22f-e-velame",
+          "project": "fecho",
+          "mode": "chat",
+          "requires": [
+            "ram-main-current",
+            "ram-main-before",
+            "ram-work",
+            "annex-main",
+            "papoula-main"
+          ],
+          "expected": [],
+          "forbidden": [
+            "ram-main-current",
+            "ram-main-before",
+            "ram-work",
+            "annex-main",
+            "papoula-main"
+          ],
+          "lexical_mandatory": false
+        }
+      ]
+    },
+    {
+      "id": "project-cards",
+      "events": [
+        {
+          "action": "seed",
+          "label": "tramela-purpose",
+          "scope": "phase22f-e-raffia",
+          "project": "tramela",
+          "fact": {
+            "kind": "project",
+            "subject": "project.tramela",
+            "property": "description",
+            "value": "montei um atlas de letreiros de rua para passeios acessiveis",
+            "temporal": "durable",
+            "content": "O projeto Tramela é um atlas de letreiros de rua para passeios acessíveis."
+          }
+        },
+        {
+          "action": "seed",
+          "label": "tramela-language-choice",
+          "scope": "phase22f-e-raffia",
+          "project": "tramela",
+          "fact": {
+            "kind": "decision",
+            "subject": "project.tramela",
+            "property": "language",
+            "value": "javascript",
+            "temporal": "durable",
+            "content": "O projeto Tramela escolheu JavaScript como linguagem para a próxima versão do atlas."
+          }
+        },
+        {
+          "action": "seed",
+          "label": "tramela-language-running",
+          "scope": "phase22f-e-raffia",
+          "project": "tramela",
+          "fact": {
+            "kind": "fact",
+            "subject": "project.tramela",
+            "property": "language",
+            "value": "rust",
+            "temporal": "in_progress",
+            "fact_key": "project.tramela.language.execution",
+            "content": "A implementação que está em andamento no projeto Tramela é em Rust."
+          }
+        },
+        {
+          "action": "seed",
+          "label": "tramela-storage-plan",
+          "scope": "phase22f-e-raffia",
+          "project": "tramela",
+          "fact": {
+            "kind": "decision",
+            "subject": "project.tramela",
+            "property": "database",
+            "value": "sqlite",
+            "temporal": "planned",
+            "content": "No projeto Tramela, a ideia é usar SQLite como banco de dados para os endereços."
+          }
+        },
+        {
+          "action": "seed",
+          "label": "pinhao-storage",
+          "scope": "phase22f-e-raffia",
+          "project": "pinhao",
+          "fact": {
+            "kind": "decision",
+            "subject": "project.pinhao",
+            "property": "database",
+            "value": "mysql",
+            "temporal": "durable",
+            "content": "No projeto Pinhao, escolhi MySQL como banco de dados dos mapas do bicicletário."
+          }
+        },
+        {
+          "action": "seed",
+          "label": "arvoredo-status",
+          "scope": "phase22f-e-raffia",
+          "project": "arvoredo",
+          "fact": {
+            "kind": "project",
+            "subject": "project.arvoredo",
+            "property": "lifecycle",
+            "value": "completed",
+            "temporal": "completed",
+            "content": "Concluí o meu projeto Arvoredo de mapas impressos."
+          }
+        }
+      ],
+      "queries": [
+        {
+          "id": "f1q-10",
+          "query": "O cartão de Tramela está sem descrição: qual é a finalidade do projeto?",
+          "scope": "phase22f-e-raffia",
+          "project": "tramela",
+          "mode": "chat",
+          "requires": [
+            "tramela-purpose",
+            "pinhao-storage",
+            "arvoredo-status"
+          ],
+          "expected": [
+            "tramela-purpose"
+          ],
+          "forbidden": [
+            "pinhao-storage",
+            "arvoredo-status"
+          ],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-11",
+          "query": "Que linguagem foi escolhida para o projeto Tramela?",
+          "scope": "phase22f-e-raffia",
+          "project": "tramela",
+          "mode": "chat",
+          "requires": [
+            "tramela-language-choice",
+            "tramela-language-running",
+            "pinhao-storage"
+          ],
+          "expected": [
+            "tramela-language-choice"
+          ],
+          "forbidden": [
+            "tramela-language-running",
+            "pinhao-storage"
+          ],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-12",
+          "query": "Em qual linguagem ainda estou implementando Tramela neste momento?",
+          "scope": "phase22f-e-raffia",
+          "project": "tramela",
+          "mode": "code",
+          "requires": [
+            "tramela-language-running",
+            "tramela-language-choice",
+            "pinhao-storage"
+          ],
+          "expected": [
+            "tramela-language-running"
+          ],
+          "forbidden": [
+            "tramela-language-choice",
+            "pinhao-storage"
+          ],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-13",
+          "query": "Para os endereços em Tramela, que banco de dados está no plano?",
+          "scope": "phase22f-e-raffia",
+          "project": "tramela",
+          "mode": "agent",
+          "requires": [
+            "tramela-storage-plan",
+            "pinhao-storage"
+          ],
+          "expected": [
+            "tramela-storage-plan"
+          ],
+          "forbidden": [
+            "pinhao-storage"
+          ],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-14",
+          "query": "O cartão próprio de Pinhao precisa da escolha: qual banco de dados eu escolhi?",
+          "scope": "phase22f-e-raffia",
+          "project": "pinhao",
+          "mode": "chat",
+          "requires": [
+            "pinhao-storage",
+            "tramela-storage-plan"
+          ],
+          "expected": [
+            "pinhao-storage"
+          ],
+          "forbidden": [
+            "tramela-storage-plan"
+          ],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-15",
+          "query": "Qual é o estado do projeto Arvoredo: ele está concluído?",
+          "scope": "phase22f-e-raffia",
+          "project": "arvoredo",
+          "mode": "agent",
+          "requires": [
+            "arvoredo-status",
+            "tramela-purpose",
+            "tramela-language-choice",
+            "pinhao-storage"
+          ],
+          "expected": [
+            "arvoredo-status"
+          ],
+          "forbidden": [
+            "tramela-purpose",
+            "tramela-language-choice",
+            "pinhao-storage"
+          ],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-16",
+          "query": "Diga em Tramela qual linguagem escolhi e em qual estou implementando agora.",
+          "scope": "phase22f-e-raffia",
+          "project": "tramela",
+          "mode": "code",
+          "requires": [
+            "tramela-language-choice",
+            "tramela-language-running",
+            "pinhao-storage"
+          ],
+          "expected": [
+            "tramela-language-choice",
+            "tramela-language-running"
+          ],
+          "forbidden": [
+            "pinhao-storage"
+          ],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-17",
+          "query": "No contexto de Pinhao, existe informação sobre o banco planejado em Tramela?",
+          "scope": "phase22f-e-raffia",
+          "project": "pinhao",
+          "mode": "chat",
+          "requires": [
+            "tramela-storage-plan",
+            "pinhao-storage"
+          ],
+          "expected": [],
+          "forbidden": [
+            "tramela-storage-plan",
+            "pinhao-storage"
+          ],
+          "lexical_mandatory": false
+        }
+      ]
+    },
+    {
+      "id": "reading-and-printing",
+      "events": [
+        {
+          "action": "seed",
+          "label": "explained-in-detail",
+          "scope": "phase22f-e-resina",
+          "project": "taboa",
+          "fact": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "communication_style",
+            "value": "detailed",
+            "temporal": "preference",
+            "content": "Prefiro respostas detalhadas para poder remontar os encaixes da bancada."
+          }
+        },
+        {
+          "action": "seed",
+          "label": "pt-responses",
+          "scope": "phase22f-e-resina",
+          "project": "taboa",
+          "fact": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "response_language",
+            "value": "pt",
+            "temporal": "preference",
+            "content": "Prefiro português como idioma das respostas sobre os esquemas."
+          }
+        },
+        {
+          "action": "seed",
+          "label": "short-walks",
+          "scope": "phase22f-e-resina",
+          "project": "taboa",
+          "fact": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "outing",
+            "value": "short_trails",
+            "temporal": "preference",
+            "content": "Prefiro trilhas curtas nas manhãs em que faço desenhos ao ar livre."
+          }
+        },
+        {
+          "action": "seed",
+          "label": "adventure-books",
+          "scope": "phase22f-e-resina",
+          "project": "taboa",
+          "fact": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "book_genre",
+            "value": "adventure",
+            "temporal": "preference",
+            "content": "Gosto de romances de aventura para ler nos intervalos da montagem."
+          }
+        },
+        {
+          "action": "seed",
+          "label": "light-interface",
+          "scope": "phase22f-e-resina",
+          "project": "taboa",
+          "fact": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "interface_theme",
+            "value": "light",
+            "temporal": "preference",
+            "content": "Na interface do leitor de fichas, prefiro o tema claro."
+          }
+        },
+        {
+          "action": "seed",
+          "label": "uncluttered-screen",
+          "scope": "phase22f-e-resina",
+          "project": "taboa",
+          "fact": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "interface_clutter",
+            "value": "negative",
+            "temporal": "preference",
+            "content": "Detesto interface carregada ao consultar o acervo de desenhos."
+          }
+        },
+        {
+          "action": "seed",
+          "label": "wooden-shelves",
+          "scope": "phase22f-e-resina",
+          "project": "taboa",
+          "fact": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "shelf_material",
+            "value": "wood",
+            "temporal": "preference",
+            "content": "Prefiro estantes de madeira para as caixas de amostras."
+          }
+        },
+        {
+          "action": "seed",
+          "label": "glossy-samples",
+          "scope": "phase22f-e-resina",
+          "project": "taboa",
+          "fact": {
+            "kind": "preference",
+            "subject": "user",
+            "property": "photo_paper",
+            "value": "glossy",
+            "temporal": "preference",
+            "content": "Para as fotos das placas de rua, prefiro papel brilhante."
+          }
+        },
+        {
+          "action": "delete",
+          "label": "delete-glossy",
+          "target": "glossy-samples"
+        }
+      ],
+      "queries": [
+        {
+          "id": "f1q-18",
+          "query": "Sobre os encaixes da bancada, eu prefiro respostas breves ou detalhadas?",
+          "scope": "phase22f-e-resina",
+          "project": "taboa",
+          "mode": "agent",
+          "requires": [
+            "explained-in-detail"
+          ],
+          "expected": [
+            "explained-in-detail"
+          ],
+          "forbidden": [],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-19",
+          "query": "Qual idioma eu prefiro nas respostas sobre os esquemas?",
+          "scope": "phase22f-e-resina",
+          "project": "taboa",
+          "mode": "chat",
+          "requires": [
+            "pt-responses"
+          ],
+          "expected": [
+            "pt-responses"
+          ],
+          "forbidden": [],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-20",
+          "query": "Para desenhar fora de casa, que tipo de trilha eu prefiro?",
+          "scope": "phase22f-e-resina",
+          "project": "taboa",
+          "mode": "chat",
+          "requires": [
+            "short-walks"
+          ],
+          "expected": [
+            "short-walks"
+          ],
+          "forbidden": [],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-21",
+          "query": "Que gênero de romance prefiro ler nos intervalos?",
+          "scope": "phase22f-e-resina",
+          "project": "taboa",
+          "mode": "code",
+          "requires": [
+            "adventure-books"
+          ],
+          "expected": [
+            "adventure-books"
+          ],
+          "forbidden": [],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-22",
+          "query": "Que tema escolho na interface do leitor: claro ou escuro?",
+          "scope": "phase22f-e-resina",
+          "project": "taboa",
+          "mode": "chat",
+          "requires": [
+            "light-interface",
+            "uncluttered-screen"
+          ],
+          "expected": [
+            "light-interface"
+          ],
+          "forbidden": [
+            "uncluttered-screen"
+          ],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-23",
+          "query": "Qual minha opinião sobre interfaces carregadas no acervo?",
+          "scope": "phase22f-e-resina",
+          "project": "taboa",
+          "mode": "agent",
+          "requires": [
+            "uncluttered-screen",
+            "light-interface"
+          ],
+          "expected": [
+            "uncluttered-screen"
+          ],
+          "forbidden": [
+            "light-interface"
+          ],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-24",
+          "query": "Para as caixas, qual material eu prefiro nas estantes?",
+          "scope": "phase22f-e-resina",
+          "project": "taboa",
+          "mode": "chat",
+          "requires": [
+            "wooden-shelves"
+          ],
+          "expected": [
+            "wooden-shelves"
+          ],
+          "forbidden": [],
+          "lexical_mandatory": true
+        },
+        {
+          "id": "f1q-25",
+          "query": "O que consta agora como minha preferência de papel de foto?",
+          "scope": "phase22f-e-resina",
+          "project": "taboa",
+          "mode": "chat",
+          "requires": [
+            "glossy-samples",
+            "delete-glossy"
+          ],
+          "expected": [],
+          "forbidden": [
+            "glossy-samples"
+          ],
+          "lexical_mandatory": false
+        },
+        {
+          "id": "f1q-26",
+          "query": "Nesta sessão, que gênero de romance consta para mim?",
+          "scope": "phase22f-e-resina-empty",
+          "project": "taboa",
+          "mode": "code",
+          "requires": [
+            "adventure-books"
+          ],
+          "expected": [],
+          "forbidden": [
+            "adventure-books"
+          ],
+          "lexical_mandatory": false
+        }
+      ]
+    }
+  ]
+}

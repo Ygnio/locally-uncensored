@@ -1,0 +1,683 @@
+{
+  "id": "phase22f-known-forgetting-lifecycle-v2",
+  "kind": "known_development",
+  "scope": "phase22f-devf2-forget",
+  "project": "jatoba",
+  "native_lifecycle_passed": true,
+  "answer_availability_passed": false,
+  "denominators": {
+    "planned_turns": 10,
+    "executed_turns": 10,
+    "useful_delivered_turns": 9,
+    "planned_atoms": 16,
+    "retained_atoms": 14,
+    "blocked_turns": 1,
+    "critical_unsupported_delivered_claims": 0
+  },
+  "freeze": {
+    "sha256": "ab030f3e3e885177bf6e580c6b96e7777b1d488b0bbc52ac1266c6535d9a76dc",
+    "source_head": "1c38714d3fe5796d5bc6f0f441a27e221ebfa307",
+    "native_gui_sha256": "69b6fdb134f7a0f2446b78bcf0e8d25507ee69f7bbaefe357f12ba8b586d93b3",
+    "bridge_sha256": "0b0847873acf0fe5b67642c3a50eb1a4e0f6287b9a198d7913efca4d18a9d732",
+    "schema_version": 6,
+    "source_authority_version": 2
+  },
+  "sequence": [
+    {
+      "stage": "devf2-forget-delete",
+      "exit": 0,
+      "began": "2026-11-11T13:33:05.485055+00:00",
+      "finished": "2026-11-11T13:33:42.088204+00:00"
+    },
+    {
+      "stage": "devf2-forget-restart1-stop",
+      "exit": 0,
+      "began": "2026-11-11T13:33:42.089096+00:00",
+      "finished": "2026-11-11T13:33:43.195816+00:00"
+    },
+    {
+      "stage": "devf2-forget-restart1-start",
+      "exit": 0,
+      "began": "2026-11-11T13:33:43.196710+00:00",
+      "finished": "2026-11-11T13:33:47.257159+00:00"
+    },
+    {
+      "stage": "devf2-forget-absence",
+      "exit": 0,
+      "began": "2026-11-11T13:33:47.258421+00:00",
+      "finished": "2026-11-11T13:34:06.748638+00:00"
+    },
+    {
+      "stage": "devf2-forget-relearn",
+      "exit": 0,
+      "began": "2026-11-11T13:34:06.749825+00:00",
+      "finished": "2026-11-11T13:35:09.433687+00:00"
+    },
+    {
+      "stage": "devf2-forget-restart2-stop",
+      "exit": 0,
+      "began": "2026-11-11T13:35:09.434512+00:00",
+      "finished": "2026-11-11T13:35:10.376619+00:00"
+    },
+    {
+      "stage": "devf2-forget-restart2-start",
+      "exit": 0,
+      "began": "2026-11-11T13:35:10.377392+00:00",
+      "finished": "2026-11-11T13:35:13.868337+00:00"
+    },
+    {
+      "stage": "devf2-forget-final",
+      "exit": 0,
+      "began": "2026-11-11T13:35:13.870518+00:00",
+      "finished": "2026-11-11T13:35:37.320034+00:00"
+    }
+  ],
+  "restart_invariants": {
+    "loaded_bindings_at_start": {
+      "delete": 0,
+      "absence": 5,
+      "relearn": 8,
+      "final": 11
+    },
+    "identity_version": 1,
+    "tombstones_after_each_restart": 2,
+    "old_records_present_after_first_restart": 0,
+    "old_records_present_after_second_restart": 0,
+    "fresh_active_records_after_second_restart": 2,
+    "fresh_indexed_vectors_after_second_restart": 2
+  },
+  "per_topic_native": {
+    "games_class_selection": {
+      "original_record": {
+        "effect": "create",
+        "entity": "user",
+        "id": "13697b17-bd02-b6cd-075b-f45a7a620b9e",
+        "property": "games_class_selection",
+        "state": "active",
+        "value": "positive",
+        "version": 1
+      },
+      "original_source": {
+        "id": "4af0ee0953ac0caaf4eb97ddae59db024e1e03cb0c2b77562f9117c6ea05d6fc",
+        "conversation_id": "b4aa8cde-11d1-4de4-9b4c-86e750bf5aab",
+        "source_message_id": "fac1eaa0-ca61-41ab-b531-70d33c05ae4f",
+        "scope": "phase22f-devf2-forget",
+        "project": "jatoba",
+        "profile": "lucille",
+        "identity_version": 1,
+        "mode": "chat",
+        "action": "learn",
+        "state": "done"
+      },
+      "deletion_receipt": {
+        "action": "forget",
+        "conversation_id": "e89aa486-c62c-48c3-bf5e-fa8c0fb3fb9a",
+        "had_records": true,
+        "id": "744bd134a1fc81feed6e7759b2aaf62e765022ac8be6ca5dccc77f3784cb555f",
+        "identity_version": 1,
+        "mode": "chat",
+        "profile": "lucille",
+        "project": "jatoba",
+        "property": "games_class_selection",
+        "records": [
+          {
+            "effect": "delete",
+            "id": "13697b17-bd02-b6cd-075b-f45a7a620b9e",
+            "state": "deleted",
+            "version": 2
+          }
+        ],
+        "scope": "phase22f-devf2-forget",
+        "source_message_id": "7d969ced-561c-4d2b-a9c0-ec3e78229c79",
+        "state": "done"
+      },
+      "deletion_check_utc": "2026-11-11T13:33:30.285Z",
+      "deletion_after_paint_native_read_ms": {
+        "observed_at_ms": 2601,
+        "read_started_ms": 2615,
+        "proof_read_started_ms": 2637,
+        "read_finished_ms": 2650
+      },
+      "replay": {
+        "result": {
+          "attempts": 1,
+          "created_at": 1794403992,
+          "error_code": null,
+          "id": "4af0ee0953ac0caaf4eb97ddae59db024e1e03cb0c2b77562f9117c6ea05d6fc",
+          "state": "done",
+          "updated_at": 1794403997
+        },
+        "canonical_unchanged": true,
+        "tombstones_unchanged": true
+      },
+      "renewed_candidate": {
+        "effect": "create",
+        "entity": "user",
+        "id": "97b56552-54b4-9d2f-ba8f-593e08fe54a2",
+        "property": "games_class_selection",
+        "state": "candidate",
+        "value": "positive",
+        "version": 1
+      },
+      "renewed_source": {
+        "id": "3fc276c3f6c7d37105dea8f9d1a8f605899363f8a3481bbde2bed8ebd2baf57a",
+        "conversation_id": "31bf68bd-b630-4eac-b9f1-5bfb38f4a2c0",
+        "source_message_id": "d8357b60-0a1b-43be-a840-5049fa67d372",
+        "scope": "phase22f-devf2-forget",
+        "project": "jatoba",
+        "profile": "lucille",
+        "identity_version": 1,
+        "mode": "agent",
+        "action": "learn",
+        "state": "done"
+      },
+      "reviewed_version": 2,
+      "provenance": {
+        "evidence": "Volte a guardar esta prefer\u00eancia minha: gosto de jogos em que posso escolher a classe do personagem",
+        "source_id": "3fc276c3f6c7d37105dea8f9d1a8f605899363f8a3481bbde2bed8ebd2baf57a",
+        "statement_author": "user",
+        "source_digest": "d3416f6e2ef01e2278a460d864f4c01854fad6ad9da3a440a6c74569c1d3c0c1",
+        "evidence_digest": "49da257c96f070fe2482e143701ee2ccedd063d3958ae281fe9af05ccce26307",
+        "start": 0,
+        "end": 100
+      }
+    },
+    "coffee_sugar": {
+      "original_record": {
+        "effect": "create",
+        "entity": "user",
+        "id": "eea7d019-bf78-a845-7c25-b2cf44cdcd4b",
+        "property": "coffee_sugar",
+        "state": "active",
+        "value": "without_sugar",
+        "version": 1
+      },
+      "original_source": {
+        "id": "1b90bff6df226d9b4eb314bc82044bf1ebf7efdd99bb5f511c86cf1bfddb7840",
+        "conversation_id": "c48958b2-6a32-4eab-9305-526004f990f4",
+        "source_message_id": "45cfebf3-d5b2-4f4b-9a13-7bd1dceb0e33",
+        "scope": "phase22f-devf2-forget",
+        "project": "jatoba",
+        "profile": "lucille",
+        "identity_version": 1,
+        "mode": "chat",
+        "action": "learn",
+        "state": "done"
+      },
+      "deletion_receipt": {
+        "action": "forget",
+        "conversation_id": "d8ad03a4-0577-4e4f-ad0b-2d624daa7fb3",
+        "had_records": true,
+        "id": "7b26b35f5e866b91d8cb220489e3e5721c7f96119aacab740e298950630b3e4a",
+        "identity_version": 1,
+        "mode": "agent",
+        "profile": "lucille",
+        "project": "jatoba",
+        "property": "coffee_sugar",
+        "records": [
+          {
+            "effect": "delete",
+            "id": "eea7d019-bf78-a845-7c25-b2cf44cdcd4b",
+            "state": "deleted",
+            "version": 2
+          }
+        ],
+        "scope": "phase22f-devf2-forget",
+        "source_message_id": "348a5040-15d9-4413-8a6f-630f559083c8",
+        "state": "done"
+      },
+      "deletion_check_utc": "2026-11-11T13:33:37.427Z",
+      "deletion_after_paint_native_read_ms": {
+        "observed_at_ms": 5746,
+        "read_started_ms": 5758,
+        "proof_read_started_ms": 5780,
+        "read_finished_ms": 5789
+      },
+      "replay": {
+        "result": {
+          "attempts": 1,
+          "created_at": 1794403999,
+          "error_code": null,
+          "id": "1b90bff6df226d9b4eb314bc82044bf1ebf7efdd99bb5f511c86cf1bfddb7840",
+          "state": "done",
+          "updated_at": 1794404006
+        },
+        "canonical_unchanged": true,
+        "tombstones_unchanged": true
+      },
+      "renewed_candidate": {
+        "effect": "create",
+        "entity": "user",
+        "id": "041e106c-7d7f-5f99-5b5e-22d0fedc8e37",
+        "property": "coffee_sugar",
+        "state": "candidate",
+        "value": "without_sugar",
+        "version": 1
+      },
+      "renewed_source": {
+        "id": "f3c20108e9fde53ac5c761d436cbf66059374a80cc250131f36ed475725d6a90",
+        "conversation_id": "986ef95c-fa6f-41da-9640-43e85bddb6f0",
+        "source_message_id": "64cbd280-5c24-4170-95cb-2f1e4869e809",
+        "scope": "phase22f-devf2-forget",
+        "project": "jatoba",
+        "profile": "lucille",
+        "identity_version": 1,
+        "mode": "code",
+        "action": "learn",
+        "state": "done"
+      },
+      "reviewed_version": 2,
+      "provenance": {
+        "evidence": "Volte a guardar: no caf\u00e9 da tarde, eu prefiro sem a\u00e7\u00facar",
+        "source_id": "f3c20108e9fde53ac5c761d436cbf66059374a80cc250131f36ed475725d6a90",
+        "statement_author": "user",
+        "source_digest": "e63ec7902fed3ef6c65ca335ab1507c46870a828f93375d8b60702d4a6061dcf",
+        "evidence_digest": "84940f9c5a7e1a8f359801402f679061fbf0ac9e18a36f0d990fe574fc886d7c",
+        "start": 0,
+        "end": 59
+      }
+    }
+  },
+  "readonly_sqlite": {
+    "jobs": 6,
+    "source_operations": 6,
+    "record_versions": [
+      {
+        "record_id": "13697b17-bd02-b6cd-075b-f45a7a620b9e",
+        "history": [
+          {
+            "operation": "auto_promote",
+            "version": 1
+          },
+          {
+            "operation": "create",
+            "version": 1
+          },
+          {
+            "operation": "delete",
+            "version": 2
+          }
+        ],
+        "provenance_count": 0,
+        "vector_versions": []
+      },
+      {
+        "record_id": "eea7d019-bf78-a845-7c25-b2cf44cdcd4b",
+        "history": [
+          {
+            "operation": "auto_promote",
+            "version": 1
+          },
+          {
+            "operation": "create",
+            "version": 1
+          },
+          {
+            "operation": "delete",
+            "version": 2
+          }
+        ],
+        "provenance_count": 0,
+        "vector_versions": []
+      },
+      {
+        "record_id": "97b56552-54b4-9d2f-ba8f-593e08fe54a2",
+        "history": [
+          {
+            "operation": "create",
+            "version": 1
+          },
+          {
+            "operation": "approve",
+            "version": 2
+          }
+        ],
+        "provenance_count": 1,
+        "vector_versions": [
+          2
+        ]
+      },
+      {
+        "record_id": "041e106c-7d7f-5f99-5b5e-22d0fedc8e37",
+        "history": [
+          {
+            "operation": "create",
+            "version": 1
+          },
+          {
+            "operation": "approve",
+            "version": 2
+          }
+        ],
+        "provenance_count": 1,
+        "vector_versions": [
+          2
+        ]
+      }
+    ]
+  },
+  "literal_turns": [
+    {
+      "stage": "delete",
+      "case": "gm-t01",
+      "mode": "chat",
+      "source": "Para mim, a escolha da classe do personagem \u00e9 uma das coisas de que gosto nos jogos.",
+      "status": "checked",
+      "first_terminal_dom_ms": 2939,
+      "delivered": "A escolha da classe \u00e9 fundamental para definir o estilo de jogo e a identidade do personagem. Ela permite que voc\u00ea personalize a experi\u00eancia e as estrat\u00e9gias de acordo com sua prefer\u00eancia.",
+      "expected_atoms": [
+        "truthful_source_acknowledgement"
+      ],
+      "retained_atoms": [
+        "truthful_source_acknowledgement"
+      ],
+      "attempts": [
+        {
+          "raw": "A escolha da classe \u00e9 fundamental para definir o estilo de jogo e a identidade do personagem. Ela permite que voc\u00ea personalize a experi\u00eancia e as estrat\u00e9gias de acordo com sua prefer\u00eancia.",
+          "codes": [],
+          "completion_tokens": 37
+        }
+      ]
+    },
+    {
+      "stage": "delete",
+      "case": "gm-t02",
+      "mode": "chat",
+      "source": "Na minha x\u00edcara de caf\u00e9 da tarde, prefiro o caf\u00e9 sem a\u00e7\u00facar.",
+      "status": "checked",
+      "first_terminal_dom_ms": 2725,
+      "delivered": "\u00c9 uma excelente escolha para apreciar melhor as notas sensoriais do gr\u00e3o. O caf\u00e9 puro destaca nuances que o a\u00e7\u00facar \u00e0s vezes pode mascarar.",
+      "expected_atoms": [
+        "truthful_source_acknowledgement"
+      ],
+      "retained_atoms": [
+        "truthful_source_acknowledgement"
+      ],
+      "attempts": [
+        {
+          "raw": "\u00c9 uma excelente escolha para apreciar melhor as notas sensoriais do gr\u00e3o. O caf\u00e9 puro destaca nuances que o a\u00e7\u00facar \u00e0s vezes pode mascarar.",
+          "codes": [],
+          "completion_tokens": 31
+        }
+      ]
+    },
+    {
+      "stage": "delete",
+      "case": "gm-t13",
+      "mode": "chat",
+      "source": "Esque\u00e7a de verdade minha prefer\u00eancia pela escolha de classe nos jogos.",
+      "status": "checked",
+      "first_terminal_dom_ms": 2616,
+      "delivered": "A partir de agora, n\u00e3o levarei mais esse detalhe em conta.\n\nRemovi da mem\u00f3ria a informa\u00e7\u00e3o solicitada.",
+      "expected_atoms": [
+        "class_delete_effective",
+        "old_class_replay_no_revival"
+      ],
+      "retained_atoms": [
+        "class_delete_effective",
+        "old_class_replay_no_revival"
+      ],
+      "attempts": [
+        {
+          "raw": "Entendido, esqueci sua prefer\u00eancia pela escolha de classe nos jogos. A partir de agora, n\u00e3o levarei mais esse detalhe em conta.",
+          "codes": [
+            "application_owned_memory_confirmation"
+          ],
+          "completion_tokens": 32
+        }
+      ]
+    },
+    {
+      "stage": "delete",
+      "case": "gm-t16",
+      "mode": "agent",
+      "source": "Esque\u00e7a de verdade como eu prefiro o a\u00e7\u00facar no caf\u00e9.",
+      "status": "checked",
+      "first_terminal_dom_ms": 5758,
+      "delivered": "Entendido.\n\nRemovi da mem\u00f3ria a informa\u00e7\u00e3o solicitada.",
+      "expected_atoms": [
+        "coffee_delete_effective",
+        "old_coffee_replay_no_revival"
+      ],
+      "retained_atoms": [
+        "coffee_delete_effective",
+        "old_coffee_replay_no_revival"
+      ],
+      "attempts": [
+        {
+          "raw": "Entendido. Esqueci como voc\u00ea prefere o a\u00e7\u00facar no caf\u00e9.",
+          "codes": [
+            "application_owned_memory_confirmation"
+          ],
+          "completion_tokens": 15
+        }
+      ]
+    },
+    {
+      "stage": "absence",
+      "case": "gm-t14",
+      "mode": "code",
+      "source": "H\u00e1 alguma prefer\u00eancia minha por sele\u00e7\u00e3o de classes ainda dispon\u00edvel neste contexto?",
+      "status": "checked",
+      "first_terminal_dom_ms": 5334,
+      "delivered": "N\u00e3o h\u00e1 nenhuma prefer\u00eancia sua por sele\u00e7\u00e3o de classes registrada no momento.",
+      "expected_atoms": [
+        "bounded_no_current_class"
+      ],
+      "retained_atoms": [
+        "bounded_no_current_class"
+      ],
+      "attempts": [
+        {
+          "raw": "N\u00e3o h\u00e1 nenhuma prefer\u00eancia sua por sele\u00e7\u00e3o de classes registrada no momento.",
+          "codes": [],
+          "completion_tokens": 15
+        }
+      ]
+    },
+    {
+      "stage": "absence",
+      "case": "gm-t17",
+      "mode": "chat",
+      "source": "Como eu prefiro o caf\u00e9? Responda apenas com o que continua dispon\u00edvel neste contexto.",
+      "status": "checked",
+      "first_terminal_dom_ms": 2182,
+      "delivered": "N\u00e3o h\u00e1 nenhuma informa\u00e7\u00e3o dispon\u00edvel no contexto sobre como voc\u00ea prefere o caf\u00e9.",
+      "expected_atoms": [
+        "bounded_no_current_coffee"
+      ],
+      "retained_atoms": [
+        "bounded_no_current_coffee"
+      ],
+      "attempts": [
+        {
+          "raw": "N\u00e3o h\u00e1 nenhuma informa\u00e7\u00e3o dispon\u00edvel no contexto sobre como voc\u00ea prefere o caf\u00e9.",
+          "codes": [],
+          "completion_tokens": 16
+        }
+      ]
+    },
+    {
+      "stage": "relearn",
+      "case": "gm-t15",
+      "mode": "agent",
+      "source": "Volte a guardar esta prefer\u00eancia minha: gosto de jogos em que posso escolher a classe do personagem.",
+      "status": "blocked",
+      "first_terminal_dom_ms": 32106,
+      "delivered": "Agent error: N\u00e3o foi poss\u00edvel confirmar as afirma\u00e7\u00f5es de mem\u00f3ria desta resposta. A resposta n\u00e3o verificada foi retida; tente novamente ou esclare\u00e7a a informa\u00e7\u00e3o.",
+      "expected_atoms": [
+        "class_memory_renewal_received",
+        "no_liking_transition_inferred"
+      ],
+      "retained_atoms": [],
+      "attempts": [
+        {
+          "raw_character_count": 2688,
+          "raw_sha256": "a91611beef33133df948c5f79a476aa1fa77f0395e7ba278bf2ba5dc9de8ae7e",
+          "thought_delimiter_count": 96,
+          "codes": [
+            "empty_answer",
+            "incomplete_answer"
+          ],
+          "completion_tokens": 384
+        },
+        {
+          "raw_character_count": 2688,
+          "raw_sha256": "a91611beef33133df948c5f79a476aa1fa77f0395e7ba278bf2ba5dc9de8ae7e",
+          "thought_delimiter_count": 96,
+          "codes": [
+            "empty_answer",
+            "incomplete_answer"
+          ],
+          "completion_tokens": 384
+        }
+      ],
+      "audit_note": "As duas tentativas esgotaram 384 tokens em delimitadores repetidos e n\u00e3o produziram texto \u00fatil. A GUI exibiu a reten\u00e7\u00e3o. O aprendizado e a revis\u00e3o conclu\u00edram em opera\u00e7\u00f5es independentes."
+    },
+    {
+      "stage": "relearn",
+      "case": "gm-t18",
+      "mode": "code",
+      "source": "Volte a guardar: no caf\u00e9 da tarde, eu prefiro sem a\u00e7\u00facar.",
+      "status": "checked",
+      "first_terminal_dom_ms": 5802,
+      "delivered": "Entendido, voc\u00ea prefere o caf\u00e9 da tarde sem a\u00e7\u00facar.",
+      "expected_atoms": [
+        "coffee_memory_renewal_received",
+        "no_liking_transition_inferred"
+      ],
+      "retained_atoms": [
+        "coffee_memory_renewal_received",
+        "no_liking_transition_inferred"
+      ],
+      "attempts": [
+        {
+          "raw": "Entendido, guardei que voc\u00ea prefere o caf\u00e9 da tarde sem a\u00e7\u00facar.",
+          "codes": [
+            "unconfirmed_memory_mutation"
+          ],
+          "completion_tokens": 17
+        }
+      ],
+      "audit_note": "A corre\u00e7\u00e3o removeu a alega\u00e7\u00e3o de grava\u00e7\u00e3o e preservou a prefer\u00eancia explicitada no turno. O recibo da candidata foi observado depois da resposta."
+    },
+    {
+      "stage": "final",
+      "case": "gm-p08",
+      "mode": "agent",
+      "source": "Como eu prefiro o caf\u00e9 depois que pedi para voltar a guardar essa informa\u00e7\u00e3o?",
+      "status": "checked",
+      "first_terminal_dom_ms": 6057,
+      "delivered": "Voc\u00ea prefere o caf\u00e9 sem a\u00e7\u00facar.",
+      "expected_atoms": [
+        "coffee_without_sugar",
+        "renewed_memory_not_liking_transition"
+      ],
+      "retained_atoms": [
+        "coffee_without_sugar",
+        "renewed_memory_not_liking_transition"
+      ],
+      "attempts": [
+        {
+          "raw": "Voc\u00ea prefere o caf\u00e9 sem a\u00e7\u00facar.",
+          "codes": [],
+          "completion_tokens": 9
+        }
+      ]
+    },
+    {
+      "stage": "final",
+      "case": "gm-p09",
+      "mode": "code",
+      "source": "Qual \u00e9 minha prefer\u00eancia sobre escolha de classe nos jogos, ap\u00f3s o pedido para voltar a guardar?",
+      "status": "checked",
+      "first_terminal_dom_ms": 4962,
+      "delivered": "Voc\u00ea gosta de jogos em que pode escolher a classe do personagem.",
+      "expected_atoms": [
+        "class_selection_positive",
+        "renewed_memory_not_liking_transition"
+      ],
+      "retained_atoms": [
+        "class_selection_positive",
+        "renewed_memory_not_liking_transition"
+      ],
+      "attempts": [
+        {
+          "raw": "Voc\u00ea gosta de jogos em que pode escolher a classe do personagem.",
+          "codes": [],
+          "completion_tokens": 14
+        }
+      ]
+    }
+  ],
+  "artifacts": {
+    "driver-devf2-forget-delete-final.json": {
+      "bytes": 52955,
+      "sha256": "f7d01596433a38c7900b6f3dc861f1c43ff421b0d1dc61de95cff84afa5bde1b"
+    },
+    "driver-devf2-forget-absence-final.json": {
+      "bytes": 44870,
+      "sha256": "3b184f0de189bbdb0d3f9f10267ad2071f6375860265fb516c1a88164fbcf8d4"
+    },
+    "driver-devf2-forget-relearn-final.json": {
+      "bytes": 50060,
+      "sha256": "cd629cddf07123f13e716d7b818bf7facab4697d374555d8915f79a1e980bc84"
+    },
+    "driver-devf2-forget-final-final.json": {
+      "bytes": 58369,
+      "sha256": "1e2d3f51fe63ff30681c2c89b8154e2b30b1224e872648b6a508b365c7874602"
+    },
+    "development-freeze-known3.json": {
+      "bytes": 674561,
+      "sha256": "ab030f3e3e885177bf6e580c6b96e7777b1d488b0bbc52ac1266c6535d9a76dc"
+    },
+    "forget-delete.json": {
+      "bytes": 1356,
+      "sha256": "6850a4389d0601bf838265933f6d63ac80c0bc4acf8cb2b6df4b1b031cdda94c"
+    },
+    "forget-after-restart.json": {
+      "bytes": 1055,
+      "sha256": "0f6318048908756678d280927a859f26f0b0ec9707c0171da42200fb46b0b120"
+    },
+    "forget-reintroduce.json": {
+      "bytes": 912,
+      "sha256": "8154aee1c88bc717fcd2d91d3624f3ea251ef2d187d676b147f38a210247309f"
+    },
+    "forget-final-restart.json": {
+      "bytes": 843,
+      "sha256": "a136111c25dc40cf0bc2f4f7f35d39ad3ab5a3fe1e21424acb76b8bd207bcdd0"
+    },
+    "phase22f-devf2-forget-delete.log": {
+      "bytes": 197,
+      "sha256": "7ecbf4f36f9992e4b094015d2a5a2c66b63fb7c897d0d4c505e6f0d76b0fd6f5"
+    },
+    "phase22f-devf2-forget-restart1-stop.log": {
+      "bytes": 83,
+      "sha256": "4df3b585bdbd5547df731cab043388bc794371e3f755d51d58927a164584f539"
+    },
+    "phase22f-devf2-forget-restart1-start.log": {
+      "bytes": 81,
+      "sha256": "cac64c1161dbb004d4ca847a2c2fca8c39e3b6cb45486df976f327752425bb7c"
+    },
+    "phase22f-devf2-forget-absence.log": {
+      "bytes": 123,
+      "sha256": "3a237e68ace1ceb67e22b4d556420c57a2c3daec08474bc12f0498909b810f07"
+    },
+    "phase22f-devf2-forget-relearn.log": {
+      "bytes": 162,
+      "sha256": "43dc22974e1409f072c93de6de016ad31d816a80bf87b491c857a03015eb4aed"
+    },
+    "phase22f-devf2-forget-restart2-stop.log": {
+      "bytes": 83,
+      "sha256": "4df3b585bdbd5547df731cab043388bc794371e3f755d51d58927a164584f539"
+    },
+    "phase22f-devf2-forget-restart2-start.log": {
+      "bytes": 81,
+      "sha256": "cac64c1161dbb004d4ca847a2c2fca8c39e3b6cb45486df976f327752425bb7c"
+    },
+    "phase22f-devf2-forget-final.log": {
+      "bytes": 119,
+      "sha256": "99da0048cdf38d3bb08a1b09fa2847b122fd672256702498366e99368662b375"
+    }
+  }
+}

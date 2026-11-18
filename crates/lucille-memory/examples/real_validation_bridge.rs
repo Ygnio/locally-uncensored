@@ -53,7 +53,9 @@ fn run() -> Result<Value> {
             }
         }
     }
-    let mut s = Store::open(&root.join("synthetic.sqlite3"))?;
+    let database = root.join("synthetic.sqlite3");
+    let fresh = !database.exists();
+    let mut s = Store::open(&database)?;
     let permit = ConfigurationPermit::explicit_settings_action(true)?;
     let scope = v["scope"].as_str().unwrap_or("lucille");
     let project = v["project"].as_str().unwrap_or("atlas");
@@ -74,16 +76,15 @@ fn run() -> Result<Value> {
             }
             let mode: llm::ExtractionMode =
                 serde_json::from_value(v["mode"].clone()).map_err(|_| "Invalid extraction mode")?;
-            s.set_learning_policy(
-                LearningPolicy {
-                    enabled: true,
-                    autonomous_preferences: v["autonomy"].as_bool().unwrap_or(false),
-                    automatic_indexing: v["automatic_indexing"].as_bool().unwrap_or(false),
-                    extraction_mode: mode.clone(),
-                    ..Default::default()
-                },
-                &permit,
-            )?;
+            let mut policy: LearningPolicy = match v.get("learning_policy") {
+                Some(raw) => serde_json::from_value(raw.clone()).map_err(|_| "Invalid synthetic learning policy")?,
+                None => LearningPolicy::default(),
+            };
+            policy.enabled = true;
+            policy.autonomous_preferences = v["autonomy"].as_bool().unwrap_or(false);
+            policy.automatic_indexing = v["automatic_indexing"].as_bool().unwrap_or(false);
+            policy.extraction_mode = mode;
+            s.set_learning_policy(policy, &permit)?;
             let text = v["text"].as_str().ok_or("Missing text")?;
             let enqueue = s.enqueue_learning(Interaction {
                 conversation_id: v["conversation_id"]
@@ -93,7 +94,8 @@ fn run() -> Result<Value> {
                 message_id: v["message_id"].as_str().unwrap_or("case").into(),
                 scope: scope.into(),
                 project: project.into(),
-                mode: Mode::Chat,
+                mode: serde_json::from_value(v.get("interaction_mode").cloned().unwrap_or(json!("chat")))
+                    .map_err(|_| "Invalid interaction mode")?,
                 role: "user".into(),
                 user_text: text.into(),
             })?;
@@ -136,7 +138,24 @@ fn run() -> Result<Value> {
             s.pending_embedding_records(scope, project, v["limit"].as_u64().unwrap_or(8) as usize)
         }
         "export" => Ok(json!(s.export_backup(&permit)?)),
+        "restore_canonical_fixture" => {
+            let phase_root = checkout.join("lucille-synthetic-real22f");
+            let relative = root.strip_prefix(&phase_root).map_err(|_| "C1 root required")?;
+            if !fresh
+                || relative.components().count() != 2
+                || !root.file_name().unwrap_or_default().to_string_lossy().starts_with("lucille-synthetic-c1-")
+                || std::fs::read(phase_root.join(".lucille-isolated")).map_err(|_| "Missing phase marker")?
+                    != b"synthetic-data-only\n"
+            {
+                return Err("Fresh marked C1 fixture store required".into());
+            }
+            let backup = v["backup"].as_str().ok_or("Missing synthetic canonical fixture")?;
+            s.restore_isolated(backup, &permit)?;
+            s.check_integrity()?;
+            Ok(json!(s.identity()?))
+        }
         "details" => Ok(json!(s.memory_details(scope, project)?)),
+        "deleted" => Ok(json!(s.deleted_memories(scope, project)?)),
         "representation" => s.memory_embedding_text(
             v["id"].as_str().ok_or("Missing id")?,
             scope,

@@ -1,0 +1,331 @@
+{
+  "phase": "2.2F",
+  "kind": "known_development_gui_dev18j",
+  "date": "2026-11-18",
+  "status": "full_request_completeness_below_threshold",
+  "source_head": "bf1e039e3a27a1a785c7ae84d0970a4ed8e32717",
+  "freeze_sha256": "34ef8b109fc955a7695d8131fe4ea9609bcf95fccc32a2c955b315898442101c",
+  "native_gui_sha256": "f41dadfb8ede3d7951bc3cca43b638ab09c5bbeb9500befabb3c19b2749f2f8c",
+  "real_inference": true,
+  "cases": {
+    "jatoba": {
+      "planned": 19,
+      "executed": 19,
+      "outcomes": {
+        "checked": 12,
+        "regenerated": 4,
+        "blocked": 1,
+        "tool_reply": 2
+      }
+    },
+    "pitanga": {
+      "planned": 6,
+      "executed": 6,
+      "outcomes": {
+        "checked": 4,
+        "regenerated": 2
+      }
+    }
+  },
+  "observed_gates": {
+    "availability": {
+      "useful": 24,
+      "planned": 25,
+      "minimum": 0.95,
+      "met": true
+    },
+    "expected_atom_completeness": {
+      "covered": 47,
+      "planned": 49,
+      "minimum": 0.95,
+      "met": true
+    },
+    "full_request_completeness": {
+      "covered": 47,
+      "requested": 50,
+      "minimum": 0.95,
+      "met": false
+    },
+    "transport_failures": 0,
+    "critical_delivered_claims_found": 0,
+    "premature_persistence_confirmations_found": 0
+  },
+  "literal_scoring_note": "Both atoms in gm-t09 were unavailable because the response was withheld. The unavailable other-project database in go-p03 remains in the full-request denominator. Copy is outside both denominators. The catalogue acknowledgement in gm-t06 names the catalogue and refers to types of miniatures.",
+  "repaired_cases": [
+    {
+      "case": "gm-t08",
+      "mode": "chat",
+      "status": "regenerated",
+      "attempts": [
+        {
+          "text": "Excelente escolha, pois o PostgreSQL é conhecido por sua robustez e suporte a diversos tipos de dados. Qual será o foco principal do seu projeto?",
+          "violations": [
+            {
+              "code": "source_technology_modality_omitted",
+              "critical": false
+            }
+          ]
+        },
+        {
+          "text": "Excelente escolha, pois o PostgreSQL é conhecido por sua robustez e suporte a diversos tipos de dados. Você planeja utilizá-lo como o banco de dados do seu projeto Jatoba.",
+          "violations": []
+        }
+      ],
+      "delivered": "Excelente escolha, pois o PostgreSQL é conhecido por sua robustez e suporte a diversos tipos de dados. Você planeja utilizá-lo como o banco de dados do seu projeto Jatoba.",
+      "finding": "The retry expressed the intended PostgreSQL plan using the supported antecedent in the previous sentence."
+    },
+    {
+      "case": "gm-t12",
+      "mode": "code",
+      "status": "checked",
+      "attempts": [
+        {
+          "text": "Você está correto; o computador principal possui 64 GB de RAM, e os 128 GB são apenas uma hipótese falsa.",
+          "violations": []
+        }
+      ],
+      "delivered": "Você está correto; o computador principal possui 64 GB de RAM, e os 128 GB são apenas uma hipótese falsa.",
+      "finding": "The reply assigned 64 GB to the primary computer and rejected 128 GB as a false hypothesis."
+    },
+    {
+      "case": "gm-p04",
+      "mode": "chat",
+      "status": "regenerated",
+      "attempts": [
+        {
+          "text": "A escolha de Python prova que você decidiu usar a linguagem Python para o projeto jatoba. Não prova que você começou a implementar o projeto, pois uma decisão não é necessariamente uma execução.",
+          "violations": [
+            {
+              "code": "affirmed_unproven_project_execution",
+              "critical": true
+            }
+          ]
+        },
+        {
+          "text": "A escolha de Python prova que você decidiu usar a linguagem Python para o projeto jatoba. No entanto, a implementação em si ainda não foi confirmada.",
+          "violations": []
+        }
+      ],
+      "delivered": "A escolha de Python prova que você decidiu usar a linguagem Python para o projeto jatoba. No entanto, a implementação em si ainda não foi confirmada.",
+      "finding": "The retry accepted the historical Python choice and bounded the statement about implementation to confirmation. The verifier had rejected the first bounded wording."
+    },
+    {
+      "case": "go-p03",
+      "mode": "chat",
+      "status": "checked",
+      "attempts": [
+        {
+          "text": "Você escolheu o MySQL como banco de dados para o projeto Pitanga. Para o projeto Jatobá, esta conversa não tem acesso ao registro autorizado.",
+          "violations": []
+        }
+      ],
+      "delivered": "Você escolheu o MySQL como banco de dados para o projeto Pitanga. Para o projeto Jatobá, esta conversa não tem acesso ao registro autorizado.",
+      "finding": "The reply supplied the verified Pitanga choice and stated the access boundary for the requested Jatoba record. The Jatoba database was unavailable within the binding."
+    }
+  ],
+  "remaining_false_block": {
+    "case": "gm-t09",
+    "mode": "chat",
+    "status": "blocked",
+    "attempts": [
+      {
+        "text": "You prefer tea, while the narrator in your story prefers coffee.",
+        "violations": [
+          {
+            "code": "unsupported_typed_value",
+            "critical": true
+          }
+        ]
+      },
+      {
+        "text": "Your favorite beverage is tea, while the narrator in your story prefers coffee.",
+        "violations": [
+          {
+            "code": "unsupported_typed_value",
+            "critical": true
+          }
+        ]
+      }
+    ],
+    "delivered": "Error: Não foi possível confirmar as afirmações de memória desta resposta. A resposta não verificada foi retida; tente novamente ou esclareça a informação.",
+    "finding": "Both responses assigned coffee to the narrator and tea to the user. The guard treated the possessive in \"in your story\" as a user preference subject, then withheld both responses.",
+    "native_receipt": [
+      {
+        "value": "tea",
+        "state": "active",
+        "version": 1
+      }
+    ],
+    "missed_atoms": [
+      "favorite_tea",
+      "foreign_narrator_not_user"
+    ]
+  },
+  "native_observations": {
+    "post_display_receipt_order": [
+      {
+        "case": "gm-t03",
+        "display_observed_ms": 5335,
+        "queued_without_receipt_read_ms": [
+          5335,
+          5366
+        ],
+        "terminal_read_ms": [
+          9913,
+          9923
+        ],
+        "source_receipt_records": [
+          {
+            "value": "48_gb",
+            "effect": "create",
+            "state": "candidate",
+            "version": 1
+          }
+        ]
+      },
+      {
+        "case": "gm-t04",
+        "display_observed_ms": 3226,
+        "queued_without_receipt_read_ms": [
+          3226,
+          3266
+        ],
+        "terminal_read_ms": [
+          6524,
+          6535
+        ],
+        "source_receipt_records": [
+          {
+            "value": "12_gb",
+            "effect": "create",
+            "state": "candidate",
+            "version": 1
+          }
+        ]
+      },
+      {
+        "case": "gm-t05",
+        "display_observed_ms": 7292,
+        "queued_without_receipt_read_ms": [
+          7292,
+          7323
+        ],
+        "terminal_read_ms": [
+          11951,
+          11961
+        ],
+        "source_receipt_records": []
+      },
+      {
+        "case": "gm-t19",
+        "display_observed_ms": 2044,
+        "queued_without_receipt_read_ms": [
+          2043,
+          2080
+        ],
+        "terminal_read_ms": [
+          5803,
+          5814
+        ],
+        "source_receipt_records": [
+          {
+            "value": "cancelled",
+            "effect": "create",
+            "state": "candidate",
+            "version": 1
+          }
+        ]
+      }
+    ],
+    "ram_replacement_review": {
+      "action": "Approve replacement",
+      "submitted_version": 1,
+      "replaces_48_gb_from_version": 2
+    },
+    "jatoba_final": {
+      "48_gb": {
+        "state": "obsolete",
+        "version": 3,
+        "temporal": "durable"
+      },
+      "12_gb": {
+        "state": "active",
+        "version": 2,
+        "temporal": "durable"
+      },
+      "64_gb": {
+        "state": "active",
+        "version": 2,
+        "temporal": "durable"
+      },
+      "tea": {
+        "state": "active",
+        "version": 1,
+        "temporal": "preference"
+      },
+      "cancelled": {
+        "state": "active",
+        "version": 2,
+        "temporal": "cancelled"
+      }
+    },
+    "pitanga_final": {
+      "mysql": {
+        "state": "active",
+        "version": 2,
+        "temporal": "durable"
+      },
+      "typescript": {
+        "state": "active",
+        "version": 2,
+        "temporal": "in_progress"
+      },
+      "rust": {
+        "state": "active",
+        "version": 2,
+        "temporal": "planned"
+      }
+    },
+    "fictional_source_reads": [
+      {
+        "case": "gm-t10",
+        "tool": "file_read",
+        "resource": "persona-note.txt",
+        "state": "completed",
+        "validated": true
+      },
+      {
+        "case": "gm-t11",
+        "tool": "file_read",
+        "resource": "narrator-note.txt",
+        "state": "completed",
+        "validated": true
+      }
+    ]
+  },
+  "copy": {
+    "jatoba": {
+      "handler_sha256": "396ce778093203bd9d10d90af341cd1bf37610f2804c3c519611f3d9a8ec012f",
+      "payload_observed": true,
+      "payload_matches_verified": true,
+      "document_focused": false,
+      "system_clipboard_written": false
+    },
+    "separate_pitanga": {
+      "handler_sha256": "31497093b57b40608cd4e31f6c1c7bbddecf5b05991e14f763e9cd7caa6ce98d",
+      "payload_observed": true,
+      "payload_matches_verified": true,
+      "document_focused": false,
+      "system_clipboard_written": false,
+      "planned_requests": 1,
+      "executed_requests": 1,
+      "fresh_synthetic_scope": true,
+      "driver_sha256": "df8d39628fbcf3f5d743be1bca2d36ba01d177a956625498b4f42871d105472b"
+    }
+  },
+  "raw_sha256": {
+    "jatoba": "b792b6540892db350154bc504e5a22e83c9bb5390594ac6a94f0559c032bd9ca",
+    "pitanga": "358fb359c033a79ae4813d5f02054e1995ff082a9ed3d8781e3bf0a71ba151ff",
+    "sequence": "7206a6cce8346fe1f3e7e570f2dd8f9d2a59347fc60047a336f6b7dc3275a707"
+  }
+}

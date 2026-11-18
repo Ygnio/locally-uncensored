@@ -1,0 +1,38 @@
+{
+  "id": "phase22f-dev-forget-after-restart",
+  "project": "jatoba",
+  "kind": "known development only; original E texts/golds",
+  "turns": [],
+  "probes": [
+    {
+      "id": "gm-t14",
+      "text": "Há alguma preferência minha por seleção de classes ainda disponível neste contexto?",
+      "new_session": true,
+      "mode": "code",
+      "expected_atoms": [
+        "bounded_no_current_class"
+      ],
+      "scenario": "class_deleted_probe"
+    },
+    {
+      "id": "gm-t17",
+      "text": "Como eu prefiro o café? Responda apenas com o que continua disponível neste contexto.",
+      "new_session": true,
+      "mode": "chat",
+      "expected_atoms": [
+        "bounded_no_current_coffee"
+      ],
+      "scenario": "coffee_deleted_probe"
+    }
+  ],
+  "replay_persisted_sources": [
+    {
+      "text": "Para mim, a escolha da classe do personagem é uma das coisas de que gosto nos jogos.",
+      "mode": "chat"
+    },
+    {
+      "text": "Na minha xícara de café da tarde, prefiro o café sem açúcar.",
+      "mode": "chat"
+    }
+  ]
+}

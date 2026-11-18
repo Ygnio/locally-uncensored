@@ -1,0 +1,20 @@
+{
+  "id": "phase22f-known-e-fault-contract",
+  "kind": "Known development replay with original 2.2E sources and explicit typed expected facts for each source. The synthetic SQLite lock case reuses the Chat source.",
+  "known_protocol": {
+    "corpus": "crates/lucille-memory/tests/fixtures/phase22e/final-v1/faults.json",
+    "sqlite_busy_source": "final-e-cancel-chat",
+    "expected": {
+      "final-e-cancel-chat": {"kind":"preference","subject":"user","property":"coffee_sugar","value":"without_sugar"},
+      "final-e-cancel-agent": {"kind":"preference","subject":"user","property":"interface_theme","value":"dark"},
+      "final-e-cancel-code": {"kind":"preference","subject":"user","property":"games_class_selection","value":"positive"},
+      "final-e-source-order": {"kind":"preference","subject":"user","property":"coffee_sugar","value":"without_sugar"},
+      "final-e-restart-lease": [
+        {"kind":"preference","subject":"user","property":"coffee_sugar","value":"without_sugar"},
+        {"kind":"preference","subject":"user","property":"response_language","value":"pt"},
+        {"kind":"preference","subject":"user","property":"games_class_selection","value":"positive"},
+        {"kind":"preference","subject":"user","property":"interface_theme","value":"dark"}
+      ]
+    }
+  }
+}

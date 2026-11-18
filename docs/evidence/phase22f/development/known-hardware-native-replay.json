@@ -1,0 +1,167 @@
+{
+  "kind": "known_hardware_development_replay",
+  "phase": "2.2F",
+  "bridge_sha256": "e6587ce8d0f41ebe116eaa8f5cbc0377a4d402faffa55f4999a9909e385342cd",
+  "modes": {
+    "rules": {
+      "cases": {
+        "gm-t03": {
+          "source": "Meu computador principal está com 48 GB de RAM instalada. Guarde esta informação.",
+          "canonical_entity": "device.primary_computer",
+          "value": "48_gb",
+          "materialized": "candidate",
+          "reviewed_version": 2,
+          "original_mode": "code",
+          "nomination_source": "recorded_real_gemma_nomination",
+          "nomination_sha256": "9cdce370e153e59f6c1a4911afbb1b4f7d2e5ce754252a536a9e6f5afb32dc3f",
+          "provenance_literal_matched": true,
+          "previous_version": null
+        },
+        "gm-t04": {
+          "source": "No notebook que uso para trabalhar, tenho 12 GB de RAM. Guarde esta informação.",
+          "canonical_entity": "device.work_laptop",
+          "value": "12_gb",
+          "materialized": "candidate",
+          "reviewed_version": 2,
+          "original_mode": "chat",
+          "nomination_source": "recorded_real_gemma_nomination",
+          "nomination_sha256": "c4ab8a510da43f034204d4700ec8210db5788ea5de757d2a31349b453bcc6150",
+          "provenance_literal_matched": true,
+          "previous_version": null
+        },
+        "gm-t05": {
+          "source": "Corrigindo o dado do computador principal: agora ele possui 64 GB de RAM, não mais os 48 GB. Guarde a correção.",
+          "canonical_entity": "device.primary_computer",
+          "value": "64_gb",
+          "materialized": "conflict",
+          "reviewed_version": 2,
+          "original_mode": "agent",
+          "nomination_source": "development_fixture_nomination_no_live_generation",
+          "nomination_sha256": "097582c578eb903e9c9ceb20b0f7c6157e9c0e4ce3c348ac244868d1884e1b93",
+          "provenance_literal_matched": true,
+          "previous_version": 2
+        }
+      },
+      "scoped_history": [
+        [
+          "device.primary_computer",
+          "64_gb",
+          "current"
+        ],
+        [
+          "device.primary_computer",
+          "48_gb",
+          "historical"
+        ]
+      ],
+      "sqlite_schema": 6
+    },
+    "llm": {
+      "cases": {
+        "gm-t03": {
+          "source": "Meu computador principal está com 48 GB de RAM instalada. Guarde esta informação.",
+          "canonical_entity": "device.primary_computer",
+          "value": "48_gb",
+          "materialized": "candidate",
+          "reviewed_version": 2,
+          "original_mode": "code",
+          "nomination_source": "recorded_real_gemma_nomination",
+          "nomination_sha256": "9cdce370e153e59f6c1a4911afbb1b4f7d2e5ce754252a536a9e6f5afb32dc3f",
+          "provenance_literal_matched": true,
+          "previous_version": null
+        },
+        "gm-t04": {
+          "source": "No notebook que uso para trabalhar, tenho 12 GB de RAM. Guarde esta informação.",
+          "canonical_entity": "device.work_laptop",
+          "value": "12_gb",
+          "materialized": "candidate",
+          "reviewed_version": 2,
+          "original_mode": "chat",
+          "nomination_source": "recorded_real_gemma_nomination",
+          "nomination_sha256": "c4ab8a510da43f034204d4700ec8210db5788ea5de757d2a31349b453bcc6150",
+          "provenance_literal_matched": true,
+          "previous_version": null
+        },
+        "gm-t05": {
+          "source": "Corrigindo o dado do computador principal: agora ele possui 64 GB de RAM, não mais os 48 GB. Guarde a correção.",
+          "canonical_entity": "device.primary_computer",
+          "value": "64_gb",
+          "materialized": "conflict",
+          "reviewed_version": 2,
+          "original_mode": "agent",
+          "nomination_source": "development_fixture_nomination_no_live_generation",
+          "nomination_sha256": "097582c578eb903e9c9ceb20b0f7c6157e9c0e4ce3c348ac244868d1884e1b93",
+          "provenance_literal_matched": true,
+          "previous_version": 2
+        }
+      },
+      "scoped_history": [
+        [
+          "device.primary_computer",
+          "64_gb",
+          "current"
+        ],
+        [
+          "device.primary_computer",
+          "48_gb",
+          "historical"
+        ]
+      ],
+      "sqlite_schema": 6
+    },
+    "hybrid": {
+      "cases": {
+        "gm-t03": {
+          "source": "Meu computador principal está com 48 GB de RAM instalada. Guarde esta informação.",
+          "canonical_entity": "device.primary_computer",
+          "value": "48_gb",
+          "materialized": "candidate",
+          "reviewed_version": 2,
+          "original_mode": "code",
+          "nomination_source": "recorded_real_gemma_nomination",
+          "nomination_sha256": "9cdce370e153e59f6c1a4911afbb1b4f7d2e5ce754252a536a9e6f5afb32dc3f",
+          "provenance_literal_matched": true,
+          "previous_version": null
+        },
+        "gm-t04": {
+          "source": "No notebook que uso para trabalhar, tenho 12 GB de RAM. Guarde esta informação.",
+          "canonical_entity": "device.work_laptop",
+          "value": "12_gb",
+          "materialized": "candidate",
+          "reviewed_version": 2,
+          "original_mode": "chat",
+          "nomination_source": "recorded_real_gemma_nomination",
+          "nomination_sha256": "c4ab8a510da43f034204d4700ec8210db5788ea5de757d2a31349b453bcc6150",
+          "provenance_literal_matched": true,
+          "previous_version": null
+        },
+        "gm-t05": {
+          "source": "Corrigindo o dado do computador principal: agora ele possui 64 GB de RAM, não mais os 48 GB. Guarde a correção.",
+          "canonical_entity": "device.primary_computer",
+          "value": "64_gb",
+          "materialized": "conflict",
+          "reviewed_version": 2,
+          "original_mode": "agent",
+          "nomination_source": "development_fixture_nomination_no_live_generation",
+          "nomination_sha256": "097582c578eb903e9c9ceb20b0f7c6157e9c0e4ce3c348ac244868d1884e1b93",
+          "provenance_literal_matched": true,
+          "previous_version": 2
+        }
+      },
+      "scoped_history": [
+        [
+          "device.primary_computer",
+          "64_gb",
+          "current"
+        ],
+        [
+          "device.primary_computer",
+          "48_gb",
+          "historical"
+        ]
+      ],
+      "sqlite_schema": 6
+    }
+  },
+  "note": "The first two model nominations are archived from actual GUI calls. The correction did not reach a model call in the failed GUI attempt and uses an explicit development fixture here. No new inference or GUI answer is credited."
+}
