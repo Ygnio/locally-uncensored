@@ -57,8 +57,14 @@ export function historicalProjectWording(span: string): boolean {
  * A later personal subject remains a personal claim and cannot borrow this exemption. */
 export function externalAssertion(span:string):boolean{
  const q=normalizeEvidenceText(span).trim().replace(/^(?:e|and|enquanto|while|whereas)\s+/,'')
- const anchor=q.match(/^(?:(?:a|o|the)\s+)?(?:voz narrativa|narrative voice|narrador(?:a)?|narrator|personagem|character|ferramenta|tool|documento|document|log|texto|text)\b/)
- return !!anchor && !/\b(?:voce|seu|sua|seus|suas|you|your|usuario|user)\b/.test(q.slice(anchor[0].length))
+ const anchor=q.match(/^(?:(?:a|o|the)\s+)?(voz narrativa|narrative voice|narrador(?:a)?|narrator|personagem|character|ferramenta|tool|documento|document|log|texto|text)\b/)
+ if (!anchor) return false
+ const tail = q.slice(anchor[0].length)
+ // Possession of the story locates the narrator. It is not a second actor.
+ const predicate = /^(?:voz narrativa|narrative voice|narrador(?:a)?|narrator)$/u.test(anchor[1])
+   ? tail.replace(/^\s+(?:in your story|no seu conto|na sua historia)\b/u, '')
+   : tail
+ return !/\b(?:voce|seu|sua|seus|suas|you|your|usuario|user)\b/.test(predicate)
 }
 export function deniesCapacityGuarantee(text: string): boolean {
   const q=normalizeEvidenceText(text)

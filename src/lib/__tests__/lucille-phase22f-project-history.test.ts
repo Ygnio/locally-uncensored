@@ -40,6 +40,29 @@ it('keeps an approved historical choice when the question asks if choosing prove
     .violations.map(v => v.code)).toContain('unsupported_typed_value')
 })
 
+it('keeps a narrator in the user story distinct from the user preference', () => {
+  const query = 'My own favourite beverage is tea; the narrator in my story says his favourite beverage is coffee.'
+  const tea: MemoryFact = {
+    ...plan, id: 'source-tea', version: 0, entity: 'user', property: 'favorite_beverage', value: 'tea',
+    modality: 'preference', validity: 'current_user_statement',
+    evidence: [{ role: 'current_user_statement', text: 'My own favourite beverage is tea' }],
+  }
+  const current: AnswerSnapshot = { ...snapshot, query, facts: [], currentStatements: [tea], relations: [] }
+  const first = 'You prefer tea, while the narrator in your story prefers coffee.'
+  const retry = 'Your favorite beverage is tea, while the narrator in your story prefers coffee.'
+  for (const answer of [first, retry]) {
+    const checked = verifyMemoryAnswer(answer, current)
+    expect(checked.violations).toEqual([])
+    expect(new Set(checked.assertions.map(a => a.value))).toEqual(new Set(['tea']))
+  }
+  for (const answer of [
+    retry + ' Your favorite beverage is coffee.',
+    retry.replace('prefers coffee', 'says you prefer coffee'),
+    retry.replace('prefers coffee', 'prefers coffee and you prefer coffee'),
+    retry.replace('in your story', 'in your studio'),
+  ]) expect(verifyMemoryAnswer(answer, current).violations.map(v => v.code)).toContain('unsupported_typed_value')
+})
+
 it('checks the entire captured project description, choice, and plan against three distinct scoped facts', () => {
   const description: MemoryFact = {
     ...plan,id:'description',property:'description',modality:'project_description',validity:'current',
