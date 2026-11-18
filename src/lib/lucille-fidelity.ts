@@ -232,6 +232,14 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     }
     const thirdParty=/\b(?:irmao|irma|brother|sister|colega|colleague|amigo|friend)\b/.test(q)
     if(thirdParty && !uncertain(span) && !span.trim().endsWith('?') && /\b(?:typescript|javascript|python|rust|sqlite|postgresql|mysql|\d+\s*(?:gb|gib)|prefere|prefers|gosta|likes)\b/.test(q))add('unsupported_statement_actor',span)
+    // Naming a fictional or quoted source does not bind its preference to
+    // the USER. A positive identity claim needs an independent personal value.
+    const externalPreference = /\b(?:fictici[oa]|ficcional|narrador[a]?|personagem|fictional|narrator|character)\b/.test(q)
+      && /\b(?:e (?:uma |a )?(?:preferencia sua|sua preferencia)|is (?:a preference of yours|your preference))\b/.test(q)
+    if (externalPreference && !/\b(?:nao|not|talvez|maybe)\b/.test(q) && !span.trim().endsWith('?') &&
+        !current.some(f => f.entity === 'user' && f.modality === 'preference' && mentions(span, f.value))) {
+      add('unsupported_statement_actor', span)
+    }
     const operation = verifyOperationClaim(span, snapshot, mentions)
     if (operation.code) add(operation.code, span)
     if (operation.completedForget && !/(?:,?\s+e|\band)\s+(?:voce|seu|sua|you|your)\b/.test(q)) continue

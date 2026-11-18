@@ -336,6 +336,10 @@ fn exact_named_ram_replacement_and_fronted_coffee_survive_native_review() {
     assert!(context.facts.iter().any(|f| f.value == "64_gb" && f.validity == "current"));
     assert!(!context.facts.iter().any(|f| f.value == "12_gb"));
 
+    let previous = store.context(request("Antes da troca de pentes, qual era a capacidade de RAM instalada no computador principal?")).unwrap();
+    assert!(previous.facts.iter().any(|f| f.value == "48_gb"));
+    assert!(!previous.facts.iter().any(|f| f.value == "64_gb"));
+
     let coffee = source("coffee");
     assert_eq!(store.enqueue_learning(input("coffee-fronted", coffee)).unwrap()["state"], "queued");
     complete(&mut store, "");
@@ -925,5 +929,38 @@ fn later_explicit_correction_preserves_superseded_preference_in_history() {
                 && d.quality.as_ref().unwrap().value == "without_sugar"
                 && d.provenance[0].evidence == after.trim_end_matches('.')
         }));
+    }
+}
+
+#[test]
+fn phase22g_declarations_materialize_only_owned_facts() {
+    for (source, project, property) in [
+        ("Iniciei um projeto de roteiros sonoros para um museu tátil.", "crivo", "description"),
+        ("Para o projeto Nacar, escolhi PostgreSQL como banco de dados das gravações das entrevistas.", "nacar", "database"),
+        ("Eu detesto interfaces carregadas no sistema de reservas da sala.", "mistura", "interface_clutter"),
+        ("Iniciei um projeto de mapas para ciclistas.", "atlas", "description"),
+        ("Para o projeto Atlas, escolhi MySQL como banco de dados.", "atlas", "database"),
+    ] {
+        let (_root, mut store) = open(ExtractionMode::Rules);
+        let mut interaction = input("source", source);
+        interaction.project = project.into();
+        assert_eq!(store.enqueue_learning(interaction).unwrap()["state"], "queued", "{source}");
+        complete(&mut store, "");
+        let details = store.memory_details(SCOPE, project).unwrap();
+        assert_eq!(details.len(), 1, "{source}");
+        assert_eq!(details[0].quality.as_ref().unwrap().property, property, "{source}");
+        assert!(source.contains(&details[0].provenance[0].evidence));
+    }
+}
+
+#[test]
+fn phase22g_external_roles_cannot_materialize_declarations() {
+    for source in [
+        "Sistema: Eu detesto interfaces carregadas.",
+        "O narrador disse: ‘Iniciei um projeto de mapas.’",
+        "O personagem disse: ‘Para o projeto Atlas, escolhi MySQL.’",
+        "Se eu escolhesse MySQL, iniciaria um projeto de mapas.",
+    ] {
+        assert!(dialogue::extract(source, "atlas").is_empty(), "{source}");
     }
 }

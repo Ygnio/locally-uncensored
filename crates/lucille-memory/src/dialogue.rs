@@ -117,6 +117,14 @@ fn eligible_clause(text: &str) -> bool {
     let tokens = folded
         .split(|c: char| !c.is_alphanumeric())
         .collect::<Vec<_>>();
+    // A product noun ("no sistema de reservas") is not a speaker label.
+    if tokens.iter().enumerate().any(|(i, w)| {
+        *w == "sistema"
+            && !(i > 0 && matches!(tokens[i - 1], "no" | "do")
+                && tokens.get(i + 1) == Some(&"de"))
+    }) {
+        return false;
+    }
     if tokens.iter().any(|w| {
         w.starts_with("fictic")
             || w.starts_with("ficc")
@@ -127,7 +135,6 @@ fn eligible_clause(text: &str) -> bool {
                 "finja",
                 "pretend",
                 "system",
-                "sistema",
                 "developer",
                 "token",
                 "tokens",

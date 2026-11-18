@@ -147,3 +147,28 @@ it('does not convert a false complement into an acknowledged fact', async () => 
   expect(output.report.localizedRepair).toBeUndefined()
   expect(regenerate).toHaveBeenCalledTimes(1)
 })
+
+it('distinguishes a promise across sessions from a current-turn acknowledgement', () => {
+  const evidence = snapshot('chat')
+  evidence.query = 'Quando configuro a interface para mim, eu prefiro o tema escuro.'
+  evidence.currentStatements = []
+  for (const text of ['Vou manter essa preferência em mente para as próximas configurações.',
+    'Levarei sua preferência em mente nas próximas conversas.']) {
+    expect(verifyMemoryAnswer(text,evidence).violations.map(v=>v.code)).toContain('unconfirmed_memory_promise')
+  }
+  expect(verifyMemoryAnswer('Vou manter essa preferência em mente nesta resposta.',evidence).violations).toEqual([])
+})
+
+
+it('rejects assigning externally sourced preferences to the user while permitting bounded uncertainty', () => {
+  const evidence = snapshot('chat')
+  evidence.query = 'O tema de interface do material fictício é uma preferência minha?'
+  for (const text of ['Sim, o tema de interface do material fictício é uma preferência sua.',
+    'A escolha do narrador é sua preferência.']) {
+    expect(verifyMemoryAnswer(text,evidence).violations.map(v=>v.code)).toContain('unsupported_statement_actor')
+  }
+  for (const text of ['O tema do material fictício não é uma preferência sua.',
+    'Não há evidência de que a escolha do narrador seja uma preferência sua.']) {
+    expect(verifyMemoryAnswer(text,evidence).violations).toEqual([])
+  }
+})

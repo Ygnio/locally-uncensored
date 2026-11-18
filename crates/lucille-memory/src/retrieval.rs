@@ -200,6 +200,14 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
     }
     spans.push(query[start..].trim().to_owned());
     let shared = relation_domains(query);
+    // An elliptical RAM conjunct inherits a device only if every explicit
+    // device in the question agrees (e.g. "antes e qual é agora?").
+    let devices: HashSet<_> = spans.iter().filter_map(|s| query_device(s)).collect();
+    let shared_device = if devices.len() == 1 && !implicit_device_comparison(query) {
+        devices.iter().next().copied()
+    } else {
+        None
+    };
     spans
         .into_iter()
         .map(|mut part| {
@@ -212,6 +220,14 @@ pub fn query_relations(query: &str) -> Vec<QueryRelation> {
             if relation_domains(&part).is_empty() && shared.len() == 1 {
                 part.push(' ');
                 part.push_str(shared[0]);
+                if shared[0] == "RAM" && query_device(&part).is_none() && !third_party(&part) {
+                    match shared_device {
+                        Some("device.primary_computer") => part.push_str(" computador principal"),
+                        Some("device.work_laptop") => part.push_str(" notebook de trabalho"),
+                        Some("device.other_computer") => part.push_str(" outro computador"),
+                        _ => {}
+                    }
+                }
             }
             let part_domains = relation_domains(&part);
             if let Some(name) = named_project {
@@ -675,6 +691,13 @@ fn preference_slots(query: &str) -> Vec<&'static str> {
                 .iter()
                 .any(|w| q.contains(w)))
     {
+        // "Idioma das respostas" names a language, not a response style.
+        // Keep both domains when style or another coordinated field is explicit.
+        let words: Vec<_> = q.split(|c: char| !c.is_alphanumeric()).collect();
+        if !words.iter().any(|w| matches!(*w, "e" | "and" | "ou" | "or" | "estilo" | "style" | "foco" | "focus")
+            || ["detalh", "concis", "objetiv", "breve", "curt", "detail", "brief", "short"].iter().any(|s| w.starts_with(s))) {
+            slots.retain(|p| !matches!(*p, "communication_style" | "communication_focus"));
+        }
         slots.push("response_language");
     }
     if slots.contains(&"coffee_sugar")
@@ -837,6 +860,17 @@ fn eligible_source(
         return Ok(false);
     }
     let meta = quality(tx, &m.input.id)?;
+    if !historical && meta.as_ref().is_some_and(|q| q.property == "ram_capacity")
+        && historical_intent(query)
+    {
+        let text = crate::relevance::normalize_query(query);
+        let words = text.split(|c: char| !c.is_alphanumeric()).collect::<Vec<_>>();
+        let past = words.iter().any(|w| matches!(*w, "era" | "tinha" | "was" | "had"));
+        let present = words.iter().any(|w| matches!(*w, "agora" | "atual" | "atualmente" | "hoje" | "tem" | "now" | "current" | "today" | "has"));
+        if past && !present {
+            return Ok(false);
+        }
+    }
     // A clear correction in the current user message takes precedence even
     // before the asynchronous extractor has persisted its replacement.
     if let Some(current) = meta.as_ref().filter(|_| !historical) {

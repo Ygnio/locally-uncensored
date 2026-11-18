@@ -219,7 +219,11 @@ pub fn lexical_coverage(query: &str, content: &str) -> f64 {
     q.iter().filter(|v| d.contains(v)).count() as f64 / q.len() as f64
 }
 pub fn personal(query: &str) -> bool {
-    let padded = format!(" {} ", fold(query));
+    let folded = fold(query);
+    if folded.split(|c: char| !c.is_alphanumeric()).any(|w| w == "escolho") {
+        return true;
+    }
+    let padded = format!(" {} ", folded);
     [
         " my ",
         " i ",

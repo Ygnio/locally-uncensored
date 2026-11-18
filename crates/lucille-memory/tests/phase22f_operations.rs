@@ -269,3 +269,22 @@ fn forget_receipt_is_bound_to_removed_record_version_after_restart() {
         Some(receipt)
     );
 }
+
+#[test]
+fn transport_sources_produce_bound_receipts_after_publication() {
+    for (mode, text, property, value) in [
+        (Mode::Chat, "Minha preferência para as respostas do estudo é por explicações detalhadas.", "communication_style", "detailed"),
+        (Mode::Code, "When I play role-playing games, I like choosing my character class.", "games_class_selection", "positive"),
+    ] {
+        let dir = tempfile::tempdir().unwrap();
+        let mut store = setup(&dir.path().join("transport.sqlite3"), true);
+        let (request, proof) = prepare(&mut store, "persisted-user", text, mode);
+        store.publish_user_turn(proof.clone()).unwrap();
+        let lease = store.claim_learning(now() + 1).unwrap().expect(text);
+        store.complete_learning(&lease, &lease.claims, now() + 2).unwrap();
+        let receipt = learning(&mut store, &request, &proof).expect(text);
+        assert_eq!(receipt["records"][0]["property"], property);
+        assert_eq!(receipt["records"][0]["value"], value);
+        assert_eq!(receipt["records"][0]["state"], "active");
+    }
+}
