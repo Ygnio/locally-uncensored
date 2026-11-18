@@ -23,7 +23,8 @@ SUITE = ROOT / 'docs/evidence/phase22g/independent-evaluation'
 REPORTS = QA_ROOT / 'reports'
 CASE_FREEZE = '8b09ba6647961e9dee731010795b446add1ea2fc'
 ARCHIVE_COMMIT = '500d4ed57f050b343af24fe526019518d4c9ee08'
-RUN = QA_ROOT / 'independent-v2'
+SECOND_ARCHIVE = '4e215e8ed595d81524cf119023a99af33387948c'
+RUN = QA_ROOT / 'independent-v3'
 PORTS = (15283,15284,15287,15288,15289)
 PROFILES = tuple('i'+str(i) for i in range(1,6))
 MARKER = b'synthetic-data-only\n'
@@ -137,16 +138,10 @@ def integrity():
 def frozen(commit):
     require(bool(re.fullmatch('[0-9a-f]{40}',commit)),'Full freeze commit required')
     rel=SUITE.relative_to(ROOT).as_posix()
-    subprocess.run(['git','merge-base','--is-ancestor',ARCHIVE_COMMIT,commit],cwd=ROOT,check=True)
-    require(commit!=ARCHIVE_COMMIT,'Attempt 02 executor anchor required')
-    # Only the report, attempt registration and the three QA files may differ.
-    allowed=('docs/lucille-phase22g.md','docs/evidence/phase22g/independent-run-01',
-             'docs/evidence/phase22g/independent-attempt-02','scripts/lucille-real-server.py',
-             'scripts/lucille-independent.py','qa/independent_startup_test.py')
-    subprocess.run(['git','diff','--quiet',CASE_FREEZE,commit,'--','.',
-                    *[':(exclude)'+p for p in allowed]],cwd=ROOT,check=True)
-    subprocess.run(['git','diff','--quiet',ARCHIVE_COMMIT,commit,'--',
-                    'docs/evidence/phase22g/independent-run-01'],cwd=ROOT,check=True)
+    subprocess.run(['git','merge-base','--is-ancestor',SECOND_ARCHIVE,commit],cwd=ROOT,check=True)
+    require(commit!=SECOND_ARCHIVE,'Attempt 03 executor anchor required')
+    subprocess.run(['git','diff','--quiet',SECOND_ARCHIVE,commit,'--','.',
+                    ':(exclude)scripts/lucille-independent.py'],cwd=ROOT,check=True)
     raw=subprocess.check_output(['git','show',CASE_FREEZE+':'+rel+'/manifest.json'],cwd=ROOT)
     manifest=json.loads(raw)
     require(manifest==read(SUITE/'manifest.json'),'Manifest differs from Git anchor')
@@ -175,6 +170,10 @@ def verify_first_attempt():
 
 def environment():
     verify_first_attempt()
+    archive=QA_ROOT/'independent-v2'
+    index=read(ROOT/'docs/evidence/phase22g/independent-run-02/raw-sha256.json')
+    for name,expected in index.items():
+        require(digest(archive/name)==expected,'Second attempt evidence changed: '+name)
     require((QA_ROOT/'.lucille-isolated').read_bytes()==MARKER,'Bad QA root')
     require(not any(port_open(n) for n in PORTS),'QA listener occupied')
     require(not any(profile(p).exists() for p in PROFILES),'Campaign profile already exists')
@@ -254,7 +253,7 @@ def lifecycle(operation):
 def dispatch(run, i, sources, replay, initialize):
     campaign_guard()
     require(not BUDGET.exists() or len(list(BUDGET.iterdir()))<160,'Budget fully reserved')
-    label='g22ie2-'+i['id']+('-replay' if replay else '')
+    label='g22ie3-'+i['id']+('-replay' if replay else '')
     require(not list(REPORTS.glob('driver-'+label+'-*.json')), 'Stage previously exposed')
     send_control(run,label,control_for(i,sources,replay,initialize))
     deadline=time.monotonic()+480
@@ -311,7 +310,7 @@ def campaign(commit):
     with controller_lock(scope):
         require(environment()==read(SUITE/'runtime-lock.json'),'Runtime lock mismatch')
         RUN.mkdir(exist_ok=False)
-        write(RUN/'start.json',dict(freeze=CASE_FREEZE,executor_commit=commit,attempt=2,application=contract['application_commit'],states=states))
+        write(RUN/'start.json',dict(freeze=CASE_FREEZE,executor_commit=commit,attempt=3,application=contract['application_commit'],states=states))
         control=REPORTS/'control.json'; previous=control.read_bytes()
         try:
             control.write_text('{}',encoding='utf8')
