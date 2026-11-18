@@ -106,6 +106,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   const current = all.filter(f => f.validity !== 'historical')
   const query = fold(snapshot.query)
   const askedProperties = requestedMemoryProperties(snapshot.query)
+  const descriptionRequested = /\b(?:tema|assunto|finalidade|proposito|descricao|objetivo)\s+(?:do|deste|desse|do seu|do meu)\s+projeto\b|\b(?:topic|subject|purpose|description)\s+of\s+(?:the|this|your|my)\s+project\b/.test(query)
   const personalQuestion = /\b(?:meu|minha|meus|minhas|my|our|aquele|aquela|aqueles|aquelas|that)\b|pref|gosto|lembra|remember/.test(query) || (/\b(?:eu|i)\b/.test(query) && /tenho|tomo|bebo|gosto|escolhi|decidi|conclui|terminei|finalizei|have|drink|chose|choose|decided|like|prefer/.test(query))
   const preferenceQuestion = personalQuestion && /pref|gost|favorit|tema|theme|interface|bebida|beverage|respost|answer|repl|explain|cafe|coffee|idioma|language|jogo|game|character|personag|classe/.test(query)
   const projectQuestion = personalQuestion && /projeto|project|linguagem|language|banco|database/.test(query)
@@ -180,7 +181,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     if (uncertain(span) && !execution(span) && !completion(span)) continue
     const subject = /\b(?:voce|seus?|suas?|you|your)\b|projeto|project/.test(q)
     const description = q.trim().match(/^(?:(?:o|a)\s+)?(?:tema|assunto|finalidade|proposito|descricao|objetivo)\s+(?:do|deste|desse|do seu)\s+projeto(?:\s+([\p{L}\p{N}_.-]+))?\s+e\s+(.+)$|^(?:the\s+)?(?:topic|subject|purpose|description)\s+of\s+(?:the|this|your)\s+project(?:\s+([\p{L}\p{N}_.-]+))?\s+is\s+(.+)$/u)
-    if (description) {
+    if (description && (descriptionRequested || current.some(f => f.property === 'description' && f.entity === 'project.' + snapshot.project))) {
       const entity = 'project.' + snapshot.project
       const named = description[1] ?? description[3]
       const value = descriptionValue(description[2] ?? description[4])
@@ -188,8 +189,8 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
       // A shared substring cannot ground additions or a different project.
       const proof = current.filter(f => (!named || named === fold(snapshot.project)) &&
         f.entity === entity && f.property === 'description' && f.modality === 'project_description' &&
-        f.validity === 'current' && f.review === 'reviewed' && f.evidence.some(e => {
-          if (e.role !== 'current_source') return false
+        (f.validity === 'current' && f.review === 'reviewed' || f.validity === 'current_user_statement') && f.evidence.some(e => {
+          if (e.role !== (f.validity === 'current_user_statement' ? 'current_user_statement' : 'current_source')) return false
           const source = fold(e.text).trim().match(/^(?:estou comecando um projeto de|iniciei um projeto de|i am starting a project(?: about| on| for| to)?|(?:(?:o|meu) )?projeto continua sendo|(?:my|the) project remains)\s+(.+)$/u)
           return source && value === descriptionValue(source[1])
         }))
