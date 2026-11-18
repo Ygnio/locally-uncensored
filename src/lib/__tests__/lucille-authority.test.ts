@@ -139,10 +139,29 @@ describe('bounded non-destructive intervention and language',()=>{
     for(const q of ['Como está meu projeto neste momento?','Qual linguagem eu havia escolhido para meu projeto?','What database did I choose for my project?'])expect(memoryQuestionNeedsNoTools(q)).toBe(true)
     for(const q of ['Liste os arquivos do meu projeto.','Read the project files and verify its implementation.','Abra a pasta e confira se está vazia.','What is wrong with my project?','Qual é o problema do meu projeto?','Remember to email the team.'])expect(memoryQuestionNeedsNoTools(q)).toBe(false)
   })
+  it('treats an explicit memory request after its declaration as memory-only',()=>{
+    const correction='Corrigindo o dado do computador principal: agora ele possui 64 GB de RAM, não mais os 48 GB. Guarde a correção.'
+    expect(memoryQuestionNeedsNoTools(correction)).toBe(true)
+    expect(memoryQuestionNeedsNoTools('Meu computador tem 48 GB de RAM. Guarde esta informação.')).toBe(true)
+    expect(memoryQuestionNeedsNoTools(correction+' Escreva o resultado no arquivo de inventário.')).toBe(false)
+  })
   it('an unnecessary memory-only tool request is repaired before any dispatch',async()=>{
     const regenerate=vi.fn(async():Promise<MemoryCompletion>=>({content:'Você decidiu usar Rust.',finishReason:'stop'}))
     const r=await validateLucilleCompletion(wire({...snapshot(),memoryOnly:true}),{content:'Vou listar os arquivos.',toolCalls:[{function:{name:'file_list',arguments:{path:'.'}}}],finishReason:'tool_calls'},regenerate)
     expect(r.completion.toolCalls).toBeUndefined();expect(regenerate).toHaveBeenCalledTimes(1)
+  })
+  it('keeps an unavailable stored preference distinct from current personal liking during repair',async()=>{
+    const s=snapshot([], 'Continua registrada a minha preferência por criação de personagens?')
+    const regenerate=vi.fn(async (messages:ChatMessage[])=>{
+      expect(messages.some(m=>m.content.includes('Describe a present preference only if the evidence establishes it.'))).toBe(true)
+      return {content:'Não tenho registro disponível dessa preferência neste escopo.',finishReason:'stop'}
+    })
+    const result=await validateLucilleCompletion(wire(s),{
+      content:'Sim, a sua preferência por criação de personagens continua registrada. Não há nenhuma mudança recente que indique que você deixou de gostar disso.',
+      finishReason:'stop',
+    },regenerate)
+    expect(result.report.status).toBe('regenerated')
+    expect(regenerate).toHaveBeenCalledTimes(1)
   })
   it('language-neutral values pass while known language mismatches require repair',()=>{
     expect(answerLanguage('What kind of replies do I prefer?',[])).toBe('en')

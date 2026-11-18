@@ -9,6 +9,49 @@ const plan: MemoryFact = {id:'plan',version:2,entity:'project.jatoba',property:'
 const cancelled: MemoryFact = {...plan,id:'cancel',property:'lifecycle',value:'cancelled',modality:'cancelled',validity:'current',evidence:[{role:'current_source',text:'Cancelei o projeto Jatoba.'}]}
 const snapshot: AnswerSnapshot = {scope:'qa',project:'jatoba',query,facts:[plan,cancelled],currentStatements:[],relations:[{query:'o banco planejado no meu projeto',actor:'user',state:'retrieved',references:[{id:'plan',version:2}]},{query:'o banco que meu irmão usa',actor:'third_party',state:'unavailable',references:[]}]}
 
+it('checks the entire captured project description, choice, and plan against three distinct scoped facts', () => {
+  const description: MemoryFact = {
+    ...plan,id:'description',property:'description',modality:'project_description',validity:'current',
+    value:'estou comecando um projeto de catalogo de miniaturas',
+    evidence:[{role:'current_source',text:'Estou começando um projeto de catálogo de miniaturas'}],
+  }
+  const choice: MemoryFact = {
+    ...plan,id:'choice',property:'language',modality:'decision',validity:'current',value:'python',
+    evidence:[{role:'current_source',text:'Escolhi Python como linguagem para o meu projeto'}],
+  }
+  const database = {...plan,validity:'current'}
+  const current: AnswerSnapshot = {
+    ...snapshot,query:'Qual é o tema do projeto, a linguagem escolhida e o banco planejado?',
+    facts:[description,choice,database],relations:[
+      {query:'Qual é o tema do projeto',actor:'user',intent:'any',state:'retrieved',references:[{id:'description',version:2}]},
+      {query:'a linguagem escolhida projeto',actor:'user',intent:'choice',state:'retrieved',references:[{id:'choice',version:2}]},
+      {query:'o banco planejado? projeto',actor:'user',intent:'planned',state:'retrieved',references:[{id:'plan',version:2}]},
+    ],
+  }
+  const reply = 'O tema do projeto é um catálogo de miniaturas. Você escolheu a linguagem Python e planeja usar o banco de dados PostgreSQL.'
+  const checked = verifyMemoryAnswer(reply,current)
+  expect(checked.violations).toEqual([])
+  expect(checked.assertions.map(a=>[a.property,a.supported,a.references])).toEqual([
+    ['description',true,['description']],['language',true,['choice']],['database',true,['plan']],
+  ])
+  for (const answer of [
+    reply.replace('miniaturas', 'miniaturas para venda'),
+    reply.replace('tema do projeto', 'tema do projeto Pitanga'),
+    reply.replace('PostgreSQL', 'MySQL'),
+  ]) expect(verifyMemoryAnswer(answer,current).violations.map(v=>v.code)).toContain('unsupported_typed_value')
+  for (const answer of [
+    reply.replace('PostgreSQL.', 'PostgreSQL no Pitanga.'),
+    reply.replace('Python e planeja', 'Python. Planeja'),
+  ]) expect(verifyMemoryAnswer(answer,current).violations.map(v=>v.code)).toContain('known_relation_not_used')
+  for (const inaccessible of [
+    {...description,scope:'another'},
+    {...description,project:'pitanga',entity:'project.pitanga'},
+    {...description,validity:'historical'},
+    {...description,evidence:[{role:'tool',text:description.evidence[0].text}]},
+  ]) expect(verifyMemoryAnswer(reply,{...current,facts:[inaccessible,choice,database]}).violations.map(v=>v.code))
+    .toContain('unsupported_typed_value')
+})
+
 it('treats the exact prior Code output as a current-plan error without attaching the brother’s verb to the own plan', () => {
   const first = 'O banco planejado para o seu projeto Jatoba é o PostgreSQL, enquanto não há registro disponível sobre o banco que seu irmão usa.'
   const second = 'Você planeja usar o PostgreSQL no seu projeto, mas não há registro sobre qual banco de dados o seu irmão usa.'

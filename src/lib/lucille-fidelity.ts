@@ -92,6 +92,10 @@ function mentions(text: string, value: string) {
   return aliases(value).some(v => v.length < 4 ? q.split(/[^a-z0-9]+/).includes(v) : q.includes(v))
 }
 
+function descriptionValue(text: string) {
+  return text.trim().replace(/[.!]+$/u, '').replace(/^(?:um|uma|a|an|the)\s+/u, '').replace(/\s+/gu, ' ')
+}
+
 export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): FidelityCheck {
   const began = performance.now(), assertions: MemoryAssertion[] = [], violations: FidelityViolation[] = []
   const add = (code: string, span: string, critical = true) => {
@@ -149,7 +153,7 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
   // cannot change the preceding current Python use (or the reverse).
   const clauses = answerRelationClauses(text)
   let favoriteSlotBound=false
-  for (const span of clauses) {
+  for (const [clauseIndex, span] of clauses.entries()) {
     const q = fold(span)
     if(externalAssertion(span))continue
     const thirdParty=/\b(?:irmao|irma|brother|sister|colega|colleague|amigo|friend)\b/.test(q)
@@ -175,6 +179,23 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
     if (epistemic && !/duvid|doubt|certeza|certain|,\s*(?:e |and |seu |your |o projeto|the project|voce |you )/.test(q)) continue
     if (uncertain(span) && !execution(span) && !completion(span)) continue
     const subject = /\b(?:voce|seus?|suas?|you|your)\b|projeto|project/.test(q)
+    const description = q.trim().match(/^(?:(?:o|a)\s+)?(?:tema|assunto|finalidade|proposito|descricao|objetivo)\s+(?:do|deste|desse|do seu)\s+projeto(?:\s+([\p{L}\p{N}_.-]+))?\s+e\s+(.+)$|^(?:the\s+)?(?:topic|subject|purpose|description)\s+of\s+(?:the|this|your)\s+project(?:\s+([\p{L}\p{N}_.-]+))?\s+is\s+(.+)$/u)
+    if (description) {
+      const entity = 'project.' + snapshot.project
+      const named = description[1] ?? description[3]
+      const value = descriptionValue(description[2] ?? description[4])
+      // Compare the entire claimed purpose against the literal source payload.
+      // A shared substring cannot ground additions or a different project.
+      const proof = current.filter(f => (!named || named === fold(snapshot.project)) &&
+        f.entity === entity && f.property === 'description' && f.modality === 'project_description' &&
+        f.validity === 'current' && f.review === 'reviewed' && f.evidence.some(e => {
+          if (e.role !== 'current_source') return false
+          const source = fold(e.text).trim().match(/^(?:estou comecando um projeto de|iniciei um projeto de|i am starting a project(?: about| on| for| to)?|(?:(?:o|meu) )?projeto continua sendo|(?:my|the) project remains)\s+(.+)$/u)
+          return source && value === descriptionValue(source[1])
+        }))
+      assertions.push({entity,property:'description',value,span,supported:proof.length>0,references:proof.map(f=>f.id)})
+      if (!proof.length) add('unsupported_typed_value',span)
+    }
     if (!deniesCapacityGuarantee(span) && (subject || personalQuestion) && /ram|memoria|memory|computador|computer|notebook|laptop/.test(fold(text)+' '+query) && /fluidez|(?:experiencia|desempenho|multitarefas?|navegacao|produtividade|desenvolvimento|execucao|tarefas?).{0,25}\bfluid[ao]s?\b|sem (?:grandes )?gargalos|sem travamentos|mais estavel|maior estabilidade|no bottlenecks|smooth performance|more stable|will run smoothly/.test(q) && !/\b(?:pode|poderia|talvez|depende|estimativa|might|could|may|depends|estimate)\b/.test(q)) {
       const source=current.some(f=>f.evidence.some(e=>e.role!=='previous_property_link_not_current_value' && fold(e.text).includes(q.trim())))
       if(!source)add('unproven_personal_performance',span,false)
@@ -205,16 +226,24 @@ export function verifyMemoryAnswer(text: string, snapshot: AnswerSnapshot): Fide
         if (!['de', 'do', 'da', 'que', 'that', 'which', 'sobre', 'about', 'sem', 'com', 'para', 'with', 'without', 'esta', 'esteja', 'e', 'is', 'was', 'foi', 'sera', 'vai', 'ainda', 'has', 'tem', 'continua', 'planeja', 'agora', 'atualmente', 'recentemente', 'recently', 'anteriormente', 'previously', 'atual', 'current', 'ou', 'or', 'hoje', 'usa', 'usava', 'utiliza', 'utilizava', 'possui', 'segue', 'parece', 'estava', 'estara', 'ja', 'nao', 'aqui', 'precisa', 'exige', 'requer', 'apresenta', 'will', 'uses', 'needs', 'requires', 'currently', 'now', 'already', 'still', 'seems', 'would', 'could', 'should', 'may', 'might', 'can'].includes(name) && name !== fold(snapshot.project) && identitySyntax) add('unsupported_project_entity', span)
       }
     }
-    // A standalone plan predicate can inherit a project from a preceding,
-    // verified clause about the same requested technology field.
-    const impliedPlan = /^(?:(?:para o futuro|futuramente|in the future)[,\s]+)?(?:(?:e|and)\s+)?(?:esta planejad[ao] usar|planeja usar|pretende usar|is planned to use|plans to use|intends to use)\s+(?:(?:a linguagem|o banco|the language|the database)\s+)?[a-z0-9]+(?:\s+(?:no futuro|futuramente|in the future))?[.!]?$/.test(q.trim())
+    // A bare plan can inherit a project from a verified technology claim.
+    // Crossing fields requires explicit coordination and a native plan relation.
+    const impliedPlan = /^(?:(?:para o futuro|futuramente|in the future)[,\s]+)?(?:(?:e|and)\s+)?(?:esta planejad[ao] usar|planeja usar|pretende usar|is planned to use|plans to use|intends to use)\s+(?:(?:a linguagem|o banco(?: de dados)?|the language|the database)\s+)?[a-z0-9]+(?:\s+(?:no futuro|futuramente|in the future))?[.!]?$/.test(q.trim())
     if (subject || projectQuestion || impliedPlan) {
       for (const value of ['typescript', 'javascript', 'python', 'rust', 'sqlite', 'postgresql', 'mysql']) {
         if (!new RegExp('\\b' + value + '\\b').test(q)) continue
         const property = ['sqlite', 'postgresql', 'mysql'].includes(value) ? 'database' : 'language'
-        if (!subject && !projectQuestion && (!askedProperties.includes(property) || !assertions.some(a =>
-          a.span !== span && a.supported && a.entity === 'project.' + snapshot.project && a.property === property &&
-          !violations.some(v => v.span === a.span)))) continue
+        if (!subject && !projectQuestion) {
+          const earlier = assertions.filter(a => a.span !== span && a.supported &&
+            a.entity === 'project.' + snapshot.project && !violations.some(v => v.span === a.span))
+          const previousClause = clauses[clauseIndex - 1]
+          const coordinated = /^(?:e|and)\s+/u.test(q.trim()) && previousClause && !/[.!?;]\s*$/u.test(previousClause) &&
+            earlier.some(a => a.span === previousClause && ['language','database'].includes(a.property)) &&
+            snapshot.relations?.some(r => r.actor === 'user' && r.intent === 'planned' && current.some(f =>
+              f.entity === 'project.' + snapshot.project && f.property === property && f.modality === 'planned' &&
+              r.references.some(ref => ref.id === f.id && ref.version === f.version)))
+          if (!askedProperties.includes(property) || (!earlier.some(a => a.property === property) && !coordinated)) continue
+        }
         if (/\bprojeto|\bproject|linguagem|programming language|banco de dados|database/.test(q) || projectQuestion || (subject && personalQuestion && /escolh|decid|guardar|armazen|persist|store|stack/.test(query)) || (current.some(f => f.property === property && f.entity === 'project.' + snapshot.project) && !/objetivo|goal|aprender|learn|estud|study/.test(q))) {
           const choiceOrigin=technologyRoles(span).some(role=>role.value===value && role.role==='origin')
           record(span, property, value, 'project.' + snapshot.project, false, choiceOrigin)

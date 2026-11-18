@@ -68,6 +68,7 @@ export function memoryQuestionNeedsNoTools(query: string): boolean {
   // roster only when an external action/resource was explicitly requested above.
   const memoryDirective=/^(?:por favor[, ]+|please[, ]+)?(?:esqueca|forget|memorize|memorise|guarde|registre|lembre|volte a (?:guardar|memorizar|registrar)|quero voltar a registrar|i want to remember|you can remember)\b/.test(q.trim())
   if (memoryDirective && /preferenc|preference|memori|memory/.test(q)) return true
+  if (/(?:^|[.!;\n]\s*|,\s*)(?:por favor[, ]+)?(?:guarde|salve|registre|memorize)\s+(?:esta informacao|essa informacao|a correcao|este dado|esse dado|isso)(?=\s*(?:[.!;\n]|$))/.test(q.trim())) return true
   const recalled=/\b(?:lembra|recorda|remember|recall)\b/.test(q)
   const personal=/\b(?:meu|minha|meus|minhas|my|our|aquele|aquela|that)\b/.test(q)
   const slots=/linguagem|language|banco|database|\bram\b|notebook|laptop|prefer|objetivo|goal|tema|theme|bebida|drink/.test(q)

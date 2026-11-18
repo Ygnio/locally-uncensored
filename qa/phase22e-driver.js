@@ -67,6 +67,7 @@ async function run(control) {
   async function send(text) {
     p.useUIStore.getState().setView('chat'); await sleep(200)
     const chat = () => p.useChatStore.getState().conversations.find(c => c.id === p.useChatStore.getState().activeConversationId)
+    const conversationId = chat().id
     const before = chat().messages.map(m => m.id), start = Date.now()
     const paints = [], domPaints = [], notePaints = [], operationSnapshots=[], seen = new Map(), seenNotes = new Set()
     let nativeReads=Promise.resolve()
@@ -124,7 +125,14 @@ async function run(control) {
     Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set.call(input, text)
     input.dispatchEvent(new Event('input', { bubbles: true })); await sleep(100)
     await click('Send message')
-    await until(() => chat().messages.some(m => m.role === 'assistant' && !before.includes(m.id) && (m.error || transportFailure(m) || (m.content?.length && (m.finishReason || m.usage)))) && !Object.keys(p.useGenerationStore.getState().aborters).length, 'real generation')
+    await until(() => {
+      const replies = chat().messages.filter(m => m.role === 'assistant' && !before.includes(m.id))
+      const awaitingApproval = replies.flatMap(m => m.agentBlocks ?? []).find(b => b.toolCall?.status === 'pending_approval' || (b.phase === 'tool_call' && /^Requesting approval:/.test(b.content ?? '')))
+      if (qaPhase === 'phase22f' && awaitingApproval) throw Error('Actual generation requested manual tool approval')
+      const terminal = replies.some(m => m.error || transportFailure(m) || (m.content?.length && (m.finishReason || m.usage)) ||
+        (qaPhase === 'phase22f' && m.lucilleFidelity?.some(r => r.status === 'blocked')))
+      return terminal && (qaPhase === 'phase22f' ? !p.useGenerationStore.getState().aborters[conversationId] : !Object.keys(p.useGenerationStore.getState().aborters).length)
+    }, 'real generation')
     const generated = Date.now()
     const failure=chat().messages.filter(m=>!before.includes(m.id)).some(transportFailure)
     if(failure)await record(`driver-${label}-transport-progress.json`,{conversation_id:chat().id,observed:new Date().toISOString(),messages:chat().messages.filter(m=>!before.includes(m.id))})
@@ -137,6 +145,13 @@ async function run(control) {
     sampleOperation('learning_terminal'); await nativeReads
     const result = { paints, domPaints, notePaints, operationSnapshots, transport_failure:failure,mode:currentMode, text, conversation_id: chat().id, messages: latest, generation_ms: generated - start, extraction_wait_ms: Date.now() - generated, metrics: await scoped('learning_metrics') }
     fixture.turns.push(result); await progress(); return result
+    } catch (error) {
+      if (qaPhase === 'phase22f') {
+        fixture.interrupted_turn = {conversation_id:conversationId,mode:currentMode,text,paints,domPaints,notePaints,
+          messages:p.useChatStore.getState().conversations.find(c=>c.id===conversationId)?.messages.filter(m=>!before.includes(m.id)) ?? []}
+        p.useGenerationStore.getState().abortConversation(conversationId)
+      }
+      throw error
     }finally{unsubscribe();observer.disconnect();await nativeReads}
   }
   async function review(preferences = false) {
